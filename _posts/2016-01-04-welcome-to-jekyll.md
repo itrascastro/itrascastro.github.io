@@ -2,7 +2,7 @@
 layout: post
 title:  "Hello Jekyll!"
 date:   2016-01-04 21:48:23 +0100
-categories: jekyll
+tags: [ jekyll ]
 ---
 Finally I decided moving forward to Jekyll. At the moment with the basic configuration it seems pretty simple.
 
@@ -17,3 +17,7 @@ By now I get these advantages:
 - free hosting at GitHub
 - speed
 - do not have to worry about security updates
+
+Disadvantages:
+
+- no tags neither categories
