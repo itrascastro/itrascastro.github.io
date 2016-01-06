@@ -10,4 +10,10 @@ I am not interested in design for now. So I will not make template design change
 
 I am also writing this post using Atom text editor.
 
-As Jekyll no uses database and due to cache system implemented by github it is fast as hell.
+As Jekyll no uses database and due to cache system implemented by GitHub it is fast as hell.
+
+By now I get these advantages:
+
+- free hosting at GitHub
+- speed
+- do not have to worry about security updates
