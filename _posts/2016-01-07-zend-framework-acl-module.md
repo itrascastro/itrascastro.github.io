@@ -181,6 +181,7 @@ Installation of TrascastroACL uses composer. For composer documentation, please 
 ```
 php composer.phar require itrascastro/acl:dev-master
 ```
+
 **Configuration**
 
 - Add the module name 'TrascastroACL' to your config/application.config.php
