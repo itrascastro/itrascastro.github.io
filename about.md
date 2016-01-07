@@ -1,7 +1,7 @@
 ---
 layout: page
-title: About
-permalink: /about/
+title: About me
+permalink: /about-me/
 ---
 
 <img src="http://www.gravatar.com/avatar/f30d9d38be800e4569aeea819fb271be" />
