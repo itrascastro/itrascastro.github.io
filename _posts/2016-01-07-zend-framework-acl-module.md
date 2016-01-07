@@ -1,10 +1,14 @@
 ---
 layout: post
-title:  "Zend Framework ACL module"
+title:  "Avoid handwriting ACL permissions in Zend Framework"
 date:   2016-01-07 20:34:00 +0100
 tags: [ Zend Framework ]
 author: itrascastro
 ---
+
+[GitHub repository](https://github.com/itrascastro/TrascastroACL/) |
+[Zend Modules](http://zfmodules.com/itrascastro/TrascastroACL) |
+[Packagist](https://packagist.org/packages/itrascastro/acl)
 
 One of the things to do in a web application is controlling the access to the different pages. Zend Framework comes with an Acl component for that purpose.
 
