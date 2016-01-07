@@ -3,6 +3,7 @@ layout: post
 title:  "Hello Jekyll!"
 date:   2016-01-04 21:48:23 +0100
 tags: [ jekyll ]
+author: itrascastro
 ---
 Finally I decided moving forward to Jekyll. At the moment with the basic configuration it seems pretty simple.
 
