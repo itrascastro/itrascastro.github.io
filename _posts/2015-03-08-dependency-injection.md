@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Dependency Injection"
+description: "Dependency Injection in PHP tutorial"
 date:   2015-03-08 11:00:00 +0100
 tags: [ Dependency Injection, PHP ]
 comments: true

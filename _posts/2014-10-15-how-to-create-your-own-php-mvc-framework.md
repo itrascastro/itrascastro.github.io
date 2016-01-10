@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "How to create your own PHP MVC Framework"
+description: "Tutorial for creating your own PHP MVC Framework from scratch"
 date:   2014-10-15 10:00:00 +0100
 tags: [ PHP, MVC, Framework ]
 comments: true

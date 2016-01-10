@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Avoid handwriting ACL permissions in Zend Framework"
+description: "Zend Framework module for ACL"
 date:   2015-03-10 20:34:00 +0100
 tags: [ Zend Framework ]
 comments: true
