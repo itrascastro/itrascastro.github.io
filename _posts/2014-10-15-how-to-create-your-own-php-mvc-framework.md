@@ -301,3 +301,9 @@ Adding new operations to our calculator is very easy. We do not have to create n
 If you see that you have repeated code in two different places of your code, think in putting that repeated code somewhere accessible from those two places.
 
 In fact, that is the main reason why we must place the validation inside our models and not in the controllers neither in views (even worst).
+
+I also would like to post this image:
+
+![Fat Models Skinny Controllers](https://raw.githubusercontent.com/itrascastro/MVC/master/docs/04.fat-models-skinny-controllers.png)
+
+If you are doubting if some piece of code must go in the controller or in the model, think about where it will be more reusable. Controllers are not reusables, however models are. 
