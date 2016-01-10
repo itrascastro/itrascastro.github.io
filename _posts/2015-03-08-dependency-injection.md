@@ -8,6 +8,8 @@ comments: true
 author: itrascastro
 ---
 
+I like a lot this definition: "Dependency Injection" is a 25-dollar term for a 5-cent concept. Dependency injection means giving an object its instance variables.
+
 We have seen [How to create your own PHP MVC Framework]({% post_url 2014-10-15-how-to-create-your-own-php-mvc-framework %}).
 
 In that approach, the  CalculatorModel instance is created inside the controller in every action:
@@ -136,5 +138,9 @@ class CalculatorController
 {% endhighlight %}
 
 So now the model or service instance is created only one time in our application and it is injected to whatever other object that needs it. That instance can be shared or a new one for every different object.
+
+## Depending on interfaces
+
+You can also make your classes more independent if they depend on interfaces. In that case multiple classes can implement that interface and can be used as a dependency.
 
 The code is available at GitHub: [Dependency Injection](https://github.com/itrascastro/MVC/tree/DependencyInjection)
