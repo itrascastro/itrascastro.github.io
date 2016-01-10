@@ -3,6 +3,7 @@ layout: post
 title:  "Dependency Injection"
 date:   2015-03-08 11:00:00 +0100
 tags: [ Dependency Injection, PHP ]
+comments: true
 author: itrascastro
 ---
 
