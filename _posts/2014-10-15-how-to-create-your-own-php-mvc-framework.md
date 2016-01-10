@@ -298,7 +298,7 @@ Adding new operations to our calculator is very easy. We do not have to create n
 
 ## 3. Summarizing
 
-If you see that you have repeated code in two different places of your code, think in putting that repeated code somewhere accessible from those two places.
+If you see that you have repeated code in two different places of your code, think in putting that repeated code somewhere accessible from those two places. It can be in a service or in a model.
 
 In fact, that is the main reason why we must place the validation inside our models and not in the controllers neither in views (even worst).
 
