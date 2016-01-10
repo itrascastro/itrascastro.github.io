@@ -13,57 +13,11 @@ layout: default
   </div>
 
   <div class="sharing">
-    <ul>
-        <li><i class="fa fa-share-square-o"></i></li>
-
-        <li><a href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ page.url | prepend: site.url }}" rel="nofollow" target="_blank" title="Share on Twitter">
-                <i class="fa fa-twitter-square"></i>
-        </a></li>
-
-
-
-        <li><a href="http://www.linkedin.com/shareArticle?url={{ page.url | prepend: site.url }}&title={{ page.title }}" rel="nofollow" target="_blank" title="Share on LinkedIn">
-                <i class="fa fa-linkedin-square"></i>
-        </a></li>
-
-
-
-        <li><a href="https://facebook.com/sharer.php?u={{ page.url | prepend: site.url }}" rel="nofollow" target="_blank" title="Share on Facebook">
-                <i class="fa fa-facebook-square"></i>
-        </a></li>
-
-
-
-        <li><a href="https://plus.google.com/share?url={{ page.url | prepend: site.url }}" rel="nofollow" target="_blank" title="Share on Google+">
-                <i class="fa fa-google-plus-square"></i>
-        </a></li>
-
-
-
-        <li><a href="http://reddit.com/submit?url={{ page.url | prepend: site.url }}&title={{ page.title }}" rel="nofollow" target="_blank" title="Share on Reddit">
-                <i class="fa fa-reddit-square"></i>
-        </a></li>
-
-    </ul>
-</div>
+    {% include social.html %}
+  </div>
 
   {% if page.comments %}
-  <div id="disqus_thread"></div>
-    <script>
-    var disqus_config = function () {
-    this.page.url = '{{ page.url | prepend: site.url }}';
-    this.page.identifier = '{{ page.url }}';
-    };
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-
-    s.src = '//itrascastro.disqus.com/embed.js';
-
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    {% include disqus.html %}
   {% endif %}
 
 </article>
