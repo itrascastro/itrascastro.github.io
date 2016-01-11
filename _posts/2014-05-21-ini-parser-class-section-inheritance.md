@@ -32,7 +32,7 @@ database.params.username = devuser
 database.params.password = devsecret
 {% endhighlight %}
 
-Next, assume that the application developer needs the staging configuration data from the INI file. It is a simple matter to load these data by specifying the INI file and the staging section:
+Next, assume that the application developer needs the development configuration data from the INI file. It is a simple matter to load these data by specifying the INI file and the development section:
 
 {% highlight php %}
 <?php
