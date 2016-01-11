@@ -49,7 +49,7 @@ and run this composer command
   composer update
   ```
 
-- Rename the Trascastro folder to your needs
+- Rename the 'Trascastro' folder to your needs
 
   You can make an search and replace for 'Trascastro'. This string is unique.
 
