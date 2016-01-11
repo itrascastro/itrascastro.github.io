@@ -10,7 +10,7 @@ author: itrascastro
 
 I have created a Symfony 3 base project with many common bundles and other stuff already installed and configured.
 
-After creating many new projects for my Symfony Classroom I realized that almost always those bundles and rest of stuff were been always also installed.
+After creating many new projects for my Symfony Classroom, I realized that almost always those bundles and the rest of stuff were been always also installed.
 
 This base project comes with:
 
@@ -31,26 +31,26 @@ This base project comes with:
 
 - Clone the repository
 
-```
-git clone https://github.com/itrascastro/Symfony-3-Base-Project.git myproject
-```
+  ```
+  git clone https://github.com/itrascastro/Symfony-3-Base-Project.git myproject
+  ```
 
 - Run composer update
 
-Move into your project
+  Move into your project
 
-```
-cd myproject
-```
+  ```
+  cd myproject
+  ```
 
 and run this composer command
 
-```
-composer update
-```
+  ```
+  composer update
+  ```
 
 - Rename the Trascastro folder to your needs
 
-You can make an search and replace for 'Trascastro'. This string is unique.
+  You can make an search and replace for 'Trascastro'. This string is unique.
 
 The repository: [Symfony-3-Base-Project](https://github.com/itrascastro/Symfony-3-Base-Project)
