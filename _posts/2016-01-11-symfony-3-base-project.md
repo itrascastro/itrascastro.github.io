@@ -10,7 +10,7 @@ author: itrascastro
 
 I have created a Symfony 3 base project with many common bundles and other stuff already installed and configured.
 
-After creating many new projects for my Symfony Classroom, I realized that almost always those bundles and the rest of stuff were been always also installed.
+After creating many new projects for my Symfony Classroom, I realized that, almost always, those bundles and the rest of stuff were been always also installed.
 
 This base project comes with:
 
