@@ -45,9 +45,9 @@ This base project comes with:
 
 and run this composer command
 
-  ```
-  composer update
-  ```
+    ```
+    composer update
+    ```
 
 - Rename the 'Trascastro' folder to your needs
 
