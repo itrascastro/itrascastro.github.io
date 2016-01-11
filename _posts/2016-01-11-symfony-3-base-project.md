@@ -43,10 +43,10 @@ This base project comes with:
   cd myproject
   ```
 
-and run this composer command
+  and run this composer command
 
   ```
-    composer update
+  composer update
   ```
 
 - Rename the 'Trascastro' folder to your needs
