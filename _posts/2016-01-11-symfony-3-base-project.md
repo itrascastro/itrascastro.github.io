@@ -51,6 +51,6 @@ This base project comes with:
 
 - Rename the 'Trascastro' folder to your needs
 
-  You can make an search and replace for 'Trascastro'. This string is unique.
+  You can make a search and replace for 'Trascastro'. This string is unique.
 
 The repository: [Symfony-3-Base-Project](https://github.com/itrascastro/Symfony-3-Base-Project)
