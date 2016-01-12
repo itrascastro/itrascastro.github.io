@@ -129,7 +129,7 @@ class Ini extends Config
      * @param string $parent
      * @param array  $array
      *
-     * @throws \xen\kernel\config\exception\NoSectionMatchesException
+     * @throws \Exception
      * @return array
      */
     private function _getParentArray($parent, $array)
@@ -138,7 +138,7 @@ class Ini extends Config
             $sectionName = explode(':', $section);
             if (trim($sectionName[0]) == $parent) return $arraySection;
         }
-        throw new NoSectionMatchesException('No section matches with ' . $parent);
+        throw new \Exception('No section matches with ' . $parent);
     }
     /**
      * _getExtends
