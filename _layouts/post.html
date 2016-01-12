@@ -12,12 +12,16 @@ layout: default
     {{ content }}
   </div>
 
-  <div class="sharing">
-    {% include social.html %}
-  </div>
-
-  {% if page.comments %}
-    {% include disqus.html %}
-  {% endif %}
-
 </article>
+
+<div class="sharing">
+  {% include social.html %}
+</div>
+
+<div id="related-posts">
+  {% include related-posts.html %}
+</div>
+
+{% if page.comments %}
+  {% include disqus.html %}
+{% endif %}

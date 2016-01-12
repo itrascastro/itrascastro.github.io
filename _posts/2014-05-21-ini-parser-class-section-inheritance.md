@@ -3,7 +3,7 @@ layout: post
 title:  "Dot ini files parser class with extended section support"
 description: "parse_ini_file wrapper to add extend support"
 date:   2014-05-21 11:00:00 +0100
-tags: [ ini file, Sections inheritance, Class ]
+tags: [ ini file, sections inheritance, library ]
 comments: true
 author: itrascastro
 ---
