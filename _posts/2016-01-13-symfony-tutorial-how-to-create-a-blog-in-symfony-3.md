@@ -8,7 +8,7 @@ comments: true
 author: itrascastro
 ---
 
-The idea is creating a very simple blog in Symfony 3. The tutorial's goal is to be a quick start in Symfony.
+The idea is creating a very simple blog in Symfony 3. The goal of this tutorial is to be a quick start in Symfony.
 
 This tutorial will be divided in the following parts:
 
