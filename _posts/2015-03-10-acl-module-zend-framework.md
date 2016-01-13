@@ -6,7 +6,6 @@ date:   2015-03-10 20:34:00 +0100
 tags: [ zend framework, library, acl ]
 comments: true
 author: itrascastro
-redirect_from: "/acl-module-zend-framework/"
 ---
 
 [GitHub repository](https://github.com/itrascastro/TrascastroACL/) |
