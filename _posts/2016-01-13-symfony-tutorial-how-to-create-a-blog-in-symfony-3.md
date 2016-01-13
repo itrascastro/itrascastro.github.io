@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Symfony tutorial - How to create a blog in Symfony 3"
+title:  "Symfony tutorial - How to create a blog in Symfony 3 - Index"
 description: "Learn how to create a blog in Symfony 3"
 date:   2016-01-13 11:00:00 +0100
 tags: [ symfony tutorial blog ]
