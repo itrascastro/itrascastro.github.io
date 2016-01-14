@@ -8,6 +8,8 @@ comments: true
 author: itrascastro
 ---
 
+[GitHub](https://github.com/itrascastro/Symfony-3-Base-Project) | [Packagist](https://packagist.org/packages/itrascastro/symfony-3-base-project)
+
 I have created a Symfony 3 base project with many common bundles and other stuff already installed and configured.
 
 After creating many new projects for my Symfony Classroom, I realized that, almost always, those bundles and the rest of stuff were been always also installed.
@@ -49,5 +51,3 @@ If you did a global install and do not have the composer.phar in that directory 
   ```
   composer create-project itrascastro/symfony-3-base-project my_project_name
   ```
-
-The repository: [Symfony-3-Base-Project](https://github.com/itrascastro/Symfony-3-Base-Project)
