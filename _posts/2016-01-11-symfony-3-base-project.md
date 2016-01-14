@@ -8,7 +8,8 @@ comments: true
 author: itrascastro
 ---
 
-[GitHub](https://github.com/itrascastro/Symfony-3-Base-Project) | [Packagist](https://packagist.org/packages/itrascastro/symfony-3-base-project)
+- [GitHub](https://github.com/itrascastro/Symfony-3-Base-Project)
+- [Packagist](https://packagist.org/packages/itrascastro/symfony-3-base-project)
 
 I have created a Symfony 3 base project with many common bundles and other stuff already installed and configured.
 
