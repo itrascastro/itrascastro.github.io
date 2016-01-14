@@ -27,30 +27,31 @@ This base project comes with:
 - symfony/assetic-bundle installed and configured
 - doctrine/doctrine-fixtures-bundle
 
-## Installation
+Installation
+------------
 
-- Clone the repository
+PHP >= 5.5.9 required
 
-  ```
-  git clone https://github.com/itrascastro/Symfony-3-Base-Project.git myproject
-  ```
+## Installing Composer
 
-- Run composer update
+Composer is the dependency manager used by modern PHP applications and it can also be used to create new applications.
 
-  Move into your project
+Download the installer from [getcomposer.org/download](https://getcomposer.org/download/), execute it and follow the instructions.
 
-  ```
-  cd myproject
-  ```
-
-  and run this composer command
+## Creating a new project with Composer
 
   ```
-  composer update
+  php composer.phar create-project itrascastro/symfony-3-base-project my_project_name
   ```
 
-- Rename the 'Trascastro' folder to your needs
+If you did a global install and do not have the composer.phar in that directory run this instead:
 
-  You can make a search and replace for 'Trascastro'. This string is unique.
+  ```
+  composer create-project itrascastro/symfony-3-base-project my_project_name
+  ```
+
+## Renaming the 'Trascastro' folder
+
+Finally we have to rename the folder under which our own UserBundle is. You can make a search and replace in path (your project root) for 'Trascastro'.
 
 The repository: [Symfony-3-Base-Project](https://github.com/itrascastro/Symfony-3-Base-Project)
