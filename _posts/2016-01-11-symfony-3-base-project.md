@@ -52,3 +52,23 @@ If you did a global install and do not have the composer.phar in that directory 
   ```
   composer create-project itrascastro/symfony-3-base-project my_project_name
   ```
+
+## Initial Setup
+
+  ```
+  php bin/console doctrine:database:create
+  ```
+
+  ```
+  php bin/console doctrine:schema:create
+  ```
+
+  ```
+  php bin/console doctrine:fixtures:load
+  ```
+
+  ```
+  php bin/console server:run
+  ```
+
+Now you can login with 'admin' user and '1234' password. Default users are under 'src/AppBundle/DataFixtures/ORM/LoadData.php'
