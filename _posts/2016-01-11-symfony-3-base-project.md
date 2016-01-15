@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Symfony 3 base project"
+title:  "Symfony 3 base project with some common bundles installed"
 description: "A Symfony 3 base project with common bundles already installed"
 date:   2016-01-11 10:00:00 +0100
 tags: [ symfony, project, bundles, library ]
