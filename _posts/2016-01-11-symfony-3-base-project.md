@@ -80,6 +80,8 @@ folder:
 
   ```
   cd my_project_name
-  
+  ```
+
+  ```
   chmod -R 777 web/images/upload
   ```
