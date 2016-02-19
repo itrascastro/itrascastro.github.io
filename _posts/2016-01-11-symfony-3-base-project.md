@@ -29,6 +29,7 @@ This base project comes with:
 - translation enabled in config
 - symfony/assetic-bundle installed and configured
 - doctrine/doctrine-fixtures-bundle
+- vich/uploader-bundle installed and configured (with an example)
 
 Installation
 ------------
@@ -72,3 +73,12 @@ If you did a global install and do not have the composer.phar in that directory 
   ```
 
 Now you can login with 'admin' user and '1234' password. Default users are under 'src/AppBundle/DataFixtures/ORM/LoadData.php'
+
+If you want to test VichUploaderBundle, you can go to http://localhost/upload
+and submit an image. Do not forget to give 777 permissions to 'web/images/upload'
+folder:
+
+  ```
+  cd my_project_name
+  chmod -R 777 web/images/upload
+  ```
