@@ -33,7 +33,7 @@ We go to the GitHub page of the repository and select 'releases' from there.
 Then we create a new release 'Draft a new release'. We must create a new Tag
 version (i.e. v1.0.3) and select the branch where the code is in that version.
 
-#Composer
+# Composer
 
 Now the new release has been created we can install the new version of the project
 as always:
