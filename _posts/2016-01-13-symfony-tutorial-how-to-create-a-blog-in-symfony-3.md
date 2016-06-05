@@ -63,6 +63,40 @@ update your Procfile file:
 
 Now we have our app deployed at Heroku.
 
+Database Settings
+
+Now we create the Database environment vars under Settings->Reveal Config Vars in our Heroku panel. We get the data from the connection string to our Database or we can also go to the Database panel itself.
+
+SYMFONY__DATABASE_HOST
+SYMFONY__DATABASE_NAME
+SYMFONY__DATABASE_PASSWORD
+SYMFONY__DATABASE_USER
+
+and we have now to make those values at our config/parameters.yml file. To do that we use the composer 'extra' section:
+
+      "extra": {
+        "symfony-app-dir": "app",
+        "symfony-bin-dir": "bin",
+        "symfony-var-dir": "var",
+        "symfony-web-dir": "web",
+        "symfony-tests-dir": "tests",
+        "symfony-assets-install": "relative",
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml",
+            "env-map": {
+                "database_name": "SYMFONY__DATABASE_NAME",
+                "database_user": "SYMFONY__DATABASE_USER",
+                "database_host": "SYMFONY__DATABASE_HOST",
+                "database_password": "SYMFONY__DATABASE_PASSWORD"
+            }
+        },
+
+Finally as we are using github we can connect with heroku and make deployments automatically every time we make changes to the master branch:
+
+Deploy->Deployment Method->GitHub and enable automatic deploys
+
+Now our app is ready for development and for production. I think is better going testing functionalities in production while going creating them.
+
 ## Part 2: The Entities
 
 - Database diagram
