@@ -49,7 +49,13 @@ Enablig xdebug in PhpStorm:
 
   https://www.jetbrains.com/help/phpstorm/10.0/configuring-xdebug.html
 
+TimeZone
+
+  heroku config:add TZ="Europe/Madrid"
+
 Heroku logs
+
+  heroku logs --tail
 
   http://stackoverflow.com/questions/2671454/heroku-how-to-see-all-the-logs
 
