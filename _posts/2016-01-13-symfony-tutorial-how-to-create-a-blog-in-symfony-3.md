@@ -59,7 +59,7 @@ If you get an error like this in your logs:
 
 update your Procfile file:
 
-  bash: bin/heroku-php-apache2: No such file or directory
+  web: vendor/heroku/heroku-buildpack-php/bin/heroku-php-apache2 web/
 
 Now we have our app deployed at Heroku.
 
