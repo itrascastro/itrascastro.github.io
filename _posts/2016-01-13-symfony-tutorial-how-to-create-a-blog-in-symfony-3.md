@@ -59,7 +59,7 @@ If you get an error like this in your logs:
 
 update your Procfile file:
 
-  web: vendor/heroku/heroku-buildpack-php/bin/heroku-php-apache2 web/
+  web: vendor/bin/heroku-php-apache2 web/
 
 Now we have our app deployed at Heroku.
 
