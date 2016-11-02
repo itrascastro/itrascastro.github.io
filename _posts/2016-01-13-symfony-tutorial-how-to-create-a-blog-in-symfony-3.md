@@ -71,14 +71,36 @@ Now we have our app deployed at Heroku.
 
 Database Settings
 
-Now we create the Database environment vars under Settings->Reveal Config Vars in our Heroku panel. We get the data from the connection string to our Database or we can also go to the Database panel itself.
+Go to resources and add ClearDB MySQL :: Database
+
+A new config var CLEARDB_DATABASE_URL is created with the database url.
+
+To modify the credentials we click on the new created addon, then we click the link under My Databases, and then
+we go to Endpoint Information section.
+
+To obtain the credentials from PHP:
+
+<?php
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+$server = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$db = substr($url["path"], 1);
+
+$conn = new mysqli($server, $username, $password, $db);
+?>
+
+https://devcenter.heroku.com/articles/cleardb#using-cleardb-with-php
+
+But as we are going to set our parameters.yml from the composer.json file, we need to create the Database environment vars under Settings->Reveal Config Vars in our Heroku panel. We get the data from the connection string to our Database or we can also go to the Database panel itself.
 
 SYMFONY__DATABASE_HOST
 SYMFONY__DATABASE_NAME
 SYMFONY__DATABASE_PASSWORD
 SYMFONY__DATABASE_USER
 
-and we have now to make those values at our config/parameters.yml file. To do that we use the composer 'extra' section:
+and we have now to make those values available at our config/parameters.yml file. To do that we use the composer 'extra' section:
 
       "extra": {
         "symfony-app-dir": "app",
