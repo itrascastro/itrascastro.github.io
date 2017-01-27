@@ -95,6 +95,8 @@ https://devcenter.heroku.com/articles/cleardb#using-cleardb-with-php
 
 But as we are going to set our parameters.yml from the composer.json file, we need to create the Database environment vars under Settings->Reveal Config Vars in our Heroku panel. We get the data from the connection string to our Database or we can also go to the Database panel itself.
 
+mysql://b2defcff8a5161:becd1334@us-cdbr-iron-east-04.cleardb.net/heroku_c7a2323f671faf1?reconnect=true
+
 SYMFONY__DATABASE_HOST
 SYMFONY__DATABASE_NAME
 SYMFONY__DATABASE_PASSWORD
@@ -124,6 +126,11 @@ Finally as we are using github we can connect with heroku and make deployments a
 Deploy->Deployment Method->GitHub and enable automatic deploys
 
 Now our app is ready for development and for production. I think is better going testing functionalities in production while going creating them.
+
+Heroku ssh
+
+heroku run bash
+type "exit" for quit ssh
 
 ## Part 2: The Entities
 
