@@ -130,6 +130,7 @@ Now our app is ready for development and for production. I think is better going
 Heroku ssh
 
 heroku run bash
+
 type "exit" for quit ssh
 
 ## Part 2: The Entities
