@@ -198,7 +198,9 @@ PlainPassword is not a field watched from Doctrine. So we have to trigger preUpd
 We also create the form setting the 'update' option to true for having the required parameter of the plainPassword field setted to false when updating.
 
 {% highlight php %}
-/**
+<?php
+
+    /**
      * @Route("/edit/{id}", name="app_admin_user_edit")
      */
     public function editAction(User $user)
