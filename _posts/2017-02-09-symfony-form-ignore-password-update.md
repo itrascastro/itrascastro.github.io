@@ -98,7 +98,7 @@ class UserType extends AbstractType
 }
 {% endhighlight %}
 
-## The Listener
+## The Service
 
 We need now to associate a listener to doctrine preUpdate event. This is done in app/config/servives.yml
 
