@@ -2,7 +2,7 @@
 layout: post
 title:  "Symfony Form - Ignoring fields - Validation groups - Doctrine Events"
 description: "Ignoring fields on different actions like Password Field on Create and Update actions"
-date:   2017-02-09 11:00:00 +0100
+date:   2017-02-09 08:00:00 +0100
 tags: [ symfony, form, doctrine, events, validation groups ]
 comments: true
 author: itrascastro
