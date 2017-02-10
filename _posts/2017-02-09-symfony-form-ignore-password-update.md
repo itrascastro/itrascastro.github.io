@@ -198,6 +198,55 @@ We also create the form setting the 'update' option to true for having the requi
 <?php
 
 /**
+ * @Route("/create", name="app_admin_user_create")
+ */
+public function createAction()
+{
+    $user = new User();
+    $form = $this->createForm(UserType::class, $user);
+
+    return $this->render(':admin/user:form.html.twig',
+        [
+            'form'      => $form->createView(),
+            'action'    => $this->generateUrl('app_admin_user_doCreate'),
+            'title'     => 'New user',
+        ]
+    );
+}
+
+/**
+ * @Route("/do-create", name="app_admin_user_doCreate")
+ */
+public function doCreateAction(Request $request)
+{
+    $user = new User();
+    $form = $this->createForm(UserType::class, $user);
+
+    $form->handleRequest($request);
+
+    if ($form->isValid()) {
+        if ($user->getIsAdmin()) {
+            $user->setRoles(['ROLE_ADMIN']);
+        }
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->persist($user);
+        $em->flush();
+
+        return $this->redirectToRoute('app_admin_user_create');
+    }
+
+    return $this->render(':admin/user:form.html.twig',
+        [
+            'form'      => $form->createView(),
+            'action'    => $this->generateUrl('app_admin_user_doCreate'),
+            'title'     => 'New user',
+        ]
+    );
+}
+
+/**
  * @Route("/edit/{id}", name="app_admin_user_edit")
  */
 public function editAction(User $user)
