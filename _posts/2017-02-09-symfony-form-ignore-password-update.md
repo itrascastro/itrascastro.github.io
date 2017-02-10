@@ -47,18 +47,26 @@ We add a new option to our form named 'update' to decide from the controller whe
 
 Using the configureOptions method we set the validation groups to the form, depending on the plainPassword value. Default if the plainPassword is empty so we do not take the plainPassword validation in account.
 
+Before we set de validation_groups we need to know if it is an update form:
+
 {% highlight php %}
 <?php
+$data->getPlainPassword() == '' && $form->getConfig()->getOption('update')
+{% endhighlight %}
+
+{% highlight php %}
+<?php
+
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use AppBundle\Entity\User;
 
 class UserType extends AbstractType
 {
@@ -68,8 +76,12 @@ class UserType extends AbstractType
             ->add('username')
             ->add('forename')
             ->add('surname')
+            ->add('isActive', null, ['required' => false])
+            ->add('isAdmin', CheckboxType::class, ['required' => false])
             ->add('plainPassword', null, ['required' => !$options['update']])
+            ->add('newUserBtn', SubmitType::class, ['label' => $options['submitLabel'], 'attr' => ['class' => 'btn btn-lg btn-success btn-block']])
         ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -77,11 +89,12 @@ class UserType extends AbstractType
         $resolver->setDefaults(
             [
                 'data_class'            => 'AppBundle\Entity\User',
-                'update'                => true,
+                'update'                => false,
+                'submitLabel'           => 'New user',
                 'validation_groups'     => function (FormInterface $form) {
                     $data = $form->getData();
 
-                    if ($data->getPlainPassword() == '') {
+                    if ($data->getPlainPassword() == '' && $form->getConfig()->getOption('update')) {
                         return ['Default'];
                     }
 
@@ -184,53 +197,62 @@ We also create the form setting the 'update' option to true for having the requi
 {% highlight php %}
 <?php
 
-    /**
-     * @Route("/edit/{id}", name="app_admin_user_edit")
-     */
-    public function editAction(User $user)
-    {
-        $user->setIsAdmin($user->hasRole('ROLE_ADMIN'));
-        $form = $this->createForm(UserType::class, $user, ['update' => true]);
+/**
+ * @Route("/edit/{id}", name="app_admin_user_edit")
+ */
+public function editAction(User $user)
+{
+    $user->setIsAdmin($user->hasRole('ROLE_ADMIN'));
+    $form = $this->createForm(UserType::class, $user, ['update' => true, 'submitLabel' => 'Update user']);
 
-        return $this->render(':admin:form.html.twig',
-            [
-                'form'      => $form->createView(),
-                'action'    => $this->generateUrl('app_admin_user_doEdit', ['id' => $user->getId()]),
-                'title'     => 'Edit user',
-            ]
-        );
+    return $this->render(':admin/user:form.html.twig',
+        [
+            'form'      => $form->createView(),
+            'action'    => $this->generateUrl('app_admin_user_doEdit', ['id' => $user->getId()]),
+            'title'     => 'Edit user',
+        ]
+    );
+}
+
+/**
+ * @Route("/do-edit/{id}", name="app_admin_user_doEdit")
+ * @param Request $request
+ * @Method({"POST"})
+ * @return \Symfony\Component\HttpFoundation\Response
+ */
+public function doEditAction(Request $request, User $user)
+{
+    $form = $this->createForm(UserType::class, $user, ['update' => true, 'submitLabel' => 'Update user']);
+
+    $form->handleRequest($request);
+
+    if ($form->isValid()) {
+        if ($user->getIsAdmin()) {
+            $user->setRoles(['ROLE_ADMIN']);
+        } else {
+            $user->setRoles(['ROLE_USER']);
+        }
+
+        $em = $this->getDoctrine()->getManager();
+
+        // PlainPassword is not a field watched from Doctrine. So we have to trigger preUpdate manually
+        $eventManager = $em->getEventManager();
+        $eventArgs = new LifecycleEventArgs($user, $em);
+        $eventManager->dispatchEvent(\Doctrine\ORM\Events::preUpdate, $eventArgs);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+
+        return $this->redirectToRoute('app_admin_user_index');
     }
 
-    /**
-     * @Route("/do-edit/{id}", name="app_admin_user_doEdit")
-     * @param Request $request
-     * @Method({"POST"})
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function doEditAction(Request $request, User $user)
-    {
-        $form = $this->createForm(UserType::class, $user, ['update' => true]);
-
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            if ($user->getIsAdmin()) {
-                $user->setRoles(['ROLE_ADMIN']);
-            } else {
-                $user->setRoles(['ROLE_USER']);
-            }
-
-            $em = $this->getDoctrine()->getManager();
-
-            // PlainPassword is not a field watched from Doctrine. So we have to trigger preUpdate manually
-            $eventManager = $em->getEventManager();
-            $eventArgs = new LifecycleEventArgs($user, $em);
-            $eventManager->dispatchEvent(\Doctrine\ORM\Events::preUpdate, $eventArgs);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-
-            return $this->redirectToRoute('app_admin_user_index');
-        }
+    return $this->render(':admin/user:form.html.twig',
+        [
+            'form'      => $form->createView(),
+            'action'    => $this->generateUrl('app_admin_user_doEdit', ['id' => $user->getId()]),
+            'title'     => 'Edit user',
+        ]
+    );
+}
 {% endhighlight %}
