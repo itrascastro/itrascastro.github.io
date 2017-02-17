@@ -65,7 +65,13 @@ If you get an error like this in your logs:
 
 update your Procfile file:
 
+  if the server is at EEUU
+
   web: vendor/bin/heroku-php-apache2 web/
+
+  if the server is at Europe
+
+  web: vendor/heroku/heroku-buildpack-php/bin/heroku-php-apache2 web/
 
 Now we have our app deployed at Heroku.
 
