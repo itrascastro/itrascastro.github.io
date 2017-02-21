@@ -104,8 +104,11 @@ But as we are going to set our parameters.yml from the composer.json file, we ne
 mysql://b2defcff8a5161:becd1334@us-cdbr-iron-east-04.cleardb.net/heroku_c7a2323f671faf1?reconnect=true
 
 SYMFONY__DATABASE_HOST
+
 SYMFONY__DATABASE_NAME
+
 SYMFONY__DATABASE_PASSWORD
+
 SYMFONY__DATABASE_USER
 
 and we have now to make those values available at our config/parameters.yml file. To do that we use the composer 'extra' section:
@@ -123,7 +126,8 @@ and we have now to make those values available at our config/parameters.yml file
                 "database_name": "SYMFONY__DATABASE_NAME",
                 "database_user": "SYMFONY__DATABASE_USER",
                 "database_host": "SYMFONY__DATABASE_HOST",
-                "database_password": "SYMFONY__DATABASE_PASSWORD"
+                "database_password": "SYMFONY__DATABASE_PASSWORD",
+                "secret": "SYMFONY__SECRET_TOKEN"
             }
         },
 
@@ -131,11 +135,23 @@ Finally as we are using github we can connect with heroku and make deployments a
 
 Deploy->Deployment Method->GitHub and enable automatic deploys
 
+One last thing
+
+We have to define this environment var:
+
+SYMFONY_ENV = prod
+
+and if we want to set the secret token for production:
+
+SYMFONY__SECRET_TOKEN = yourdesiredtoken
+
 Now our app is ready for development and for production. I think is better going testing functionalities in production while going creating them.
 
 Heroku ssh
 
 heroku run bash
+
+php bin/console doctrine:schema:update --force
 
 type "exit" for quit ssh
 
