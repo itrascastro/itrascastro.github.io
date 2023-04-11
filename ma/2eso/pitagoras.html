@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Examen de Matemáticas</title>
+	<script>
+		function corregirExamen() {
+			var numRespuestasCorrectas = 0;
+
+			// Pregunta 1
+			var respuesta1 = document.getElementsByName("respuesta1")[0].value;
+			if (respuesta1 === "5") {
+				numRespuestasCorrectas++;
+			}
+
+			// Pregunta 2
+			var respuesta2 = document.getElementsByName("respuesta2")[0].value;
+			if (respuesta2 === "37.5") {
+				numRespuestasCorrectas++;
+			}
+
+			// Pregunta 3
+			var respuesta3 = document.getElementsByName("respuesta3")[0].value;
+			if (respuesta3 === "Sí, es un triángulo rectángulo porque a² + b² = c²") {
+				numRespuestasCorrectas++;
+			}
+
+			// Pregunta 4
+			var respuesta4 = document.getElementsByName("respuesta4")[0].value;
+			if (respuesta4 === "15") {
+				numRespuestasCorrectas++;
+			}
+
+			// Pregunta 5
+			var respuesta5 = document.getElementsByName("respuesta5")[0].value;
+			if (respuesta5 === "2") {
+				numRespuestasCorrectas++;
+			}
+
+			// Pregunta 6
+			var respuesta6 = document.getElementsByName("respuesta6")[0].value;
+			if (respuesta6 === "Es la relación entre las longitudes de los lados correspondientes de dos triángulos semejantes") {
+				numRespuestasCorrectas++;
+			}
+
+			// Pregunta 7
+			var respuesta7 = document.getElementsByName("respuesta7")[0].value;
+			if (respuesta7 === "Dividiendo las longitudes de los lados correspondientes de los dos triángulos semejantes") {
+				numRespuestasCorrectas++;
+			}
+
+			// Pregunta 8
+			var respuesta8 = document.getElementsByName("respuesta8")[0].value;
+			if (respuesta8 === "Sus lados tienen la misma proporción y sus ángulos son iguales") {
+				numRespuestasCorrectas++;
+			}
+
+			// Pregunta 9
+			var respuesta9 = document.getElementsByName("respuesta9")[0].value;
+			if (respuesta9 === "Sí, son semejantes") {
+				numRespuestasCorrectas++;
+			}
+
+			// Pregunta 10
+			var respuesta10 = document.getElementsByName("respuesta10")[0].value;
+			if (respuesta10 === "Los lados del segundo triángulo son el doble de largos que los del primer triángulo y su perímetro es el doble del primer triángulo") {
+				numRespuestasCorrectas++;
+			}
+
+			// Muestra el resultado
+			alert("Respuestas correctas: " + numRespuestasCorrectas + " de 10");
+		}
+	</script>
+</head>
+<body>
+<h1>Examen de Matemáticas para alumnos de 2º de ESO</h1>
+	<form>
+		<p>1. Encuentra la hipotenusa de un triángulo rectángulo si sus catetos miden 3 y 4 unidades respectivamente.</p>
+		<input type="text" name="respuesta1"><br><br>
+
+		<p>2. Un árbol de 15 pies de altura proyecta una sombra de 20 pies de largo. Si un edificio cercano proyecta una sombra de 50 pies de largo en el mismo momento, ¿cuánto mide el edificio en altura?</p>
+		<input type="text" name="respuesta2"><br><br>
+
+		<p>3. Dado el triángulo ABC con lados a=6cm, b=8cm y c=10cm, determina si es un triángulo rectángulo y justifica tu respuesta.</p>
+		<input type="text" name="respuesta3"><br><br>
+
+		<p>4. Encuentra la longitud de un lado de un triángulo rectángulo si la hipotenusa mide 17 cm y uno de los catetos mide 8 cm.</p>
+		<input type="text" name="respuesta4"><br><br>
+
+		<p>5. Resuelve el siguiente problema de semejanza de triángulos: Un edificio mide 30 metros de altura y su sombra mide 10 metros de largo. En el mismo momento, un poste de luz que se encuentra a 6 metros de distancia del edificio, proyecta una sombra de 2 metros de largo. ¿Cuál es la altura del poste de luz?</p>
+		<input type="text" name="respuesta5"><br><br>
+
+		<p>6. ¿Qué es la razón de semejanza entre dos triángulos?</p>
+		<input type="text" name="respuesta6"><br><br>
+
+		<p>7. ¿Cómo se calcula la razón de semejanza entre dos triángulos?</p>
+		<input type="text" name="respuesta7"><br><br>
+
+		<p>8. Si dos triángulos son semejantes, ¿cómo se relacionan sus lados y sus ángulos?</p>
+		<input type="text" name="respuesta8"><br><br>
+
+		<p>9. Si dos triángulos tienen la misma forma pero no necesariamente el mismo tamaño, ¿son semejantes?</p>
+		<input type="text" name="respuesta9"><br><br>
+
+		<p>10. Si la razón de semejanza entre dos triángulos es 1:2, ¿qué podemos decir sobre sus lados y perímetros?</p>
+		<input type="text" name="respuesta10"><br><br>
+
+		<input type="submit" value="Enviar respuestas">
+	</form>
+</body>
+</html>
