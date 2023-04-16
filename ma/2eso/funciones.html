@@ -3,63 +3,7 @@
 <head>
 	<title>Funciones</title>
 	<meta charset="utf-8">
-	<script type="text/javascript">
-		function corregirExamen() {
-			var respuesta1 = document.getElementsByName("respuesta1")[0].value.toLowerCase();
-			var respuesta2 = document.getElementsByName("respuesta2")[0].value.toLowerCase();
-			var respuesta3 = document.getElementsByName("respuesta3")[0].value.toLowerCase();
-			var respuesta4 = document.getElementsByName("respuesta4")[0].value.toLowerCase();
-			var respuesta5 = document.getElementsByName("respuesta5")[0].value.toLowerCase();
-			var respuesta6 = document.getElementsByName("respuesta6")[0].value.toLowerCase();
-			var respuesta7 = document.getElementsByName("respuesta7")[0].value.toLowerCase();
-			var respuesta8 = document.getElementsByName("respuesta8")[0].value.toLowerCase();
-			var respuesta9 = document.getElementsByName("respuesta9")[0].value.toLowerCase();
-			var respuesta10 = document.getElementsByName("respuesta10")[0].value.toLowerCase();
-			var contador = 0;
-
-			if (respuesta1 === "pendiente") {
-				contador++;
-			}
-
-			if (respuesta2 === "ordenada en el origen") {
-				contador++;
-			}
-
-			if (respuesta3 === "y = mx + b") {
-				contador++;
-			}
-
-			if (respuesta4 === "5x + 2") {
-				contador++;
-			}
-
-			if (respuesta5 === "(4, 14)") {
-				contador++;
-			}
-
-			if (respuesta6 === "2") {
-				contador++;
-			}
-
-			if (respuesta7 === "m = 3/4") {
-				contador++;
-			}
-
-			if (respuesta8 === "tabla de puntos") {
-				contador++;
-			}
-
-			if (respuesta9 === "recta") {
-				contador++;
-			}
-
-			if (respuesta10 === "y = -2x + 7") {
-				contador++;
-			}
-
-			alert("Has obtenido " + contador + " puntos.");
-		}
-	</script>
+	<script type="text/javascript" src="funciones.js"></script>
 </head>
 <body>
 	<h1>Examen de funciones</h1>
