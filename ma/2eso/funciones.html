@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Examen de funciones</title>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+		function corregirExamen() {
+			var respuesta1 = document.getElementsByName("respuesta1")[0].value.toLowerCase();
+			var respuesta2 = document.getElementsByName("respuesta2")[0].value.toLowerCase();
+			var respuesta3 = document.getElementsByName("respuesta3")[0].value.toLowerCase();
+			var respuesta4 = document.getElementsByName("respuesta4")[0].value.toLowerCase();
+			var respuesta5 = document.getElementsByName("respuesta5")[0].value.toLowerCase();
+			var respuesta6 = document.getElementsByName("respuesta6")[0].value.toLowerCase();
+			var respuesta7 = document.getElementsByName("respuesta7")[0].value.toLowerCase();
+			var respuesta8 = document.getElementsByName("respuesta8")[0].value.toLowerCase();
+			var respuesta9 = document.getElementsByName("respuesta9")[0].value.toLowerCase();
+			var respuesta10 = document.getElementsByName("respuesta10")[0].value.toLowerCase();
+			var contador = 0;
+
+			if (respuesta1 === "pendiente") {
+				contador++;
+			}
+
+			if (respuesta2 === "ordenada en el origen") {
+				contador++;
+			}
+
+			if (respuesta3 === "y = mx + b") {
+				contador++;
+			}
+
+			if (respuesta4 === "5x + 2") {
+				contador++;
+			}
+
+			if (respuesta5 === "(4, 14)") {
+				contador++;
+			}
+
+			if (respuesta6 === "2") {
+				contador++;
+			}
+
+			if (respuesta7 === "m = 3/4") {
+				contador++;
+			}
+
+			if (respuesta8 === "tabla de puntos") {
+				contador++;
+			}
+
+			if (respuesta9 === "recta") {
+				contador++;
+			}
+
+			if (respuesta10 === "y = -2x + 7") {
+				contador++;
+			}
+
+			alert("Has obtenido " + contador + " puntos.");
+		}
+	</script>
+</head>
+<body>
+	<h1>Examen de funciones</h1>
+	<form>
+		<p>1. ¿Cómo se llama el coeficiente que indica la inclinación de una recta?</p>
+		<input type="text" name="respuesta1"><br><br>
+
+		<p>2. ¿Cómo se llama el valor que indica el punto donde la recta corta el eje y?</p>
+		<input type="text" name="respuesta2"><br><br>
+
+		<p>3. ¿Cuál es la fórmula general de una función lineal?</p>
+		<input type="text" name="respuesta3"><br><br>
+
+		<p>4. Calcula la ecuación de la recta que pasa por los puntos (1, 7) y (3, 17).</p>
+		<input type="text" name="respuesta4"><br><br>
+
+		<p>5. ¿Cuál es el punto donde la recta y = 3x + 5 corta el eje y?</p>
+		<input type="text" name="respuesta5"><br><br>
+
+		<p>6. Si una recta tiene una pendiente de 2 y pasa por el punto (3, 7), ¿cuál es su ordenada en el origen?</p>
+<input type="text" name="respuesta6"><br><br>
+    
+    	<p>7. Si una recta tiene una pendiente de 3/4, ¿cuál es su valor numérico?</p>
+	<input type="text" name="respuesta7"><br><br>
+
+	<p>8. ¿Cómo se llama la representación gráfica de una función?</p>
+	<input type="text" name="respuesta8"><br><br>
+
+	<p>9. ¿Cómo se llama la figura geométrica que representa una función lineal?</p>
+	<input type="text" name="respuesta9"><br><br>
+
+	<p>10. Calcula la ecuación de la recta que pasa por los puntos (-1, 9) y (3, 1).</p>
+	<input type="text" name="respuesta10"><br><br>
+
+	<input type="button" value="Corregir examen" onclick="corregirExamen()">
+</form>
+
+</body>
+</html>
