@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test de Orientación Vocacional Ampliado</title>
+    <title>Test de Orientación Vocacional</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -102,65 +102,6 @@
             border-left: 4px solid #3498db;
         }
         
-        .secondary-box {
-            background-color: #f9f9f9;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-            border-left: 4px solid #95a5a6;
-        }
-        
-        .career-category {
-            margin-top: 15px;
-        }
-        
-        .career-category h4 {
-            color: #3498db;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
-        }
-        
-        .progress-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 3px;
-            font-weight: bold;
-        }
-        
-        .all-careers {
-            margin-top: 25px;
-        }
-        
-        .career-tabs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
-        }
-        
-        .career-tab {
-            padding: 8px 15px;
-            background-color: #f1f1f1;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
-        .career-tab.active {
-            background-color: #3498db;
-            color: white;
-        }
-        
-        .career-content {
-            display: none;
-        }
-        
-        .career-content.active {
-            display: block;
-        }
-        
         .career-list {
             columns: 2;
         }
@@ -173,19 +114,19 @@
     </style>
 </head>
 <body>
-    <h1>Test de Orientación Vocacional Ampliado</h1>
+    <h1>Test de Orientación Vocacional</h1>
     
     <div>
-        <p>Este test te ayudará a identificar qué carreras podrían ajustarse mejor a tus intereses, con especial atención a los diferentes campos de ingeniería. Responde todas las preguntas para ver tu resultado.</p>
+        <p>Este test te ayudará a identificar qué carreras podrían ajustarse mejor a tus intereses. Responde todas las preguntas para ver tu resultado.</p>
     </div>
 
-    <form id="vocationalTest">
+    <div id="test-form">
         <div class="question">
             <h3>1. ¿Qué tipo de actividades disfrutas más?</h3>
             <div id="q1-options">
                 <label><input type="radio" name="q1" value="a"> Resolver problemas matemáticos o científicos</label>
                 <label><input type="radio" name="q1" value="b"> Expresarte a través del arte o la escritura</label>
-                <label><input type="radio" name="q1" value="c"> Construir o reparar cosas manualmente</label>
+                <label><input type="radio" name="q1" value="c"> Construir o reparar cosas con tus manos</label>
                 <label><input type="radio" name="q1" value="d"> Conversar y ayudar a otras personas</label>
                 <label><input type="radio" name="q1" value="e"> Explorar nuevas tecnologías o programas</label>
                 <label><input type="radio" name="q1" value="f"> Analizar datos y detectar patrones</label>
@@ -315,7 +256,7 @@
         </div>
 
         <button type="button" id="calcBtn">Ver Resultados</button>
-    </form>
+    </div>
 
     <div id="results">
         <h2>Tus Resultados</h2>
@@ -324,140 +265,68 @@
             <h3>Tu perfil vocacional</h3>
             
             <div>
-                <div class="progress-label">
-                    <span>Científico-Analítico</span>
-                    <span id="percent-a"></span>
-                </div>
+                <strong>Científico-Analítico:</strong>
                 <div class="progress-container">
                     <div id="bar-a" class="progress-bar" style="background-color: #3498db;"></div>
                 </div>
+                <span id="percent-a"></span>
             </div>
             
             <div>
-                <div class="progress-label">
-                    <span>Artístico-Creativo</span>
-                    <span id="percent-b"></span>
-                </div>
+                <strong>Artístico-Creativo:</strong>
                 <div class="progress-container">
                     <div id="bar-b" class="progress-bar" style="background-color: #e74c3c;"></div>
                 </div>
+                <span id="percent-b"></span>
             </div>
             
             <div>
-                <div class="progress-label">
-                    <span>Práctico-Técnico</span>
-                    <span id="percent-c"></span>
-                </div>
+                <strong>Práctico-Técnico:</strong>
                 <div class="progress-container">
                     <div id="bar-c" class="progress-bar" style="background-color: #2ecc71;"></div>
                 </div>
+                <span id="percent-c"></span>
             </div>
             
             <div>
-                <div class="progress-label">
-                    <span>Social-Organizativo</span>
-                    <span id="percent-d"></span>
-                </div>
+                <strong>Social-Organizativo:</strong>
                 <div class="progress-container">
                     <div id="bar-d" class="progress-bar" style="background-color: #f39c12;"></div>
                 </div>
+                <span id="percent-d"></span>
             </div>
             
             <div>
-                <div class="progress-label">
-                    <span>Tecnológico-Digital</span>
-                    <span id="percent-e"></span>
-                </div>
+                <strong>Tecnológico-Digital:</strong>
                 <div class="progress-container">
                     <div id="bar-e" class="progress-bar" style="background-color: #9b59b6;"></div>
                 </div>
+                <span id="percent-e"></span>
             </div>
             
             <div>
-                <div class="progress-label">
-                    <span>Matemático-Computacional</span>
-                    <span id="percent-f"></span>
-                </div>
+                <strong>Matemático-Computacional:</strong>
                 <div class="progress-container">
                     <div id="bar-f" class="progress-bar" style="background-color: #1abc9c;"></div>
                 </div>
+                <span id="percent-f"></span>
             </div>
             
             <div>
-                <div class="progress-label">
-                    <span>Industrial-Sistemas</span>
-                    <span id="percent-g"></span>
-                </div>
+                <strong>Industrial-Sistemas:</strong>
                 <div class="progress-container">
                     <div id="bar-g" class="progress-bar" style="background-color: #34495e;"></div>
                 </div>
+                <span id="percent-g"></span>
             </div>
         </div>
 
         <div class="profile-box">
             <h3 id="main-profile-title">Tu perfil dominante</h3>
             <p id="main-profile-desc"></p>
-        </div>
-        
-        <div class="secondary-box" id="secondary-box" style="display:none;">
-            <h3 id="secondary-profile-title">Tu perfil secundario</h3>
-            <p id="secondary-profile-desc"></p>
-            <p><strong>Nota:</strong> La combinación de tu perfil principal y secundario puede abrirte puertas a carreras interdisciplinarias muy interesantes.</p>
-        </div>
-        
-        <div class="all-careers">
-            <h3>Carreras recomendadas</h3>
             
-            <div class="career-tabs" id="career-tabs">
-                <button class="career-tab active" data-category="top">Mejores opciones</button>
-                <button class="career-tab" data-category="engineering">Ingenierías</button>
-                <button class="career-tab" data-category="sciences">Ciencias</button>
-                <button class="career-tab" data-category="social">Sociales y Humanidades</button>
-                <button class="career-tab" data-category="arts">Artísticas y Creativas</button>
-                <button class="career-tab" data-category="business">Negocios y Gestión</button>
-                <button class="career-tab" data-category="tech">Tecnológicas</button>
-                <button class="career-tab" data-category="health">Salud</button>
-            </div>
-            
-            <div class="career-content active" id="top-content">
-                <h4>Carreras que mejor se adaptan a tu perfil</h4>
-                <ul id="top-careers" class="career-list"></ul>
-            </div>
-            
-            <div class="career-content" id="engineering-content">
-                <h4>Ingenierías recomendadas</h4>
-                <ul id="engineering-careers" class="career-list"></ul>
-            </div>
-            
-            <div class="career-content" id="sciences-content">
-                <h4>Ciencias recomendadas</h4>
-                <ul id="sciences-careers" class="career-list"></ul>
-            </div>
-            
-            <div class="career-content" id="social-content">
-                <h4>Carreras Sociales y Humanidades</h4>
-                <ul id="social-careers" class="career-list"></ul>
-            </div>
-            
-            <div class="career-content" id="arts-content">
-                <h4>Carreras Artísticas y Creativas</h4>
-                <ul id="arts-careers" class="career-list"></ul>
-            </div>
-            
-            <div class="career-content" id="business-content">
-                <h4>Carreras de Negocios y Gestión</h4>
-                <ul id="business-careers" class="career-list"></ul>
-            </div>
-            
-            <div class="career-content" id="tech-content">
-                <h4>Carreras Tecnológicas</h4>
-                <ul id="tech-careers" class="career-list"></ul>
-            </div>
-            
-            <div class="career-content" id="health-content">
-                <h4>Carreras de Salud</h4>
-                <ul id="health-careers" class="career-list"></ul>
-            </div>
+            <h4>Carreras recomendadas:</h4>
+            <ul id="career-list" class="career-list"></ul>
         </div>
     </div>
 
@@ -466,8 +335,9 @@
             // Mezclar opciones al cargar la página
             function shuffleOptions(containerId) {
                 const container = document.getElementById(containerId);
-                const options = Array.from(container.children);
+                if (!container) return;
                 
+                const options = Array.from(container.children);
                 for (let i = options.length - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
                     container.appendChild(options[j]);
@@ -479,90 +349,216 @@
                 shuffleOptions('q' + i + '-options');
             }
             
-            // Gestionar pestañas de carreras
-            const careerTabs = document.querySelectorAll('.career-tab');
-            const careerContents = document.querySelectorAll('.career-content');
-            
-            careerTabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    careerTabs.forEach(t => t.classList.remove('active'));
-                    careerContents.forEach(c => c.classList.remove('active'));
-                    
-                    this.classList.add('active');
-                    document.getElementById(this.getAttribute('data-category') + '-content').classList.add('active');
-                });
-            });
-            
             // Configurar perfiles y carreras
             const profiles = {
                 'a': {
                     name: 'Científico-Analítico',
-                    description: 'Te interesan los conceptos abstractos, el análisis lógico y la investigación. Disfrutas comprendiendo cómo funcionan las cosas a nivel teórico y resolviendo problemas complejos. Tienes habilidad para el pensamiento analítico y metódico.'
+                    description: 'Te interesan los conceptos abstractos, el análisis lógico y la investigación. Disfrutas comprendiendo cómo funcionan las cosas a nivel teórico y resolviendo problemas complejos.',
+                    careers: [
+                        'Matemáticas',
+                        'Física',
+                        'Química',
+                        'Biología',
+                        'Estadística',
+                        'Ingeniería Matemática',
+                        'Medicina',
+                        'Farmacia',
+                        'Astronomía',
+                        'Geología',
+                        'Economía (rama cuantitativa)',
+                        'Biotecnología',
+                        'Ingeniería Aeroespacial',
+                        'Neurociencias',
+                        'Meteorología'
+                    ]
                 },
                 'b': {
                     name: 'Artístico-Creativo',
-                    description: 'Valoras la expresión personal, la originalidad y la creatividad. Te gusta pensar de forma diferente y encontrar soluciones innovadoras o formas de expresión únicas. Tienes sensibilidad estética y capacidad para comunicar ideas de forma original.'
+                    description: 'Valoras la expresión personal, la originalidad y la creatividad. Te gusta pensar de forma diferente y encontrar soluciones innovadoras o formas de expresión únicas.',
+                    careers: [
+                        'Bellas Artes',
+                        'Diseño Gráfico',
+                        'Arquitectura',
+                        'Literatura',
+                        'Música',
+                        'Cine y Audiovisuales',
+                        'Periodismo',
+                        'Diseño de Moda',
+                        'Publicidad',
+                        'Teatro',
+                        'Diseño de Interiores',
+                        'Comunicación Audiovisual',
+                        'Historia del Arte',
+                        'Traducción e Interpretación',
+                        'Conservatorio de Música'
+                    ]
                 },
                 'c': {
                     name: 'Práctico-Técnico',
-                    description: 'Prefieres el trabajo práctico y manual, construyendo o manipulando objetos físicos. Te interesan las soluciones concretas y tangibles más que las teóricas o abstractas. Tienes buena coordinación y habilidad para trabajar con herramientas y materiales.'
+                    description: 'Prefieres el trabajo práctico y manual, construyendo o manipulando objetos físicos. Te interesan las soluciones concretas y tangibles más que las teóricas o abstractas.',
+                    careers: [
+                        'Ingeniería Civil',
+                        'Ingeniería Mecánica',
+                        'Arquitectura Técnica',
+                        'Fisioterapia',
+                        'Enfermería',
+                        'Odontología',
+                        'Veterinaria',
+                        'Gastronomía',
+                        'Ciencias del Deporte',
+                        'Agronomía',
+                        'Construcción',
+                        'Electricidad',
+                        'Mecánica',
+                        'Piloto',
+                        'Ciencias del Mar'
+                    ]
                 },
                 'd': {
                     name: 'Social-Organizativo',
-                    description: 'Te motiva trabajar con y para las personas, organizando, comunicando o ayudando. Valoras el impacto social y el trabajo en equipo. Tienes empatía, facilidad para comunicarte y entender las necesidades de los demás.'
+                    description: 'Te motiva trabajar con y para las personas, organizando, comunicando o ayudando. Valoras el impacto social y el trabajo en equipo.',
+                    careers: [
+                        'Psicología',
+                        'Derecho',
+                        'Educación y Magisterio',
+                        'Trabajo Social',
+                        'Administración de Empresas',
+                        'Recursos Humanos',
+                        'Sociología',
+                        'Ciencias Políticas',
+                        'Relaciones Internacionales',
+                        'Marketing',
+                        'Turismo',
+                        'Antropología',
+                        'Periodismo',
+                        'Comunicación',
+                        'Gestión Cultural'
+                    ]
                 },
                 'e': {
                     name: 'Tecnológico-Digital',
-                    description: 'Te atraen las nuevas tecnologías, el mundo digital y la innovación técnica. Disfrutas utilizando y desarrollando herramientas que resuelven problemas de forma eficiente. Tienes facilidad para adaptarte a los cambios tecnológicos y aprender nuevas plataformas.'
+                    description: 'Te atraen las nuevas tecnologías, el mundo digital y la innovación técnica. Disfrutas utilizando y desarrollando herramientas que resuelven problemas de forma eficiente.',
+                    careers: [
+                        'Ingeniería Informática',
+                        'Ingeniería de Telecomunicaciones',
+                        'Desarrollo de Videojuegos',
+                        'Ciencia de Datos',
+                        'Ingeniería Electrónica',
+                        'Animación Digital',
+                        'Robótica',
+                        'Ciberseguridad',
+                        'Inteligencia Artificial',
+                        'Desarrollo Web',
+                        'Sistemas de Información',
+                        'Marketing Digital',
+                        'Diseño UX/UI',
+                        'Ingeniería Multimedia',
+                        'Tecnologías Digitales'
+                    ]
                 },
                 'f': {
                     name: 'Matemático-Computacional',
-                    description: 'Te interesan los modelos matemáticos, la estadística y el análisis cuantitativo. Disfrutas trabajando con números, desarrollando algoritmos y encontrando patrones en los datos. Tienes capacidad para el pensamiento abstracto y la resolución metódica de problemas complejos.'
+                    description: 'Te interesan los modelos matemáticos, la estadística y el análisis cuantitativo. Disfrutas trabajando con números, desarrollando algoritmos y encontrando patrones en los datos.',
+                    careers: [
+                        'Matemática Computacional',
+                        'Ingeniería de Datos',
+                        'Estadística Aplicada',
+                        'Actuaria',
+                        'Investigación Operativa',
+                        'Análisis Financiero Cuantitativo',
+                        'Matemática Aplicada',
+                        'Bioinformática',
+                        'Criptografía',
+                        'Física Computacional',
+                        'Modelización Matemática',
+                        'Econometría',
+                        'Análisis de Big Data',
+                        'Computación Científica',
+                        'Análisis de Riesgos'
+                    ]
                 },
                 'g': {
                     name: 'Industrial-Sistemas',
-                    description: 'Te atrae el diseño, optimización y gestión de sistemas y procesos. Disfrutas mejorando la eficiencia, coordinando elementos diversos y resolviendo problemas logísticos. Tienes visión global, capacidad organizativa y facilidad para entender cómo interactúan diferentes componentes de un sistema.'
+                    description: 'Te atrae el diseño, optimización y gestión de sistemas y procesos. Disfrutas mejorando la eficiencia, coordinando elementos diversos y resolviendo problemas logísticos.',
+                    careers: [
+                        'Ingeniería Industrial',
+                        'Ingeniería de Sistemas',
+                        'Ingeniería Logística',
+                        'Ingeniería de Organización',
+                        'Ingeniería de Producción',
+                        'Ingeniería de Calidad',
+                        'Ingeniería de Procesos',
+                        'Gestión de Operaciones',
+                        'Ingeniería de Fabricación',
+                        'Supply Chain Management',
+                        'Logística Internacional',
+                        'Gestión de Proyectos Industriales',
+                        'Automatización Industrial',
+                        'Gestión de la Producción',
+                        'Ingeniería de Mantenimiento'
+                    ]
                 }
             };
             
-            // Categorías de carreras
-            const careerCategories = {
-                engineering: {
-                    a: ['Ingeniería Aeroespacial', 'Ingeniería Nuclear', 'Ingeniería Física', 'Ingeniería de Materiales'],
-                    b: ['Arquitectura', 'Diseño Industrial', 'Ingeniería de Diseño', 'Ingeniería Acústica'],
-                    c: ['Ingeniería Civil', 'Ingeniería Mecánica', 'Ingeniería Naval', 'Ingeniería de Minas'],
-                    d: ['Ingeniería Ambiental', 'Ingeniería de Transporte', 'Ingeniería de Seguridad', 'Ingeniería de Prevención de Riesgos'],
-                    e: ['Ingeniería Informática', 'Ingeniería de Telecomunicaciones', 'Ingeniería Electrónica', 'Ingeniería de Redes'],
-                    f: ['Ingeniería Matemática', 'Ingeniería de Datos', 'Ingeniería de Software', 'Matemática Aplicada a la Ingeniería'],
-                    g: ['Ingeniería Industrial', 'Ingeniería de Sistemas', 'Ingeniería Logística', 'Ingeniería de Organización']
-                },
-                sciences: {
-                    a: ['Física', 'Química', 'Astronomía', 'Geología'],
-                    b: ['Biotecnología', 'Ciencias Ambientales', 'Geografía', 'Oceanografía'],
-                    c: ['Ciencias del Mar', 'Agronomía', 'Ciencias Forestales', 'Enología'],
-                    d: ['Antropología', 'Sociología', 'Ciencias Políticas', 'Economía'],
-                    e: ['Ciencia de Datos', 'Bioinformática', 'Computación Científica', 'Inteligencia Artificial'],
-                    f: ['Matemáticas', 'Estadística', 'Física Teórica', 'Investigación Operativa'],
-                    g: ['Ciencias Ambientales', 'Sistemas de Información Geográfica', 'Gestión de Recursos Naturales', 'Meteorología']
-                },
-                social: {
-                    a: ['Filosofía', 'Lingüística', 'Historia', 'Arqueología'],
-                    b: ['Literatura', 'Estudios Culturales', 'Filología', 'Humanidades Digitales'],
-                    c: ['Antropología Forense', 'Restauración de Patrimonio', 'Conservación de Bienes Culturales', 'Educación Física'],
-                    d: ['Psicología', 'Trabajo Social', 'Educación', 'Relaciones Internacionales'],
-                    e: ['Comunicación Digital', 'Humanidades Digitales', 'E-learning', 'Periodismo de Datos'],
-                    f: ['Economía', 'Demografía', 'Sociología Cuantitativa', 'Psicometría'],
-                    g: ['Administración Pública', 'Gestión Cultural', 'Cooperación Internacional', 'Politología']
-                },
-                arts: {
-                    a: ['Historia del Arte', 'Crítica Cultural', 'Musicología', 'Estética'],
-                    b: ['Bellas Artes', 'Música', 'Teatro', 'Diseño Gráfico'],
-                    c: ['Diseño de Moda', 'Cerámica', 'Escultura', 'Artes y Oficios'],
-                    d: ['Pedagogía del Arte', 'Terapias Artísticas', 'Gestión Cultural', 'Mediación Cultural'],
-                    e: ['Diseño Digital', 'Animación', 'Videojuegos', 'Arte Digital'],
-                    f: ['Música Computacional', 'Arte Generativo', 'Arquitectura Paramétrica', 'Diseño Algorítmico'],
-                    g: ['Escenografía', 'Dirección de Arte', 'Organización de Eventos', 'Producción Audiovisual']
-                },
-                business: {
-                    a: ['Investigación de Mercados', 'Economía', 'Ciencias Actuariales', 'Análisis Financiero'],
-                    b: ['Marketing Creativo', '
+            // Procesar resultados
+            document.getElementById('calcBtn').addEventListener('click', function() {
+                // Verificar que todas las preguntas han sido respondidas
+                const totalQuestions = 10;
+                let answered = 0;
+                const scores = {'a': 0, 'b': 0, 'c': 0, 'd': 0, 'e': 0, 'f': 0, 'g': 0};
+                
+                for (let i = 1; i <= totalQuestions; i++) {
+                    const selected = document.querySelector('input[name="q' + i + '"]:checked');
+                    if (selected) {
+                        answered++;
+                        scores[selected.value]++;
+                    }
+                }
+                
+                // Mostrar advertencia si faltan preguntas
+                if (answered < totalQuestions) {
+                    document.getElementById('warning').style.display = 'block';
+                    return;
+                } else {
+                    document.getElementById('warning').style.display = 'none';
+                }
+                
+                // Calcular porcentajes
+                for (let profile in scores) {
+                    const percent = (scores[profile] / totalQuestions) * 100;
+                    document.getElementById('bar-' + profile).style.width = percent + '%';
+                    document.getElementById('percent-' + profile).textContent = Math.round(percent) + '%';
+                }
+                
+                // Encontrar perfil dominante
+                let topProfile = 'a';
+                let topScore = scores['a'];
+                
+                for (let profile in scores) {
+                    if (scores[profile] > topScore) {
+                        topScore = scores[profile];
+                        topProfile = profile;
+                    }
+                }
+                
+                // Mostrar perfil dominante y carreras
+                document.getElementById('main-profile-title').textContent = 'Tu perfil dominante: ' + profiles[topProfile].name;
+                document.getElementById('main-profile-desc').textContent = profiles[topProfile].description;
+                
+                const careerList = document.getElementById('career-list');
+                careerList.innerHTML = '';
+                
+                profiles[topProfile].careers.forEach(career => {
+                    const li = document.createElement('li');
+                    li.textContent = career;
+                    careerList.appendChild(li);
+                });
+                
+                // Mostrar resultados
+                document.getElementById('results').style.display = 'block';
+                document.getElementById('results').scrollIntoView({behavior: 'smooth'});
+            });
+        });
+    </script>
+</body>
+</html>
