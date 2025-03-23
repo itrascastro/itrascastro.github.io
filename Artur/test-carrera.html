@@ -115,7 +115,6 @@
             padding-right: 10px;
             color: white;
             font-weight: bold;
-            transition: width 1s ease-in-out;
         }
         
         .top-career {
@@ -152,189 +151,69 @@
             margin-top: 10px;
             color: #555;
         }
-        
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
-            
-            .question {
-                padding: 15px;
-            }
-        }
     </style>
 </head>
 <body>
     <h1>Test de Orientación Vocacional</h1>
     
     <div id="instructions">
-        <p>Este test está diseñado para ayudar a estudiantes a identificar qué carreras podrían adaptarse mejor a sus intereses y fortalezas, más allá del ámbito de las ingenierías.</p>
-        <p>Responde a todas las preguntas seleccionando la opción que mejor refleje tus preferencias. Al finalizar, obtendrás un perfil con recomendaciones de carreras que podrían ajustarse a tu personalidad.</p>
+        <p>Este test está diseñado para ayudar a estudiantes a identificar qué carreras podrían adaptarse mejor a sus intereses y fortalezas.</p>
+        <p>Responde a todas las preguntas seleccionando la opción que mejor refleje tus preferencias. Al finalizar, obtendrás un perfil con recomendaciones de carreras.</p>
     </div>
 
     <form id="vocationalTest">
-        <div class="question" id="q1">
-            <h3>1. ¿Qué tipo de actividades disfrutas más realizando?</h3>
-            <div class="options" id="options1">
-                <label><input type="radio" name="q1" value="a"> Resolver problemas abstractos y teóricos que requieren razonamiento lógico</label>
-                <label><input type="radio" name="q1" value="b"> Explorar ideas creativas y encontrar soluciones originales</label>
-                <label><input type="radio" name="q1" value="c"> Construir, diseñar o trabajar con elementos físicos</label>
-                <label><input type="radio" name="q1" value="d"> Organizar actividades y coordinar personas</label>
-                <label><input type="radio" name="q1" value="e"> Analizar información y trabajar con tecnología</label>
+        <div class="question">
+            <h3>1. ¿Qué actividades disfrutas más?</h3>
+            <div class="options">
+                <label><input type="radio" name="q1" value="a"> Resolver problemas lógicos o matemáticos</label>
+                <label><input type="radio" name="q1" value="b"> Actividades artísticas o creativas</label>
+                <label><input type="radio" name="q1" value="c"> Construir o arreglar cosas con tus manos</label>
+                <label><input type="radio" name="q1" value="d"> Ayudar a otros o trabajar en equipo</label>
+                <label><input type="radio" name="q1" value="e"> Utilizar o desarrollar tecnología</label>
             </div>
         </div>
 
-        <div class="question" id="q2">
-            <h3>2. En un proyecto grupal, ¿qué rol sueles asumir naturalmente?</h3>
-            <div class="options" id="options2">
-                <label><input type="radio" name="q2" value="a"> El que analiza la situación y busca explicaciones lógicas</label>
-                <label><input type="radio" name="q2" value="b"> El que aporta ideas innovadoras y diferentes perspectivas</label>
-                <label><input type="radio" name="q2" value="c"> El que se ocupa de los aspectos prácticos y manuales</label>
-                <label><input type="radio" name="q2" value="d"> El que organiza el trabajo y coordina al equipo</label>
-                <label><input type="radio" name="q2" value="e"> El que investiga información y utiliza herramientas digitales</label>
+        <div class="question">
+            <h3>2. En un proyecto grupal, ¿qué rol asumes?</h3>
+            <div class="options">
+                <label><input type="radio" name="q2" value="a"> El que analiza y planifica</label>
+                <label><input type="radio" name="q2" value="b"> El que aporta ideas originales</label>
+                <label><input type="radio" name="q2" value="c"> El que se ocupa de la parte práctica</label>
+                <label><input type="radio" name="q2" value="d"> El que coordina al equipo</label>
+                <label><input type="radio" name="q2" value="e"> El que maneja la parte técnica/digital</label>
             </div>
         </div>
 
-        <div class="question" id="q3">
-            <h3>3. ¿Qué entorno de trabajo te resulta más atractivo?</h3>
-            <div class="options" id="options3">
-                <label><input type="radio" name="q3" value="a"> Un centro de investigación o universidad</label>
-                <label><input type="radio" name="q3" value="b"> Un espacio creativo o cultural</label>
-                <label><input type="radio" name="q3" value="c"> Un taller, estudio o lugar donde se construyen cosas</label>
-                <label><input type="radio" name="q3" value="d"> Una oficina donde se trabaja con personas</label>
-                <label><input type="radio" name="q3" value="e"> Un ambiente tecnológico o digital</label>
+        <div class="question">
+            <h3>3. ¿Qué entorno de trabajo prefieres?</h3>
+            <div class="options">
+                <label><input type="radio" name="q3" value="a"> Un centro de investigación</label>
+                <label><input type="radio" name="q3" value="b"> Un espacio creativo o artístico</label>
+                <label><input type="radio" name="q3" value="c"> Un taller o lugar donde se construyan cosas</label>
+                <label><input type="radio" name="q3" value="d"> Una oficina con mucha interacción social</label>
+                <label><input type="radio" name="q3" value="e"> Un ambiente tecnológico innovador</label>
             </div>
         </div>
 
-        <div class="question" id="q4">
-            <h3>4. Cuando aprendes algo nuevo, ¿qué enfoque prefieres?</h3>
-            <div class="options" id="options4">
-                <label><input type="radio" name="q4" value="a"> Entender a fondo los conceptos teóricos y sus fundamentos</label>
-                <label><input type="radio" name="q4" value="b"> Explorar diferentes interpretaciones y enfoques</label>
-                <label><input type="radio" name="q4" value="c"> Aprender haciendo, de forma práctica y directa</label>
-                <label><input type="radio" name="q4" value="d"> Organizar la información y aplicarla a situaciones reales</label>
-                <label><input type="radio" name="q4" value="e"> Investigar por tu cuenta utilizando recursos digitales</label>
+        <div class="question">
+            <h3>4. ¿Qué asignaturas te resultan más interesantes?</h3>
+            <div class="options">
+                <label><input type="radio" name="q4" value="a"> Matemáticas, física, filosofía</label>
+                <label><input type="radio" name="q4" value="b"> Literatura, arte, música</label>
+                <label><input type="radio" name="q4" value="c"> Educación física, tecnología práctica</label>
+                <label><input type="radio" name="q4" value="d"> Historia, economía, lenguas</label>
+                <label><input type="radio" name="q4" value="e"> Informática, programación, electrónica</label>
             </div>
         </div>
 
-        <div class="question" id="q5">
-            <h3>5. ¿Qué te resultaría más satisfactorio en tu futura profesión?</h3>
-            <div class="options" id="options5">
-                <label><input type="radio" name="q5" value="a"> Contribuir al avance del conocimiento</label>
-                <label><input type="radio" name="q5" value="b"> Expresar ideas y emociones de manera original</label>
-                <label><input type="radio" name="q5" value="c"> Crear o construir algo tangible y funcional</label>
-                <label><input type="radio" name="q5" value="d"> Ayudar a otras personas o gestionar equipos</label>
-                <label><input type="radio" name="q5" value="e"> Desarrollar soluciones tecnológicas innovadoras</label>
-            </div>
-        </div>
-
-        <div class="question" id="q6">
-            <h3>6. ¿Qué asignaturas te han resultado más interesantes?</h3>
-            <div class="options" id="options6">
-                <label><input type="radio" name="q6" value="a"> Matemáticas, física o filosofía</label>
-                <label><input type="radio" name="q6" value="b"> Literatura, arte o música</label>
-                <label><input type="radio" name="q6" value="c"> Tecnología, dibujo técnico o educación física</label>
-                <label><input type="radio" name="q6" value="d"> Economía, historia o ciencias sociales</label>
-                <label><input type="radio" name="q6" value="e"> Informática, programación o electrónica</label>
-            </div>
-        </div>
-
-        <div class="question" id="q7">
-            <h3>7. ¿Te interesan más los proyectos que...?</h3>
-            <div class="options" id="options7">
-                <label><input type="radio" name="q7" value="a"> Exploran conceptos nuevos y amplían el conocimiento</label>
-                <label><input type="radio" name="q7" value="b"> Permiten expresar creatividad y originalidad</label>
-                <label><input type="radio" name="q7" value="c"> Implican diseñar, construir o mejorar objetos físicos</label>
-                <label><input type="radio" name="q7" value="d"> Tienen impacto social o mejoran la vida de las personas</label>
-                <label><input type="radio" name="q7" value="e"> Incorporan nuevas tecnologías y soluciones digitales</label>
-            </div>
-        </div>
-
-        <div class="question" id="q8">
-            <h3>8. ¿Cómo te imaginas tu lugar de trabajo ideal?</h3>
-            <div class="options" id="options8">
-                <label><input type="radio" name="q8" value="a"> Un entorno académico o de investigación</label>
-                <label><input type="radio" name="q8" value="b"> Un espacio creativo o artístico</label>
-                <label><input type="radio" name="q8" value="c"> Un lugar donde pueda trabajar con mis manos</label>
-                <label><input type="radio" name="q8" value="d"> Un ambiente donde interactúe con personas diversas</label>
-                <label><input type="radio" name="q8" value="e"> Un entorno tecnológico e innovador</label>
-            </div>
-        </div>
-
-        <div class="question" id="q9">
-            <h3>9. ¿Qué tipo de habilidades te gustaría desarrollar más en tu carrera?</h3>
-            <div class="options" id="options9">
-                <label><input type="radio" name="q9" value="a"> Pensamiento analítico y resolución de problemas teóricos</label>
-                <label><input type="radio" name="q9" value="b"> Expresión artística y creatividad</label>
-                <label><input type="radio" name="q9" value="c"> Habilidades técnicas y manuales</label>
-                <label><input type="radio" name="q9" value="d"> Comunicación, liderazgo y trabajo en equipo</label>
-                <label><input type="radio" name="q9" value="e"> Competencias digitales y tecnológicas</label>
-            </div>
-        </div>
-
-        <div class="question" id="q10">
-            <h3>10. Entre estas actividades, ¿cuál te resulta más interesante?</h3>
-            <div class="options" id="options10">
-                <label><input type="radio" name="q10" value="a"> Investigar un fenómeno o resolver un problema complejo</label>
-                <label><input type="radio" name="q10" value="b"> Diseñar o crear una obra original</label>
-                <label><input type="radio" name="q10" value="c"> Construir o reparar algo con tus propias manos</label>
-                <label><input type="radio" name="q10" value="d"> Debatir temas sociales o ayudar a otras personas</label>
-                <label><input type="radio" name="q10" value="e"> Desarrollar una aplicación o sistema digital</label>
-            </div>
-        </div>
-
-        <div class="question" id="q11">
-            <h3>11. ¿Qué aspectos de un problema te gusta abordar primero?</h3>
-            <div class="options" id="options11">
-                <label><input type="radio" name="q11" value="a"> Su fundamentación teórica y lógica</label>
-                <label><input type="radio" name="q11" value="b"> Las posibilidades creativas y originales</label>
-                <label><input type="radio" name="q11" value="c"> Los elementos prácticos y concretos</label>
-                <label><input type="radio" name="q11" value="d"> El impacto en las personas y la organización</label>
-                <label><input type="radio" name="q11" value="e"> Las soluciones tecnológicas aplicables</label>
-            </div>
-        </div>
-
-        <div class="question" id="q12">
-            <h3>12. ¿Cómo prefieres utilizar tus conocimientos?</h3>
-            <div class="options" id="options12">
-                <label><input type="radio" name="q12" value="a"> Para desarrollar teorías o explicaciones</label>
-                <label><input type="radio" name="q12" value="b"> Para crear obras originales o expresar ideas</label>
-                <label><input type="radio" name="q12" value="c"> Para construir o mejorar objetos físicos</label>
-                <label><input type="radio" name="q12" value="d"> Para ayudar a otros o mejorar la sociedad</label>
-                <label><input type="radio" name="q12" value="e"> Para desarrollar sistemas o soluciones digitales</label>
-            </div>
-        </div>
-
-        <div class="question" id="q13">
-            <h3>13. En tu tiempo libre, ¿qué actividades disfrutas más?</h3>
-            <div class="options" id="options13">
-                <label><input type="radio" name="q13" value="a"> Leer sobre ciencia o resolver problemas lógicos</label>
-                <label><input type="radio" name="q13" value="b"> Actividades artísticas, música o escritura</label>
-                <label><input type="radio" name="q13" value="c"> Bricolaje, deportes o actividades al aire libre</label>
-                <label><input type="radio" name="q13" value="d"> Participar en grupos sociales o ayudar a otros</label>
-                <label><input type="radio" name="q13" value="e"> Videojuegos, programación o nuevas tecnologías</label>
-            </div>
-        </div>
-
-        <div class="question" id="q14">
-            <h3>14. ¿Qué tipo de retos profesionales te motivarían más?</h3>
-            <div class="options" id="options14">
-                <label><input type="radio" name="q14" value="a"> Investigar problemas complejos o sin respuesta</label>
-                <label><input type="radio" name="q14" value="b"> Crear obras originales o innovadoras</label>
-                <label><input type="radio" name="q14" value="c"> Diseñar y construir cosas útiles y funcionales</label>
-                <label><input type="radio" name="q14" value="d"> Liderar equipos o promover cambios sociales</label>
-                <label><input type="radio" name="q14" value="e"> Desarrollar sistemas tecnológicos avanzados</label>
-            </div>
-        </div>
-
-        <div class="question" id="q15">
-            <h3>15. Si pudieras elegir un logro profesional, ¿cuál te haría sentir más realizado?</h3>
-            <div class="options" id="options15">
-                <label><input type="radio" name="q15" value="a"> Realizar un descubrimiento o publicar una investigación</label>
-                <label><input type="radio" name="q15" value="b"> Crear una obra reconocida o innovadora</label>
-                <label><input type="radio" name="q15" value="c"> Construir o diseñar algo duradero y útil</label>
-                <label><input type="radio" name="q15" value="d"> Liderar un proyecto con impacto social positivo</label>
-                <label><input type="radio" name="q15" value="e"> Desarrollar una tecnología revolucionaria</label>
+        <div class="question">
+            <h3>5. ¿Qué te resultaría más satisfactorio?</h3>
+            <div class="options">
+                <label><input type="radio" name="q5" value="a"> Hacer un descubrimiento o desarrollar una teoría</label>
+                <label><input type="radio" name="q5" value="b"> Crear una obra artística original</label>
+                <label><input type="radio" name="q5" value="c"> Construir algo útil con tus propias manos</label>
+                <label><input type="radio" name="q5" value="d"> Ayudar a otras personas o mejorar la sociedad</label>
+                <label><input type="radio" name="q5" value="e"> Desarrollar una solución tecnológica innovadora</label>
             </div>
         </div>
 
@@ -342,81 +221,227 @@
             Por favor, responde a todas las preguntas antes de ver los resultados.
         </div>
 
-        <button type="button" id="calculateResults">Ver Resultados</button>
+        <button type="button" id="calculateBtn">Ver Resultados</button>
     </form>
 
     <div id="results">
         <h2>Tus Resultados</h2>
 
         <div class="result-section">
-            <h3>Distribución de tus respuestas</h3>
+            <h3>Tu perfil vocacional</h3>
             
             <div>
-                <strong>Perfil Científico-Analítico:</strong>
+                <strong>Científico-Analítico:</strong>
                 <div class="progress-container">
-                    <div id="scientific-bar" class="progress-bar" style="width: 0%; background-color: #3498db;"></div>
+                    <div id="scientific-bar" class="progress-bar" style="background-color: #3498db;"></div>
                 </div>
-                <span id="scientific-percentage">0%</span>
+                <span id="scientific-percentage"></span>
             </div>
             
             <div>
-                <strong>Perfil Artístico-Creativo:</strong>
+                <strong>Artístico-Creativo:</strong>
                 <div class="progress-container">
-                    <div id="artistic-bar" class="progress-bar" style="width: 0%; background-color: #e74c3c;"></div>
+                    <div id="artistic-bar" class="progress-bar" style="background-color: #e74c3c;"></div>
                 </div>
-                <span id="artistic-percentage">0%</span>
+                <span id="artistic-percentage"></span>
             </div>
             
             <div>
-                <strong>Perfil Práctico-Técnico:</strong>
+                <strong>Práctico-Técnico:</strong>
                 <div class="progress-container">
-                    <div id="practical-bar" class="progress-bar" style="width: 0%; background-color: #2ecc71;"></div>
+                    <div id="practical-bar" class="progress-bar" style="background-color: #2ecc71;"></div>
                 </div>
-                <span id="practical-percentage">0%</span>
+                <span id="practical-percentage"></span>
             </div>
             
             <div>
-                <strong>Perfil Social-Organizativo:</strong>
+                <strong>Social-Organizativo:</strong>
                 <div class="progress-container">
-                    <div id="social-bar" class="progress-bar" style="width: 0%; background-color: #f39c12;"></div>
+                    <div id="social-bar" class="progress-bar" style="background-color: #f39c12;"></div>
                 </div>
-                <span id="social-percentage">0%</span>
+                <span id="social-percentage"></span>
             </div>
             
             <div>
-                <strong>Perfil Tecnológico-Digital:</strong>
+                <strong>Tecnológico-Digital:</strong>
                 <div class="progress-container">
-                    <div id="technology-bar" class="progress-bar" style="width: 0%; background-color: #9b59b6;"></div>
+                    <div id="tech-bar" class="progress-bar" style="background-color: #9b59b6;"></div>
                 </div>
-                <span id="technology-percentage">0%</span>
+                <span id="tech-percentage"></span>
             </div>
         </div>
 
         <div class="top-career">
-            <h3 id="top-profile-title">Tu perfil dominante: </h3>
+            <h3 id="top-profile-title">Tu perfil dominante</h3>
             <div id="top-profile-description" class="profile-description"></div>
             
             <h4>Carreras recomendadas:</h4>
             <ul id="recommended-careers" class="career-list"></ul>
         </div>
-        
-        <div id="secondary-profile" style="display: none;">
-            <h3>Tu perfil secundario: <span id="secondary-profile-name"></span></h3>
-            <p>También tienes una inclinación hacia este perfil. Podrías considerar carreras que combinen ambos perfiles, como:</p>
-            <ul id="secondary-careers" class="career-list"></ul>
-        </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const calculateButton = document.getElementById('calculateResults');
-            const resultsSection = document.getElementById('results');
+            const calculateBtn = document.getElementById('calculateBtn');
+            const resultsDiv = document.getElementById('results');
             const warningMessage = document.getElementById('warningMessage');
             
-            // Mezclar aleatoriamente las opciones de respuesta
-            function shuffleOptions() {
-                for (let i = 1; i <= 15; i++) {
-                    const optionsContainer = document.getElementById('options' + i);
-                    const options = Array.from(optionsContainer.children);
-                    
-                    // Reordenar aleatori
+            // Definiciones de perfiles y carreras
+            const profiles = {
+                'a': {
+                    name: 'Científico-Analítico',
+                    description: 'Te interesan los conceptos abstractos, el análisis lógico y la investigación. Disfrutas comprendiendo cómo funcionan las cosas a nivel teórico.',
+                    careers: [
+                        'Matemáticas',
+                        'Física',
+                        'Química',
+                        'Biología',
+                        'Estadística',
+                        'Ingeniería Matemática',
+                        'Medicina',
+                        'Farmacia',
+                        'Economía',
+                        'Filosofía'
+                    ]
+                },
+                'b': {
+                    name: 'Artístico-Creativo',
+                    description: 'Valoras la expresión personal, la originalidad y la creatividad. Te gusta encontrar formas de expresión únicas.',
+                    careers: [
+                        'Bellas Artes',
+                        'Literatura',
+                        'Música',
+                        'Cine y Audiovisuales',
+                        'Diseño Gráfico',
+                        'Arquitectura',
+                        'Periodismo',
+                        'Publicidad',
+                        'Teatro',
+                        'Diseño de Moda'
+                    ]
+                },
+                'c': {
+                    name: 'Práctico-Técnico',
+                    description: 'Prefieres el trabajo práctico y manual. Te interesan las soluciones concretas y tangibles más que las teóricas.',
+                    careers: [
+                        'Ingeniería Civil',
+                        'Ingeniería Mecánica',
+                        'Arquitectura Técnica',
+                        'Fisioterapia',
+                        'Enfermería',
+                        'Veterinaria',
+                        'Gastronomía',
+                        'Deportes',
+                        'Agronomía',
+                        'Mecánica'
+                    ]
+                },
+                'd': {
+                    name: 'Social-Organizativo',
+                    description: 'Te motiva trabajar con y para las personas. Valoras el impacto social y el trabajo en equipo.',
+                    careers: [
+                        'Psicología',
+                        'Derecho',
+                        'Educación y Magisterio',
+                        'Trabajo Social',
+                        'Administración de Empresas',
+                        'Sociología',
+                        'Ciencias Políticas',
+                        'Periodismo',
+                        'Marketing',
+                        'Recursos Humanos'
+                    ]
+                },
+                'e': {
+                    name: 'Tecnológico-Digital',
+                    description: 'Te atraen las nuevas tecnologías y el mundo digital. Disfrutas utilizando y desarrollando herramientas tecnológicas.',
+                    careers: [
+                        'Ingeniería Informática',
+                        'Ingeniería de Telecomunicaciones',
+                        'Desarrollo de Videojuegos',
+                        'Ciencia de Datos',
+                        'Ingeniería Electrónica',
+                        'Animación Digital',
+                        'Robótica',
+                        'Ciberseguridad',
+                        'Desarrollo Web',
+                        'Diseño UX/UI'
+                    ]
+                }
+            };
+            
+            // Función para calcular los resultados
+            calculateBtn.addEventListener('click', function() {
+                // Verificar que todas las preguntas han sido respondidas
+                const questions = document.querySelectorAll('input[type="radio"]:checked');
+                if (questions.length < 5) {
+                    warningMessage.style.display = 'block';
+                    resultsDiv.style.display = 'none';
+                    return;
+                }
+                
+                warningMessage.style.display = 'none';
+                
+                // Contar respuestas por tipo
+                const scores = {
+                    'a': 0,
+                    'b': 0,
+                    'c': 0,
+                    'd': 0,
+                    'e': 0
+                };
+                
+                questions.forEach(function(radio) {
+                    scores[radio.value]++;
+                });
+                
+                // Calcular porcentajes
+                const totalQuestions = questions.length;
+                
+                // Actualizar barras de progreso y porcentajes
+                document.getElementById('scientific-bar').style.width = (scores['a'] / totalQuestions * 100) + '%';
+                document.getElementById('artistic-bar').style.width = (scores['b'] / totalQuestions * 100) + '%';
+                document.getElementById('practical-bar').style.width = (scores['c'] / totalQuestions * 100) + '%';
+                document.getElementById('social-bar').style.width = (scores['d'] / totalQuestions * 100) + '%';
+                document.getElementById('tech-bar').style.width = (scores['e'] / totalQuestions * 100) + '%';
+                
+                document.getElementById('scientific-percentage').textContent = Math.round(scores['a'] / totalQuestions * 100) + '%';
+                document.getElementById('artistic-percentage').textContent = Math.round(scores['b'] / totalQuestions * 100) + '%';
+                document.getElementById('practical-percentage').textContent = Math.round(scores['c'] / totalQuestions * 100) + '%';
+                document.getElementById('social-percentage').textContent = Math.round(scores['d'] / totalQuestions * 100) + '%';
+                document.getElementById('tech-percentage').textContent = Math.round(scores['e'] / totalQuestions * 100) + '%';
+                
+                // Encontrar el perfil dominante
+                let highestScore = 0;
+                let dominantProfile = '';
+                
+                for (const profile in scores) {
+                    if (scores[profile] > highestScore) {
+                        highestScore = scores[profile];
+                        dominantProfile = profile;
+                    }
+                }
+                
+                // Mostrar perfil dominante y carreras recomendadas
+                document.getElementById('top-profile-title').textContent = 'Tu perfil dominante: ' + profiles[dominantProfile].name;
+                document.getElementById('top-profile-description').textContent = profiles[dominantProfile].description;
+                
+                const careersList = document.getElementById('recommended-careers');
+                careersList.innerHTML = '';
+                
+                profiles[dominantProfile].careers.forEach(function(career) {
+                    const li = document.createElement('li');
+                    li.textContent = career;
+                    careersList.appendChild(li);
+                });
+                
+                // Mostrar resultados
+                resultsDiv.style.display = 'block';
+                
+                // Hacer scroll hasta los resultados
+                resultsDiv.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
