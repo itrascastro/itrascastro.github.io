@@ -173,7 +173,7 @@
             color: #3b4a79;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95em; /* Reducido de 1.05em */
+            font-size: 0.9em; /* Reducido de 1.05em */
             line-height: 1.3;
             padding: 12px 15px;
             background-color: #fff;
@@ -183,8 +183,8 @@
             transition: all 0.3s ease;
             overflow: hidden;
             text-overflow: ellipsis;
-            word-wrap: break-word;
-            hyphens: auto;
+            hyphens: none; 
+            overflow-wrap: break-word;
         }
         .course-container a:hover {
             background-color: #f9f9f9;
@@ -334,7 +334,7 @@
 </div>
 
 <script>
-        // === VERSIÓN ESTÁTICA GENERADA EL 15/06/2025 17:58:13 ===
+        // === VERSIÓN ESTÁTICA GENERADA EL 15/06/2025 18:03:45 ===
         
         // Variables globales (mantener compatibilidad)
         const moodleStatusEl = document.getElementById('moodle-status');
@@ -348,7 +348,7 @@
             }
             
             if (moodleStatusEl) {
-                moodleStatusEl.textContent = 'Versió estàtica - Última actualització: 15/06/2025 17:58';
+                moodleStatusEl.textContent = 'Versió estàtica - Última actualització: 15/06/2025 18:03';
                 moodleStatusEl.style.fontSize = '0.8em';
                 moodleStatusEl.style.color = '#666';
             }
