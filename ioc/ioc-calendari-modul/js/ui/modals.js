@@ -188,10 +188,6 @@ function selectCategoryColor(newColor) {
     clearSelectedCategoryId();
 }
 
-// === FUNCIÓ populateCategorySelect MOGUDA A js/managers/event-manager.js ===
-// Aquesta funció duplicada causava que només es mostressin les categories locals
-// La funció correcta ara inclou categories del sistema + catàleg global
-
 // === GESTIÓ D'ESDEVENIMENTS DE MODAL ===
 
 // Inicialitzar esdeveniments de modal

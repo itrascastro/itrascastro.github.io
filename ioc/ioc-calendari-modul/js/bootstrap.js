@@ -45,9 +45,6 @@ function handleAction(e) {
     }
 }
 
-// === RENDERITZAT PRINCIPAL DEL CALENDARI ===
-// Funció eliminada - usar directament viewManager.renderCurrentView()
-
 // === NAVEGACIÓ ENTRE PERÍODES ===
 function navigatePeriod(direction) {
     viewManager.navigatePeriod(direction);
@@ -57,16 +54,11 @@ function navigatePeriod(direction) {
 // === INICIALITZACIÓ DE L'APLICACIÓ ===
 function initializeApp() {
     try {
-        // Carregar configuració del semestre primer de tot
+        // Inicialitzar aplicació
         console.log('[Sistema] Inicialitzant aplicació...');
-        const configLoaded = initializeCalendarManager();
-        if (!configLoaded) {
-            console.error('[Sistema] Error carregant configuració, no es pot continuar');
-            return;
-        }
         
         // Inicialitzar resta de l'aplicació
-        initializeViewManager();
+        viewManager.initializeRenderers();
         document.addEventListener('click', handleAction);
         document.addEventListener('dblclick', handleAction);
         loadFromStorage();

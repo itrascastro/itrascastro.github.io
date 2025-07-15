@@ -236,47 +236,22 @@ class SemesterConfig {
                 }
             ]
         };
-        this.loaded = true;
-    }
-    
-    // Inicialitzar configuració (síncron)
-    load() {
-        console.log('[SemesterConfig] Configuració del semestre carregada');
-        this.logConfigInfo();
-        return true;
-    }
-    
-    // Verificar que la configuració estigui carregada
-    isLoaded() {
-        return this.loaded && this.data !== null;
     }
     
     // === GETTERS PER ACCEDIR A LA CONFIGURACIÓ ===
     
     // Obtenir informació del semestre
     getSemester() {
-        if (!this.isLoaded()) {
-            console.error('[SemesterConfig] Configuració no carregada');
-            return null;
-        }
         return this.data.semester;
     }
     
     // Obtenir events del sistema
     getSystemEvents() {
-        if (!this.isLoaded()) {
-            console.error('[SemesterConfig] Configuració no carregada');
-            return [];
-        }
         return this.data.systemEvents || [];
     }
     
     // Obtenir categories per defecte
     getDefaultCategories() {
-        if (!this.isLoaded()) {
-            console.error('[SemesterConfig] Configuració no carregada');
-            return [];
-        }
         return this.data.defaultCategories || [];
     }
     
@@ -302,7 +277,6 @@ class SemesterConfig {
     
     // Mostrar informació de la configuració carregada
     logConfigInfo() {
-        if (!this.isLoaded()) return;
         
         const semester = this.getSemester();
         console.log(`[SemesterConfig] Semestre: ${semester.code}`);
@@ -311,30 +285,6 @@ class SemesterConfig {
         console.log(`[SemesterConfig] Categories per defecte: ${this.getDefaultCategories().length}`);
     }
     
-    // Validar que la configuració sigui vàlida
-    isValid() {
-        if (!this.isLoaded()) return false;
-        
-        const semester = this.getSemester();
-        if (!semester || !semester.startDate || !semester.endDate || !semester.code) {
-            console.error('[SemesterConfig] Dades del semestre no vàlides');
-            return false;
-        }
-        
-        const systemEvents = this.getSystemEvents();
-        if (!Array.isArray(systemEvents)) {
-            console.error('[SemesterConfig] Events del sistema no vàlids');
-            return false;
-        }
-        
-        const defaultCategories = this.getDefaultCategories();
-        if (!Array.isArray(defaultCategories) || defaultCategories.length === 0) {
-            console.error('[SemesterConfig] Categories per defecte no vàlides');
-            return false;
-        }
-        
-        return true;
-    }
 }
 
 // === INSTÀNCIA GLOBAL ===

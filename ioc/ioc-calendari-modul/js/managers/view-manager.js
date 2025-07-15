@@ -545,11 +545,3 @@ class ViewManager {
 
 // Gestor de vistes
 const viewManager = new ViewManager();
-
-// === INICIALITZACIÓ ===
-
-// Inicialitzar gestor de vistes
-function initializeViewManager() {
-    viewManager.initializeRenderers();
-    console.log('[ViewManager] Gestor de vistes inicialitzat');
-}
