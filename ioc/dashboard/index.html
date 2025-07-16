@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>IOC - Dashboard</title>
 <style>
-        /* ESTILOS ORIGINALES MINIMALISTAS */
+        /* Estilos idénticos a la versión anterior para consistencia visual */
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; line-height: 1.6; transition: background-color 0.3s, color 0.3s; }
         body.light-mode { background-color: #fff; color: #333; }
         body.dark-mode { background-color: #333; color: #d3d3d3; }
@@ -32,187 +32,40 @@
         .dark-mode #theme-toggle, .dark-mode #refresh-moodle { background-color: #555; color: white; }
         #refresh-moodle:disabled { background-color: #ddd; color: #555; cursor: not-allowed; }
         #moodle-status { font-size: 0.9em; font-style: italic; }
-        #auto-refresh-countdown { 
-            font-size: 0.8em; 
-            color: #666; 
-            margin-left: 10px;
-        }
-        .dark-mode #auto-refresh-countdown { 
-            color: #aaa; 
-        }
+        #auto-refresh-countdown { font-size: 0.8em; color: #666; margin-left: 10px; }
+        .dark-mode #auto-refresh-countdown { color: #aaa; }
         footer { text-align: right; font-size: 1em; color: #3b4a79; flex-grow: 1; font-weight: normal; }
         .dark-mode footer { color: #d3d3d3; }
         #progress-container { width: 100%; background-color: #ddd; border-radius: 5px; overflow: hidden; height: 10px; margin-top: 5px; display: none; }
         .dark-mode #progress-container { background-color: #555; }
         #progress-bar { width: 0%; height: 100%; background-color: #3b4a79; transition: width 0.5s ease; }
         .dark-mode #progress-bar { background-color: #d3d3d3; }
-        
-        /* ESTILOS MEJORADOS PARA EL CONTENEDOR AJAX */
-        .ajax-notification-wrapper { 
-            padding: 0 10px 10px 10px; 
-            margin-top: 10px;
-        }
-        .ajax-notification-wrapper ul { 
-            list-style-type: disc; 
-            margin-left: 20px; 
-            font-size: 0.9em; 
-        }
-        .ajax-notification-wrapper li { 
-            margin-bottom: 5px !important; 
-        }
-        .ajax-notification-wrapper a { 
-            display: inline !important; 
-            padding: 0 !important; 
-            border: none !important; 
-            box-shadow: none !important; 
-            text-decoration: underline !important; 
-            background: none !important; 
-            color: #3498db !important; 
-            font-weight: normal !important; 
-        }
-        .dark-mode .ajax-notification-wrapper a { 
-            color: #5dade2 !important; 
-        }
-        
-        /* ESTILOS PARA LOS ELEMENTOS CLICKEABLES DEL AJAX */
-        .local-course-overview-item { 
-            cursor: pointer; 
-            font-size: 0.9em;
-            padding: 5px;
-            border-radius: 3px;
-            transition: background-color 0.2s;
-        }
-        .local-course-overview-item:hover {
-            background-color: rgba(59, 74, 121, 0.1);
-        }
-        .dark-mode .local-course-overview-item:hover {
-            background-color: rgba(211, 211, 211, 0.1);
-        }
-        
-        /* ANIMACIÓN PARA CONTENIDO DESPLEGABLE */
-        .forum-content-hidden {
-            display: none;
-            animation: slideDown 0.3s ease-out;
-        }
-        .forum-content-visible {
-            display: block;
-            animation: slideDown 0.3s ease-out;
-            border-top: 1px solid #e0e0e0;
-            padding-top: 10px;
-            margin-top: 10px;
-        }
-        .dark-mode .forum-content-visible {
-            border-top-color: #777;
-        }
-        
-        /* FILTROS PARA MODO OSCURO */
-        .dark-mode .ajax-notification-wrapper img.icon,
-        .dark-mode .mail-notification img.icon {
-            filter: invert(1) brightness(0.8);
-        }
-        
-        .local-course-overview-item { 
-            cursor: pointer; 
-            font-size: 0.9em; 
-        }
-        .mail-notification { 
-            margin-left: 8px; 
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: flex-end;
-            gap: 0px;
-        }
-        .mail-count {
-            font-size: 0.9em;
-            color: inherit;
-            font-weight: normal;
-            margin-left: 3px;
-            line-height: 1;
-            position: relative; 
-            top: 2px;
-        }
-        
-        /* TRANSICIONES PARA ACTUALIZACIONES */
-        .content-updating {
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
-        }
-        .content-updated {
-            opacity: 1;
-            transition: opacity 0.3s ease;
-        }
-
-        /* === CONTENEDOR EXTERIOR VISIBLE PARA CURSO + AJAX === */
-        .course-container {
-            display: block;
-            padding: 10px;
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            border: 2px solid #e9ecef;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 15px;
-            transition: all 0.3s ease;
-        }
-        .course-container:hover {
-            background-color: #f1f3f4;
-            border-color: #3b4a79;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-        .dark-mode .course-container {
-            background-color: #3a3a3a;
-            border-color: #555;
-        }
-        .dark-mode .course-container:hover {
-            background-color: #404040;
-            border-color: #d3d3d3;
-        }
-        
-        /* El enlace del título dentro del contenedor */
-        .course-container a {
-            display: block;
-            color: #3b4a79;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95em; /* Reducido de 1.05em */
-            line-height: 1.3;
-            padding: 10px;
-            background-color: #fff;
-            border-radius: 6px;  
-            border: 1px solid #ddd;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            hyphens: none; 
-            overflow-wrap: break-word;
-        }
-        .course-container a:hover {
-            background-color: #f9f9f9;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transform: translateY(-1px);
-        }
-        .dark-mode .course-container a {
-            color: #d3d3d3;
-            background-color: #555;
-            border-color: #666;
-        }
-        .dark-mode .course-container a:hover {
-            background-color: #666;
-        }
-        
-        /* Notificaciones AJAX dentro del contenedor */
-        .course-container .ajax-notification-wrapper {
-            background-color: rgba(59, 74, 121, 0.05);
-            border-radius: 6px;
-            padding: 15px;
-            margin-top: 10px;
-            /* Quitado: border-left: 4px solid #3b4a79; */
-        }
-        .dark-mode .course-container .ajax-notification-wrapper {
-            background-color: rgba(211, 211, 211, 0.1);
-            /* Quitado: border-left-color: #d3d3d3; */
-        }
-
+        .ajax-notification-wrapper { padding: 0 10px 10px 10px; margin-top: 10px; }
+        .ajax-notification-wrapper ul { list-style-type: disc; margin-left: 20px; font-size: 0.9em; }
+        .ajax-notification-wrapper li { margin-bottom: 5px !important; }
+        .ajax-notification-wrapper a { display: inline !important; padding: 0 !important; border: none !important; box-shadow: none !important; text-decoration: underline !important; background: none !important; color: #3498db !important; font-weight: normal !important; }
+        .dark-mode .ajax-notification-wrapper a { color: #5dade2 !important; }
+        .local-course-overview-item { cursor: pointer; font-size: 0.9em; padding: 5px; border-radius: 3px; transition: background-color 0.2s; }
+        .local-course-overview-item:hover { background-color: rgba(59, 74, 121, 0.1); }
+        .dark-mode .local-course-overview-item:hover { background-color: rgba(211, 211, 211, 0.1); }
+        .forum-content-hidden { display: none; }
+        .forum-content-visible { display: block; border-top: 1px solid #e0e0e0; padding-top: 10px; margin-top: 10px; }
+        .dark-mode .forum-content-visible { border-top-color: #777; }
+        .dark-mode .ajax-notification-wrapper img.icon, .dark-mode .mail-notification img.icon { filter: invert(1) brightness(0.8); }
+        .mail-notification { margin-left: 8px; display: inline-flex; align-items: flex-end; gap: 0px; }
+        .mail-count { font-size: 0.9em; color: inherit; font-weight: normal; margin-left: 3px; line-height: 1; position: relative; top: 2px; }
+        .content-updating { opacity: 0.5; transition: opacity 0.3s ease; }
+        .content-updated { opacity: 1; transition: opacity 0.3s ease; }
+        .course-container { display: block; padding: 10px; background-color: #f8f9fa; border-radius: 10px; border: 2px solid #e9ecef; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-bottom: 15px; transition: all 0.3s ease; }
+        .course-container:hover { background-color: #f1f3f4; border-color: #3b4a79; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); }
+        .dark-mode .course-container { background-color: #3a3a3a; border-color: #555; }
+        .dark-mode .course-container:hover { background-color: #404040; border-color: #d3d3d3; }
+        .course-container a { display: block; color: #3b4a79; text-decoration: none; font-weight: 600; font-size: 0.95em; line-height: 1.3; padding: 10px; background-color: #fff; border-radius: 6px; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; overflow: hidden; text-overflow: ellipsis; hyphens: none; overflow-wrap: break-word; }
+        .course-container a:hover { background-color: #f9f9f9; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transform: translateY(-1px); }
+        .dark-mode .course-container a { color: #d3d3d3; background-color: #555; border-color: #666; }
+        .dark-mode .course-container a:hover { background-color: #666; }
+        .course-container .ajax-notification-wrapper { background-color: rgba(59, 74, 121, 0.05); border-radius: 6px; padding: 15px; margin-top: 10px; }
+        .dark-mode .course-container .ajax-notification-wrapper { background-color: rgba(211, 211, 211, 0.1); }
         @media (max-width: 768px) { 
             .container { grid-template-columns: 1fr; } 
             .header-footer { flex-direction: column; align-items: center; } 
@@ -235,10 +88,11 @@
 <div id="progress-container"><div id="progress-bar"></div></div>
 </div>
 <div class="container">
+<!-- Contenido del dashboard -->
 <div class="category">
 <h2>Correu</h2>
 <ul>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/local/mail/view.php?t=inbox" target="_blank">Safata d'entrada<span class="mail-notification content-updated"><img alt="Correus no llegits" class="icon" src="https://ioc.xtec.cat/campus/theme/image.php/boostioc/mod_forum/1749649652/icon" title="Correus no llegits"/><span class="mail-count">3</span></span></a></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/local/mail/view.php?t=inbox" target="_blank">Safata d'entrada<span class="mail-notification content-updated"><img class="icon" src="https://ioc.xtec.cat/campus/theme/image.php/boostioc/mod_forum/1749649652/icon"/><span class="mail-count">3</span></span></a></div></li>
 <li><div class="course-container"><a href="https://ioc.xtec.cat/campus/local/mail/view.php?t=sent" target="_blank">Enviats</a></div></li>
 </ul>
 <h2>Gestió</h2>
@@ -252,10 +106,10 @@
 </ul>
 <h2>Docent</h2>
 <ul>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=836" target="_blank"><span class="course-name">[FC] Departament d'Informàtica i comunicacions</span></a></div></li>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=5626" target="_blank"><span class="course-name">[CI] Intranet</span></a></div></li>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=5626§ion=1" target="_blank"><span class="course-name">[CI] Intranet - Professors</span></a></div></li>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=841" target="_blank"><span class="course-name">[FC] PRF Sala del professorat d'FP</span></a></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=836" target="_blank">[FC] Departament d'Informàtica i comunicacions</a></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=5626" target="_blank">[CI] Intranet</a></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=5626§ion=1" target="_blank">[CI] Intranet - Professors</a></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=841" target="_blank">[FC] PRF Sala del professorat d'FP</a></div></li>
 </ul>
 <h2>Aplicacions</h2>
 <ul>
@@ -271,22 +125,22 @@
 <div class="category">
 <h2>Mòduls</h2>
 <ul>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=16025" target="_blank"><span class="course-name">[FC] Coordinació INF</span></a></div></li>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=15805" target="_blank"><span class="course-name">ASX_M03B2 Programació bàsica/Programació (Bloc 2)</span></a></div></li>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=16071" target="_blank"><span class="course-name">DA2_0485B2 Programació (Bloc 2)</span></a></div></li>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=15821" target="_blank"><span class="course-name">DA2_M03B2 Programació bàsica/Programació (Bloc 2) (CE)</span></a><div class="ajax-notification-wrapper content-updated"><div class="local-course-overview-container" data-loaded="true" id="local-course-overview-container-15821"> <span class="local-course-overview-item"> <a href="https://ioc.xtec.cat/campus/mod/assign/index.php?id=15821" target="_blank"> <img alt="Tasques pendents d'avaluar" class="icon" src="https://ioc.xtec.cat/campus/theme/image.php/boostioc/mod_assign/1749649652/icon" title="Tasques pendents d'avaluar"/> <span>1</span> </a> </span> <div id="local-course-overview-forum-15821" style="display:none;"> </div> </div></div></div></li>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=15820" target="_blank"><span class="course-name">DA2_M03B0 Programació orientada a objectes</span></a><div class="ajax-notification-wrapper content-updated"><div class="local-course-overview-container" data-loaded="true" id="local-course-overview-container-15820"> <span class="local-course-overview-item"> <a href="https://ioc.xtec.cat/campus/mod/assign/index.php?id=15820" target="_blank"> <img alt="Tasques pendents d'avaluar" class="icon" src="https://ioc.xtec.cat/campus/theme/image.php/boostioc/mod_assign/1749649652/icon" title="Tasques pendents d'avaluar"/> <span>1</span> </a> </span> <div id="local-course-overview-forum-15820" style="display:none;"> </div> </div></div></div></li>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=15824" target="_blank"><span class="course-name">DAM_M07B0 Desenvolupament d'interfícies</span></a></div></li>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=15826" target="_blank"><span class="course-name">DAM_M09B0 Programació de serveis i processos</span></a></div></li>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=15827" target="_blank"><span class="course-name">DAM_M10B0 Sistemes de gestió empresarial</span></a></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=16025" target="_blank">[FC] Coordinació INF</a></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=15805" target="_blank">ASX_M03B2 Programació bàsica/Programació (Bloc 2)</a></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=16071" target="_blank">DA2_0485B2 Programació (Bloc 2)</a></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=15821" target="_blank">DA2_M03B2 Programació bàsica/Programació (Bloc 2) (CE)</a><div class="ajax-notification-wrapper content-updated"><div class="local-course-overview-container" data-loaded="true" id="local-course-overview-container-15821"> <span class="local-course-overview-item"> <a href="https://ioc.xtec.cat/campus/mod/assign/index.php?id=15821" target="_blank"> <img alt="Tasques pendents d'avaluar" class="icon" src="https://ioc.xtec.cat/campus/theme/image.php/boostioc/mod_assign/1749649652/icon" title="Tasques pendents d'avaluar"/> <span>1</span> </a> </span> <div id="local-course-overview-forum-15821" style="display:none;"> </div> </div></div></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=15820" target="_blank">DA2_M03B0 Programació orientada a objectes</a><div class="ajax-notification-wrapper content-updated"><div class="local-course-overview-container" data-loaded="true" id="local-course-overview-container-15820"> <span class="local-course-overview-item"> <a href="https://ioc.xtec.cat/campus/mod/assign/index.php?id=15820" target="_blank"> <img alt="Tasques pendents d'avaluar" class="icon" src="https://ioc.xtec.cat/campus/theme/image.php/boostioc/mod_assign/1749649652/icon" title="Tasques pendents d'avaluar"/> <span>1</span> </a> </span> <div id="local-course-overview-forum-15820" style="display:none;"> </div> </div></div></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=15824" target="_blank">DAM_M07B0 Desenvolupament d'interfícies</a></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=15826" target="_blank">DAM_M09B0 Programació de serveis i processos</a></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=15827" target="_blank">DAM_M10B0 Sistemes de gestió empresarial</a></div></li>
 </ul>
 </div>
 <div class="category">
 <h2>FCT</h2>
 <ul>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=1576" target="_blank"><span class="course-name">Coordinació d'FCT</span></a><div class="ajax-notification-wrapper content-updated"><div class="local-course-overview-container" data-loaded="true" id="local-course-overview-container-1576"> <span class="local-course-overview-item"> <a href="https://ioc.xtec.cat/campus/mod/assign/index.php?id=1576" target="_blank"> <img alt="Tasques pendents d'avaluar" class="icon" src="https://ioc.xtec.cat/campus/theme/image.php/boostioc/mod_assign/1749649652/icon" title="Tasques pendents d'avaluar"/> <span>4</span> </a> </span> <span class="local-course-overview-item"> <a href="https://ioc.xtec.cat/campus/mod/assign/index.php?id=1576" target="_blank"> <img alt="Tasques pendents" class="icon" src="https://ioc.xtec.cat/campus/theme/image.php/boostioc/mod_assign/1749649652/icon" title="Tasques pendents"/> <span>2</span> </a> </span> <div id="local-course-overview-forum-1576" style="display:none;"> </div> </div></div></div></li>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=1576§ion=2" target="_blank"><span class="course-name">Coordinadors de cicle d'FCT</span></a><div class="ajax-notification-wrapper content-updated"><div class="local-course-overview-container" data-loaded="true" id="local-course-overview-container-1576"> <span class="local-course-overview-item"> <a href="https://ioc.xtec.cat/campus/mod/assign/index.php?id=1576" target="_blank"> <img alt="Tasques pendents d'avaluar" class="icon" src="https://ioc.xtec.cat/campus/theme/image.php/boostioc/mod_assign/1749649652/icon" title="Tasques pendents d'avaluar"/> <span>4</span> </a> </span> <span class="local-course-overview-item"> <a href="https://ioc.xtec.cat/campus/mod/assign/index.php?id=1576" target="_blank"> <img alt="Tasques pendents" class="icon" src="https://ioc.xtec.cat/campus/theme/image.php/boostioc/mod_assign/1749649652/icon" title="Tasques pendents"/> <span>2</span> </a> </span> <div id="local-course-overview-forum-1576" style="display:none;"> </div> </div></div></div></li>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=16088" target="_blank"><span class="course-name">Formació en centres de treball s2</span></a></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=1576" target="_blank">Coordinació d'FCT</a><div class="ajax-notification-wrapper content-updated"><div class="local-course-overview-container" data-loaded="true" id="local-course-overview-container-1576"> <span class="local-course-overview-item"> <a href="https://ioc.xtec.cat/campus/mod/assign/index.php?id=1576" target="_blank"> <img alt="Tasques pendents d'avaluar" class="icon" src="https://ioc.xtec.cat/campus/theme/image.php/boostioc/mod_assign/1749649652/icon" title="Tasques pendents d'avaluar"/> <span>4</span> </a> </span> <span class="local-course-overview-item"> <a href="https://ioc.xtec.cat/campus/mod/assign/index.php?id=1576" target="_blank"> <img alt="Tasques pendents" class="icon" src="https://ioc.xtec.cat/campus/theme/image.php/boostioc/mod_assign/1749649652/icon" title="Tasques pendents"/> <span>2</span> </a> </span> <div id="local-course-overview-forum-1576" style="display:none;"> </div> </div></div></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=1576§ion=2" target="_blank">Coordinadors de cicle d'FCT</a></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=16088" target="_blank">Formació en centres de treball s2</a></div></li>
 <li><div class="course-container"><a href="https://docs.google.com/spreadsheets/d/1Mtxca2XJAD0GEdR4m3VymIYupsd0I-Uan7Js5pfrfCw/edit?usp=sharing" target="_blank">Dades Matrícula Aules FCT</a></div></li>
 <li><div class="course-container"><a href="https://www.empresaiformacio.org/sBid" target="_blank">sBID</a></div></li>
 <li><div class="course-container"><a href="https://docs.google.com/document/d/195vvpFU5Lt7wqjq0UZM81Wr-0-hCXNO-EFePqWJxEsM/edit?usp=drive_link" target="_blank">Mi manual FCT</a></div></li>
@@ -299,20 +153,20 @@
 <div class="category">
 <h2>Tutoria DAM</h2>
 <ul>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=848" target="_blank"><span class="course-name">[FC] Coordinació de tutories</span></a></div></li>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=16018" target="_blank"><span class="course-name">Tutoria DAM</span></a><div class="ajax-notification-wrapper content-updated"><div class="local-course-overview-container" data-loaded="true" id="local-course-overview-container-16018"> <span class="local-course-overview-item"> <a href="https://ioc.xtec.cat/campus/mod/assign/index.php?id=16018" target="_blank"> <img alt="Tasques pendents d'avaluar" class="icon" src="https://ioc.xtec.cat/campus/theme/image.php/boostioc/mod_assign/1749649652/icon" title="Tasques pendents d'avaluar"/> <span>1</span> </a> </span> <div id="local-course-overview-forum-16018" style="display:none;"> </div> </div></div></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=848" target="_blank">[FC] Coordinació de tutories</a></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=16018" target="_blank">Tutoria DAM</a><div class="ajax-notification-wrapper content-updated"><div class="local-course-overview-container" data-loaded="true" id="local-course-overview-container-16018"> <span class="local-course-overview-item"> <a href="https://ioc.xtec.cat/campus/mod/assign/index.php?id=16018" target="_blank"> <img alt="Tasques pendents d'avaluar" class="icon" src="https://ioc.xtec.cat/campus/theme/image.php/boostioc/mod_assign/1749649652/icon" title="Tasques pendents d'avaluar"/> <span>1</span> </a> </span> <div id="local-course-overview-forum-16018" style="display:none;"> </div> </div></div></div></li>
 <li><div class="course-container"><a href="https://docs.google.com/document/d/1zonPLuBu3x3yBJYOe3pK2P9qc45QIQ0-wk6JriqWrTc/edit?usp=sharing" target="_blank">FAQ Tutoria DAM</a></div></li>
 <li><div class="course-container"><a href="https://sites.google.com/ioc.cat/fp-ioc-canvis2425/inici?authuser=0" target="_blank">Implantació Nova FP</a></div></li>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=840" target="_blank"><span class="course-name">Atenció a l'Estudiant</span></a><div class="ajax-notification-wrapper content-updated"><div class="local-course-overview-container" data-loaded="true" id="local-course-overview-container-840"> <span class="local-course-overview-item" id="local-course-overview-item-840" onclick="toggleVisibility(840)"> <img alt="Missatges no llegits" class="icon" src="https://ioc.xtec.cat/campus/theme/image.php/boostioc/mod_forum/1749649652/icon" title="Missatges no llegits"/> <span class="local-course-overview-item-forum">2</span> </span> <div id="local-course-overview-forum-840" style="display:none;"> <ul><li><strong>2</strong> no llegits a <a href="https://ioc.xtec.cat/campus/mod/forum/view.php?id=1541356" target="_blank">Fòrum de la Comunitat FP 2024-25</a></li></ul> </div> </div></div></div></li>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=3326" target="_blank"><span class="course-name">[CI] Departament d'Orientació Educativa</span></a></div></li>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=16093" target="_blank"><span class="course-name">Orientacions per a la matrícula 25-26_S1</span></a><div class="ajax-notification-wrapper content-updated"><div class="local-course-overview-container" data-loaded="true" id="local-course-overview-container-16093"> <span class="local-course-overview-item"> <a href="https://ioc.xtec.cat/campus/mod/assign/index.php?id=16093" target="_blank"> <img alt="Tasques pendents d'avaluar" class="icon" src="https://ioc.xtec.cat/campus/theme/image.php/boostioc/mod_assign/1749649652/icon" title="Tasques pendents d'avaluar"/> <span>22</span> </a> </span> <div id="local-course-overview-forum-16093" style="display:none;"> </div> </div></div></div></li>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=15338§ion=14" target="_blank"><span class="course-name">Orientacions matrícula DAM</span></a><div class="ajax-notification-wrapper content-updated"><div class="local-course-overview-container" data-loaded="true" id="local-course-overview-container-15338"> <span class="local-course-overview-item"> <a href="https://ioc.xtec.cat/campus/mod/assign/index.php?id=15338" target="_blank"> <img alt="Tasques pendents d'avaluar" class="icon" src="https://ioc.xtec.cat/campus/theme/image.php/boostioc/mod_assign/1749649652/icon" title="Tasques pendents d'avaluar"/> <span>22</span> </a> </span> <div id="local-course-overview-forum-15338" style="display:none;"> </div> </div></div></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=840" target="_blank">Atenció a l'Estudiant</a><div class="ajax-notification-wrapper content-updated"><div class="local-course-overview-container" data-loaded="true" id="local-course-overview-container-840"> <span class="local-course-overview-item" id="local-course-overview-item-840" onclick="toggleVisibility(840)"> <img alt="Missatges no llegits" class="icon" src="https://ioc.xtec.cat/campus/theme/image.php/boostioc/mod_forum/1749649652/icon" title="Missatges no llegits"/> <span class="local-course-overview-item-forum">2</span> </span> <div id="local-course-overview-forum-840" style="display:none;"> <ul><li><strong>2</strong> no llegits a <a href="https://ioc.xtec.cat/campus/mod/forum/view.php?id=1541356" target="_blank">Fòrum de la Comunitat FP 2024-25</a></li></ul> </div> </div></div></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=3326" target="_blank">[CI] Departament d'Orientació Educativa</a></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=16093" target="_blank">Orientacions per a la matrícula 25-26_S1</a><div class="ajax-notification-wrapper content-updated"><div class="local-course-overview-container" data-loaded="true" id="local-course-overview-container-16093"> <span class="local-course-overview-item"> <a href="https://ioc.xtec.cat/campus/mod/assign/index.php?id=16093" target="_blank"> <img alt="Tasques pendents d'avaluar" class="icon" src="https://ioc.xtec.cat/campus/theme/image.php/boostioc/mod_assign/1749649652/icon" title="Tasques pendents d'avaluar"/> <span>22</span> </a> </span> <div id="local-course-overview-forum-16093" style="display:none;"> </div> </div></div></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=15338§ion=14" target="_blank">Orientacions matrícula DAM</a><div class="ajax-notification-wrapper content-updated"><div class="local-course-overview-container" data-loaded="true" id="local-course-overview-container-15338"> <span class="local-course-overview-item"> <a href="https://ioc.xtec.cat/campus/mod/assign/index.php?id=15338" target="_blank"> <img alt="Tasques pendents d'avaluar" class="icon" src="https://ioc.xtec.cat/campus/theme/image.php/boostioc/mod_assign/1749649652/icon" title="Tasques pendents d'avaluar"/> <span>22</span> </a> </span> <div id="local-course-overview-forum-15338" style="display:none;"> </div> </div></div></div></li>
 <li><div class="course-container"><a href="https://docs.google.com/spreadsheets/d/1S1YpWw4OcDrMkgDI30ZlohUsPcfB_1qHbLPSQhaICdA/edit?usp=drive_link" target="_blank">Alumnes DAM</a></div></li>
 </ul>
 <h2>Secretaria</h2>
 <ul>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=1521" target="_blank"><span class="course-name">[CS] Secretaria FP</span></a></div></li>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=1519" target="_blank"><span class="course-name">[CS] Secretaria IOC</span></a></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=1521" target="_blank">[CS] Secretaria FP</a></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=1519" target="_blank">[CS] Secretaria IOC</a></div></li>
 </ul>
 <h2>Altres</h2>
 <ul>
@@ -333,66 +187,5 @@
 <footer>Ismael Trascastro | itrascastro@ioc.cat</footer>
 </div>
 
-<script>
-        // === VERSIÓN ESTÁTICA GENERADA EL 16/07/2025 10:07:01 ===
-        function disableAjaxFeatures() {
-            const moodleStatusEl = document.getElementById('moodle-status');
-            const refreshButton = document.getElementById('refresh-moodle');
-            const countdownEl = document.getElementById('auto-refresh-countdown');
-            if (refreshButton) { refreshButton.style.display = 'none'; }
-            if (moodleStatusEl) {
-                moodleStatusEl.textContent = 'Versió estàtica - Última actualització: 16/07/2025 10:07';
-                moodleStatusEl.style.fontSize = '0.8em';
-                moodleStatusEl.style.color = '#666';
-            }
-            if (countdownEl) { countdownEl.style.display = 'none'; }
-        }
-        function startStaticAutoRefresh() {
-            setInterval(() => window.location.reload(), 6 * 60 * 1000);
-        }
-        function setupAjaxClickHandlers() {
-            document.querySelectorAll('.local-course-overview-item').forEach(item => {
-                item.addEventListener('click', e => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const courseContainer = item.closest('[id*="local-course-overview-container"]');
-                    if (courseContainer) {
-                        const courseId = courseContainer.id.split('-').pop();
-                        const hiddenDiv = document.getElementById('local-course-overview-forum-' + courseId);
-                        if (hiddenDiv) {
-                            const isHidden = hiddenDiv.style.display === 'none' || hiddenDiv.style.display === '';
-                            hiddenDiv.style.display = isHidden ? 'block' : 'none';
-                            hiddenDiv.classList.toggle('forum-content-visible', isHidden);
-                            hiddenDiv.classList.toggle('forum-content-hidden', !isHidden);
-                        }
-                    }
-                });
-            });
-        }
-        function showDateTime() {
-            const now = new Date();
-            document.getElementById('datetime').innerHTML = now.toLocaleDateString('ca-ES') + ' ' + now.toLocaleTimeString('ca-ES');
-        }
-        showDateTime();
-        setInterval(showDateTime, 1000);
-        const toggleButton = document.getElementById('theme-toggle');
-        function applyTheme() {
-            const d = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            document.body.classList.toggle('dark-mode', d);
-            document.body.classList.toggle('light-mode', !d);
-            toggleButton.textContent = d ? 'Light' : 'Dark';
-        }
-        applyTheme();
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);
-        toggleButton.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            document.body.classList.toggle('light-mode');
-            toggleButton.textContent = document.body.classList.contains('dark-mode') ? 'Light' : 'Dark';
-        });
-        document.addEventListener('DOMContentLoaded', () => {
-            disableAjaxFeatures();
-            setupAjaxClickHandlers();
-            startStaticAutoRefresh();
-        });
-    </script></body>
+<script>document.addEventListener('DOMContentLoaded', () => console.log('Versión estática cargada.'));</script></body>
 </html>
