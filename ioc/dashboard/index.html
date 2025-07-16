@@ -334,92 +334,62 @@
 </div>
 
 <script>
-        // === VERSIÓN ESTÁTICA GENERADA EL 16/07/2025 09:51:56 ===
-        
-        // Variables globales (mantener compatibilidad)
-        const moodleStatusEl = document.getElementById('moodle-status');
-        const refreshButton = document.getElementById('refresh-moodle');
-        const countdownEl = document.getElementById('auto-refresh-countdown');
-        
-        // Deshabilitar funcionalidad AJAX en versión estática
+        // === VERSIÓN ESTÁTICA GENERADA EL 16/07/2025 10:07:01 ===
         function disableAjaxFeatures() {
-            if (refreshButton) {
-                refreshButton.style.display = 'none';  // Ocultar completamente el botón
-            }
-            
+            const moodleStatusEl = document.getElementById('moodle-status');
+            const refreshButton = document.getElementById('refresh-moodle');
+            const countdownEl = document.getElementById('auto-refresh-countdown');
+            if (refreshButton) { refreshButton.style.display = 'none'; }
             if (moodleStatusEl) {
-                moodleStatusEl.textContent = 'Versió estàtica - Última actualització: 16/07/2025 09:51';
+                moodleStatusEl.textContent = 'Versió estàtica - Última actualització: 16/07/2025 10:07';
                 moodleStatusEl.style.fontSize = '0.8em';
                 moodleStatusEl.style.color = '#666';
             }
-            
-            if (countdownEl) {
-                countdownEl.style.display = 'none';
-            }
+            if (countdownEl) { countdownEl.style.display = 'none'; }
         }
-        
-        // Auto-refresh de la página estática cada 6 minutos
         function startStaticAutoRefresh() {
-            console.log('Auto-refresh configurado para cada 6 minutos');
-            setInterval(function() {
-                console.log('Refrescando página estática...');
-                window.location.reload();
-            }, 6 * 60 * 1000); // 6 minutos
+            setInterval(() => window.location.reload(), 6 * 60 * 1000);
         }
-        
-        // Mantener funcionalidad de clicks en notificaciones
         function setupAjaxClickHandlers() {
-            document.querySelectorAll('.local-course-overview-item').forEach(function(item) {
-                item.addEventListener('click', function(e) {
+            document.querySelectorAll('.local-course-overview-item').forEach(item => {
+                item.addEventListener('click', e => {
                     e.preventDefault();
                     e.stopPropagation();
-                    
                     const courseContainer = item.closest('[id*="local-course-overview-container"]');
                     if (courseContainer) {
                         const courseId = courseContainer.id.split('-').pop();
                         const hiddenDiv = document.getElementById('local-course-overview-forum-' + courseId);
-                        
                         if (hiddenDiv) {
-                            if (hiddenDiv.style.display === 'none' || hiddenDiv.style.display === '') {
-                                hiddenDiv.style.display = 'block';
-                                hiddenDiv.classList.add('forum-content-visible');
-                                hiddenDiv.classList.remove('forum-content-hidden');
-                            } else {
-                                hiddenDiv.style.display = 'none';
-                                hiddenDiv.classList.add('forum-content-hidden');
-                                hiddenDiv.classList.remove('forum-content-visible');
-                            }
+                            const isHidden = hiddenDiv.style.display === 'none' || hiddenDiv.style.display === '';
+                            hiddenDiv.style.display = isHidden ? 'block' : 'none';
+                            hiddenDiv.classList.toggle('forum-content-visible', isHidden);
+                            hiddenDiv.classList.toggle('forum-content-hidden', !isHidden);
                         }
                     }
                 });
             });
         }
-        
-        // === FUNCIONALIDAD CONSERVADA (reloj y tema) ===
-        function showDateTime() { 
-            const now = new Date(); 
-            document.getElementById('datetime').innerHTML = now.toLocaleDateString('ca-ES') + ' ' + now.toLocaleTimeString('ca-ES'); 
+        function showDateTime() {
+            const now = new Date();
+            document.getElementById('datetime').innerHTML = now.toLocaleDateString('ca-ES') + ' ' + now.toLocaleTimeString('ca-ES');
         }
-        showDateTime(); 
+        showDateTime();
         setInterval(showDateTime, 1000);
-        
         const toggleButton = document.getElementById('theme-toggle');
-        function applyTheme() { 
-            const d = window.matchMedia('(prefers-color-scheme: dark)').matches; 
-            document.body.classList.toggle('dark-mode',d); 
-            document.body.classList.toggle('light-mode',!d); 
-            toggleButton.textContent=d?'Light':'Dark';
+        function applyTheme() {
+            const d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.body.classList.toggle('dark-mode', d);
+            document.body.classList.toggle('light-mode', !d);
+            toggleButton.textContent = d ? 'Light' : 'Dark';
         }
-        applyTheme(); 
+        applyTheme();
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);
-        toggleButton.addEventListener('click', function() { 
-            document.body.classList.toggle('dark-mode'); 
-            document.body.classList.toggle('light-mode'); 
-            toggleButton.textContent = document.body.classList.contains('dark-mode') ? 'Light' : 'Dark'; 
+        toggleButton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            document.body.classList.toggle('light-mode');
+            toggleButton.textContent = document.body.classList.contains('dark-mode') ? 'Light' : 'Dark';
         });
-        
-        // === INICIALIZACIÓN ===
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', () => {
             disableAjaxFeatures();
             setupAjaxClickHandlers();
             startStaticAutoRefresh();
