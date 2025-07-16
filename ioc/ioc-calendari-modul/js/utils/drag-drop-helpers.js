@@ -1,6 +1,22 @@
-// =================================================================
-// DRAG & DROP HELPERS - UTILITATS PER ARROSSEGAR I SOLTAR
-// =================================================================
+/**
+ * =================================================================
+ * DRAG & DROP HELPERS - UTILITATS PER ARROSSEGAR I SOLTAR
+ * =================================================================
+ * 
+ * @file        drag-drop-helpers.js
+ * @description Funcions d'utilitat per funcionalitat de drag & drop d'esdeveniments
+ * @author      Ismael Trascastro <itrascastro@ioc.cat>
+ * @version     1.0.0
+ * @date        2025-01-16
+ * @project     Calendari Mòdul IOC
+ * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @license     MIT
+ * 
+ * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
+ * una aplicació web per gestionar calendaris acadèmics.
+ * 
+ * =================================================================
+ */
 
 // === CONFIGURACIÓ DE DRAG & DROP ===
 

@@ -1,6 +1,22 @@
-// =================================================================
-// EVENT MANAGER - GESTIÓ D'ESDEVENIMENTS
-// =================================================================
+/**
+ * =================================================================
+ * EVENT MANAGER - GESTIÓ D'ESDEVENIMENTS
+ * =================================================================
+ * 
+ * @file        event-manager.js
+ * @description Gestió d'esdeveniments del calendari, creació i edició
+ * @author      Ismael Trascastro <itrascastro@ioc.cat>
+ * @version     1.0.0
+ * @date        2025-01-16
+ * @project     Calendari Mòdul IOC
+ * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @license     MIT
+ * 
+ * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
+ * una aplicació web per gestionar calendaris acadèmics.
+ * 
+ * =================================================================
+ */
 
 // Classe per gestionar tots els esdeveniments del calendari
 class EventManager {
@@ -55,7 +71,7 @@ class EventManager {
             'Eliminar event',
             () => {
                 calendar.events = calendar.events.filter(e => e.id !== appState.editingEventId);
-                saveToStorage();
+                storageManager.saveToStorage();
                 viewManager.renderCurrentView();
                 closeModal('eventModal');
                 showMessage('Event eliminat correctament', 'success');
@@ -88,7 +104,7 @@ class EventManager {
         calendar.events = newEvents;
         
         // Persistir i re-renderitzar
-        saveToStorage();
+        storageManager.saveToStorage();
         viewManager.renderCurrentView();
         
         showMessage(`Event "${event.title}" mogut correctament`, 'success');
@@ -281,7 +297,7 @@ class EventManager {
     
     // Completar desament d'esdeveniment
     completeEventSave() {
-        saveToStorage();
+        storageManager.saveToStorage();
         viewManager.renderCurrentView();
         panelsRenderer.renderCategories(); // Re-renderitzar per mostrar nova categoria si s'ha afegit
         closeModal('eventModal');

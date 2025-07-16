@@ -1,6 +1,22 @@
-// =================================================================
-// DAY VIEW - RENDERITZADOR PER A VISTA DIÀRIA
-// =================================================================
+/**
+ * =================================================================
+ * DAY VIEW - RENDERITZADOR PER A VISTA DIÀRIA
+ * =================================================================
+ * 
+ * @file        day-view.js
+ * @description Renderitzador específic per la vista diària del calendari
+ * @author      Ismael Trascastro <itrascastro@ioc.cat>
+ * @version     1.0.0
+ * @date        2025-01-16
+ * @project     Calendari Mòdul IOC
+ * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @license     MIT
+ * 
+ * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
+ * una aplicació web per gestionar calendaris acadèmics.
+ * 
+ * =================================================================
+ */
 
 // Renderitzador específic per a vista diària
 class DayViewRenderer extends CalendarRenderer {

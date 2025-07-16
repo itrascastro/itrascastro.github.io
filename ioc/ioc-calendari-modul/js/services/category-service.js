@@ -1,6 +1,22 @@
-// =================================================================
-// CATEGORY SERVICE - SERVEI CENTRALITZAT PER GESTIÓ DE CATEGORIES
-// =================================================================
+/**
+ * =================================================================
+ * CATEGORY SERVICE - SERVEI CENTRALITZAT PER GESTIÓ DE CATEGORIES
+ * =================================================================
+ * 
+ * @file        category-service.js
+ * @description Servei per gestió centralitzada de categories i plantilles
+ * @author      Ismael Trascastro <itrascastro@ioc.cat>
+ * @version     1.0.0
+ * @date        2025-01-16
+ * @project     Calendari Mòdul IOC
+ * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @license     MIT
+ * 
+ * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
+ * una aplicació web per gestionar calendaris acadèmics.
+ * 
+ * =================================================================
+ */
 
 // Servei per centralitzar tota la lògica de gestió de categories
 class CategoryService {

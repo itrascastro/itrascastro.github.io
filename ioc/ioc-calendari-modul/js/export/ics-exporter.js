@@ -1,6 +1,22 @@
-// =================================================================
-// ICS EXPORTER - EXPORTACIÓ DE CALENDARIS A FORMAT ICS
-// =================================================================
+/**
+ * =================================================================
+ * ICS EXPORTER - EXPORTACIÓ DE CALENDARIS A FORMAT ICS
+ * =================================================================
+ * 
+ * @file        ics-exporter.js
+ * @description Exportador de calendaris al format ICS/iCalendar estàndard
+ * @author      Ismael Trascastro <itrascastro@ioc.cat>
+ * @version     1.0.0
+ * @date        2025-01-16
+ * @project     Calendari Mòdul IOC
+ * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @license     MIT
+ * 
+ * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
+ * una aplicació web per gestionar calendaris acadèmics.
+ * 
+ * =================================================================
+ */
 
 // Classe per exportar calendaris a format ICS (iCalendar)
 class IcsExporter {

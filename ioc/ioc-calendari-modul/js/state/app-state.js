@@ -1,6 +1,22 @@
-// =================================================================
-// APP STATE - GESTIÓ CENTRALITZADA DE L'ESTAT DE L'APLICACIÓ
-// =================================================================
+/**
+ * =================================================================
+ * APP STATE - GESTIÓ CENTRALITZADA DE L'ESTAT DE L'APLICACIÓ
+ * =================================================================
+ * 
+ * @file        app-state.js
+ * @description Gestió de l'estat global de l'aplicació i variables auxiliars
+ * @author      Ismael Trascastro <itrascastro@ioc.cat>
+ * @version     1.0.0
+ * @date        2025-01-16
+ * @project     Calendari Mòdul IOC
+ * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @license     MIT
+ * 
+ * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
+ * una aplicació web per gestionar calendaris acadèmics.
+ * 
+ * =================================================================
+ */
 
 // === ESTAT PRINCIPAL DE L'APLICACIÓ ===
 let appState = {

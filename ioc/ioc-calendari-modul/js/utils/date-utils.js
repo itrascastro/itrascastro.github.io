@@ -1,6 +1,22 @@
-// =================================================================
-// DATE UTILS - UTILITATS DE DATA PER CALENDARI IOC
-// =================================================================
+/**
+ * =================================================================
+ * DATE UTILS - UTILITATS DE DATA PER CALENDARI IOC
+ * =================================================================
+ * 
+ * @file        date-utils.js
+ * @description Funcions d'utilitats per manipulació i formatatge de dates
+ * @author      Ismael Trascastro <itrascastro@ioc.cat>
+ * @version     1.0.0
+ * @date        2025-01-16
+ * @project     Calendari Mòdul IOC
+ * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @license     MIT
+ * 
+ * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
+ * una aplicació web per gestionar calendaris acadèmics.
+ * 
+ * =================================================================
+ */
 
 // Funcions d'utilitats de data completament independents
 // Totes les funcions mantenen consistència UTC

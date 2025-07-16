@@ -1,6 +1,22 @@
-// =================================================================
-// REPLICATION MANAGER - GESTIÓ DE REPLICACIÓ I ESDEVENIMENTS NO UBICATS
-// =================================================================
+/**
+ * =================================================================
+ * REPLICATION MANAGER - GESTIÓ DE REPLICACIÓ I ESDEVENIMENTS NO UBICATS
+ * =================================================================
+ * 
+ * @file        replication-manager.js
+ * @description Gestió de replicació de calendaris i esdeveniments no ubicats
+ * @author      Ismael Trascastro <itrascastro@ioc.cat>
+ * @version     1.0.0
+ * @date        2025-01-16
+ * @project     Calendari Mòdul IOC
+ * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @license     MIT
+ * 
+ * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
+ * una aplicació web per gestionar calendaris acadèmics.
+ * 
+ * =================================================================
+ */
 
 // Variable global per emmagatzemar l'ID del calendari origen
 let currentSourceCalendarId = null;
@@ -109,7 +125,7 @@ class ReplicationManager {
             appState.currentDate = parseUTCDate(targetCalendar.startDate);
             
             // Persistir canvis
-            saveToStorage();
+            storageManager.saveToStorage();
             calendarManager.updateUI();
             closeModal('replicationModal');
             
@@ -238,7 +254,7 @@ class ReplicationManager {
         appState.unplacedEvents.splice(eventIndex, 1);
         
         // Persistir i actualitzar
-        saveToStorage();
+        storageManager.saveToStorage();
         viewManager.renderCurrentView();
         
         // Actualitzar UI
@@ -265,7 +281,7 @@ class ReplicationManager {
                 appState.unplacedEvents.splice(eventIndex, 1);
                 
                 // Persistir canvis
-                saveToStorage();
+                storageManager.saveToStorage();
                 
                 // Actualitzar UI
                 panelsRenderer.renderUnplacedEvents();

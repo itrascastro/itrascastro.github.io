@@ -1,6 +1,22 @@
-// =================================================================
-// REPLICATION ENGINE - MOTOR DE REPLICACIÓ PROPORCIONAL
-// =================================================================
+/**
+ * =================================================================
+ * REPLICATION ENGINE - MOTOR DE REPLICACIÓ PROPORCIONAL
+ * =================================================================
+ * 
+ * @file        replication-engine.js
+ * @description Motor per replicació proporcional d'esdeveniments entre calendaris
+ * @author      Ismael Trascastro <itrascastro@ioc.cat>
+ * @version     1.0.0
+ * @date        2025-01-16
+ * @project     Calendari Mòdul IOC
+ * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @license     MIT
+ * 
+ * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
+ * una aplicació web per gestionar calendaris acadèmics.
+ * 
+ * =================================================================
+ */
 
 // CLASSE DE MOTOR DE REPLICACIÓ: Implementa algoritme proporcional amb configuració simplificada
 class ReplicationEngine {

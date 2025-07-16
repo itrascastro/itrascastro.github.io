@@ -1,6 +1,22 @@
-// =================================================================
-// PANELS RENDERER - RENDERITZADOR PER ALS PANELLS LATERALS
-// =================================================================
+/**
+ * =================================================================
+ * PANELS RENDERER - RENDERITZADOR PER ALS PANELLS LATERALS
+ * =================================================================
+ * 
+ * @file        panels-renderer.js
+ * @description Renderitzador per als panells laterals (calendaris, categories, esdeveniments)
+ * @author      Ismael Trascastro <itrascastro@ioc.cat>
+ * @version     1.0.0
+ * @date        2025-01-16
+ * @project     Calendari Mòdul IOC
+ * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @license     MIT
+ * 
+ * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
+ * una aplicació web per gestionar calendaris acadèmics.
+ * 
+ * =================================================================
+ */
 
 // Renderitzador específic per als panells laterals de l'aplicació
 class PanelsRenderer {

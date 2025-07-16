@@ -1,6 +1,22 @@
-// =================================================================
-// DATE VALIDATION SERVICE - SERVEI CENTRALITZAT PER VALIDACIÓ DE DATES
-// =================================================================
+/**
+ * =================================================================
+ * DATE VALIDATION SERVICE - SERVEI CENTRALITZAT PER VALIDACIÓ DE DATES
+ * =================================================================
+ * 
+ * @file        date-validation-service.js
+ * @description Servei per validació de dates dins del rang del calendari acadèmic
+ * @author      Ismael Trascastro <itrascastro@ioc.cat>
+ * @version     1.0.0
+ * @date        2025-01-16
+ * @project     Calendari Mòdul IOC
+ * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @license     MIT
+ * 
+ * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
+ * una aplicació web per gestionar calendaris acadèmics.
+ * 
+ * =================================================================
+ */
 
 // Servei per centralitzar tota la lògica de validació de dates
 class DateValidationService {

@@ -1,6 +1,22 @@
-// =================================================================
-// MODALS - GESTIÓ CENTRALITZADA DE MODALS
-// =================================================================
+/**
+ * =================================================================
+ * MODALS - GESTIÓ CENTRALITZADA DE MODALS
+ * =================================================================
+ * 
+ * @file        modals.js
+ * @description Gestió de modals i formularis de l'aplicació
+ * @author      Ismael Trascastro <itrascastro@ioc.cat>
+ * @version     1.0.0
+ * @date        2025-01-16
+ * @project     Calendari Mòdul IOC
+ * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @license     MIT
+ * 
+ * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
+ * una aplicació web per gestionar calendaris acadèmics.
+ * 
+ * =================================================================
+ */
 
 // === FUNCIONS BÀSIQUES DE MODAL ===
 
@@ -181,7 +197,7 @@ function selectCategoryColor(newColor) {
     });
     
     closeModal('colorPickerModal');
-    saveToStorage();
+    storageManager.saveToStorage();
     panelsRenderer.renderCategories();
     viewManager.renderCurrentView(); // Re-renderitzar per mostrar canvis en esdeveniments
     

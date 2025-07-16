@@ -1,6 +1,22 @@
-// =================================================================
-// CALENDAR MANAGER - GESTIÓ DE CALENDARIS
-// =================================================================
+/**
+ * =================================================================
+ * CALENDAR MANAGER - GESTIÓ DE CALENDARIS
+ * =================================================================
+ * 
+ * @file        calendar-manager.js
+ * @description Gestió de calendaris, configuració i operacions CRUD
+ * @author      Ismael Trascastro <itrascastro@ioc.cat>
+ * @version     1.0.0
+ * @date        2025-01-16
+ * @project     Calendari Mòdul IOC
+ * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @license     MIT
+ * 
+ * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
+ * una aplicació web per gestionar calendaris acadèmics.
+ * 
+ * =================================================================
+ */
 
 // Classe per gestionar tots els calendaris de l'aplicació
 class CalendarManager {
@@ -51,7 +67,7 @@ class CalendarManager {
                     appState.currentCalendarId = null;
                 }
                 
-                saveToStorage();
+                storageManager.saveToStorage();
                 this.updateUI();
                 showMessage('Calendari eliminat correctament', 'success');
             }
@@ -71,7 +87,7 @@ class CalendarManager {
         // Sempre tornar a vista mensual quan es canvia de calendari
         viewManager.changeView('month');
         
-        saveToStorage();
+        storageManager.saveToStorage();
         this.updateUI();
     }
     
@@ -131,7 +147,7 @@ class CalendarManager {
         // Sempre tornar a vista mensual quan es crea un calendari
         viewManager.changeView('month');
         
-        saveToStorage();
+        storageManager.saveToStorage();
         this.updateUI();
         closeModal('calendarSetupModal');
         showMessage('Calendari guardat correctament', 'success');
@@ -225,7 +241,7 @@ class CalendarManager {
                         // Sempre tornar a vista mensual quan es carrega un calendari
                         viewManager.changeView('month');
                         
-                        saveToStorage();
+                        storageManager.saveToStorage();
                         this.updateUI();
                         showMessage(`Calendari "${calendarData.name}" carregat correctament`, 'success');
                         

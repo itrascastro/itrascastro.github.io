@@ -1,6 +1,22 @@
-// =================================================================
-// CATEGORY MANAGER - GESTIÓ DE CATEGORIES
-// =================================================================
+/**
+ * =================================================================
+ * CATEGORY MANAGER - GESTIÓ DE CATEGORIES
+ * =================================================================
+ * 
+ * @file        category-manager.js
+ * @description Gestió de categories d'esdeveniments i catàleg global
+ * @author      Ismael Trascastro <itrascastro@ioc.cat>
+ * @version     1.0.0
+ * @date        2025-01-16
+ * @project     Calendari Mòdul IOC
+ * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @license     MIT
+ * 
+ * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
+ * una aplicació web per gestionar calendaris acadèmics.
+ * 
+ * =================================================================
+ */
 
 // Colors predefinits per categories
 const PREDEFINED_COLORS = [
@@ -142,7 +158,7 @@ class CategoryManager {
     // Completar afegit de categoria
     completeCategoryAdd(nameInput) {
         nameInput.value = '';
-        saveToStorage();
+        storageManager.saveToStorage();
         panelsRenderer.renderCategories();
         showMessage('Categoria creada i afegida al catàleg', 'success');
     }
@@ -194,7 +210,7 @@ class CategoryManager {
             cal.categories = cal.categories.filter(c => c.id !== categoryId);
         });
 
-        saveToStorage();
+        storageManager.saveToStorage();
         calendarManager.updateUI();
         showMessage('Categoria eliminada del catàleg i de tots els calendaris', 'success');
     }
@@ -260,7 +276,7 @@ class CategoryManager {
     
     // Completar edició de categoria
     completeCategoryEdit() {
-        saveToStorage();
+        storageManager.saveToStorage();
         panelsRenderer.renderCategories();
         viewManager.renderCurrentView(); // Re-renderitzar per mostrar canvis en esdeveniments
         showMessage('Categoria actualitzada en tots els calendaris', 'success');

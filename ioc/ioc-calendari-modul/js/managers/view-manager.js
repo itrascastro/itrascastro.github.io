@@ -1,6 +1,22 @@
-// =================================================================
-// VIEW MANAGER - GESTIÓ CENTRALITZADA DE VISTES DEL CALENDARI
-// =================================================================
+/**
+ * =================================================================
+ * VIEW MANAGER - GESTIÓ CENTRALITZADA DE VISTES DEL CALENDARI
+ * =================================================================
+ * 
+ * @file        view-manager.js
+ * @description Gestió de vistes del calendari (mensual, setmanal, diària, semestral)
+ * @author      Ismael Trascastro <itrascastro@ioc.cat>
+ * @version     1.0.0
+ * @date        2025-01-16
+ * @project     Calendari Mòdul IOC
+ * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @license     MIT
+ * 
+ * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
+ * una aplicació web per gestionar calendaris acadèmics.
+ * 
+ * =================================================================
+ */
 
 class ViewManager {
     constructor() {

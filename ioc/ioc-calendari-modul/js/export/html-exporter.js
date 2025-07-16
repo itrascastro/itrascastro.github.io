@@ -1,6 +1,22 @@
-// =================================================================
-// HTML EXPORTER - EXPORTACIÓ DE CALENDARIS A HTML
-// =================================================================
+/**
+ * =================================================================
+ * HTML EXPORTER - EXPORTACIÓ DE CALENDARIS A HTML
+ * =================================================================
+ * 
+ * @file        html-exporter.js
+ * @description Exportador de calendaris a format HTML autònom i imprimible
+ * @author      Ismael Trascastro <itrascastro@ioc.cat>
+ * @version     1.0.0
+ * @date        2025-01-16
+ * @project     Calendari Mòdul IOC
+ * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @license     MIT
+ * 
+ * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
+ * una aplicació web per gestionar calendaris acadèmics.
+ * 
+ * =================================================================
+ */
 
 // Classe per exportar calendaris a format HTML
 class HtmlExporter {

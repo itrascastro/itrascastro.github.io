@@ -1,6 +1,22 @@
-// =================================================================
-// CALENDAR RENDERER - CLASSE BASE PER RENDERITZADORS DE CALENDARI
-// =================================================================
+/**
+ * =================================================================
+ * CALENDAR RENDERER - CLASSE BASE PER RENDERITZADORS DE CALENDARI
+ * =================================================================
+ * 
+ * @file        calendar-renderer.js
+ * @description Classe base abstracta per tots els renderitzadors de vistes del calendari
+ * @author      Ismael Trascastro <itrascastro@ioc.cat>
+ * @version     1.0.0
+ * @date        2025-01-16
+ * @project     Calendari Mòdul IOC
+ * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @license     MIT
+ * 
+ * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
+ * una aplicació web per gestionar calendaris acadèmics.
+ * 
+ * =================================================================
+ */
 
 // Classe base per a tots els renderitzadors de calendari
 class CalendarRenderer {
