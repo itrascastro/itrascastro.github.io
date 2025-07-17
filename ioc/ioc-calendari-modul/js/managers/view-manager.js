@@ -264,9 +264,12 @@ class ViewManager {
         const semesterHTML = this.renderers.semester.render(calendar, appStateManager.currentDate, 'DOM');
         gridWrapper.innerHTML = semesterHTML;
         
-        // Actualitzar títol del període
+        // Actualitzar títol del període inicial
         const semesterName = this.renderers.semester.generateSemesterName(calendar);
         periodDisplay.textContent = semesterName;
+        
+        // Configurar scroll listener per actualitzar mes visible
+        this.setupSemesterScrollListener(gridWrapper, periodDisplay, calendar, semesterName);
         
         // Configurar drag & drop (reutilitza la lògica de la vista mensual)
         setupDragAndDrop(gridWrapper, calendar);
@@ -544,6 +547,115 @@ class ViewManager {
         });
     }
     
+    
+    // === SCROLL TRACKING PER VISTA SEMESTRAL ===
+    
+    // Configurar scroll listener per vista semestral
+    setupSemesterScrollListener(gridWrapper, periodDisplay, calendar, semesterName) {
+        // Netejar listeners anteriors si existeixen
+        if (this.semesterScrollListener) {
+            gridWrapper.removeEventListener('scroll', this.semesterScrollListener);
+        }
+        
+        // Crear nou listener
+        this.semesterScrollListener = () => {
+            const currentMonth = this.getCurrentVisibleMonth(gridWrapper, calendar);
+            if (currentMonth) {
+                periodDisplay.textContent = `${semesterName} - ${currentMonth}`;
+            } else {
+                periodDisplay.textContent = semesterName;
+            }
+        };
+        
+        // Afegir listener al scroll
+        gridWrapper.addEventListener('scroll', this.semesterScrollListener);
+        
+        // Cridar immediatament per establir el mes inicial
+        setTimeout(() => this.semesterScrollListener(), 100);
+    }
+    
+    // Calcular quin mes és més visible actualment
+    getCurrentVisibleMonth(gridWrapper, calendar) {
+        const containerRect = gridWrapper.getBoundingClientRect();
+        const containerTop = containerRect.top;
+        const containerBottom = containerRect.bottom;
+        
+        // Obtenir dates del calendari per validació
+        const calendarStart = parseUTCDate(calendar.startDate);
+        const calendarEnd = parseUTCDate(calendar.endDate);
+        
+        // Obtenir tots els dies i agrupar per mes
+        const dayElements = gridWrapper.querySelectorAll('.day-cell[data-date]');
+        const monthStats = new Map();
+        
+        dayElements.forEach(dayEl => {
+            const rect = dayEl.getBoundingClientRect();
+            const dateStr = dayEl.getAttribute('data-date');
+            if (dateStr) {
+                const date = parseUTCDate(dateStr);
+                if (date) {
+                    // Només processar dies que estan dins del rang del calendari
+                    if (date >= calendarStart && date <= calendarEnd) {
+                        const monthKey = getMonthName(date);
+                        const monthYear = `${date.getUTCFullYear()}-${date.getUTCMonth()}`;
+                        
+                        if (!monthStats.has(monthKey)) {
+                            monthStats.set(monthKey, {
+                                name: monthKey,
+                                totalDays: 0,
+                                visibleDays: 0,
+                                firstDate: date,
+                                monthYear: monthYear
+                            });
+                        }
+                        
+                        const stats = monthStats.get(monthKey);
+                        stats.totalDays++;
+                        
+                        // Comprovar si el dia està visible (almenys parcialment)
+                        if (rect.bottom > containerTop && rect.top < containerBottom) {
+                            stats.visibleDays++;
+                        }
+                        
+                        // Mantenir la data més antiga per ordenació cronològica
+                        if (date < stats.firstDate) {
+                            stats.firstDate = date;
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Convertir a array per poder ordenar
+        const monthsArray = Array.from(monthStats.values());
+        
+        // Prioritzar segons els criteris:
+        // 1. Mes del qual es veuen tots els dies
+        // 2. Mes amb més dies visibles
+        // 3. En cas d'igualtat, el primer cronològicament
+        const fullyVisibleMonths = monthsArray.filter(m => m.visibleDays === m.totalDays && m.visibleDays > 0);
+        
+        if (fullyVisibleMonths.length > 0) {
+            // Ordenar per data i retornar el primer
+            fullyVisibleMonths.sort((a, b) => a.firstDate - b.firstDate);
+            return fullyVisibleMonths[0].name;
+        }
+        
+        // Si cap mes es veu complet, agafar el que té més dies visibles
+        const partiallyVisibleMonths = monthsArray.filter(m => m.visibleDays > 0);
+        if (partiallyVisibleMonths.length > 0) {
+            // Ordenar per dies visibles (desc) i després per data (asc)
+            partiallyVisibleMonths.sort((a, b) => {
+                if (b.visibleDays !== a.visibleDays) {
+                    return b.visibleDays - a.visibleDays; // Més dies visibles primer
+                }
+                return a.firstDate - b.firstDate; // En cas d'igualtat, més antic primer
+            });
+            return partiallyVisibleMonths[0].name;
+        }
+        
+        return null;
+    }
     
     // === UTILITATS ===
     
