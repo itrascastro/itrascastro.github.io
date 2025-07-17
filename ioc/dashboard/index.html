@@ -189,27 +189,63 @@
 </div>
 
 <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const refreshButton = document.getElementById('refresh-moodle');
-                if (refreshButton) { refreshButton.style.display = 'none'; }
-                const statusEl = document.getElementById('moodle-status');
-                if(statusEl) { statusEl.textContent = 'Versió estàtica - Última actualització: 17/07/2025 06:10'; }
-                const countdownEl = document.getElementById('auto-refresh-countdown');
-                if(countdownEl) { countdownEl.style.display = 'none'; }
-                
-                setInterval(() => window.location.reload(), 6 * 60 * 1000);
-
-                document.querySelectorAll('.local-course-overview-item').forEach(item => {
-                    item.addEventListener('click', function(e) {
-                        e.preventDefault(); e.stopPropagation();
-                        const courseContainer = this.closest('[id*="local-course-overview-container-"]');
-                        if (courseContainer) {
-                            const courseId = courseContainer.id.split('-').pop();
-                            const hiddenDiv = document.getElementById(`local-course-overview-forum-${courseId}`);
-                            if (hiddenDiv) { hiddenDiv.style.display = (hiddenDiv.style.display === 'none' || hiddenDiv.style.display === '') ? 'block' : 'none'; }
-                        }
-                    });
+        // === VERSIÓ ESTÁTICA GENERADA EL 17/07/2025 06:11:33 ===
+        
+        const moodleStatusEl = document.getElementById('moodle-status');
+        const refreshButton = document.getElementById('refresh-moodle');
+        const countdownEl = document.getElementById('auto-refresh-countdown');
+        
+        function disableAjaxFeatures() {
+            if (refreshButton) { refreshButton.style.display = 'none'; }
+            if (moodleStatusEl) { moodleStatusEl.textContent = 'Versió estàtica - Última actualització: 17/07/2025 06:11'; }
+            if (countdownEl) { countdownEl.style.display = 'none'; }
+        }
+        
+        function startStaticAutoRefresh() {
+            setInterval(() => window.location.reload(), 6 * 60 * 1000);
+        }
+        
+        function setupAjaxClickHandlers() {
+            document.querySelectorAll('.local-course-overview-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault(); e.stopPropagation();
+                    const courseContainer = this.closest('[id*="local-course-overview-container-"]');
+                    if (courseContainer) {
+                        const courseId = courseContainer.id.split('-').pop();
+                        const hiddenDiv = document.getElementById(`local-course-overview-forum-${courseId}`);
+                        if (hiddenDiv) { hiddenDiv.style.display = (hiddenDiv.style.display === 'none' || hiddenDiv.style.display === '') ? 'block' : 'none'; }
+                    }
                 });
             });
+        }
+        
+        function showDateTime() { 
+            const now = new Date(); 
+            document.getElementById('datetime').innerHTML = `${now.toLocaleDateString('ca-ES')} ${now.toLocaleTimeString('ca-ES')}`; 
+        }
+        
+        const toggleButton = document.getElementById('theme-toggle');
+        function applyTheme() { 
+            const d = window.matchMedia('(prefers-color-scheme: dark)').matches; 
+            document.body.classList.toggle('dark-mode',d); 
+            document.body.classList.toggle('light-mode',!d); 
+            toggleButton.textContent=d?'Light':'Dark';
+        }
+        
+        toggleButton.addEventListener('click', () => { 
+            document.body.classList.toggle('dark-mode'); 
+            document.body.classList.toggle('light-mode'); 
+            toggleButton.textContent = document.body.classList.contains('dark-mode') ? 'Light' : 'Dark'; 
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            disableAjaxFeatures();
+            setupAjaxClickHandlers();
+            startStaticAutoRefresh();
+            showDateTime(); 
+            setInterval(showDateTime, 1000);
+            applyTheme(); 
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);
+        });
         </script></body>
 </html>
