@@ -31,14 +31,14 @@ class ReplicationManager {
     
     // Obrir modal de replicació
     openReplicationModal(sourceCalendarId) {
-        const sourceCalendar = appState.calendars[sourceCalendarId];
+        const sourceCalendar = appStateManager.calendars[sourceCalendarId];
         if (!sourceCalendar) {
             showMessage('Calendari origen no trobat', 'error');
             return;
         }
 
         // Obtenir llista de calendaris objectiu (tots excepte l'origen)
-        const availableTargets = Object.entries(appState.calendars)
+        const availableTargets = Object.entries(appStateManager.calendars)
             .filter(([id, _]) => id !== sourceCalendarId)
             .map(([id, calendar]) => ({ id, calendar }));
 
@@ -90,8 +90,8 @@ class ReplicationManager {
             return;
         }
 
-        const sourceCalendar = appState.calendars[sourceCalendarId];
-        const targetCalendar = appState.calendars[targetCalendarId];
+        const sourceCalendar = appStateManager.calendars[sourceCalendarId];
+        const targetCalendar = appStateManager.calendars[targetCalendarId];
 
         if (!sourceCalendar || !targetCalendar) {
             showMessage('Error accedint als calendaris', 'error');
@@ -116,13 +116,13 @@ class ReplicationManager {
 
             // Guardar esdeveniments no ubicats globalment
             if (result.unplaced.length > 0) {
-                appState.unplacedEvents = result.unplaced;
+                appStateManager.unplacedEvents = result.unplaced;
                 console.log(`[Replicació] ${result.unplaced.length} events no ubicats guardats per gestió manual`);
             }
 
             // Canviar al calendari destí
-            appState.currentCalendarId = targetCalendarId;
-            appState.currentDate = parseUTCDate(targetCalendar.startDate);
+            appStateManager.currentCalendarId = targetCalendarId;
+            appStateManager.currentDate = parseUTCDate(targetCalendar.startDate);
             
             // Persistir canvis
             storageManager.saveToStorage();
@@ -149,7 +149,7 @@ class ReplicationManager {
     
     // Mostrar panel d'esdeveniments no ubicats
     showUnplacedEventsPanel() {
-        if (!appState.unplacedEvents || appState.unplacedEvents.length === 0) {
+        if (!appStateManager.unplacedEvents || appStateManager.unplacedEvents.length === 0) {
             this.hideUnplacedEventsPanel();
             return;
         }
@@ -165,7 +165,7 @@ class ReplicationManager {
                 <h2>Events Pendents de Col·locar</h2>
                 
                 <div class="unplaced-events-list">
-                    ${appState.unplacedEvents.map((item, index) => 
+                    ${appStateManager.unplacedEvents.map((item, index) => 
                         panelsRenderer.generateUnplacedEventHTML(item, index)
                     ).join('')}
                 </div>
@@ -205,11 +205,11 @@ class ReplicationManager {
         unplacedEventElements.forEach(eventEl => {
             eventEl.addEventListener('dragstart', (e) => {
                 const eventIndex = eventEl.dataset.eventIndex;
-                const unplacedItem = appState.unplacedEvents[eventIndex];
+                const unplacedItem = appStateManager.unplacedEvents[eventIndex];
                 
                 if (unplacedItem) {
-                    draggedEvent = unplacedItem.event;
-                    draggedFromDate = 'unplaced';
+                    appStateManager.draggedEvent = unplacedItem.event;
+                    appStateManager.draggedFromDate = 'unplaced';
                     eventEl.classList.add('dragging');
                     e.dataTransfer.effectAllowed = 'move';
                     e.dataTransfer.setData('text/plain', JSON.stringify({
@@ -222,15 +222,15 @@ class ReplicationManager {
             
             eventEl.addEventListener('dragend', (e) => {
                 eventEl.classList.remove('dragging');
-                cleanupDragState();
+                appStateManager.cleanupDragState();
             });
         });
     }
     
     // Col·locar esdeveniment no ubicat
     placeUnplacedEvent(eventIndex, targetDate) {
-        const unplacedItem = appState.unplacedEvents[eventIndex];
-        const calendar = getCurrentCalendar();
+        const unplacedItem = appStateManager.unplacedEvents[eventIndex];
+        const calendar = appStateManager.getCurrentCalendar();
         
         if (!unplacedItem || !calendar) return;
         
@@ -242,7 +242,7 @@ class ReplicationManager {
         // Crear nou esdeveniment al calendari
         const newEvent = {
             ...unplacedItem.event,
-            id: generateNextEventId(appState.currentCalendarId),
+            id: generateNextEventId(appStateManager.currentCalendarId),
             date: targetDate,
             isReplicated: true,
             replicatedFrom: unplacedItem.event.date
@@ -251,7 +251,7 @@ class ReplicationManager {
         calendar.events.push(newEvent);
         
         // Eliminar d'esdeveniments no ubicats
-        appState.unplacedEvents.splice(eventIndex, 1);
+        appStateManager.unplacedEvents.splice(eventIndex, 1);
         
         // Persistir i actualitzar
         storageManager.saveToStorage();
@@ -260,7 +260,7 @@ class ReplicationManager {
         // Actualitzar UI
         panelsRenderer.renderUnplacedEvents();
         
-        if (appState.unplacedEvents.length === 0) {
+        if (appStateManager.unplacedEvents.length === 0) {
             showMessage('Tots els events han estat col·locats', 'success');
         }
         
@@ -269,7 +269,7 @@ class ReplicationManager {
     
     // Descartar esdeveniment no ubicat
     dismissUnplacedEvent(eventIndex) {
-        const unplacedItem = appState.unplacedEvents[eventIndex];
+        const unplacedItem = appStateManager.unplacedEvents[eventIndex];
         
         if (!unplacedItem) return;
         
@@ -278,7 +278,7 @@ class ReplicationManager {
             'Descartar event',
             () => {
                 // Eliminar d'esdeveniments no ubicats
-                appState.unplacedEvents.splice(eventIndex, 1);
+                appStateManager.unplacedEvents.splice(eventIndex, 1);
                 
                 // Persistir canvis
                 storageManager.saveToStorage();
@@ -286,7 +286,7 @@ class ReplicationManager {
                 // Actualitzar UI
                 panelsRenderer.renderUnplacedEvents();
                 
-                if (appState.unplacedEvents.length === 0) {
+                if (appStateManager.unplacedEvents.length === 0) {
                     showMessage('Tots els events han estat gestionats', 'success');
                 }
                 
@@ -300,10 +300,3 @@ class ReplicationManager {
 
 // === INSTÀNCIA GLOBAL ===
 const replicationManager = new ReplicationManager();
-
-// === FUNCIONS PÚBLIQUES ===
-
-// === INICIALITZACIÓ ===
-function initializeReplicationManager() {
-    console.log('[ReplicationManager] Gestor de replicació inicialitzat');
-}

@@ -26,7 +26,7 @@ class JsonExporter {
     
     // === EXPORTACIÓ PRINCIPAL ===
     exportCalendar(calendarId) {
-        const calendar = appState.calendars[calendarId];
+        const calendar = appStateManager.calendars[calendarId];
         if (!calendar) {
             showMessage('Calendari no trobat', 'error');
             return;
@@ -79,7 +79,7 @@ class JsonExporter {
     
     // === EXPORTACIÓ SIMPLIFICADA (NOMÉS ESDEVENIMENTS) ===
     exportEventsOnly(calendarId) {
-        const calendar = appState.calendars[calendarId];
+        const calendar = appStateManager.calendars[calendarId];
         if (!calendar || calendar.events.length === 0) {
             showMessage('No hi ha events per exportar', 'warning');
             return;
@@ -123,17 +123,3 @@ class JsonExporter {
 
 // === INSTÀNCIA GLOBAL ===
 const jsonExporter = new JsonExporter();
-
-// === FUNCIONS PÚBLIQUES ===
-function saveCalendarJSON(calendarId) {
-    jsonExporter.exportCalendar(calendarId);
-}
-
-function exportCalendarEventsJSON(calendarId) {
-    jsonExporter.exportEventsOnly(calendarId);
-}
-
-// === INICIALITZACIÓ ===
-function initializeJsonExporter() {
-    console.log('[JsonExporter] Exportador JSON inicialitzat');
-}

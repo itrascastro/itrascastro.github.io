@@ -48,8 +48,3 @@ function loadSavedTheme() {
         document.getElementById('theme-toggle').textContent = 'Canviar a Mode Fosc';
     }
 }
-
-// === INICIALITZACIÓ ===
-function initializeThemeManager() {
-    console.log('[ThemeManager] Gestor de temes inicialitzat');
-}

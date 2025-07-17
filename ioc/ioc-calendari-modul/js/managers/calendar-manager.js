@@ -42,7 +42,7 @@ class CalendarManager {
         const calendarName = `${cicle}_${module}_${semesterConfig.getSemesterCode()}`;
         const calendarId = calendarName;
         
-        if (this.calendarExists(calendarId) && appState.editingCalendarId !== calendarId) {
+        if (this.calendarExists(calendarId) && appStateManager.editingCalendarId !== calendarId) {
             showMessage("Ja existeix un calendari amb aquest cicle i mòdul per aquest semestre.", 'error');
             return;
         }
@@ -53,18 +53,18 @@ class CalendarManager {
     
     // Eliminar calendari
     deleteCalendar(calendarId) {
-        const calendar = appState.calendars[calendarId];
+        const calendar = appStateManager.calendars[calendarId];
         if (!calendar) return;
 
         showConfirmModal(
             `Estàs segur que vols eliminar el calendari "${calendar.name}"?\n\nAquesta acció no es pot desfer.`,
             'Eliminar calendari',
             () => {
-                delete appState.calendars[calendarId];
+                delete appStateManager.calendars[calendarId];
                 
                 // Si era el calendari actiu, netejar selecció
-                if (appState.currentCalendarId === calendarId) {
-                    appState.currentCalendarId = null;
+                if (appStateManager.currentCalendarId === calendarId) {
+                    appStateManager.currentCalendarId = null;
                 }
                 
                 storageManager.saveToStorage();
@@ -76,13 +76,13 @@ class CalendarManager {
     
     // Canviar calendari actiu
     switchCalendar(calendarId) {
-        if (!calendarId || !appState.calendars[calendarId]) return;
+        if (!calendarId || !appStateManager.calendars[calendarId]) return;
         
-        appState.currentCalendarId = calendarId;
+        appStateManager.currentCalendarId = calendarId;
         
-        const activeCalendar = appState.calendars[calendarId];
+        const activeCalendar = appStateManager.calendars[calendarId];
         
-        appState.currentDate = parseUTCDate(activeCalendar.startDate);
+        appStateManager.currentDate = parseUTCDate(activeCalendar.startDate);
         
         // Sempre tornar a vista mensual quan es canvia de calendari
         viewManager.changeView('month');
@@ -104,7 +104,7 @@ class CalendarManager {
     
     // Verificar si el calendari existeix
     calendarExists(calendarId) {
-        return !!appState.calendars[calendarId];
+        return !!appStateManager.calendars[calendarId];
     }
     
     // === CREACIÓ DE CALENDARIS ===
@@ -113,7 +113,7 @@ class CalendarManager {
     createCalendarData(calendarId, calendarName, startDate, endDate) {
         const systemEvents = this.generateSystemEvents(startDate, endDate);
         
-        appState.calendars[calendarId] = {
+        appStateManager.calendars[calendarId] = {
             name: calendarName,
             startDate,
             endDate,
@@ -124,8 +124,8 @@ class CalendarManager {
             events: systemEvents
         };
         
-        appState.currentCalendarId = calendarId;
-        appState.currentDate = parseUTCDate(startDate);
+        appStateManager.currentCalendarId = calendarId;
+        appStateManager.currentDate = parseUTCDate(startDate);
     }
     
     // Generar esdeveniments de sistema per al calendari
@@ -166,15 +166,15 @@ class CalendarManager {
         const calendarEnd = parseUTCDate(calendar.endDate);
         
         const prevMonthEnd = createUTCDate(
-            appState.currentDate.getUTCFullYear(), 
-            appState.currentDate.getUTCMonth(), 
+            appStateManager.currentDate.getUTCFullYear(), 
+            appStateManager.currentDate.getUTCMonth(), 
             0
         );
         prevBtn.disabled = prevMonthEnd < calendarStart;
         
         const nextMonthStart = createUTCDate(
-            appState.currentDate.getUTCFullYear(), 
-            appState.currentDate.getUTCMonth() + 1, 
+            appStateManager.currentDate.getUTCFullYear(), 
+            appStateManager.currentDate.getUTCMonth() + 1, 
             1
         );
         nextBtn.disabled = nextMonthStart > calendarEnd;
@@ -202,7 +202,7 @@ class CalendarManager {
 
                         // Crear nou calendari amb ID basat en el nom
                         const calendarId = calendarData.name;
-                        appState.calendars[calendarId] = {
+                        appStateManager.calendars[calendarId] = {
                             name: calendarData.name,
                             startDate: calendarData.startDate,
                             endDate: calendarData.endDate,
@@ -218,12 +218,12 @@ class CalendarManager {
                             calendarData.categories
                                 .filter(cat => !cat.isSystem)
                                 .forEach(category => {
-                                    const existsInCatalog = appState.categoryTemplates.some(template => 
+                                    const existsInCatalog = appStateManager.categoryTemplates.some(template => 
                                         template.id === category.id
                                     );
                                     
                                     if (!existsInCatalog) {
-                                        appState.categoryTemplates.push({
+                                        appStateManager.categoryTemplates.push({
                                             id: category.id,
                                             name: category.name,
                                             color: category.color,
@@ -235,8 +235,8 @@ class CalendarManager {
                         }
                         
                         // Activar calendari carregat
-                        appState.currentCalendarId = calendarId;
-                        appState.currentDate = parseUTCDate(calendarData.startDate);
+                        appStateManager.currentCalendarId = calendarId;
+                        appStateManager.currentDate = parseUTCDate(calendarData.startDate);
                         
                         // Sempre tornar a vista mensual quan es carrega un calendari
                         viewManager.changeView('month');

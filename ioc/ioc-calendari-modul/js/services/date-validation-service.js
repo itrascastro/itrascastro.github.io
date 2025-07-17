@@ -212,10 +212,3 @@ class DateValidationService {
         };
     }
 }
-
-// === INICIALITZACIÓ ===
-
-// Inicialitzar servei de validació de dates
-function initializeDateValidationService() {
-    console.log('[DateValidationService] Servei de validació de dates inicialitzat');
-}

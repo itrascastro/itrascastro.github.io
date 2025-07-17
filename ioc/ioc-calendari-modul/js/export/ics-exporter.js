@@ -26,7 +26,7 @@ class IcsExporter {
     
     // === EXPORTACIÓ PRINCIPAL ===
     exportCalendar(calendarId) {
-        const calendar = appState.calendars[calendarId];
+        const calendar = appStateManager.calendars[calendarId];
         if (!calendar || calendar.events.length === 0) {
             showMessage('No hi ha events per exportar', 'warning');
             return;
@@ -111,13 +111,3 @@ class IcsExporter {
 
 // === INSTÀNCIA GLOBAL ===
 const icsExporter = new IcsExporter();
-
-// === FUNCIONS PÚBLIQUES ===
-function exportCalendarICS(calendarId) {
-    icsExporter.exportCalendar(calendarId);
-}
-
-// === INICIALITZACIÓ ===
-function initializeIcsExporter() {
-    console.log('[IcsExporter] Exportador ICS inicialitzat');
-}

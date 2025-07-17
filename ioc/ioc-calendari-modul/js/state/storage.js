@@ -30,8 +30,8 @@ class StorageManager {
         try {
             // Preparar estat per guardar (convertir dates a strings)
             const stateToSave = { 
-                ...appState, 
-                currentDate: dateToUTCString(appState.currentDate) 
+                ...appStateManager.appState, 
+                currentDate: dateToUTCString(appStateManager.currentDate) 
             };
             
             // Guardar a localStorage
@@ -76,28 +76,28 @@ class StorageManager {
             const loadedState = JSON.parse(data);
         
             // Restaurar estat (convertir strings a dates)
-            appState = { 
+            appStateManager.appState = { 
                 ...loadedState, 
                 currentDate: parseUTCDate(loadedState.currentDate.split('T')[0]) 
             };
         
             // Migració automàtica: inicialitzar catàleg si no existeix
-            if (!appState.categoryTemplates) {
-                appState.categoryTemplates = [];
+            if (!appStateManager.categoryTemplates) {
+                appStateManager.categoryTemplates = [];
             }
         
             // Migració automàtica: inicialitzar events no ubicats si no existeixen
-            if (!appState.unplacedEvents) {
-                appState.unplacedEvents = [];
+            if (!appStateManager.unplacedEvents) {
+                appStateManager.unplacedEvents = [];
             }
         
             // Migrar plantilles de categories
-            this.migrateCategoryTemplates();
+            appStateManager.migrateCategoryTemplates();
         
             console.log('[Storage] Estat carregat correctament');
-            console.log(`[Storage] Calendaris: ${Object.keys(appState.calendars).length}`);
-            console.log(`[Storage] Categories: ${appState.categoryTemplates.length}`);
-            console.log(`[Storage] Events no ubicats: ${appState.unplacedEvents.length}`);
+            console.log(`[Storage] Calendaris: ${Object.keys(appStateManager.calendars).length}`);
+            console.log(`[Storage] Categories: ${appStateManager.categoryTemplates.length}`);
+            console.log(`[Storage] Events no ubicats: ${appStateManager.unplacedEvents.length}`);
         
             return true;
         
@@ -191,8 +191,8 @@ class StorageManager {
                 version: '1.0',
                 exportedAt: new Date().toISOString(),
                 data: {
-                    ...appState,
-                    currentDate: dateToUTCString(appState.currentDate)
+                    ...appStateManager.appState,
+                    currentDate: dateToUTCString(appStateManager.currentDate)
                 }
             };
         
@@ -214,7 +214,7 @@ class StorageManager {
             }
         
             // Restaurar estat
-            appState = {
+            appStateManager.appState = {
                 ...importData.data,
                 currentDate: parseUTCDate(importData.data.currentDate.split('T')[0])
             };
@@ -255,11 +255,6 @@ class StorageManager {
         return true;
     }
 
-    // Migrar plantilles de categories (definida més endavant)
-    migrateCategoryTemplates() {
-        // Aquesta funció serà afegida més endavant quan es necessiti
-        console.log('[Storage] Migració de plantilles de categories');
-    }
 
     // Formatear bytes en format llegible (mètode privat)
     formatBytes(bytes, decimals = 2) {
@@ -279,4 +274,3 @@ class StorageManager {
 
 // Crear instància global de StorageManager
 const storageManager = new StorageManager();
-

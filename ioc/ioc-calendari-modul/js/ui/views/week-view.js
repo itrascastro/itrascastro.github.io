@@ -12,8 +12,8 @@ class WeekViewRenderer extends CalendarRenderer {
     // === RENDERITZACIÓ PRINCIPAL ===
     render(calendar, currentDate, outputFormat = 'DOM') {
         // Calcular inici i final de la setmana
-        const weekStart = this.getWeekStart(currentDate);
-        const weekEnd = this.getWeekEnd(weekStart);
+        const weekStart = super.getWeekStart(currentDate);
+        const weekEnd = super.getWeekEnd(weekStart);
         
         // Generar dades de la setmana
         const weekData = this.generateWeekData(weekStart, weekEnd, calendar);
@@ -26,28 +26,7 @@ class WeekViewRenderer extends CalendarRenderer {
         }
     }
     
-    // === CÀLCULS DE SETMANA ===
-    
-    // Obtenir inici de setmana (dilluns)
-    getWeekStart(date) {
-        const dayOfWeek = date.getUTCDay(); // 0 = diumenge, 1 = dilluns, etc.
-        const daysToMonday = dayOfWeek === 0 ? 6 : dayOfWeek - 1; // Ajustar per començar en dilluns
-        
-        return createUTCDate(
-            date.getUTCFullYear(),
-            date.getUTCMonth(),
-            date.getUTCDate() - daysToMonday
-        );
-    }
-    
-    // Obtenir final de setmana (diumenge)
-    getWeekEnd(weekStart) {
-        return createUTCDate(
-            weekStart.getUTCFullYear(),
-            weekStart.getUTCMonth(),
-            weekStart.getUTCDate() + 6
-        );
-    }
+    // === CÀLCULS DE SETMANA (ara usa mètodes del pare) ===
     
     // Generar dades de la setmana
     generateWeekData(weekStart, weekEnd, calendar) {
@@ -122,27 +101,3 @@ class WeekViewRenderer extends CalendarRenderer {
 
 // Renderitzador principal per a vista setmanal
 const weekRenderer = new WeekViewRenderer();
-
-// === FUNCIONS AUXILIARS ===
-
-// Generar HTML d'esdeveniment per vista setmanal
-function generateWeekEventHTML(event, calendar) {
-    return weekRenderer.generateEventHTML(event, calendar, 'DOM');
-}
-
-// Obtenir inici de setmana per una data
-function getWeekStartDate(date) {
-    return weekRenderer.getWeekStart(date);
-}
-
-// Obtenir final de setmana per una data
-function getWeekEndDate(date) {
-    return weekRenderer.getWeekEnd(date);
-}
-
-// === INICIALITZACIÓ ===
-
-// Inicialitzar sistema de renderitzat setmanal
-function initializeWeekView() {
-    console.log('[WeekView] Vista setmanal inicialitzada');
-}

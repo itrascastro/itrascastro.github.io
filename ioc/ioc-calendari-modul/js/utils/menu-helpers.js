@@ -45,8 +45,3 @@ function toggleActionsMenu(target) {
         }, 0);
     }
 }
-
-// === INICIALITZACIÓ ===
-function initializeMenuHelpers() {
-    console.log('[MenuHelpers] Utilitats de menús inicialitzades');
-}

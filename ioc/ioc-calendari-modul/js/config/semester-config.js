@@ -31,6 +31,14 @@ class SemesterConfig {
             },
             "systemEvents": [
                 {
+                    "id": "SYS_EVENT_0",
+                    "title": "Inici del semestre",
+                    "date": "2025-02-14",
+                    "categoryId": "SYS_CAT_2",
+                    "isSystemEvent": true,
+                    "eventType": "FESTIU"
+                },
+                {
                     "id": "SYS_EVENT_1",
                     "title": "Festiu centre",
                     "date": "2025-03-03",
@@ -305,8 +313,3 @@ class SemesterConfig {
 
 // === INSTÀNCIA GLOBAL ===
 const semesterConfig = new SemesterConfig();
-
-// === INICIALITZACIÓ ===
-function initializeSemesterConfig() {
-    console.log('[SemesterConfig] Gestor de configuració inicialitzat');
-}

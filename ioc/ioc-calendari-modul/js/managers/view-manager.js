@@ -55,7 +55,7 @@ class ViewManager {
         
         // Actualitzar estat
         this.currentView = viewType;
-        appState.currentView = viewType;
+        appStateManager.currentView = viewType;
         
         // Actualitzar atribut del body per CSS
         document.body.setAttribute('data-current-view', viewType);
@@ -87,7 +87,7 @@ class ViewManager {
             return false;
         }
         
-        // Parsejar la data i actualitzar appState.currentDate
+        // Parsejar la data i actualitzar data actual
         const targetDate = parseUTCDate(dateStr);
         if (!targetDate) {
             console.warn('[ViewManager] No es pot parsejar la data:', dateStr);
@@ -95,7 +95,7 @@ class ViewManager {
         }
         
         // Verificar que la data està dins del rang del calendari
-        const calendar = getCurrentCalendar();
+        const calendar = appStateManager.getCurrentCalendar();
         if (!calendar) {
             console.warn('[ViewManager] No hi ha calendari actiu');
             return false;
@@ -106,7 +106,7 @@ class ViewManager {
         }
         
         // Actualitzar data actual
-        appState.currentDate = targetDate;
+        appStateManager.currentDate = targetDate;
         
         // Canviar a vista dia
         this.changeView('day');
@@ -122,7 +122,7 @@ class ViewManager {
             return false;
         }
         
-        // Parsejar la data i actualitzar appState.currentDate
+        // Parsejar la data i actualitzar data actual
         const targetDate = parseUTCDate(dateStr);
         if (!targetDate) {
             console.warn('[ViewManager] No es pot parsejar la data:', dateStr);
@@ -130,7 +130,7 @@ class ViewManager {
         }
         
         // Verificar que la data està dins del rang del calendari
-        const calendar = getCurrentCalendar();
+        const calendar = appStateManager.getCurrentCalendar();
         if (!calendar) {
             console.warn('[ViewManager] No hi ha calendari actiu');
             return false;
@@ -141,7 +141,7 @@ class ViewManager {
         }
         
         // Actualitzar data actual
-        appState.currentDate = targetDate;
+        appStateManager.currentDate = targetDate;
         
         // Canviar a vista setmanal
         this.changeView('week');
@@ -154,7 +154,7 @@ class ViewManager {
     
     // Renderitzar vista actual
     renderCurrentView() {
-        const calendar = getCurrentCalendar();
+        const calendar = appStateManager.getCurrentCalendar();
         const gridWrapper = document.getElementById('calendar-grid-wrapper');
         const periodDisplay = document.getElementById('current-period-display');
         
@@ -191,8 +191,8 @@ class ViewManager {
         
         calendarManager.updateNavigationControls(calendar);
         
-        const monthHTML = this.renderers.month.render(calendar, appState.currentDate, 'DOM');
-        periodDisplay.textContent = getMonthName(appState.currentDate);
+        const monthHTML = this.renderers.month.render(calendar, appStateManager.currentDate, 'DOM');
+        periodDisplay.textContent = getMonthName(appStateManager.currentDate);
         gridWrapper.innerHTML = monthHTML;
         
         setupDragAndDrop(gridWrapper, calendar);
@@ -209,12 +209,12 @@ class ViewManager {
         const gridWrapper = document.getElementById('calendar-grid-wrapper');
         const periodDisplay = document.getElementById('current-period-display');
         
-        const dayHTML = this.renderers.day.render(calendar, appState.currentDate, 'DOM');
+        const dayHTML = this.renderers.day.render(calendar, appStateManager.currentDate, 'DOM');
         gridWrapper.innerHTML = dayHTML;
         
         // Actualitzar títol del període
-        const dayName = getDayHeaders()[appState.currentDate.getUTCDay() === 0 ? 6 : appState.currentDate.getUTCDay() - 1];
-        periodDisplay.textContent = `${dayName}, ${appState.currentDate.getUTCDate()} ${getMonthName(appState.currentDate)}`;
+        const dayName = getDayHeaders()[appStateManager.currentDate.getUTCDay() === 0 ? 6 : appStateManager.currentDate.getUTCDay() - 1];
+        periodDisplay.textContent = `${dayName}, ${appStateManager.currentDate.getUTCDate()} ${getMonthName(appStateManager.currentDate)}`;
         
         // Configurar drag & drop específic per vista diària
         this.setupDayViewDragDrop();
@@ -234,11 +234,11 @@ class ViewManager {
         const gridWrapper = document.getElementById('calendar-grid-wrapper');
         const periodDisplay = document.getElementById('current-period-display');
         
-        const weekHTML = this.renderers.week.render(calendar, appState.currentDate, 'DOM');
+        const weekHTML = this.renderers.week.render(calendar, appStateManager.currentDate, 'DOM');
         gridWrapper.innerHTML = weekHTML;
         
         // Actualitzar títol del període
-        const weekStart = this.renderers.week.getWeekStart(appState.currentDate);
+        const weekStart = this.renderers.week.getWeekStart(appStateManager.currentDate);
         const weekEnd = this.renderers.week.getWeekEnd(weekStart);
         const weekTitle = this.renderers.week.generateWeekTitle({ weekStart, weekEnd });
         periodDisplay.textContent = weekTitle;
@@ -261,7 +261,7 @@ class ViewManager {
         const gridWrapper = document.getElementById('calendar-grid-wrapper');
         const periodDisplay = document.getElementById('current-period-display');
         
-        const semesterHTML = this.renderers.semester.render(calendar, appState.currentDate, 'DOM');
+        const semesterHTML = this.renderers.semester.render(calendar, appStateManager.currentDate, 'DOM');
         gridWrapper.innerHTML = semesterHTML;
         
         // Actualitzar títol del període
@@ -279,9 +279,9 @@ class ViewManager {
     
     // Navegar entre períodes segons la vista actual
     navigatePeriod(direction) {
-        if (!appState.currentCalendarId) return false;
+        if (!appStateManager.currentCalendarId) return false;
         
-        const calendar = getCurrentCalendar();
+        const calendar = appStateManager.getCurrentCalendar();
         const calendarStart = parseUTCDate(calendar.startDate);
         const calendarEnd = parseUTCDate(calendar.endDate);
         
@@ -305,7 +305,7 @@ class ViewManager {
         }
         
         if (newDate) {
-            appState.currentDate = newDate;
+            appStateManager.currentDate = newDate;
             this.renderCurrentView();
             return true;
         }
@@ -316,9 +316,9 @@ class ViewManager {
     // Navegació específica per dies
     navigateDay(direction, calendarStart, calendarEnd) {
         const newDate = createUTCDate(
-            appState.currentDate.getUTCFullYear(), 
-            appState.currentDate.getUTCMonth(), 
-            appState.currentDate.getUTCDate() + direction
+            appStateManager.currentDate.getUTCFullYear(), 
+            appStateManager.currentDate.getUTCMonth(), 
+            appStateManager.currentDate.getUTCDate() + direction
         );
         
         return (newDate >= calendarStart && newDate <= calendarEnd) ? newDate : null;
@@ -332,7 +332,7 @@ class ViewManager {
         }
         
         // Obtenir inici de la setmana actual
-        const currentWeekStart = this.renderers.week.getWeekStart(appState.currentDate);
+        const currentWeekStart = this.renderers.week.getWeekStart(appStateManager.currentDate);
         
         // Calcular nova setmana (direction = 1 per següent, -1 per anterior)
         const newWeekStart = createUTCDate(
@@ -363,8 +363,8 @@ class ViewManager {
     // Navegació específica per mesos
     navigateMonth(direction, calendarStart, calendarEnd) {
         const newDate = createUTCDate(
-            appState.currentDate.getUTCFullYear(), 
-            appState.currentDate.getUTCMonth() + direction, 
+            appStateManager.currentDate.getUTCFullYear(), 
+            appStateManager.currentDate.getUTCMonth() + direction, 
             1
         );
         
@@ -389,7 +389,7 @@ class ViewManager {
     
     // Actualitzar botons de navegació
     updateNavigationButtons() {
-        const calendar = getCurrentCalendar();
+        const calendar = appStateManager.getCurrentCalendar();
         if (!calendar) return;
         
         const prevBtn = document.querySelector('[data-direction="-1"]');
@@ -422,17 +422,17 @@ class ViewManager {
     updateDayNavigationButtons(prevBtn, nextBtn, calendarStart, calendarEnd) {
         // Dia anterior
         const prevDay = createUTCDate(
-            appState.currentDate.getUTCFullYear(), 
-            appState.currentDate.getUTCMonth(), 
-            appState.currentDate.getUTCDate() - 1
+            appStateManager.currentDate.getUTCFullYear(), 
+            appStateManager.currentDate.getUTCMonth(), 
+            appStateManager.currentDate.getUTCDate() - 1
         );
         prevBtn.disabled = prevDay < calendarStart;
         
         // Dia següent
         const nextDay = createUTCDate(
-            appState.currentDate.getUTCFullYear(), 
-            appState.currentDate.getUTCMonth(), 
-            appState.currentDate.getUTCDate() + 1
+            appStateManager.currentDate.getUTCFullYear(), 
+            appStateManager.currentDate.getUTCMonth(), 
+            appStateManager.currentDate.getUTCDate() + 1
         );
         nextBtn.disabled = nextDay > calendarEnd;
     }
@@ -441,7 +441,7 @@ class ViewManager {
     updateWeekNavigationButtons(prevBtn, nextBtn, calendarStart, calendarEnd) {
         if (!this.renderers.week) return;
         
-        const currentWeekStart = this.renderers.week.getWeekStart(appState.currentDate);
+        const currentWeekStart = this.renderers.week.getWeekStart(appStateManager.currentDate);
         
         // Setmana anterior
         const prevWeekStart = createUTCDate(
@@ -480,7 +480,7 @@ class ViewManager {
         // Fer esdeveniments de la llista draggables
         dayContainer.querySelectorAll('.event-list-item.is-user-event[draggable="true"]').forEach(eventEl => {
             const eventData = JSON.parse((eventEl.dataset.event || '{}').replace(/&quot;/g, '"'));
-            const dateStr = dateToUTCString(appState.currentDate);
+            const dateStr = dateToUTCString(appStateManager.currentDate);
             
             if (eventData.id && dateStr) {
                 eventManager.makeEventDraggable(eventEl, eventData, dateStr);
@@ -494,18 +494,18 @@ class ViewManager {
     // Configurar drop target per vista diària
     setupDayDropTarget(dayContainer) {
         dayContainer.addEventListener('dragover', (e) => {
-            if (!draggedEvent) return;
+            if (!appStateManager.draggedEvent) return;
             
-            const calendar = getCurrentCalendar();
+            const calendar = appStateManager.getCurrentCalendar();
             if (!calendar) return;
             
-            const dateStr = dateToUTCString(appState.currentDate);
+            const dateStr = dateToUTCString(appStateManager.currentDate);
             let isValid = false;
             
-            if (draggedFromDate === 'unplaced') {
+            if (appStateManager.draggedFromDate === 'unplaced') {
                 isValid = DateValidationService.isValidEventDate(dateStr, calendar);
             } else {
-                isValid = eventManager.isValidEventMove(draggedEvent, dateStr, calendar);
+                isValid = eventManager.isValidEventMove(appStateManager.draggedEvent, dateStr, calendar);
             }
             
             if (isValid) {
@@ -527,20 +527,20 @@ class ViewManager {
             e.preventDefault();
             dayContainer.classList.remove('drop-target', 'drop-invalid');
             
-            const dateStr = dateToUTCString(appState.currentDate);
+            const dateStr = dateToUTCString(appStateManager.currentDate);
             
-            if (draggedEvent) {
-                if (draggedFromDate === 'unplaced') {
+            if (appStateManager.draggedEvent) {
+                if (appStateManager.draggedFromDate === 'unplaced') {
                     const eventData = JSON.parse(e.dataTransfer.getData('text/plain'));
                     if (eventData.isUnplacedEvent) {
                         replicationManager.placeUnplacedEvent(eventData.unplacedIndex, dateStr);
                     }
-                } else if (draggedFromDate !== dateStr) {
-                    eventManager.moveEvent(draggedEvent.id, dateStr);
+                } else if (appStateManager.draggedFromDate !== dateStr) {
+                    eventManager.moveEvent(appStateManager.draggedEvent.id, dateStr);
                 }
             }
             
-            cleanupDragState();
+            appStateManager.cleanupDragState();
         });
     }
     

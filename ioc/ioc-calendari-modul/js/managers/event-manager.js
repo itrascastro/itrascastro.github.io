@@ -28,7 +28,7 @@ class EventManager {
     
     // Guardar esdeveniment (crear o editar)
     saveEvent() {
-        const calendar = getCurrentCalendar();
+        const calendar = appStateManager.getCurrentCalendar();
         if (!calendar) return;
 
         const title = document.getElementById('eventTitle').value.trim();
@@ -52,7 +52,7 @@ class EventManager {
             eventType: 'PROFESSOR'
         };
 
-        if (appState.editingEventId) {
+        if (appStateManager.editingEventId) {
             this.updateExistingEvent(calendar, eventData);
         } else {
             this.createNewEvent(calendar, eventData);
@@ -63,14 +63,14 @@ class EventManager {
     
     // Eliminar esdeveniment
     deleteEvent() {
-        const calendar = getCurrentCalendar();
-        if (!calendar || !appState.editingEventId) return;
+        const calendar = appStateManager.getCurrentCalendar();
+        if (!calendar || !appStateManager.editingEventId) return;
 
         showConfirmModal(
             "Estàs segur que vols eliminar aquest event?",
             'Eliminar event',
             () => {
-                calendar.events = calendar.events.filter(e => e.id !== appState.editingEventId);
+                calendar.events = calendar.events.filter(e => e.id !== appStateManager.editingEventId);
                 storageManager.saveToStorage();
                 viewManager.renderCurrentView();
                 closeModal('eventModal');
@@ -81,7 +81,7 @@ class EventManager {
     
     // Moure esdeveniment (drag & drop)
     moveEvent(eventId, newDate) {
-        const calendar = getCurrentCalendar();
+        const calendar = appStateManager.getCurrentCalendar();
         if (!calendar) return;
         
         const event = calendar.events.find(e => e.id === eventId);
@@ -153,7 +153,7 @@ class EventManager {
     ensureCategoryExists(calendar, categoryId) {
         const categoryExists = calendar.categories.some(cat => cat.id === categoryId);
         if (!categoryExists) {
-            const templateCategory = appState.categoryTemplates.find(template => template.id === categoryId);
+            const templateCategory = appStateManager.categoryTemplates.find(template => template.id === categoryId);
             if (templateCategory) {
                 calendar.categories.push({ ...templateCategory });
                 console.log(`[Catàleg] Categoria "${templateCategory.name}" afegida automàticament al calendari`);
@@ -163,7 +163,7 @@ class EventManager {
     
     // Poblar selector de categories
     populateCategorySelect() {
-        const calendar = getCurrentCalendar();
+        const calendar = appStateManager.getCurrentCalendar();
         const select = document.getElementById('eventCategory');
         if (!calendar || !select) return;
 
@@ -207,8 +207,8 @@ class EventManager {
         eventElement.draggable = true;
         
         eventElement.addEventListener('dragstart', (e) => {
-            draggedEvent = event;
-            draggedFromDate = dateStr;
+            appStateManager.draggedEvent = event;
+            appStateManager.draggedFromDate = dateStr;
             eventElement.classList.add('dragging');
             e.dataTransfer.effectAllowed = 'move';
             e.dataTransfer.setData('text/plain', JSON.stringify(event));
@@ -216,30 +216,30 @@ class EventManager {
         
         eventElement.addEventListener('dragend', (e) => {
             eventElement.classList.remove('dragging');
-            cleanupDragState();
+            appStateManager.cleanupDragState();
         });
     }
     
     // Fer dia receptiu per drop
     makeDayDroppable(dayElement, dateStr) {
-        const calendar = getCurrentCalendar();
+        const calendar = appStateManager.getCurrentCalendar();
         if (!calendar) return;
         
         // Només permetre drop en dies dins del rang del calendari
         if (!DateValidationService.isDateInCalendarRange(dateStr, calendar)) return;
         
         dayElement.addEventListener('dragover', (e) => {
-            if (!draggedEvent) return;
+            if (!appStateManager.draggedEvent) return;
             
             let isValid = false;
             
             // Validar segons el tipus d'esdeveniment
-            if (draggedFromDate === 'unplaced') {
+            if (appStateManager.draggedFromDate === 'unplaced') {
                 // Esdeveniment no ubicat (de replicació): només dies laborables
                 isValid = DateValidationService.isValidReplicationDate(dateStr, calendar);
             } else {
                 // Esdeveniment normal: usar validació estàndard
-                isValid = this.isValidEventMove(draggedEvent, dateStr, calendar);
+                isValid = this.isValidEventMove(appStateManager.draggedEvent, dateStr, calendar);
             }
             
             if (isValid) {
@@ -262,20 +262,20 @@ class EventManager {
             e.preventDefault();
             dayElement.classList.remove('drop-target', 'drop-invalid');
             
-            if (draggedEvent) {
-                if (draggedFromDate === 'unplaced') {
+            if (appStateManager.draggedEvent) {
+                if (appStateManager.draggedFromDate === 'unplaced') {
                     // Manejar esdeveniment no ubicat
                     const eventData = JSON.parse(e.dataTransfer.getData('text/plain'));
                     if (eventData.isUnplacedEvent) {
                         replicationManager.placeUnplacedEvent(eventData.unplacedIndex, dateStr);
                     }
-                } else if (draggedFromDate !== dateStr) {
+                } else if (appStateManager.draggedFromDate !== dateStr) {
                     // Manejar esdeveniment normal
-                    this.moveEvent(draggedEvent.id, dateStr);
+                    this.moveEvent(appStateManager.draggedEvent.id, dateStr);
                 }
             }
             
-            cleanupDragState();
+            appStateManager.cleanupDragState();
         });
     }
     
@@ -283,7 +283,7 @@ class EventManager {
     
     // Actualitzar esdeveniment existent
     updateExistingEvent(calendar, eventData) {
-        const eventIndex = calendar.events.findIndex(e => e.id === appState.editingEventId);
+        const eventIndex = calendar.events.findIndex(e => e.id === appStateManager.editingEventId);
         if (eventIndex > -1) {
             calendar.events[eventIndex] = { ...calendar.events[eventIndex], ...eventData };
         }
@@ -291,7 +291,7 @@ class EventManager {
     
     // Crear nou esdeveniment
     createNewEvent(calendar, eventData) {
-        eventData.id = generateNextEventId(appState.currentCalendarId);
+        eventData.id = generateNextEventId(appStateManager.currentCalendarId);
         calendar.events.push(eventData);
     }
     
@@ -307,25 +307,3 @@ class EventManager {
 
 // === INSTÀNCIA GLOBAL ===
 const eventManager = new EventManager();
-
-// === FUNCIONS PÚBLIQUES ===
-
-// Funció temporal per debug - mostra l'estat del catàleg
-function debugCatalog() {
-    console.log('=== DEBUG CATÀLEG DE CATEGORIES ===');
-    console.log('appState.categoryTemplates:', appState.categoryTemplates);
-    console.log('Quantitat:', appState.categoryTemplates.length);
-    
-    const calendar = getCurrentCalendar();
-    if (calendar) {
-        console.log('Categories del calendari actual:', calendar.categories);
-        console.log('Categories de sistema:', calendar.categories.filter(c => c.isSystem));
-        console.log('Categories d\'usuari al calendari:', calendar.categories.filter(c => !c.isSystem));
-    }
-}
-
-
-// === INICIALITZACIÓ ===
-function initializeEventManager() {
-    console.log('[EventManager] Gestor d\'esdeveniments inicialitzat');
-}

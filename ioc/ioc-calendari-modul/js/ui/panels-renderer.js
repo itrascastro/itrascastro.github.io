@@ -29,15 +29,15 @@ class PanelsRenderer {
         const container = document.getElementById('calendars-list-container');
         if (!container) return;
         
-        const calendarIds = Object.keys(appState.calendars);
+        const calendarIds = Object.keys(appStateManager.calendars);
         if (calendarIds.length === 0) {
             container.innerHTML = `<p style="color: var(--secondary-text-color); font-style: italic; text-align: center; padding: 20px 0;">Crea o carrega un calendari.</p>`;
             return;
         }
         
         container.innerHTML = calendarIds.map(id => {
-            const calendar = appState.calendars[id];
-            const isActive = id === appState.currentCalendarId;
+            const calendar = appStateManager.calendars[id];
+            const isActive = id === appStateManager.currentCalendarId;
             const startDate = formatDateForDisplay(parseUTCDate(calendar.startDate));
             const endDate = formatDateForDisplay(parseUTCDate(calendar.endDate));
             return `
@@ -57,7 +57,7 @@ class PanelsRenderer {
         const container = document.getElementById('categories-list-container');
         if (!container) return;
         
-        const calendar = getCurrentCalendar();
+        const calendar = appStateManager.getCurrentCalendar();
         if (!calendar) {
             container.innerHTML = '<p style="color: var(--secondary-text-color); font-style: italic; text-align: center;">Selecciona un calendari.</p>';
             return;
@@ -65,7 +65,7 @@ class PanelsRenderer {
 
         // Combinar categorías del sistema + catálogo global
         const systemCategories = calendar.categories.filter(cat => cat.isSystem);
-        const allCategories = [...systemCategories, ...appState.categoryTemplates];
+        const allCategories = [...systemCategories, ...appStateManager.categoryTemplates];
 
         container.innerHTML = allCategories.map(cat => {
             const isSystemCat = cat.isSystem;
@@ -102,7 +102,7 @@ class PanelsRenderer {
         // Obtener el panel completo
         const panel = container.closest('.sidebar-section.panel-scrollable');
         
-        if (!appState.unplacedEvents || appState.unplacedEvents.length === 0) {
+        if (!appStateManager.unplacedEvents || appStateManager.unplacedEvents.length === 0) {
             // Ocultar el panel completo cuando no hay eventos
             if (panel) {
                 panel.style.display = 'none';
@@ -115,7 +115,7 @@ class PanelsRenderer {
             panel.style.display = 'flex';
         }
 
-        container.innerHTML = appState.unplacedEvents.map((item, index) => 
+        container.innerHTML = appStateManager.unplacedEvents.map((item, index) => 
             this.generateUnplacedEventHTML(item, index)
         ).join('');
         
@@ -173,10 +173,3 @@ class PanelsRenderer {
 
 // Renderitzador principal per als panells laterals
 const panelsRenderer = new PanelsRenderer();
-
-// === INICIALITZACIÓ ===
-
-// Inicialitzar sistema de renderitzat de panells
-function initializePanelsRenderer() {
-    console.log('[PanelsRenderer] Renderitzador de panells inicialitzat');
-}

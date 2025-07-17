@@ -183,6 +183,99 @@ class CalendarRenderer {
         `;
     }
     
+    // === UTILITATS DE DATA ===
+    
+    // Formatar rang de dates (migrat des de semester-view)
+    formatDateRange(startDate, endDate) {
+        const startFormatted = startDate.toLocaleDateString('ca-ES', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+            timeZone: 'UTC'
+        });
+        
+        const endFormatted = endDate.toLocaleDateString('ca-ES', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+            timeZone: 'UTC'
+        });
+        
+        return `${startFormatted} - ${endFormatted}`;
+    }
+    
+    // === CÀLCULS DE SETMANA (migrat des de week-view) ===
+    
+    // Obtenir inici de setmana (dilluns)
+    getWeekStart(date) {
+        const dayOfWeek = date.getUTCDay(); // 0 = diumenge, 1 = dilluns, etc.
+        const daysToMonday = dayOfWeek === 0 ? 6 : dayOfWeek - 1; // Ajustar per començar en dilluns
+        
+        return createUTCDate(
+            date.getUTCFullYear(),
+            date.getUTCMonth(),
+            date.getUTCDate() - daysToMonday
+        );
+    }
+    
+    // Obtenir final de setmana (diumenge)
+    getWeekEnd(weekStart) {
+        return createUTCDate(
+            weekStart.getUTCFullYear(),
+            weekStart.getUTCMonth(),
+            weekStart.getUTCDate() + 6
+        );
+    }
+    
+    // === UTILITATS DE COMPLETAR PERÍODES ===
+    
+    // Completar dies anteriors per formar setmanes completes
+    completePeriodStartDays(startDate, startDayOfWeek, calendar) {
+        const days = [];
+        for (let i = startDayOfWeek; i > 0; i--) {
+            const dayDate = createUTCDate(
+                startDate.getUTCFullYear(),
+                startDate.getUTCMonth(),
+                startDate.getUTCDate() - i
+            );
+            days.push(this.generateDayData(dayDate, calendar, true));
+        }
+        return days;
+    }
+    
+    // Completar dies posteriors per formar setmanes completes
+    completePeriodEndDays(endDate, endDayOfWeek, calendar) {
+        const days = [];
+        const daysToComplete = 6 - endDayOfWeek;
+        for (let i = 1; i <= daysToComplete; i++) {
+            const dayDate = createUTCDate(
+                endDate.getUTCFullYear(),
+                endDate.getUTCMonth(),
+                endDate.getUTCDate() + i
+            );
+            days.push(this.generateDayData(dayDate, calendar, true));
+        }
+        return days;
+    }
+    
+    // === GENERACIÓ DE NOMS DE PERÍODE ===
+    
+    // Generar nom de període segons el tipus de vista
+    generatePeriodName(calendar, viewType) {
+        switch (viewType) {
+            case 'semester':
+                return `Semestre ${calendar.code}`;
+            case 'month':
+                return getMonthName(new Date()); // Les vistes mensuals ja gestionen això
+            case 'week':
+                return 'Setmana'; // Les vistes setmanals ja gestionen això
+            case 'day':
+                return 'Dia'; // Les vistes diàries ja gestionen això
+            default:
+                return calendar.name || 'Calendari';
+        }
+    }
+    
     // === MÈTODES VIRTUALS ===
     // Aquests mètodes han de ser implementats per les classes filles
     
@@ -197,11 +290,4 @@ class CalendarRenderer {
     generateHTMLOutput(data, calendar) {
         throw new Error('El mètode generateHTMLOutput() ha de ser implementat per la classe filla');
     }
-}
-
-// === INICIALITZACIÓ ===
-
-// Inicialitzar sistema de renderitzat base
-function initializeCalendarRenderer() {
-    console.log('[CalendarRenderer] Classe base de renderitzat inicialitzada');
 }

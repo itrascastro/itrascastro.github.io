@@ -37,7 +37,7 @@ class CategoryManager {
     
     // Afegir nova categoria
     addCategory() {
-        const calendar = getCurrentCalendar();
+        const calendar = appStateManager.getCurrentCalendar();
         if (!calendar) return;
 
         const nameInput = document.getElementById('new-category-name');
@@ -60,7 +60,7 @@ class CategoryManager {
     
     // Eliminar categoria
     deleteCategory(element) {
-        const calendar = getCurrentCalendar();
+        const calendar = appStateManager.getCurrentCalendar();
         if (!calendar) return;
         
         const categoryItem = element.closest('.category-list-item');
@@ -68,7 +68,7 @@ class CategoryManager {
         
         // Buscar la categoria (pot estar en calendari o només en catàleg)
         const calendarCategory = calendar.categories.find(c => c.id === categoryId);
-        const templateCategory = appState.categoryTemplates.find(t => t.id === categoryId);
+        const templateCategory = appStateManager.categoryTemplates.find(t => t.id === categoryId);
         const category = calendarCategory || templateCategory;
         
         if (!category) return;
@@ -90,7 +90,7 @@ class CategoryManager {
     
     // Desar edició de categoria
     saveEditCategory(inputElement) {
-        const calendar = getCurrentCalendar();
+        const calendar = appStateManager.getCurrentCalendar();
         if (!calendar) return;
 
         const categoryItem = inputElement.closest('.category-list-item');
@@ -119,7 +119,7 @@ class CategoryManager {
     
     // Verificar si la categoria existeix al catàleg
     categoryExistsInCatalog(name) {
-        return appState.categoryTemplates.some(template => 
+        return appStateManager.categoryTemplates.some(template => 
             template.name.toLowerCase() === name.toLowerCase()
         );
     }
@@ -139,7 +139,7 @@ class CategoryManager {
     // Crear nova categoria
     createCategory(name) {
         return {
-            id: generateNextCategoryId(appState.currentCalendarId),
+            id: generateNextCategoryId(appStateManager.currentCalendarId),
             name: name,
             color: this.generateRandomColor(),
             isSystem: false,
@@ -149,7 +149,7 @@ class CategoryManager {
     // Afegir al catàleg i calendari
     addToCatalogAndCalendar(category, calendar) {
         // Afegir al catàleg global
-        appState.categoryTemplates.push(category);
+        appStateManager.categoryTemplates.push(category);
         
         // Afegir al calendari actual
         calendar.categories.push(category);
@@ -182,7 +182,7 @@ class CategoryManager {
     // Comptar esdeveniments que usen la categoria
     countEventsUsingCategory(categoryId) {
         let totalEvents = 0;
-        Object.values(appState.calendars).forEach(cal => {
+        Object.values(appStateManager.calendars).forEach(cal => {
             totalEvents += cal.events.filter(e => e.categoryId === categoryId).length;
         });
         return totalEvents;
@@ -202,10 +202,10 @@ class CategoryManager {
     // Executar eliminació de categoria
     executeDeleteCategory(categoryId) {
         // Eliminar del catàleg global
-        appState.categoryTemplates = appState.categoryTemplates.filter(t => t.id !== categoryId);
+        appStateManager.categoryTemplates = appStateManager.categoryTemplates.filter(t => t.id !== categoryId);
         
         // Eliminar de tots els calendaris i els seus esdeveniments
-        Object.values(appState.calendars).forEach(cal => {
+        Object.values(appStateManager.calendars).forEach(cal => {
             cal.events = cal.events.filter(e => e.categoryId !== categoryId);
             cal.categories = cal.categories.filter(c => c.id !== categoryId);
         });
@@ -241,9 +241,9 @@ class CategoryManager {
     
     // Restaurar nom original de categoria
     restoreOriginalCategoryName(categoryItem, categoryId) {
-        const calendar = getCurrentCalendar();
+        const calendar = appStateManager.getCurrentCalendar();
         const originalCategory = calendar.categories.find(c => c.id === categoryId) || 
-                               appState.categoryTemplates.find(t => t.id === categoryId);
+                               appStateManager.categoryTemplates.find(t => t.id === categoryId);
         
         const input = categoryItem.querySelector('.category-input');
         input.value = originalCategory ? originalCategory.name : '';
@@ -262,9 +262,9 @@ class CategoryManager {
     // Actualitzar categoria en catàleg i calendaris
     updateCategoryInCatalogAndCalendars(categoryId, newName, calendar) {
         // Actualitzar en catàleg global
-        const templateIndex = appState.categoryTemplates.findIndex(t => t.id === categoryId);
+        const templateIndex = appStateManager.categoryTemplates.findIndex(t => t.id === categoryId);
         if (templateIndex > -1) {
-            appState.categoryTemplates[templateIndex].name = newName;
+            appStateManager.categoryTemplates[templateIndex].name = newName;
         }
         
         // Actualitzar en calendari actual si existeix
@@ -292,10 +292,3 @@ class CategoryManager {
 
 // === INSTÀNCIA GLOBAL ===
 const categoryManager = new CategoryManager();
-
-// === FUNCIONS PÚBLIQUES ===
-
-// === INICIALITZACIÓ ===
-function initializeCategoryManager() {
-    console.log('[CategoryManager] Gestor de categories inicialitzat');
-}

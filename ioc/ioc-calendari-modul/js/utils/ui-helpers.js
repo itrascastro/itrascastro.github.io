@@ -89,8 +89,3 @@ function createDayCellHTML(date, isOutOfMonth, calendar) {
     const dayData = monthRenderer.generateDayData(date, calendar, isOutOfMonth);
     return monthRenderer.generateDayCellHTML(dayData, calendar, 'DOM');
 }
-
-// === INICIALITZACIÓ ===
-function initializeUIHelpers() {
-    console.log('[UIHelpers] Utilitats d\'interfície inicialitzades');
-}

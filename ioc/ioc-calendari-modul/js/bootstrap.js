@@ -30,10 +30,10 @@ class Bootstrap {
             document.addEventListener('dblclick', (e) => this.handleAction(e));
             storageManager.loadFromStorage();
             loadSavedTheme();
-            getCurrentCalendar();
+            appStateManager.getCurrentCalendar();
             calendarManager.updateUI();
             
-            console.log(`[Sistema] Aplicació inicialitzada amb ${appState.categoryTemplates.length} categories al catàleg`);
+            console.log(`[Sistema] Aplicació inicialitzada amb ${appStateManager.categoryTemplates.length} categories al catàleg`);
             
             // Event listener per Enter en input de nova categoria
             const newCategoryInput = document.getElementById('new-category-name');
@@ -80,11 +80,11 @@ class Bootstrap {
             case 'open-calendar-actions-modal': openCalendarActionsModal(target.dataset.calendarId); break;
             case 'open-color-picker-modal': openColorPickerModal(target.dataset.categoryId, target); break;
             case 'select-color': selectCategoryColor(target.dataset.color); break;
-            case 'save-calendar-json': saveCalendarJSON(getSelectedCalendarId()); break;
-            case 'export-calendar-ics': exportCalendarICS(getSelectedCalendarId()); break;
-            case 'export-calendar-html': exportCalendarHTML(getSelectedCalendarId()); break;
-            case 'delete-calendar': calendarManager.deleteCalendar(getSelectedCalendarId()); break;
-            case 'replicate-calendar': replicationManager.openReplicationModal(getSelectedCalendarId()); break;
+            case 'save-calendar-json': jsonExporter.exportCalendar(appStateManager.getSelectedCalendarId()); break;
+            case 'export-calendar-ics': icsExporter.exportCalendar(appStateManager.getSelectedCalendarId()); break;
+            case 'export-calendar-html': htmlExporter.exportCalendar(appStateManager.getSelectedCalendarId()); break;
+            case 'delete-calendar': calendarManager.deleteCalendar(appStateManager.getSelectedCalendarId()); break;
+            case 'replicate-calendar': replicationManager.openReplicationModal(appStateManager.getSelectedCalendarId()); break;
             case 'execute-replication': replicationManager.executeReplication(); break;
             case 'change-view': viewManager.changeView(target.dataset.view); break;
             case 'day-click': viewManager.changeToDateView(target.dataset.date); break;

@@ -42,15 +42,9 @@ class SemesterViewRenderer extends CalendarRenderer {
         const firstDay = new Date(startDate);
         const startDayOfWeek = firstDay.getUTCDay() === 0 ? 6 : firstDay.getUTCDay() - 1;
         
-        // Afegir dies anteriors per completar la primera setmana
-        for (let i = startDayOfWeek; i > 0; i--) {
-            const dayDate = createUTCDate(
-                firstDay.getUTCFullYear(),
-                firstDay.getUTCMonth(),
-                firstDay.getUTCDate() - i
-            );
-            semesterData.days.push(this.generateDayData(dayDate, calendar, true));
-        }
+        // Afegir dies anteriors per completar la primera setmana (usa mètode del pare)
+        const prevDays = this.completePeriodStartDays(firstDay, startDayOfWeek, calendar);
+        semesterData.days.push(...prevDays);
         
         // Afegir tots els dies del semestre
         let currentDate = new Date(startDate);
@@ -73,19 +67,11 @@ class SemesterViewRenderer extends CalendarRenderer {
             currentDate.setUTCDate(currentDate.getUTCDate() + 1);
         }
         
-        // Afegir dies posteriors per completar l'última setmana
+        // Afegir dies posteriors per completar l'última setmana (usa mètode del pare)
         const lastDay = new Date(endDate);
         const endDayOfWeek = lastDay.getUTCDay() === 0 ? 6 : lastDay.getUTCDay() - 1;
-        const daysToComplete = 6 - endDayOfWeek;
-        
-        for (let i = 1; i <= daysToComplete; i++) {
-            const dayDate = createUTCDate(
-                lastDay.getUTCFullYear(),
-                lastDay.getUTCMonth(),
-                lastDay.getUTCDate() + i
-            );
-            semesterData.days.push(this.generateDayData(dayDate, calendar, true));
-        }
+        const nextDays = this.completePeriodEndDays(lastDay, endDayOfWeek, calendar);
+        semesterData.days.push(...nextDays);
         
         return semesterData;
     }
@@ -102,7 +88,7 @@ class SemesterViewRenderer extends CalendarRenderer {
             <div class="semester-section">
                 <div class="semester-header">
                     <h2>${semesterData.semesterName}</h2>
-                    <div class="semester-period">${this.formatDateRange(semesterData.startDate, semesterData.endDate)}</div>
+                    <div class="semester-period">${super.formatDateRange(semesterData.startDate, semesterData.endDate)}</div>
                 </div>
                 ${this.generateCalendarGridHTML(semesterData.days, calendar)}
             </div>
@@ -111,30 +97,11 @@ class SemesterViewRenderer extends CalendarRenderer {
     
     // === UTILITATS ===
     
-    // Generar nom del semestre
+    // Generar nom del semestre (ara usa mètode del pare)
     generateSemesterName(calendar) {
-        // Usar la propietat code del calendari
-        return `Semestre ${calendar.code}`;
+        return this.generatePeriodName(calendar, 'semester');
     }
     
-    // Formatar rang de dates
-    formatDateRange(startDate, endDate) {
-        const startFormatted = startDate.toLocaleDateString('ca-ES', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
-            timeZone: 'UTC'
-        });
-        
-        const endFormatted = endDate.toLocaleDateString('ca-ES', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
-            timeZone: 'UTC'
-        });
-        
-        return `${startFormatted} - ${endFormatted}`;
-    }
     
     // Obtenir primer dia del semestre
     getSemesterStart(calendar) {
@@ -151,22 +118,3 @@ class SemesterViewRenderer extends CalendarRenderer {
 
 // Renderitzador principal per a vista semestral
 const semesterRenderer = new SemesterViewRenderer();
-
-// === FUNCIONS AUXILIARS ===
-
-// Generar HTML de mes per vista semestral
-function generateSemesterMonthHTML(monthData, calendar) {
-    return semesterRenderer.generateCalendarGridHTML(monthData.days, calendar);
-}
-
-// Obtenir nom del semestre
-function getSemesterName(calendar) {
-    return semesterRenderer.generateSemesterName(calendar);
-}
-
-// === INICIALITZACIÓ ===
-
-// Inicialitzar sistema de renderitzat semestral
-function initializeSemesterView() {
-    console.log('[SemesterView] Vista semestral inicialitzada');
-}

@@ -34,7 +34,7 @@ function closeModal(modalId) {
 
 // Modal de configuració de calendari
 function openCalendarSetupModal() {
-    appState.editingCalendarId = null;
+    appStateManager.editingCalendarId = null;
     document.getElementById('setupModalTitle').textContent = `Nou Calendari de Mòdul ${semesterConfig.getSemesterCode()}`;
     document.getElementById('cicleCode').value = '';
     document.getElementById('moduleCode').value = '';
@@ -45,8 +45,8 @@ function openCalendarSetupModal() {
 
 // Modal d'accions de calendari
 function openCalendarActionsModal(calendarId) {
-    setSelectedCalendarId(calendarId);
-    const calendar = appState.calendars[calendarId];
+    appStateManager.setSelectedCalendarId(calendarId);
+    const calendar = appStateManager.calendars[calendarId];
     if (!calendar) return;
     
     const button = document.querySelector(`[data-calendar-id="${calendarId}"] .actions-menu`);
@@ -86,10 +86,10 @@ function openCalendarActionsModal(calendarId) {
 
 // Modal de selector de colors
 function openColorPickerModal(categoryId, colorDotElement) {
-    setSelectedCategoryId(categoryId);
+    appStateManager.setSelectedCategoryId(categoryId);
     
     // Buscar la categoria per obtenir el seu color actual
-    const calendar = getCurrentCalendar();
+    const calendar = appStateManager.getCurrentCalendar();
     if (!calendar) return;
     
     const category = CategoryService.findCategoryById(categoryId, calendar);
@@ -140,7 +140,7 @@ function openColorPickerModal(categoryId, colorDotElement) {
 
 // Modal d'esdeveniments
 function openEventModal(event = null, date = null) {
-    const calendar = getCurrentCalendar();
+    const calendar = appStateManager.getCurrentCalendar();
     if (!calendar) return;
 
     const modal = document.getElementById('eventModal');
@@ -152,7 +152,7 @@ function openEventModal(event = null, date = null) {
     console.log('[Modal] populateCategorySelect completada');
 
     if (event && !event.isSystemEvent) {
-        appState.editingEventId = event.id;
+        appStateManager.editingEventId = event.id;
         title.textContent = 'Editar Event';
         document.getElementById('eventTitle').value = event.title;
         document.getElementById('eventDate').value = event.date;
@@ -160,7 +160,7 @@ function openEventModal(event = null, date = null) {
         document.getElementById('eventDescription').value = event.description || '';
         deleteBtn.style.display = 'inline-block';
     } else {
-        appState.editingEventId = null;
+        appStateManager.editingEventId = null;
         title.textContent = 'Nou Event';
         document.getElementById('eventTitle').value = '';
         document.getElementById('eventDate').value = date;
@@ -176,20 +176,20 @@ function openEventModal(event = null, date = null) {
 
 // Seleccionar color de categoria
 function selectCategoryColor(newColor) {
-    const selectedCategoryId = getSelectedCategoryId();
+    const selectedCategoryId = appStateManager.getSelectedCategoryId();
     if (!selectedCategoryId) return;
     
-    const calendar = getCurrentCalendar();
+    const calendar = appStateManager.getCurrentCalendar();
     if (!calendar) return;
     
     // Actualitzar en catàleg global
-    const templateIndex = appState.categoryTemplates.findIndex(t => t.id === selectedCategoryId);
+    const templateIndex = appStateManager.categoryTemplates.findIndex(t => t.id === selectedCategoryId);
     if (templateIndex > -1) {
-        appState.categoryTemplates[templateIndex].color = newColor;
+        appStateManager.categoryTemplates[templateIndex].color = newColor;
     }
     
     // Actualitzar en TOTS els calendaris que tinguin aquesta categoria
-    Object.values(appState.calendars).forEach(cal => {
+    Object.values(appStateManager.calendars).forEach(cal => {
         const calendarCategory = cal.categories.find(c => c.id === selectedCategoryId);
         if (calendarCategory) {
             calendarCategory.color = newColor;
@@ -201,12 +201,5 @@ function selectCategoryColor(newColor) {
     panelsRenderer.renderCategories();
     viewManager.renderCurrentView(); // Re-renderitzar per mostrar canvis en esdeveniments
     
-    clearSelectedCategoryId();
-}
-
-// === GESTIÓ D'ESDEVENIMENTS DE MODAL ===
-
-// Inicialitzar esdeveniments de modal
-function initializeModalEvents() {
-    console.log('[Modals] Sistema de modals inicialitzat');
+    appStateManager.clearSelectedCategoryId();
 }

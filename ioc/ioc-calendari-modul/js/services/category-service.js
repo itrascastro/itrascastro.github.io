@@ -32,7 +32,7 @@ class CategoryService {
         if (calendarCategory) return calendarCategory;
         
         // Si no es trova, buscar al catàleg global
-        const templateCategory = appState.categoryTemplates?.find(t => t.id === categoryId);
+        const templateCategory = appStateManager.categoryTemplates?.find(t => t.id === categoryId);
         return templateCategory || null;
     }
     
@@ -58,7 +58,7 @@ class CategoryService {
         const calendarCategories = calendar.categories.filter(c => !c.isSystem);
         
         // Categories del catàleg global
-        const templateCategories = appState.categoryTemplates || [];
+        const templateCategories = appStateManager.categoryTemplates || [];
         
         // Combinar i evitar duplicats
         const allCategories = [...calendarCategories];
@@ -103,11 +103,4 @@ class CategoryService {
         
         return { total, system, user };
     }
-}
-
-// === INICIALITZACIÓ ===
-
-// Inicialitzar servei de categories
-function initializeCategoryService() {
-    console.log('[CategoryService] Servei de categories inicialitzat');
 }

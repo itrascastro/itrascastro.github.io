@@ -189,8 +189,3 @@ const calendarCssStyles = `
         .legend-items { flex-direction: column; }
     }
 `;
-
-// === INICIALITZACIÓ ===
-function initializeCalendarStyles() {
-    console.log('[CalendarStyles] Estilos CSS inicialitzats');
-}

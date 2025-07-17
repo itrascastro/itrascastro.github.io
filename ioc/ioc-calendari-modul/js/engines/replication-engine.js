@@ -129,7 +129,7 @@ class ReplicationEngine {
                 // Crear esdeveniment replicat
                 const replicatedEvent = {
                     ...event,
-                    id: generateNextEventId(appState.currentCalendarId),
+                    id: generateNextEventId(appStateManager.currentCalendarId),
                     date: newDate,
                     isReplicated: true,
                     originalDate: event.date,
@@ -313,10 +313,3 @@ class ReplicationEngine {
 
 // Motor de replicació
 const replicationEngine = new ReplicationEngine();
-
-// === INICIALITZACIÓ ===
-
-// Inicialitzar motor de replicació
-function initializeReplicationEngine() {
-    console.log('[ReplicationEngine] Motor de replicació inicialitzat');
-}
