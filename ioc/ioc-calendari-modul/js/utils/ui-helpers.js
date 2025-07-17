@@ -67,13 +67,13 @@ function showConfirmModal(message, title = 'Confirmar acció', onConfirm = null)
     // Configurar nou event listener
     if (onConfirm) {
         newConfirmBtn.addEventListener('click', () => {
-            closeModal('confirmModal');
+            modalRenderer.close('confirmModal');
             onConfirm();
         });
     }
     
     // Mostrar modal
-    openModal('confirmModal');
+    modalRenderer.open('confirmModal');
     return true;
 }
 

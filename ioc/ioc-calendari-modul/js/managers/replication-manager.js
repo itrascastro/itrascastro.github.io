@@ -57,7 +57,7 @@ class ReplicationManager {
         this.populateTargetCalendarSelect(availableTargets);
         
         // Obrir modal
-        openModal('replicationModal');
+        modalRenderer.open('replicationModal');
     }
     
     // Poblar selector de calendaris destí
@@ -127,7 +127,7 @@ class ReplicationManager {
             // Persistir canvis
             storageManager.saveToStorage();
             calendarManager.updateUI();
-            closeModal('replicationModal');
+            modalRenderer.close('replicationModal');
             
             // Netejar variable global
             currentSourceCalendarId = null;

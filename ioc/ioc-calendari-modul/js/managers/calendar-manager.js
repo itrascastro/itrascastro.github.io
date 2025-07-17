@@ -149,7 +149,7 @@ class CalendarManager {
         
         storageManager.saveToStorage();
         this.updateUI();
-        closeModal('calendarSetupModal');
+        modalRenderer.close('calendarSetupModal');
         showMessage('Calendari guardat correctament', 'success');
     }
     
