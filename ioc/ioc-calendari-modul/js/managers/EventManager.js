@@ -73,7 +73,7 @@ class EventManager {
                 calendar.events = calendar.events.filter(e => e.id !== appStateManager.editingEventId);
                 storageManager.saveToStorage();
                 viewManager.renderCurrentView();
-                modalRenderer.close('eventModal');
+                modalRenderer.closeModal('eventModal');
                 uiHelper.showMessage('Event eliminat correctament', 'success');
             }
         );
@@ -303,7 +303,7 @@ class EventManager {
         storageManager.saveToStorage();
         viewManager.renderCurrentView();
         panelsRenderer.renderCategories(); // Re-renderitzar per mostrar nova categoria si s'ha afegit
-        modalRenderer.close('eventModal');
+        modalRenderer.closeModal('eventModal');
         uiHelper.showMessage('Event guardat correctament', 'success');
     }
 }

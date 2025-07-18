@@ -70,13 +70,13 @@ class UIHelper {
         // Configurar nou event listener
         if (onConfirm) {
             newConfirmBtn.addEventListener('click', () => {
-                modalRenderer.close('confirmModal');
+                modalRenderer.closeModal('confirmModal');
                 onConfirm();
             });
         }
         
         // Mostrar modal
-        modalRenderer.open('confirmModal');
+        modalRenderer.openModal('confirmModal');
         return true;
     }
 

@@ -59,13 +59,13 @@ class Bootstrap {
         
         switch (action) {
             case 'toggle-theme': themeHelper.toggleTheme(); break;
-            case 'open-calendar-setup': modalRenderer.openCalendarSetup(); break;
-            case 'close-modal': modalRenderer.close(target.dataset.modal); break;
-            case 'save-calendar': calendarManager.saveCalendar(); break;
+            case 'new-calendar': modalRenderer.openNewCalendarModal(); break;
+            case 'close-modal': modalRenderer.closeModal(target.dataset.modal); break;
+            case 'add-calendar': calendarManager.addCalendar(); break;
             case 'navigate-period': viewManager.navigatePeriod(parseInt(target.dataset.direction)); break;
             case 'switch-calendar': calendarManager.switchCalendar(target.closest('.calendar-list-item').dataset.calendarId); break;
-            case 'add-event': modalRenderer.openEvent(null, target.dataset.date || target.closest('.day-cell')?.dataset.date); break;
-            case 'open-event-modal': modalRenderer.openEvent(JSON.parse(target.dataset.event)); break;
+            case 'add-event': modalRenderer.openEventModal(null, target.dataset.date || target.closest('.day-cell')?.dataset.date); break;
+            case 'open-event-modal': modalRenderer.openEventModal(JSON.parse(target.dataset.event)); break;
             case 'save-event': eventManager.saveEvent(); break;
             case 'delete-event': eventManager.deleteEvent(); break;
             case 'add-category': categoryManager.addCategory(); break;
@@ -77,8 +77,8 @@ class Bootstrap {
             case 'place-unplaced-event': replicationManager.placeUnplacedEvent(target.dataset.eventIndex, target.dataset.date); break;
             case 'dismiss-unplaced-event': replicationManager.dismissUnplacedEvent(target.dataset.eventIndex); break;
             case 'toggle-actions-menu': menuHelper.toggleActionsMenu(target); break;
-            case 'open-calendar-actions-modal': modalRenderer.openCalendarActions(target.dataset.calendarId); break;
-            case 'open-color-picker-modal': modalRenderer.openColorPicker(target.dataset.categoryId, target); break;
+            case 'open-calendar-actions-modal': modalRenderer.openCalendarActionsModal(target.dataset.calendarId); break;
+            case 'open-color-picker-modal': modalRenderer.openColorPickerModal(target.dataset.categoryId, target); break;
             case 'select-color': modalRenderer.selectCategoryColor(target.dataset.color); break;
             case 'save-calendar-json': jsonExporter.exportCalendar(appStateManager.getSelectedCalendarId()); break;
             case 'export-calendar-ics': icsExporter.exportCalendar(appStateManager.getSelectedCalendarId()); break;

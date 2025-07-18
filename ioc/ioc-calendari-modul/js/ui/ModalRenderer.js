@@ -24,30 +24,30 @@ class ModalRenderer {
     // === FUNCIONS BÀSIQUES DE MODAL ===
     
     // Obrir modal
-    open(modalId) {
+    openModal(modalId) {
         document.getElementById(modalId)?.classList.add('show');
     }
     
     // Tancar modal
-    close(modalId) {
+    closeModal(modalId) {
         document.getElementById(modalId)?.classList.remove('show');
     }
     
     // === MODALS ESPECÍFICS ===
     
-    // Modal de configuració de calendari
-    openCalendarSetup() {
+    // Modal de creació de nou calendari
+    openNewCalendarModal() {
         appStateManager.editingCalendarId = null;
         document.getElementById('setupModalTitle').textContent = `Nou Calendari de Mòdul ${semesterConfig.getSemesterCode()}`;
         document.getElementById('cicleCode').value = '';
         document.getElementById('moduleCode').value = '';
         document.getElementById('saveCalendarBtn').textContent = 'Crear Calendari';
         document.getElementById('deleteCalendarBtn').style.display = 'none';
-        this.open('calendarSetupModal');
+        this.openModal('calendarSetupModal');
     }
     
     // Modal d'accions de calendari
-    openCalendarActions(calendarId) {
+    openCalendarActionsModal(calendarId) {
         appStateManager.setSelectedCalendarId(calendarId);
         const calendar = appStateManager.calendars[calendarId];
         if (!calendar) return;
@@ -66,7 +66,7 @@ class ModalRenderer {
         // Afegir esdeveniment per tancar al fer clic fora
         const closeOnOutsideClick = (e) => {
             if (!content.contains(e.target) && !button.contains(e.target)) {
-                this.close('calendarActionsModal');
+                this.closeModal('calendarActionsModal');
                 document.removeEventListener('click', closeOnOutsideClick);
                 modal.removeEventListener('mouseleave', closeOnMouseLeave);
             }
@@ -75,7 +75,7 @@ class ModalRenderer {
         // Afegir esdeveniment per tancar al treure el ratolí
         const closeOnMouseLeave = (e) => {
             if (!content.contains(e.relatedTarget) && !button.contains(e.relatedTarget)) {
-                this.close('calendarActionsModal');
+                this.closeModal('calendarActionsModal');
                 modal.removeEventListener('mouseleave', closeOnMouseLeave);
                 document.removeEventListener('click', closeOnOutsideClick);
             }
@@ -86,11 +86,11 @@ class ModalRenderer {
             modal.addEventListener('mouseleave', closeOnMouseLeave);
         }, 50);
         
-        this.open('calendarActionsModal');
+        this.openModal('calendarActionsModal');
     }
     
     // Modal de selector de colors
-    openColorPicker(categoryId, colorDotElement) {
+    openColorPickerModal(categoryId, colorDotElement) {
         appStateManager.setSelectedCategoryId(categoryId);
         
         // Buscar la categoria per obtenir el seu color actual
@@ -122,7 +122,7 @@ class ModalRenderer {
         // Afegir esdeveniment per tancar al fer clic fora
         const closeOnOutsideClick = (e) => {
             if (!content.contains(e.target) && !colorDotElement.contains(e.target)) {
-                this.close('colorPickerModal');
+                this.closeModal('colorPickerModal');
                 document.removeEventListener('click', closeOnOutsideClick);
                 modal.removeEventListener('mouseleave', closeOnMouseLeave);
             }
@@ -131,7 +131,7 @@ class ModalRenderer {
         // Afegir esdeveniment per tancar al treure el ratolí
         const closeOnMouseLeave = (e) => {
             if (!content.contains(e.relatedTarget) && !colorDotElement.contains(e.relatedTarget)) {
-                this.close('colorPickerModal');
+                this.closeModal('colorPickerModal');
                 modal.removeEventListener('mouseleave', closeOnMouseLeave);
                 document.removeEventListener('click', closeOnOutsideClick);
             }
@@ -142,11 +142,11 @@ class ModalRenderer {
             modal.addEventListener('mouseleave', closeOnMouseLeave);
         }, 50);
         
-        this.open('colorPickerModal');
+        this.openModal('colorPickerModal');
     }
     
     // Modal d'esdeveniments
-    openEvent(event = null, date = null) {
+    openEventModal(event = null, date = null) {
         const calendar = appStateManager.getCurrentCalendar();
         if (!calendar) return;
 
@@ -176,7 +176,7 @@ class ModalRenderer {
             deleteBtn.style.display = 'none';
         }
 
-        this.open('eventModal');
+        this.openModal('eventModal');
     }
     
     // === FUNCIONS AUXILIARS ===
@@ -203,7 +203,7 @@ class ModalRenderer {
             }
         });
         
-        this.close('colorPickerModal');
+        this.closeModal('colorPickerModal');
         storageManager.saveToStorage();
         panelsRenderer.renderCategories();
         viewManager.renderCurrentView(); // Re-renderitzar per mostrar canvis en esdeveniments

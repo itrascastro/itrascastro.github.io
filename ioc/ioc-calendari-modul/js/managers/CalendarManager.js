@@ -26,8 +26,8 @@ class CalendarManager {
     
     // === GESTIÓ DE CALENDARIS ===
     
-    // Crear o editar calendari
-    saveCalendar() {
+    // Crear nou calendari
+    addCalendar() {
         const cicle = document.getElementById('cicleCode').value.trim().toUpperCase();
         const module = document.getElementById('moduleCode').value.trim().toUpperCase();
         
@@ -114,6 +114,7 @@ class CalendarManager {
         const systemEvents = this.generateSystemEvents(startDate, endDate);
         
         appStateManager.calendars[calendarId] = {
+            id: calendarId,
             name: calendarName,
             startDate,
             endDate,
@@ -149,7 +150,7 @@ class CalendarManager {
         
         storageManager.saveToStorage();
         this.updateUI();
-        modalRenderer.close('calendarSetupModal');
+        modalRenderer.closeModal('calendarSetupModal');
         uiHelper.showMessage('Calendari guardat correctament', 'success');
     }
     
@@ -203,6 +204,7 @@ class CalendarManager {
                         // Crear nou calendari amb ID basat en el nom
                         const calendarId = calendarData.name;
                         appStateManager.calendars[calendarId] = {
+                            id: calendarId,
                             name: calendarData.name,
                             startDate: calendarData.startDate,
                             endDate: calendarData.endDate,
