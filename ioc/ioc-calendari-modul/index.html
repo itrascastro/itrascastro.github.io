@@ -221,50 +221,51 @@ una aplicació web per gestionar calendaris acadèmics.
     </div>
 
     <!-- Utilitats (sense dependències) -->
-    <script src="js/utils/date-utils.js"></script>
-    <script src="js/utils/ui-helpers.js"></script>
-    <script src="js/utils/id-generators.js"></script>
-    <script src="js/utils/theme-manager.js"></script>
-    <script src="js/utils/menu-helpers.js"></script>
-    <script src="js/utils/drag-drop-helpers.js"></script>
+    <script src="js/helpers/DateHelper.js"></script>
+    <script src="js/helpers/TextHelper.js"></script>
+    <script src="js/helpers/UIHelper.js"></script>
+    <script src="js/helpers/IdHelper.js"></script>
+    <script src="js/helpers/ThemeHelper.js"></script>
+    <script src="js/helpers/MenuHelper.js"></script>
+    <script src="js/helpers/DragDropHelper.js"></script>
     
     <!-- Configuració -->
-    <script src="js/config/semester-config.js"></script>
+    <script src="js/config/SemesterConfig.js"></script>
     
     <!-- Estat i persistència -->
-    <script src="js/state/app-state.js"></script>
-    <script src="js/state/storage.js"></script>
+    <script src="js/state/AppStateManager.js"></script>
+    <script src="js/state/StorageManager.js"></script>
     
     <!-- Motors i lògica de negoci -->
-    <script src="js/engines/replication-engine.js"></script>
+    <script src="js/engines/ReplicationEngine.js"></script>
     
     <!-- Serveis -->
-    <script src="js/services/category-service.js"></script>
-    <script src="js/services/date-validation-service.js"></script>
+    <script src="js/services/CategoryService.js"></script>
+    <script src="js/services/DateValidationService.js"></script>
     
     <!-- Gestors -->
-    <script src="js/managers/event-manager.js"></script>
-    <script src="js/managers/calendar-manager.js"></script>
-    <script src="js/managers/category-manager.js"></script>
-    <script src="js/managers/replication-manager.js"></script>
-    <script src="js/managers/view-manager.js"></script>
+    <script src="js/managers/EventManager.js"></script>
+    <script src="js/managers/CalendarManager.js"></script>
+    <script src="js/managers/CategoryManager.js"></script>
+    <script src="js/managers/ReplicationManager.js"></script>
+    <script src="js/managers/ViewManager.js"></script>
     
     <!-- Interfície d'usuari -->
-    <script src="js/ui/views/calendar-renderer.js"></script>
-    <script src="js/ui/views/month-view.js"></script>
-    <script src="js/ui/views/day-view.js"></script>
-    <script src="js/ui/views/week-view.js"></script>
-    <script src="js/ui/views/semester-view.js"></script>
-    <script src="js/ui/panels-renderer.js"></script>
-    <script src="js/ui/modals.js"></script>
+    <script src="js/ui/views/CalendarRenderer.js"></script>
+    <script src="js/ui/views/MonthViewRenderer.js"></script>
+    <script src="js/ui/views/DayViewRenderer.js"></script>
+    <script src="js/ui/views/WeekViewRenderer.js"></script>
+    <script src="js/ui/views/SemesterViewRenderer.js"></script>
+    <script src="js/ui/PanelsRenderer.js"></script>
+    <script src="js/ui/ModalRenderer.js"></script>
     
     <!-- Exportació -->
     <script src="js/export/templates/calendar-template.js"></script>
     <script src="js/export/templates/calendar-styles.js"></script>
-    <script src="js/export/html-exporter.js"></script>
-    <script src="js/export/ics-exporter.js"></script>
-    <script src="js/export/json-exporter.js"></script>
+    <script src="js/export/HtmlExporter.js"></script>
+    <script src="js/export/IcsExporter.js"></script>
+    <script src="js/export/JsonExporter.js"></script>
     
-    <script src="js/bootstrap.js"></script>
+    <script src="js/Bootstrap.js"></script>
 </body>
 </html>
