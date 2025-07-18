@@ -3,7 +3,7 @@
  * CATEGORY MANAGER - GESTIÓ DE CATEGORIES
  * =================================================================
  * 
- * @file        category-manager.js
+ * @file        CategoryManager.js
  * @description Gestió de categories d'esdeveniments i catàleg global
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

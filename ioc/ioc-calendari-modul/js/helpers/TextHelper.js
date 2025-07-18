@@ -3,7 +3,7 @@
  * TEXT HELPER - UTILITATS DE TEXT PER CALENDARI IOC
  * =================================================================
  * 
- * @file        text-helper.js
+ * @file        TextHelper.js
  * @description Classe d'utilitats per manipulació i formatatge de text
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

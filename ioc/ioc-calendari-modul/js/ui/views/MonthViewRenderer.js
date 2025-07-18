@@ -3,7 +3,7 @@
  * MONTH VIEW - RENDERITZADOR PER A VISTA MENSUAL
  * =================================================================
  * 
- * @file        month-view.js
+ * @file        MonthViewRenderer.js
  * @description Renderitzador específic per la vista mensual del calendari
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

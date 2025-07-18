@@ -3,7 +3,7 @@
  * APP STATE - GESTIÓ CENTRALITZADA DE L'ESTAT DE L'APLICACIÓ
  * =================================================================
  * 
- * @file        app-state.js
+ * @file        AppStateManager.js
  * @description Gestió de l'estat global de l'aplicació i variables auxiliars
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

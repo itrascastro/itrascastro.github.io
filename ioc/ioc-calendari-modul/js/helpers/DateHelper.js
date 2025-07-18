@@ -3,7 +3,7 @@
  * DATE HELPER - UTILITATS DE DATA PER CALENDARI IOC
  * =================================================================
  * 
- * @file        date-helper.js
+ * @file        DateHelper.js
  * @description Classe d'utilitats per manipulació i formatatge de dates
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

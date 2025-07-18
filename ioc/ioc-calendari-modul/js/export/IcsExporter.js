@@ -3,7 +3,7 @@
  * ICS EXPORTER - EXPORTACIÓ DE CALENDARIS A FORMAT ICS
  * =================================================================
  * 
- * @file        ics-exporter.js
+ * @file        IcsExporter.js
  * @description Exportador de calendaris al format ICS/iCalendar estàndard
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

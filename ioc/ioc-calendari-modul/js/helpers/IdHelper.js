@@ -3,7 +3,7 @@
  * ID GENERATORS - GENERADORS D'IDENTIFICADORS ÚNICS
  * =================================================================
  * 
- * @file        id-generators.js
+ * @file        IdHelper.js
  * @description Funcions per generar identificadors únics per l'aplicació
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

@@ -3,7 +3,7 @@
  * DATE VALIDATION SERVICE - SERVEI CENTRALITZAT PER VALIDACIÓ DE DATES
  * =================================================================
  * 
- * @file        date-validation-service.js
+ * @file        DateValidationService.js
  * @description Servei per validació de dates dins del rang del calendari acadèmic
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

@@ -3,7 +3,7 @@
  * UI HELPERS - UTILITATS D'INTERFÍCIE D'USUARI
  * =================================================================
  * 
- * @file        ui-helpers.js
+ * @file        UIHelper.js
  * @description Funcions d'utilitat per la interfície d'usuari i interaccions
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

@@ -3,7 +3,7 @@
  * SEMESTER CONFIG - GESTIÓ DE LA CONFIGURACIÓ DEL SEMESTRE IOC
  * =================================================================
  * 
- * @file        semester-config.js
+ * @file        SemesterConfig.js
  * @description Configuració de semestres acadèmics del sistema IOC
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

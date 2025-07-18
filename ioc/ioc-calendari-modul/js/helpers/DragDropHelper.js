@@ -3,7 +3,7 @@
  * DRAG & DROP HELPERS - UTILITATS PER ARROSSEGAR I SOLTAR
  * =================================================================
  * 
- * @file        drag-drop-helpers.js
+ * @file        DragDropHelper.js
  * @description Funcions d'utilitat per funcionalitat de drag & drop d'esdeveniments
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

@@ -3,7 +3,7 @@
  * VIEW MANAGER - GESTIÓ CENTRALITZADA DE VISTES DEL CALENDARI
  * =================================================================
  * 
- * @file        view-manager.js
+ * @file        ViewManager.js
  * @description Gestió de vistes del calendari (mensual, setmanal, diària, semestral)
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

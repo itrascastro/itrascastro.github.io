@@ -3,7 +3,7 @@
  * BOOTSTRAP.JS - INICIALITZACIÓ I COORDINACIÓ DE L'APLICACIÓ
  * =================================================================
  * 
- * @file        bootstrap.js
+ * @file        Bootstrap.js
  * @description Classe Bootstrap per inicialitzar l'aplicació i gestionar accions
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

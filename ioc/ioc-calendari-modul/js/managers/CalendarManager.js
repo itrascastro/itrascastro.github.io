@@ -3,7 +3,7 @@
  * CALENDAR MANAGER - GESTIÓ DE CALENDARIS
  * =================================================================
  * 
- * @file        calendar-manager.js
+ * @file        CalendarManager.js
  * @description Gestió de calendaris, configuració i operacions CRUD
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

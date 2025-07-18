@@ -3,7 +3,7 @@
  * JSON EXPORTER - EXPORTACIÓ DE CALENDARIS A FORMAT JSON
  * =================================================================
  * 
- * @file        json-exporter.js
+ * @file        JsonExporter.js
  * @description Exportador de calendaris al format JSON nadiu de l'aplicació
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

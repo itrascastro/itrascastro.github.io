@@ -3,7 +3,7 @@
  * HTML EXPORTER - EXPORTACIÓ DE CALENDARIS A HTML
  * =================================================================
  * 
- * @file        html-exporter.js
+ * @file        HtmlExporter.js
  * @description Exportador de calendaris a format HTML autònom i imprimible
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

@@ -3,7 +3,7 @@
  * STORAGE - GESTIÓ DE PERSISTÈNCIA DE DADES
  * =================================================================
  * 
- * @file        storage.js
+ * @file        StorageManager.js
  * @description Funcions per guardar i carregar dades des de localStorage
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

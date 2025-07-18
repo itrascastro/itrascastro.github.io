@@ -3,7 +3,7 @@
  * MODALS - GESTIÓ CENTRALITZADA DE MODALS
  * =================================================================
  * 
- * @file        modals.js
+ * @file        ModalRenderer.js
  * @description Gestió de modals i formularis de l'aplicació
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

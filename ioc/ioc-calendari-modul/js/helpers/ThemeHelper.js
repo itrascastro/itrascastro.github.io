@@ -3,7 +3,7 @@
  * THEME MANAGER - GESTIÓ DE TEMES CLAR/FOSC
  * =================================================================
  * 
- * @file        theme-manager.js
+ * @file        ThemeHelper.js
  * @description Gestió automàtica de temes segons preferències del sistema
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

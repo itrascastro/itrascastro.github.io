@@ -3,7 +3,7 @@
  * REPLICATION MANAGER - GESTIÓ DE REPLICACIÓ I ESDEVENIMENTS NO UBICATS
  * =================================================================
  * 
- * @file        replication-manager.js
+ * @file        ReplicationManager.js
  * @description Gestió de replicació de calendaris i esdeveniments no ubicats
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

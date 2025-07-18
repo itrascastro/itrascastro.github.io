@@ -1,6 +1,22 @@
-// =================================================================
-// WEEK VIEW - RENDERITZADOR PER A VISTA SETMANAL
-// =================================================================
+/**
+ * =================================================================
+ * WEEK VIEW - RENDERITZADOR PER A VISTA SETMANAL
+ * =================================================================
+ *
+ * @file        WeekViewRenderer.js
+ * @description Renderitzador específic per la vista setmanal del calendari
+ * @author      Ismael Trascastro <itrascastro@ioc.cat>
+ * @version     1.0.0
+ * @date        2025-01-16
+ * @project     Calendari Mòdul IOC
+ * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @license     MIT
+ *
+ * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
+ * una aplicació web per gestionar calendaris acadèmics.
+ *
+ * =================================================================
+ */
 
 // Renderitzador específic per a vista setmanal
 class WeekViewRenderer extends CalendarRenderer {

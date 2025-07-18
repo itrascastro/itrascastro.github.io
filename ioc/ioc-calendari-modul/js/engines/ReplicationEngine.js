@@ -3,7 +3,7 @@
  * REPLICATION ENGINE - MOTOR DE REPLICACIÓ PROPORCIONAL
  * =================================================================
  * 
- * @file        replication-engine.js
+ * @file        ReplicationEngine.js
  * @description Motor per replicació proporcional d'esdeveniments entre calendaris
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

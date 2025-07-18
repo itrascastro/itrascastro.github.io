@@ -3,7 +3,7 @@
  * DAY VIEW - RENDERITZADOR PER A VISTA DIÀRIA
  * =================================================================
  * 
- * @file        day-view.js
+ * @file        DayViewRenderer.js
  * @description Renderitzador específic per la vista diària del calendari
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

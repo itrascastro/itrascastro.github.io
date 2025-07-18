@@ -3,7 +3,7 @@
  * CATEGORY SERVICE - SERVEI CENTRALITZAT PER GESTIÓ DE CATEGORIES
  * =================================================================
  * 
- * @file        category-service.js
+ * @file        CategoryService.js
  * @description Servei per gestió centralitzada de categories i plantilles
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

@@ -3,7 +3,7 @@
  * MENU HELPERS - UTILITATS PER MENÚS CONTEXTUALS
  * =================================================================
  * 
- * @file        menu-helpers.js
+ * @file        MenuHelper.js
  * @description Funcions d'utilitat per gestió de menús contextuals i dropdowns
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

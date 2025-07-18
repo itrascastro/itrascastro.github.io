@@ -3,7 +3,7 @@
  * CALENDAR RENDERER - CLASSE BASE PER RENDERITZADORS DE CALENDARI
  * =================================================================
  * 
- * @file        calendar-renderer.js
+ * @file        CalendarRenderer.js
  * @description Classe base abstracta per tots els renderitzadors de vistes del calendari
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

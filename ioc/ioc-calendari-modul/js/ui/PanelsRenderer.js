@@ -3,7 +3,7 @@
  * PANELS RENDERER - RENDERITZADOR PER ALS PANELLS LATERALS
  * =================================================================
  * 
- * @file        panels-renderer.js
+ * @file        PanelsRenderer.js
  * @description Renderitzador per als panells laterals (calendaris, categories, esdeveniments)
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0

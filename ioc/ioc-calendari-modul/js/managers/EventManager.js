@@ -3,7 +3,7 @@
  * EVENT MANAGER - GESTIÓ D'ESDEVENIMENTS
  * =================================================================
  * 
- * @file        event-manager.js
+ * @file        EventManager.js
  * @description Gestió d'esdeveniments del calendari, creació i edició
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0
