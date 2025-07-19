@@ -101,8 +101,8 @@ class ReplicationManager {
         try {
             console.log(`[Replicació] Iniciant replicació: ${sourceCalendar.name} → ${targetCalendar.name}`);
             
-            // Executar replicació usant el motor
-            const result = replicationEngine.replicate(sourceCalendar, targetCalendar);
+            // Executar replicació usant el servei
+            const result = replicaService.replicate(sourceCalendar, targetCalendar);
             
             // Aplicar esdeveniments replicats al calendari destí
             result.placed.forEach(placedItem => {

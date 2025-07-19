@@ -1,10 +1,10 @@
 /**
  * =================================================================
- * REPLICATION ENGINE - MOTOR DE REPLICACIÓ PROPORCIONAL
+ * REPLICA SERVICE - SERVEI DE REPLICACIÓ PROPORCIONAL
  * =================================================================
  * 
- * @file        ReplicationEngine.js
- * @description Motor per replicació proporcional d'esdeveniments entre calendaris
+ * @file        ReplicaService.js
+ * @description Servei per replicació proporcional d'esdeveniments entre calendaris
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0
  * @date        2025-01-16
@@ -18,29 +18,12 @@
  * =================================================================
  */
 
-// CLASSE DE MOTOR DE REPLICACIÓ: Implementa algoritme proporcional amb configuració simplificada
-class ReplicationEngine {
-    constructor() {
-        this.ENGINE_NAME = 'replicaEngine';
-        this.DEFAULT_CONFIG = {
-            respectFestivals: true,
-            balancedStrategy: true,
-            temporalAdjustment: true,
-            strictValidation: true
-        };
-        this.EVENT_TYPES = {
-            PROFESSOR: 'professor',
-            IOC: 'ioc',
-            FESTIU: 'festiu',
-            REPLICATED: 'replicated',
-            PAF1: 'paf1',
-            PAF2: 'paf2'
-        };
-    }
+// CLASSE DE SERVEI DE REPLICACIÓ: Implementa algoritme proporcional
+class ReplicaService {
     
-    // Função principal del motor proporcional
+    // Funció principal de replicació
     replicate(sourceCalendar, targetCalendar) {
-        console.log(`[${this.ENGINE_NAME}] Iniciant replicació amb configuració simplificada...`);
+        console.log(`[REPLICA_SERVICE] Iniciant replicació...`);
         
         try {
             // Validació bàsica
@@ -50,13 +33,13 @@ class ReplicationEngine {
             
             // Filtrar esdeveniments del professor
             const professorEvents = sourceCalendar.events
-                .filter(event => this.isProfessorEvent(event))
+                .filter(event => !event.isSystemEvent)
                 .sort((a, b) => new Date(a.date) - new Date(b.date));
             
-            console.log(`[${this.ENGINE_NAME}] Events del professor a replicar: ${professorEvents.length}`);
+            console.log(`[REPLICA_SERVICE] Events del professor a replicar: ${professorEvents.length}`);
             
             if (professorEvents.length === 0) {
-                console.log(`[${this.ENGINE_NAME}] No hi ha events del professor per replicar`);
+                console.log(`[REPLICA_SERVICE] No hi ha events del professor per replicar`);
                 return { placed: [], unplaced: [] };
             }
             
@@ -64,15 +47,15 @@ class ReplicationEngine {
             const espaiUtilOrigen = this.analyzeWorkableSpace(sourceCalendar);
             const espaiUtilDesti = this.analyzeWorkableSpace(targetCalendar);
             
-            console.log(`[${this.ENGINE_NAME}] Espai Origen: ${espaiUtilOrigen.length} dies útils`);
-            console.log(`[${this.ENGINE_NAME}] Espai Destí: ${espaiUtilDesti.length} dies útils`);
+            console.log(`[REPLICA_SERVICE] Espai Origen: ${espaiUtilOrigen.length} dies útils`);
+            console.log(`[REPLICA_SERVICE] Espai Destí: ${espaiUtilDesti.length} dies útils`);
             
             if (espaiUtilDesti.length === 0) {
-                console.warn(`[${this.ENGINE_NAME}] Calendari destí sense espai útil disponible`);
+                console.warn(`[REPLICA_SERVICE] Calendari destí sense espai útil disponible`);
                 return { 
                     placed: [], 
                     unplaced: professorEvents.map(event => ({ 
-                        event, 
+                        event: { ...event, replicationConfidence: 0 }, 
                         sourceCalendar,
                         reason: "Calendari destí sense espai útil disponible" 
                     })) 
@@ -81,7 +64,7 @@ class ReplicationEngine {
             
             // Calcular factor de proporció
             const factorProporcio = espaiUtilDesti.length / espaiUtilOrigen.length;
-            console.log(`[${this.ENGINE_NAME}] Factor de proporció: ${factorProporcio.toFixed(3)}`);
+            console.log(`[REPLICA_SERVICE] Factor de proporció: ${factorProporcio.toFixed(3)}`);
             
             // Mapa d'ocupació del destí
             const ocupacioEspaiDesti = new Map(espaiUtilDesti.map(date => [date, 'LLIURE']));
@@ -91,15 +74,15 @@ class ReplicationEngine {
             
             // Bucle principal de replicació
             professorEvents.forEach((event, index) => {
-                console.log(`[${this.ENGINE_NAME}] Processant (${index + 1}/${professorEvents.length}): "${event.title}"`);
+                console.log(`[REPLICA_SERVICE] Processant (${index + 1}/${professorEvents.length}): "${event.title}"`);
                 
                 // Trobar posició en espai origen
                 const indexOrigen = espaiUtilOrigen.indexOf(event.date);
                 
                 if (indexOrigen === -1) {
-                    console.warn(`[${this.ENGINE_NAME}] Event "${event.title}" no troba posició en espai origen`);
+                    console.warn(`[REPLICA_SERVICE] Event "${event.title}" no troba posició en espai origen`);
                     unplacedEvents.push({ 
-                        event, 
+                        event: { ...event, replicationConfidence: 0 }, 
                         sourceCalendar,
                         reason: "Event no està en espai útil d'origen" 
                     });
@@ -113,9 +96,9 @@ class ReplicationEngine {
                 const indexFinal = this.findNearestFreeSlot(ocupacioEspaiDesti, indexIdeal);
                 
                 if (indexFinal === -1) {
-                    console.warn(`[${this.ENGINE_NAME}] No es troba slot lliure per "${event.title}"`);
+                    console.warn(`[REPLICA_SERVICE] No es troba slot lliure per "${event.title}"`);
                     unplacedEvents.push({ 
-                        event, 
+                        event: { ...event, replicationConfidence: 0 }, 
                         sourceCalendar,
                         reason: "Sense slots lliures disponibles" 
                     });
@@ -141,28 +124,27 @@ class ReplicationEngine {
                     newDate: newDate,
                     sourceCalendar: sourceCalendar,
                     originalDate: event.date,
-                    confidence: replicatedEvent.replicationConfidence,
-                    reason: this.generateProportionalReason(indexOrigen, indexIdeal, indexFinal, factorProporcio)
+                    confidence: replicatedEvent.replicationConfidence
                 });
                 
-                console.log(`[${this.ENGINE_NAME}] "${event.title}": ${event.date} → ${newDate} (pos ${indexOrigen + 1}→${indexFinal + 1})`);
+                console.log(`[REPLICA_SERVICE] "${event.title}": ${event.date} → ${newDate} (pos ${indexOrigen + 1}→${indexFinal + 1})`);
             });
             
-            console.log(`[${this.ENGINE_NAME}] Resultat: ${placedEvents.length} ubicats, ${unplacedEvents.length} no ubicats`);
+            console.log(`[REPLICA_SERVICE] Resultat: ${placedEvents.length} ubicats, ${unplacedEvents.length} no ubicats`);
             
             // Validació final de seguretat
             const weekendEvents = placedEvents.filter(item => !dateHelper.isWeekday(item.newDate));
             if (weekendEvents.length > 0) {
-                console.error(`[${this.ENGINE_NAME}] ERROR CRÍTIC: ${weekendEvents.length} events en caps de setmana!`);
+                console.error(`[REPLICA_SERVICE] ERROR CRÍTIC: ${weekendEvents.length} events en caps de setmana!`);
                 throw new Error(`Error de disseny: ${weekendEvents.length} events generats en caps de setmana`);
             }
             
-            console.log(`[${this.ENGINE_NAME}] Replicació proporcional completada amb èxit`);
+            console.log(`[REPLICA_SERVICE] Replicació completada amb èxit`);
             
             return { placed: placedEvents, unplaced: unplacedEvents };
             
         } catch (error) {
-            console.error(`[${this.ENGINE_NAME}] Error en replicació proporcional:`, error);
+            console.error(`[REPLICA_SERVICE] Error en replicació:`, error);
             throw error;
         }
     }
@@ -172,7 +154,7 @@ class ReplicationEngine {
         console.log(`[Espai Útil] Analitzant espai útil per: ${calendar.name}`);
         
         const espaiUtil = [];
-        const dataFiAvalucions = this.findEvaluationEndDate(calendar);
+        const dataFiAvalucions = this.findPAF1(calendar);
         
         // Esdeveniments que ocupen l'espai (sistema IOC, festius, etc.)
         const occupiedBySystem = new Set(
@@ -248,7 +230,7 @@ class ReplicationEngine {
     }
     
     // Detectar data de fi d'avaluacions (cercar PAF1)
-    findEvaluationEndDate(calendar) {
+    findPAF1(calendar) {
         console.log(`[PAF Detection] Buscant PAF1 al calendari: ${calendar.name}`);
         
         // Cercar PAF1 en esdeveniments del calendari
@@ -271,27 +253,9 @@ class ReplicationEngine {
         return calendar.endDate;
     }
     
-    // Filtres d'esdeveniments
-    isProfessorEvent(event) {
-        return event && !this.isSystemEvent(event);
-    }
-    
-    isSystemEvent(event) {
-        return event && event.isSystemEvent === true;
-    }
-    
-    isPAF1Event(event) {
-        return event && event.eventType === 'PAF1';
-    }
-    
-    // Generació de raons proporcionals (simplificada)
-    generateProportionalReason(indexOrigen, indexIdeal, indexFinal, factorProporcio) {
-        return '';
-    }
-    
     // Càlcul de confiança proporcional
     calculateProportionalConfidence(indexOrigen, indexIdeal, indexFinal, factorProporcio) {
-        let confidence = 95; // Base alta per al motor proporcional
+        let confidence = 95; // Base alta
         
         // Penalització per diferència entre ideal i final
         const diferencia = Math.abs(indexIdeal - indexFinal);
@@ -309,7 +273,7 @@ class ReplicationEngine {
     }
 }
 
-// === INSTÀNCIA GLOBAL DEL MOTOR ===
+// === INSTÀNCIA GLOBAL DEL SERVEI ===
 
-// Motor de replicació
-const replicationEngine = new ReplicationEngine();
+// Servei de replicació
+const replicaService = new ReplicaService();
