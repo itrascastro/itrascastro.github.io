@@ -62,6 +62,11 @@ class DateHelper {
         return ['Dilluns', 'Dimarts', 'Dimecres', 'Dijous', 'Divendres', 'Dissabte', 'Diumenge'];
     }
     
+    // Obtenir inicials dels dies de la setmana per vista global
+    getDayHeadersShort() {
+        return ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
+    }
+    
     // Verificar si una data (string) és un dia laborable
     isWeekday(dateStr) {
         const date = new Date(dateStr);

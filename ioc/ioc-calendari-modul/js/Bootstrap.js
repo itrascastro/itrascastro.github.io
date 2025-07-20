@@ -89,7 +89,22 @@ class Bootstrap {
             case 'change-view': viewManager.changeView(target.dataset.view); break;
             case 'day-click': viewManager.changeToDateView(target.dataset.date); break;
             case 'week-click': viewManager.changeToWeekView(target.dataset.date); break;
+            case 'month-click': this.handleMonthClick(target.dataset.date); break;
             default: console.warn(`Acción no reconocida: ${action}`);
+        }
+    }
+
+    // === MÈTODES AUXILIARS ===
+    
+    // Gestionar click en nom de mes (des de vista global)
+    handleMonthClick(dateStr) {
+        if (!dateStr) return;
+        
+        // Parsejar data i establir com data actual
+        const monthDate = dateHelper.parseUTC(dateStr);
+        if (monthDate) {
+            appStateManager.currentDate = monthDate;
+            viewManager.changeView('month');
         }
     }
 

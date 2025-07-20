@@ -21,11 +21,12 @@
 class ViewManager {
     constructor() {
         this.currentView = 'month';
-        this.availableViews = ['month', 'day', 'week', 'semester'];
+        this.availableViews = ['global', 'semester', 'month', 'week', 'day'];
         
         // Registre de renderitzadors
         this.renderers = {
-            month: null,  // S'assignarà quan es carreguin els renderitzadors
+            global: null,  // S'assignarà quan es carreguin els renderitzadors
+            month: null,
             day: null,
             week: null,
             semester: null
@@ -36,6 +37,7 @@ class ViewManager {
     
     // Registrar renderitzadors (cridat després de carregar els scripts)
     initializeRenderers() {
+        this.renderers.global = globalRenderer;
         this.renderers.month = monthRenderer;
         this.renderers.day = dayRenderer;
         this.renderers.week = weekRenderer;
@@ -166,6 +168,9 @@ class ViewManager {
         
         // Renderitzar segons la vista actual
         switch (this.currentView) {
+            case 'global':
+                this.renderGlobalView(calendar);
+                break;
             case 'day':
                 this.renderDayView(calendar);
                 break;
@@ -183,6 +188,30 @@ class ViewManager {
     }
     
     // === RENDERITZADORS ESPECÍFICS ===
+    
+    // Renderitzar vista global
+    renderGlobalView(calendar) {
+        if (!this.renderers.global) {
+            console.error('[ViewManager] Renderitzador de vista global no disponible');
+            this.renderMonthView(calendar); // Fallback
+            return;
+        }
+        
+        const gridWrapper = document.getElementById('calendar-grid-wrapper');
+        const periodDisplay = document.getElementById('current-period-display');
+        
+        const globalHTML = this.renderers.global.render(calendar, 'DOM');
+        gridWrapper.innerHTML = globalHTML;
+        
+        // Actualitzar títol del període amb rang complet del calendari
+        const startDate = dateHelper.parseUTC(calendar.startDate);
+        const endDate = dateHelper.parseUTC(calendar.endDate);
+        const periodTitle = `${calendar.name} (${this.renderers.global.formatDateRange(startDate, endDate)})`;
+        periodDisplay.textContent = periodTitle;
+        
+        // Actualitzar navegació (desactivar botons)
+        this.updateNavigationButtons();
+    }
     
     // Renderitzar vista mensual
     renderMonthView(calendar) {
@@ -292,6 +321,9 @@ class ViewManager {
         
         // Navegació segons la vista actual
         switch (this.currentView) {
+            case 'global':
+                newDate = this.navigateGlobal(direction, calendarStart, calendarEnd);
+                break;
             case 'day':
                 newDate = this.navigateDay(direction, calendarStart, calendarEnd);
                 break;
@@ -355,6 +387,14 @@ class ViewManager {
         return null;
     }
     
+    // Navegació específica per vista global
+    navigateGlobal(direction, calendarStart, calendarEnd) {
+        // Per a vista global, la navegació està desactivada
+        // ja que es mostra tot el calendari acadèmic
+        console.log('[ViewManager] Navegació global: vista completa del calendari');
+        return null; // No navegar en vista global
+    }
+    
     // Navegació específica per semestres
     navigateSemester(direction, calendarStart, calendarEnd) {
         // Per a vista semestral, la navegació està limitada al semestre actual
@@ -405,6 +445,9 @@ class ViewManager {
         
         // Lògica específica per vista
         switch (this.currentView) {
+            case 'global':
+                this.updateGlobalNavigationButtons(prevBtn, nextBtn, calendarStart, calendarEnd);
+                break;
             case 'day':
                 this.updateDayNavigationButtons(prevBtn, nextBtn, calendarStart, calendarEnd);
                 break;
@@ -419,6 +462,15 @@ class ViewManager {
                 calendarManager.updateNavigationControls(calendar);
                 break;
         }
+    }
+    
+    // Actualitzar navegació per vista global
+    updateGlobalNavigationButtons(prevBtn, nextBtn, calendarStart, calendarEnd) {
+        // Per a vista global, desactivar navegació ja que es veu tot el calendari
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        prevBtn.title = 'Vista global: es mostra tot el calendari acadèmic';
+        nextBtn.title = 'Vista global: es mostra tot el calendari acadèmic';
     }
     
     // Actualitzar navegació per vista diària

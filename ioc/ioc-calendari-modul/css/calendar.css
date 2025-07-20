@@ -242,6 +242,130 @@
     color: white; 
 }
 
+/* === VISTA GLOBAL === */
+.global-view-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+.global-month {
+    background-color: transparent;
+    transition: transform 0.2s ease;
+}
+
+.global-month-header {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--secondary-text-color);
+    padding: 10px 8px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    margin-bottom: 12px;
+}
+
+.global-month-header:hover {
+    border-color: var(--accent-color);
+    background-color: #f8f9fa;
+}
+
+.global-month-content {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--card-bg-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 12px;
+}
+
+
+.global-month .calendar-grid {
+    gap: 4px;
+}
+
+.global-month .day-cell {
+    min-height: 35px;
+    padding: 4px;
+    font-size: 0.85em;
+    transition: all 0.2s ease;
+}
+
+.global-month .day-cell[data-action="day-click"]:hover {
+    transform: scale(1.05);
+    border-color: var(--accent-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+}
+
+.global-month .day-number {
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.global-month .week-pill {
+    font-size: 0.7em;
+    padding: 1px 4px;
+    top: 2px;
+    right: 2px;
+}
+
+.global-month .day-header {
+    font-size: 0.85em;
+    font-weight: 600;
+    padding: 6px 4px;
+    min-width: 20px;
+    text-align: center;
+}
+
+.global-month .day-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin: 0;
+}
+
+.global-month .day-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.global-month .add-event-btn {
+    display: none; /* Amagar botons d'afegir event en vista global */
+}
+
+/* Responsive: Ajustar graella segons pantalla */
+@media (max-width: 1200px) {
+    .global-view-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 15px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .global-view-container {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 12px;
+    }
+    
+    .global-month .day-cell {
+        min-height: 30px;
+        font-size: 0.8em;
+    }
+}
+
 /* === MODALS === */
 .modal { 
     display: none; 
