@@ -160,7 +160,7 @@ class ModalRenderer {
 
         if (event && !event.isSystemEvent) {
             appStateManager.editingEventId = event.id;
-            title.textContent = 'Editar Event';
+            title.textContent = 'Editar Esdeveniment';
             document.getElementById('eventTitle').value = event.title;
             document.getElementById('eventDate').value = event.date;
             document.getElementById('eventCategory').value = event.categoryId;
@@ -168,7 +168,7 @@ class ModalRenderer {
             deleteBtn.style.display = 'inline-block';
         } else {
             appStateManager.editingEventId = null;
-            title.textContent = 'Nou Event';
+            title.textContent = 'Nou Esdeveniment';
             document.getElementById('eventTitle').value = '';
             document.getElementById('eventDate').value = date;
             document.getElementById('eventCategory').value = '';

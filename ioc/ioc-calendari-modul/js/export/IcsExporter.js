@@ -74,7 +74,7 @@ class IcsExporter {
         
         let description = event.description || '';
         if (event.isSystemEvent) {
-            description += ' [Event institucional IOC]';
+            description += ' [Esdeveniment institucional IOC]';
         }
         if (description) {
             eventContent += `DESCRIPTION:${this.escapeIcsText(description)}\r\n`;

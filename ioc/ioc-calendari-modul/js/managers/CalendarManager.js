@@ -20,10 +20,6 @@
 
 // Classe per gestionar tots els calendaris de l'aplicació
 class CalendarManager {
-    constructor() {
-        this.managerType = 'calendar';
-    }
-    
     // === GESTIÓ DE CALENDARIS ===
     
     // Crear nou calendari

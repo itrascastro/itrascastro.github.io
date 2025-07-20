@@ -1,9 +1,9 @@
 /**
  * =================================================================
- * REPLICATION MANAGER - GESTIÓ DE REPLICACIÓ I ESDEVENIMENTS NO UBICATS
+ * REPLICA MANAGER - GESTIÓ DE REPLICACIÓ I ESDEVENIMENTS NO UBICATS
  * =================================================================
  * 
- * @file        ReplicationManager.js
+ * @file        ReplicaManager.js
  * @description Gestió de replicació de calendaris i esdeveniments no ubicats
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0
@@ -18,13 +18,10 @@
  * =================================================================
  */
 
-// Variable global per emmagatzemar l'ID del calendari origen
-let currentSourceCalendarId = null;
-
 // Classe per gestionar la replicació de calendaris i esdeveniments no ubicats
-class ReplicationManager {
+class ReplicaManager {
     constructor() {
-        this.managerType = 'replication';
+        this.currentSourceCalendarId = null;
     }
     
     // === GESTIÓ DE REPLICACIÓ ===
@@ -47,8 +44,8 @@ class ReplicationManager {
             return;
         }
 
-        // Guardar ID del calendari origen per usar en executeReplication
-        currentSourceCalendarId = sourceCalendarId;
+        // Desar ID del calendari origen per usar en executeReplication
+        this.currentSourceCalendarId = sourceCalendarId;
 
         // Poblar modal estàtic amb contingut dinàmic
         document.getElementById('sourceCalendarName').textContent = sourceCalendar.name;
@@ -77,7 +74,7 @@ class ReplicationManager {
     
     // Executar replicació
     executeReplication() {
-        const sourceCalendarId = currentSourceCalendarId;
+        const sourceCalendarId = this.currentSourceCalendarId;
         const targetCalendarId = document.getElementById('targetCalendarSelect').value;
         
         if (!sourceCalendarId) {
@@ -114,7 +111,7 @@ class ReplicationManager {
                 targetCalendar.events.push(newEvent);
             });
 
-            // Guardar esdeveniments no ubicats globalment
+            // Desar esdeveniments no ubicats globalment
             if (result.unplaced.length > 0) {
                 appStateManager.unplacedEvents = result.unplaced;
                 console.log(`[Replicació] ${result.unplaced.length} events no ubicats guardats per gestió manual`);
@@ -126,11 +123,10 @@ class ReplicationManager {
             
             // Persistir canvis
             storageManager.saveToStorage();
-            calendarManager.updateUI();
             modalRenderer.closeModal('replicationModal');
             
-            // Netejar variable global
-            currentSourceCalendarId = null;
+            // Netejar propietat de classe
+            this.currentSourceCalendarId = null;
             
             const message = `Replicació completada: ${result.placed.length} events ubicats` + 
                            (result.unplaced.length > 0 ? `, ${result.unplaced.length} pendents` : '');
@@ -179,14 +175,6 @@ class ReplicationManager {
             
             // Configurar drag & drop per esdeveniments no ubicats
             this.setupUnplacedEventsDragDrop();
-        }
-    }
-    
-    // Tancar panel d'esdeveniments no ubicats
-    closeUnplacedEventsPanel() {
-        const panel = document.getElementById('unplacedEventsSection');
-        if (panel) {
-            panel.remove();
         }
     }
     
@@ -264,7 +252,7 @@ class ReplicationManager {
             uiHelper.showMessage('Tots els events han estat col·locats', 'success');
         }
         
-        uiHelper.showMessage(`Event "${newEvent.title}" col·locat correctament`, 'success');
+        uiHelper.showMessage(`Esdeveniment "${newEvent.title}" col·locat correctament`, 'success');
     }
     
     // Descartar esdeveniment no ubicat
@@ -290,13 +278,12 @@ class ReplicationManager {
                     uiHelper.showMessage('Tots els events han estat gestionats', 'success');
                 }
                 
-                uiHelper.showMessage('Event descartat', 'info');
+                uiHelper.showMessage('Esdeveniment descartat', 'info');
             }
         );
     }
     
-    // === GESTIÓ D'ARXIUS ===
 }
 
 // === INSTÀNCIA GLOBAL ===
-const replicationManager = new ReplicationManager();
+const replicaManager = new ReplicaManager();

@@ -80,11 +80,11 @@ class ReplicaService {
                 const indexOrigen = espaiUtilOrigen.indexOf(event.date);
                 
                 if (indexOrigen === -1) {
-                    console.warn(`[REPLICA_SERVICE] Event "${event.title}" no troba posició en espai origen`);
+                    console.warn(`[REPLICA_SERVICE] Esdeveniment "${event.title}" no troba posició en espai origen`);
                     unplacedEvents.push({ 
                         event: { ...event, replicationConfidence: 0 }, 
                         sourceCalendar,
-                        reason: "Event no està en espai útil d'origen" 
+                        reason: "Esdeveniment no està en espai útil d'origen" 
                     });
                     return;
                 }

@@ -536,7 +536,7 @@ class ViewManager {
                 if (appStateManager.draggedFromDate === 'unplaced') {
                     const eventData = JSON.parse(e.dataTransfer.getData('text/plain'));
                     if (eventData.isUnplacedEvent) {
-                        replicationManager.placeUnplacedEvent(eventData.unplacedIndex, dateStr);
+                        replicaManager.placeUnplacedEvent(eventData.unplacedIndex, dateStr);
                     }
                 } else if (appStateManager.draggedFromDate !== dateStr) {
                     eventManager.moveEvent(appStateManager.draggedEvent.id, dateStr);

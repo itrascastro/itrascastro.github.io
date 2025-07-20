@@ -56,7 +56,7 @@ class DayViewRenderer extends CalendarRenderer {
         
         // Botó per afegir event (només si està en rang i és dia laborable)
         const addEventBtn = (isInRange && isWeekday) 
-            ? `<button class="btn btn-primary add-event-day-btn" data-action="add-event" data-date="${dayData.dateStr}">+ Afegir Event</button>`
+            ? `<button class="btn btn-primary add-event-day-btn" data-action="add-event" data-date="${dayData.dateStr}">+ Afegir Esdeveniment</button>`
             : '';
         
         return `

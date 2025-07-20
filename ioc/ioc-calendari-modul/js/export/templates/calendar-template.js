@@ -1,10 +1,45 @@
-// =================================================================
-// CALENDAR TEMPLATE - PLANTILLA HTML PER A EXPORTACIÓ
-// =================================================================
+/**
+ * =================================================================
+ * CALENDAR TEMPLATE - PLANTILLA HTML PER A EXPORTACIÓ
+ * =================================================================
+ * 
+ * @file        calendar-template.js
+ * @description Plantilla HTML per exportar calendaris com a pàgines web independents
+ * @author      Ismael Trascastro <itrascastro@ioc.cat>
+ * @version     1.0.0
+ * @date        2025-01-16
+ * @project     Calendari Mòdul IOC
+ * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @license     MIT
+ * 
+ * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
+ * una aplicació web per gestionar calendaris acadèmics.
+ * 
+ * =================================================================
+ */
 
 // Plantilla base per generar calendaris HTML
 const calendarHtmlTemplate = `<!DOCTYPE html>
 <html lang="ca">
+<!--
+=================================================================
+CALENDAR TEMPLATE - PLANTILLA HTML PER A EXPORTACIÓ
+=================================================================
+
+@file        Calendari-Modul-IOC.html
+@description Plantilla HTML per exportar calendaris com a pàgines web independents
+@author      Ismael Trascastro <itrascastro@ioc.cat>
+@version     1.0.0
+@date        2025-01-16
+@project     Calendari Mòdul IOC
+@repository  https://github.com/itrascastro/ioc-modul-calendari
+@license     MIT
+
+Aquest fitxer forma part del projecte Calendari Mòdul IOC,
+una aplicació web per gestionar calendaris acadèmics.
+
+=================================================================
+-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

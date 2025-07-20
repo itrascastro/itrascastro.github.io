@@ -73,9 +73,9 @@ class Bootstrap {
             case 'save-edit-category': categoryManager.saveEditCategory(target); break;
             case 'delete-category': categoryManager.deleteCategory(target); break;
             case 'load-calendar-file': calendarManager.loadCalendarFile(); break;
-            case 'show-unplaced-events': replicationManager.showUnplacedEventsPanel(); break;
-            case 'place-unplaced-event': replicationManager.placeUnplacedEvent(target.dataset.eventIndex, target.dataset.date); break;
-            case 'dismiss-unplaced-event': replicationManager.dismissUnplacedEvent(target.dataset.eventIndex); break;
+            case 'show-unplaced-events': replicaManager.showUnplacedEventsPanel(); break;
+            case 'place-unplaced-event': replicaManager.placeUnplacedEvent(target.dataset.eventIndex, target.dataset.date); break;
+            case 'dismiss-unplaced-event': replicaManager.dismissUnplacedEvent(target.dataset.eventIndex); break;
             case 'toggle-actions-menu': menuHelper.toggleActionsMenu(target); break;
             case 'open-calendar-actions-modal': modalRenderer.openCalendarActionsModal(target.dataset.calendarId); break;
             case 'open-color-picker-modal': modalRenderer.openColorPickerModal(target.dataset.categoryId, target); break;
@@ -84,8 +84,8 @@ class Bootstrap {
             case 'export-calendar-ics': icsExporter.exportCalendar(appStateManager.getSelectedCalendarId()); break;
             case 'export-calendar-html': htmlExporter.exportCalendar(appStateManager.getSelectedCalendarId()); break;
             case 'delete-calendar': calendarManager.deleteCalendar(appStateManager.getSelectedCalendarId()); break;
-            case 'replicate-calendar': replicationManager.openReplicationModal(appStateManager.getSelectedCalendarId()); break;
-            case 'execute-replication': replicationManager.executeReplication(); break;
+            case 'replicate-calendar': replicaManager.openReplicationModal(appStateManager.getSelectedCalendarId()); break;
+            case 'execute-replication': replicaManager.executeReplication(); break;
             case 'change-view': viewManager.changeView(target.dataset.view); break;
             case 'day-click': viewManager.changeToDateView(target.dataset.date); break;
             case 'week-click': viewManager.changeToWeekView(target.dataset.date); break;

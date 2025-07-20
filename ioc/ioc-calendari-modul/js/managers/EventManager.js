@@ -20,13 +20,9 @@
 
 // Classe per gestionar tots els esdeveniments del calendari
 class EventManager {
-    constructor() {
-        this.managerType = 'event';
-    }
-    
     // === GESTIÓ D'ESDEVENIMENTS ===
     
-    // Guardar esdeveniment (crear o editar)
+    // Desar esdeveniment (crear o editar)
     saveEvent() {
         const calendar = appStateManager.getCurrentCalendar();
         if (!calendar) return;
@@ -74,7 +70,7 @@ class EventManager {
                 storageManager.saveToStorage();
                 viewManager.renderCurrentView();
                 modalRenderer.closeModal('eventModal');
-                uiHelper.showMessage('Event eliminat correctament', 'success');
+                uiHelper.showMessage('Esdeveniment eliminat correctament', 'success');
             }
         );
     }
@@ -107,7 +103,7 @@ class EventManager {
         storageManager.saveToStorage();
         viewManager.renderCurrentView();
         
-        uiHelper.showMessage(`Event "${event.title}" mogut correctament`, 'success');
+        uiHelper.showMessage(`Esdeveniment "${event.title}" mogut correctament`, 'success');
     }
     
     // === VALIDACIONS ===
@@ -176,13 +172,6 @@ class EventManager {
         // Obtenir categories disponibles utilitzant el servei centralitzat
         const allCategories = CategoryService.getAvailableCategories(calendar);
         
-        // Debug: Mostrar quantes categories tenim
-        console.log(`[EventManager] Categories de sistema (no mostrades): ${systemCategories.length}`);
-        console.log(`[EventManager] Categories d'usuari disponibles: ${allCategories.length}`);
-        console.log(`[EventManager] Total categories al selector: ${allCategories.length}`);
-        console.log(`[EventManager] Categories de sistema (ocultes):`, systemCategories.map(c => c.name));
-        console.log(`[EventManager] Categories d'usuari disponibles:`, allCategories.map(c => c.name));
-        
         if (allCategories.length === 0) {
             console.warn('[EventManager] No hi ha categories disponibles!');
         }
@@ -190,12 +179,9 @@ class EventManager {
         allCategories.forEach((cat, index) => {
             const option = document.createElement('option');
             option.value = cat.id;
-            option.textContent = cat.name; // Només categories d'usuari, no cal indicar tipus
+            option.textContent = cat.name;
             select.appendChild(option);
-            console.log(`[EventManager] Afegida categoria ${index + 1}: ${cat.name} (ID: ${cat.id})`);
         });
-        
-        console.log(`[EventManager] Select final té ${select.options.length - 1} categories (excloent placeholder)`);
     }
     
     // === DRAG & DROP ===
@@ -267,7 +253,7 @@ class EventManager {
                     // Manejar esdeveniment no ubicat
                     const eventData = JSON.parse(e.dataTransfer.getData('text/plain'));
                     if (eventData.isUnplacedEvent) {
-                        replicationManager.placeUnplacedEvent(eventData.unplacedIndex, dateStr);
+                        replicaManager.placeUnplacedEvent(eventData.unplacedIndex, dateStr);
                     }
                 } else if (appStateManager.draggedFromDate !== dateStr) {
                     // Manejar esdeveniment normal
@@ -304,7 +290,7 @@ class EventManager {
         viewManager.renderCurrentView();
         panelsRenderer.renderCategories(); // Re-renderitzar per mostrar nova categoria si s'ha afegit
         modalRenderer.closeModal('eventModal');
-        uiHelper.showMessage('Event guardat correctament', 'success');
+        uiHelper.showMessage('Esdeveniment guardat correctament', 'success');
     }
 }
 

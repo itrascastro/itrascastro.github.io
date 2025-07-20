@@ -4,7 +4,7 @@
  * =================================================================
  * 
  * @file        StorageManager.js
- * @description Funcions per guardar i carregar dades des de localStorage
+ * @description Funcions per desar i carregar dades des de localStorage
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0
  * @date        2025-01-16
@@ -25,16 +25,16 @@ class StorageManager {
         this.STORAGE_KEY = 'calendari-ioc-data';
     }
 
-    // Guardar estat a localStorage
+    // Desar estat a localStorage
     saveToStorage() {
         try {
-            // Preparar estat per guardar (convertir dates a strings)
+            // Preparar estat per desar (convertir dates a strings)
             const stateToSave = { 
                 ...appStateManager.appState, 
                 currentDate: dateHelper.toUTCString(appStateManager.currentDate) 
             };
             
-            // Guardar a localStorage
+            // Desar a localStorage
             localStorage.setItem(this.STORAGE_KEY, JSON.stringify(stateToSave));
             
             console.log('[Storage] Estat guardat correctament');
@@ -219,7 +219,7 @@ class StorageManager {
                 currentDate: dateHelper.parseUTC(importData.data.currentDate.split('T')[0])
             };
         
-            // Guardar estat importat
+            // Desar estat importat
             this.saveToStorage();
         
             console.log('[Storage] Estat importat correctament');
