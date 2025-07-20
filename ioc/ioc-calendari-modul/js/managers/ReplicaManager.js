@@ -223,7 +223,7 @@ class ReplicaManager {
         if (!unplacedItem || !calendar) return;
         
         // Validar data objectiu per replicació (només dies laborables)
-        if (!DateValidationService.validateReplicationWithMessage(targetDate, calendar)) {
+        if (!dateValidationService.validateReplicationWithMessage(targetDate, calendar)) {
             return;
         }
         

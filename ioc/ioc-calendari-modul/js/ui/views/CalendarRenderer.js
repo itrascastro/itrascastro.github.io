@@ -38,7 +38,7 @@ class CalendarRenderer {
         };
         
         // Marcar només si està dins del calendari actiu i dins del rang de dates
-        if (calendar && !isOutOfMonth && DateValidationService.isDateInCalendarRange(dateStr, calendar)) {
+        if (calendar && !isOutOfMonth && dateValidationService.isDateInCalendarRange(dateStr, calendar)) {
             dayData.weekNumber = dateHelper.getCalendarWeekNumber(date, calendar.startDate);
             dayData.events = calendar.events.filter(e => e.date === dateStr);
         }
@@ -49,7 +49,7 @@ class CalendarRenderer {
     // === GENERACIÓ DE HTML D'ESDEVENIMENTS ===
     generateEventHTML(event, calendar, outputFormat = 'DOM') {
         // Cercar categoria utilitzant el servei centralitzat
-        const color = CategoryService.getCategoryColor(event.categoryId, calendar);
+        const color = categoryService.getCategoryColor(event.categoryId, calendar);
         const isUserEvent = !event.isSystemEvent;
         
         if (outputFormat === 'HTML') {

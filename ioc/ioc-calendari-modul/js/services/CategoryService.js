@@ -24,7 +24,7 @@ class CategoryService {
     // === CERCA DE CATEGORIES ===
     
     // Trobar categoria per ID (cerca primer al calendari, després al catàleg global)
-    static findCategoryById(categoryId, calendar) {
+    findCategoryById(categoryId, calendar) {
         if (!categoryId) return null;
         
         // Buscar primer a les categories del calendari
@@ -37,13 +37,13 @@ class CategoryService {
     }
     
     // Obtenir color d'una categoria
-    static getCategoryColor(categoryId, calendar) {
+    getCategoryColor(categoryId, calendar) {
         const category = this.findCategoryById(categoryId, calendar);
         return category ? category.color : '#888'; // Color per defecte
     }
     
     // Obtenir nom d'una categoria
-    static getCategoryName(categoryId, calendar) {
+    getCategoryName(categoryId, calendar) {
         const category = this.findCategoryById(categoryId, calendar);
         return category ? category.name : 'Categoria desconeguda';
     }
@@ -51,7 +51,7 @@ class CategoryService {
     // === CATEGORIES DISPONIBLES ===
     
     // Obtenir categories disponibles per al selector (exclou categories de sistema)
-    static getAvailableCategories(calendar) {
+    getAvailableCategories(calendar) {
         if (!calendar) return [];
         
         // Categories del calendari (exclou sistema)
@@ -72,7 +72,7 @@ class CategoryService {
     }
     
     // Obtenir totes les categories (inclou sistema)
-    static getAllCategories(calendar) {
+    getAllCategories(calendar) {
         if (!calendar) return [];
         
         return calendar.categories || [];
@@ -81,12 +81,12 @@ class CategoryService {
     // === VALIDACIONS ===
     
     // Verificar si una categoria existeix
-    static categoryExists(categoryId, calendar) {
+    categoryExists(categoryId, calendar) {
         return this.findCategoryById(categoryId, calendar) !== null;
     }
     
     // Verificar si una categoria és del sistema
-    static isSystemCategory(categoryId, calendar) {
+    isSystemCategory(categoryId, calendar) {
         const category = this.findCategoryById(categoryId, calendar);
         return category ? category.isSystem === true : false;
     }
@@ -94,7 +94,7 @@ class CategoryService {
     // === UTILITATS ===
     
     // Obtenir estadístiques de categories
-    static getCategoryStats(calendar) {
+    getCategoryStats(calendar) {
         if (!calendar) return { total: 0, system: 0, user: 0 };
         
         const total = calendar.categories.length;
@@ -104,3 +104,6 @@ class CategoryService {
         return { total, system, user };
     }
 }
+
+// === INSTÀNCIA GLOBAL ===
+const categoryService = new CategoryService();

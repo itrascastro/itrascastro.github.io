@@ -24,14 +24,14 @@ class DateValidationService {
     // === VALIDACIONS BÀSIQUES ===
     
     // Verificar si una data està dins del rang del calendari
-    static isDateInCalendarRange(dateStr, calendar) {
+    isDateInCalendarRange(dateStr, calendar) {
         if (!dateStr || !calendar) return false;
         
         return dateStr >= calendar.startDate && dateStr <= calendar.endDate;
     }
     
     // Verificar si una data és vàlida per esdeveniments (professors - qualsevol dia)
-    static isValidEventDate(dateStr, calendar) {
+    isValidEventDate(dateStr, calendar) {
         if (!dateStr || !calendar) return false;
         
         // Els professors poden crear/moure events a qualsevol dia dins del calendari
@@ -39,7 +39,7 @@ class DateValidationService {
     }
     
     // Verificar si una data és vàlida per replicació (només dies laborables)
-    static isValidReplicationDate(dateStr, calendar) {
+    isValidReplicationDate(dateStr, calendar) {
         if (!dateStr || !calendar) return false;
         
         // Ha d'estar dins del rang del calendari
@@ -52,7 +52,7 @@ class DateValidationService {
     }
     
     // Verificar si una data és un dia laborable
-    static isWeekday(dateStr) {
+    isWeekday(dateStr) {
         if (!dateStr) return false;
         
         return dateHelper.isWeekday(dateStr);
@@ -61,7 +61,7 @@ class DateValidationService {
     // === VALIDACIONS AMB EXCEPCIONS ===
     
     // Validar data per canvi de vista (llança excepció si no és vàlida)
-    static validateViewDate(dateStr, calendar) {
+    validateViewDate(dateStr, calendar) {
         if (!dateStr) {
             throw new Error('Data no vàlida');
         }
@@ -78,7 +78,7 @@ class DateValidationService {
     }
     
     // Validar data per esdeveniment (llança excepció si no és vàlida)
-    static validateEventDate(dateStr, calendar) {
+    validateEventDate(dateStr, calendar) {
         if (!dateStr) {
             throw new Error('Data no vàlida');
         }
@@ -95,7 +95,7 @@ class DateValidationService {
     }
     
     // Validar data per replicació (llança excepció si no és vàlida)
-    static validateReplicationDate(dateStr, calendar) {
+    validateReplicationDate(dateStr, calendar) {
         if (!dateStr) {
             throw new Error('Data no vàlida');
         }
@@ -118,7 +118,7 @@ class DateValidationService {
     // === UTILITATS DE RANG ===
     
     // Verificar si una setmana té dies dins del calendari
-    static isWeekInCalendarRange(weekStart, weekEnd, calendar) {
+    isWeekInCalendarRange(weekStart, weekEnd, calendar) {
         if (!weekStart || !weekEnd || !calendar) return false;
         
         const startStr = dateHelper.toUTCString(weekStart);
@@ -129,7 +129,7 @@ class DateValidationService {
     }
     
     // Verificar si un mes té dies dins del calendari
-    static isMonthInCalendarRange(monthDate, calendar) {
+    isMonthInCalendarRange(monthDate, calendar) {
         if (!monthDate || !calendar) return false;
         
         const monthStart = dateHelper.createUTC(monthDate.getUTCFullYear(), monthDate.getUTCMonth(), 1);
@@ -145,7 +145,7 @@ class DateValidationService {
     // === VALIDACIONS AMB MISSATGES ===
     
     // Validar i mostrar missatge d'error si cal
-    static validateDateWithMessage(dateStr, calendar, context = 'Data') {
+    validateDateWithMessage(dateStr, calendar, context = 'Data') {
         try {
             this.validateViewDate(dateStr, calendar);
             return true;
@@ -156,7 +156,7 @@ class DateValidationService {
     }
     
     // Validar esdeveniment i mostrar missatge d'error si cal
-    static validateEventWithMessage(dateStr, calendar) {
+    validateEventWithMessage(dateStr, calendar) {
         try {
             this.validateEventDate(dateStr, calendar);
             return true;
@@ -167,7 +167,7 @@ class DateValidationService {
     }
     
     // Validar replicació i mostrar missatge d'error si cal
-    static validateReplicationWithMessage(dateStr, calendar) {
+    validateReplicationWithMessage(dateStr, calendar) {
         try {
             this.validateReplicationDate(dateStr, calendar);
             return true;
@@ -180,7 +180,7 @@ class DateValidationService {
     // === UTILITATS DE MOVIMENT D'EVENTS ===
     
     // Verificar si un esdeveniment es pot moure a una nova data
-    static isValidEventMove(event, newDateStr, calendar) {
+    isValidEventMove(event, newDateStr, calendar) {
         if (!event || !newDateStr || !calendar) return false;
         
         // Verificar que la nova data sigui vàlida
@@ -199,7 +199,7 @@ class DateValidationService {
     // === INFORMACIÓ DE DEBUGGING ===
     
     // Obtenir informació de debug sobre una data
-    static getDateDebugInfo(dateStr, calendar) {
+    getDateDebugInfo(dateStr, calendar) {
         if (!dateStr || !calendar) return null;
         
         return {
@@ -212,3 +212,6 @@ class DateValidationService {
         };
     }
 }
+
+// === INSTÀNCIA GLOBAL ===
+const dateValidationService = new DateValidationService();

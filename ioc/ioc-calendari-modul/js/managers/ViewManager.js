@@ -101,7 +101,7 @@ class ViewManager {
             return false;
         }
         
-        if (!DateValidationService.validateDateWithMessage(dateStr, calendar, 'Vista dia')) {
+        if (!dateValidationService.validateDateWithMessage(dateStr, calendar, 'Vista dia')) {
             return false;
         }
         
@@ -136,7 +136,7 @@ class ViewManager {
             return false;
         }
         
-        if (!DateValidationService.validateDateWithMessage(dateStr, calendar, 'Vista setmanal')) {
+        if (!dateValidationService.validateDateWithMessage(dateStr, calendar, 'Vista setmanal')) {
             return false;
         }
         
@@ -506,7 +506,7 @@ class ViewManager {
             let isValid = false;
             
             if (appStateManager.draggedFromDate === 'unplaced') {
-                isValid = DateValidationService.isValidEventDate(dateStr, calendar);
+                isValid = dateValidationService.isValidEventDate(dateStr, calendar);
             } else {
                 isValid = eventManager.isValidEventMove(appStateManager.draggedEvent, dateStr, calendar);
             }

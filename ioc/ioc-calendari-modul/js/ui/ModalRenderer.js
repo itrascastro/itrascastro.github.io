@@ -97,7 +97,7 @@ class ModalRenderer {
         const calendar = appStateManager.getCurrentCalendar();
         if (!calendar) return;
         
-        const category = CategoryService.findCategoryById(categoryId, calendar);
+        const category = categoryService.findCategoryById(categoryId, calendar);
         if (!category) return;
         
         const modal = document.getElementById('colorPickerModal');

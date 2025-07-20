@@ -140,7 +140,7 @@ class EventManager {
         }
         
         // Validar data utilitzant el servei centralitzat
-        return DateValidationService.validateEventWithMessage(targetDate, calendar);
+        return dateValidationService.validateEventWithMessage(targetDate, calendar);
     }
     
     // === CATEGORIES ===
@@ -170,7 +170,7 @@ class EventManager {
         
         // PER ESDEVENIMENTS D'USUARI: Només categories del catàleg (no sistema)
         // Obtenir categories disponibles utilitzant el servei centralitzat
-        const allCategories = CategoryService.getAvailableCategories(calendar);
+        const allCategories = categoryService.getAvailableCategories(calendar);
         
         if (allCategories.length === 0) {
             console.warn('[EventManager] No hi ha categories disponibles!');
@@ -212,7 +212,7 @@ class EventManager {
         if (!calendar) return;
         
         // Només permetre drop en dies dins del rang del calendari
-        if (!DateValidationService.isDateInCalendarRange(dateStr, calendar)) return;
+        if (!dateValidationService.isDateInCalendarRange(dateStr, calendar)) return;
         
         dayElement.addEventListener('dragover', (e) => {
             if (!appStateManager.draggedEvent) return;
@@ -222,7 +222,7 @@ class EventManager {
             // Validar segons el tipus d'esdeveniment
             if (appStateManager.draggedFromDate === 'unplaced') {
                 // Esdeveniment no ubicat (de replicació): només dies laborables
-                isValid = DateValidationService.isValidReplicationDate(dateStr, calendar);
+                isValid = dateValidationService.isValidReplicationDate(dateStr, calendar);
             } else {
                 // Esdeveniment normal: usar validació estàndard
                 isValid = this.isValidEventMove(appStateManager.draggedEvent, dateStr, calendar);

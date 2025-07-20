@@ -33,8 +33,8 @@ class DayViewRenderer extends CalendarRenderer {
         const dayData = this.generateDayData(currentDate, calendar, false);
         
         // Verificar si el dia està dins del rang del calendari
-        const isInRange = DateValidationService.isDateInCalendarRange(dateStr, calendar);
-        const isWeekday = DateValidationService.isWeekday(dateStr);
+        const isInRange = dateValidationService.isDateInCalendarRange(dateStr, calendar);
+        const isWeekday = dateValidationService.isWeekday(dateStr);
         
         // Generar sortida segons format
         if (outputFormat === 'HTML') {
@@ -103,8 +103,8 @@ class DayViewRenderer extends CalendarRenderer {
     // === GENERACIÓ D'ESDEVENIMENTS EN LLISTA ===
     generateEventListItem(event, calendar, outputFormat = 'DOM') {
         // Cercar categoria utilitzant el servei centralitzat
-        const color = CategoryService.getCategoryColor(event.categoryId, calendar);
-        const categoryName = CategoryService.getCategoryName(event.categoryId, calendar);
+        const color = categoryService.getCategoryColor(event.categoryId, calendar);
+        const categoryName = categoryService.getCategoryName(event.categoryId, calendar);
         const isUserEvent = !event.isSystemEvent;
         
         if (outputFormat === 'HTML') {
