@@ -45,7 +45,8 @@ class JsonExporter {
             exportInfo: {
                 version: '1.0',
                 exportDate: new Date().toISOString(),
-                exportedBy: 'Calendari-Modul-IOC'
+                exportedBy: 'Calendari-Modul-IOC',
+                calendarType: calendar.type
             }
         };
         

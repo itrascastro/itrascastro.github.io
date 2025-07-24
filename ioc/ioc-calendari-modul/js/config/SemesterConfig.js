@@ -19,247 +19,121 @@
  */
 
 class SemesterConfig {
-    constructor() {
-        // Configuració del semestre directament inclosa
-        this.data = {
-            "semester": {
-                "code": "24S2",
-                "startDate": "2025-02-14",
-                "endDate": "2025-06-27",
-                "name": "Segon Semestre 2024-25",
-                "description": "Configuració del semestre IOC - Febrer a Juny 2025"
-            },
-            "systemEvents": [
-                {
-                    "id": "SYS_EVENT_0",
-                    "title": "Inici del semestre",
-                    "date": "2025-02-14",
-                    "categoryId": "SYS_CAT_2",
-                    "isSystemEvent": true,
-                    "eventType": "FESTIU"
-                },
-                {
-                    "id": "SYS_EVENT_1",
-                    "title": "Festiu centre",
-                    "date": "2025-03-03",
-                    "categoryId": "SYS_CAT_1",
-                    "isSystemEvent": true,
-                    "eventType": "FESTIU"
-                },
-                {
-                    "id": "SYS_EVENT_2", 
-                    "title": "Festa del Treball",
-                    "date": "2025-05-01",
-                    "categoryId": "SYS_CAT_1",
-                    "isSystemEvent": true,
-                    "eventType": "FESTIU"
-                },
-                {
-                    "id": "SYS_EVENT_3",
-                    "title": "Orientacions PAF",
-                    "date": "2025-05-14",
-                    "categoryId": "SYS_CAT_2",
-                    "isSystemEvent": true,
-                    "eventType": "IOC_GENERIC"
-                },
-                {
-                    "id": "SYS_EVENT_4",
-                    "title": "PAF1",
-                    "date": "2025-05-24",
-                    "categoryId": "SYS_CAT_3",
-                    "isSystemEvent": true,
-                    "eventType": "PAF1"
-                },
-                {
-                    "id": "SYS_EVENT_5",
-                    "title": "PAF2",
-                    "date": "2025-06-07",
-                    "categoryId": "SYS_CAT_3",
-                    "isSystemEvent": true,
-                    "eventType": "PAF2"
-                },
-                {
-                    "id": "SYS_EVENT_6",
-                    "title": "Vacances Setmana Santa (1)",
-                    "date": "2025-04-12",
-                    "categoryId": "SYS_CAT_1",
-                    "isSystemEvent": true,
-                    "eventType": "FESTIU"
-                },
-                {
-                    "id": "SYS_EVENT_7",
-                    "title": "Vacances Setmana Santa (2)",
-                    "date": "2025-04-13",
-                    "categoryId": "SYS_CAT_1",
-                    "isSystemEvent": true,
-                    "eventType": "FESTIU"
-                },
-                {
-                    "id": "SYS_EVENT_8",
-                    "title": "Vacances Setmana Santa (3)",
-                    "date": "2025-04-14",
-                    "categoryId": "SYS_CAT_1",
-                    "isSystemEvent": true,
-                    "eventType": "FESTIU"
-                },
-                {
-                    "id": "SYS_EVENT_9",
-                    "title": "Vacances Setmana Santa (4)",
-                    "date": "2025-04-15",
-                    "categoryId": "SYS_CAT_1",
-                    "isSystemEvent": true,
-                    "eventType": "FESTIU"
-                },
-                {
-                    "id": "SYS_EVENT_10",
-                    "title": "Vacances Setmana Santa (5)",
-                    "date": "2025-04-16",
-                    "categoryId": "SYS_CAT_1",
-                    "isSystemEvent": true,
-                    "eventType": "FESTIU"
-                },
-                {
-                    "id": "SYS_EVENT_11",
-                    "title": "Vacances Setmana Santa (6)",
-                    "date": "2025-04-17",
-                    "categoryId": "SYS_CAT_1",
-                    "isSystemEvent": true,
-                    "eventType": "FESTIU"
-                },
-                {
-                    "id": "SYS_EVENT_12",
-                    "title": "Vacances Setmana Santa (7)",
-                    "date": "2025-04-18",
-                    "categoryId": "SYS_CAT_1",
-                    "isSystemEvent": true,
-                    "eventType": "FESTIU"
-                },
-                {
-                    "id": "SYS_EVENT_13",
-                    "title": "Vacances Setmana Santa (8)",
-                    "date": "2025-04-19",
-                    "categoryId": "SYS_CAT_1",
-                    "isSystemEvent": true,
-                    "eventType": "FESTIU"
-                },
-                {
-                    "id": "SYS_EVENT_14",
-                    "title": "Vacances Setmana Santa (9)",
-                    "date": "2025-04-20",
-                    "categoryId": "SYS_CAT_1",
-                    "isSystemEvent": true,
-                    "eventType": "FESTIU"
-                },
-                {
-                    "id": "SYS_EVENT_15",
-                    "title": "Vacances Setmana Santa (10)",
-                    "date": "2025-04-21",
-                    "categoryId": "SYS_CAT_1",
-                    "isSystemEvent": true,
-                    "eventType": "FESTIU"
-                },
-                {
-                    "id": "SYS_EVENT_16",
-                    "title": "Revisió PAF1 (1)",
-                    "date": "2025-05-30",
-                    "categoryId": "SYS_CAT_2",
-                    "isSystemEvent": true,
-                    "eventType": "IOC_GENERIC"
-                },
-                {
-                    "id": "SYS_EVENT_17",
-                    "title": "Revisió PAF1 (2)",
-                    "date": "2025-05-31",
-                    "categoryId": "SYS_CAT_2",
-                    "isSystemEvent": true,
-                    "eventType": "IOC_GENERIC"
-                },
-                {
-                    "id": "SYS_EVENT_18",
-                    "title": "Revisió PAF1 (3)",
-                    "date": "2025-06-01",
-                    "categoryId": "SYS_CAT_2",
-                    "isSystemEvent": true,
-                    "eventType": "IOC_GENERIC"
-                },
-                {
-                    "id": "SYS_EVENT_19",
-                    "title": "Revisió PAF1 (4)",
-                    "date": "2025-06-02",
-                    "categoryId": "SYS_CAT_2",
-                    "isSystemEvent": true,
-                    "eventType": "IOC_GENERIC"
-                },
-                {
-                    "id": "SYS_EVENT_20",
-                    "title": "Revisió PAF1 (5)",
-                    "date": "2025-06-03",
-                    "categoryId": "SYS_CAT_2",
-                    "isSystemEvent": true,
-                    "eventType": "IOC_GENERIC"
-                },
-                {
-                    "id": "SYS_EVENT_21",
-                    "title": "Revisió PAF2 (1)",
-                    "date": "2025-06-13",
-                    "categoryId": "SYS_CAT_2",
-                    "isSystemEvent": true,
-                    "eventType": "IOC_GENERIC"
-                },
-                {
-                    "id": "SYS_EVENT_22",
-                    "title": "Revisió PAF2 (2)",
-                    "date": "2025-06-14",
-                    "categoryId": "SYS_CAT_2",
-                    "isSystemEvent": true,
-                    "eventType": "IOC_GENERIC"
-                },
-                {
-                    "id": "SYS_EVENT_23",
-                    "title": "Revisió PAF2 (3)",
-                    "date": "2025-06-15",
-                    "categoryId": "SYS_CAT_2",
-                    "isSystemEvent": true,
-                    "eventType": "IOC_GENERIC"
-                },
-                {
-                    "id": "SYS_EVENT_24",
-                    "title": "Revisió PAF2 (4)",
-                    "date": "2025-06-16",
-                    "categoryId": "SYS_CAT_2",
-                    "isSystemEvent": true,
-                    "eventType": "IOC_GENERIC"
-                },
-                {
-                    "id": "SYS_EVENT_25",
-                    "title": "Revisió PAF2 (5)",
-                    "date": "2025-06-17",
-                    "categoryId": "SYS_CAT_2",
-                    "isSystemEvent": true,
-                    "eventType": "IOC_GENERIC"
-                }
-            ],
-            "defaultCategories": [
-                {
-                    "id": "SYS_CAT_1",
-                    "name": "Festiu",
-                    "color": "#f43f5e",
-                    "isSystem": true
-                },
-                {
-                    "id": "SYS_CAT_2",
-                    "name": "IOC",
-                    "color": "#3b82f6",
-                    "isSystem": true
-                },
-                {
-                    "id": "SYS_CAT_3",
-                    "name": "PAF",
-                    "color": "#8b5cf6",
-                    "isSystem": true
-                }
-            ]
+    constructor(calendarType = null) {
+        this.calendarType = calendarType;
+        
+        if (calendarType) {
+            this.data = this.loadConfiguration(calendarType);
+        } else {
+            throw new Error('SemesterConfig requereix un calendarType. No es pot usar sense especificar tipus.');
+        }
+    }
+    
+    
+    // === CÀRREGA DINÀMICA DE CONFIGURACIÓ ===
+    
+    // Carregar configuració segons tipus de calendari
+    loadConfiguration(type) {
+        try {
+            const commonConfig = this.loadJSON('config/common-semestre.json');
+            let specificConfig = { systemEvents: [] };
+            
+            if (type === 'FP') {
+                specificConfig = this.loadJSON('config/fp-semestre.json');
+            } else if (type === 'BTX') {
+                specificConfig = this.loadJSON('config/btx-semestre.json');
+            } else if (type === 'Altre') {
+                // Tipus "Altre" no carrega configuració específica
+                return this.getEmptyConfiguration();
+            }
+            
+            // Fusionar configuracions
+            return this.mergeConfigurations(commonConfig, specificConfig);
+            
+        } catch (error) {
+            console.error(`[SemesterConfig] Error carregant configuració per tipus ${type}:`, error);
+            throw new Error(`No es pot carregar la configuració per tipus ${type}: ${error.message}`);
+        }
+    }
+    
+    // Carregar fitxer JSON de configuració (síncron per simplicitat)
+    loadJSON(filePath) {
+        try {
+            // Fer una request síncrona per simplicitat del sistema actual
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', filePath, false); // false = síncron
+            xhr.send();
+            
+            if (xhr.status === 200) {
+                const data = JSON.parse(xhr.responseText);
+                console.log(`[SemesterConfig] Carregat ${filePath} correctament`);
+                return data;
+            } else {
+                console.error(`[SemesterConfig] Error carregant ${filePath}: ${xhr.status}`);
+                return { systemEvents: [] };
+            }
+        } catch (error) {
+            console.error(`[SemesterConfig] Error parsejant ${filePath}:`, error);
+            return { systemEvents: [] };
+        }
+    }
+    
+    // Configuració buida per tipus "Altre"
+    getEmptyConfiguration() {
+        return {
+            semester: null, // Es definirà dinàmicament
+            defaultCategories: [], // Sense categories del sistema
+            systemEvents: [] // Sense esdeveniments del sistema
         };
+    }
+    
+    // Fusionar configuració comuna amb específica
+    mergeConfigurations(commonConfig, specificConfig) {
+        const mergedEvents = [
+            ...(commonConfig.systemEvents || []),
+            ...(specificConfig.systemEvents || [])
+        ];
+        
+        // Generar IDs automàticament
+        const eventsWithIds = this.generateEventIds(mergedEvents);
+        
+        return {
+            semester: specificConfig.semester || commonConfig.semester,
+            defaultCategories: this.getSystemCategories(),
+            systemEvents: eventsWithIds
+        };
+    }
+    
+    // Generar IDs automàtics per esdeveniments
+    generateEventIds(events) {
+        return events.map((event, index) => ({
+            ...event,
+            id: `SYS_EVENT_${index + 1}`
+        }));
+    }
+    
+    // Categories del sistema (sempre iguals)
+    getSystemCategories() {
+        return [
+            {
+                "id": "SYS_CAT_1",
+                "name": "IOC_GENERIC",
+                "color": "#3b82f6",
+                "isSystem": true
+            },
+            {
+                "id": "SYS_CAT_2",
+                "name": "FESTIU",
+                "color": "#f43f5e",
+                "isSystem": true
+            },
+            {
+                "id": "SYS_CAT_3",
+                "name": "PAF",
+                "color": "#8b5cf6",
+                "isSystem": true
+            }
+        ];
     }
     
     // === GETTERS PER ACCEDIR A LA CONFIGURACIÓ ===
@@ -312,4 +186,4 @@ class SemesterConfig {
 }
 
 // === INSTÀNCIA GLOBAL ===
-const semesterConfig = new SemesterConfig();
+// Nota: semesterConfig global ja no s'usa, cada calendari crea la seva instància específica

@@ -38,12 +38,125 @@ class ModalRenderer {
     // Modal de creació de nou calendari
     openNewCalendarModal() {
         appStateManager.editingCalendarId = null;
-        document.getElementById('setupModalTitle').textContent = `Nou Calendari de Mòdul ${semesterConfig.getSemesterCode()}`;
-        document.getElementById('cicleCode').value = '';
-        document.getElementById('moduleCode').value = '';
+        document.getElementById('setupModalTitle').textContent = 'Nou Calendari';
+        document.getElementById('studyType').value = '';
+        document.getElementById('dynamicFields').innerHTML = '';
+        document.getElementById('namePreview').style.display = 'none';
         document.getElementById('saveCalendarBtn').textContent = 'Crear Calendari';
         document.getElementById('deleteCalendarBtn').style.display = 'none';
+        
+        // Afegir event listener per canvis de tipus
+        this.setupStudyTypeListener();
+        
         this.openModal('calendarSetupModal');
+    }
+    
+    // Configurar listener per tipus d'estudi
+    setupStudyTypeListener() {
+        const studyTypeSelect = document.getElementById('studyType');
+        const dynamicFields = document.getElementById('dynamicFields');
+        const namePreview = document.getElementById('namePreview');
+        const generatedName = document.getElementById('generatedName');
+        
+        studyTypeSelect.addEventListener('change', (e) => {
+            const selectedType = e.target.value;
+            dynamicFields.innerHTML = '';
+            namePreview.style.display = 'none';
+            
+            if (selectedType === 'FP') {
+                dynamicFields.innerHTML = `
+                    <div class="form-group">
+                        <label for="cicleCode">Cicle Formatiu (ex: DAM, DAW, ASIX)</label>
+                        <input type="text" id="cicleCode" placeholder="DAM">
+                    </div>
+                    <div class="form-group">
+                        <label for="moduleCode">Codi del Mòdul (ex: M07B0)</label>
+                        <input type="text" id="moduleCode" placeholder="M07B0">
+                    </div>
+                `;
+                this.setupFPNamePreview();
+                
+            } else if (selectedType === 'BTX') {
+                dynamicFields.innerHTML = `
+                    <div class="form-group">
+                        <label for="subjectCode">Assignatura (ex: FISICA, QUIMICA)</label>
+                        <input type="text" id="subjectCode" placeholder="">
+                    </div>
+                `;
+                this.setupBTXNamePreview();
+                
+            } else if (selectedType === 'Altre') {
+                dynamicFields.innerHTML = `
+                    <div class="form-group">
+                        <label for="calendarName">Nom del calendari</label>
+                        <input type="text" id="calendarName" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="startDate">Data d'inici</label>
+                        <input type="date" id="startDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate">Data de fi</label>
+                        <input type="date" id="endDate">
+                    </div>
+                `;
+                this.setupAltreNamePreview();
+            }
+        });
+    }
+    
+    // Preview del nom per FP
+    setupFPNamePreview() {
+        const cicleInput = document.getElementById('cicleCode');
+        const moduleInput = document.getElementById('moduleCode');
+        const updatePreview = () => {
+            const cicle = cicleInput.value.trim().toUpperCase();
+            const module = moduleInput.value.trim().toUpperCase();
+            if (cicle && module) {
+                document.getElementById('generatedName').textContent = `FP_${cicle}_${module}_25S1`;
+                document.getElementById('namePreview').style.display = 'block';
+            } else {
+                document.getElementById('namePreview').style.display = 'none';
+            }
+        };
+        cicleInput.addEventListener('input', updatePreview);
+        moduleInput.addEventListener('input', updatePreview);
+    }
+    
+    // Preview del nom per BTX
+    setupBTXNamePreview() {
+        const subjectInput = document.getElementById('subjectCode');
+        const updatePreview = () => {
+            const subject = subjectInput.value.trim().toUpperCase();
+            if (subject) {
+                document.getElementById('generatedName').textContent = `BTX_${subject}_25S1`;
+                document.getElementById('namePreview').style.display = 'block';
+            } else {
+                document.getElementById('namePreview').style.display = 'none';
+            }
+        };
+        subjectInput.addEventListener('input', updatePreview);
+    }
+    
+    // Preview del nom per Altre
+    setupAltreNamePreview() {
+        const nameInput = document.getElementById('calendarName');
+        const updatePreview = () => {
+            const name = nameInput.value.trim();
+            if (name) {
+                document.getElementById('generatedName').textContent = name;
+                document.getElementById('namePreview').style.display = 'block';
+            } else {
+                document.getElementById('namePreview').style.display = 'none';
+            }
+        };
+        nameInput.addEventListener('input', updatePreview);
+    }
+    
+    // Generar ID per tipus "Altre"
+    generateAltreId(name, timestamp) {
+        const cleanName = name.trim().toUpperCase().replace(/\s+/g, '_');
+        return `${cleanName}_${timestamp}`;
     }
     
     // Modal d'accions de calendari
@@ -51,6 +164,14 @@ class ModalRenderer {
         appStateManager.setSelectedCalendarId(calendarId);
         const calendar = appStateManager.calendars[calendarId];
         if (!calendar) return;
+        
+        // Mostrar botó "Importar ICS" només per calendaris tipus "Altre"
+        const importIcsBtn = document.getElementById('importIcsBtn');
+        if (calendar.type === 'Altre') {
+            importIcsBtn.style.display = 'block';
+        } else {
+            importIcsBtn.style.display = 'none';
+        }
         
         const button = document.querySelector(`[data-calendar-id="${calendarId}"] .actions-menu`);
         const modal = document.getElementById('calendarActionsModal');

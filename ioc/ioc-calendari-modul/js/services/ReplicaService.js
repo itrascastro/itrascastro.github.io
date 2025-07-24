@@ -92,22 +92,31 @@ class ReplicaService {
                 // Calcular posició ideal en espai destí
                 const indexIdeal = Math.round(indexOrigen * factorProporcio);
                 
-                // Cerca radial de slot lliure
-                const indexFinal = this.findNearestFreeSlot(ocupacioEspaiDesti, indexIdeal);
+                let indexFinal;
+                let newDate;
                 
-                if (indexFinal === -1) {
-                    console.warn(`[REPLICA_SERVICE] No es troba slot lliure per "${event.title}"`);
-                    unplacedEvents.push({ 
-                        event: { ...event, replicationConfidence: 0 }, 
-                        sourceCalendar,
-                        reason: "Sense slots lliures disponibles" 
-                    });
-                    return;
+                if (targetCalendar.type === 'Altre') {
+                    // Per calendaris "Altre": col·locació directa sense restricció d'ocupació
+                    indexFinal = Math.max(0, Math.min(indexIdeal, espaiUtilDesti.length - 1));
+                    newDate = espaiUtilDesti[indexFinal];
+                } else {
+                    // Per calendaris FP/BTX: lògica actual amb cerca de slot lliure
+                    indexFinal = this.findNearestFreeSlot(ocupacioEspaiDesti, indexIdeal);
+                    
+                    if (indexFinal === -1) {
+                        console.warn(`[REPLICA_SERVICE] No es troba slot lliure per "${event.title}"`);
+                        unplacedEvents.push({ 
+                            event: { ...event, replicationConfidence: 0 }, 
+                            sourceCalendar,
+                            reason: "Sense slots lliures disponibles" 
+                        });
+                        return;
+                    }
+                    
+                    // Marcar slot com ocupat (només per FP/BTX)
+                    newDate = espaiUtilDesti[indexFinal];
+                    ocupacioEspaiDesti.set(newDate, 'OCUPAT');
                 }
-                
-                // Marcar slot com ocupat
-                const newDate = espaiUtilDesti[indexFinal];
-                ocupacioEspaiDesti.set(newDate, 'OCUPAT');
                 
                 // Crear esdeveniment replicat
                 const replicatedEvent = {
@@ -132,11 +141,13 @@ class ReplicaService {
             
             console.log(`[REPLICA_SERVICE] Resultat: ${placedEvents.length} ubicats, ${unplacedEvents.length} no ubicats`);
             
-            // Validació final de seguretat
-            const weekendEvents = placedEvents.filter(item => !dateHelper.isWeekday(item.newDate));
-            if (weekendEvents.length > 0) {
-                console.error(`[REPLICA_SERVICE] ERROR CRÍTIC: ${weekendEvents.length} events en caps de setmana!`);
-                throw new Error(`Error de disseny: ${weekendEvents.length} events generats en caps de setmana`);
+            // Validació final de seguretat (només per calendaris FP/BTX)
+            if (targetCalendar.type !== 'Altre') {
+                const weekendEvents = placedEvents.filter(item => !dateHelper.isWeekday(item.newDate));
+                if (weekendEvents.length > 0) {
+                    console.error(`[REPLICA_SERVICE] ERROR CRÍTIC: ${weekendEvents.length} events en caps de setmana!`);
+                    throw new Error(`Error de disseny: ${weekendEvents.length} events generats en caps de setmana`);
+                }
             }
             
             console.log(`[REPLICA_SERVICE] Replicació completada amb èxit`);
@@ -159,7 +170,7 @@ class ReplicaService {
         // Esdeveniments que ocupen l'espai (sistema IOC, festius, etc.)
         const occupiedBySystem = new Set(
             calendar.events
-                .filter(e => e.eventType === 'FESTIU' || e.isSystemEvent)
+                .filter(e => e.isSystemEvent)
                 .map(e => e.date)
         );
         
@@ -173,8 +184,13 @@ class ReplicaService {
         while (currentDate <= endDate) {
             const dateStr = dateHelper.toUTCString(currentDate);
             
-            // Només dies laborals que no estan ocupats pel sistema
-            if (dateHelper.isWeekday(dateStr) && !occupiedBySystem.has(dateStr)) {
+            // Per calendaris "Altre": tots els dies excepte els ocupats pel sistema
+            // Per calendaris FP/BTX: només dies laborals que no estan ocupats pel sistema
+            const isValidDay = calendar.type === 'Altre' 
+                ? !occupiedBySystem.has(dateStr)
+                : dateHelper.isWeekday(dateStr) && !occupiedBySystem.has(dateStr);
+            
+            if (isValidDay) {
                 espaiUtil.push(dateStr);
             }
             
@@ -229,27 +245,53 @@ class ReplicaService {
         }
     }
     
-    // Detectar data de fi d'avaluacions (cercar PAF1)
+    // Detectar data de fi d'avaluacions (obtenir PAF1)
     findPAF1(calendar) {
-        console.log(`[PAF Detection] Buscant PAF1 al calendari: ${calendar.name}`);
+        console.log(`[PAF Detection] Obtenint PAF1 del calendari: ${calendar.name} (tipus: ${calendar.type})`);
         
-        // Cercar PAF1 en esdeveniments del calendari
-        const paf1Event = calendar.events.find(event => event.eventType === 'PAF1');
-        
-        if (paf1Event) {
-            console.log(`[PAF Detection] PAF1 trobat: ${paf1Event.date}`);
-            return paf1Event.date;
+        // Per calendaris FP i BTX: usar paf1Date directe
+        if (calendar.type === 'FP' || calendar.type === 'BTX') {
+            if (calendar.paf1Date) {
+                console.log(`[PAF Detection] PAF1 trobat per ${calendar.type}: ${calendar.paf1Date}`);
+                return calendar.paf1Date;
+            }
         }
         
-        // Fallback: cercar en configuració IOC
-        const paf1Config = semesterConfig.getSystemEvents().find(event => event.eventType === 'PAF1');
+        // Per calendaris tipus "Altre" o si no té paf1Date: buscar esdeveniments PAF
+        console.log(`[PAF Detection] Buscant esdeveniments PAF en calendari tipus "${calendar.type}"`);
         
-        if (paf1Config && paf1Config.date >= calendar.startDate && paf1Config.date <= calendar.endDate) {
-            console.log(`[PAF Detection] PAF1 de configuració: ${paf1Config.date}`);
-            return paf1Config.date;
+        // Buscar esdeveniments amb categoria PAF (SYS_CAT_3 o qualsevol categoria anomenada "PAF")
+        const pafEvents = calendar.events.filter(event => {
+            // Buscar per ID de categoria del sistema
+            if (event.categoryId === 'SYS_CAT_3') return true;
+            
+            // Buscar per nom de categoria "PAF" en categories personalitzades
+            if (calendar.categories) {
+                const category = calendar.categories.find(cat => cat.id === event.categoryId);
+                if (category && category.name.toUpperCase().includes('PAF')) return true;
+            }
+            
+            // Buscar per títol que contingui "PAF1"
+            if (event.title.toUpperCase().includes('PAF1')) return true;
+            
+            return false;
+        });
+        
+        if (pafEvents.length > 0) {
+            // Ordenar per data i obtenir el primer PAF1
+            const sortedPafEvents = pafEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
+            const firstPaf = sortedPafEvents.find(event => 
+                event.title.toUpperCase().includes('PAF1') || event.categoryId === 'SYS_CAT_3'
+            );
+            
+            if (firstPaf) {
+                console.log(`[PAF Detection] PAF1 trobat per esdeveniments: ${firstPaf.date} ("${firstPaf.title}")`);
+                return firstPaf.date;
+            }
         }
         
-        console.error('[PAF Detection] PAF1 no trobat! Usant final de calendari');
+        // Fallback: usar final de calendari
+        console.warn(`[PAF Detection] PAF1 no trobat per calendari tipus "${calendar.type}". Usant final de calendari: ${calendar.endDate}`);
         return calendar.endDate;
     }
     

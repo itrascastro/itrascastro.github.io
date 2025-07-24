@@ -63,9 +63,16 @@ class PanelsRenderer {
             return;
         }
 
-        // Combinar categorías del sistema + catálogo global
+        // Combinar categorías del sistema + catálogo global + categorías específicas del calendari
         const systemCategories = calendar.categories.filter(cat => cat.isSystem);
-        const allCategories = [...systemCategories, ...appStateManager.categoryTemplates];
+        const calendarSpecificCategories = calendar.categories.filter(cat => !cat.isSystem);
+        
+        // Evitar duplicats entre catàleg i categories específiques del calendari
+        const catalogCategories = appStateManager.categoryTemplates.filter(template => 
+            !calendarSpecificCategories.some(calCat => calCat.id === template.id)
+        );
+        
+        const allCategories = [...systemCategories, ...catalogCategories, ...calendarSpecificCategories];
 
         container.innerHTML = allCategories.map(cat => {
             const isSystemCat = cat.isSystem;

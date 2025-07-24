@@ -33,7 +33,7 @@ class HtmlExporter {
         }
         
         const htmlContent = this.generateHTMLVisualCalendar(calendar);
-        this.downloadHtmlFile(htmlContent, `${calendar.name}_Calendari-Modul-IOC.html`);
+        this.downloadHtmlFile(htmlContent, `${calendar.id.replace(/[^a-z0-9]/gi, '_')}_Calendari-IOC.html`);
         uiHelper.showMessage('Calendari HTML exportat correctament', 'success');
     }
     

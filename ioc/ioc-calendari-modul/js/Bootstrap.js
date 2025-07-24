@@ -83,6 +83,7 @@ class Bootstrap {
             case 'save-calendar-json': jsonExporter.exportCalendar(appStateManager.getSelectedCalendarId()); break;
             case 'export-calendar-ics': icsExporter.exportCalendar(appStateManager.getSelectedCalendarId()); break;
             case 'export-calendar-html': htmlExporter.exportCalendar(appStateManager.getSelectedCalendarId()); break;
+            case 'import-calendar-ics': calendarManager.importIcsToCalendar(appStateManager.getSelectedCalendarId()); break;
             case 'delete-calendar': calendarManager.deleteCalendar(appStateManager.getSelectedCalendarId()); break;
             case 'replicate-calendar': replicaManager.openReplicationModal(appStateManager.getSelectedCalendarId()); break;
             case 'execute-replication': replicaManager.executeReplication(); break;

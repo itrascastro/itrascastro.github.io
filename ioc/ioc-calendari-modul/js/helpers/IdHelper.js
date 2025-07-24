@@ -28,7 +28,7 @@ class IdHelper {
         const calendar = appStateManager.calendars[calendarId];
         if (!calendar) return null;
         calendar.eventCounter = (calendar.eventCounter || 0) + 1;
-        return `${calendar.name}_E${calendar.eventCounter}`;
+        return `${calendar.id}_E${calendar.eventCounter}`;
     }
     
     // === GENERADORS D'IDS PER CATEGORIES ===
@@ -38,7 +38,7 @@ class IdHelper {
         const calendar = appStateManager.calendars[calendarId];
         if (!calendar) return null;
         calendar.categoryCounter = (calendar.categoryCounter || 0) + 1;
-        return `${calendar.name}_C${calendar.categoryCounter}`;
+        return `${calendar.id}_C${calendar.categoryCounter}`;
     }
 
 }

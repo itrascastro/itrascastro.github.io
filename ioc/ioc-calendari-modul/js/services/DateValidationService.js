@@ -108,7 +108,7 @@ class DateValidationService {
             throw new Error('La data ha d\'estar dins del període del calendari');
         }
         
-        if (!this.isWeekday(dateStr)) {
+        if (calendar.type !== 'Altre' && !this.isWeekday(dateStr)) {
             throw new Error('La data ha de ser un dia laborable');
         }
         

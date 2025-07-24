@@ -55,15 +55,17 @@ class CalendarRenderer {
         if (outputFormat === 'HTML') {
             // Per a exportació HTML - text complet, sense interactivitat
             const systemClass = event.isSystemEvent ? ' system' : '';
-            return `<div class="event-item${systemClass}" style="background-color: ${color};" title="${event.title}">${event.title}</div>`;
+            const contrastStyle = colorContrastHelper.getContrastStyle(color);
+            return `<div class="event-item${systemClass}" style="${contrastStyle}" title="${event.title}">${event.title}</div>`;
         } else {
             // Per a DOM - text truncat per a millor UI
             const truncatedTitle = textHelper.truncateText(event.title, 30);
             const eventClasses = ['event', isUserEvent ? 'is-user-event' : 'is-system-event'];
             const openModalAction = isUserEvent ? `data-action="open-event-modal" data-event="${JSON.stringify(event).replace(/"/g, '&quot;')}"` : '';
             const draggableAttr = isUserEvent ? 'draggable="true"' : '';
+            const contrastStyle = colorContrastHelper.getContrastStyle(color);
             
-            return `<div class="${eventClasses.join(' ')}" style="background-color: ${color};" ${openModalAction} ${draggableAttr} title="${event.title}">${truncatedTitle}</div>`;
+            return `<div class="${eventClasses.join(' ')}" style="${contrastStyle}" ${openModalAction} ${draggableAttr} title="${event.title}">${truncatedTitle}</div>`;
         }
     }
     

@@ -24,27 +24,125 @@ class CalendarManager {
     
     // Crear nou calendari
     addCalendar() {
+        const selectedType = document.getElementById('studyType').value;
+        
+        if (!selectedType) {
+            uiHelper.showMessage("Selecciona un tipus de calendari.", 'error');
+            return;
+        }
+        
+        let calendarData;
+        
+        if (selectedType === 'FP') {
+            calendarData = this.processFPCalendar();
+        } else if (selectedType === 'BTX') {
+            calendarData = this.processBTXCalendar();
+        } else if (selectedType === 'Altre') {
+            calendarData = this.processAltreCalendar();
+        }
+        
+        if (!calendarData) {
+            return; // Error ja mostrat en les funcions específiques
+        }
+        
+        if (this.calendarExists(calendarData.id) && appStateManager.editingCalendarId !== calendarData.id) {
+            uiHelper.showMessage("Ja existeix un calendari amb aquest nom.", 'error');
+            return;
+        }
+        
+        this.createCalendarData(calendarData.id, calendarData.name, calendarData.startDate, calendarData.endDate, calendarData.type, calendarData.paf1Date, calendarData.config);
+        this.completeCalendarSave();
+    }
+    
+    // Processar calendari FP
+    processFPCalendar() {
         const cicle = document.getElementById('cicleCode').value.trim().toUpperCase();
         const module = document.getElementById('moduleCode').value.trim().toUpperCase();
         
-        if (!this.validateCalendarData(cicle, module)) {
-            return;
+        if (!cicle || !module) {
+            uiHelper.showMessage("Els camps Cicle i Mòdul són obligatoris.", 'error');
+            return null;
         }
         
-        // Usar dates fixes del IOC
-        const startDate = semesterConfig.getStartDate();
-        const endDate = semesterConfig.getEndDate();
+        // Crear configuració específica per FP
+        const fpConfig = new SemesterConfig('FP');
+        const startDate = fpConfig.getStartDate();
+        const endDate = fpConfig.getEndDate();  
+        const paf1Date = fpConfig.getSemester()?.paf1Date || null;
+        const code = fpConfig.getSemesterCode();
         
-        const calendarName = `${cicle}_${module}_${semesterConfig.getSemesterCode()}`;
+        const calendarName = `FP_${cicle}_${module}_${code}`;
         const calendarId = calendarName;
         
-        if (this.calendarExists(calendarId) && appStateManager.editingCalendarId !== calendarId) {
-            uiHelper.showMessage("Ja existeix un calendari amb aquest cicle i mòdul per aquest semestre.", 'error');
-            return;
+        return {
+            id: calendarId,
+            name: calendarName,
+            startDate,
+            endDate,
+            type: 'FP',
+            paf1Date: paf1Date,
+            config: fpConfig
+        };
+    }
+    
+    // Processar calendari BTX
+    processBTXCalendar() {
+        const subject = document.getElementById('subjectCode').value.trim().toUpperCase();
+        
+        if (!subject) {
+            uiHelper.showMessage("El camp Assignatura és obligatori.", 'error');
+            return null;
         }
         
-        this.createCalendarData(calendarId, calendarName, startDate, endDate);
-        this.completeCalendarSave();
+        // Crear configuració específica per BTX
+        const btxConfig = new SemesterConfig('BTX');
+        const startDate = btxConfig.getStartDate();
+        const endDate = btxConfig.getEndDate();
+        const paf1Date = btxConfig.getSemester()?.paf1Date || null;
+        const code = btxConfig.getSemesterCode();
+        
+        const calendarName = `BTX_${subject}_${code}`;
+        const calendarId = calendarName;
+        
+        return {
+            id: calendarId,
+            name: calendarName,
+            startDate,
+            endDate,
+            type: 'BTX',
+            paf1Date: paf1Date,
+            config: btxConfig
+        };
+    }
+    
+    // Processar calendari Altre
+    processAltreCalendar() {
+        const name = document.getElementById('calendarName').value.trim();
+        const startDate = document.getElementById('startDate').value;
+        const endDate = document.getElementById('endDate').value;
+        
+        if (!name || !startDate || !endDate) {
+            uiHelper.showMessage("Tots els camps són obligatoris per tipus Altre.", 'error');
+            return null;
+        }
+        
+        if (startDate >= endDate) {
+            uiHelper.showMessage("La data de fi ha de ser posterior a la data d'inici.", 'error');
+            return null;
+        }
+        
+        const timestamp = Date.now();
+        const calendarId = modalRenderer.generateAltreId(name, timestamp);
+        
+        return {
+            id: calendarId,
+            name: name,
+            startDate,
+            endDate,
+            type: 'Altre',
+            paf1Date: null, // Tipus "Altre" no té PAF
+            config: null // Tipus "Altre" no usa configuració específica
+        };
     }
     
     // Eliminar calendari
@@ -89,48 +187,56 @@ class CalendarManager {
     
     // === VALIDACIONS ===
     
-    // Validar dades del calendari
-    validateCalendarData(cicle, module) {
-        if (!cicle || !module) {
-            uiHelper.showMessage("Els camps Cicle i Mòdul són obligatoris.", 'error');
-            return false;
-        }
-        return true;
-    }
     
     // Verificar si el calendari existeix
     calendarExists(calendarId) {
         return !!appStateManager.calendars[calendarId];
     }
     
+    
     // === CREACIÓ DE CALENDARIS ===
     
     // Crear dades del calendari amb esdeveniments de sistema
-    createCalendarData(calendarId, calendarName, startDate, endDate) {
-        const systemEvents = this.generateSystemEvents(startDate, endDate);
+    createCalendarData(calendarId, calendarName, startDate, endDate, type, paf1Date = null, config = null) {
+        // Usar configuració específica (obligatòria)
+        const configToUse = config;
+        const systemEvents = this.generateSystemEvents(startDate, endDate, type, configToUse);
         
-        appStateManager.calendars[calendarId] = {
+        const calendarData = {
             id: calendarId,
             name: calendarName,
             startDate,
             endDate,
-            code: semesterConfig.getSemesterCode(),
+            type: type,
+            code: configToUse ? configToUse.getSemesterCode() : null,
             eventCounter: 0,
             categoryCounter: 0,
-            categories: [...semesterConfig.getDefaultCategories()],
+            categories: configToUse ? [...configToUse.getDefaultCategories()] : [],
             events: systemEvents
         };
         
+        // Afegir paf1Date només si existeix
+        if (paf1Date) {
+            calendarData.paf1Date = paf1Date;
+        }
+        
+        
+        appStateManager.calendars[calendarId] = calendarData;
         appStateManager.currentCalendarId = calendarId;
         appStateManager.currentDate = dateHelper.parseUTC(startDate);
     }
     
     // Generar esdeveniments de sistema per al calendari
-    generateSystemEvents(startDate, endDate) {
+    generateSystemEvents(startDate, endDate, type, config) {
         const systemEvents = [];
         
+        // Si és tipus "Altre", no generar cap esdeveniment del sistema
+        if (type === 'Altre') {
+            return systemEvents;
+        }
+        
         // Afegir esdeveniments puntuals
-        semesterConfig.getSystemEvents().forEach(event => {
+        config.getSystemEvents().forEach(event => {
             if (event.date >= startDate && event.date <= endDate) {
                 systemEvents.push(event);
             }
@@ -177,6 +283,104 @@ class CalendarManager {
         nextBtn.disabled = nextMonthStart > calendarEnd;
     }
     
+    // === IMPORTACIÓ ICS ===
+    
+    // Importar esdeveniments ICS a calendari existent tipus "Altre"
+    importIcsToCalendar(calendarId) {
+        const calendar = appStateManager.calendars[calendarId];
+        if (!calendar) {
+            uiHelper.showMessage('Calendari no trobat', 'error');
+            return;
+        }
+        
+        if (calendar.type !== 'Altre') {
+            uiHelper.showMessage('La importació ICS només està disponible per calendaris tipus "Altre"', 'error');
+            return;
+        }
+        
+        icsImporter.importIcsFile((icsData) => {
+            try {
+                // Crear categoria "Importats" si no existeix
+                let importCategory = calendar.categories.find(cat => cat.name === 'Importats');
+                if (!importCategory) {
+                    calendar.categoryCounter = (calendar.categoryCounter || 0) + 1;
+                    importCategory = {
+                        id: `${calendar.id}_C${calendar.categoryCounter}`,
+                        name: 'Importats',
+                        color: categoryManager.generateRandomColor(),
+                        isSystem: false
+                    };
+                    calendar.categories.push(importCategory);
+                }
+                
+                // Afegir esdeveniments amb IDs únics i categoria correcta
+                icsData.events.forEach(icsEvent => {
+                    calendar.eventCounter = (calendar.eventCounter || 0) + 1;
+                    const eventId = `${calendar.id}_E${calendar.eventCounter}`;
+                    
+                    calendar.events.push({
+                        id: eventId,
+                        title: icsEvent.title,
+                        date: icsEvent.date,
+                        categoryId: importCategory.id,
+                        description: icsEvent.description,
+                        isSystemEvent: false
+                    });
+                });
+                
+                // Ordenar esdeveniments: primer amb hora específica, després dia complet
+                calendar.events.sort((a, b) => {
+                    // Detectar si tenen hora específica (format [HH:MM])
+                    const aHasTime = /^\[\d{2}:\d{2}\]/.test(a.title);
+                    const bHasTime = /^\[\d{2}:\d{2}\]/.test(b.title);
+                    
+                    // Si un té hora i l'altre no, el que té hora va primer
+                    if (aHasTime && !bHasTime) return -1;
+                    if (!aHasTime && bHasTime) return 1;
+                    
+                    // Si ambdós tenen hora o cap té hora, ordenar per data
+                    const dateComparison = new Date(a.date) - new Date(b.date);
+                    if (dateComparison !== 0) return dateComparison;
+                    
+                    // Si la data és la mateixa i ambdós tenen hora, ordenar per hora
+                    if (aHasTime && bHasTime) {
+                        const aTime = a.title.match(/^\[(\d{2}:\d{2})\]/)[1];
+                        const bTime = b.title.match(/^\[(\d{2}:\d{2})\]/)[1];
+                        return aTime.localeCompare(bTime);
+                    }
+                    
+                    // Sinó, ordenar per títol
+                    return a.title.localeCompare(b.title);
+                });
+                
+                // Actualitzar dates del calendari si és necessari
+                const currentStart = new Date(calendar.startDate);
+                const currentEnd = new Date(calendar.endDate);
+                const icsStart = new Date(icsData.startDate);
+                const icsEnd = new Date(icsData.endDate);
+                
+                if (icsStart < currentStart) {
+                    calendar.startDate = icsData.startDate;
+                }
+                if (icsEnd > currentEnd) {
+                    calendar.endDate = icsData.endDate;
+                }
+                
+                // Tancar modal d'accions
+                modalRenderer.closeModal('calendarActionsModal');
+                
+                // Guardar i actualitzar interfície
+                storageManager.saveToStorage();
+                this.updateUI();
+                
+                uiHelper.showMessage(`${icsData.totalEvents} esdeveniments importats correctament`, 'success');
+                
+            } catch (error) {
+                uiHelper.showMessage('Error processant els esdeveniments: ' + error.message, 'error');
+            }
+        }, calendar);
+    }
+    
     // === CÀRREGA DE CALENDARIS ===
     
     // Carregar fitxer de calendari
@@ -197,19 +401,35 @@ class CalendarManager {
                             throw new Error('Estructura del fitxer incorrecta');
                         }
 
-                        // Crear nou calendari amb ID basat en el nom
-                        const calendarId = calendarData.name;
-                        appStateManager.calendars[calendarId] = {
+                        // Usar ID correcte del fitxer JSON
+                        const calendarId = calendarData.id || calendarData.name;
+                        
+                        // Validar que no existeixi ja un calendari amb aquest ID
+                        if (appStateManager.calendars[calendarId]) {
+                            throw new Error(`Ja existeix un calendari amb ID "${calendarId}"`);
+                        }
+                        
+                        // Validar tipus de calendari
+                        const calendarType = calendarData.type || 'FP'; // Per defecte FP per compatibilitat
+                        
+                        // Validar codi de semestre només per calendaris FP/BTX (no per "Altre")
+                        if ((calendarType === 'FP' || calendarType === 'BTX') && !calendarData.code) {
+                            throw new Error('Els calendaris FP/BTX requereixen codi de semestre');
+                        }
+                        // Calendaris "Altre" poden tenir code: null, és correcte
+                        
+                        // Usar el JSON sencer amb les seves propietats
+                        const calendarToLoad = {
+                            ...calendarData,
                             id: calendarId,
-                            name: calendarData.name,
-                            startDate: calendarData.startDate,
-                            endDate: calendarData.endDate,
-                            code: calendarData.code || semesterConfig.getSemesterCode(),
+                            type: calendarType,
                             eventCounter: calendarData.eventCounter || 0,
                             categoryCounter: calendarData.categoryCounter || 0,
-                            categories: calendarData.categories || [...semesterConfig.getDefaultCategories()],
+                            categories: calendarData.categories || [],
                             events: calendarData.events || []
                         };
+                        
+                        appStateManager.calendars[calendarId] = calendarToLoad;
                         
                         // Migrar categories del fitxer carregat al catàleg
                         if (calendarData.categories) {

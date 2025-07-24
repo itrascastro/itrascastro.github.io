@@ -44,8 +44,7 @@ class EventManager {
             date,
             categoryId,
             description,
-            isSystemEvent: false,
-            eventType: 'PROFESSOR'
+            isSystemEvent: false
         };
 
         if (appStateManager.editingEventId) {

@@ -22,7 +22,7 @@ una aplicació web per gestionar calendaris acadèmics.
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendari Mòdul -IOC</title>
+    <title>Calendari IOC</title>
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/layout.css">
@@ -35,7 +35,7 @@ una aplicació web per gestionar calendaris acadèmics.
         <header class="main-header">
             <div class="header-title">
                 <img src="img/logo-ioc.png" alt="IOC" class="header-logo">
-                <h1>Calendari de Mòdul IOC</h1>
+                <h1>Calendari IOC</h1>
             </div>
             <button id="theme-toggle" data-action="toggle-theme">Canviar a Mode Fosc</button>
         </header>
@@ -109,12 +109,22 @@ una aplicació web per gestionar calendaris acadèmics.
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="cicleCode">Cicle Formatiu (ex: DAM, DAW, ASIX)</label>
-                    <input type="text" id="cicleCode" placeholder="DAM">
+                    <label for="studyType">Tipus:</label>
+                    <select id="studyType" name="studyType">
+                        <option value="">Selecciona tipus...</option>
+                        <option value="FP">Formació Professional (FP)</option>
+                        <option value="BTX">Batxillerat (BTX)</option>
+                        <option value="Altre">Altre</option>
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label for="moduleCode">Codi del Mòdul (ex: M07B0)</label>
-                    <input type="text" id="moduleCode" placeholder="M07B0">
+                
+                <!-- Camps dinàmics segons tipus seleccionat -->
+                <div id="dynamicFields"></div>
+                
+                <!-- Preview del nom generat -->
+                <div id="namePreview" class="form-group" style="display: none;">
+                    <label>Nom del calendari:</label>
+                    <div class="name-preview" id="generatedName"></div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -206,6 +216,7 @@ una aplicació web per gestionar calendaris acadèmics.
                 <button class="calendar-action-btn" data-action="save-calendar-json">Desar</button>
                 <button class="calendar-action-btn" data-action="export-calendar-ics">Exportar ICS</button>
                 <button class="calendar-action-btn" data-action="export-calendar-html">Exportar HTML</button>
+                <button id="importIcsBtn" class="calendar-action-btn" data-action="import-calendar-ics" style="display: none;">Importar ICS</button>
                 <button class="calendar-action-btn" data-action="replicate-calendar">Replicar</button>
                 <button class="calendar-action-btn danger" data-action="delete-calendar">Eliminar</button>
             </div>
@@ -227,6 +238,7 @@ una aplicació web per gestionar calendaris acadèmics.
     <script src="js/helpers/UIHelper.js"></script>
     <script src="js/helpers/IdHelper.js"></script>
     <script src="js/helpers/ThemeHelper.js"></script>
+    <script src="js/helpers/ColorContrastHelper.js"></script>
     <script src="js/helpers/MenuHelper.js"></script>
     <script src="js/helpers/DragDropHelper.js"></script>
     
@@ -265,6 +277,7 @@ una aplicació web per gestionar calendaris acadèmics.
     <script src="js/export/HtmlExporter.js"></script>
     <script src="js/export/IcsExporter.js"></script>
     <script src="js/export/JsonExporter.js"></script>
+    <script src="js/import/IcsImporter.js"></script>
     
     <script src="js/Bootstrap.js"></script>
 </body>
