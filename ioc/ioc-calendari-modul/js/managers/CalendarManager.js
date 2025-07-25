@@ -22,8 +22,8 @@
 class CalendarManager {
     // === GESTIÓ DE CALENDARIS ===
     
-    // Crear nou calendari
-    addCalendar() {
+    // Crear nou calendari (asíncron)
+    async addCalendar() {
         const selectedType = document.getElementById('studyType').value;
         
         if (!selectedType) {
@@ -33,12 +33,18 @@ class CalendarManager {
         
         let calendarData;
         
-        if (selectedType === 'FP') {
-            calendarData = this.processFPCalendar();
-        } else if (selectedType === 'BTX') {
-            calendarData = this.processBTXCalendar();
-        } else if (selectedType === 'Altre') {
-            calendarData = this.processAltreCalendar();
+        try {
+            if (selectedType === 'FP') {
+                calendarData = await this.processFPCalendar();
+            } else if (selectedType === 'BTX') {
+                calendarData = await this.processBTXCalendar();
+            } else if (selectedType === 'Altre') {
+                calendarData = this.processAltreCalendar();
+            }
+        } catch (error) {
+            console.error('[CalendarManager] Error processant calendari:', error);
+            uiHelper.showMessage("Error carregant la configuració del calendari.", 'error');
+            return;
         }
         
         if (!calendarData) {
@@ -54,8 +60,8 @@ class CalendarManager {
         this.completeCalendarSave();
     }
     
-    // Processar calendari FP
-    processFPCalendar() {
+    // Processar calendari FP (asíncron)
+    async processFPCalendar() {
         const cicle = document.getElementById('cicleCode').value.trim().toUpperCase();
         const module = document.getElementById('moduleCode').value.trim().toUpperCase();
         
@@ -66,6 +72,7 @@ class CalendarManager {
         
         // Crear configuració específica per FP
         const fpConfig = new SemesterConfig('FP');
+        await fpConfig.initialize();
         const startDate = fpConfig.getStartDate();
         const endDate = fpConfig.getEndDate();  
         const paf1Date = fpConfig.getSemester()?.paf1Date || null;
@@ -85,8 +92,8 @@ class CalendarManager {
         };
     }
     
-    // Processar calendari BTX
-    processBTXCalendar() {
+    // Processar calendari BTX (asíncron)
+    async processBTXCalendar() {
         const subject = document.getElementById('subjectCode').value.trim().toUpperCase();
         
         if (!subject) {
@@ -96,6 +103,7 @@ class CalendarManager {
         
         // Crear configuració específica per BTX
         const btxConfig = new SemesterConfig('BTX');
+        await btxConfig.initialize();
         const startDate = btxConfig.getStartDate();
         const endDate = btxConfig.getEndDate();
         const paf1Date = btxConfig.getSemester()?.paf1Date || null;
@@ -386,6 +394,8 @@ class CalendarManager {
     // Carregar fitxer de calendari
     loadCalendarFile() {
         const input = document.createElement('input');
+        input.id = 'calendar-file-input';
+        input.name = 'calendar-file-input';
         input.type = 'file';
         input.accept = '.json';
         input.onchange = (e) => {

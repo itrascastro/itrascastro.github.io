@@ -90,7 +90,7 @@ class PanelsRenderer {
                     </div>
                     <div class="category-name-wrapper" ${editAction}>
                         <span class="${categoryNameClass}">${cat.name} ${isSystemCat ? ' (Sistema)' : ''}</span>
-                        <input class="category-input" type="text" value="${cat.name}" ${isSystemCat ? 'disabled' : ''} style="display: none;">
+                        <input class="category-input" type="text" value="${cat.name}" id="category-input-${cat.id}" name="category-${cat.id}" ${isSystemCat ? 'disabled' : ''} style="display: none;">
                     </div>
                     ${deleteButtonHTML}
                 </div>

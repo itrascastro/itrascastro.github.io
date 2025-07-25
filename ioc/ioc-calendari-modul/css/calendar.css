@@ -444,7 +444,8 @@
     margin-bottom: 20px; 
 }
 
-.modal-body label { 
+.modal-body label,
+.modal-body .form-label { 
     display: block; 
     margin-bottom: 8px; 
     font-weight: 500; 
@@ -798,6 +799,22 @@
     color: var(--secondary-text-color);
     line-height: 1.4;
     margin-top: 8px;
+}
+
+.event-details .event-description a {
+    color: var(--link-color);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.event-details .event-description a:hover {
+    color: var(--link-hover);
+    border-bottom-color: var(--link-hover);
+}
+
+.event-details .event-description a:visited {
+    color: var(--link-visited);
 }
 
 .event-actions {

@@ -61,7 +61,12 @@ class Bootstrap {
             case 'toggle-theme': themeHelper.toggleTheme(); break;
             case 'new-calendar': modalRenderer.openNewCalendarModal(); break;
             case 'close-modal': modalRenderer.closeModal(target.dataset.modal); break;
-            case 'add-calendar': calendarManager.addCalendar(); break;
+            case 'add-calendar': 
+                calendarManager.addCalendar().catch(error => {
+                    console.error('[Bootstrap] Error afegint calendari:', error);
+                    uiHelper.showMessage('Error creant el calendari.', 'error');
+                });
+                break;
             case 'navigate-period': viewManager.navigatePeriod(parseInt(target.dataset.direction)); break;
             case 'switch-calendar': calendarManager.switchCalendar(target.closest('.calendar-list-item').dataset.calendarId); break;
             case 'add-event': modalRenderer.openEventModal(null, target.dataset.date || target.closest('.day-cell')?.dataset.date); break;

@@ -23,6 +23,7 @@ una aplicació web per gestionar calendaris acadèmics.
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendari IOC</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/layout.css">
@@ -74,7 +75,8 @@ una aplicació web per gestionar calendaris acadèmics.
 
                 <div class="panel-footer">
                     <div class="new-category-form">
-                        <input class="category-input" id="new-category-name" type="text" placeholder="Nova categoria...">
+                        <label for="new-category-name" class="visually-hidden">Nova categoria</label>
+                        <input class="category-input" id="new-category-name" name="new-category-name" type="text" placeholder="Nova categoria...">
                         <button class="btn-add-category" data-action="add-category">+</button>
                     </div>
                 </div>
@@ -123,7 +125,7 @@ una aplicació web per gestionar calendaris acadèmics.
                 
                 <!-- Preview del nom generat -->
                 <div id="namePreview" class="form-group" style="display: none;">
-                    <label>Nom del calendari:</label>
+                    <span class="form-label">Nom del calendari:</span>
                     <div class="name-preview" id="generatedName"></div>
                 </div>
             </div>
@@ -144,19 +146,19 @@ una aplicació web per gestionar calendaris acadèmics.
             <div class="modal-body">
                 <div class="form-group">
                     <label for="eventTitle">Títol de l'Esdeveniment:</label>
-                    <input type="text" id="eventTitle" placeholder="Ex: Lliurament EAC5">
+                    <input type="text" id="eventTitle" name="eventTitle" placeholder="Ex: Lliurament EAC5">
                 </div>
                 <div class="form-group">
                     <label for="eventDate">Data:</label>
-                    <input type="date" id="eventDate" placeholder="dd/mm/aaaa">
+                    <input type="date" id="eventDate" name="eventDate" placeholder="dd/mm/aaaa">
                 </div>
                 <div class="form-group">
                     <label for="eventCategory">Categoria:</label>
-                    <select id="eventCategory"></select>
+                    <select id="eventCategory" name="eventCategory"></select>
                 </div>
                 <div class="form-group">
                     <label for="eventDescription">Descripció (opcional):</label>
-                    <textarea id="eventDescription" placeholder="Detalls de l'event..."></textarea>
+                    <textarea id="eventDescription" name="eventDescription" placeholder="Detalls de l'event..."></textarea>
                 </div>
             </div>
             <div class="modal-footer">
@@ -180,7 +182,7 @@ una aplicació web per gestionar calendaris acadèmics.
                 
                 <div class="form-group">
                     <label for="targetCalendarSelect">Calendari destí:</label>
-                    <select id="targetCalendarSelect">
+                    <select id="targetCalendarSelect" name="targetCalendarSelect">
                         <option value="" disabled selected>Selecciona el calendari destí</option>
                     </select>
                 </div>

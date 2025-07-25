@@ -67,11 +67,11 @@ class ModalRenderer {
                 dynamicFields.innerHTML = `
                     <div class="form-group">
                         <label for="cicleCode">Cicle Formatiu (ex: DAM, DAW, ASIX)</label>
-                        <input type="text" id="cicleCode" placeholder="DAM">
+                        <input type="text" id="cicleCode" name="cicleCode" placeholder="DAM">
                     </div>
                     <div class="form-group">
                         <label for="moduleCode">Codi del Mòdul (ex: M07B0)</label>
-                        <input type="text" id="moduleCode" placeholder="M07B0">
+                        <input type="text" id="moduleCode" name="moduleCode" placeholder="M07B0">
                     </div>
                 `;
                 this.setupFPNamePreview();
@@ -80,7 +80,7 @@ class ModalRenderer {
                 dynamicFields.innerHTML = `
                     <div class="form-group">
                         <label for="subjectCode">Assignatura (ex: FISICA, QUIMICA)</label>
-                        <input type="text" id="subjectCode" placeholder="">
+                        <input type="text" id="subjectCode" name="subjectCode" placeholder="">
                     </div>
                 `;
                 this.setupBTXNamePreview();
@@ -89,15 +89,15 @@ class ModalRenderer {
                 dynamicFields.innerHTML = `
                     <div class="form-group">
                         <label for="calendarName">Nom del calendari</label>
-                        <input type="text" id="calendarName" placeholder="">
+                        <input type="text" id="calendarName" name="calendarName" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="startDate">Data d'inici</label>
-                        <input type="date" id="startDate">
+                        <input type="date" id="startDate" name="startDate">
                     </div>
                     <div class="form-group">
                         <label for="endDate">Data de fi</label>
-                        <input type="date" id="endDate">
+                        <input type="date" id="endDate" name="endDate">
                     </div>
                 `;
                 this.setupAltreNamePreview();

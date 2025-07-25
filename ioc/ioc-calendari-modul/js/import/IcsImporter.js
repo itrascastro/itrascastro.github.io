@@ -27,6 +27,8 @@ class IcsImporter {
     // === IMPORTACIÓ PRINCIPAL ===
     importIcsFile(callback, existingCalendar = null) {
         const input = document.createElement('input');
+        input.id = 'ics-file-input';
+        input.name = 'ics-file-input';
         input.type = 'file';
         input.accept = '.ics';
         input.onchange = (e) => {

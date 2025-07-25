@@ -21,27 +21,36 @@
 class SemesterConfig {
     constructor(calendarType = null) {
         this.calendarType = calendarType;
+        this.data = null; // S'inicialitzarà amb initialize()
         
-        if (calendarType) {
-            this.data = this.loadConfiguration(calendarType);
-        } else {
+        if (!calendarType) {
             throw new Error('SemesterConfig requereix un calendarType. No es pot usar sense especificar tipus.');
         }
+    }
+    
+    // Mètode asíncron per inicialitzar la configuració
+    async initialize() {
+        if (this.data) {
+            return this.data; // Ja està inicialitzat
+        }
+        
+        this.data = await this.loadConfiguration(this.calendarType);
+        return this.data;
     }
     
     
     // === CÀRREGA DINÀMICA DE CONFIGURACIÓ ===
     
-    // Carregar configuració segons tipus de calendari
-    loadConfiguration(type) {
+    // Carregar configuració segons tipus de calendari (asíncron)
+    async loadConfiguration(type) {
         try {
-            const commonConfig = this.loadJSON('config/common-semestre.json');
+            const commonConfig = await this.loadJSON('config/common-semestre.json');
             let specificConfig = { systemEvents: [] };
             
             if (type === 'FP') {
-                specificConfig = this.loadJSON('config/fp-semestre.json');
+                specificConfig = await this.loadJSON('config/fp-semestre.json');
             } else if (type === 'BTX') {
-                specificConfig = this.loadJSON('config/btx-semestre.json');
+                specificConfig = await this.loadJSON('config/btx-semestre.json');
             } else if (type === 'Altre') {
                 // Tipus "Altre" no carrega configuració específica
                 return this.getEmptyConfiguration();
@@ -56,20 +65,17 @@ class SemesterConfig {
         }
     }
     
-    // Carregar fitxer JSON de configuració (síncron per simplicitat)
-    loadJSON(filePath) {
+    // Carregar fitxer JSON de configuració (asíncron)
+    async loadJSON(filePath) {
         try {
-            // Fer una request síncrona per simplicitat del sistema actual
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', filePath, false); // false = síncron
-            xhr.send();
+            const response = await fetch(filePath);
             
-            if (xhr.status === 200) {
-                const data = JSON.parse(xhr.responseText);
+            if (response.ok) {
+                const data = await response.json();
                 console.log(`[SemesterConfig] Carregat ${filePath} correctament`);
                 return data;
             } else {
-                console.error(`[SemesterConfig] Error carregant ${filePath}: ${xhr.status}`);
+                console.error(`[SemesterConfig] Error carregant ${filePath}: ${response.status}`);
                 return { systemEvents: [] };
             }
         } catch (error) {
@@ -138,18 +144,28 @@ class SemesterConfig {
     
     // === GETTERS PER ACCEDIR A LA CONFIGURACIÓ ===
     
+    // Validar que la configuració està carregada
+    _ensureInitialized() {
+        if (!this.data) {
+            throw new Error('SemesterConfig no està inicialitzat. Crideu initialize() primer.');
+        }
+    }
+    
     // Obtenir informació del semestre
     getSemester() {
+        this._ensureInitialized();
         return this.data.semester;
     }
     
     // Obtenir events del sistema
     getSystemEvents() {
+        this._ensureInitialized();
         return this.data.systemEvents || [];
     }
     
     // Obtenir categories per defecte
     getDefaultCategories() {
+        this._ensureInitialized();
         return this.data.defaultCategories || [];
     }
     
