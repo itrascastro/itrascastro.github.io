@@ -1,10 +1,10 @@
 /**
  * =================================================================
- * REPLICA SERVICE - SERVEI DE REPLICACIÓ PROPORCIONAL
+ * ESTUDI REPLICA SERVICE - SERVEI DE REPLICACIÓ PER CALENDARIS D'ESTUDI
  * =================================================================
  * 
- * @file        ReplicaService.js
- * @description Servei per replicació proporcional d'esdeveniments entre calendaris
+ * @file        EstudiReplicaService.js
+ * @description Servei per replicació proporcional d'esdeveniments entre calendaris d'estudi (FP/BTX)
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0
  * @date        2025-01-16
@@ -18,12 +18,12 @@
  * =================================================================
  */
 
-// CLASSE DE SERVEI DE REPLICACIÓ: Implementa algoritme proporcional
-class ReplicaService {
+// CLASSE DE SERVEI DE REPLICACIÓ PER CALENDARIS D'ESTUDI: Implementa algoritme proporcional per FP/BTX
+class EstudiReplicaService extends ReplicaService {
     
-    // Funció principal de replicació
+    // Funció principal de replicació (CÒPIA EXACTA de la lògica original)
     replicate(sourceCalendar, targetCalendar) {
-        console.log(`[REPLICA_SERVICE] Iniciant replicació...`);
+        console.log(`[ESTUDI_REPLICA_SERVICE] Iniciant replicació...`);
         
         try {
             // Validació bàsica
@@ -36,22 +36,22 @@ class ReplicaService {
                 .filter(event => !event.isSystemEvent)
                 .sort((a, b) => new Date(a.date) - new Date(b.date));
             
-            console.log(`[REPLICA_SERVICE] Events del professor a replicar: ${professorEvents.length}`);
+            console.log(`[ESTUDI_REPLICA_SERVICE] Events del professor a replicar: ${professorEvents.length}`);
             
             if (professorEvents.length === 0) {
-                console.log(`[REPLICA_SERVICE] No hi ha events del professor per replicar`);
+                console.log(`[ESTUDI_REPLICA_SERVICE] No hi ha events del professor per replicar`);
                 return { placed: [], unplaced: [] };
             }
             
             // Construir espais útils
-            const espaiUtilOrigen = this.analyzeWorkableSpace(sourceCalendar);
-            const espaiUtilDesti = this.analyzeWorkableSpace(targetCalendar);
+            const espaiUtilOrigen = this.analyzeWorkableSpaceEstudi(sourceCalendar);
+            const espaiUtilDesti = this.analyzeWorkableSpaceEstudi(targetCalendar);
             
-            console.log(`[REPLICA_SERVICE] Espai Origen: ${espaiUtilOrigen.length} dies útils`);
-            console.log(`[REPLICA_SERVICE] Espai Destí: ${espaiUtilDesti.length} dies útils`);
+            console.log(`[ESTUDI_REPLICA_SERVICE] Espai Origen: ${espaiUtilOrigen.length} dies útils`);
+            console.log(`[ESTUDI_REPLICA_SERVICE] Espai Destí: ${espaiUtilDesti.length} dies útils`);
             
             if (espaiUtilDesti.length === 0) {
-                console.warn(`[REPLICA_SERVICE] Calendari destí sense espai útil disponible`);
+                console.warn(`[ESTUDI_REPLICA_SERVICE] Calendari destí sense espai útil disponible`);
                 return { 
                     placed: [], 
                     unplaced: professorEvents.map(event => ({ 
@@ -64,7 +64,7 @@ class ReplicaService {
             
             // Calcular factor de proporció
             const factorProporcio = espaiUtilDesti.length / espaiUtilOrigen.length;
-            console.log(`[REPLICA_SERVICE] Factor de proporció: ${factorProporcio.toFixed(3)}`);
+            console.log(`[ESTUDI_REPLICA_SERVICE] Factor de proporció: ${factorProporcio.toFixed(3)}`);
             
             // Mapa d'ocupació del destí
             const ocupacioEspaiDesti = new Map(espaiUtilDesti.map(date => [date, 'LLIURE']));
@@ -74,13 +74,13 @@ class ReplicaService {
             
             // Bucle principal de replicació
             professorEvents.forEach((event, index) => {
-                console.log(`[REPLICA_SERVICE] Processant (${index + 1}/${professorEvents.length}): "${event.title}"`);
+                console.log(`[ESTUDI_REPLICA_SERVICE] Processant (${index + 1}/${professorEvents.length}): "${event.title}"`);
                 
                 // Trobar posició en espai origen
                 const indexOrigen = espaiUtilOrigen.indexOf(event.date);
                 
                 if (indexOrigen === -1) {
-                    console.warn(`[REPLICA_SERVICE] Esdeveniment "${event.title}" no troba posició en espai origen`);
+                    console.warn(`[ESTUDI_REPLICA_SERVICE] Esdeveniment "${event.title}" no troba posició en espai origen`);
                     unplacedEvents.push({ 
                         event: { ...event, replicationConfidence: 0 }, 
                         sourceCalendar,
@@ -92,31 +92,22 @@ class ReplicaService {
                 // Calcular posició ideal en espai destí
                 const indexIdeal = Math.round(indexOrigen * factorProporcio);
                 
-                let indexFinal;
-                let newDate;
+                // Per calendaris d'estudi: lògica amb cerca de slot lliure
+                const indexFinal = this.findNearestFreeSlot(ocupacioEspaiDesti, indexIdeal);
                 
-                if (targetCalendar.type === 'Altre') {
-                    // Per calendaris "Altre": col·locació directa sense restricció d'ocupació
-                    indexFinal = Math.max(0, Math.min(indexIdeal, espaiUtilDesti.length - 1));
-                    newDate = espaiUtilDesti[indexFinal];
-                } else {
-                    // Per calendaris FP/BTX: lògica actual amb cerca de slot lliure
-                    indexFinal = this.findNearestFreeSlot(ocupacioEspaiDesti, indexIdeal);
-                    
-                    if (indexFinal === -1) {
-                        console.warn(`[REPLICA_SERVICE] No es troba slot lliure per "${event.title}"`);
-                        unplacedEvents.push({ 
-                            event: { ...event, replicationConfidence: 0 }, 
-                            sourceCalendar,
-                            reason: "Sense slots lliures disponibles" 
-                        });
-                        return;
-                    }
-                    
-                    // Marcar slot com ocupat (només per FP/BTX)
-                    newDate = espaiUtilDesti[indexFinal];
-                    ocupacioEspaiDesti.set(newDate, 'OCUPAT');
+                if (indexFinal === -1) {
+                    console.warn(`[ESTUDI_REPLICA_SERVICE] No es troba slot lliure per "${event.title}"`);
+                    unplacedEvents.push({ 
+                        event: { ...event, replicationConfidence: 0 }, 
+                        sourceCalendar,
+                        reason: "Sense slots lliures disponibles" 
+                    });
+                    return;
                 }
+                
+                // Marcar slot com ocupat
+                const newDate = espaiUtilDesti[indexFinal];
+                ocupacioEspaiDesti.set(newDate, 'OCUPAT');
                 
                 // Crear esdeveniment replicat
                 const replicatedEvent = {
@@ -136,36 +127,34 @@ class ReplicaService {
                     confidence: replicatedEvent.replicationConfidence
                 });
                 
-                console.log(`[REPLICA_SERVICE] "${event.title}": ${event.date} → ${newDate} (pos ${indexOrigen + 1}→${indexFinal + 1})`);
+                console.log(`[ESTUDI_REPLICA_SERVICE] "${event.title}": ${event.date} → ${newDate} (pos ${indexOrigen + 1}→${indexFinal + 1})`);
             });
             
-            console.log(`[REPLICA_SERVICE] Resultat: ${placedEvents.length} ubicats, ${unplacedEvents.length} no ubicats`);
+            console.log(`[ESTUDI_REPLICA_SERVICE] Resultat: ${placedEvents.length} ubicats, ${unplacedEvents.length} no ubicats`);
             
-            // Validació final de seguretat (només per calendaris FP/BTX)
-            if (targetCalendar.type !== 'Altre') {
-                const weekendEvents = placedEvents.filter(item => !dateHelper.isWeekday(item.newDate));
-                if (weekendEvents.length > 0) {
-                    console.error(`[REPLICA_SERVICE] ERROR CRÍTIC: ${weekendEvents.length} events en caps de setmana!`);
-                    throw new Error(`Error de disseny: ${weekendEvents.length} events generats en caps de setmana`);
-                }
+            // Validació final de seguretat per calendaris d'estudi
+            const weekendEvents = placedEvents.filter(item => !dateHelper.isWeekday(item.newDate));
+            if (weekendEvents.length > 0) {
+                console.error(`[ESTUDI_REPLICA_SERVICE] ERROR CRÍTIC: ${weekendEvents.length} events en caps de setmana!`);
+                throw new Error(`Error de disseny: ${weekendEvents.length} events generats en caps de setmana`);
             }
             
-            console.log(`[REPLICA_SERVICE] Replicació completada amb èxit`);
+            console.log(`[ESTUDI_REPLICA_SERVICE] Replicació completada amb èxit`);
             
             return { placed: placedEvents, unplaced: unplacedEvents };
             
         } catch (error) {
-            console.error(`[REPLICA_SERVICE] Error en replicació:`, error);
+            console.error(`[ESTUDI_REPLICA_SERVICE] Error en replicació:`, error);
             throw error;
         }
     }
     
-    // Anàlisi de l'espai útil
-    analyzeWorkableSpace(calendar) {
-        console.log(`[Espai Útil] Analitzant espai útil per: ${calendar.name}`);
+    // Anàlisi de l'espai útil per calendaris d'estudi (CÒPIA EXACTA de la lògica original)
+    analyzeWorkableSpaceEstudi(calendar) {
+        console.log(`[Espai Útil Estudi] Analitzant espai útil per: ${calendar.name}`);
         
         const espaiUtil = [];
-        const dataFiAvalucions = this.findPAF1(calendar);
+        const dataFiAvaluacions = this.findPAF1(calendar);
         
         // Esdeveniments que ocupen l'espai (sistema IOC, festius, etc.)
         const occupiedBySystem = new Set(
@@ -174,21 +163,18 @@ class ReplicaService {
                 .map(e => e.date)
         );
         
-        console.log(`[Espai Útil] Període: ${calendar.startDate} → ${dataFiAvalucions}`);
-        console.log(`[Espai Útil] Dies ocupats pel sistema: ${occupiedBySystem.size}`);
+        console.log(`[Espai Útil Estudi] Període: ${calendar.startDate} → ${dataFiAvaluacions}`);
+        console.log(`[Espai Útil Estudi] Dies ocupats pel sistema: ${occupiedBySystem.size}`);
         
         // Iterar dia a dia
         let currentDate = dateHelper.parseUTC(calendar.startDate);
-        const endDate = dateHelper.parseUTC(dataFiAvalucions);
+        const endDate = dateHelper.parseUTC(dataFiAvaluacions);
         
         while (currentDate <= endDate) {
             const dateStr = dateHelper.toUTCString(currentDate);
             
-            // Per calendaris "Altre": tots els dies excepte els ocupats pel sistema
-            // Per calendaris FP/BTX: només dies laborals que no estan ocupats pel sistema
-            const isValidDay = calendar.type === 'Altre' 
-                ? !occupiedBySystem.has(dateStr)
-                : dateHelper.isWeekday(dateStr) && !occupiedBySystem.has(dateStr);
+            // Per calendaris d'estudi: només dies laborals que no estan ocupats pel sistema
+            const isValidDay = dateHelper.isWeekday(dateStr) && !occupiedBySystem.has(dateStr);
             
             if (isValidDay) {
                 espaiUtil.push(dateStr);
@@ -197,12 +183,12 @@ class ReplicaService {
             currentDate.setUTCDate(currentDate.getUTCDate() + 1);
         }
         
-        console.log(`[Espai Útil] Espai útil construït: ${espaiUtil.length} dies disponibles`);
+        console.log(`[Espai Útil Estudi] Espai útil construït: ${espaiUtil.length} dies disponibles`);
         
         return espaiUtil;
     }
     
-    // Cerca radial de slots lliures
+    // Cerca radial de slots lliures (CÒPIA EXACTA de la lògica original)
     findNearestFreeSlot(ocupacioMap, indexIdeal) {
         const dates = Array.from(ocupacioMap.keys());
         
@@ -245,7 +231,7 @@ class ReplicaService {
         }
     }
     
-    // Detectar data de fi d'avaluacions (obtenir PAF1)
+    // Detectar data de fi d'avaluacions per calendaris d'estudi (CÒPIA EXACTA de la lògica original)
     findPAF1(calendar) {
         console.log(`[PAF Detection] Obtenint PAF1 del calendari: ${calendar.name} (tipus: ${calendar.type})`);
         
@@ -257,7 +243,7 @@ class ReplicaService {
             }
         }
         
-        // Per calendaris tipus "Altre" o si no té paf1Date: buscar esdeveniments PAF
+        // Si no té paf1Date: buscar esdeveniments PAF
         console.log(`[PAF Detection] Buscant esdeveniments PAF en calendari tipus "${calendar.type}"`);
         
         // Buscar esdeveniments amb categoria PAF (SYS_CAT_3 o qualsevol categoria anomenada "PAF")
@@ -294,28 +280,4 @@ class ReplicaService {
         console.warn(`[PAF Detection] PAF1 no trobat per calendari tipus "${calendar.type}". Usant final de calendari: ${calendar.endDate}`);
         return calendar.endDate;
     }
-    
-    // Càlcul de confiança proporcional
-    calculateProportionalConfidence(indexOrigen, indexIdeal, indexFinal, factorProporcio) {
-        let confidence = 95; // Base alta
-        
-        // Penalització per diferència entre ideal i final
-        const diferencia = Math.abs(indexIdeal - indexFinal);
-        if (diferencia > 0) {
-            confidence -= Math.min(diferencia * 2, 15); // Màxim -15%
-        }
-        
-        // Bonificació per factors de proporció "nets"
-        if (Math.abs(factorProporcio - 1.0) < 0.1) {
-            confidence += 3; // Replicació gairebé directa
-        }
-        
-        // Garantir límits
-        return Math.max(Math.min(confidence, 99), 70);
-    }
 }
-
-// === INSTÀNCIA GLOBAL DEL SERVEI ===
-
-// Servei de replicació
-const replicaService = new ReplicaService();

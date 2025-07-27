@@ -4,7 +4,8 @@
  * =================================================================
  * 
  * @file        ViewManager.js
- * @description Gestió de vistes del calendari (mensual, setmanal, diària, semestral)
+ * @description Gestió de vistes del calendari amb persistència de navegació i 
+ *              neteja automàtica de listeners específics per vista
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0
  * @date        2025-01-16
@@ -15,10 +16,21 @@
  * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
  * una aplicació web per gestionar calendaris acadèmics.
  * 
+ * CARACTERÍSTIQUES PRINCIPALS:
+ * - Gestió de múltiples vistes: global, mensual, setmanal, diària, semestral
+ * - Coordinació amb AppStateManager per persistència de navegació (lastVisitedMonths)
+ * - Sistema de neteja automàtica de scroll listeners per evitar interferències
+ * - Renderització dinàmica segons la vista activa
+ * - Navegació intel·ligent dins dels rangs de cada calendari
+ * 
  * =================================================================
  */
 
 class ViewManager {
+    /**
+     * Constructor del gestor de vistes
+     * Inicialitza el sistema de vistes amb tracking de listeners per neteja automàtica
+     */
     constructor() {
         this.currentView = 'month';
         this.availableViews = ['global', 'semester', 'month', 'week', 'day'];
@@ -31,6 +43,14 @@ class ViewManager {
             week: null,
             semester: null
         };
+        
+        /**
+         * Tracking de scroll listeners específics per vista semestral
+         * @type {Function|null} semesterScrollListener
+         * @description Manté referència al listener actiu per poder-lo netejar
+         *              adequadament quan es canvia de vista, evitant interferències
+         */
+        this.semesterScrollListener = null;
     }
     
     // === INICIALITZACIÓ ===
@@ -48,12 +68,29 @@ class ViewManager {
     
     // === GESTIÓ DE VISTES ===
     
-    // Canviar vista
+    /**
+     * Canviar la vista activa del calendari
+     * @param {string} viewType Tipus de vista: 'global', 'month', 'week', 'day', 'semester'
+     * @returns {boolean} True si el canvi s'ha realitzat correctament
+     * @description Gestiona el canvi entre vistes amb persistència automàtica del mes visitat
+     *              i neteja de listeners específics per evitar interferències
+     */
     changeView(viewType) {
         if (!viewType || !this.availableViews.includes(viewType)) {
             console.warn(`[ViewManager] Vista no vàlida: ${viewType}`);
             return false;
         }
+        
+        // Persistència de navegació: si estem sortint de vista mensual, guardar la data actual
+        if (this.currentView === 'month' && viewType !== 'month') {
+            const calendar = appStateManager.getCurrentCalendar();
+            if (calendar && appStateManager.currentDate) {
+                appStateManager.lastVisitedMonths[calendar.id] = dateHelper.toUTCString(appStateManager.currentDate);
+            }
+        }
+        
+        // Neteja automàtica de listeners específics de la vista anterior
+        this.removeScrollListeners();
         
         // Actualitzar estat
         this.currentView = viewType;
@@ -220,9 +257,15 @@ class ViewManager {
         
         calendarManager.updateNavigationControls(calendar);
         
-        const monthHTML = this.renderers.month.render(calendar, appStateManager.currentDate, 'DOM');
-        periodDisplay.textContent = dateHelper.getMonthName(appStateManager.currentDate);
+        // Utilitzar currentDate - AppStateManager gestiona l'últim mes visitat
+        const dateToRender = appStateManager.currentDate;
+        
+        const monthHTML = this.renderers.month.render(calendar, dateToRender, 'DOM');
+        periodDisplay.textContent = dateHelper.getMonthName(dateToRender);
         gridWrapper.innerHTML = monthHTML;
+        
+        // Mantenir currentDate actualitzat per compatibilitat amb altres components
+        appStateManager.currentDate = dateToRender;
         
         dragDropHelper.setupDragAndDrop(gridWrapper, calendar);
     }
@@ -403,8 +446,19 @@ class ViewManager {
         return null; // No navegar fora del semestre actual
     }
     
-    // Navegació específica per mesos
+    /**
+     * Navegació específica per mesos amb persistència automàtica
+     * @param {number} direction Direcció de navegació: 1 (següent) o -1 (anterior)
+     * @param {Date} calendarStart Data d'inici del calendari
+     * @param {Date} calendarEnd Data de fi del calendari
+     * @returns {Date|null} Nova data si la navegació és vàlida, null altrament
+     * @description Navega entre mesos validant que estiguin dins del rang del calendari
+     *              i actualitza automàticament el sistema lastVisitedMonths
+     */
     navigateMonth(direction, calendarStart, calendarEnd) {
+        const calendar = appStateManager.getCurrentCalendar();
+        if (!calendar) return null;
+        
         const newDate = dateHelper.createUTC(
             appStateManager.currentDate.getUTCFullYear(), 
             appStateManager.currentDate.getUTCMonth() + direction, 
@@ -413,7 +467,13 @@ class ViewManager {
         
         const newDateEnd = dateHelper.createUTC(newDate.getUTCFullYear(), newDate.getUTCMonth() + 1, 0);
         
-        return (newDate <= calendarEnd && newDateEnd >= calendarStart) ? newDate : null;
+        if (newDate <= calendarEnd && newDateEnd >= calendarStart) {
+            // Persistència automàtica: guardar el nou mes com a últim visitat
+            appStateManager.lastVisitedMonths[calendar.id] = dateHelper.toUTCString(newDate);
+            return newDate;
+        }
+        
+        return null;
     }
     
     // === ACTUALITZACIÓ DE UI ===
@@ -602,14 +662,21 @@ class ViewManager {
     
     // === SCROLL TRACKING PER VISTA SEMESTRAL ===
     
-    // Configurar scroll listener per vista semestral
+    /**
+     * Configurar scroll listener per vista semestral
+     * @param {HTMLElement} gridWrapper Element contenidor del calendari
+     * @param {HTMLElement} periodDisplay Element que mostra el títol del període
+     * @param {Object} calendar Objecte calendari actual
+     * @param {string} semesterName Nom del semestre per mostrar
+     * @description Configura un listener de scroll que actualitza dinàmicament el títol
+     *              del període mostrant el mes més visible. Inclou neteja automàtica
+     *              de listeners anteriors per evitar múltiples listeners actius
+     */
     setupSemesterScrollListener(gridWrapper, periodDisplay, calendar, semesterName) {
-        // Netejar listeners anteriors si existeixen
-        if (this.semesterScrollListener) {
-            gridWrapper.removeEventListener('scroll', this.semesterScrollListener);
-        }
+        // Neteja de listeners anteriors per evitar conflictes
+        this.removeScrollListeners();
         
-        // Crear nou listener
+        // Crear nou listener amb funcionalitat de detecció de mes visible
         this.semesterScrollListener = () => {
             const currentMonth = this.getCurrentVisibleMonth(gridWrapper, calendar);
             if (currentMonth) {
@@ -619,10 +686,10 @@ class ViewManager {
             }
         };
         
-        // Afegir listener al scroll
+        // Registrar listener al contenidor
         gridWrapper.addEventListener('scroll', this.semesterScrollListener);
         
-        // Cridar immediatament per establir el mes inicial
+        // Execució inicial per establir el mes visible
         setTimeout(() => this.semesterScrollListener(), 100);
     }
     
@@ -710,6 +777,22 @@ class ViewManager {
     }
     
     // === UTILITATS ===
+    
+    /**
+     * Netejar scroll listeners actius
+     * @description Elimina tots els scroll listeners registrats per evitar interferències
+     *              entre vistes. És cridat automàticament en canvis de vista i abans
+     *              de configurar nous listeners en vista semestral
+     */
+    removeScrollListeners() {
+        if (this.semesterScrollListener) {
+            const gridWrapper = document.getElementById('calendar-grid-wrapper');
+            if (gridWrapper) {
+                gridWrapper.removeEventListener('scroll', this.semesterScrollListener);
+            }
+            this.semesterScrollListener = null;
+        }
+    }
     
     // Obtenir informació sobre l'estat actual
     getViewInfo() {

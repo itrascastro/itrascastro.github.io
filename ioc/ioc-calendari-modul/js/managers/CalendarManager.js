@@ -176,15 +176,46 @@ class CalendarManager {
         );
     }
     
-    // Canviar calendari actiu
+    /**
+     * Canviar calendari actiu amb persistència de navegació
+     * @param {string} calendarId ID del calendari a activar
+     * @description Gestiona el canvi entre calendaris preservant l'últim mes visitat
+     *              de cada calendari i aplicant validació de dates dins del rang
+     */
     switchCalendar(calendarId) {
         if (!calendarId || !appStateManager.calendars[calendarId]) return;
         
+        // Persistència: guardar l'últim mes visitat del calendari actual
+        const currentCalendar = appStateManager.getCurrentCalendar();
+        if (currentCalendar && appStateManager.currentDate) {
+            appStateManager.lastVisitedMonths[currentCalendar.id] = dateHelper.toUTCString(appStateManager.currentDate);
+        }
+        
         appStateManager.currentCalendarId = calendarId;
         
-        const activeCalendar = appStateManager.calendars[calendarId];
+        // Recuperar l'últim mes visitat del nou calendari amb validació de rang
+        const newCalendar = appStateManager.calendars[calendarId];
+        let targetDate;
         
-        appStateManager.currentDate = dateHelper.parseUTC(activeCalendar.startDate);
+        if (appStateManager.lastVisitedMonths[calendarId]) {
+            // Intentar recuperar l'últim mes visitat
+            targetDate = dateHelper.parseUTC(appStateManager.lastVisitedMonths[calendarId]);
+            
+            // Validació crítica: verificar que estigui dins del rang del calendari
+            const calendarStart = dateHelper.parseUTC(newCalendar.startDate);
+            const calendarEnd = dateHelper.parseUTC(newCalendar.endDate);
+            
+            if (targetDate < calendarStart || targetDate > calendarEnd) {
+                // Fallback segur: usar primer mes del calendari
+                targetDate = dateHelper.createUTC(calendarStart.getUTCFullYear(), calendarStart.getUTCMonth(), 1);
+            }
+        } else {
+            // Primera visita: usar primer mes del calendari
+            const calendarStart = dateHelper.parseUTC(newCalendar.startDate);
+            targetDate = dateHelper.createUTC(calendarStart.getUTCFullYear(), calendarStart.getUTCMonth(), 1);
+        }
+        
+        appStateManager.currentDate = targetDate;
         
         // Sempre tornar a vista mensual quan es canvia de calendari
         viewManager.changeView('month');
@@ -231,7 +262,10 @@ class CalendarManager {
         
         appStateManager.calendars[calendarId] = calendarData;
         appStateManager.currentCalendarId = calendarId;
-        appStateManager.currentDate = dateHelper.parseUTC(startDate);
+        
+        // Establir currentDate al primer mes del calendari nou
+        const calendarStart = dateHelper.parseUTC(startDate);
+        appStateManager.currentDate = dateHelper.createUTC(calendarStart.getUTCFullYear(), calendarStart.getUTCMonth(), 1);
     }
     
     // Generar esdeveniments de sistema per al calendari
@@ -464,7 +498,10 @@ class CalendarManager {
                         
                         // Activar calendari carregat
                         appStateManager.currentCalendarId = calendarId;
-                        appStateManager.currentDate = dateHelper.parseUTC(calendarData.startDate);
+                        
+                        // Establir currentDate al primer mes del calendari carregat
+                        const calendarStart = dateHelper.parseUTC(calendarData.startDate);
+                        appStateManager.currentDate = dateHelper.createUTC(calendarStart.getUTCFullYear(), calendarStart.getUTCMonth(), 1);
                         
                         // Sempre tornar a vista mensual quan es carrega un calendari
                         viewManager.changeView('month');

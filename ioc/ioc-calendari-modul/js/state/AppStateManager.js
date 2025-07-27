@@ -4,7 +4,8 @@
  * =================================================================
  * 
  * @file        AppStateManager.js
- * @description Gestió de l'estat global de l'aplicació i variables auxiliars
+ * @description Gestió centralitzada de l'estat global de l'aplicació, incloent
+ *              persistència de navegació per calendari i variables auxiliars
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0
  * @date        2025-01-16
@@ -15,12 +16,22 @@
  * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
  * una aplicació web per gestionar calendaris acadèmics.
  * 
+ * CARACTERÍSTIQUES PRINCIPALS:
+ * - Estat centralitzat per a tots els components
+ * - Sistema de persistència de navegació per calendari (lastVisitedMonths)
+ * - Gestió de variables de drag & drop i selecció
+ * - Validació i migració de dades d'estat
+ * 
  * =================================================================
  */
 
 // === CLASSE APPSTATEMANAGER ===
 
 class AppStateManager {
+    /**
+     * Constructor del gestor d'estat centralitzat
+     * Inicialitza l'estat principal de l'aplicació amb totes les propietats necessàries
+     */
     constructor() {
         // Estat principal de l'aplicació
         this.appState = {
@@ -30,8 +41,17 @@ class AppStateManager {
             editingEventId: null,
             currentDate: new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), 1)),
             currentView: 'month',  // Vista actual: month, day, week, semester
-            categoryTemplates: [],  // Catálogo global de categorías de usuario
-            unplacedEvents: [] // Eventos no ubicados en replicación
+            categoryTemplates: [],  // Catàleg global de categories d'usuari
+            unplacedEvents: [], // Esdeveniments no ubicats en replicació
+            /**
+             * Sistema de persistència de navegació per calendari
+             * @type {Object.<string, string>} lastVisitedMonths
+             * @description Mapeja cada ID de calendari amb l'últim mes visitat (format ISO)
+             * @example { "FP_24S2_001": "2025-03-01T00:00:00.000Z" }
+             * Permet que cada calendari recordi el seu últim mes visitat en vista mensual
+             * Es reseteja amb F5 (no és persistent) però es manté durant la sessió
+             */
+            lastVisitedMonths: {}
         };
 
         // Variables de drag & drop
@@ -96,7 +116,8 @@ class AppStateManager {
             editingEventId: null,
             currentDate: new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), 1)),
             categoryTemplates: [],
-            unplacedEvents: []
+            unplacedEvents: [],
+            lastVisitedMonths: {}
         };
         
         // Resetejar variables auxiliars
@@ -120,7 +141,12 @@ class AppStateManager {
         };
     }
 
-    // Validar l'estat de l'aplicació
+    /**
+     * Validar l'integritat de l'estat de l'aplicació
+     * @returns {boolean} True si l'estat és vàlid, false altrament
+     * @description Verifica que totes les propietats de l'estat tinguin els tipus correctes
+     *              i que el sistema lastVisitedMonths estigui inicialitzat correctament
+     */
     validateAppState() {
         if (!this.appState || typeof this.appState !== 'object') {
             console.error('[AppState] Estat principal no vàlid');
@@ -139,6 +165,12 @@ class AppStateManager {
         
         if (!Array.isArray(this.appState.unplacedEvents)) {
             console.error('[AppState] Events no ubicats no vàlids');
+            return false;
+        }
+        
+        // Validació específica del sistema de navegació per calendari
+        if (!this.appState.lastVisitedMonths || typeof this.appState.lastVisitedMonths !== 'object') {
+            console.error('[AppState] Sistema lastVisitedMonths no vàlid');
             return false;
         }
         
@@ -217,6 +249,24 @@ class AppStateManager {
     
     set editingEventId(value) {
         this.appState.editingEventId = value;
+    }
+    
+    /**
+     * Últims mesos visitats per calendari
+     * @returns {Object.<string, string>} Mapeig de calendarId → data ISO de l'últim mes visitat
+     * @description Sistema de persistència de navegació que permet a cada calendari
+     *              recordar l'últim mes visitat en vista mensual durant la sessió
+     */
+    get lastVisitedMonths() {
+        return this.appState.lastVisitedMonths;
+    }
+    
+    /**
+     * Establir els últims mesos visitats
+     * @param {Object.<string, string>} value Nou mapeig de lastVisitedMonths
+     */
+    set lastVisitedMonths(value) {
+        this.appState.lastVisitedMonths = value;
     }
     
     // === MIGRACIONS ===

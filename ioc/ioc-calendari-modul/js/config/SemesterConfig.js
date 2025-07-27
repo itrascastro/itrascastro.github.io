@@ -200,6 +200,3 @@ class SemesterConfig {
     }
     
 }
-
-// === INSTÀNCIA GLOBAL ===
-// Nota: semesterConfig global ja no s'usa, cada calendari crea la seva instància específica

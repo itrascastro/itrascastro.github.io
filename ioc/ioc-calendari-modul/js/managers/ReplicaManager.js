@@ -98,7 +98,10 @@ class ReplicaManager {
         try {
             console.log(`[Replicació] Iniciant replicació: ${sourceCalendar.name} → ${targetCalendar.name}`);
             
-            // Executar replicació usant el servei
+            // Seleccionar servei de replicació adequat mitjançant Factory
+            const replicaService = ReplicaServiceFactory.getService(sourceCalendar, targetCalendar);
+            
+            // Executar replicació usant el servei seleccionat
             const result = replicaService.replicate(sourceCalendar, targetCalendar);
             
             // Aplicar esdeveniments replicats al calendari destí
@@ -117,9 +120,35 @@ class ReplicaManager {
                 console.log(`[Replicació] ${result.unplaced.length} events no ubicats guardats per gestió manual`);
             }
 
-            // Canviar al calendari destí
+            // Canviar al calendari destí amb gestió de persistència de navegació
             appStateManager.currentCalendarId = targetCalendarId;
-            appStateManager.currentDate = dateHelper.parseUTC(targetCalendar.startDate);
+            
+            /**
+             * Gestió de lastVisitedMonths després de replicació
+             * Aplica la mateixa lògica que CalendarManager.switchCalendar()
+             * per mantenir consistència en el comportament de navegació
+             */
+            let targetDate;
+            
+            if (appStateManager.lastVisitedMonths[targetCalendarId]) {
+                // Recuperar últim mes visitat del calendari destí
+                targetDate = dateHelper.parseUTC(appStateManager.lastVisitedMonths[targetCalendarId]);
+                
+                // Validació de rang: verificar que estigui dins del calendari destí
+                const calendarStart = dateHelper.parseUTC(targetCalendar.startDate);
+                const calendarEnd = dateHelper.parseUTC(targetCalendar.endDate);
+                
+                if (targetDate < calendarStart || targetDate > calendarEnd) {
+                    // Fallback: usar primer mes del calendari destí
+                    targetDate = dateHelper.createUTC(calendarStart.getUTCFullYear(), calendarStart.getUTCMonth(), 1);
+                }
+            } else {
+                // Primera vegada: usar primer mes del calendari destí
+                const calendarStart = dateHelper.parseUTC(targetCalendar.startDate);
+                targetDate = dateHelper.createUTC(calendarStart.getUTCFullYear(), calendarStart.getUTCMonth(), 1);
+            }
+            
+            appStateManager.currentDate = targetDate;
             
             // Persistir canvis
             storageManager.saveToStorage();
