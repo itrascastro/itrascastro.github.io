@@ -91,6 +91,11 @@ class StorageManager {
                 appStateManager.unplacedEvents = [];
             }
         
+            // Migració automàtica: inicialitzar sistema de persistència de navegació
+            if (!appStateManager.lastVisitedMonths) {
+                appStateManager.lastVisitedMonths = {};
+            }
+        
             // Migrar plantilles de categories
             appStateManager.migrateCategoryTemplates();
         
