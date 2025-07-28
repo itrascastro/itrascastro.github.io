@@ -277,7 +277,7 @@ class EventManager {
     // Crear nou esdeveniment
     createNewEvent(calendar, eventData) {
         const newEvent = {
-            id: idHelper.generateNextEventId(appStateManager.currentCalendarId),
+            id: idHelper.generateNextEventId(calendar.id),
             ...eventData
         };
         calendar.events.push(newEvent);
