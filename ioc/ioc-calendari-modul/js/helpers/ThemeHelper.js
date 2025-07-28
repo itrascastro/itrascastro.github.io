@@ -28,7 +28,7 @@ class ThemeHelper {
         const body = document.body;
         body.classList.toggle('dark-mode');
         const isDarkMode = body.classList.contains('dark-mode');
-        document.getElementById('theme-toggle').textContent = isDarkMode ? 'Canviar a Mode Clar' : 'Canviar a Mode Fosc';
+        document.getElementById('theme-toggle').textContent = isDarkMode ? 'Mode Clar' : 'Mode Fosc';
         // No guardar a localStorage - sempre tornar al tema del sistema en recarregar
     }
     
@@ -45,10 +45,10 @@ class ThemeHelper {
         // Sempre començar amb el tema del sistema
         if (systemTheme === 'dark') {
             body.classList.add('dark-mode');
-            document.getElementById('theme-toggle').textContent = 'Canviar a Mode Clar';
+            document.getElementById('theme-toggle').textContent = 'Mode Clar';
         } else {
             body.classList.remove('dark-mode');
-            document.getElementById('theme-toggle').textContent = 'Canviar a Mode Fosc';
+            document.getElementById('theme-toggle').textContent = 'Mode Fosc';
         }
     }
 

@@ -45,6 +45,7 @@ class SemesterConfig {
     async loadConfiguration(type) {
         try {
             const commonConfig = await this.loadJSON('config/common-semestre.json');
+            const systemCategories = await this.loadJSON('config/sys-categories.json');
             let specificConfig = { systemEvents: [] };
             
             if (type === 'FP') {
@@ -53,11 +54,11 @@ class SemesterConfig {
                 specificConfig = await this.loadJSON('config/btx-semestre.json');
             } else if (type === 'Altre') {
                 // Tipus "Altre" no carrega configuració específica
-                return this.getEmptyConfiguration();
+                return this.getEmptyConfiguration(systemCategories);
             }
             
             // Fusionar configuracions
-            return this.mergeConfigurations(commonConfig, specificConfig);
+            return this.mergeConfigurations(commonConfig, specificConfig, systemCategories);
             
         } catch (error) {
             console.error(`[SemesterConfig] Error carregant configuració per tipus ${type}:`, error);
@@ -85,16 +86,16 @@ class SemesterConfig {
     }
     
     // Configuració buida per tipus "Altre"
-    getEmptyConfiguration() {
+    getEmptyConfiguration(systemCategories) {
         return {
             semester: null, // Es definirà dinàmicament
-            defaultCategories: [], // Sense categories del sistema
+            defaultCategories: systemCategories || [], // Categories carregades del JSON
             systemEvents: [] // Sense esdeveniments del sistema
         };
     }
     
     // Fusionar configuració comuna amb específica
-    mergeConfigurations(commonConfig, specificConfig) {
+    mergeConfigurations(commonConfig, specificConfig, systemCategories) {
         const mergedEvents = [
             ...(commonConfig.systemEvents || []),
             ...(specificConfig.systemEvents || [])
@@ -105,7 +106,7 @@ class SemesterConfig {
         
         return {
             semester: specificConfig.semester || commonConfig.semester,
-            defaultCategories: this.getSystemCategories(),
+            defaultCategories: systemCategories || [],
             systemEvents: eventsWithIds
         };
     }
@@ -116,30 +117,6 @@ class SemesterConfig {
             ...event,
             id: `SYS_EVENT_${index + 1}`
         }));
-    }
-    
-    // Categories del sistema (sempre iguals)
-    getSystemCategories() {
-        return [
-            {
-                "id": "SYS_CAT_1",
-                "name": "IOC_GENERIC",
-                "color": "#3b82f6",
-                "isSystem": true
-            },
-            {
-                "id": "SYS_CAT_2",
-                "name": "FESTIU",
-                "color": "#f43f5e",
-                "isSystem": true
-            },
-            {
-                "id": "SYS_CAT_3",
-                "name": "PAF",
-                "color": "#8b5cf6",
-                "isSystem": true
-            }
-        ];
     }
     
     // === GETTERS PER ACCEDIR A LA CONFIGURACIÓ ===

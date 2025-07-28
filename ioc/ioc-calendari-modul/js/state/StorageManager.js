@@ -96,6 +96,22 @@ class StorageManager {
                 appStateManager.lastVisitedMonths = {};
             }
         
+            // Migració automàtica: inicialitzar colors de categories de sistema
+            if (!appStateManager.appState.systemCategoryColors) {
+                appStateManager.appState.systemCategoryColors = {};
+                
+                // Migrar colors existents de categories de sistema
+                Object.values(appStateManager.calendars).forEach(calendar => {
+                    calendar.categories.forEach(category => {
+                        if (category.isSystem && category.color) {
+                            appStateManager.appState.systemCategoryColors[category.id] = category.color;
+                        }
+                    });
+                });
+                
+                console.log('[Migration] systemCategoryColors inicialitzat amb colors existents');
+            }
+        
             // Migrar plantilles de categories
             appStateManager.migrateCategoryTemplates();
         
@@ -260,6 +276,33 @@ class StorageManager {
         return true;
     }
 
+    // === NETEJA COMPLETA ===
+    
+    // Netejar tota l'aplicació amb confirmació
+    clearAll() {
+        uiHelper.showConfirmModal(
+            "Estàs segur que vols netejar totes les dades?\n\nAixò eliminarà tots els calendaris, categories i configuracions.\n\nAquesta acció no es pot desfer.",
+            'Netejar tot',
+            () => {
+                // Netejar localStorage
+                this.clearStorage();
+                
+                // Resetjar estat de l'aplicació
+                appStateManager.resetAppState();
+                
+                // Netejar consola del navegador
+                console.clear();
+                
+                // Refrescar interfície d'usuari
+                calendarManager.updateUI();
+                
+                // Mostrar confirmació
+                uiHelper.showMessage('Aplicació netejada correctament', 'success');
+                
+                console.log('[Storage] Neteja completa realitzada');
+            }
+        );
+    }
 
     // Formatear bytes en format llegible (mètode privat)
     formatBytes(bytes, decimals = 2) {

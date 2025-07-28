@@ -21,12 +21,7 @@
 // Classe per gestionar totes les categories de l'aplicació
 class CategoryManager {
     constructor() {
-        this.colors = [
-            '#e53e3e', '#dd6b20', '#d69e2e', '#38a169', '#319795',
-            '#3182ce', '#553c9a', '#805ad5', '#d53f8c', '#f56565',
-            '#fd7f28', '#ecc94b', '#48bb78', '#4fd1c7', '#63b3ed',
-            '#b794f6', '#f687b3', '#fc8181', '#fbb6ce', '#c6f6d5'
-        ];
+        // Colors ara gestionats per ColorCategoryHelper
     }
     
     // === GESTIÓ DE CATEGORIES ===
@@ -137,7 +132,7 @@ class CategoryManager {
         return {
             id: idHelper.generateNextCategoryId(appStateManager.currentCalendarId),
             name: name,
-            color: this.generateRandomColor(),
+            color: colorCategoryHelper.generateRandomColor(),
             isSystem: false,
         };
     }
@@ -280,9 +275,9 @@ class CategoryManager {
     
     // === UTILITATS ===
     
-    // Generar color aleatori
+    // Generar color aleatori (delegat al helper)
     generateRandomColor() {
-        return this.colors[Math.floor(Math.random() * this.colors.length)];
+        return colorCategoryHelper.generateRandomColor();
     }
 }
 

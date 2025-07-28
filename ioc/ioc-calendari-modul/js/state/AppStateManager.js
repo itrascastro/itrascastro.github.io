@@ -37,11 +37,9 @@ class AppStateManager {
         this.appState = {
             calendars: {},
             currentCalendarId: null,
-            editingCalendarId: null,
-            editingEventId: null,
             currentDate: new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), 1)),
-            currentView: 'month',  // Vista actual: month, day, week, semester
             categoryTemplates: [],  // Catàleg global de categories d'usuari
+            systemCategoryColors: {}, // Colors assignats a categories de sistema
             unplacedEvents: [], // Esdeveniments no ubicats en replicació
             /**
              * Sistema de persistència de navegació per calendari
@@ -61,6 +59,9 @@ class AppStateManager {
         // Variables de selección
         this.selectedCalendarId = null;
         this.selectedCategoryId = null;
+        
+        // Variables de edició temporal
+        this._editingEventId = null;
     }
 
     // Obtenir el calendari actual
@@ -112,10 +113,9 @@ class AppStateManager {
         this.appState = {
             calendars: {},
             currentCalendarId: null,
-            editingCalendarId: null,
-            editingEventId: null,
             currentDate: new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), 1)),
             categoryTemplates: [],
+            systemCategoryColors: {},
             unplacedEvents: [],
             lastVisitedMonths: {}
         };
@@ -125,6 +125,7 @@ class AppStateManager {
         this.draggedFromDate = null;
         this.selectedCalendarId = null;
         this.selectedCategoryId = null;
+        this._editingEventId = null;
     }
 
     // Obtenir informació de l'estat actual
@@ -206,15 +207,6 @@ class AppStateManager {
         this.appState.currentDate = value;
     }
     
-    // Vista actual
-    get currentView() {
-        return this.appState.currentView;
-    }
-    
-    set currentView(value) {
-        this.appState.currentView = value;
-    }
-    
     // Plantilles de categories
     get categoryTemplates() {
         return this.appState.categoryTemplates;
@@ -233,22 +225,13 @@ class AppStateManager {
         this.appState.unplacedEvents = value;
     }
     
-    // ID del calendari en edició
-    get editingCalendarId() {
-        return this.appState.editingCalendarId;
-    }
-    
-    set editingCalendarId(value) {
-        this.appState.editingCalendarId = value;
-    }
-    
     // ID de l'esdeveniment en edició
     get editingEventId() {
-        return this.appState.editingEventId;
+        return this._editingEventId;
     }
     
     set editingEventId(value) {
-        this.appState.editingEventId = value;
+        this._editingEventId = value;
     }
     
     /**

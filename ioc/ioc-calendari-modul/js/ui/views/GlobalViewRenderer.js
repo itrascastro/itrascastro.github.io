@@ -109,7 +109,7 @@ class GlobalViewRenderer extends CalendarRenderer {
         
         // Capçalera clickable per anar a vista mensual
         const monthHeaderAction = outputFormat === 'DOM' ? 
-            `data-action="month-click" data-date="${dateHelper.toUTCString(monthData.date)}"` : '';
+            `data-action="global-month-click" data-date="${dateHelper.toUTCString(monthData.date)}"` : '';
         
         return `
             <div class="global-month">

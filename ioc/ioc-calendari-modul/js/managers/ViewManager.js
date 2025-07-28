@@ -94,7 +94,6 @@ class ViewManager {
         
         // Actualitzar estat
         this.currentView = viewType;
-        appStateManager.currentView = viewType;
         
         // Actualitzar atribut del body per CSS
         document.body.setAttribute('data-current-view', viewType);
@@ -385,6 +384,7 @@ class ViewManager {
         if (newDate) {
             appStateManager.currentDate = newDate;
             this.renderCurrentView();
+            storageManager.saveToStorage(); // Persistir canvis de navegació
             return true;
         }
         
@@ -459,7 +459,7 @@ class ViewManager {
         const calendar = appStateManager.getCurrentCalendar();
         if (!calendar) return null;
         
-        const newDate = dateHelper.createUTC(
+        let newDate = dateHelper.createUTC(
             appStateManager.currentDate.getUTCFullYear(), 
             appStateManager.currentDate.getUTCMonth() + direction, 
             1
@@ -468,6 +468,14 @@ class ViewManager {
         const newDateEnd = dateHelper.createUTC(newDate.getUTCFullYear(), newDate.getUTCMonth() + 1, 0);
         
         if (newDate <= calendarEnd && newDateEnd >= calendarStart) {
+            // Si és el primer mes del calendari, usar data d'inici real
+            const isFirstMonth = newDate.getUTCFullYear() === calendarStart.getUTCFullYear() && 
+                                newDate.getUTCMonth() === calendarStart.getUTCMonth();
+            
+            if (isFirstMonth) {
+                newDate = calendarStart;
+            }
+            
             // Persistència automàtica: guardar el nou mes com a últim visitat
             appStateManager.lastVisitedMonths[calendar.id] = dateHelper.toUTCString(newDate);
             return newDate;
@@ -801,6 +809,35 @@ class ViewManager {
             availableViews: this.availableViews,
             hasRenderer: this.renderers[this.currentView] !== null
         };
+    }
+    
+    // === NAVEGACIÓ DES DE VISTA GLOBAL ===
+    
+    // Gestionar click en nom de mes des de vista global
+    handleGlobalMonthClick(dateStr) {
+        if (!dateStr) return;
+        
+        const monthDate = dateHelper.parseUTC(dateStr);
+        if (!monthDate) return;
+        
+        const calendar = appStateManager.getCurrentCalendar();
+        if (!calendar) return;
+        
+        const calendarStart = dateHelper.parseUTC(calendar.startDate);
+        
+        // Si és el primer mes del calendari, usar data d'inici real
+        const isFirstMonth = monthDate.getUTCFullYear() === calendarStart.getUTCFullYear() && 
+                            monthDate.getUTCMonth() === calendarStart.getUTCMonth();
+        
+        appStateManager.currentDate = isFirstMonth ? calendarStart : monthDate;
+        
+        // Actualitzar lastVisitedMonths per consistència
+        appStateManager.lastVisitedMonths[calendar.id] = dateHelper.toUTCString(appStateManager.currentDate);
+        
+        // Persistir canvis al storage
+        storageManager.saveToStorage();
+        
+        this.changeView('month');
     }
 }
 

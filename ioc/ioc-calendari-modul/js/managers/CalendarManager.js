@@ -51,7 +51,7 @@ class CalendarManager {
             return; // Error ja mostrat en les funcions específiques
         }
         
-        if (this.calendarExists(calendarData.id) && appStateManager.editingCalendarId !== calendarData.id) {
+        if (this.calendarExists(calendarData.id)) {
             uiHelper.showMessage("Ja existeix un calendari amb aquest nom.", 'error');
             return;
         }
@@ -164,9 +164,15 @@ class CalendarManager {
             () => {
                 delete appStateManager.calendars[calendarId];
                 
-                // Si era el calendari actiu, netejar selecció
+                // Netejar dades de navegació del calendari eliminat
+                if (appStateManager.lastVisitedMonths[calendarId]) {
+                    delete appStateManager.lastVisitedMonths[calendarId];
+                }
+                
+                // Si era el calendari actiu, seleccionar el següent disponible
                 if (appStateManager.currentCalendarId === calendarId) {
-                    appStateManager.currentCalendarId = null;
+                    const remainingCalendars = Object.keys(appStateManager.calendars);
+                    appStateManager.currentCalendarId = remainingCalendars.length > 0 ? remainingCalendars[0] : null;
                 }
                 
                 storageManager.saveToStorage();
@@ -259,13 +265,19 @@ class CalendarManager {
             calendarData.paf1Date = paf1Date;
         }
         
+        // Assignar colors a categories de sistema sense color
+        calendarData.categories.forEach(category => {
+            if (category.isSystem && !category.color) {
+                category.color = colorCategoryHelper.assignSystemCategoryColor(category.id);
+            }
+        });
         
         appStateManager.calendars[calendarId] = calendarData;
         appStateManager.currentCalendarId = calendarId;
         
-        // Establir currentDate al primer mes del calendari nou
+        // Establir currentDate a la data d'inici real del calendari nou
         const calendarStart = dateHelper.parseUTC(startDate);
-        appStateManager.currentDate = dateHelper.createUTC(calendarStart.getUTCFullYear(), calendarStart.getUTCMonth(), 1);
+        appStateManager.currentDate = calendarStart;
     }
     
     // Generar esdeveniments de sistema per al calendari
@@ -349,7 +361,7 @@ class CalendarManager {
                     importCategory = {
                         id: `${calendar.id}_C${calendar.categoryCounter}`,
                         name: 'Importats',
-                        color: categoryManager.generateRandomColor(),
+                        color: colorCategoryHelper.generateRandomColor(),
                         isSystem: false
                     };
                     calendar.categories.push(importCategory);
@@ -499,9 +511,9 @@ class CalendarManager {
                         // Activar calendari carregat
                         appStateManager.currentCalendarId = calendarId;
                         
-                        // Establir currentDate al primer mes del calendari carregat
+                        // Establir currentDate a la data d'inici real del calendari carregat
                         const calendarStart = dateHelper.parseUTC(calendarData.startDate);
-                        appStateManager.currentDate = dateHelper.createUTC(calendarStart.getUTCFullYear(), calendarStart.getUTCMonth(), 1);
+                        appStateManager.currentDate = calendarStart;
                         
                         // Sempre tornar a vista mensual quan es carrega un calendari
                         viewManager.changeView('month');

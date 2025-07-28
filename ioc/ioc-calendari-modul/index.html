@@ -38,7 +38,10 @@ una aplicació web per gestionar calendaris acadèmics.
                 <img src="img/logo-ioc.png" alt="IOC" class="header-logo">
                 <h1>Calendari IOC</h1>
             </div>
-            <button id="theme-toggle" data-action="toggle-theme">Canviar a Mode Fosc</button>
+            <div class="header-actions">
+                <button id="clear-button" class="header-button" data-action="clear-all" title="Netejar totes les dades">Clear</button>
+                <button id="theme-toggle" class="header-button" data-action="toggle-theme"></button>
+            </div>
         </header>
 
         <aside class="sidebar">
@@ -243,6 +246,7 @@ una aplicació web per gestionar calendaris acadèmics.
     <script src="js/helpers/ColorContrastHelper.js"></script>
     <script src="js/helpers/MenuHelper.js"></script>
     <script src="js/helpers/DragDropHelper.js"></script>
+    <script src="js/helpers/ColorCategoryHelper.js"></script>
     
     <!-- Configuració -->
     <script src="js/config/SemesterConfig.js"></script>

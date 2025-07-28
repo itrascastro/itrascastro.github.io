@@ -37,7 +37,6 @@ class ModalRenderer {
     
     // Modal de creació de nou calendari
     openNewCalendarModal() {
-        appStateManager.editingCalendarId = null;
         document.getElementById('setupModalTitle').textContent = 'Nou Calendari';
         document.getElementById('studyType').value = '';
         document.getElementById('dynamicFields').innerHTML = '';
@@ -226,7 +225,7 @@ class ModalRenderer {
         const grid = document.getElementById('colorPickerGrid');
         
         // Generar la graella de colors
-        grid.innerHTML = categoryManager.colors.map(color => `
+        grid.innerHTML = colorCategoryHelper.colors.map(color => `
             <div class="color-option ${color === category.color ? 'selected' : ''}" 
                  style="background-color: ${color};" 
                  data-color="${color}" 
@@ -321,6 +320,11 @@ class ModalRenderer {
             const calendarCategory = cal.categories.find(c => c.id === selectedCategoryId);
             if (calendarCategory) {
                 calendarCategory.color = newColor;
+                
+                // Si és categoria de sistema, persistir color per a futures càrregues
+                if (calendarCategory.isSystem) {
+                    appStateManager.appState.systemCategoryColors[selectedCategoryId] = newColor;
+                }
             }
         });
         

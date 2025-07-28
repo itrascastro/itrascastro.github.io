@@ -231,53 +231,18 @@ class EstudiReplicaService extends ReplicaService {
         }
     }
     
-    // Detectar data de fi d'avaluacions per calendaris d'estudi (CÒPIA EXACTA de la lògica original)
+    // Detectar data de fi d'avaluacions per calendaris d'estudi
     findPAF1(calendar) {
         console.log(`[PAF Detection] Obtenint PAF1 del calendari: ${calendar.name} (tipus: ${calendar.type})`);
         
-        // Per calendaris FP i BTX: usar paf1Date directe
-        if (calendar.type === 'FP' || calendar.type === 'BTX') {
-            if (calendar.paf1Date) {
-                console.log(`[PAF Detection] PAF1 trobat per ${calendar.type}: ${calendar.paf1Date}`);
-                return calendar.paf1Date;
-            }
-        }
-        
-        // Si no té paf1Date: buscar esdeveniments PAF
-        console.log(`[PAF Detection] Buscant esdeveniments PAF en calendari tipus "${calendar.type}"`);
-        
-        // Buscar esdeveniments amb categoria PAF (SYS_CAT_3 o qualsevol categoria anomenada "PAF")
-        const pafEvents = calendar.events.filter(event => {
-            // Buscar per ID de categoria del sistema
-            if (event.categoryId === 'SYS_CAT_3') return true;
-            
-            // Buscar per nom de categoria "PAF" en categories personalitzades
-            if (calendar.categories) {
-                const category = calendar.categories.find(cat => cat.id === event.categoryId);
-                if (category && category.name.toUpperCase().includes('PAF')) return true;
-            }
-            
-            // Buscar per títol que contingui "PAF1"
-            if (event.title.toUpperCase().includes('PAF1')) return true;
-            
-            return false;
-        });
-        
-        if (pafEvents.length > 0) {
-            // Ordenar per data i obtenir el primer PAF1
-            const sortedPafEvents = pafEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
-            const firstPaf = sortedPafEvents.find(event => 
-                event.title.toUpperCase().includes('PAF1') || event.categoryId === 'SYS_CAT_3'
-            );
-            
-            if (firstPaf) {
-                console.log(`[PAF Detection] PAF1 trobat per esdeveniments: ${firstPaf.date} ("${firstPaf.title}")`);
-                return firstPaf.date;
-            }
+        // Usar paf1Date directe si està disponible
+        if (calendar.paf1Date) {
+            console.log(`[PAF Detection] PAF1 trobat per ${calendar.type}: ${calendar.paf1Date}`);
+            return calendar.paf1Date;
         }
         
         // Fallback: usar final de calendari
-        console.warn(`[PAF Detection] PAF1 no trobat per calendari tipus "${calendar.type}". Usant final de calendari: ${calendar.endDate}`);
+        console.log(`[PAF Detection] PAF1 no definit per calendari tipus "${calendar.type}". Usant final de calendari: ${calendar.endDate}`);
         return calendar.endDate;
     }
 }
