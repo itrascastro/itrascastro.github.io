@@ -45,7 +45,7 @@ class SemesterConfig {
     async loadConfiguration(type) {
         try {
             const commonConfig = await this.loadJSON('config/common-semestre.json');
-            const systemCategories = await this.loadJSON('config/sys-categories.json');
+            const systemCategories = this.addIsSystemToCategories(await this.loadJSON('config/sys-categories.json'));
             let specificConfig = { systemEvents: [] };
             
             if (type === 'FP') {
@@ -115,7 +115,16 @@ class SemesterConfig {
     generateEventIds(events) {
         return events.map((event, index) => ({
             ...event,
-            id: `SYS_EVENT_${index + 1}`
+            id: `SYS_EVENT_${index + 1}`,
+            isSystemEvent: true
+        }));
+    }
+    
+    // Afegir propietat isSystem a categories del sistema
+    addIsSystemToCategories(categories) {
+        return categories.map(category => ({
+            ...category,
+            isSystem: true
         }));
     }
     

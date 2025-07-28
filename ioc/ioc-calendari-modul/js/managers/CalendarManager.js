@@ -24,16 +24,16 @@ class CalendarManager {
     
     // Crear nou calendari (asíncron)
     async addCalendar() {
-        const selectedType = document.getElementById('studyType').value;
-        
-        if (!selectedType) {
-            uiHelper.showMessage("Selecciona un tipus de calendari.", 'error');
-            return;
-        }
-        
-        let calendarData;
-        
         try {
+            const selectedType = document.getElementById('studyType').value;
+            
+            if (!selectedType) {
+                uiHelper.showMessage("Selecciona un tipus de calendari.", 'error');
+                return;
+            }
+            
+            let calendarData;
+            
             if (selectedType === 'FP') {
                 calendarData = await this.processFPCalendar();
             } else if (selectedType === 'BTX') {
@@ -41,23 +41,23 @@ class CalendarManager {
             } else if (selectedType === 'Altre') {
                 calendarData = this.processAltreCalendar();
             }
+            
+            if (!calendarData) {
+                return; // Error ja mostrat en les funcions específiques
+            }
+            
+            if (this.calendarExists(calendarData.id)) {
+                uiHelper.showMessage("Ja existeix un calendari amb aquest nom.", 'error');
+                return;
+            }
+            
+            this.createCalendarData(calendarData.id, calendarData.name, calendarData.startDate, calendarData.endDate, calendarData.type, calendarData.paf1Date, calendarData.config);
+            this.completeCalendarSave();
+            
         } catch (error) {
-            console.error('[CalendarManager] Error processant calendari:', error);
-            uiHelper.showMessage("Error carregant la configuració del calendari.", 'error');
-            return;
+            console.error('[CalendarManager] Error afegint calendari:', error);
+            uiHelper.showMessage('Error creant el calendari.', 'error');
         }
-        
-        if (!calendarData) {
-            return; // Error ja mostrat en les funcions específiques
-        }
-        
-        if (this.calendarExists(calendarData.id)) {
-            uiHelper.showMessage("Ja existeix un calendari amb aquest nom.", 'error');
-            return;
-        }
-        
-        this.createCalendarData(calendarData.id, calendarData.name, calendarData.startDate, calendarData.endDate, calendarData.type, calendarData.paf1Date, calendarData.config);
-        this.completeCalendarSave();
     }
     
     // Processar calendari FP (asíncron)
