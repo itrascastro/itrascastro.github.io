@@ -1,293 +1,69 @@
-<!--
-=================================================================
-CALENDARI MÒDUL IOC - PÀGINA PRINCIPAL
-=================================================================
-
-@file        index.html
-@description Pàgina principal de l'aplicació Calendari Mòdul IOC
-@author      Ismael Trascastro <itrascastro@ioc.cat>
-@version     1.0.0
-@date        2025-01-16
-@project     Calendari Mòdul IOC
-@repository  https://github.com/itrascastro/ioc-modul-calendari
-@license     MIT
-
-Aquest fitxer forma part del projecte Calendari Mòdul IOC,
-una aplicació web per gestionar calendaris acadèmics.
-
-=================================================================
--->
 <!DOCTYPE html>
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendari IOC</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/calendar.css">
-    <link rel="stylesheet" href="css/themes.css">
+    <title>Calendari IOC - Redirigint...</title>
+    
+    <!-- Redirect automàtic després de 0 segons -->
+    <meta http-equiv="refresh" content="0; url=../calendari-ioc/">
+    
+    <!-- Fallback JavaScript per navegadors que no suporten meta-refresh -->
+    <script>
+        // Redirect immediat
+        window.location.href = "../calendari-ioc/";
+    </script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f5f5f5;
+        }
+        .redirect-message {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
-<body class="light-mode">
-    <div class="app-container">
-        <header class="main-header">
-            <div class="header-title">
-                <img src="img/logo-ioc.png" alt="IOC" class="header-logo">
-                <h1>Calendari IOC</h1>
-            </div>
-            <div class="header-actions">
-                <button id="clear-button" class="header-button" data-action="clear-all" title="Netejar totes les dades">Clear</button>
-                <button id="theme-toggle" class="header-button" data-action="toggle-theme"></button>
-            </div>
-        </header>
-
-        <aside class="sidebar">
-            <!-- PANEL 1: ESDEVENIMENTS NO UBICATS -->
-            <div class="sidebar-section panel-scrollable">
-                <h2 class="panel-header">Esdeveniments Pendents</h2>
-
-                <div class="panel-content">
-                    <div class="category-list" id="unplaced-events-container"></div>
-                </div>
-            </div>
-
-            <!-- PANEL 2: CALENDARIS -->
-            <div class="sidebar-section panel-scrollable">
-                <h2 class="panel-header">Calendaris Desats</h2>
-
-                <div class="sidebar-actions">
-                    <button class="action-btn" data-action="new-calendar">+ Nou</button>
-                    <button class="action-btn" data-action="load-calendar-file">↑ Carregar</button>
-                </div>
-
-                <div class="panel-content">
-                    <div class="category-list" id="calendars-list-container"></div>
-                </div>
-            </div>
-
-            <!-- PANEL 3: CATEGORIES -->
-            <div class="sidebar-section panel-scrollable">
-                <h2 class="panel-header">Categories d'Esdeveniments</h2>
-
-                <div class="panel-content">
-                    <div class="category-list" id="categories-list-container"></div>
-                </div>
-
-                <div class="panel-footer">
-                    <div class="new-category-form">
-                        <label for="new-category-name" class="visually-hidden">Nova categoria</label>
-                        <input class="category-input" id="new-category-name" name="new-category-name" type="text" placeholder="Nova categoria...">
-                        <button class="btn-add-category" data-action="add-category">+</button>
-                    </div>
-                </div>
-            </div>
-        </aside>
-
-        <main class="calendar-container">
-            <div class="calendar-header">
-                <div class="month-navigator">
-                    <button class="nav-arrow" data-action="navigate-period" data-direction="-1">&lt;</button>
-                    <h3 id="current-period-display">...</h3>
-                    <button class="nav-arrow" data-action="navigate-period" data-direction="1">&gt;</button>
-                </div>
-                <div class="view-toggles">
-                    <button data-action="change-view" data-view="global">Global</button>
-                    <button data-action="change-view" data-view="semester">Semestre</button>
-                    <button class="active" data-action="change-view" data-view="month">Mensual</button>
-                    <button data-action="change-view" data-view="week">Setmanal</button>
-                    <button data-action="change-view" data-view="day">Dia</button>
-                </div>
-            </div>
-            <div class="calendar-grid-wrapper" id="calendar-grid-wrapper"></div>
-        </main>
+<body>
+    <div class="redirect-message">
+        <h1>Calendari IOC</h1>
+        <p><span class="spinner"></span>Redirigint a la nova ubicació...</p>
+        <p>L'aplicació s'ha mogut a:</p>
+        <p><strong><a href="../calendari-ioc/">calendari-ioc</a></strong></p>
+        <p><small>Si no es redirigeix automàticament, feu clic a l'enllaç superior.</small></p>
     </div>
-
-    <!-- ===== MODALS ===== -->
-    <div id="calendarSetupModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="setupModalTitle">Nou Calendari de Mòdul</h3>
-                <button class="close-btn" data-action="close-modal" data-modal="calendarSetupModal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="studyType">Tipus:</label>
-                    <select id="studyType" name="studyType">
-                        <option value="">Selecciona tipus...</option>
-                        <option value="FP">Formació Professional (FP)</option>
-                        <option value="BTX">Batxillerat (BTX)</option>
-                        <option value="Altre">Altre</option>
-                    </select>
-                </div>
-                
-                <!-- Camps dinàmics segons tipus seleccionat -->
-                <div id="dynamicFields"></div>
-                
-                <!-- Preview del nom generat -->
-                <div id="namePreview" class="form-group" style="display: none;">
-                    <span class="form-label">Nom del calendari:</span>
-                    <div class="name-preview" id="generatedName"></div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" data-action="close-modal" data-modal="calendarSetupModal">Cancel·lar</button>
-                <button class="btn btn-danger" id="deleteCalendarBtn" style="display: none;" data-action="delete-calendar">Eliminar</button>
-                <button class="btn btn-primary" id="saveCalendarBtn" data-action="add-calendar">Crear Calendari</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="eventModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="eventModalTitle">Nou Esdeveniment</h3>
-                <button class="close-btn" data-action="close-modal" data-modal="eventModal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="eventTitle">Títol de l'Esdeveniment:</label>
-                    <input type="text" id="eventTitle" name="eventTitle" placeholder="Ex: Lliurament EAC5">
-                </div>
-                <div class="form-group">
-                    <label for="eventDate">Data:</label>
-                    <input type="date" id="eventDate" name="eventDate" placeholder="dd/mm/aaaa">
-                </div>
-                <div class="form-group">
-                    <label for="eventCategory">Categoria:</label>
-                    <select id="eventCategory" name="eventCategory"></select>
-                </div>
-                <div class="form-group">
-                    <label for="eventDescription">Descripció (opcional):</label>
-                    <textarea id="eventDescription" name="eventDescription" placeholder="Detalls de l'event..."></textarea>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" data-action="close-modal" data-modal="eventModal">Cancel·lar</button>
-                <button class="btn btn-danger" id="deleteEventBtn" style="display: none;" data-action="delete-event">Eliminar</button>
-                <button class="btn btn-primary" id="saveEventBtn" data-action="save-event">Desar Esdeveniment</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="replicationModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="replicationModalTitle">Replicar Calendari</h3>
-                <button class="close-btn" data-action="close-modal" data-modal="replicationModal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="replication-info">
-                    <p><strong>Calendari origen:</strong> <span id="sourceCalendarName">...</span></p>
-                </div>
-                
-                <div class="form-group">
-                    <label for="targetCalendarSelect">Calendari destí:</label>
-                    <select id="targetCalendarSelect" name="targetCalendarSelect">
-                        <option value="" disabled selected>Selecciona el calendari destí</option>
-                    </select>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" data-action="close-modal" data-modal="replicationModal">Cancel·lar</button>
-                <button class="btn btn-primary" id="executeReplicationBtn" data-action="execute-replication">Replicar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal de confirmació -->
-    <div id="confirmModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="confirmModalTitle">Confirmar acció</h3>
-                <button class="close-btn" data-action="close-modal" data-modal="confirmModal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p id="confirmModalMessage">Estàs segur que vols realitzar aquesta acció?</p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" data-action="close-modal" data-modal="confirmModal">Cancel·lar</button>
-                <button class="btn btn-danger" id="confirmModalConfirmBtn">Confirmar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal d'accions de calendari -->
-    <div id="calendarActionsModal" class="modal calendar-actions-modal">
-        <div class="calendar-actions-content">
-            <div class="calendar-actions-list">
-                <button class="calendar-action-btn" data-action="save-calendar-json">Desar</button>
-                <button class="calendar-action-btn" data-action="export-calendar-ics">Exportar ICS</button>
-                <button class="calendar-action-btn" data-action="export-calendar-html">Exportar HTML</button>
-                <button id="importIcsBtn" class="calendar-action-btn" data-action="import-calendar-ics" style="display: none;">Importar ICS</button>
-                <button class="calendar-action-btn" data-action="replicate-calendar">Replicar</button>
-                <button class="calendar-action-btn danger" data-action="delete-calendar">Eliminar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal de selector de colors -->
-    <div id="colorPickerModal" class="modal color-picker-modal">
-        <div class="color-picker-content">
-            <div class="color-picker-grid" id="colorPickerGrid">
-                <!-- Els colors es generaran dinàmicament -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Helpers -->
-    <script src="js/helpers/DateHelper.js"></script>
-    <script src="js/helpers/TextHelper.js"></script>
-    <script src="js/helpers/UIHelper.js"></script>
-    <script src="js/helpers/IdHelper.js"></script>
-    <script src="js/helpers/ThemeHelper.js"></script>
-    <script src="js/helpers/ColorContrastHelper.js"></script>
-    <script src="js/helpers/MenuHelper.js"></script>
-    <script src="js/helpers/DragDropHelper.js"></script>
-    <script src="js/helpers/ColorCategoryHelper.js"></script>
     
-    <!-- Configuració -->
-    <script src="js/config/SemesterConfig.js"></script>
-    
-    <!-- Estat i persistència -->
-    <script src="js/state/AppStateManager.js"></script>
-    <script src="js/state/StorageManager.js"></script>
-    
-    <!-- Serveis -->
-    <script src="js/services/CategoryService.js"></script>
-    <script src="js/services/DateValidationService.js"></script>
-    <script src="js/services/replica/ReplicaService.js"></script>
-    <script src="js/services/replica/EstudiReplicaService.js"></script>
-    <script src="js/services/replica/GenericReplicaService.js"></script>
-    <script src="js/services/replica/ReplicaServiceFactory.js"></script>
-    
-    <!-- Gestors -->
-    <script src="js/managers/EventManager.js"></script>
-    <script src="js/managers/CalendarManager.js"></script>
-    <script src="js/managers/CategoryManager.js"></script>
-    <script src="js/managers/ReplicaManager.js"></script>
-    <script src="js/managers/ViewManager.js"></script>
-    
-    <!-- Interfície d'usuari -->
-    <script src="js/ui/views/CalendarRenderer.js"></script>
-    <script src="js/ui/views/MonthViewRenderer.js"></script>
-    <script src="js/ui/views/DayViewRenderer.js"></script>
-    <script src="js/ui/views/WeekViewRenderer.js"></script>
-    <script src="js/ui/views/SemesterViewRenderer.js"></script>
-    <script src="js/ui/views/GlobalViewRenderer.js"></script>
-    <script src="js/ui/PanelsRenderer.js"></script>
-    <script src="js/ui/ModalRenderer.js"></script>
-    
-    <!-- Exportació -->
-    <script src="js/export/templates/calendar-template.js"></script>
-    <script src="js/export/templates/calendar-styles.js"></script>
-    <script src="js/export/HtmlExporter.js"></script>
-    <script src="js/export/IcsExporter.js"></script>
-    <script src="js/export/JsonExporter.js"></script>
-    <script src="js/import/IcsImporter.js"></script>
-    
-    <script src="js/Bootstrap.js"></script>
+    <!-- Fallback adicional per si JavaScript està desactivat -->
+    <noscript>
+        <meta http-equiv="refresh" content="3; url=../calendari-ioc/">
+    </noscript>
 </body>
 </html>
