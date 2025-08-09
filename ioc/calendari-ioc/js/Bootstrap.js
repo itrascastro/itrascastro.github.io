@@ -21,6 +21,9 @@
 class Bootstrap {
     constructor() {
         try {
+            // Desactivar spellcheck globalment
+            document.body.spellcheck = false;
+
             // Inicialitzar aplicació
             console.log('[Sistema] Inicialitzant aplicació...');
             
