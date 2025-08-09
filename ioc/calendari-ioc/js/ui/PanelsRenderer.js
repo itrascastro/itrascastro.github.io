@@ -132,7 +132,7 @@ class PanelsRenderer {
     
     // === GENERACIÓ DE HTML D'ESDEVENIMENTS NO UBICATS ===
     generateUnplacedEventHTML(item, index) {
-        // FASE 3: Usar mètodes directes de l'instància Event
+        // Usar mètode getCategoryName() de CalendariIOC_Event
         const categoryName = item.event.getCategoryName();
         
         return `

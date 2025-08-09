@@ -60,11 +60,15 @@ class CalendariIOC_DataRehydrator {
             const categoryTemplates = Array.from(categoryMap.values())
                 .filter(cat => !cat.isSystem);
             
-            // 5. Retornar estat completament rehidratat
+            // 5. Rehidratar esdeveniments no ubicats si existeixen
+            const rehydratedUnplacedEvents = this._rehydrateUnplacedEvents(jsonState.unplacedEvents, categoryMap);
+            
+            // 6. Retornar estat completament rehidratat
             return {
                 ...jsonState,
                 calendars: rehydratedCalendars,
-                categoryTemplates: categoryTemplates
+                categoryTemplates: categoryTemplates,
+                unplacedEvents: rehydratedUnplacedEvents
             };
             
         } catch (error) {
@@ -312,6 +316,53 @@ class CalendariIOC_DataRehydrator {
         });
         
         return rehydratedCalendars;
+    }
+    
+    /**
+     * Rehidratar esdeveniments no ubicats
+     * 
+     * Converteix els esdeveniments no ubicats des de JSON pla a instàncies
+     * CalendariIOC_Event amb referències directes a Category.
+     * 
+     * @param {Array} unplacedEventsData - Array d'esdeveniments no ubicats en format JSON
+     * @param {Map} categoryMap - Mapa global de categories per lookup eficient
+     * @returns {Array} Array d'esdeveniments no ubicats rehidratats
+     * @private
+     */
+    static _rehydrateUnplacedEvents(unplacedEventsData, categoryMap) {
+        if (!unplacedEventsData || !Array.isArray(unplacedEventsData)) {
+            return [];
+        }
+        
+        return unplacedEventsData.map(unplacedItem => {
+            const eventData = unplacedItem.event;
+            
+            // Si l'esdeveniment ja és una instància de classe, mantenir-lo
+            if (eventData instanceof CalendariIOC_Event) {
+                return unplacedItem;
+            }
+            
+            // Cercar categoria del mapa global
+            let category = null;
+            if (eventData.categoryId) {
+                category = categoryMap.get(eventData.categoryId);
+            }
+            
+            // Crear instància CalendariIOC_Event amb referència directa
+            const rehydratedEvent = new CalendariIOC_Event({
+                id: eventData.id,
+                title: eventData.title,
+                date: eventData.date,
+                description: eventData.description,
+                isSystemEvent: eventData.isSystemEvent,
+                category: category // REFERÈNCIA DIRECTA A INSTÀNCIA
+            });
+            
+            return {
+                ...unplacedItem,
+                event: rehydratedEvent
+            };
+        });
     }
     
     /**

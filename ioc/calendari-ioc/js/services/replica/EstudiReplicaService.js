@@ -39,7 +39,7 @@ class EstudiReplicaService extends ReplicaService {
             }
             
             // REPLICAR CATEGORIES NECESSÀRIES PRIMER
-            const categoryMap = this.replicateRequiredCategories(professorEvents, targetCalendar);
+            const categoryMap = this.replicateRequiredCategories(professorEvents);
             console.log(`[ESTUDI_REPLICA_SERVICE] Categories replicades: ${categoryMap.size}`);
             
             // Construir espais útils
@@ -53,11 +53,25 @@ class EstudiReplicaService extends ReplicaService {
                 console.log(`[ESTUDI_REPLICA_SERVICE] Calendari destí sense espai útil disponible`);
                 return { 
                     placed: [], 
-                    unplaced: professorEvents.map(event => ({ 
-                        event: event, // Mantenir instància original
-                        sourceCalendar,
-                        reason: "Calendari destí sense espai útil disponible" 
-                    })) 
+                    unplaced: professorEvents.map(event => {
+                        const originalCategory = event.getCategory();
+                        const targetCategory = categoryMap.get(originalCategory?.id);
+                        
+                        const unplacedEvent = new CalendariIOC_Event({
+                            id: event.id,
+                            title: event.title,
+                            date: event.date,
+                            description: event.description || '',
+                            isSystemEvent: event.isSystemEvent || false,
+                            category: targetCategory || originalCategory // Mantenir referència categoria
+                        });
+                        
+                        return { 
+                            event: unplacedEvent,
+                            sourceCalendar,
+                            reason: "Calendari destí sense espai útil disponible" 
+                        };
+                    }) 
                 };
             }
             
@@ -80,8 +94,21 @@ class EstudiReplicaService extends ReplicaService {
                 
                 if (indexOrigen === -1) {
                     console.log(`[ESTUDI_REPLICA_SERVICE] Esdeveniment "${event.title}" no troba posició en espai origen`);
+                    
+                    const originalCategory = event.getCategory();
+                    const targetCategory = categoryMap.get(originalCategory?.id);
+                    
+                    const unplacedEvent = new CalendariIOC_Event({
+                        id: event.id,
+                        title: event.title,
+                        date: event.date,
+                        description: event.description || '',
+                        isSystemEvent: event.isSystemEvent || false,
+                        category: targetCategory || originalCategory // Mantenir referència categoria
+                    });
+                    
                     unplacedEvents.push({ 
-                        event: event, // Mantenir instància original
+                        event: unplacedEvent,
                         sourceCalendar,
                         reason: "Esdeveniment no està en espai útil d'origen" 
                     });
@@ -96,8 +123,21 @@ class EstudiReplicaService extends ReplicaService {
                 
                 if (indexFinal === -1) {
                     console.log(`[ESTUDI_REPLICA_SERVICE] No es troba slot lliure per "${event.title}"`);
+                    
+                    const originalCategory = event.getCategory();
+                    const targetCategory = categoryMap.get(originalCategory?.id);
+                    
+                    const unplacedEvent = new CalendariIOC_Event({
+                        id: event.id,
+                        title: event.title,
+                        date: event.date,
+                        description: event.description || '',
+                        isSystemEvent: event.isSystemEvent || false,
+                        category: targetCategory || originalCategory // Mantenir referència categoria
+                    });
+                    
                     unplacedEvents.push({ 
-                        event: event, // Mantenir instància original
+                        event: unplacedEvent,
                         sourceCalendar,
                         reason: "Sense slots lliures disponibles" 
                     });

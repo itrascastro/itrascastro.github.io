@@ -52,6 +52,9 @@ class ReplicaManager {
         // Poblar select de calendaris destí
         this.populateTargetCalendarSelect(availableTargets);
         
+        // Configurar visibilitat de l'opció dies de la setmana
+        this.configureWeekdayOption(sourceCalendar, availableTargets);
+        
         // Obrir modal
         modalRenderer.openModal('replicationModal');
     }
@@ -69,12 +72,65 @@ class ReplicaManager {
             option.textContent = calendar.name;
             select.appendChild(option);
         });
+        
+        // Afegir event listener per actualitzar visibilitat de l'opció dies setmana
+        select.addEventListener('change', () => {
+            const sourceCalendar = appStateManager.calendars[this.currentSourceCalendarId];
+            const selectedTargetId = select.value;
+            
+            if (sourceCalendar && selectedTargetId) {
+                const targetCalendar = appStateManager.calendars[selectedTargetId];
+                if (targetCalendar) {
+                    this.updateWeekdayOptionVisibility(sourceCalendar, targetCalendar);
+                }
+            } else {
+                // Si no hi ha selecció vàlida, ocultar l'opció
+                this.hideWeekdayOption();
+            }
+        });
+    }
+    
+    // Configurar visibilitat inicial de l'opció dies de la setmana
+    configureWeekdayOption(sourceCalendar, availableTargets) {
+        // Inicialment sempre ocultar l'opció - només es mostrarà després de seleccionar destí
+        const weekdayOption = document.getElementById('respectWeekdays')?.parentElement;
+        if (weekdayOption) {
+            weekdayOption.style.display = 'none';
+        }
+    }
+    
+    // Actualitzar visibilitat quan canvia el calendari destí
+    updateWeekdayOptionVisibility(sourceCalendar, targetCalendar) {
+        const willUseGenericService = this.willUseGenericService(sourceCalendar, targetCalendar);
+        
+        const weekdayOption = document.getElementById('respectWeekdays')?.parentElement;
+        if (weekdayOption) {
+            weekdayOption.style.display = willUseGenericService ? 'block' : 'none';
+        }
+    }
+    
+    // Ocultar opció dies de la setmana
+    hideWeekdayOption() {
+        const weekdayOption = document.getElementById('respectWeekdays')?.parentElement;
+        if (weekdayOption) {
+            weekdayOption.style.display = 'none';
+        }
+    }
+    
+    // Determinar si es farà servir GenericReplicaService (mateixa lògica que ReplicaServiceFactory)
+    willUseGenericService(sourceCalendar, targetCalendar) {
+        const sourceType = sourceCalendar.type || 'Altre';
+        const targetType = targetCalendar.type || 'Altre';
+        
+        // Si qualsevol dels calendaris és "Altre", usar GenericReplicaService
+        return sourceType === 'Altre' || targetType === 'Altre';
     }
     
     // Executar replicació
     executeReplication() {
         const sourceCalendarId = this.currentSourceCalendarId;
         const targetCalendarId = document.getElementById('targetCalendarSelect').value;
+        const respectWeekdays = document.getElementById('respectWeekdays').checked;
         
         if (!sourceCalendarId) {
             throw new CalendariIOCException('702', 'ReplicaManager.executeReplication');
@@ -97,8 +153,8 @@ class ReplicaManager {
             // Seleccionar servei de replicació adequat mitjançant Factory
             const replicaService = ReplicaServiceFactory.getService(sourceCalendar, targetCalendar);
             
-            // Executar replicació usant el servei seleccionat
-            const result = replicaService.replicate(sourceCalendar, targetCalendar);
+            // Executar replicació usant el servei seleccionat amb opcions d'usuari
+            const result = replicaService.replicate(sourceCalendar, targetCalendar, respectWeekdays);
             
             // FASE 3: Aplicar esdeveniments replicats (ja són instàncies CalendariIOC_Event)
             result.placed.forEach(placedItem => {
@@ -249,8 +305,26 @@ class ReplicaManager {
         dateValidationService.validateReplicationDate(targetDate, calendar);
         
         // FASE 3: Crear nou esdeveniment com a instància de classe
-        const categoryId = unplacedItem.event.getCategory()?.id;
-        const category = calendar.findCategoryById(categoryId);
+        const originalCategory = unplacedItem.event.getCategory();
+        const categoryId = originalCategory?.id;
+        let category = calendar.findCategoryById(categoryId);
+        
+        // Si la categoria no existeix al calendari destí, buscar-la al catàleg global
+        if (!category && categoryId) {
+            const categoryTemplate = appStateManager.categoryTemplates.find(t => t.id === categoryId);
+            
+            if (categoryTemplate) {
+                // Crear nova instància de categoria per al calendari destí
+                category = new CalendariIOC_Category({
+                    id: categoryTemplate.id,
+                    name: categoryTemplate.name,
+                    color: categoryTemplate.color,
+                    isSystem: false
+                });
+                calendar.addCategory(category);
+                console.log(`[ReplicaManager] Categoria "${categoryTemplate.name}" afegida al calendari destí des del catàleg global`);
+            }
+        }
         
         const newEvent = new CalendariIOC_Event({
             id: idHelper.generateNextEventId(appStateManager.currentCalendarId),

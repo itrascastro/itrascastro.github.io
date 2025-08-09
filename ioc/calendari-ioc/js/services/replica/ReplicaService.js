@@ -105,23 +105,17 @@ class ReplicaService {
      * @param {Object} targetCalendar - Calendari destí (no utilitzat, les categories són globals)
      * @returns {Map} Map de categoryId → categoria original del catàleg global
      */
-    replicateRequiredCategories(professorEvents, targetCalendar) {
-        console.log(`[REPLICA_CATEGORIES] Obtenint categories necessàries del catàleg global...`);
-        
+    replicateRequiredCategories(professorEvents) {
         const categoryMap = new Map();
         
         // Obtenir categories úniques dels esdeveniments i referenciar-les del catàleg global
-        professorEvents.forEach(event => {
+        professorEvents.forEach((event) => {
             const category = event.getCategory();
+            
             if (category && !category.isSystem) {
                 // Les categories són globals - usar la mateixa instància original
                 categoryMap.set(category.id, category);
             }
-        });
-        
-        console.log(`[REPLICA_CATEGORIES] Categories globals referenciades: ${categoryMap.size}`);
-        categoryMap.forEach((category, id) => {
-            console.log(`[REPLICA_CATEGORIES] - ${id}: "${category.name}" (color: ${category.color})`);
         });
         
         return categoryMap;

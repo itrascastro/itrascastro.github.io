@@ -66,12 +66,7 @@ class Bootstrap {
                 case 'navigate-period': viewManager.navigatePeriod(parseInt(target.dataset.direction)); break;
                 case 'switch-calendar': calendarManager.switchCalendar(target.closest('.calendar-list-item').dataset.calendarId); break;
                 case 'add-event': modalRenderer.openEventModal(null, target.dataset.date || target.closest('.day-cell')?.dataset.date); break;
-                case 'open-event-modal': {
-                    const eventId = target.dataset.eventId;
-                    const event = appStateManager.findEventById(eventId);
-                    modalRenderer.openEventModal(event);
-                    break;
-                }
+                case 'open-event-modal': modalRenderer.openEventModal(appStateManager.findEventById(target.dataset.eventId)); break;
                 case 'save-event': eventManager.saveEvent(); break;
                 case 'delete-event': eventManager.deleteEvent(); break;
                 case 'add-category': categoryManager.addCategory(); break;
@@ -111,7 +106,7 @@ class Bootstrap {
 document.addEventListener('DOMContentLoaded', () => {
     new Bootstrap();
 
-    // Exposar managers per a testing amb Cypress
+    // Exposar per a testing amb Cypress
     if (window.Cypress) {
         window.app = {
             // Models
@@ -130,7 +125,11 @@ document.addEventListener('DOMContentLoaded', () => {
             uiHelper,
             dateHelper,
             icsImporter,
-            idHelper
+            idHelper,
+            // Serveis de Replicació
+            ReplicaServiceFactory,
+            EstudiReplicaService,
+            GenericReplicaService
         };
     }
 });
