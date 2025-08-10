@@ -63,11 +63,6 @@ class CalendarManager {
             }
         }
 
-        // En mode fallback, redirigir a calendari genèric
-        if (studyTypeDiscovery.isInFallbackMode()) {
-            console.warn('[CalendarManager] Mode fallback actiu, creant calendari genèric en lloc de tipus estudi');
-            return this._createFallbackCalendar(typeId, userIdentifier);
-        }
 
         // Obtenir configuracions amb validació robusta
         const specificConfigData = studyTypeDiscovery.getConfig(typeId);

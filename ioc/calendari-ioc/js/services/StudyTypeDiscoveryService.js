@@ -20,7 +20,6 @@ class StudyTypeDiscoveryService {
         this.configs = new Map();
         this.isInitialized = false;
         this.initializationPromise = null;
-        this.fallbackMode = false;
     }
 
     async initialize() {
@@ -34,54 +33,22 @@ class StudyTypeDiscoveryService {
         }
 
         this.initializationPromise = this._performInitialization();
-        
-        try {
-            await this.initializationPromise;
-        } catch (error) {
-            console.warn('[Discovery] Inicialització fallida, activant mode fallback:', error.message);
-            this._activateFallbackMode();
-        } finally {
-            this.initializationPromise = null;
-        }
-
-        return Promise.resolve();
+        await this.initializationPromise;
+        this.initializationPromise = null;
     }
 
     async initializeWithFeedback() {
         console.log('[Discovery] Inicialitzant sistema de descobriment...');
-        
-        try {
-            await this.initialize();
-            this._reportSuccessfulDiscovery();
-        } catch (error) {
-            console.warn('[Discovery] Error inicialitzant discovery service, continuant amb mode fallback:', error.message);
-            // Error ja gestionat internament per initialize()
-        }
+        await this.initialize();
+        console.log(`[Discovery] Descobriment completat: ${this.studyTypes.length} tipus d'estudi carregats`);
     }
 
-    _reportSuccessfulDiscovery() {
-        if (this.isInFallbackMode()) {
-            console.warn('[Discovery] Sistema en mode fallback: només calendaris genèrics disponibles');
-            this._showFallbackNotification();
-        } else {
-            console.log(`[Discovery] Discovery completat: ${this.studyTypes.length} tipus d'estudi descoberts`);
-        }
-    }
-
-    _showFallbackNotification() {
-        // Mostrar notificació visual que està en mode fallback
-        setTimeout(() => {
-            if (typeof uiHelper !== 'undefined' && uiHelper.showMessage) {
-                uiHelper.showMessage('Sistema en mode simplificat: només calendaris genèrics disponibles', 'warning', 5000);
-            }
-        }, 1000);
-    }
 
     async _performInitialization() {
-        // Simulació de descobriment de fitxers (en un entorn real seria una crida API)
-        const allConfigFiles = ['fp.json', 'btx.json', '_common.json', '_sys-categories.json'];
-        const studyConfigFiles = allConfigFiles.filter(file => !file.startsWith('_'));
-        const systemConfigFiles = allConfigFiles.filter(file => file.startsWith('_'));
+        // Carregar llista d'estudis disponibles
+        const availableStudies = await this._loadAvailableStudies();
+        const studyConfigFiles = availableStudies.map(study => `${study}.json`);
+        const systemConfigFiles = ['sys/common.json', 'sys/categories.json'];
 
         // Carregar configuracions d'estudi amb retry
         for (const configFile of studyConfigFiles) {
@@ -99,6 +66,29 @@ class StudyTypeDiscoveryService {
             console.log(`[Discovery] Descobriment completat: ${this.studyTypes.length} tipus d'estudi carregats`);
         } else {
             console.log(`[Discovery] Cap tipus d'estudi descobert, només mode genèric disponible`);
+        }
+    }
+
+    async _loadAvailableStudies() {
+        try {
+            const response = await fetch('config/available-studies.json', {
+                cache: 'no-cache',
+                headers: {
+                    'Cache-Control': 'no-cache',
+                    'Pragma': 'no-cache'
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+
+            const availableStudies = await response.json();
+            console.log(`[Discovery] Estudis disponibles descoberts: ${availableStudies.join(', ')}`);
+            return availableStudies;
+            
+        } catch (error) {
+            throw new Error(`Error carregant llista d'estudis disponibles: ${error.message}`);
         }
     }
 
@@ -156,7 +146,15 @@ class StudyTypeDiscoveryService {
                 }
 
                 const configData = await response.json();
-                const configKey = configFile.replace('_', '').replace('.json', '').toUpperCase();
+                // Mapatge específic per fitxers del sistema
+                let configKey;
+                if (configFile === 'sys/common.json') {
+                    configKey = 'COMMON';
+                } else if (configFile === 'sys/categories.json') {
+                    configKey = 'SYS-CATEGORIES';
+                } else {
+                    configKey = configFile.replace('.json', '').toUpperCase();
+                }
                 this.configs.set(configKey, configData);
                 return;
                 
@@ -173,13 +171,6 @@ class StudyTypeDiscoveryService {
         }
     }
 
-    _activateFallbackMode() {
-        this.fallbackMode = true;
-        this.studyTypes = []; // Només mode ALTRE disponible
-        this.configs.clear();
-        
-        console.warn('[Discovery] Mode fallback activat: només calendaris genèrics disponibles');
-    }
 
     _delay(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -197,18 +188,12 @@ class StudyTypeDiscoveryService {
         return this.configs.get(typeId.toUpperCase());
     }
 
-    isInFallbackMode() {
-        return this.fallbackMode;
-    }
 
     isReady() {
-        return this.isInitialized || this.fallbackMode;
+        return this.isInitialized;
     }
 
     getAvailableTypes() {
-        if (this.fallbackMode) {
-            return ['ALTRE']; // Només genèrics disponibles en fallback
-        }
         return this.studyTypes.map(type => type.id);
     }
 }

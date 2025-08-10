@@ -64,12 +64,11 @@ class Bootstrap {
     }
 
     _displayApplicationStatus() {
-        const discoveryStatus = studyTypeDiscovery.isInFallbackMode() ? 'MODE FALLBACK' : 'COMPLET';
         const studyTypesCount = studyTypeDiscovery.getStudyTypes().length;
         const categoriesCount = appStateManager.categoryTemplates.length;
         
         console.log(`[Bootstrap] Aplicació inicialitzada correctament`);
-        console.log(`[Bootstrap] • Discovery: ${discoveryStatus} (${studyTypesCount} tipus disponibles)`);
+        console.log(`[Bootstrap] • Discovery: ${studyTypesCount} tipus d'estudi disponibles`);
         console.log(`[Bootstrap] • Categories: ${categoriesCount} plantilles carregades`);
     }
 
