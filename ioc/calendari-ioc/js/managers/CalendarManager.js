@@ -2,180 +2,177 @@
  * =================================================================
  * CALENDAR MANAGER - GESTIÓ DE CALENDARIS
  * =================================================================
- * 
+ *
  * @file        CalendarManager.js
  * @description Gestió de calendaris, configuració i operacions CRUD
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
- * @version     1.0.0
- * @date        2025-01-16
+ * @version     2.0.0
+ * @date        2025-08-09
  * @project     Calendari Mòdul IOC
- * @repository  https://github.com/itrascastro/ioc-modul-calendari
  * @license     MIT
- * 
- * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
- * una aplicació web per gestionar calendaris acadèmics.
- * 
+ *
  * =================================================================
  */
-
-// Classe per gestionar tots els calendaris de l'aplicació
 class CalendarManager {
-    // === GESTIÓ DE CALENDARIS ===
-    
-    // Crear nou calendari (asíncron)
     async addCalendar() {
         try {
             const selectedType = document.getElementById('studyType').value;
-            
             if (!selectedType) {
-                throw new CalendariIOCException('401', 'CalendarManager.addCalendar', false);
+                throw new CalendariIOCException('401', 'Cal seleccionar un tipus de calendari.', false);
             }
-            
+
             let calendarData;
-            
-            if (selectedType === 'FP') {
-                calendarData = await this.processFPCalendar();
-            } else if (selectedType === 'BTX') {
-                calendarData = await this.processBTXCalendar();
-            } else if (selectedType === 'Altre') {
-                calendarData = this.processAltreCalendar();
+            if (selectedType === 'ALTRE') {
+                calendarData = this._createGenericCalendar();
+            } else {
+                calendarData = await this._createStudyCalendar(selectedType);
             }
-            
-            if (!calendarData) {
-                return; // Error ja mostrat en les funcions específiques
-            }
-            
+
+            if (!calendarData) return;
+
             if (this.calendarExists(calendarData.id)) {
-                throw new CalendariIOCException('402', 'CalendarManager.addCalendar', false);
+                throw new CalendariIOCException('402', `El calendari amb ID "${calendarData.id}" ja existeix.`, false);
             }
+
+            this.createCalendarData(calendarData);
             
-            this.createCalendarData(calendarData.id, calendarData.name, calendarData.startDate, calendarData.endDate, calendarData.type, calendarData.paf1Date, calendarData.config);
-            
-            // Sempre tornar a vista mensual quan es crea un calendari
             viewManager.changeView('month');
-            
             storageManager.saveToStorage();
             this.updateUI();
             modalRenderer.closeModal('calendarSetupModal');
             uiHelper.showMessage('Calendari creat correctament', 'success');
             
         } catch (error) {
-            if (error instanceof CalendariIOCException) {
-                throw error;
+            errorManager.handleError(error);
+        }
+    }
+
+    async _createStudyCalendar(typeId) {
+        const userIdentifier = document.getElementById('studyIdentifier').value.trim();
+        if (!userIdentifier) {
+            throw new CalendariIOCException('405', 'L\'identificador del calendari és obligatori.', false);
+        }
+
+        // Verificar que StudyTypeDiscovery estigui inicialitzat
+        if (!studyTypeDiscovery.isReady()) {
+            console.warn('[CalendarManager] StudyTypeDiscovery no està llest, intentant reinicialitzar...');
+            try {
+                await studyTypeDiscovery.initialize();
+            } catch (error) {
+                throw new CalendariIOCException('503', 'El sistema de descobriment de tipus d\'estudi no està disponible. Si us plau, recarregueu la pàgina.', false);
             }
-            throw new CalendariIOCException('404', 'CalendarManager.addCalendar');
+        }
+
+        // En mode fallback, redirigir a calendari genèric
+        if (studyTypeDiscovery.isInFallbackMode()) {
+            console.warn('[CalendarManager] Mode fallback actiu, creant calendari genèric en lloc de tipus estudi');
+            return this._createFallbackCalendar(typeId, userIdentifier);
+        }
+
+        // Obtenir configuracions amb validació robusta
+        const specificConfigData = studyTypeDiscovery.getConfig(typeId);
+        const commonConfigData = studyTypeDiscovery.getConfig('COMMON');
+        const systemCategoriesData = studyTypeDiscovery.getConfig('SYS-CATEGORIES');
+
+        // Validació detallada de configuracions
+        if (!specificConfigData) {
+            throw new CalendariIOCException('503', `No s'ha trobat la configuració específica per al tipus "${typeId}". Possibles tipus disponibles: ${studyTypeDiscovery.getAvailableTypes().join(', ')}`, false);
+        }
+
+        if (!commonConfigData) {
+            console.warn('[CalendarManager] Configuració comuna no disponible, continuant sense esdeveniments del sistema');
+        }
+
+        if (!systemCategoriesData) {
+            console.warn('[CalendarManager] Categories del sistema no disponibles, utilitzant categories per defecte');
+        }
+
+        try {
+            const config = new SemesterConfig(specificConfigData, commonConfigData, systemCategoriesData);
+            
+            const semesterCode = config.getSemesterCode();
+            const calendarId = `${typeId}_${userIdentifier.toUpperCase()}_${semesterCode}`;
+            
+            return {
+                id: calendarId,
+                name: calendarId,
+                startDate: config.getStartDate(),
+                endDate: config.getEndDate(),
+                type: typeId,
+                paf1Date: config.getSemester()?.paf1Date || null,
+                config: config
+            };
+        } catch (error) {
+            console.error('[CalendarManager] Error creant configuració de semestre:', error);
+            throw new CalendariIOCException('503', `Error processant la configuració per al tipus "${typeId}": ${error.message}`, false);
         }
     }
-    
-    // Processar calendari FP (asíncron)
-    async processFPCalendar() {
-        const cicle = document.getElementById('cicleCode').value.trim().toUpperCase();
-        const module = document.getElementById('moduleCode').value.trim().toUpperCase();
+
+    _createFallbackCalendar(typeId, userIdentifier) {
+        console.info(`[CalendarManager] Creant calendari fallback per tipus ${typeId}`);
         
-        if (!cicle || !module) {
-            throw new CalendariIOCException('405', 'CalendarManager.processFPCalendar', false);
-        }
+        // Dates per defecte (semestre acadèmic estàndard)
+        const currentYear = new Date().getFullYear();
+        const startDate = `${currentYear}-09-01`;
+        const endDate = `${currentYear + 1}-06-30`;
         
-        // Crear configuració específica per FP
-        const fpConfig = new SemesterConfig('FP');
-        await fpConfig.initialize();
-        const startDate = fpConfig.getStartDate();
-        const endDate = fpConfig.getEndDate();  
-        const paf1Date = fpConfig.getSemester()?.paf1Date || null;
-        const code = fpConfig.getSemesterCode();
-        
-        const calendarName = `FP_${cicle}_${module}_${code}`;
+        const timestamp = Date.now();
+        const calendarId = `${typeId}_${userIdentifier.toUpperCase()}_FALLBACK_${timestamp}`;
         
         return {
-            id: calendarName,
-            name: calendarName,
-            startDate,
-            endDate,
-            type: 'FP',
-            paf1Date: paf1Date,
-            config: fpConfig
+            id: calendarId,
+            name: `${typeId} ${userIdentifier} (Mode Simple)`,
+            startDate: startDate,
+            endDate: endDate,
+            type: typeId,
+            paf1Date: null,
+            config: null,
+            fallback: true
         };
     }
-    
-    // Processar calendari BTX (asíncron)
-    async processBTXCalendar() {
-        const subject = document.getElementById('subjectCode').value.trim().toUpperCase();
-        
-        if (!subject) {
-            throw new CalendariIOCException('405', 'CalendarManager.processBTXCalendar', false);
-        }
-        
-        // Crear configuració específica per BTX
-        const btxConfig = new SemesterConfig('BTX');
-        await btxConfig.initialize();
-        const startDate = btxConfig.getStartDate();
-        const endDate = btxConfig.getEndDate();
-        const paf1Date = btxConfig.getSemester()?.paf1Date || null;
-        const code = btxConfig.getSemesterCode();
-        
-        const calendarName = `BTX_${subject}_${code}`;
-        
-        return {
-            id: calendarName,
-            name: calendarName,
-            startDate,
-            endDate,
-            type: 'BTX',
-            paf1Date: paf1Date,
-            config: btxConfig
-        };
-    }
-    
-    // Processar calendari Altre
-    processAltreCalendar() {
+
+    _createGenericCalendar() {
         const name = document.getElementById('calendarName').value.trim();
         const startDate = document.getElementById('startDate').value;
         const endDate = document.getElementById('endDate').value;
-        
+
         if (!name || !startDate || !endDate) {
-            throw new CalendariIOCException('406', 'CalendarManager.processAltreCalendar', false);
+            throw new CalendariIOCException('406', 'Tots els camps són obligatoris per a un calendari genèric.', false);
         }
-        
         if (startDate >= endDate) {
-            throw new CalendariIOCException('407', 'CalendarManager.processAltreCalendar', false);
+            throw new CalendariIOCException('407', 'La data d\'inici ha de ser anterior a la data de fi.', false);
         }
-        
+
         const timestamp = Date.now();
-        const calendarId = modalRenderer.generateAltreId(name, timestamp);
-        
+        const calendarId = `ALTRE_${name.toUpperCase().replace(/\s+/g, '_')}_${timestamp}`;
+
         return {
             id: calendarId,
             name: name,
             startDate,
             endDate,
-            type: 'Altre',
-            paf1Date: null, // Tipus "Altre" no té PAF
-            config: null // Tipus "Altre" no usa configuració específica
+            type: 'ALTRE',
+            paf1Date: null,
+            config: null
         };
     }
     
-    // Eliminar calendari
     deleteCalendar(calendarId) {
         const calendar = appStateManager.calendars[calendarId];
         if (!calendar) return;
 
         uiHelper.showConfirmModal(
-            `Estàs segur que vols eliminar el calendari "${calendar.name}"?\n\nAquesta acció no es pot desfer.`,
+            `Estàs segur que vols eliminar el calendari "${calendar.name}"? Aquesta acció no es pot desfer.`, 
             'Eliminar calendari',
             () => {
                 delete appStateManager.calendars[calendarId];
-                
-                // Netejar dades de navegació del calendari eliminat
                 if (appStateManager.lastVisitedMonths[calendarId]) {
                     delete appStateManager.lastVisitedMonths[calendarId];
                 }
-                
-                // Si era el calendari actiu, seleccionar el següent disponible
                 if (appStateManager.currentCalendarId === calendarId) {
-                    const remainingCalendars = Object.keys(appStateManager.calendars);
-                    appStateManager.currentCalendarId = remainingCalendars.length > 0 ? remainingCalendars[0] : null;
+                    const remainingIds = Object.keys(appStateManager.calendars);
+                    appStateManager.currentCalendarId = remainingIds.length > 0 ? remainingIds[0] : null;
                 }
-                
                 storageManager.saveToStorage();
                 this.updateUI();
                 uiHelper.showMessage('Calendari eliminat correctament', 'success');
@@ -183,16 +180,9 @@ class CalendarManager {
         );
     }
     
-    /**
-     * Canviar calendari actiu amb persistència de navegació
-     * @param {string} calendarId ID del calendari a activar
-     * @description Gestiona el canvi entre calendaris preservant l'últim mes visitat
-     *              de cada calendari i aplicant validació de dates dins del rang
-     */
     switchCalendar(calendarId) {
         if (!calendarId || !appStateManager.calendars[calendarId]) return;
         
-        // Persistència: guardar l'últim mes visitat del calendari actual
         const currentCalendar = appStateManager.getCurrentCalendar();
         if (currentCalendar && appStateManager.currentDate) {
             appStateManager.lastVisitedMonths[currentCalendar.id] = dateHelper.toUTCString(appStateManager.currentDate);
@@ -200,354 +190,168 @@ class CalendarManager {
         
         appStateManager.currentCalendarId = calendarId;
         
-        // Recuperar l'últim mes visitat del nou calendari amb validació de rang
         const newCalendar = appStateManager.calendars[calendarId];
         let targetDate;
         
         if (appStateManager.lastVisitedMonths[calendarId]) {
-            // Intentar recuperar l'últim mes visitat
             targetDate = dateHelper.parseUTC(appStateManager.lastVisitedMonths[calendarId]);
-            
-            // Validació crítica: verificar que estigui dins del rang del calendari
             const calendarStart = dateHelper.parseUTC(newCalendar.startDate);
             const calendarEnd = dateHelper.parseUTC(newCalendar.endDate);
-            
             if (targetDate < calendarStart || targetDate > calendarEnd) {
-                // Fallback segur: usar data d'inici real del calendari
                 targetDate = calendarStart;
             }
         } else {
-            // Primera visita: usar data d'inici real del calendari
-            const calendarStart = dateHelper.parseUTC(newCalendar.startDate);
-            targetDate = calendarStart;
+            targetDate = dateHelper.parseUTC(newCalendar.startDate);
         }
         
         appStateManager.currentDate = targetDate;
-        
-        // Sempre tornar a vista mensual quan es canvia de calendari
         viewManager.changeView('month');
-        
         storageManager.saveToStorage();
         this.updateUI();
     }
     
-    // === VALIDACIONS ===
-    
-    
-    // Verificar si el calendari existeix
     calendarExists(calendarId) {
         return !!appStateManager.calendars[calendarId];
     }
     
-    
-    // === CREACIÓ DE CALENDARIS ===
-    
-    // Crear dades del calendari amb esdeveniments de sistema
-    createCalendarData(calendarId, calendarName, startDate, endDate, type, paf1Date = null, config = null) {
-        // FASE 2: Crear instància CalendariIOC_Calendar en lloc d'objecte literal
-        const configToUse = config;
-        
+    createCalendarData({ id, name, startDate, endDate, type, paf1Date = null, config = null }) {
         const calendar = new CalendariIOC_Calendar({
-            id: calendarId,
-            name: calendarName,
-            startDate,
-            endDate,
-            type: type,
-            code: configToUse ? configToUse.getSemesterCode() : null,
+            id, name, startDate, endDate, type, paf1Date,
+            code: config ? config.getSemesterCode() : null,
             eventCounter: 0,
-            categoryCounter: 0,
-            paf1Date: paf1Date
+            categoryCounter: 0
         });
         
-        // Crear mapa global de categories per lookup eficient
-        const categoryMap = new Map();
-        
-        // Afegir categories de sistema com a instàncies CalendariIOC_Category
-        if (configToUse) {
-            configToUse.getDefaultCategories().forEach(catData => {
-                // Assignar color si no en té
+        if (config) {
+            const categoryMap = new Map();
+            config.getDefaultCategories().forEach(catData => {
                 if (catData.isSystem && !catData.color) {
                     catData.color = colorCategoryHelper.assignSystemCategoryColor(catData.id);
                 }
-                
                 const category = new CalendariIOC_Category(catData);
                 calendar.addCategory(category);
                 categoryMap.set(category.id, category);
             });
-        }
-        
-        // Generar esdeveniments de sistema amb referències directes a categories
-        const systemEventsData = this.generateSystemEvents(startDate, endDate, type, configToUse);
-        systemEventsData.forEach(eventData => {
-            const category = categoryMap.get(eventData.categoryId);
-            const event = new CalendariIOC_Event({
-                ...eventData,
-                category: category // REFERÈNCIA DIRECTA A INSTÀNCIA
+
+            config.getSystemEvents().forEach(eventData => {
+                if (eventData.date >= startDate && eventData.date <= endDate) {
+                    const category = categoryMap.get(eventData.categoryId);
+                    const event = new CalendariIOC_Event({ ...eventData, category });
+                    calendar.addEvent(event);
+                }
             });
-            calendar.addEvent(event);
-        });
-        
-        appStateManager.calendars[calendarId] = calendar;
-        appStateManager.currentCalendarId = calendarId;
-        
-        // Establir currentDate a la data d'inici real del calendari nou
-        const calendarStart = dateHelper.parseUTC(startDate);
-        appStateManager.currentDate = calendarStart;
-    }
-    
-    // Generar esdeveniments de sistema per al calendari
-    generateSystemEvents(startDate, endDate, type, config) {
-        const systemEvents = [];
-        
-        // Si és tipus "Altre", no generar cap esdeveniment del sistema
-        if (type === 'Altre') {
-            return systemEvents;
         }
         
-        // Afegir esdeveniments puntuals
-        config.getSystemEvents().forEach(event => {
-            if (event.date >= startDate && event.date <= endDate) {
-                systemEvents.push(event);
-            }
-        });
-        
-        return systemEvents;
+        appStateManager.calendars[id] = calendar;
+        appStateManager.currentCalendarId = id;
+        appStateManager.currentDate = dateHelper.parseUTC(startDate);
     }
     
-    
-    // === NAVEGACIÓ ===
-    
-    // Actualitzar controls de navegació segons el calendari
     updateNavigationControls(calendar) {
         const prevBtn = document.querySelector('.nav-arrow[data-direction="-1"]');
         const nextBtn = document.querySelector('.nav-arrow[data-direction="1"]');
-        
         if (!prevBtn || !nextBtn || !calendar) return;
         
         const calendarStart = dateHelper.parseUTC(calendar.startDate);
         const calendarEnd = dateHelper.parseUTC(calendar.endDate);
         
-        const prevMonthEnd = dateHelper.createUTC(
-            appStateManager.currentDate.getUTCFullYear(), 
-            appStateManager.currentDate.getUTCMonth(), 
-            0
-        );
+        const prevMonthEnd = dateHelper.createUTC(appStateManager.currentDate.getUTCFullYear(), appStateManager.currentDate.getUTCMonth(), 0);
         prevBtn.disabled = prevMonthEnd < calendarStart;
         
-        const nextMonthStart = dateHelper.createUTC(
-            appStateManager.currentDate.getUTCFullYear(), 
-            appStateManager.currentDate.getUTCMonth() + 1, 
-            1
-        );
+        const nextMonthStart = dateHelper.createUTC(appStateManager.currentDate.getUTCFullYear(), appStateManager.currentDate.getUTCMonth() + 1, 1);
         nextBtn.disabled = nextMonthStart > calendarEnd;
     }
     
-    // === IMPORTACIÓ ICS ===
-    
-    // Funció interna per processar les dades ICS importades
     _processIcsImport(calendar, icsData) {
+        // Aquest mètode necessitarà carregar la configuració de app-settings per al nom de la categoria.
+        // De moment, mantenim el hardcoding fins a tenir un sistema de configuració global.
+        const importCategoryName = 'ICS_IMPORTAT';
         try {
-            // FASE 2: Crear categoria "Importats" com a instància CalendariIOC_Category si no existeix
-            let importCategory = calendar.categories.find(cat => cat.name === 'Importats');
+            let importCategory = calendar.categories.find(cat => cat.name === importCategoryName);
             if (!importCategory) {
                 importCategory = new CalendariIOC_Category({
                     id: idHelper.generateNextCategoryId(calendar.id),
-                    name: 'Importats',
+                    name: importCategoryName,
                     color: colorCategoryHelper.generateRandomColor(),
                     isSystem: false
                 });
                 calendar.addCategory(importCategory);
             }
             
-            // Afegir esdeveniments amb IDs únics i referència directa a categoria
             icsData.events.forEach(icsEvent => {
                 const eventId = idHelper.generateNextEventId(calendar.id);
-                
                 const newEvent = new CalendariIOC_Event({
                     id: eventId,
                     title: icsEvent.title,
                     date: icsEvent.date,
-                    category: importCategory, // REFERÈNCIA DIRECTA A INSTÀNCIA
+                    category: importCategory,
                     description: icsEvent.description,
                     isSystemEvent: false
                 });
                 calendar.addEvent(newEvent);
             });
             
-            // Ordenar esdeveniments: primer amb hora específica, després dia complet
-            calendar.events.sort((a, b) => {
-                // Detectar si tenen hora específica (format [HH:MM])
-                const aHasTime = /^\[\d{2}:\d{2}\]/.test(a.title);
-                const bHasTime = /^\[\d{2}:\d{2}\]/.test(b.title);
-                
-                // Si un té hora i l'altre no, el que té hora va primer
-                if (aHasTime && !bHasTime) return -1;
-                if (!aHasTime && bHasTime) return 1;
-                
-                // Si ambdós tenen hora o cap té hora, ordenar per data
-                const dateComparison = new Date(a.date) - new Date(b.date);
-                if (dateComparison !== 0) return dateComparison;
-                
-                // Si la data és la mateixa i ambdós tenen hora, ordenar per hora
-                if (aHasTime && bHasTime) {
-                    const aTime = a.title.match(/^\[(\d{2}:\d{2})\]/)[1];
-                    const bTime = b.title.match(/^\[(\d{2}:\d{2})\]/)[1];
-                    return aTime.localeCompare(bTime);
-                }
-                
-                // Sinó, ordenar per títol
-                return a.title.localeCompare(b.title);
-            });
-            
-            // Actualitzar dates del calendari si és necessari
-            const currentStart = new Date(calendar.startDate);
-            const currentEnd = new Date(calendar.endDate);
-            const icsStart = new Date(icsData.startDate);
-            const icsEnd = new Date(icsData.endDate);
-            
-            if (icsStart < currentStart) {
-                calendar.startDate = icsData.startDate;
-            }
-            if (icsEnd > currentEnd) {
-                calendar.endDate = icsData.endDate;
-            }
-            
-            // Tancar modal d'accions
-            modalRenderer.closeModal('calendarActionsModal');
-            
-            // Guardar i actualitzar interfície
             storageManager.saveToStorage();
             this.updateUI();
-            
             uiHelper.showMessage(`${icsData.totalEvents} esdeveniments importats correctament`, 'success');
-            
         } catch (error) {
-            errorManager.handleError(new CalendariIOCException('410', 'CalendarManager._processIcsImport'));
+            errorManager.handleError(new CalendariIOCException('410', 'Error processant dades ICS.'));
         }
     }
 
-    // Importar esdeveniments ICS a calendari existent tipus "Altre"
     importIcsToCalendar(calendarId, icsContent = null) {
         const calendar = appStateManager.calendars[calendarId];
-        if (!calendar) {
-            throw new CalendariIOCException('408', 'CalendarManager.importIcsToCalendar', false);
-        }
+        if (!calendar) throw new CalendariIOCException('408', 'Calendari no trobat.');
+        if (calendar.type !== 'ALTRE') throw new CalendariIOCException('409', 'La importació ICS només està disponible per a calendaris de tipus "Altre".');
         
-        if (calendar.type !== 'Altre') {
-            throw new CalendariIOCException('409', 'CalendarManager.importIcsToCalendar', false);
-        }
-        
-        if (icsContent) {
-            // Ruta testeable: processar contingut directament
-            icsImporter.importIcsFile((icsData) => {
-                this._processIcsImport(calendar, icsData);
-            }, calendar, icsContent);
-            return;
-        }
-        
-        // Flux original per usuaris reals
-        icsImporter.importIcsFile((icsData) => {
-            this._processIcsImport(calendar, icsData);
-        }, calendar);
+        const processCallback = (icsData) => this._processIcsImport(calendar, icsData);
+        icsImporter.importIcsFile(processCallback, calendar, icsContent);
     }
     
-    // === CÀRREGA DE CALENDARIS ===
-
-    // Funció interna per processar les dades del calendari
     _processLoadedCalendar(calendarData) {
         try {
-            if (!calendarData.name || !calendarData.startDate || !calendarData.endDate) {
-                throw new CalendariIOCException('411', 'CalendarManager._processLoadedCalendar', false);
+            if (!calendarData.id || !calendarData.name || !calendarData.startDate || !calendarData.endDate) {
+                throw new CalendariIOCException('411', 'El fitxer de calendari no té el format correcte.');
             }
-
-            const calendarId = calendarData.id || calendarData.name;
-            
-            if (appStateManager.calendars[calendarId]) {
-                throw new CalendariIOCException('412', 'CalendarManager._processLoadedCalendar', false);
+            if (this.calendarExists(calendarData.id)) {
+                throw new CalendariIOCException('412', `Ja existeix un calendari amb l\'ID "${calendarData.id}".`);
             }
             
-            const calendarType = calendarData.type || 'FP';
+            const rehydratedState = CalendariIOC_DataRehydrator.rehydrateState({ calendars: { [calendarData.id]: calendarData } });
+            const calendarInstance = rehydratedState.calendars[calendarData.id];
             
-            if ((calendarType === 'FP' || calendarType === 'BTX') && !calendarData.code) {
-                throw new CalendariIOCException('413', 'CalendarManager._processLoadedCalendar', false);
-            }
+            if (!calendarInstance) throw new CalendariIOCException('414', 'Error en rehidratar les dades del calendari.');
             
-            // FASE 4 FIX: Usar DataRehydrator per crear instàncies de classe correctes
-            console.log('[CalendarManager] Rehidratant calendari carregat amb DataRehydrator...');
-            
-            const tempState = {
-                calendars: { [calendarId]: calendarData },
-                categoryTemplates: calendarData.categories?.filter(cat => !cat.isSystem) || []
-            };
-            
-            const rehydratedState = CalendariIOC_DataRehydrator.rehydrateState(tempState);
-            const calendarInstance = rehydratedState.calendars[calendarId];
-            
-            if (!calendarInstance) {
-                throw new CalendariIOCException('414', 'CalendarManager._processLoadedCalendar - rehidratació fallida', false);
-            }
-            
-            appStateManager.calendars[calendarId] = calendarInstance;
-            
-            // FASE 4 FIX: Afegir categories rehidratades al catàleg global
-            if (rehydratedState.categoryTemplates) {
-                rehydratedState.categoryTemplates.forEach(category => {
-                    const existsInCatalog = appStateManager.categoryTemplates.some(template => 
-                        template.id === category.id
-                    );
-                    
-                    if (!existsInCatalog) {
-                        appStateManager.categoryTemplates.push(category); // Ja és instància de classe
-                        console.log(`[Carga] Añadida "${category.name}" al catálogo desde archivo`);
-                    }
-                });
-            }
-            
-            appStateManager.currentCalendarId = calendarId;
+            appStateManager.calendars[calendarData.id] = calendarInstance;
+            appStateManager.currentCalendarId = calendarData.id;
             appStateManager.currentDate = dateHelper.parseUTC(calendarData.startDate);
+            
             viewManager.changeView('month');
             storageManager.saveToStorage();
             this.updateUI();
             uiHelper.showMessage(`Calendari "${calendarData.name}" carregat correctament`, 'success');
-            
         } catch (error) {
-            if (error instanceof CalendariIOCException) {
-                // No fer log per errors de validació d'estructura (415) - són esperats
-                if (error.codiCausa !== '415') {
-                    console.error('[CalendarManager] Error durant càrrega de calendari:', error);
-                    console.error('[CalendarManager] Dades rebudes:', calendarData);
-                }
-                errorManager.handleError(error);
-            } else {
-                console.error('[CalendarManager] Error inesperat durant rehidratació:', error.message);
-                console.error('[CalendarManager] Dades rebudes:', calendarData);
-                errorManager.handleError(new CalendariIOCException('414', 'CalendarManager._processLoadedCalendar', false));
-            }
+            errorManager.handleError(error);
         }
     }
     
-    // Carregar fitxer de calendari o processar dades directament
     loadCalendarFile(jsonData = null) {
         if (jsonData) {
             this._processLoadedCalendar(jsonData);
             return;
         }
-
         const input = document.createElement('input');
-        input.id = 'calendar-file-input';
-        input.name = 'calendar-file-input';
         input.type = 'file';
         input.accept = '.json';
         input.onchange = (e) => {
             const file = e.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = (e) => {
+                reader.onload = (ev) => {
                     try {
-                        const calendarData = JSON.parse(e.target.result);
-                        this._processLoadedCalendar(calendarData);
-                    } catch (error) {
-                        errorManager.handleError(new CalendariIOCException('414', 'CalendarManager.loadCalendarFile', false));
+                        this._processLoadedCalendar(JSON.parse(ev.target.result));
+                    } catch (err) {
+                        errorManager.handleError(new CalendariIOCException('414', 'El fitxer JSON no és vàlid.'));
                     }
                 };
                 reader.readAsText(file);
@@ -556,9 +360,6 @@ class CalendarManager {
         input.click();
     }
     
-    // === INTERFÍCIE D'USUARI ===
-    
-    // Actualitzar tota la interfície
     updateUI() {
         panelsRenderer.renderSavedCalendars();
         panelsRenderer.renderCategories();
@@ -567,5 +368,4 @@ class CalendarManager {
     }
 }
 
-// === INSTÀNCIA GLOBAL ===
 const calendarManager = new CalendarManager();

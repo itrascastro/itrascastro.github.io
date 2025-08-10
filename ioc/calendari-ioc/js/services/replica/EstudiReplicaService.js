@@ -4,7 +4,7 @@
  * =================================================================
  * 
  * @file        EstudiReplicaService.js
- * @description Servei per replicació proporcional d'esdeveniments entre calendaris d'estudi (FP/BTX)
+ * @description Servei per replicació proporcional d'esdeveniments entre calendaris d'estudi
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
  * @version     1.0.0
  * @date        2025-01-16
@@ -18,7 +18,7 @@
  * =================================================================
  */
 
-// CLASSE DE SERVEI DE REPLICACIÓ PER CALENDARIS D'ESTUDI: Implementa algoritme proporcional per FP/BTX
+// CLASSE DE SERVEI DE REPLICACIÓ PER CALENDARIS D'ESTUDI: Implementa algoritme proporcional
 class EstudiReplicaService extends ReplicaService {
     
     // Funció principal de replicació (CÒPIA EXACTA de la lògica original)

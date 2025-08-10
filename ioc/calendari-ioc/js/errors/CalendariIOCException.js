@@ -84,7 +84,7 @@ class CalendariIOCException extends Error {
             "410": "Error processant els esdeveniments ICS importats",
             "411": "Estructura del fitxer de calendari incorrecta",
             "412": "Ja existeix un calendari amb aquest identificador",
-            "413": "Els calendaris FP/BTX requereixen codi de semestre",
+            "413": "Els calendaris d'estudi requereixen codi de semestre",
             "414": "Error carregant el fitxer de calendari",
             "415": "Fitxer JSON incompatible amb aquesta versió de l'aplicació. Exporta un nou JSON amb la versió actual",
             "416": "localStorage conté dades d'una versió anterior. Utilitzeu 'Clear Storage' (part superior dreta) per netejar-les i reiniciar.",
@@ -150,6 +150,10 @@ class CalendariIOCException extends Error {
             "1305": "addCategory requereix una instància de Category",
             "1306": "addEvent requereix una instància d'Event",
             "1307": "Error en la rehidratació de dades",
+            
+            // === ERRORS D'INICIALITZACIÓ BOOTSTRAP (14xx) ===
+            // Errors específics d'inicialització de l'aplicació
+            "1401": "Error durant la inicialització de l'aplicació",
             
             // === 999: ERRORS NO CONTROLATS ===
             "999": "Error no controlat del sistema"

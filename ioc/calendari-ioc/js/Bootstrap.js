@@ -6,14 +6,10 @@
  * @file        Bootstrap.js
  * @description Classe Bootstrap per inicialitzar l'aplicació i gestionar accions
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
- * @version     1.0.0
- * @date        2025-01-16
+ * @version     2.0.0
+ * @date        2025-08-10
  * @project     Calendari Mòdul IOC
- * @repository  https://github.com/itrascastro/ioc-modul-calendari
  * @license     MIT
- * 
- * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
- * una aplicació web per gestionar calendaris acadèmics.
  * 
  * =================================================================
  */
@@ -21,36 +17,60 @@
 class Bootstrap {
     constructor() {
         try {
-            // Desactivar spellcheck globalment
-            document.body.spellcheck = false;
-
-            // Inicialitzar aplicació
-            console.log('[Sistema] Inicialitzant aplicació...');
-            
-            // Inicialitzar resta de l'aplicació
-            viewManager.initializeRenderers();
-            document.addEventListener('click', (e) => this.handleAction(e));
-            document.addEventListener('dblclick', (e) => this.handleAction(e));
-            storageManager.loadFromStorage();
-            themeHelper.loadSavedTheme();
-            appStateManager.getCurrentCalendar();
-            calendarManager.updateUI();
-            
-            console.log(`[Sistema] Aplicació inicialitzada amb ${appStateManager.categoryTemplates.length} categories al catàleg`);
-            
-            // Event listener per Enter en input de nova categoria
-            const newCategoryInput = document.getElementById('new-category-name');
-            if (newCategoryInput) {
-                newCategoryInput.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        categoryManager.addCategory();
-                    }
-                });
-            }
+            this.initializeAsync();
         } catch (error) {
+            if (!(error instanceof CalendariIOCException)) {
+                error = new CalendariIOCException('1401', 'Bootstrap.constructor');
+            }
             errorManager.handleError(error);
         }
+    }
+
+    async initializeAsync() {
+        console.log('[Bootstrap] Iniciant aplicació...');
+        document.body.spellcheck = false;
+        
+        try {
+            await studyTypeDiscovery.initializeWithFeedback();
+        } catch (error) {
+            throw new CalendariIOCException('1401', 'Bootstrap.initializeAsync - StudyTypeDiscovery');
+        }
+        
+        this._initializeServices();
+        this._displayApplicationStatus();
+    }
+
+    _initializeServices() {
+        console.log('[Bootstrap] Inicialitzant serveis d\'aplicació...');
+        
+        document.addEventListener('click', (e) => this.handleAction(e));
+        document.addEventListener('dblclick', (e) => this.handleAction(e));
+        
+        const newCategoryInput = document.getElementById('new-category-name');
+        if (newCategoryInput) {
+            newCategoryInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    categoryManager.addCategory();
+                }
+            });
+        }
+        
+        viewManager.initializeRenderers();
+        storageManager.loadFromStorage();
+        themeHelper.loadSavedTheme();
+        appStateManager.getCurrentCalendar();
+        calendarManager.updateUI();
+    }
+
+    _displayApplicationStatus() {
+        const discoveryStatus = studyTypeDiscovery.isInFallbackMode() ? 'MODE FALLBACK' : 'COMPLET';
+        const studyTypesCount = studyTypeDiscovery.getStudyTypes().length;
+        const categoriesCount = appStateManager.categoryTemplates.length;
+        
+        console.log(`[Bootstrap] Aplicació inicialitzada correctament`);
+        console.log(`[Bootstrap] • Discovery: ${discoveryStatus} (${studyTypesCount} tipus disponibles)`);
+        console.log(`[Bootstrap] • Categories: ${categoriesCount} plantilles carregades`);
     }
 
     // === GESTOR D'ACCIONS CENTRALITZAT ===
@@ -112,27 +132,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Exposar per a testing amb Cypress
     if (window.Cypress) {
         window.app = {
-            // Models
-            CalendariIOC_Calendar,
-            CalendariIOC_Category,
-            CalendariIOC_Event,
-            // Managers & Helpers
-            calendarManager,
-            storageManager,
-            appStateManager,
-            viewManager,
-            eventManager,
-            categoryManager,
-            replicaManager,
-            errorManager,
-            uiHelper,
-            dateHelper,
-            icsImporter,
-            idHelper,
-            // Serveis de Replicació
-            ReplicaServiceFactory,
-            EstudiReplicaService,
-            GenericReplicaService
+            CalendariIOC_Calendar, CalendariIOC_Category, CalendariIOC_Event,
+            calendarManager, storageManager, appStateManager, viewManager,
+            eventManager, categoryManager, replicaManager, errorManager
         };
     }
 });

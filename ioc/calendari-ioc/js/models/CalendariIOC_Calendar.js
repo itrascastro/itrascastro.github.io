@@ -33,7 +33,7 @@ class CalendariIOC_Calendar {
      * @param {string} data.name - Nom del calendari
      * @param {string} data.startDate - Data d'inici en format 'YYYY-MM-DD'
      * @param {string} data.endDate - Data de fi en format 'YYYY-MM-DD'
-     * @param {string} data.type - Tipus de calendari ('FP', 'BTX', 'Altre')
+     * @param {string} data.type - Tipus de calendari (ex: 'FP', 'BTX', 'Altre')
      * @param {string} [data.code] - Codi del semestre (opcional)
      * @param {number} [data.lastEventId=0] - Últim ID d'esdeveniment generat
      * @param {number} [data.lastCategoryId=0] - Últim ID de categoria generat

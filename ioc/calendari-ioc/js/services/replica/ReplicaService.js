@@ -53,7 +53,7 @@ class ReplicaService {
             dataFiAvaluacions = calendar.endDate;
             console.log(`[Espai Útil] Calendari tipus "Altre": usant endDate directament: ${dataFiAvaluacions}`);
         } else {
-            // Per calendaris d'estudi (FP/BTX): usar findPAF1 (serà implementat a EstudiReplicaService)
+            // Per calendaris d'estudi: usar findPAF1 (serà implementat a EstudiReplicaService)
             dataFiAvaluacions = this.findPAF1 ? this.findPAF1(calendar) : calendar.endDate;
         }
         
