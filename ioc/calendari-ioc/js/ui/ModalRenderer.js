@@ -131,10 +131,23 @@ class ModalRenderer {
             if (!content.contains(e.target) && !button.contains(e.target)) {
                 this.closeModal('calendarActionsModal');
                 document.removeEventListener('click', closeOnOutsideClick);
+                modal.removeEventListener('mouseleave', closeOnMouseLeave);
             }
         };
         
-        setTimeout(() => document.addEventListener('click', closeOnOutsideClick), 50);
+        const closeOnMouseLeave = (e) => {
+            if (!content.contains(e.relatedTarget) && !button.contains(e.relatedTarget)) {
+                this.closeModal('calendarActionsModal');
+                modal.removeEventListener('mouseleave', closeOnMouseLeave);
+                document.removeEventListener('click', closeOnOutsideClick);
+            }
+        };
+        
+        setTimeout(() => {
+            document.addEventListener('click', closeOnOutsideClick);
+            modal.addEventListener('mouseleave', closeOnMouseLeave);
+        }, 50);
+        
         this.openModal('calendarActionsModal');
     }
     
@@ -165,10 +178,23 @@ class ModalRenderer {
             if (!content.contains(e.target) && !colorDotElement.contains(e.target)) {
                 this.closeModal('colorPickerModal');
                 document.removeEventListener('click', closeOnOutsideClick);
+                modal.removeEventListener('mouseleave', closeOnMouseLeave);
             }
         };
         
-        setTimeout(() => document.addEventListener('click', closeOnOutsideClick), 50);
+        const closeOnMouseLeave = (e) => {
+            if (!content.contains(e.relatedTarget) && !colorDotElement.contains(e.relatedTarget)) {
+                this.closeModal('colorPickerModal');
+                modal.removeEventListener('mouseleave', closeOnMouseLeave);
+                document.removeEventListener('click', closeOnOutsideClick);
+            }
+        };
+        
+        setTimeout(() => {
+            document.addEventListener('click', closeOnOutsideClick);
+            modal.addEventListener('mouseleave', closeOnMouseLeave);
+        }, 50);
+        
         this.openModal('colorPickerModal');
     }
     
