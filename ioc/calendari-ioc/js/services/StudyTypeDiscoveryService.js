@@ -126,8 +126,7 @@ class StudyTypeDiscoveryService {
                     // Només mostrar error després de tots els intents
                     console.warn(`[Discovery] No s'ha pogut carregar ${configFile} després de ${retries} intents: ${error.message}`);
                 } else {
-                    // Intent fallit, però fem retry silenciós
-                    console.debug(`[Discovery] Intent ${attempt}/${retries} per ${configFile} fallit, reintentant...`);
+                    // Intent fallit, però fem retry silenciós (només debug)
                     await this._delay(Math.pow(2, attempt - 1) * 1000); // Exponential backoff
                 }
             }
@@ -164,7 +163,6 @@ class StudyTypeDiscoveryService {
                     console.warn(`[Discovery] Fitxer del sistema ${configFile} no disponible: ${error.message}`);
                 } else {
                     // Retry silenciós
-                    console.debug(`[Discovery] Reintentant càrrega de ${configFile}...`);
                     await this._delay(500 * attempt);
                 }
             }
