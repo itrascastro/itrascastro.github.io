@@ -59,7 +59,7 @@ class CalendarRenderer {
             return `<div class="event-item${systemClass}" style="${contrastStyle}" title="${event.title}">${event.title}</div>`;
         } else {
             // Per a DOM - text truncat per a millor UI
-            const truncatedTitle = textHelper.truncateText(event.title, 30);
+            const truncatedTitle = event.title;
             const eventClasses = ['event', isUserEvent ? 'is-user-event' : 'is-system-event'];
             const openModalAction = isUserEvent ? `data-action="open-event-modal" data-event-id="${event.id}"` : '';
             const draggableAttr = isUserEvent ? 'draggable="true"' : '';
