@@ -321,6 +321,9 @@ class CalendarManager {
             appStateManager.currentCalendarId = calendarData.id;
             appStateManager.currentDate = dateHelper.parseUTC(calendarData.startDate);
             
+            // Sincronitzar categories del calendari carregat al catàleg global
+            appStateManager.migrateCategoryTemplates();
+            
             viewManager.changeView('month');
             storageManager.saveToStorage();
             this.updateUI();
