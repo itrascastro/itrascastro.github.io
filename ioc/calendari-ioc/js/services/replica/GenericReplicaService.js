@@ -96,7 +96,7 @@ class GenericReplicaService extends ReplicaService {
         console.log(`[GENERIC_REPLICA_SERVICE] Executant còpia directa 1:1...`);
         
         // Agrupar esdeveniments per dia
-        const eventsByDay = this.groupEventsByDay(professorEvents);
+        const eventsByDay = replicaHelper.groupEventsByDay(professorEvents);
         
         // Sempre usar mapeo directe independentment de la mida del destí
         console.log(`[GENERIC_REPLICA_SERVICE] Mapeo directe: ${respectWeekdays ? 'respectant dies setmana' : 'per ordre cronològic'}`);
@@ -108,7 +108,7 @@ class GenericReplicaService extends ReplicaService {
         console.log(`[GENERIC_REPLICA_SERVICE] Executant compressió per grups...`);
         
         // Agrupar esdeveniments per dia
-        const eventsByDay = this.groupEventsByDay(professorEvents);
+        const eventsByDay = replicaHelper.groupEventsByDay(professorEvents);
         
         // Calcular factor de compressió
         const factorCompressio = espaiDesti.length / espaiOrigen.length;
@@ -116,20 +116,6 @@ class GenericReplicaService extends ReplicaService {
         
         // Mapear grups comprimits
         return this.compressGroups(eventsByDay, espaiOrigen, espaiDesti, factorCompressio, sourceCalendar, categoryMap, targetCalendar);
-    }
-    
-    // Agrupar esdeveniments per dia
-    groupEventsByDay(events) {
-        const groups = new Map();
-        events.forEach(event => {
-            if (!groups.has(event.date)) {
-                groups.set(event.date, []);
-            }
-            groups.get(event.date).push(event);
-        });
-        
-        console.log(`[GENERIC_REPLICA_SERVICE] Esdeveniments agrupats en ${groups.size} dies diferents`);
-        return groups;
     }
     
     // Còpia directa dia a dia amb opció de respectar dies de la setmana

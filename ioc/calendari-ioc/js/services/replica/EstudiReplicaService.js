@@ -101,7 +101,7 @@ class EstudiReplicaService extends ReplicaService {
         console.log(`[ESTUDI_REPLICA_SERVICE] Executant compressió amb agrupació preservada...`);
         
         // SEMPRE agrupar esdeveniments per dia primer
-        const eventsByDay = this.groupEventsByDay(professorEvents);
+        const eventsByDay = replicaHelper.groupEventsByDay(professorEvents);
         
         // Calcular factor de proporció
         const factorProporcio = espaiUtilDesti.length / espaiUtilOrigen.length;
@@ -321,7 +321,7 @@ class EstudiReplicaService extends ReplicaService {
         if (!respectWeekdays) return true; // Si no cal respectar, sempre es pot
         
         // Verificar que hi ha dies coincidents per mapear
-        const eventsByDay = this.groupEventsByDay(professorEvents);
+        const eventsByDay = replicaHelper.groupEventsByDay(professorEvents);
         
         for (const [originalDate, dayEvents] of eventsByDay) {
             if (!espaiOrigen.includes(originalDate)) continue;
@@ -340,26 +340,12 @@ class EstudiReplicaService extends ReplicaService {
         return true;
     }
     
-    // Agrupar esdeveniments per dia
-    groupEventsByDay(events) {
-        const groups = new Map();
-        events.forEach(event => {
-            if (!groups.has(event.date)) {
-                groups.set(event.date, []);
-            }
-            groups.get(event.date).push(event);
-        });
-        
-        console.log(`[ESTUDI_REPLICA_SERVICE] Esdeveniments agrupats en ${groups.size} dies diferents`);
-        return groups;
-    }
-    
     // Executar mapeo directe amb preservació d'agrupacions
     executeDirectMapping(professorEvents, espaiOrigen, espaiDesti, sourceCalendar, categoryMap, targetCalendar, respectWeekdays) {
         console.log(`[ESTUDI_REPLICA_SERVICE] Executant mapeo directe...`);
         
         // Agrupar esdeveniments per dia
-        const eventsByDay = this.groupEventsByDay(professorEvents);
+        const eventsByDay = replicaHelper.groupEventsByDay(professorEvents);
         
         if (respectWeekdays) {
             console.log(`[ESTUDI_REPLICA_SERVICE] Mapeo directe: respectant dies setmana`);
