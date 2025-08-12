@@ -38,7 +38,9 @@ class CategoryManager {
 
         // Verificar si ja existeix al catàleg
         if (this.categoryExistsInCatalog(name)) {
-            throw new CalendariIOCException('801', 'CategoryManager.addCategory', false);
+            nameInput.value = '';
+            uiHelper.showMessage(`La categoria '${name}' ja existeix.`, 'info');
+            return;
         }
 
         const newCategory = this.createCategory(name);

@@ -204,6 +204,38 @@ class CalendariIOC_Calendar {
      * @returns {Object} Objecte serialitzable per JSON
      */
     toJSON() {
+        // Recopilar totes les categories necessàries per als esdeveniments
+        const eventCategoryIds = new Set();
+        this.events.forEach(event => {
+            if (event.hasCategory()) {
+                eventCategoryIds.add(event.getCategory().id);
+            }
+        });
+        
+        // Combinar categories del calendari + categories del catàleg necessàries per als esdeveniments
+        const allRequiredCategories = new Map();
+        
+        // Afegir categories del calendari
+        this.categories.forEach(cat => {
+            allRequiredCategories.set(cat.id, cat);
+        });
+        
+        // Afegir categories del catàleg que necessiten els esdeveniments
+        if (typeof appStateManager !== 'undefined' && appStateManager.categoryTemplates) {
+            appStateManager.categoryTemplates.forEach(cat => {
+                if (eventCategoryIds.has(cat.id) && !allRequiredCategories.has(cat.id)) {
+                    // Assegurar que és una instància de CalendariIOC_Category
+                    if (cat instanceof CalendariIOC_Category) {
+                        allRequiredCategories.set(cat.id, cat);
+                    } else {
+                        // Si és un objecte JSON, crear instància
+                        const categoryInstance = new CalendariIOC_Category(cat);
+                        allRequiredCategories.set(cat.id, categoryInstance);
+                    }
+                }
+            });
+        }
+        
         return {
             id: this.id,
             name: this.name,
@@ -214,7 +246,7 @@ class CalendariIOC_Calendar {
             lastEventId: this.lastEventId,
             lastCategoryId: this.lastCategoryId,
             paf1Date: this.paf1Date,
-            categories: this.categories.map(cat => cat.toJSON()),
+            categories: Array.from(allRequiredCategories.values()).map(cat => cat.toJSON()),
             events: this.events.map(event => event.toJSON()) // Usa categoryId, no instància
         };
     }

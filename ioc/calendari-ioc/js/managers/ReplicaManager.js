@@ -101,11 +101,11 @@ class ReplicaManager {
     
     // Actualitzar visibilitat quan canvia el calendari destí
     updateWeekdayOptionVisibility(sourceCalendar, targetCalendar) {
-        const willUseGenericService = this.willUseGenericService(sourceCalendar, targetCalendar);
+        const canRespectWeekdays = this.canRespectWeekdays(sourceCalendar, targetCalendar);
         
         const weekdayOption = document.getElementById('respectWeekdays')?.parentElement;
         if (weekdayOption) {
-            weekdayOption.style.display = willUseGenericService ? 'block' : 'none';
+            weekdayOption.style.display = canRespectWeekdays ? 'block' : 'none';
         }
     }
     
@@ -117,13 +117,48 @@ class ReplicaManager {
         }
     }
     
-    // Determinar si es farà servir GenericReplicaService (mateixa lògica que ReplicaServiceFactory)
-    willUseGenericService(sourceCalendar, targetCalendar) {
-        const sourceType = sourceCalendar.type || 'Altre';
-        const targetType = targetCalendar.type || 'Altre';
+    // Determinar si es pot respectar els dies de la setmana (només compatibilitat, no espai)
+    canRespectWeekdays(sourceCalendar, targetCalendar) {
+        const replicaService = ReplicaServiceFactory.getService(sourceCalendar, targetCalendar);
         
-        // Si qualsevol dels calendaris és "Altre", usar GenericReplicaService
-        return sourceType === 'Altre' || targetType === 'Altre';
+        // Determinar quín mètode d'anàlisi usar segons el tipus de servei
+        let espaiOrigen, espaiDesti;
+        if (replicaService instanceof EstudiReplicaService) {
+            espaiOrigen = replicaService.analyzeWorkableSpaceEstudi(sourceCalendar);
+            espaiDesti = replicaService.analyzeWorkableSpaceEstudi(targetCalendar);
+        } else {
+            espaiOrigen = replicaService.analyzeWorkableSpace(sourceCalendar);
+            espaiDesti = replicaService.analyzeWorkableSpace(targetCalendar);
+        }
+        
+        // NOMÉS verificar compatibilitat de dies de setmana, no espai
+        return this.verifyWeekdayCompatibility(espaiOrigen, espaiDesti);
+    }
+    
+    // Verificar compatibilitat de dies de setmana (independent de l'espai disponible)
+    verifyWeekdayCompatibility(espaiOrigen, espaiDesti) {
+        if (espaiOrigen.length === 0 || espaiDesti.length === 0) return false;
+        
+        // Obtenir tots els dies de setmana usats en origen
+        const originWeekdays = new Set(
+            espaiOrigen.map(date => new Date(date).getDay())
+        );
+        
+        // Obtenir tots els dies de setmana disponibles en destí
+        const targetWeekdays = new Set(
+            espaiDesti.map(date => new Date(date).getDay())
+        );
+        
+        // Verificar si hi ha almenys un dia de setmana en comú
+        for (const originDay of originWeekdays) {
+            if (targetWeekdays.has(originDay)) {
+                console.log(`[REPLICA_MANAGER] Compatibilitat dies setmana: Dia ${originDay} disponible en ambdós calendaris`);
+                return true;
+            }
+        }
+        
+        console.log(`[REPLICA_MANAGER] Sense compatibilitat dies setmana entre calendaris`);
+        return false;
     }
     
     // Executar replicació
