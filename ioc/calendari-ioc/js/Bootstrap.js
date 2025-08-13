@@ -6,9 +6,9 @@
  * @file        Bootstrap.js
  * @description Classe Bootstrap per inicialitzar l'aplicació i gestionar accions
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
- * @version     2.0.0
+ * @version     1.0
  * @date        2025-08-10
- * @project     Calendari Mòdul IOC
+ * @project     Calendari IOC
  * @license     MIT
  * 
  * =================================================================
@@ -108,6 +108,8 @@ class Bootstrap {
                 case 'export-calendar-html': htmlExporter.exportCalendar(appStateManager.getSelectedCalendarId()); break;
                 case 'import-calendar-ics': calendarManager.importIcsToCalendar(appStateManager.getSelectedCalendarId()); break;
                 case 'delete-calendar': calendarManager.deleteCalendar(appStateManager.getSelectedCalendarId()); break;
+                case 'edit-calendar': modalRenderer.openCalendarEditModal(appStateManager.getSelectedCalendarId()); break;
+                case 'save-calendar-edits': calendarManager.saveCalendarEdits(); break;
                 case 'replicate-calendar': replicaManager.openReplicationModal(appStateManager.getSelectedCalendarId()); break;
                 case 'execute-replication': replicaManager.executeReplication(); break;
                 case 'change-view': viewManager.changeView(target.dataset.view); break;

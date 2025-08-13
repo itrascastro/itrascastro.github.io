@@ -7,9 +7,9 @@
  * @description Servei per descobrir automàticament els tipus d'estudi
  *              disponibles basant-se en la convenció de noms de fitxers.
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
- * @version     2.0.0
+ * @version     1.0
  * @date        2025-08-10
- * @project     Calendari Mòdul IOC
+ * @project     Calendari IOC
  * @license     MIT
  * 
  * =================================================================
@@ -80,7 +80,11 @@ class StudyTypeDiscoveryService {
             });
             
             if (!response.ok) {
-                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                if (response.status === 404) {
+                    throw new CalendariIOCException('111', `StudyTypeDiscoveryService._loadAvailableStudies - available-studies.json: HTTP ${response.status}`);
+                } else {
+                    throw new CalendariIOCException('109', `StudyTypeDiscoveryService._loadAvailableStudies - available-studies.json: HTTP ${response.status}`);
+                }
             }
 
             const availableStudies = await response.json();
@@ -88,7 +92,13 @@ class StudyTypeDiscoveryService {
             return availableStudies;
             
         } catch (error) {
-            throw new Error(`Error carregant llista d'estudis disponibles: ${error.message}`);
+            if (error instanceof CalendariIOCException) {
+                throw error; // Re-llançar CalendariIOCException sense modificar
+            } else if (error.name === 'SyntaxError') {
+                throw new CalendariIOCException('110', `StudyTypeDiscoveryService._loadAvailableStudies - JSON parsing error: ${error.message}`);
+            } else {
+                throw new CalendariIOCException('109', `StudyTypeDiscoveryService._loadAvailableStudies: ${error.message}`);
+            }
         }
     }
 
@@ -104,7 +114,11 @@ class StudyTypeDiscoveryService {
                 });
                 
                 if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    if (response.status === 404) {
+                        throw new CalendariIOCException('111', `StudyTypeDiscoveryService._loadStudyConfig - ${configFile}: HTTP ${response.status}`);
+                    } else {
+                        throw new CalendariIOCException('109', `StudyTypeDiscoveryService._loadStudyConfig - ${configFile}: HTTP ${response.status}`);
+                    }
                 }
 
                 const configData = await response.json();
@@ -123,8 +137,14 @@ class StudyTypeDiscoveryService {
                 
             } catch (error) {
                 if (attempt === retries) {
-                    // Només mostrar error després de tots els intents
-                    console.warn(`[Discovery] No s'ha pogut carregar ${configFile} després de ${retries} intents: ${error.message}`);
+                    // Després de tots els intents, llançar CalendariIOCException
+                    if (error instanceof CalendariIOCException) {
+                        throw error; // Re-llançar CalendariIOCException sense modificar
+                    } else if (error.name === 'SyntaxError') {
+                        throw new CalendariIOCException('110', `StudyTypeDiscoveryService._loadStudyConfig - ${configFile} JSON parsing error: ${error.message}`);
+                    } else {
+                        throw new CalendariIOCException('109', `StudyTypeDiscoveryService._loadStudyConfig - ${configFile}: ${error.message}`);
+                    }
                 } else {
                     // Intent fallit, però fem retry silenciós (només debug)
                     await this._delay(Math.pow(2, attempt - 1) * 1000); // Exponential backoff
@@ -141,7 +161,11 @@ class StudyTypeDiscoveryService {
                 });
                 
                 if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    if (response.status === 404) {
+                        throw new CalendariIOCException('111', `StudyTypeDiscoveryService._loadSystemConfig - ${configFile}: HTTP ${response.status}`);
+                    } else {
+                        throw new CalendariIOCException('109', `StudyTypeDiscoveryService._loadSystemConfig - ${configFile}: HTTP ${response.status}`);
+                    }
                 }
 
                 const configData = await response.json();
@@ -159,8 +183,14 @@ class StudyTypeDiscoveryService {
                 
             } catch (error) {
                 if (attempt === retries) {
-                    // Només mostrar warning al final dels intents
-                    console.warn(`[Discovery] Fitxer del sistema ${configFile} no disponible: ${error.message}`);
+                    // Després de tots els intents, llançar CalendariIOCException per fitxers del sistema
+                    if (error instanceof CalendariIOCException) {
+                        throw error; // Re-llançar CalendariIOCException sense modificar
+                    } else if (error.name === 'SyntaxError') {
+                        throw new CalendariIOCException('110', `StudyTypeDiscoveryService._loadSystemConfig - ${configFile} JSON parsing error: ${error.message}`);
+                    } else {
+                        throw new CalendariIOCException('109', `StudyTypeDiscoveryService._loadSystemConfig - ${configFile}: ${error.message}`);
+                    }
                 } else {
                     // Retry silenciós
                     await this._delay(500 * attempt);

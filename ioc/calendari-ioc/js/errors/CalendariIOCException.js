@@ -6,10 +6,10 @@
  * @file        CalendariIOCException.js
  * @description Sistema d'excepció única per tota l'aplicació amb codis numèrics
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
- * @version     1.0.0
+ * @version     1.0
  * @date        2025-07-28
- * @project     Calendari Mòdul IOC
- * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @project     Calendari IOC
+ * @repository  https://github.com/itrascastro/calendari-ioc
  * @license     MIT
  * 
  * Aquest fitxer implementa el patró Exception Translation per convertir
@@ -58,6 +58,8 @@ class CalendariIOCException extends Error {
             "108": "Error carregant configuració de semestre",
             "109": "Error carregant fitxer de configuració",
             "110": "Error parsejant fitxer de configuració",
+            "111": "Fitxer de configuració no trobat",
+            "112": "Estructura de configuració invàlida",
             
             // === ERRORS DE REPLICACIÓ (2xx) ===
             // Problemes tècnics durant la replicació
@@ -74,8 +76,6 @@ class CalendariIOCException extends Error {
             // Problemes de validació i operacions amb calendaris
             "401": "Selecciona un tipus de calendari",
             "402": "Ja existeix un calendari amb aquest nom",
-            "403": "Error creant el calendari",
-            "404": "Error tècnic durant la creació del calendari",
             "405": "Els camps Cicle i Mòdul són obligatoris",
             "406": "Tots els camps són obligatoris per tipus Altre",
             "407": "La data de fi ha de ser posterior a la data d'inici",
@@ -84,10 +84,16 @@ class CalendariIOCException extends Error {
             "410": "Error processant els esdeveniments ICS importats",
             "411": "Estructura del fitxer de calendari incorrecta",
             "412": "Ja existeix un calendari amb aquest identificador",
-            "413": "Els calendaris d'estudi requereixen codi de semestre",
             "414": "Error carregant el fitxer de calendari",
             "415": "Fitxer JSON incompatible amb aquesta versió de l'aplicació. Exporta un nou JSON amb la versió actual",
             "416": "localStorage conté dades d'una versió anterior. Utilitzeu 'Clear Storage' (part superior dreta) per netejar-les i reiniciar.",
+            "417": "Calendari no trobat per edició",
+            "420": "Ja existeix un calendari amb aquest identificador",
+            "421": "Ja existeix un calendari amb aquest nom",
+            "422": "Tots els camps són obligatoris per a calendaris genèrics",
+            "423": "La data d'inici ha de ser anterior a la data de fi",
+            "424": "L'identificador del calendari és obligatori",
+            "425": "L'identificador no pot estar buit",
             
             // === ERRORS DE VALIDACIÓ DE DATES (5xx) ===
             // Validació de dates i rangs temporals
@@ -118,7 +124,6 @@ class CalendariIOCException extends Error {
             
             // === ERRORS DE GESTIÓ DE CATEGORIES (8xx) ===
             // Errors específics de categories d'esdeveniments
-            "801": "Ja existeix una categoria amb aquest nom al catàleg",
             "802": "El nom de la categoria no pot estar buit",
             
             // === ERRORS D'IMPORTACIÓ ICS (9xx) ===
@@ -130,7 +135,6 @@ class CalendariIOCException extends Error {
             // === ERRORS DE CONFIGURACIÓ DE SISTEMA (10xx) ===
             // Errors específics de configuració i inicialització
             "1001": "SemesterConfig requereix un calendarType",
-            "1002": "SemesterConfig no està inicialitzat",
             
             // === ERRORS D'EXPORTACIÓ (11xx) ===
             // Errors específics d'exportació de calendaris

@@ -6,9 +6,9 @@
  * @file        CalendarManager.js
  * @description Gestió de calendaris, configuració i operacions CRUD
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
- * @version     2.0.0
+ * @version     1.0
  * @date        2025-08-09
- * @project     Calendari Mòdul IOC
+ * @project     Calendari IOC
  * @license     MIT
  *
  * =================================================================
@@ -356,6 +356,102 @@ class CalendarManager {
             }
         };
         input.click();
+    }
+    
+    editCalendar(calendarId, newData) {
+        const calendar = appStateManager.calendars[calendarId];
+        if (!calendar) {
+            throw new CalendariIOCException('417', `No s'ha trobat el calendari amb ID "${calendarId}".`, false);
+        }
+        
+        try {
+            // Validacions segons el tipus de calendari
+            if (calendar.type === 'ALTRE') {
+                // Calendari genèric - validar tots els camps
+                if (!newData.name || !newData.startDate || !newData.endDate) {
+                    throw new CalendariIOCException('422', 'Tots els camps són obligatoris per a calendaris genèrics.', false);
+                }
+                
+                if (newData.startDate >= newData.endDate) {
+                    throw new CalendariIOCException('423', 'La data d\'inici ha de ser anterior a la data de fi.', false);
+                }
+                
+                // Verificar que no existeixi ja un calendari amb aquest nom (excepte l'actual)
+                const newName = newData.name.trim();
+                const existingCalendar = Object.values(appStateManager.calendars)
+                    .find(cal => cal.name === newName && cal.id !== calendarId);
+                
+                if (existingCalendar) {
+                    throw new CalendariIOCException('421', `Ja existeix un calendari amb el nom "${newName}".`, false);
+                }
+                
+                // Actualitzar propietats del calendari genèric
+                calendar.name = newName;
+                calendar.startDate = newData.startDate;
+                calendar.endDate = newData.endDate;
+                
+                // Si la data actual està fora del nou rang, ajustar-la
+                const currentDate = appStateManager.currentDate;
+                const newStartDate = dateHelper.parseUTC(newData.startDate);
+                const newEndDate = dateHelper.parseUTC(newData.endDate);
+                
+                if (currentDate < newStartDate || currentDate > newEndDate) {
+                    appStateManager.currentDate = newStartDate;
+                }
+                
+            } else {
+                // Calendari d'estudi - reconstruir nom complet amb nova part editable
+                if (!newData.name) {
+                    throw new CalendariIOCException('424', 'L\'identificador del calendari és obligatori.', false);
+                }
+                
+                const userIdentifier = newData.name.trim();
+                if (!userIdentifier) {
+                    throw new CalendariIOCException('425', 'L\'identificador no pot estar buit.', false);
+                }
+                
+                // Reconstruir nom complet: {typeId}_{userIdentifier}_{semesterCode}
+                const newFullName = `${calendar.type}_${userIdentifier}_${calendar.code}`;
+                
+                // Verificar que no existeixi ja un calendari amb aquest nom (excepte l'actual)
+                const existingCalendar = Object.values(appStateManager.calendars)
+                    .find(cal => cal.name === newFullName && cal.id !== calendarId);
+                
+                if (existingCalendar) {
+                    throw new CalendariIOCException('420', `Ja existeix un calendari amb l'identificador "${userIdentifier}".`, false);
+                }
+                
+                calendar.name = newFullName;
+            }
+            
+            // Desar canvis i actualitzar UI
+            storageManager.saveToStorage();
+            this.updateUI();
+            modalRenderer.closeModal('calendarEditModal');
+            uiHelper.showMessage('Calendari actualitzat correctament', 'success');
+            
+        } catch (error) {
+            errorManager.handleError(error);
+        }
+    }
+    
+    saveCalendarEdits() {
+        try {
+            const form = document.getElementById('calendarEditForm');
+            const formData = new FormData(form);
+            
+            const calendarId = formData.get('calendarId');
+            const newData = {
+                name: formData.get('calendarName'),
+                startDate: formData.get('startDate'),
+                endDate: formData.get('endDate')
+            };
+            
+            this.editCalendar(calendarId, newData);
+            
+        } catch (error) {
+            errorManager.handleError(error);
+        }
     }
     
     updateUI() {

@@ -7,10 +7,10 @@
  * @description Gestió centralitzada de l'estat global de l'aplicació, incloent
  *              persistència de navegació per calendari i variables auxiliars
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
- * @version     1.0.0
+ * @version     1.0
  * @date        2025-01-16
- * @project     Calendari Mòdul IOC
- * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @project     Calendari IOC
+ * @repository  https://github.com/itrascastro/calendari-ioc
  * @license     MIT
  * 
  * Aquest fitxer forma part del projecte Calendari Mòdul IOC,

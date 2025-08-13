@@ -6,9 +6,9 @@
  * @file        ModalRenderer.js
  * @description Gestió de modals i formularis de l'aplicació
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
- * @version     2.0.0
+ * @version     1.0
  * @date        2025-08-09
- * @project     Calendari Mòdul IOC
+ * @project     Calendari IOC
  * @license     MIT
  * 
  * =================================================================
@@ -196,6 +196,60 @@ class ModalRenderer {
         }, 50);
         
         this.openModal('colorPickerModal');
+    }
+    
+    openCalendarEditModal(calendarId) {
+        const calendar = appStateManager.calendars[calendarId];
+        if (!calendar) return;
+        
+        // Configurar el formulari amb les dades actuals
+        document.getElementById('editCalendarId').value = calendarId;
+        
+        // Per calendaris d'estudi, extreure només la part editable del nom
+        let editableName = calendar.name;
+        if (calendar.type !== 'ALTRE' && calendar.code) {
+            // Estructura: {typeId}_{userIdentifier}_{semesterCode}
+            // Exemple: FP_DAW_M7_25S1 -> només editar DAW_M7
+            const prefix = `${calendar.type}_`;
+            const suffix = `_${calendar.code}`;
+            if (calendar.name.startsWith(prefix) && calendar.name.endsWith(suffix)) {
+                editableName = calendar.name.slice(prefix.length, -suffix.length);
+            }
+        }
+        
+        document.getElementById('editCalendarName').value = editableName;
+        
+        const genericFields = document.getElementById('editGenericFields');
+        const title = document.getElementById('calendarEditTitle');
+        
+        // Configurar el modal segons el tipus de calendari
+        if (calendar.type === 'ALTRE') {
+            // Calendari genèric - mostrar tots els camps
+            title.textContent = 'Editar Calendari Genèric';
+            genericFields.style.display = 'block';
+            document.getElementById('editStartDate').value = calendar.startDate;
+            document.getElementById('editEndDate').value = calendar.endDate;
+            document.getElementById('editStartDate').required = true;
+            document.getElementById('editEndDate').required = true;
+        } else {
+            // Calendari d'estudi - només nom
+            title.textContent = `Editar Calendari ${calendar.type}`;
+            genericFields.style.display = 'none';
+            document.getElementById('editStartDate').required = false;
+            document.getElementById('editEndDate').required = false;
+        }
+        
+        // Primer tancar el modal d'accions
+        this.closeModal('calendarActionsModal');
+        
+        // Obrir el modal d'edició
+        this.openModal('calendarEditModal');
+        
+        // Focus al camp nom
+        setTimeout(() => {
+            document.getElementById('editCalendarName').focus();
+            document.getElementById('editCalendarName').select();
+        }, 100);
     }
     
     openEventModal(event = null, date = null) {

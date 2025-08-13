@@ -6,9 +6,9 @@
  * @file        SemesterConfig.js
  * @description Processa la configuració d'un semestre acadèmic.
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
- * @version     2.0.0
+ * @version     1.0
  * @date        2025-08-09
- * @project     Calendari Mòdul IOC
+ * @project     Calendari IOC
  * @license     MIT
  * 
  * =================================================================

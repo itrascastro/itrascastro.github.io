@@ -1,18 +1,18 @@
 <!--
 =================================================================
-CALENDARI MÒDUL IOC - PÀGINA PRINCIPAL
+CALENDARI IOC - PÀGINA PRINCIPAL
 =================================================================
 
 @file        index.html
-@description Pàgina principal de l'aplicació Calendari Mòdul IOC
+@description Pàgina principal de l'aplicació Calendari IOC
 @author      Ismael Trascastro <itrascastro@ioc.cat>
-@version     1.0.0
+@version     1.0
 @date        2025-01-16
-@project     Calendari Mòdul IOC
-@repository  https://github.com/itrascastro/ioc-modul-calendari
+@project     Calendari IOC
+@repository  https://github.com/itrascastro/calendari-ioc
 @license     MIT
 
-Aquest fitxer forma part del projecte Calendari Mòdul IOC,
+Aquest fitxer forma part del projecte Calendari IOC,
 una aplicació web per gestionar calendaris acadèmics.
 
 =================================================================
@@ -231,6 +231,7 @@ una aplicació web per gestionar calendaris acadèmics.
                 <button class="calendar-action-btn" data-action="export-calendar-html">Exportar HTML</button>
                 <button id="importIcsBtn" class="calendar-action-btn" data-action="import-calendar-ics" style="display: none;">Importar ICS</button>
                 <button class="calendar-action-btn" data-action="replicate-calendar">Replicar</button>
+                <button class="calendar-action-btn" data-action="edit-calendar">Editar</button>
                 <button class="calendar-action-btn danger" data-action="delete-calendar">Eliminar</button>
             </div>
         </div>
@@ -241,6 +242,43 @@ una aplicació web per gestionar calendaris acadèmics.
         <div class="color-picker-content">
             <div class="color-picker-grid" id="colorPickerGrid">
                 <!-- Els colors es generaran dinàmicament -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal d'edició de calendaris -->
+    <div id="calendarEditModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="calendarEditTitle">Editar Calendari</h3>
+                <span class="close" data-action="close-modal" data-modal="calendarEditModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="calendarEditForm">
+                    <input type="hidden" id="editCalendarId" name="calendarId">
+                    
+                    <div class="form-group">
+                        <label for="editCalendarName">Nom del calendari:</label>
+                        <input type="text" id="editCalendarName" name="calendarName" required>
+                    </div>
+                    
+                    <!-- Només per calendaris genèrics -->
+                    <div id="editGenericFields" style="display: none;">
+                        <div class="form-group">
+                            <label for="editStartDate">Data d'inici:</label>
+                            <input type="date" id="editStartDate" name="startDate">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="editEndDate">Data de fi:</label>
+                            <input type="date" id="editEndDate" name="endDate">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-action="close-modal" data-modal="calendarEditModal">Cancel·lar</button>
+                <button class="btn btn-primary" data-action="save-calendar-edits">Desar canvis</button>
             </div>
         </div>
     </div>

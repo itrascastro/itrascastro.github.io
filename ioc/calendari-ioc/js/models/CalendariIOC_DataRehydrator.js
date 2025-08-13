@@ -6,10 +6,10 @@
  * @file        DataRehydrator.js
  * @description Sistema per reconstruir grafo d'objectes des de JSON pla
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
- * @version     2.0.0
+ * @version     1.0
  * @date        2025-01-16
- * @project     Calendari Mòdul IOC
- * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @project     Calendari IOC
+ * @repository  https://github.com/itrascastro/calendari-ioc
  * @license     MIT
  * 
  * Aquest fitxer forma part del projecte Calendari Mòdul IOC,

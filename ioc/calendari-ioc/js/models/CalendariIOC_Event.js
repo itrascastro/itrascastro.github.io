@@ -6,10 +6,10 @@
  * @file        Event.js
  * @description Model de dades per esdeveniments amb referència directa a Category
  * @author      Ismael Trascastro <itrascastro@ioc.cat>
- * @version     2.0.0
+ * @version     1.0
  * @date        2025-01-16
- * @project     Calendari Mòdul IOC
- * @repository  https://github.com/itrascastro/ioc-modul-calendari
+ * @project     Calendari IOC
+ * @repository  https://github.com/itrascastro/calendari-ioc
  * @license     MIT
  * 
  * Aquest fitxer forma part del projecte Calendari Mòdul IOC,
