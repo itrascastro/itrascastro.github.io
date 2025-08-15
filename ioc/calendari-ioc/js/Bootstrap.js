@@ -37,15 +37,28 @@ class Bootstrap {
         }
         
         this._initializeServices();
+        this._initializeEventListeners();
         this._displayApplicationStatus();
     }
 
     _initializeServices() {
         console.log('[Bootstrap] Inicialitzant serveis d\'aplicació...');
         
+        viewManager.initializeRenderers();
+        storageManager.loadFromStorage();
+        themeHelper.loadSavedTheme();
+        appStateManager.getCurrentCalendar();
+        calendarManager.updateUI();
+    }
+
+    _initializeEventListeners() {
+        console.log('[Bootstrap] Inicialitzant event listeners...');
+        
+        // Event listeners globals per accions
         document.addEventListener('click', (e) => this.handleAction(e));
         document.addEventListener('dblclick', (e) => this.handleAction(e));
         
+        // Event listener específic per camp de nova categoria
         const newCategoryInput = document.getElementById('new-category-name');
         if (newCategoryInput) {
             newCategoryInput.addEventListener('keydown', (e) => {
@@ -55,12 +68,6 @@ class Bootstrap {
                 }
             });
         }
-        
-        viewManager.initializeRenderers();
-        storageManager.loadFromStorage();
-        themeHelper.loadSavedTheme();
-        appStateManager.getCurrentCalendar();
-        calendarManager.updateUI();
     }
 
     _displayApplicationStatus() {
