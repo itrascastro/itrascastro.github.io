@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 1: Introducció a Angular | Angular - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="1">
+    <meta name="page-bloc" content="1">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 1: Introducció a Angular | Angular</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 1: Introducció a Angular" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Descobreix Angular, configura el teu entorn i crea el primer projecte" />
+<meta property="og:description" content="Descobreix Angular, configura el teu entorn i crea el primer projecte" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/angular-optativa/unitat-1/bloc-1/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/angular-optativa/unitat-1/bloc-1/" />
+<meta property="og:site_name" content="Angular" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 1: Introducció a Angular" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Descobreix Angular, configura el teu entorn i crea el primer projecte","headline":"Bloc 1: Introducció a Angular","url":"https://itrascastro.github.io/ioc/angular-optativa/unitat-1/bloc-1/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/angular-optativa/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/angular-optativa/unitat-1/bloc-1/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/angular-optativa/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/angular-optativa/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/angular-optativa/feed.xml" title="Angular" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/angular-optativa/assets/css/code-block.css">
+    <script src="/ioc/angular-optativa/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/angular-optativa/" class="logo-link">
+                <img src="/ioc/angular-optativa/assets/images/logo_IOC_light.jpg" 
+                     alt="Institut Obert de Catalunya" 
+                     class="logo logo-light">
+                <img src="/ioc/angular-optativa/assets/images/logo_IOC_dark.png" 
+                     alt="Institut Obert de Catalunya" 
+                     class="logo logo-dark">
+            </a>
+            <a href="/ioc/angular-optativa/" class="title-link">
+                <h1>DA2_Optativa - Angular</h1>
+            </a>
+        </div>
+        <div class="header-controls">
+            <div class="nav-dropdown" id="nav-dropdown">
+                <button class="nav-dropdown-btn" id="nav-dropdown-btn">Navegació</button>
+                <div class="nav-dropdown-content" id="nav-dropdown-content">
+                    <a href="/ioc/angular-optativa/" class="nav-dropdown-item ">Índex del Curs</a>
+                    
+                        
+                            <a href="/ioc/angular-optativa/unitat-1/bloc-1/" class="nav-dropdown-item current">
+                                Bloc 1: Bloc 1
+                            </a>
+                        
+                            <a href="/ioc/angular-optativa/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                                Bloc 2: Bloc 2
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/angular-optativa/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                                Bloc 3: Bloc 3
+                            </a>
+                        
+                            <a href="/ioc/angular-optativa/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                                Bloc 4: Bloc 4
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/angular-optativa/unitat-3/bloc-5/" class="nav-dropdown-item ">
+                                Bloc 5: Bloc 5
+                            </a>
+                        
+                            <a href="/ioc/angular-optativa/unitat-3/bloc-6/" class="nav-dropdown-item ">
+                                Bloc 6: Bloc 6
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/angular-optativa/unitat-4/bloc-7/" class="nav-dropdown-item ">
+                                Bloc 7: Bloc 7
+                            </a>
+                        
+                            <a href="/ioc/angular-optativa/unitat-4/bloc-8/" class="nav-dropdown-item ">
+                                Bloc 8: Bloc 8
+                            </a>
+                        
+                    
+                </div>
+            </div>
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <!-- Contingut d'aquest Bloc -->
+            <div class="sidebar-section">
+                <h3>Contingut del Bloc</h3>
+                
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc1_Seccio1" class="nav-link" data-section="Unitat1_Bloc1_Seccio1">Introducció a Angular</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc1_Seccio2" class="nav-link" data-section="Unitat1_Bloc1_Seccio2">Configuració de l'Entorn</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc1_Seccio3" class="nav-link" data-section="Unitat1_Bloc1_Seccio3">Exemples de Components Addicionals</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc1_Seccio4" class="nav-link" data-section="Unitat1_Bloc1_Seccio4">Primer Projecte: Calculadora Angular Professional</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc1_Seccio5" class="nav-link" data-section="Unitat1_Bloc1_Seccio5">Desenvolupament amb IA</a>
+        </div>
+    
+
+
+
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/angular-optativa/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/angular-optativa/unitat-1/" class="horizontal-nav-item">
+                                Unitat 1: Unitat 1
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 1.1: Bloc 1
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<!--
+  Pàgina de contingut del Bloc 1 (Unitat 1)
+  - Usa el layout "bloc" per afegir metadades, toc lateral i components del curs.
+  - Estructura recomanada: seccions amb H2 (per al progrés de seccions), subseccions amb H3.
+  - Mantén els fragments de codi dins de <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text"></code></pre>
+  </div>
+</div>
+ per estil i còpia.
+-->
+<div class="section">
+    <h2 id="Unitat1_Bloc1_Seccio1">Introducció a Angular</h2>
+    
+    <p><strong>Angular</strong> és un framework de desenvolupament per a aplicacions web escrit en TypeScript. Desenvolupat per Google, Angular permet crear aplicacions d'una sola pàgina (SPA) robustes i escalables.</p>
+
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <strong>Definició:</strong> Angular és un framework complet que proporciona una estructura i eines per desenvolupar aplicacions completes, mentre que una biblioteca com React només proporciona funcions específiques.
+    
+</div>
+
+
+    <h3>Característiques Principals</h3>
+
+    <ul>
+        <li><strong>TypeScript:</strong> Llenguatge principal amb tipatge fort</li>
+        <li><strong>Components:</strong> Arquitectura basada en components reutilitzables</li>
+        <li><strong>CLI:</strong> Eina de línia de comandaments potent</li>
+        <li><strong>Ecosystem complet:</strong> Routing, HTTP client, forms integrats</li>
+    </ul>
+
+    <h3>Comparació de Frameworks</h3>
+    
+    <table class="responsive-table">
+        <thead>
+            <tr>
+                <th>Framework</th>
+                <th>Tipus</th>
+                <th>Llenguatge</th>
+                <th>Arquitectura</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Angular</td>
+                <td>Framework complet</td>
+                <td>TypeScript</td>
+                <td>MVC + Components</td>
+            </tr>
+            <tr>
+                <td>React</td>
+                <td>Llibreria UI</td>
+                <td>JavaScript/JSX</td>
+                <td>Component-based</td>
+            </tr>
+            <tr>
+                <td>Vue.js</td>
+                <td>Framework progressiu</td>
+                <td>JavaScript</td>
+                <td>MVVM</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section">
+    <h2 id="Unitat1_Bloc1_Seccio2">Configuració de l'Entorn</h2>
+    
+    <p>Abans de començar, necessitem configurar el nostre entorn de desenvolupament.</p>
+
+    <!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <strong>Prerequisit:</strong> Necessites tenir Node.js v18+ i npm v9+ instal·lats al sistema.
+</div>
+
+
+    <h3>Verificació del Sistema</h3>
+
+    
+    <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">
+# Verificació completa del sistema de desenvolupament Angular
+echo &#39;=== VERIFICACIÓ DEL SISTEMA ANGULAR ===&#39;
+echo &#39;Comprovant versions dels components necessaris...&#39;
+
+# Node.js - requereix versió 18 o superior per Angular 17+
+echo -n &#39;Node.js: &#39; &amp;&amp; node --version || echo &#39;ERROR: Node.js no instal·lat&#39;
+
+# npm - gestor de paquets per defecte
+echo -n &#39;npm: &#39; &amp;&amp; npm --version || echo &#39;ERROR: npm no disponible&#39;
+
+# Verificar si Angular CLI està instal·lat globalment
+if command -v ng &amp;&gt; /dev/null; then
+    echo &#39;Angular CLI: Instal·lat correctament&#39;
+    ng version --skip-git 2&gt;/dev/null | grep -E &#39;(Angular CLI|Package)&#39; | head -3
+else
+    echo &#39;ADVERTÈNCIA: Angular CLI no instal·lat globalment&#39;
+    echo &#39;Executar: npm install -g @angular/cli@latest&#39;
+fi
+
+# Verificació opcional de TypeScript global (recomanat per desenvolupament)
+if command -v tsc &amp;&gt; /dev/null; then
+    echo -n &#39;TypeScript global: &#39; &amp;&amp; tsc --version
+else
+    echo &#39;INFO: TypeScript global no instal·lat (opcional)&#39;
+fi
+
+echo &#39;=== VERIFICACIÓ COMPLETADA ===&#39;
+
+# Comandament d&#39;instal·lació extremadament llarg per demostrar scroll horizontal
+npm install --save @angular/core @angular/common @angular/forms @angular/router @angular/platform-browser @angular/platform-browser-dynamic @angular/animations @angular/material @angular/cdk @angular/flex-layout @angular/service-worker @angular/pwa rxjs zone.js typescript @types/node eslint prettier husky lint-staged jest @testing-library/angular @testing-library/jest-dom cypress webpack webpack-cli webpack-dev-server html-webpack-plugin css-loader sass-loader style-loader postcss-loader autoprefixer mini-css-extract-plugin terser-webpack-plugin optimize-css-assets-webpack-plugin compression-webpack-plugin bundle-analyzer webpack-merge dotenv-webpack --save-dev @angular-devkit/build-angular @angular/cli @types/jasmine jasmine-core karma karma-chrome-launcher karma-coverage karma-jasmine karma-jasmine-html-reporter @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-angular eslint-plugin-rxjs eslint-plugin-rxjs-angular
+
+# Aquesta línia és tan llarga que necessitarà scroll horitzontal
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Instal·lació d'Angular CLI</h3>
+
+    
+    <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">
+# Instal·lació d&#39;Angular CLI amb configuració completa
+npm install -g @angular/cli@latest
+
+# Verificar instal·lació i mostrar versions de tot l&#39;ecosistema
+ng version
+
+# Configuració opcional del CLI per millorar experiència de desenvolupament
+ng config -g cli.analytics false  # Desactivar telemetria per privacitat
+ng config -g cli.warnings.versionMismatch false  # Evitar alertes de versions menors
+
+echo &#39;Angular CLI instal·lat i configurat correctament!&#39;
+    </code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <strong>CLI instal·lat:</strong> Si la comanda ng version mostra informació d'Angular, l'eina està llesta per usar.
+</div>
+
+
+    <h3>Verificació de la Configuració</h3>
+
+    <!-- Component: Checklist accessible -->
+<div class="checklist" role="group" aria-label="Passos de Verificació">
+    <div class="checklist-title">Passos de Verificació</div>
+    
+    
+    <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="checklist-checkbox" aria-hidden="true"></div>
+        <div class="checklist-text">Node.js instal·lat correctament</div>
+    </div>
+    
+    <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="checklist-checkbox" aria-hidden="true"></div>
+        <div class="checklist-text">npm funciona sense errors</div>
+    </div>
+    
+    <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="checklist-checkbox" aria-hidden="true"></div>
+        <div class="checklist-text">Angular CLI s'ha instal·lat globalment</div>
+    </div>
+    
+    <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="checklist-checkbox" aria-hidden="true"></div>
+        <div class="checklist-text">La comanda ng version mostra informació</div>
+    </div>
+    
+    <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="checklist-checkbox" aria-hidden="true"></div>
+        <div class="checklist-text">L'entorn està llest per desenvolupar</div>
+    </div>
+    
+    <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat1_Bloc1_Seccio3">Exemples de Components Addicionals</h2>
+
+    <!-- Component: Objectius del bloc/unitat -->
+
+
+
+<div class="objectius-box">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-bullseye" aria-hidden="true"></i> Objectius</div>
+  <div class="component-content">
+    <ul>
+      
+        <li>Comprendre la CLI d'Angular</li>
+      
+        <li>Crear el primer component</li>
+      
+        <li>Entendre el flux de treball bàsic</li>
+      
+    </ul>
+  </div>
+  <!-- IMPORTANT: també es pot usar via front matter: page.objectius (array) -->
+</div>
+
+
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Injecció de Dependències:</strong> Patró en què els components reben les seves dependències externes, millorant el desacoblament i la testabilitat.</p>
+  </div>
+</div>
+
+
+    <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/angular-optativa/assets/images/logo_IOC_light.jpg" alt="Logo IOC" class="figure-img"/>
+      
+      <figcaption class="figure-caption">Exemple de figura amb peu de foto.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Component de Suma</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Crea un component <code>Sumador</code> amb dos inputs i un botó que mostri el resultat.</p></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Fàcil</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Usa <strong>[(ngModel)]</strong></li>
+        
+        <li>Afegeix un mètode <code>sumar()</code></li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+
+    <!-- Component: Llista de recursos -->
+
+
+
+<div class="resources-box">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-collection" aria-hidden="true"></i> Recursos</div>
+  <div class="component-content">
+    <ul class="resource-list">
+      
+        
+        
+        
+        
+        
+        <li class="resource-item">
+          <a href="https://angular.io" class="resource-link" target="_blank" rel="noopener noreferrer">Doc oficial Angular</a>
+        </li>
+        
+      
+        
+        
+        
+        
+        
+        <li class="resource-item">
+          <a href="/docs/ts/guia/" class="resource-link">Guia TypeScript IOC</a>
+        </li>
+        
+      
+    </ul>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat1_Bloc1_Seccio4">Primer Projecte: Calculadora Angular Professional</h2>
+
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">
+import { Component } from &#39;@angular/core&#39;;
+
+@Component({
+  selector: &#39;app-root&#39;,
+  templateUrl: &#39;./app.component.html&#39;,
+  styleUrls: [&#39;./app.component.css&#39;]
+})
+export class AppComponent {
+  title = &#39;Mi App Angular&#39;;
+}
+</code></pre>
+  </div>
+</div>
+
+
+    <p>Crearem una calculadora completa utilitzant les millors pràctiques d'Angular moderns amb arquitectura escalable.</p>
+
+    <h4>1. Creació del Projecte amb Configuració Completa</h4>
+
+    <h4>3. Exemple de Component TypeScript Professional</h4>
+
+    <p>Aquest és un component Angular complet que mostra totes les funcionalitats modernes i bones pràctiques:</p>
+
+    <h4>4. Configuració Angular.json amb Propietats Extenses</h4>
+
+    <p>Exemple de configuració angular.json amb opcions completes que demostra scroll horizontal:</p>
+
+    
+    <div class="code-block" data-lang="json" role="region" aria-label="Bloc de codi json">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JSON</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-json">
+{
+  &quot;version&quot;: 1,
+  &quot;newProjectRoot&quot;: &quot;projects&quot;,
+  &quot;projects&quot;: {
+    &quot;calculadora-angular&quot;: {
+      &quot;projectType&quot;: &quot;application&quot;,
+      &quot;schematics&quot;: {
+        &quot;@schematics/angular:component&quot;: { &quot;style&quot;: &quot;scss&quot;, &quot;skipTests&quot;: false, &quot;changeDetection&quot;: &quot;OnPush&quot;, &quot;viewEncapsulation&quot;: &quot;Emulated&quot;, &quot;displayBlock&quot;: true },
+        &quot;@schematics/angular:directive&quot;: { &quot;skipTests&quot;: false, &quot;flat&quot;: true, &quot;prefix&quot;: &quot;app&quot;, &quot;selector&quot;: &quot;appPrefix&quot;, &quot;exportFromModule&quot;: true },
+        &quot;@schematics/angular:service&quot;: { &quot;skipTests&quot;: false, &quot;flat&quot;: true, &quot;providedIn&quot;: &quot;root&quot;, &quot;module&quot;: &quot;app&quot;, &quot;export&quot;: true }
+      },
+      &quot;root&quot;: &quot;&quot;,
+      &quot;sourceRoot&quot;: &quot;src&quot;,
+      &quot;prefix&quot;: &quot;app&quot;,
+      &quot;architect&quot;: {
+        &quot;build&quot;: {
+          &quot;builder&quot;: &quot;@angular-devkit/build-angular:browser&quot;,
+          &quot;options&quot;: {
+            &quot;outputPath&quot;: &quot;dist/calculadora-angular&quot;,
+            &quot;index&quot;: &quot;src/index.html&quot;,
+            &quot;main&quot;: &quot;src/main.ts&quot;,
+            &quot;polyfills&quot;: [&quot;zone.js&quot;],
+            &quot;tsConfig&quot;: &quot;tsconfig.app.json&quot;,
+            &quot;inlineStyleLanguage&quot;: &quot;scss&quot;,
+            &quot;assets&quot;: [&quot;src/favicon.ico&quot;, &quot;src/assets&quot;, &quot;src/manifest.json&quot;, &quot;src/robots.txt&quot;, &quot;src/sitemap.xml&quot;],
+            &quot;styles&quot;: [&quot;@angular/material/prebuilt-themes/indigo-pink.css&quot;, &quot;src/styles/global.scss&quot;, &quot;src/styles/components.scss&quot;, &quot;src/styles/utilities.scss&quot;, &quot;src/styles/themes.scss&quot;],
+            &quot;scripts&quot;: [&quot;node_modules/chart.js/dist/chart.min.js&quot;, &quot;node_modules/d3/dist/d3.min.js&quot;, &quot;src/assets/js/analytics.js&quot;, &quot;src/assets/js/utils.js&quot;],
+            &quot;allowedCommonJsDependencies&quot;: [&quot;lodash&quot;, &quot;moment&quot;, &quot;rxjs&quot;, &quot;chart.js&quot;, &quot;d3&quot;, &quot;mathjs&quot;, &quot;big.js&quot;, &quot;decimal.js&quot;, &quot;numeral&quot;]
+          }
+        }
+      }
+    }
+  }
+}
+    </code></pre>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat1_Bloc1_Seccio5">Desenvolupament amb IA</h2>
+    
+    <p>Angular pot beneficiar-se de l'assistència d'intel·ligència artificial per accelerar el desenvolupament.</p>
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Crea un component Angular per una calculadora amb input per números, botons per operacions i display per resultats.</div>
+  </div>
+</div>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 1: Introducció a Angular",
+  "description": "Descobreix Angular, configura el teu entorn i crea el primer projecte",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Angular — IOC",
+    "description": "Materials del curs Angular de l'IOC"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                            
+                                
+                            
+                                
+                                <a href="/ioc/angular-optativa/unitat-1/bloc-2/" class="nav-button" aria-label="Bloc següent: Bloc 2">Següent →</a>
+                                
+                        
+                            
+                                
+                            
+                                
+                            
+                        
+                            
+                                
+                            
+                                
+                            
+                        
+                            
+                                
+                            
+                                
+                            
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="1" data-total="4">(1/4)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 25%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="1" data-total="2">(1/2)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 50%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="5">(1/5)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 20%"></div></div>
+                    </div></div>
+            <div class="footer-actions">
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/angular-optativa/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts del lloc -->
+    <script src="/ioc/angular-optativa/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/angular-optativa/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/angular-optativa/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/angular-optativa/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/angular-optativa/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/angular-optativa/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/angular-optativa/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+/* Scoped Rich Editor styles (qre) based on dev-resources/rich-12.html */
+.qre{ --editor-h:240px; --modal-h:70vh; --radius:10px; --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; --sans: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, Arial, "Noto Sans", sans-serif; --scrollbar-bg:#eef0f2; --scrollbar-thumb:#c2c6cc; --scrollbar-thumb-hover:#aeb3ba; }
+.qre[data-theme="light"]{ --bg:#f6f7f9; --panel:#fff; --text:#111827; --muted:#7a8699; --border:#e5e7eb; --border-strong:#d1d5db; --toolbar:#f3f4f6; --icon:#374151; --icon-hover:#111827; --picker-bg:#ffffff; --picker-text:#111827; --picker-border:#d1d5db; --code-bg:#f6f8fa; --code-fg:#24292f; --html-bg:#ffffff; --html-fg:#0f172a; --html-border:#d1d5db; }
+.qre[data-theme="dark"]{ --panel: var(--color-surface); --toolbar: var(--color-surface-dark); --text: var(--color-text); --muted: var(--color-text-muted); --border: var(--color-border); --border-strong: var(--color-border); --icon: var(--color-text); --icon-hover: var(--color-text); --picker-bg: var(--color-surface); --picker-text: var(--color-text); --picker-border: var(--color-border); --code-bg: var(--color-surface-dark); --code-fg: var(--color-text); --html-bg: var(--color-surface); --html-fg: var(--color-text); --html-border: var(--color-border); }
+.qre *{ box-sizing:border-box; font-family:var(--sans); }
+.qre .panel{ background:var(--panel); border:1px solid var(--border); border-radius:10px; }
+.qre .head{ display:grid; gap:8px; grid-template-columns: 1fr auto; align-items:center; padding:8px 10px; border-bottom:1px solid var(--border); background:var(--toolbar); }
+.qnp-panel .qre .head{ position: relative; z-index: 1; }
+.qre .fields{ display:grid; gap:6px; grid-template-columns:1fr 1fr; align-items:center; }
+.qre .input{ width:100%; padding:8px 10px; border:1px solid var(--border-strong); border-radius:8px; background:var(--panel); color:var(--text); font-size:14px; }
+.qre .actions{ display:flex; gap:6px; }
+.qre .iconbtn{ width:30px; height:30px; border:1px solid var(--border-strong); background:var(--panel); border-radius:8px; cursor:pointer; font:700 13px/1 var(--mono); color:var(--icon); }
+.qre .iconbtn:hover{ color:var(--icon-hover); }
+.qre .theme-toggle{ margin-left:6px; gap:6px; display:flex; align-items:center; }
+.qre .theme-toggle label{ font-size:12px; color:var(--muted); }
+.qre .ql-toolbar.ql-snow{ border:none; border-bottom:1px solid var(--border); background:var(--toolbar); padding:6px 8px; }
+.qre .ql-snow .ql-stroke{ stroke:var(--icon) !important; }
+.qre .ql-snow .ql-fill{ fill:var(--icon) !important; }
+.qre .ql-snow .ql-picker{ color:var(--text) !important; }
+.qre .ql-snow .ql-picker-label{ border-color:var(--border-strong) !important; }
+.qre .ql-snow .ql-picker-options{ background:var(--picker-bg) !important; color:var(--picker-text) !important; border:1px solid var(--picker-border) !important; }
+.qre .ql-toolbar .ql-picker-options, .qre .ql-tooltip{ z-index:10000 !important; }
+.qre .ql-toolbar .ql-picker-options{ max-height: 220px; overflow-y: auto; }
+/* Limitar desplegable del tipus de text (Normal/H1/H2/...) a 3 opcions visibles */
+.qre .ql-toolbar .ql-picker.ql-header .ql-picker-options{ max-height: 90px; overflow-y: auto; }
+.qre .editor{ padding:8px 10px 10px; }
+.qre .editor .ql-container{ border:none; height:var(--editor-h); }
+.qre .editor .ql-editor{ height:100%; overflow:auto; line-height:1.72; color:var(--text); }
+.qre .editor .ql-editor p{ margin: 0 0 0.9em; }
+/* Vertical rhythm for common Quill blocks */
+.qre .editor .ql-editor h1{ font-size: 1.6rem; line-height:1.25; margin:0 0 1.0em; }
+.qre .editor .ql-editor h2{ font-size: 1.4rem; line-height:1.28; margin:0 0 0.95em; }
+.qre .editor .ql-editor h3{ font-size: 1.2rem; line-height:1.3; margin:0 0 0.9em; }
+.qre .editor .ql-editor h4{ font-size: 1.1rem; line-height:1.35; margin:0 0 0.85em; }
+.qre .editor .ql-editor h5{ font-size: 1.05rem; line-height:1.4; margin:0 0 0.8em; }
+.qre .editor .ql-editor h6{ font-size: 1rem; line-height:1.45; margin:0 0 0.75em; }
+
+.qre .editor .ql-editor ul,
+.qre .editor .ql-editor ol{ margin: 0.2em 0 1.0em 1.4em; padding:0; }
+.qre .editor .ql-editor li{ margin: 0.28em 0; }
+.qre .editor .ql-editor li > ul,
+.qre .editor .ql-editor li > ol{ margin: 0.2em 0 0.6em 1.2em; }
+
+.qre .editor .ql-editor blockquote{
+  margin: 0.9em 0 1.0em;
+  padding: 0.4em 0.8em;
+  border-left: 3px solid var(--border-strong);
+  background: rgba(0,0,0,0.03);
+}
+
+.qre .editor .ql-editor pre{ margin: 0.9em 0 1.1em; }
+.qre .editor .ql-editor pre.ql-syntax{ margin: 0.9em 0 1.1em; }
+
+.qre .editor .ql-editor img,
+.qre .editor .ql-editor .ql-video{
+  display:block;
+  max-width:100%;
+  margin: 1.1em 0;
+}
+
+.qre .editor .ql-editor hr{ border:none; border-top:1px solid var(--border); margin: 1.2em 0; }
+
+.qre .editor .ql-editor table{ border-collapse: collapse; width:auto; max-width:100%; margin: 1.0em 0; }
+.qre .editor .ql-editor table td,
+.qre .editor .ql-editor table th{ border:1px solid var(--border); padding:6px 8px; }
+.qre .ql-editor pre{ border:1px solid var(--border); border-radius:8px; padding:10px 12px; background:var(--code-bg); }
+.qre .ql-editor pre.ql-syntax{ background:var(--code-bg)!important; color:var(--code-fg)!important; font:13px/1.35 var(--mono); white-space:pre; overflow:auto; tab-size:4; -moz-tab-size:4; font-variant-ligatures: none; letter-spacing: 0; word-spacing: normal; }
+.qre dialog.c-modal{ border:1px solid var(--border); border-radius:12px; padding:0; width:min(1100px,96vw); max-height:92vh; background:var(--panel); }
+.qre dialog::backdrop{ background:rgba(0,0,0,.35); }
+.qre .m-head{ display:flex; align-items:center; gap:8px; padding:8px 10px; border-bottom:1px solid var(--border); background:var(--toolbar); position:sticky; top:0; z-index:4; }
+.qre dialog.c-modal{ z-index: 3000; }
+.qre .m-head{ cursor: move; }
+.qre .m-title{ font-weight:600; font-size:14px; }
+.qre .m-actions{ margin-left:auto; display:flex; gap:6px; }
+.qre .m-body{ padding:10px; }
+.qre #toolbar-full.ql-toolbar{ border:none; background:transparent; padding:0; }
+.qre .codebox{ width:100%; min-height:40vh; max-height:72vh; overflow:auto; background:var(--html-bg); color:var(--html-fg); border:1px solid var(--html-border); border-radius:8px; padding:12px; font:13px/1.45 var(--mono); white-space:pre; word-break:break-word; resize:none; }
+.qre .hint{ padding:6px 10px 10px; color:var(--muted); font-size:12px; border-top:1px dashed var(--border); }
+@media (max-width:900px){ .qre .fields{ grid-template-columns:1fr; } }
+@media (max-width:720px){ .qre{ --editor-h:160px; } }
+.qre dialog.c-modal{ max-height:92vh; overflow:hidden; }
+.qre .m-body{ padding:10px; overflow:hidden; }
+.qre .m-body .ql-container{ height: var(--modal-h); border:none; overflow: auto; cursor: default; position: relative; }
+.qre .m-body .ql-editor{ height: auto; min-height: 100%; overflow: visible; cursor: text; display: block; }
+
+/* Height controlled via JS to match sidebar; default auto */
+.qnp-panel .qre{ height: auto; }
+.qnp-panel .qre .panel{ height: 100%; display:flex; flex-direction: column; }
+.qnp-panel .qre .editor{ flex: 1; min-height: 0; padding: 6px 10px 6px; overflow: visible; display:flex; flex-direction: column; }
+.qnp-panel .qre .editor .ql-toolbar{ position: relative; top: auto; z-index: 2; background: var(--toolbar); border-bottom: 1px solid var(--border); }
+.qnp-panel .qre .editor .ql-container{ flex: 1; min-height: 0; overflow: auto; cursor: default; position: relative; }
+.qnp-panel .qre .editor .ql-editor{ overflow: visible; min-height: 100%; height: auto; cursor: text; display: block; }
+.qnp-panel .qre .ql-toolbar.ql-snow{ padding: 4px 6px; background: var(--toolbar); border-bottom: 1px solid var(--border); }
+
+/* Ensure header compacts nicely on small screens */
+.qre .actions .iconbtn{ display:inline-flex; align-items:center; justify-content:center; }
