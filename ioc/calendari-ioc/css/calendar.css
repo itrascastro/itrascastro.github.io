@@ -493,6 +493,525 @@
     margin-top: 10px; 
 }
 
+/* === VISTA ULTRA COMPACTA === */
+body[data-current-view="compact"] .calendar-grid-wrapper {
+    padding: 0;
+}
+
+.compact-view-container {
+    height: 100%;
+    background-color: var(--bg-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Contenidor principal amb columnes fixades */
+.compact-calendar-wrapper {
+    /* Amb el grid unificat, el wrapper només apila headers + grid */
+    display: block;
+    position: relative;
+}
+
+.compact-calendar-grid-container {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 0;
+    position: relative;
+}
+
+/* Grid unificat: mes + (número,dia)x7 + setmana */
+.compact-unified-grid {
+    display: grid;
+    grid-template-columns: 60px repeat(7, 12px 1fr) 30px;
+    gap: 0;
+    background-color: var(--border-color);
+}
+
+.compact-months-column {
+    width: 60px;
+    position: relative;
+}
+
+.compact-calendar-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background-color: var(--border-color);
+}
+
+.compact-calendar-row {
+    display: grid;
+    grid-template-columns: repeat(7, 12px 1fr) 30px;
+    gap: 0;
+    background-color: var(--border-color);
+}
+
+/* Headers */
+.compact-headers-row {
+    display: grid;
+    grid-template-columns: 60px repeat(7, 12px 1fr) 30px;
+    gap: 0;
+    background-color: var(--card-bg-color);
+}
+
+.compact-month-header-spacer,
+.compact-week-header {
+    background-color: var(--card-bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.5em;
+    font-weight: 700;
+    color: var(--main-text-color);
+    border: none;
+}
+
+/* Cel·la de mes que ocupa múltiples files */
+.compact-month-cell {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Mostrar el nom del mes en horitzontal per millorar la llegibilitat */
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.1;
+    padding: 2px 4px;
+    font-size: 0.7em;
+    font-weight: 600;
+    color: var(--secondary-text-color);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.compact-month-cell:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.compact-month-cell.empty {
+    background-color: var(--card-bg-color);
+    border: none;
+}
+
+/* Números de dia del grid unificat */
+.compact-day-number {
+    /* Usar colors de tema per suportar mode fosc */
+    background-color: var(--card-bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.4em;
+    font-weight: 600;
+    color: var(--main-text-color);
+    border: 1px solid var(--border-color);
+}
+
+.compact-day-number.empty {
+    background-color: var(--bg-color);
+}
+
+/* Números de setmana del grid unificat */
+.compact-week-number {
+    background-color: var(--card-bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.4em;
+    font-weight: 600;
+    color: var(--main-text-color);
+    border: 1px solid var(--border-color);
+}
+
+.compact-week-number.empty {
+    background-color: var(--bg-color);
+}
+
+/* Overlay de mesos amb posicionament absolut */
+.compact-months-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 100%;
+    z-index: 10;
+}
+
+.compact-month-overlay-label {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    padding: 1px;
+}
+
+.compact-month-overlay-label:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.compact-month-overlay-label .month-text {
+    writing-mode: horizontal-tb;
+    font-size: 0.25em;
+    font-weight: 700;
+    color: var(--main-text-color);
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    text-align: center;
+    word-break: break-all;
+}
+
+.compact-month-label {
+    cursor: pointer;
+    padding: 4px 2px;
+    border-radius: 3px;
+    transition: background-color 0.2s;
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.4em;
+    color: var(--main-text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border-color-light);
+}
+
+.compact-month-label:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.compact-month-label .month-text {
+    transform: rotate(180deg);
+}
+
+/* Àrea principal del calendari */
+.compact-calendar-main {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.compact-headers-row {
+    display: grid;
+    grid-template-columns: 60px repeat(7, 12px 1fr) 30px;
+    gap: 1px;
+    background-color: var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0;
+}
+
+.compact-month-header-spacer {
+    background-color: var(--card-bg-color);
+    padding: 4px 2px;
+    font-size: 0.4em;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Sense bordes visibles en la cel·la buida */
+    border: none !important;
+}
+
+.compact-day-header {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    padding: 6px 4px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--secondary-text-color);
+    font-size: 0.75em;
+    grid-column: span 2;
+}
+
+.compact-day-header:last-child {
+    border-right: none;
+}
+
+.compact-calendar-grid {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background-color: var(--border-color);
+    overflow-y: auto;
+}
+
+/* CSS per debugging - línies visibles */
+
+/* Cel·les de dia principals */
+.compact-day-cell {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    padding: 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    font-size: 0.3em;
+    min-height: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.compact-week-number.empty {
+    background-color: var(--card-bg-color);
+    opacity: 0.5;
+}
+
+/* Header de setmana */
+.compact-week-header {
+    background-color: var(--card-bg-color);
+    padding: 4px 2px;
+    font-size: 0.4em;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none !important;
+}
+
+.compact-integrated-row > .compact-day-cell {
+    border-right: 1px solid var(--border-color);
+}
+
+.compact-integrated-row > .compact-day-cell:nth-child(14) {
+    border-right: none;
+}
+
+.compact-day-cell {
+    background-color: var(--card-bg-color);
+    padding: 0px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    min-height: 12px;
+}
+
+.compact-day-cell:hover {
+    background-color: #f8f9fa;
+}
+
+.compact-day-cell.today {
+    background-color: #e3f2fd;
+    border: 1px solid var(--accent-color);
+}
+
+.compact-day-cell.has-events {
+    background-color: var(--card-bg-color);
+}
+
+.compact-day-cell.empty {
+    background-color: var(--bg-color);
+    cursor: default;
+}
+
+.compact-events-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    overflow: hidden;
+    padding: 1px;
+}
+
+.compact-event {
+    font-size: 0.45em;
+    padding: 1px 2px;
+    border-radius: 2px;
+    color: white;
+    line-height: 1.1;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    font-weight: 400;
+    margin-bottom: 1px;
+}
+
+.compact-event.is-user-event {
+    cursor: pointer;
+}
+
+.more-events {
+    font-size: 0.4em;
+    color: var(--secondary-text-color);
+    font-weight: bold;
+    text-align: center;
+    padding: 1px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 2px;
+}
+
+.compact-add-event-btn {
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #f1f3f5;
+    color: var(--secondary-text-color);
+    border: none;
+    cursor: pointer;
+    font-size: 0.8em;
+    line-height: 16px;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+    z-index: 3;
+}
+
+.compact-day-cell:hover .compact-add-event-btn {
+    opacity: 1;
+}
+
+.compact-add-event-btn:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+/* Barra dreta de setmanes */
+.compact-weeks-bar {
+    background-color: var(--card-bg-color);
+    border-left: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+    overflow-y: auto;
+}
+
+/* Espaiador per alinear amb headers */
+.compact-weeks-header-spacer {
+    min-height: 32px;
+    background-color: var(--card-bg-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.compact-week-label {
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.7em;
+    color: var(--secondary-text-color);
+    padding: 4px 2px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid var(--border-color);
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estils per exportació HTML */
+.compact-view-export {
+    display: grid;
+    grid-template-columns: 80px 1fr 40px;
+    gap: 10px;
+    max-width: 100%;
+    font-size: 0.8em;
+}
+
+.compact-months-list,
+.compact-weeks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.compact-months-list .month-label,
+.compact-weeks-list .week-label {
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    text-align: center;
+    font-size: 0.8em;
+    padding: 4px;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-bg-color);
+}
+
+/* Responsive per vista compacta */
+@media (max-width: 1024px) {
+    .compact-view-container {
+        grid-template-columns: 60px 1fr;
+    }
+    
+    .compact-headers-row {
+        grid-template-columns: repeat(7, 12px 1fr) 25px;
+    }
+    
+    .compact-integrated-row {
+        grid-template-columns: repeat(7, 12px 1fr) 25px;
+    }
+    
+    .compact-day-number {
+        width: 18px;
+        font-size: 0.65em;
+    }
+    
+    .compact-weeks-header-spacer {
+        min-height: 28px;
+    }
+    
+    .compact-event {
+        font-size: 0.4em;
+    }
+}
+
+@media (max-width: 768px) {
+    .compact-view-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 40px 1fr;
+    }
+    
+    .compact-headers-row {
+        grid-template-columns: repeat(7, 10px 1fr) 20px;
+    }
+    
+    .compact-integrated-row {
+        grid-template-columns: repeat(7, 10px 1fr) 20px;
+    }
+    
+    .compact-months-bar,
+    .compact-weeks-bar {
+        flex-direction: row;
+        writing-mode: horizontal-tb;
+        height: 40px;
+        overflow-x: auto;
+    }
+    
+    .compact-month-label .month-text {
+        transform: none;
+    }
+    
+    .compact-day-number {
+        width: 15px;
+        font-size: 0.6em;
+    }
+    
+    .compact-weeks-header-spacer {
+        min-height: 25px;
+    }
+    
+    .compact-event {
+        font-size: 0.35em;
+    }
+}
+
 /* === BOTONS === */
 .btn { 
     padding: 10px 20px; 
@@ -547,7 +1066,8 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.event.dragging {
+.event.dragging,
+.compact-event.dragging {
     opacity: 0.6;
     transform: rotate(2deg) scale(0.95);
     cursor: grabbing;
@@ -561,6 +1081,19 @@
 }
 
 .day-cell.drop-invalid {
+    border-color: var(--danger-color);
+    background-color: rgba(229, 62, 62, 0.1);
+    box-shadow: 0 0 0 2px rgba(229, 62, 62, 0.3);
+}
+
+/* Estats de drop per a vista compacta */
+.compact-day-cell.drop-target {
+    border-color: var(--accent-color);
+    background-color: rgba(79, 93, 149, 0.1);
+    box-shadow: 0 0 0 2px rgba(79, 93, 149, 0.3);
+}
+
+.compact-day-cell.drop-invalid {
     border-color: var(--danger-color);
     background-color: rgba(229, 62, 62, 0.1);
     box-shadow: 0 0 0 2px rgba(229, 62, 62, 0.3);

@@ -33,12 +33,13 @@ class ViewManager {
      */
     constructor() {
         this.currentView = 'month';
-        this.availableViews = ['global', 'semester', 'month', 'week', 'day'];
+        this.availableViews = ['global', 'semester', 'month', 'compact', 'week', 'day'];
         
         // Registre de renderitzadors
         this.renderers = {
             global: null,  // S'assignarà quan es carreguin els renderitzadors
             month: null,
+            compact: null,
             day: null,
             week: null,
             semester: null
@@ -59,6 +60,7 @@ class ViewManager {
     initializeRenderers() {
         this.renderers.global = globalRenderer;
         this.renderers.month = monthRenderer;
+        this.renderers.compact = compactRenderer;
         this.renderers.day = dayRenderer;
         this.renderers.week = weekRenderer;
         this.renderers.semester = semesterRenderer;
@@ -176,6 +178,9 @@ class ViewManager {
             case 'global':
                 this.renderGlobalView(calendar);
                 break;
+            case 'compact':
+                this.renderCompactView(calendar);
+                break;
             case 'day':
                 this.renderDayView(calendar);
                 break;
@@ -209,6 +214,27 @@ class ViewManager {
         periodDisplay.textContent = periodTitle;
         
         // Actualitzar navegació (desactivar botons)
+        this.updateNavigationButtons();
+    }
+    
+    // Renderitzar vista compacta
+    renderCompactView(calendar) {
+        const gridWrapper = document.getElementById('calendar-grid-wrapper');
+        const periodDisplay = document.getElementById('current-period-display');
+        
+        const compactHTML = this.renderers.compact.render(calendar, appStateManager.currentDate, 'DOM');
+        gridWrapper.innerHTML = compactHTML;
+        
+        // Actualitzar títol del període amb rang complet del calendari
+        const startDate = dateHelper.parseUTC(calendar.startDate);
+        const endDate = dateHelper.parseUTC(calendar.endDate);
+        const periodTitle = `${calendar.name} (Vista Compacta)`;
+        periodDisplay.textContent = periodTitle;
+        
+        // Configurar drag & drop (reutilitza la lògica de la vista mensual)
+        dragDropHelper.setupDragAndDrop(gridWrapper, calendar);
+        
+        // Actualitzar navegació (desactivar botons per vista compacta)
         this.updateNavigationButtons();
     }
     
@@ -311,6 +337,9 @@ class ViewManager {
             case 'global':
                 newDate = this.navigateGlobal(direction, calendarStart, calendarEnd);
                 break;
+            case 'compact':
+                newDate = this.navigateCompact(direction, calendarStart, calendarEnd);
+                break;
             case 'day':
                 newDate = this.navigateDay(direction, calendarStart, calendarEnd);
                 break;
@@ -376,6 +405,14 @@ class ViewManager {
         // ja que es mostra tot el calendari acadèmic
         console.log('[ViewManager] Navegació global: vista completa del calendari');
         return null; // No navegar en vista global
+    }
+    
+    // Navegació específica per vista compacta
+    navigateCompact(direction, calendarStart, calendarEnd) {
+        // Per a vista compacta, la navegació està desactivada
+        // ja que es mostra tot el calendari de manera compacta
+        console.log('[ViewManager] Navegació compacta: vista completa del calendari');
+        return null; // No navegar en vista compacta
     }
     
     // Navegació específica per semestres
@@ -456,6 +493,9 @@ class ViewManager {
             case 'global':
                 this.updateGlobalNavigationButtons(prevBtn, nextBtn, calendarStart, calendarEnd);
                 break;
+            case 'compact':
+                this.updateCompactNavigationButtons(prevBtn, nextBtn, calendarStart, calendarEnd);
+                break;
             case 'day':
                 this.updateDayNavigationButtons(prevBtn, nextBtn, calendarStart, calendarEnd);
                 break;
@@ -479,6 +519,15 @@ class ViewManager {
         nextBtn.disabled = true;
         prevBtn.title = 'Vista global: es mostra tot el calendari acadèmic';
         nextBtn.title = 'Vista global: es mostra tot el calendari acadèmic';
+    }
+    
+    // Actualitzar navegació per vista compacta
+    updateCompactNavigationButtons(prevBtn, nextBtn, calendarStart, calendarEnd) {
+        // Per a vista compacta, desactivar navegació ja que es veu tot el calendari de manera compacta
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        prevBtn.title = 'Vista compacta: es mostra tot el calendari de manera ultra compacta';
+        nextBtn.title = 'Vista compacta: es mostra tot el calendari de manera ultra compacta';
     }
     
     // Actualitzar navegació per vista diària

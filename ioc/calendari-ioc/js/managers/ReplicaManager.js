@@ -165,7 +165,8 @@ class ReplicaManager {
     executeReplication() {
         const sourceCalendarId = this.currentSourceCalendarId;
         const targetCalendarId = document.getElementById('targetCalendarSelect').value;
-        const respectWeekdays = document.getElementById('respectWeekdays').checked;
+        // Opció temporalment desactivada mentre es revisa l'algorisme
+        const respectWeekdays = false;
         
         if (!sourceCalendarId) {
             throw new CalendariIOCException('702', 'ReplicaManager.executeReplication');

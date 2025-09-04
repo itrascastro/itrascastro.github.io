@@ -25,11 +25,16 @@ class DragDropHelper {
     
     // Configurar drag & drop per un contenidor de calendari
     setupDragAndDrop(container, calendar) {
-        // Fer esdeveniments draggables
-        container.querySelectorAll('.event.is-user-event[draggable="true"]').forEach(eventEl => {
+        // Fer esdeveniments draggables (suport vistes estàndard i compacta)
+        const draggableSelectors = [
+            '.event.is-user-event[draggable="true"]',
+            '.compact-event.is-user-event[draggable="true"]'
+        ].join(',');
+
+        container.querySelectorAll(draggableSelectors).forEach(eventEl => {
             const eventId = eventEl.dataset.eventId;
             const eventData = appStateManager.findEventById(eventId);
-            const dayCell = eventEl.closest('.day-cell');
+            const dayCell = eventEl.closest('.day-cell, .compact-day-cell');
             const dateStr = dayCell?.dataset.date;
             
             if (eventData.id && dateStr) {
@@ -37,8 +42,13 @@ class DragDropHelper {
             }
         });
         
-        // Fer dies droppables
-        container.querySelectorAll('.day-cell[data-date]').forEach(dayEl => {
+        // Fer dies droppables (suport vistes estàndard i compacta)
+        const droppableSelectors = [
+            '.day-cell[data-date]',
+            '.compact-day-cell[data-date]'
+        ].join(',');
+
+        container.querySelectorAll(droppableSelectors).forEach(dayEl => {
             const dateStr = dayEl.dataset.date;
             if (dateStr) {
                 eventManager.makeDayDroppable(dayEl, dateStr);
