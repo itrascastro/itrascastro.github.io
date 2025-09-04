@@ -93,7 +93,9 @@ class IcsExporter {
         }
         
         eventContent += `DTSTAMP:${dtstamp}\r\n`;
-        eventContent += `SUMMARY:${this.escapeIcsText(cleanTitle)}\r\n`;
+        // SUMMARY amb prefix per calendaris d'estudi (no per 'Altre')
+        const summary = this.getPrefixedTitle(cleanTitle, calendar);
+        eventContent += `SUMMARY:${this.escapeIcsText(summary)}\r\n`;
         eventContent += `CATEGORIES:${category ? category.name : 'General'}\r\n`;
         
         let description = event.description || '';
@@ -107,6 +109,30 @@ class IcsExporter {
         eventContent += 'END:VEVENT\r\n';
         
         return eventContent;
+    }
+
+    /**
+     * Obtenir títol amb prefix del mòdul quan aplica.
+     * - Per calendaris d'estudi (qualsevol tipus excepte 'Altre'), afegeix prefix
+     *   amb el nom del mòdul entre claudàtors. Exemple: [FP_DAM_M03] Títol
+     * - Per 'Altre', retorna el títol sense canvis.
+     * Intenta deduir el nom de mòdul a partir de l'ID/nom i el codi de semestre.
+     */
+    getPrefixedTitle(title, calendar) {
+        if (!calendar || calendar.type === 'Altre') return title;
+        // Base per prefix: preferim name, després id
+        const base = (calendar.name || calendar.id || '').toString();
+        let moduleName = base;
+        // Si hi ha codi de semestre i està al final, eliminar-lo del prefix
+        if (calendar.code) {
+            const suffix = `_${calendar.code}`;
+            if (moduleName.endsWith(suffix)) {
+                moduleName = moduleName.slice(0, -suffix.length);
+            }
+        }
+        // Si després d'això està buit, no prefixel
+        if (!moduleName) return title;
+        return `[${moduleName}] ${title}`;
     }
     
     // === UTILITATS PER DATES ===
