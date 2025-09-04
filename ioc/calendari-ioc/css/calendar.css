@@ -307,7 +307,8 @@
 }
 
 .global-month .week-pill {
-    font-size: 0.7em;
+    /* Tamaño fijo para consistencia y mayor reducción visible */
+    font-size: 10px;
     padding: 1px 4px;
     top: 2px;
     right: 2px;
@@ -580,7 +581,8 @@ body[data-current-view="compact"] .calendar-grid-wrapper {
     text-align: center;
     line-height: 1.1;
     padding: 2px 4px;
-    font-size: 0.7em;
+    /* Fixar mida per assegurar canvi visible i consistència */
+    font-size: 8px !important;
     font-weight: 600;
     color: var(--secondary-text-color);
     cursor: pointer;
@@ -831,7 +833,8 @@ body[data-current-view="compact"] .calendar-grid-wrapper {
 }
 
 .compact-event {
-    font-size: 0.45em;
+    /* Tamaño fijo para consistencia entre navegadores */
+    font-size: 8px;
     padding: 1px 2px;
     border-radius: 2px;
     color: white;
