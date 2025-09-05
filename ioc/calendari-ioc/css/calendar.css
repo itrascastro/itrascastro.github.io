@@ -29,6 +29,8 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03); 
     overflow: hidden; 
     padding: 20px; 
+    /* Permetre que el fill amb overflow tingui scroll sense expandir el pare */
+    min-height: 0;
 }
 
 .calendar-header { 
@@ -111,6 +113,7 @@
     padding: 8px; 
     border-radius: 8px; 
     overflow-y: auto;
+    min-height: 0;
 }
 
 .calendar-grid { 

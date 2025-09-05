@@ -59,6 +59,12 @@ body {
     transition: background-color 0.3s, color 0.3s; 
 }
 
+/* Evitar scroll global: només scrollegen sidebar i vista */
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
 /* === ACCESSIBILITAT === */
 .visually-hidden {
     position: absolute !important;
