@@ -226,19 +226,13 @@ class CompactViewRenderer extends CalendarRenderer {
     
     // === GENERACIÓ DE SORTIDA HTML ===
     generateHTMLOutput(compactData, calendar) {
-        // Per exportació HTML - versió simplificada
-        const calendarGridHTML = this.generateCompactGridHTML(compactData.allDays, calendar);
-        
+        // Per exportació HTML - usar grid unificat amb columna de mesos i números de setmana
+        const headersHTML = this.generateIntegratedHeaders();
+        const unifiedGridHTML = this.generateUnifiedGrid(compactData.allDays, calendar, compactData.months);
         return `
             <div class="compact-view-export">
-                <div class="compact-months-list">
-                    ${compactData.months.map(month => `<div class="month-label">${month.monthName}</div>`).join('')}
-                </div>
-                ${this.generateCompactHeaders()}
-                ${calendarGridHTML}
-                <div class="compact-weeks-list">
-                    ${compactData.weekNumbers.map(week => `<div class="week-label">S${week}</div>`).join('')}
-                </div>
+                ${headersHTML}
+                ${unifiedGridHTML}
             </div>
         `;
     }
@@ -523,6 +517,24 @@ class CompactViewRenderer extends CalendarRenderer {
         }).join('');
         
         return `<div class="compact-calendar-grid">${rowsHTML}</div>`;
+    }
+
+    // Generar cel·la compacta per exportació HTML (inclou número de dia)
+    generateCompactDayCell(dayData, calendar, outputFormat = 'HTML') {
+        const isToday = dayData.dateStr === dateHelper.toUTCString(new Date());
+        const classes = ['compact-day-cell'];
+        if (isToday) classes.push('today');
+        if (dayData.events.length > 0) classes.push('has-events');
+
+        const eventsHTML = this.generateCompactEvents(dayData.events, calendar, outputFormat);
+        const dayNumberHTML = `<div class="compact-day-number">${dayData.dayNumber}</div>`;
+        
+        return `
+            <div class="${classes.join(' ')}" data-date="${dayData.dateStr}">
+                ${dayNumberHTML}
+                <div class="compact-events-container">${eventsHTML}</div>
+            </div>
+        `;
     }
     
     // Generar cel·la compacta sense número de dia (el número està en columna externa)
