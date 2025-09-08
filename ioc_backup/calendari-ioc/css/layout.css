@@ -1,0 +1,31 @@
+/**
+ * =================================================================
+ * LAYOUT CSS - CALENDARI IOC
+ * =================================================================
+ * 
+ * @file        layout.css
+ * @description Estructura grid principal i layout de l'aplicació
+ * @author      Ismael Trascastro <itrascastro@ioc.cat>
+ * @version     1.0
+ * @date        2025-01-16
+ * @project     Calendari IOC
+ * @repository  https://github.com/itrascastro/calendari-ioc
+ * @license     MIT
+ * 
+ * Aquest fitxer forma part del projecte Calendari IOC,
+ * una aplicació web per gestionar calendaris acadèmics.
+ * 
+ * =================================================================
+ */
+
+/* === GRID PRINCIPAL DE L'APLICACIÓ === */
+.app-container { 
+    display: grid; 
+    grid-template-columns: 340px 1fr; 
+    grid-template-rows: auto 1fr; 
+    grid-template-areas: "header header" "sidebar main"; 
+    height: 100vh; 
+    gap: 20px; 
+    padding: 20px; 
+    box-sizing: border-box; 
+}

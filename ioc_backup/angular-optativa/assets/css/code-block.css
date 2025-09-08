@@ -1,0 +1,248 @@
+.code-block {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  border-radius: 10px;
+  margin: 1.5rem 0;
+  font-family: 'Fira Code', monospace;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  background: #2c2c2c;
+  border-bottom: 1px solid #444;
+  font-size: 13px;
+  font-weight: bold;
+  color: #ccc;
+}
+
+.code-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.code-filename {
+  background: #1e1e1e;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 12px;
+  color: #888;
+  font-family: 'Fira Code', monospace;
+  border: 1px solid #444;
+}
+
+.code-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.code-actions button {
+  background: #3a3a3a;
+  border: none;
+  padding: 4px 6px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #fff;
+  transition: background 0.2s ease;
+}
+
+.code-actions button:hover {
+  background: #555;
+}
+
+.code-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  max-height: var(--codeblock-max-height, 350px);
+  overflow-y: auto; /* scroll vertical únic per sincronitzar columnes */
+  overflow-x: hidden; /* el scroll horitzontal el gestiona el <pre> */
+  border-radius: 0 0 10px 10px;
+}
+
+.line-numbers {
+  background: #2c2c2c;
+  padding: 8px 12px 8px 8px; /* més aire a la dreta per separar del separador */
+  text-align: right;
+  user-select: none;
+  font-size: 13px;
+  font-family: 'Fira Code', monospace !important;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+  color: #888;
+  border-right: 1px solid #444;
+  overflow: visible; /* no cal scroll propi; el contenidor gestiona el vertical */
+}
+
+.code-container pre {
+  margin: 0;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-family: 'Fira Code', monospace !important;
+  line-height: 1.5;
+  overflow-x: auto; /* scroll horitzontal propi */
+  overflow-y: visible; /* vertical el porta el contenidor */
+  white-space: pre; /* es pot canviar a pre-wrap amb el toggle */
+}
+
+.code-container code {
+  display: block;
+  min-width: max-content;
+  font-family: 'Fira Code', monospace !important;
+  line-height: 1.5;
+}
+
+/* Highlight específic de línies */
+.code-block .line-highlight {
+  background-color: rgba(255, 255, 0, 0.1);
+  border-left: 3px solid #ffeb3b;
+  padding-left: 9px !important;
+}
+
+/* Números de línia destacats */
+.line-numbers .ln-highlight {
+  background-color: rgba(255, 255, 0, 0.2);
+  color: #ffeb3b;
+  font-weight: bold;
+}
+
+/* Millores d'accessibilitat */
+.code-actions button:focus {
+  outline: 2px solid #4fc3f7;
+  outline-offset: 2px;
+}
+
+/* Estat d'òcular línies */
+.code-block.lines-hidden .line-numbers {
+  display: none;
+}
+
+.code-block.lines-hidden .code-container {
+  grid-template-columns: 1fr;
+}
+
+/* Estat de còpia */
+.copy-btn.copied {
+  background: #4caf50 !important;
+  color: white !important;
+}
+
+/* Controls addicionals */
+.code-actions .toggle-expand {
+  font-family: inherit;
+}
+
+/* Alçada sincronitzada entre números i codi */
+.line-numbers,
+.line-numbers .ln {
+  line-height: 1.5;
+}
+
+/* Mode expandit: sense límit d'alçada al contenidor */
+.code-block.expanded .code-container {
+  max-height: none;
+}
+
+/* Mode wrap: ajustar línies i amagar números per evitar desalineacions */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2c2c2c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+/* Mode clar */
+[data-theme='light'] .code-block {
+  background: #f1f3f5; /* lleugerament més fosc per contrast */
+  color: #2c2c2c;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme='light'] .code-block .code-header {
+  background: #e4e8ed; /* més fosc que abans */
+  border-bottom-color: #cfd6dd;
+  color: #3a3f45;
+}
+
+[data-theme='light'] .code-block .code-filename {
+  background: #ffffff;
+  color: #666;
+  border-color: #cfd6dd;
+}
+
+[data-theme='light'] .code-block .code-actions button {
+  background: #e2e6ea; /* un puntet més fosc */
+  color: #222;
+}
+[data-theme='light'] .code-block .code-actions button:hover {
+  background: #d3d8de;
+}
+
+[data-theme='light'] .code-block .code-container {
+  /* mateix layout, canvien colors dels fills */
+}
+
+[data-theme='light'] .code-block .line-numbers {
+  background: #e3e7ec; /* més fosc per separar del bloc */
+  color: #6b7788;
+  border-right-color: #cfd6dd;
+}
+
+[data-theme='light'] .code-block .code-container pre {
+  color: inherit;
+}
+
+[data-theme='light'] .code-block .line-highlight {
+  background-color: rgba(255, 235, 59, 0.25);
+  border-left-color: #c9a402;
+}
+
+[data-theme='light'] .code-block .line-numbers .ln-highlight {
+  background-color: rgba(255, 235, 59, 0.35);
+  color: #7a6d00;
+}
+
+/* Scrollbars només dins del component */
+.code-block ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.code-block ::-webkit-scrollbar-track {
+  background: var(--cb-scrollbar-track, #2c2c2c);
+}
+.code-block ::-webkit-scrollbar-thumb {
+  background: var(--cb-scrollbar-thumb, #555);
+  border-radius: 4px;
+}
+.code-block ::-webkit-scrollbar-thumb:hover {
+  background: var(--cb-scrollbar-thumb-hover, #777);
+}
+
+/* Colors per scrollbars en mode clar */
+[data-theme='light'] .code-block {
+  --cb-scrollbar-track: #dde3ea; /* lleugerament més fosc */
+  --cb-scrollbar-thumb: #b8c1cc;
+  --cb-scrollbar-thumb-hover: #a4aebc;
+}
+
+/* Reforç de scrollbars específics per al contenidor (per si altres regles guanyen) */
+[data-theme='light'] .code-block .code-container::-webkit-scrollbar-track { background: #e9ecef; }
+[data-theme='light'] .code-block .code-container::-webkit-scrollbar-thumb { background: #c4cbd3; border-radius: 4px; }
+[data-theme='light'] .code-block .code-container::-webkit-scrollbar-thumb:hover { background: #aeb7c2; }

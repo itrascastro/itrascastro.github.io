@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IOC - La meva Pàgina Inicial</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Modo claro */
+        body.light-mode {
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* Modo oscuro */
+        body.dark-mode {
+            background-color: #333;
+            color: #d3d3d3;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            color: #3b4a79;
+            margin: 0;
+        }
+
+        .dark-mode h1 {
+            color: #d3d3d3;
+        }
+
+        h2 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            background-color: #3b4a79;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .dark-mode h2 {
+            background-color: #333333;
+            color: #d3d3d3;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+        }
+
+        .dark-mode .category {
+            background-color: #444;
+            border: 1px solid #555;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+        }
+
+        a {
+            display: block;
+            padding: 15px;
+            background-color: #fff;
+            color: #555;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            border: 1px solid #ddd;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+        }
+
+        a:hover {
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        a:visited {
+            color: #555;
+        }
+
+        .dark-mode a {
+            background-color: #555;
+            color: #ddd;
+        }
+
+        .dark-mode a:hover {
+            background-color: #666;
+        }
+
+        #datetime {
+            font-size: 1em;
+            color: #3b4a79;
+        }
+
+        .dark-mode #datetime {
+            color: #d3d3d3;
+        }
+
+        /* Header y footer con el mismo estilo que category */
+        .header-footer {
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+            max-width: 1200px;
+            margin: 20px auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dark-mode .header-footer {
+            background-color: #444;
+            border: 1px solid #555;
+        }
+
+        #theme-toggle {
+            padding: 8px 16px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            background-color: #3b4a79;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .dark-mode #theme-toggle {
+            background-color: #555;
+            color: white;
+        }
+
+        footer {
+            text-align: right;
+            font-size: 1em;
+            color: #3b4a79;
+            flex-grow: 1;
+            font-weight: normal;
+        }
+
+        .dark-mode footer {
+            color: #d3d3d3;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .header-footer {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #theme-toggle, #datetime {
+                margin-bottom: 10px;
+            }
+
+            h1 {
+                margin: 10px 0;
+            }
+
+            footer {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabecera con cambio de tema, h1 centrado y fecha/hora -->
+    <div class="header-footer">
+        <button id="theme-toggle">Dark</button>
+        <h1>IOC - Dashboard</h1>
+        <div id="datetime"></div>
+    </div>
+
+    <div class="container">
+        <div class="category">
+            <h2>Correu</h2>
+            <ul>
+                <li><a href="https://ioc.xtec.cat/campus/local/mail/view.php?t=inbox" target="_blank">Safata d'entrada</a></li>
+                <li><a href="https://ioc.xtec.cat/campus/local/mail/view.php?t=sent" target="_blank">Enviats</a></li>
+            </ul>
+
+            <h2>Gestió</h2>
+            <ul>
+                <li><a href="https://docs.google.com/spreadsheets/d/1-i0gTqm89aal139oVhlGIrTbRTNeMRKb7B9FZAfNL4c/edit?usp=sharing" target="_blank">Tasks 24S1</a></li>
+                <li><a href="https://docs.google.com/spreadsheets/d/1dE6keddpk-IpSN1Pgw0jTomAEjy00wNep6aBGS0my8o/edit?usp=sharing" target="_blank">Tasks 24S2</a></li>
+                <li><a href="https://ioc.xtec.cat/campus/calendar/view.php?view=upcoming" target="_blank">Calendari</a></li>
+                <li><a href="https://docs.google.com/spreadsheets/d/15LVuDOyU5dzjwvRQBZ48LHg_W249bU5-HM-EuH8e_B4/edit?usp=drive_link" target="_blank">Col·laboradors</a></li>
+                <li><a href="professors_inactius.html" target="_blank">Col·laboradors inactius</a></li>
+                <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSc8bYdwzvrnatVH8Rgmx2mUgi9-089pCnD6td4-aOHO8fmqoQ/viewform" target="_blank">Formulari Nous Col·laboradors</a></li>
+            </ul>
+
+            <h2>Docent</h2>
+            <ul>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=836" target="_blank">[FC] Departament d'Informàtica i comunicacions</a></li>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=5626" target="_blank">[CI] Intranet</a></li>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=5626&section=1" target="_blank">[CI] Intranet - Professors</a></li>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=841" target="_blank">[FC] PRF Sala del professorat d'FP</a></li>
+            </ul>
+
+            <h2>Aplicacions</h2>
+            <ul>
+                <li><a href="https://dokuwiki.ioc.cat/" target="_blank">DokuWiki</a></li>
+                <li><a href="http://ifp.ioc.cat/ada" target="_blank">ADA</a></li>
+                <li><a href="https://gestioacreditacio.fp.gencat.cat/" target="_blank">FPCAT</a></li>
+            </ul>
+
+            <h2>Formació</h2>
+            <ul>
+                <li><a href="https://odissea.xtec.cat/course/view.php?id=214641" target="_blank">La intel·ligència artificial a l'aula</a></li>
+            </ul>
+        </div>
+
+        <div class="category">
+            <h2>Mòduls</h2>
+            <ul>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=16025" target="_blank">[FC] Coordinació INF</a></li>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=15805" target="_blank">ASX_M03B2 Programació bàsica/Programació (Bloc 2)</a></li>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=16071" target="_blank">DA2_0485B2 Programació (Bloc 2)</a></li>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=15821" target="_blank">DA2_M03B2 Programació bàsica/Programació (Bloc 2) (CE)</a></li>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=15820" target="_blank">DA2_M03B0 Programació orientada a objectes</a></li>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=15824" target="_blank">DAM_M07B0 Desenvolupament d’interfícies</a></li>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=15826" target="_blank">DAM_M09B0 Programació de serveis i processos</a></li>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=15827" target="_blank">DAM_M10B0 Sistemes de gestió empresarial</a></li>
+            </ul>
+        </div>
+
+        <div class="category">
+            <h2>FCT</h2>
+            <ul>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=1576" target="_blank">Coordinació d'FCT</a></li>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=1576&section=2" target="_blank">Coordinadors de cicle d'FCT</a></li>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=16088" target="_blank">Formació en centres de treball s2</a></li>
+                <li><a href="https://docs.google.com/spreadsheets/d/1Mtxca2XJAD0GEdR4m3VymIYupsd0I-Uan7Js5pfrfCw/edit?usp=sharing" target="_blank">Dades Matrícula Aules FCT</a></li>
+                <li><a href="https://www.empresaiformacio.org/sBid" target="_blank">sBID</a></li>
+                <li><a href="https://docs.google.com/document/d/195vvpFU5Lt7wqjq0UZM81Wr-0-hCXNO-EFePqWJxEsM/edit?usp=drive_link" target="_blank">Mi manual FCT</a></li>
+                <li><a href="https://ioc.xtec.cat/campus/mod/book/view.php?id=1511288" target="_blank">FAQ Coordinació FCT</a></li>
+                <li><a href="https://docs.google.com/spreadsheets/d/1M4AhDFYKzv1Vd6A6RKy7g51U_yZ-_ITOepqUPjkG-R0/edit?usp=drive_link" target="_blank">Seguiment</a></li>
+                <li><a href="https://docs.google.com/spreadsheets/d/12RQASLL7ZfXGTtyMRMZMWQhxII5Kqsw1IwcRNBuVnhw/edit?usp=sharing_eip_se_dm&ts=66d81fcb" target="_blank">Registre Acords ASX</a></li>
+                <li><a href="https://docs.google.com/spreadsheets/d/15ZuGPFXKWBxt2-bKeb1i8DqrUoxI-fTf-sdMwy-k1uU/edit?usp=sharing_eip_se_dm&ts=66d81fa9" target="_blank">Registre Acords DAM/DAW</a></li>
+            </ul>
+        </div>
+
+        <div class="category">
+            <h2>Tutoria DAM</h2>
+            <ul>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=848" target="_blank">[FC] Coordinació de tutories</a></li>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=16018" target="_blank">Tutoria DAM</a></li>
+                <li><a href="https://docs.google.com/document/d/1zonPLuBu3x3yBJYOe3pK2P9qc45QIQ0-wk6JriqWrTc/edit?usp=sharing" target="_blank">FAQ Tutoria DAM</a></li>
+                <li><a href="https://sites.google.com/ioc.cat/fp-ioc-canvis2425/inici?authuser=0" target="_blank">Implantació Nova FP</a></li>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=840" target="_blank">Atenció a l'Estudiant</a></li>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=3326" target="_blank">[CI] Departament d'Orientació Educativa</a></li>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=15338" target="_blank">Orientacions per a la matrícula 24-25_S2</a></li>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=15338&section=14" target="_blank">Orientacions matrícula DAM</a></li>
+                <li><a href="https://docs.google.com/spreadsheets/d/1S1YpWw4OcDrMkgDI30ZlohUsPcfB_1qHbLPSQhaICdA/edit?usp=drive_link" target="_blank">Alumnes DAM</a></li>
+            </ul>
+            
+            <h2>Secretaria</h2>
+            <ul>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=1521" target="_blank">[CS] Secretaria FP</a></li>
+                <li><a href="https://ioc.xtec.cat/campus/course/view.php?id=1519" target="_blank">[CS] Secretaria IOC</a></li>
+            </ul>
+
+            <h2>Altres</h2>
+            <ul>
+                <li><a href="https://chatgpt.com/gpts/mine" target="_blank">ChatGPT</a></li>
+                <li><a href="https://chat.deepseek.com/" target="_blank">DeepSeek</a></li>
+                <li><a href="https://docs.google.com/spreadsheets/d/1ge5C9CgXKjDroGf8TWNDBT5wZvpO4mzE4JprqkEVGQE/edit?usp=sharing" target="_blank">Generador Prompts</a></li>
+                <li><a href="https://console.deepgram.com/project/59f1be31-be02-4a02-81e1-a4cc7cb2efdf/mission/convert-audio-data" target="_blank">Deepgram - Transcripció</a></li>
+                <li><a href="https://euangoddard.github.io/clipboard2markdown/" target="_blank">ToMarkdown</a></li>
+                <li><a href="https://www.vertopal.com/" target="_blank">Latex To</a></li>
+                <li><a href="https://app.napkin.ai/" target="_blank">Napkin - Infografies</a></li>
+                <li><a href="https://mail.google.com/" target="_blank">GMAIL</a></li>
+                <li><a href="https://drive.google.com/drive/folders/1BlqTzZf9fKmIU6__eB1tWTsLYP91ONUN?usp=drive_link" target="_blank">Google Drive IOC</a></li>
+                <li><a href="https://www.google.com/calendar" target="_blank">Google Calendar</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <div class="header-footer">
+        <footer>Ismael Trascastro | itrascastro@ioc.cat</footer>
+    </div>
+
+    <script>
+        // Función para mostrar la fecha y hora actual
+        function showDateTime() {
+            const now = new Date();
+            const date = now.toLocaleDateString();
+            const time = now.toLocaleTimeString();
+            document.getElementById('datetime').innerHTML = `${date} ${time}`;
+        }
+        showDateTime();
+        setInterval(showDateTime, 1000);
+
+        const toggleButton = document.getElementById('theme-toggle');
+
+        // Función para aplicar el tema basado en la preferencia del sistema
+        function applyTheme() {
+            const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (prefersDarkMode) {
+                document.body.classList.add('dark-mode');
+                document.body.classList.remove('light-mode');
+                toggleButton.textContent = 'Light';
+            } else {
+                document.body.classList.add('light-mode');
+                document.body.classList.remove('dark-mode');
+                toggleButton.textContent = 'Dark';
+            }
+        }
+
+        // Aplicar el tema al cargar la página
+        applyTheme();
+
+        // Escuchar cambios en la preferencia de color del sistema
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            applyTheme();
+        });
+
+        // Función para alternar entre modos sin guardar preferencia
+        toggleButton.addEventListener('click', () => {
+            if (document.body.classList.contains('dark-mode')) {
+                document.body.classList.remove('dark-mode');
+                document.body.classList.add('light-mode');
+                toggleButton.textContent = 'Dark';
+            } else {
+                document.body.classList.remove('light-mode');
+                document.body.classList.add('dark-mode');
+                toggleButton.textContent = 'Light';
+            }
+        });
+    </script>
+</body>
+</html>

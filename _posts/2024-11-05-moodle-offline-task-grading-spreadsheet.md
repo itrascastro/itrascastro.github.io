@@ -1,102 +1,61 @@
 ---
 layout: post
-title:  "Moodle Offline Task Grading - Automating Feedback and Quiz Scoring with a Spreadsheet"
-description: "Grade Moodle tasks offline with a spreadsheet, auto-generating feedback, statistics, and quiz results for student performance"
+title:  "Moodle Offline Task Grading - Automating Feedback with a Spreadsheet"
+description: "Grade Moodle tasks offline with a spreadsheet, auto-generating feedback, stats, and quiz grading for student performance"
 date:   2024-11-05 08:00:00 +0100
 tags: [ moodle, spreadsheet, grading, feedback, automation, quiz ]
 comments: true
 author: itrascastro
 ---
 
-If you use Moodle and want to simplify the grading process offline, this spreadsheet can be a powerful tool. It allows you to automatically grade tasks based on rubrics, customize feedback, and analyze class performance. Additionally, it supports quiz scoring for paper-based tests. Here’s a detailed step-by-step guide to using it in your workflow.
+If you use Moodle for grading and want to simplify the grading process offline, this spreadsheet can be a powerful tool. It allows you to assign scores based on predefined rubrics, customize feedback, analyze class performance automatically, and even grade quizzes. Here’s how you can start using this tool effectively in your own workflow.
 
 ## Modes of Operation
 
 The spreadsheet offers three grading modes:
 
-1. **Rubric Mode**: Grades automatically based on predefined rubric levels (A, B, C, D, E).
-2. **Manual Mode**: Allows personalized grading and feedback without using a rubric.
+1. **Rubric Mode**: Grades based on predefined rubric levels (A, B, C, etc.).
+2. **Manual Mode**: Allows for personalized grading and feedback without a rubric.
 3. **Hybrid Mode**: Combines rubric grading with customized comments.
 
-## Step 1: Initial Task Setup in Moodle
+## Setting up in Moodle
 
-To use the spreadsheet, first configure the Moodle task to allow **offline grading**:
+Before using the spreadsheet, configure the Moodle task to allow offline grading. Once this is set, download a CSV file from Moodle containing student submissions, which will be integrated into the spreadsheet.
 
-1. Go to the task settings in Moodle.
-2. In the **Feedback Types** section, check the **Offline grading worksheet** option. This allows you to download and upload spreadsheets with grades and comments.
-3. In **Advanced Grading**, select **Simple grading**.
+## Preparing and Configuring the Spreadsheet
 
-## Step 2: Download the CSV File from Moodle
+1. **Rename the File**: Include module and evaluation details, e.g., `Rubric_DAM_M03B0_PAF1UF4_24S1`.
+2. **Complete Basic Parameters**: Fill in the instructor's name, module, and semester in the configuration sheet.
+3. **Configure the Rubric**: Define points and comments for each rubric level.
 
-1. Open the task in Moodle and select **View all submissions**.
-2. In the **Grading action** dropdown menu, select **Download grading worksheet**.
-3. This will download a CSV file containing information about students and their task submissions.
+## Importing and Grading
 
-## Step 3: Prepare the Spreadsheet
+Import the CSV file into the spreadsheet. In the "Qualificació" tab, assign levels for each student, and the sheet will calculate grades and comments based on these levels.
 
-Before starting the grading process, rename the spreadsheet file and adjust some parameters:
+## Automatic Statistics
 
-1. **Rename the file** to reflect the program, module, test, and semester. For example: `Rubric_DAM_M03B0_PAF1UF4_24S1`.
-2. Open the spreadsheet and go to the **Config** tab to fill in the following parameters:
-   - **Teacher’s Name**: Enter the name of the teacher that will appear in the feedback.
-   - **Module**: Enter the module name.
-   - **Semester**: Specify the semester being evaluated.
-   - **Test Name**: Enter the name of the test to be graded.
+The "Stats" tab provides detailed analytics and graphs, such as:
 
-## Step 4: Configure the Rubric
+- **Grade Distribution per Exercise**: Visualizes difficulty levels of exercises.
+- **Final Grade Analysis**: Shows ranges of final grades.
+- **Automatic HTML Comment Generation**: Generates a message ready for posting on Moodle, summarizing class performance.
 
-1. Go to the **Rubric** tab and set up the following:
-   - Modify the **Criteria** column to name the different exercises to be evaluated.
-   - In the **Grade A** column, assign the maximum score for each exercise. Grades for levels B, C, D, and E are calculated automatically.
-   - Define comments for each level (A, B, C, D, E) in the corresponding columns.
-2. **Important**: Do not edit the green-shaded columns, as they contain automatic calculations.
+## Grading Quizzes (Annex 1)
 
-## Step 5: Import the CSV File into the Spreadsheet
+The spreadsheet also supports grading paper-based quizzes (such as final evaluation tests). Here’s how to set up the quiz grading:
 
-1. Go to the **Moodle** tab in the spreadsheet and select **File > Import**.
-2. Choose the CSV file you downloaded from Moodle and select the option **Replace current sheet**.
-3. In the imported sheet, modify only the following columns:
-   - **Column D: Grade**: In the first cell, enter the formula `='Qualificació'!AJ2` and drag it down to apply it to all students.
-   - **Column H: Feedback Comments**: In the first cell, enter the formula `='Qualificació'!AV2` and drag it down to apply it to all students.
+1. **Activate the Quiz**: Use the checkbox to enable quiz grading.
+2. **Input Quiz Options**: Add possible answers for each question (e.g., A, B, C, D).
+3. **Set Correct Answers**: Use dropdowns to select the correct answer for each question.
+4. **Score per Answer**: Define points for correct answers and penalties for incorrect ones.
+5. **Input Student Answers**: Enter each student’s answers using dropdowns, and the spreadsheet will calculate scores and provide feedback on each question.
 
-## Step 6: Grade the Students
+This feature automatically provides feedback for each quiz question, indicating whether each response was correct, incorrect, or unanswered.
 
-1. Before grading a student, verify in **Secretaria FP** that they are correctly enrolled to take the test.
-2. Go to the **Qualificació** tab and assign a level (A, B, C, D, E) for each criterion or exercise evaluated. The spreadsheet will automatically calculate grades and feedback comments based on the assigned levels.
-3. You can leave grades blank if the test has fewer than 10 questions.
-4. Remember, you can grade in **manual or hybrid** mode.
+## Exporting Results to Moodle
 
-## Step 7: Automatically Generate Statistics and Message for the Dashboard
-
-The **Stats** tab provides a detailed analysis of student performance in each exercise and the final grade, including graphs that show:
-
-- **Grade Distribution per Exercise**: Each exercise has a graph showing the number of students who achieved each level (A, B, C, D, E).
-- **Final Grade Analysis**: A specific graph for the final grade, showing score ranges (e.g., 0–3, 3–5, etc.) to evaluate overall class performance.
-- **Identifying Easy and Difficult Exercises**: Automatically highlights the easiest and hardest exercises for the group, helping to adjust future lesson plans.
-- **Automatic HTML Comment Generation**: A message in HTML format, ready to post on the Moodle course dashboard, summarizing class performance, highlighting the easiest and hardest exercises, and including the final grade distribution.
-
-## Step 8: Export the CSV File from the Spreadsheet
-
-1. Once you have graded all students, go to the **Moodle** tab and select **File > Download > Comma-separated values (CSV)**.
-2. This will download an updated CSV file with grades and feedback.
-
-## Step 9: Upload Grades to Moodle
-
-1. Return to the task in Moodle and select **View all submissions**.
-2. In the **Grading action** dropdown menu, select **Upload grading worksheet** and upload the CSV file you just exported. This will update grades and feedback in Moodle.
-
-## Annex 1: Grading Quizzes
-
-The spreadsheet also allows for grading paper-based quizzes, such as final evaluation tests. Here’s how to configure quiz grading:
-
-1. **Activate the quiz**: Use the checkbox to enable quiz grading.
-2. **Input quiz options**: In the designated row, enter the possible options (e.g., A, B, C, D) with one option in each cell. For true/false quizzes, enter "T" and "F".
-3. **Select the correct answer**: In the answer row, use dropdowns to select the correct answer for each question.
-4. **Enter score for correct and incorrect answers**: Specify the points for each correct answer and the penalty for each incorrect one. Both values should be positive; the spreadsheet will handle additions or subtractions as needed.
-5. **Input student answers**: In the rows assigned to students, enter each student’s answers using the dropdowns.
-
-The spreadsheet will automatically calculate each student’s total score and generate feedback indicating whether each answer was correct, incorrect, or unanswered.
+After grading, export the updated CSV file from the spreadsheet and upload it back to Moodle so students can view their grades and feedback.
 
 ### Download and Try It
 
-You can download the spreadsheet [here](https://drive.google.com/drive/folders/1bJNLINgmxXXQOeNvLDfLgPvu6m9GxpKB?usp=sharing) and try it in your next grading session.
+You can download the spreadsheet [here](https://drive.google.com/drive/folders/1bJNLINgmxXXQOeNvLDfLgPvu6m9GxpKB?usp=sharing) and start using it in your next grading session.
