@@ -31,14 +31,11 @@ jobs:
           JEKYLL_ENV: production
       - name: Copy ioc folder as static content
         run: |
-          ls -la
-          ls -la _site/
-          if [ -d "ioc" ]; then
-            echo "ioc directory exists, copying..."
-            cp -r ioc/ _site/
-          else
-            echo "ioc directory not found"
-          fi
+          echo "Changing ownership of _site directory..."
+          sudo chown -R runner:docker _site/
+          echo "Copying ioc directory..."
+          cp -r ioc/ _site/
+          echo "Final _site contents:"
           ls -la _site/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
