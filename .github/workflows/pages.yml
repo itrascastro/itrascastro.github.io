@@ -31,8 +31,15 @@ jobs:
           JEKYLL_ENV: production
       - name: Copy ioc folder as static content
         run: |
-          mkdir -p _site/ioc
-          cp -r ioc/* _site/ioc/
+          ls -la
+          ls -la _site/
+          if [ -d "ioc" ]; then
+            echo "ioc directory exists, copying..."
+            cp -r ioc/ _site/
+          else
+            echo "ioc directory not found"
+          fi
+          ls -la _site/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
