@@ -1,4 +1,4 @@
-name: Deploy Jekyll site to Pages
+name: Deploy Jekyll with static content
 
 on:
   push:
@@ -22,11 +22,17 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Build with Jekyll
+      - name: Build Jekyll (excluding ioc)
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
           destination: ./_site
+        env:
+          JEKYLL_ENV: production
+      - name: Copy ioc folder as static content
+        run: |
+          mkdir -p _site/ioc
+          cp -r ioc/* _site/ioc/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
