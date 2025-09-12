@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Quadern de Notes | Programació II - IOC</title>
+    <meta name="description" content="Sistema de gestió de notes per Programació II - Institut Obert de Catalunya">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Quadern de Notes | Programació II</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Quadern de Notes" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Materials del mòdul Programació II - DA2_0485B2" />
+<meta property="og:description" content="Materials del mòdul Programació II - DA2_0485B2" />
+<link rel="canonical" href="https://itrascastro.github.io/quadern.html" />
+<meta property="og:url" content="https://itrascastro.github.io/quadern.html" />
+<meta property="og:site_name" content="Programació II" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Quadern de Notes" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Materials del mòdul Programació II - DA2_0485B2","headline":"Quadern de Notes","url":"https://itrascastro.github.io/quadern.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Rich editor styles and libs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/assets/css/quadern-rich-editor.css">
+    <link rel="canonical" href="https://itrascastro.github.io/quadern.html">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/feed.xml" title="Programació II" />
+
+    <!-- Fallback CSS per arxius locals -->
+    <script>
+      (function(){
+        try {
+          if (location && location.protocol === 'file:') {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'assets/css/fallback.css';
+            document.head.appendChild(link);
+          }
+        } catch(e){}
+      })();
+    </script>
+
+</head>
+
+<body class="quadern-layout">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    <div class="quadern-shell">
+      <!-- Header no fijo -->
+      <header class="quadern-header quadern-header--unfixed" role="banner" id="top">
+          <div class="header-brand">
+              <a href="/" class="logo-link">
+                  <img src="/assets/images/logo_IOC_light.jpg" 
+                       alt="Institut Obert de Catalunya" 
+                       class="logo logo-light">
+                  <img src="/assets/images/logo_IOC_dark.png" 
+                       alt="Institut Obert de Catalunya" 
+                       class="logo logo-dark">
+              </a>
+          </div>
+          
+          <div class="header-center">
+              <div class="quadern-logo">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                  <span>Quadern de Notes</span>
+              </div>
+          </div>
+          
+          <div class="header-controls">
+              <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+          </div>
+      </header>
+
+      <!-- Cuerpo: sidebar + main -->
+      <div class="quadern-body">
+          <aside class="quadern-sidebar" role="navigation" aria-label="Navegació del quadern">
+              
+
+              <!-- Navegació Jeràrquica -->
+              <div class="sidebar-section">
+                  <h3>Estructura del Curs</h3>
+                  <div class="nav-tree" id="nav-tree">
+                      <div class="loading-state">
+                          <p>Carregant estructura...</p>
+                      </div>
+                  </div>
+              </div>
+          </aside>
+
+          <main class="quadern-main" role="main" id="main-content">
+              <!-- Vista Dashboard -->
+<div id="dashboard-view" class="view active" role="tabpanel" aria-labelledby="dashboard-btn">
+  <div class="dashboard-container">
+    <!-- Capçalera: Cerca i Filtres -->
+    <div class="content-item">
+      <div style="width: 100%;">
+        <div class="dash-header" role="region" aria-label="Cerca i filtres">
+          <div class="search-wrapper">
+            <i class="bi bi-search search-icon" aria-hidden="true"></i>
+            <input type="text" id="dashboard-search" class="search-input" placeholder="Buscar notes..." aria-label="Buscar notes">
+            <button type="button" id="dashboard-search-clear" class="search-clear" aria-label="Netejar cerca i etiquetes" title="Netejar">
+              <i class="bi bi-x-circle" aria-hidden="true"></i>
+            </button>
+          </div>
+            <div class="dash-actions">
+              <button class="btn btn-outline" data-action="open-filter" aria-label="Filtrar per etiquetes">
+                <i class="bi bi-funnel" aria-hidden="true"></i>
+                <span class="hide-sm">Etiquetes</span>
+              </button>
+              <div class="mode-toggle" title="Mode d'Estudi">
+                <span class="label hide-sm">Estudi</span>
+                <label class="switch">
+                  <input type="checkbox" id="study-mode-toggle" aria-label="Mode d'Estudi">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+        </div>
+        
+        <!-- Navegació per etiquetes (píndoles) -->
+        <nav class="tag-filters" id="dashboard-tag-filters" aria-label="Filtre ràpid per etiqueta"></nav>
+      </div>
+    </div>
+
+    <!-- Llista de notes agrupades per data -->
+    <section id="recent-notes" class="notes-timeline" aria-live="polite">
+      <div class="empty-state">
+        <p>Encara no tens notes. Crea la teva primera nota!</p>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- Vista Editor -->
+<div id="editor-view" class="view" role="tabpanel" aria-labelledby="editor-btn">
+    <div class="editor-container editor-single">
+        <div class="editor-main">
+
+            <!-- Capçalera Editor amb migas de pa i botó de sortida -->
+            <div class="editor-header">
+                <nav class="editor-breadcrumb">
+                    <button class="crumb-link" id="breadcrumb-quadern" title="Tornar al Quadern" aria-label="Tornar al Quadern">
+                        <i class="bi bi-journal-text"></i>
+                        <span>Quadern</span>
+                    </button>
+                    <i class="bi bi-chevron-right crumb-separator"></i>
+                    <span class="crumb-current">
+                        <i class="bi bi-pencil-square"></i>
+                        <span>Editor</span>
+                    </span>
+                </nav>
+                <button class="exit-editor-btn" id="editor-back-btn" title="Sortir del mode editor" aria-label="Sortir del mode editor">
+                    <i class="bi bi-x-lg" aria-hidden="true"></i>
+                    <span>Sortir de Mode Editor</span>
+                </button>
+            </div>
+
+            <div class="editor-form" role="region" aria-label="Editor de notes">
+                <div id="note-select-row" class="note-select-row">
+                  <select id="note-select" aria-label="Selecciona una nota de la secció">
+                      <option value="">Selecciona una nota…</option>
+                  </select>
+                  <button type="button" id="note-select-edit-btn" class="inline-edit-btn" aria-label="Editar títol de la nota" title="Editar títol">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button type="button" id="note-select-confirm-btn" class="inline-confirm-btn" aria-label="Confirmar títol" title="Confirmar títol">
+                    <i class="bi bi-check"></i>
+                  </button>
+                </div>
+                <input type="text" id="note-tags" placeholder="Etiquetes (separades per comes)" aria-label="Etiquetes de la nota">
+                <!-- Hidden sync field for compatibility with existing JS -->
+                <textarea id="note-content" aria-hidden="true" hidden></textarea>
+                <!-- Rich editor container (auto-initialized by Quadern.RichEditor) -->
+                <div id="qre-editor" class="qre" role="region" aria-label="Àrea d'edició" data-no-theme data-full-toolbar data-status-left data-sync-target="#note-content"></div>
+            </div>
+
+            <!-- Panell de notes de la secció seleccionada (controlat per Editor.js) -->
+            <div id="notes-list" class="notes-list" role="region" aria-live="polite"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Vista Import/Export -->
+<div id="import-export-view" class="view" role="tabpanel" aria-labelledby="import-export-btn">
+    <div class="import-export-container">
+        <!-- Capçalera -->
+        <div class="content-item">
+            <div class="section-header">
+                <h2><i class="bi bi-cloud-download"></i> Backup del Quadern</h2>
+                <p>Exporta les teves notes en format JSON per crear una còpia de seguretat o transferir-les a un altre equip.</p>
+            </div>
+        </div>
+
+        <!-- Informació de l'estat actual -->
+        <div class="content-item">
+            <div class="backup-stats">
+                <div class="stat-item">
+                    <i class="bi bi-journal-text"></i>
+                    <div class="stat-info">
+                        <span class="stat-number" id="export-notes-count">0</span>
+                        <span class="stat-label">Notes guardades</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <i class="bi bi-calendar"></i>
+                    <div class="stat-info">
+                        <span class="stat-number" id="export-last-modified">Mai</span>
+                        <span class="stat-label">Última modificació</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botó d'exportació -->
+        <div class="content-item">
+            <div class="export-actions">
+                <button type="button" class="btn btn-primary export-btn" data-format="json" id="export-json-btn">
+                    <i class="bi bi-download"></i>
+                    Descarregar Backup JSON
+                </button>
+                <p class="help-text">
+                    El fitxer JSON conté totes les teves notes amb la seva informació completa. 
+                    Pots usar aquest fitxer per restaurar les notes en un altre navegador o equip.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+          </main>
+      </div>
+
+      <!-- Footer no fijo -->
+      <footer class="quadern-footer quadern-footer--unfixed">
+          <div class="footer-content" role="contentinfo">
+              <div class="footer-left">
+                  <div class="footer-version">Versió v1.0</div>
+              </div>
+              <div class="footer-center">
+                  <div class="stats-container" aria-label="Estadístiques del quadern">
+                      <div class="stat-item">
+                          <i class="bi bi-collection" aria-hidden="true"></i>
+                          <span id="footer-units">0 unitats</span>
+                      </div>
+                      <div class="stat-item">
+                          <i class="bi bi-folder2" aria-hidden="true"></i>
+                          <span id="footer-blocks">0 blocs</span>
+                      </div>
+                      <div class="stat-item">
+                          <i class="bi bi-list-ol" aria-hidden="true"></i>
+                          <span id="footer-sections">0 seccions</span>
+                      </div>
+                      <div class="stat-item">
+                          <i class="bi bi-journal-text" aria-hidden="true"></i>
+                          <span id="total-notes">0 notes</span>
+                      </div>
+                      <div class="stat-item">
+                          <i class="bi bi-hdd" aria-hidden="true"></i>
+                          <span id="storage-size">0 KB</span>
+                      </div>
+                      <div class="stat-item">
+                          <i class="bi bi-clock" aria-hidden="true"></i>
+                          <span id="last-sync">Mai sincronitzat</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="footer-right">
+                  <div class="footer-actions" aria-label="Accions ràpides">
+                      
+                      <button class="footer-icon-btn" title="Exportar notes" data-quick-action="export-notes">
+                          <i class="bi bi-cloud-download" aria-hidden="true"></i>
+                      </button>
+                      <button class="footer-icon-btn" title="Importar notes" data-quick-action="import-notes">
+                          <i class="bi bi-cloud-upload" aria-hidden="true"></i>
+                      </button>
+                      <a href="/" class="footer-icon-btn" aria-label="Tornar als continguts d'estudi" title="Continguts d'estudi">
+                          <i class="bi bi-book" aria-hidden="true"></i>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </footer>
+    </div>
+
+    <!-- Dades del curs per JavaScript -->
+    <script>
+      window.courseData = {"unitats":[{"nom":"Lectura i escriptura d'informació (RA5)","numero":5,"descripcio":"Lectura i escriptura d'informació (RA5)","descripcio_html":false,"blocs":[{"nom":"Conceptes bàsics d'E/S per consola","numero":1,"descripcio":"Conceptes bàsics d'E/S per consola","url":"/unitat-5/bloc-1/","seccions":[{"id":"Unitat5_Bloc1_Seccio1","titol":"Introducció a l'Entrada/Sortida (E/S) en Java"},{"id":"Unitat5_Bloc1_Seccio2","titol":"Operacions Bàsiques d'E/S"},{"id":"Unitat5_Bloc1_Seccio3","titol":"Formatatge Bàsic de la Sortida"},{"id":"Unitat5_Bloc1_Seccio4","titol":"Llibreries i Mètodes Específics per a E/S"},{"id":"Unitat5_Bloc1_Seccio5","titol":"Pràctiques"}]},{"nom":"E/S basada en fitxers","numero":2,"descripcio":"E/S basada en fitxers","url":"/unitat-5/bloc-2/","seccions":[{"id":"Unitat5_Bloc2_Seccio1","titol":"Conceptes Bàsics d'E/S amb Fitxers"},{"id":"Unitat5_Bloc2_Seccio2","titol":"Gestió d'Excepcions"},{"id":"Unitat5_Bloc2_Seccio3","titol":"Lectura de Fitxers i Emmagatzematge en Memòria"},{"id":"Unitat5_Bloc2_Seccio4","titol":"Utilització d'Objectes per a la Gestió de Dades"},{"id":"Unitat5_Bloc2_Seccio5","titol":"Exercicis Pràctics"}]}]}]};
+      window.siteConfig = {
+        baseurl: "",
+        title: "Programació II",
+        version: "v1.0",
+        cicle_modul: "DA2_0485B2"
+      };
+    </script>
+    
+    <!-- Scripts del lloc -->
+    <script src="/assets/js/site.js" defer></script>
+    
+    <!-- Quadern App - Base modules -->
+    <script src="/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/assets/js/quadern-app/store.js" defer></script>
+    <script src="/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/assets/js/quadern-app/discovery.js" defer></script>
+    
+    <!-- Quadern App - Navigation Drill-Down (NEW SYSTEM) -->
+    <script src="/assets/js/quadern-app/navigation/navigation-drilldown.js" defer></script>
+    
+    <!-- Quadern App - Core system -->
+    <script src="/assets/js/quadern-app/events.js" defer></script>
+    <script src="/assets/js/quadern-app/ui/navigation.js" defer></script>
+    <script src="/assets/js/quadern-app/ui/components.js" defer></script>
+    <script src="/assets/js/quadern-app/ui/formatters.js" defer></script>
+    
+    <!-- Quadern App - Views -->
+    <script src="/assets/js/quadern-app/views/dashboard.js" defer></script>
+    <script src="/assets/js/quadern-app/views/editor.js" defer></script>
+    <script src="/assets/js/quadern-app/views/import-export.js" defer></script>
+    
+    <!-- Rich editor deps and integration -->
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/assets/js/quadern-app/rich-editor.js" defer></script>
+    
+    <!-- Quadern App - Main application -->
+    <script src="/assets/js/quadern-app/app.js" defer></script>
+</body>
+</html>
