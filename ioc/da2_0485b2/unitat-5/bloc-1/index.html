@@ -18,21 +18,21 @@
 <meta property="og:locale" content="ca_ES" />
 <meta name="description" content="Introducció a l’entrada/sortida en Java per consola amb Scanner i System.out" />
 <meta property="og:description" content="Introducció a l’entrada/sortida en Java per consola amb Scanner i System.out" />
-<link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0485b2/unitat-5/bloc-1/" />
-<meta property="og:url" content="https://itrascastro.github.io/ioc/da2_0485b2/unitat-5/bloc-1/" />
+<link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-5/bloc-1/" />
+<meta property="og:url" content="http://localhost:4003/ioc/da2_0485b2/unitat-5/bloc-1/" />
 <meta property="og:site_name" content="Programació II" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Bloc 1: Conceptes bàsics d’E/S per consola" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Introducció a l’entrada/sortida en Java per consola amb Scanner i System.out","headline":"Bloc 1: Conceptes bàsics d’E/S per consola","url":"https://itrascastro.github.io/ioc/da2_0485b2/unitat-5/bloc-1/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Introducció a l’entrada/sortida en Java per consola amb Scanner i System.out","headline":"Bloc 1: Conceptes bàsics d’E/S per consola","url":"http://localhost:4003/ioc/da2_0485b2/unitat-5/bloc-1/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0485b2/unitat-5/bloc-1/">
+    <link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-5/bloc-1/">
     <!-- Rich editor styles (for embedded notes panel) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
     <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -48,7 +48,7 @@
     <link rel="icon" type="image/x-icon" href="/ioc/da2_0485b2/assets/images/favicon.ico">
     
     <!-- RSS Feed -->
-    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/da2_0485b2/feed.xml" title="Programació II" />
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4003/ioc/da2_0485b2/feed.xml" title="Programació II" />
 
     <!-- Syntax Highlighting (Prism) -->
     <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
@@ -98,11 +98,21 @@
                     
                         
                             <a href="/ioc/da2_0485b2/unitat-5/bloc-1/" class="nav-dropdown-item current">
-                                Bloc 1: Conceptes bàsics d'E/S per consola
+                                Unitat 5 - Bloc 1: Conceptes bàsics d'E/S per consola
                             </a>
                         
                             <a href="/ioc/da2_0485b2/unitat-5/bloc-2/" class="nav-dropdown-item ">
-                                Bloc 2: E/S basada en fitxers
+                                Unitat 5 - Bloc 2: E/S basada en fitxers
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-6/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 6 - Bloc 1: Estructures de dades bàsiques
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-6/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 6 - Bloc 2: Col·leccions i tipus de dades avançats
                             </a>
                         
                     
@@ -178,6 +188,16 @@
         <div class="nav-item">
             <a href="#Unitat5_Bloc1_Seccio3" class="nav-link" data-section="Unitat5_Bloc1_Seccio3">Formatatge Bàsic de la Sortida</a>
         </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
     
 
     
@@ -454,9 +474,107 @@ System.out.printf(&quot;Nom: %s | Edat: %d | Alçada: %.2f metres\n&quot;, &quot
 </div>
 
 
-    <p><strong>Significat dels especificadors:</strong></p>
+    <h3>Especificadors de Format Més Comuns</h3>
+    
+    <p>Els especificadors de format són codis especials que defineixen com s'ha de mostrar cada tipus de dada:</p>
+    
+    <table class="responsive-table">
+        <thead>
+            <tr>
+                <th>Especificador</th>
+                <th>Tipus de Dada</th>
+                <th>Descripció</th>
+                <th>Exemple</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>%s</code></td>
+                <td>String</td>
+                <td>Cadena de text</td>
+                <td>"Hola món"</td>
+            </tr>
+            <tr>
+                <td><code>%d</code></td>
+                <td>int</td>
+                <td>Número enter decimal</td>
+                <td>42</td>
+            </tr>
+            <tr>
+                <td><code>%f</code></td>
+                <td>float/double</td>
+                <td>Número decimal amb 6 decimals</td>
+                <td>3.141593</td>
+            </tr>
+            <tr>
+                <td><code>%.2f</code></td>
+                <td>float/double</td>
+                <td>Número decimal amb 2 decimals</td>
+                <td>3.14</td>
+            </tr>
+            <tr>
+                <td><code>%c</code></td>
+                <td>char</td>
+                <td>Un sol caràcter</td>
+                <td>'A'</td>
+            </tr>
+            <tr>
+                <td><code>%b</code></td>
+                <td>boolean</td>
+                <td>Valor booleà</td>
+                <td>true/false</td>
+            </tr>
+            <tr>
+                <td><code>%n</code></td>
+                <td>-</td>
+                <td>Salt de línia portable</td>
+                <td>-</td>
+            </tr>
+        </tbody>
+    </table>
 
-    <p>Exemple amb format numèric:</p>
+    <h3>Modificadors de Format Avançats</h3>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+// Amplada mínima del camp
+System.out.printf(&quot;Número: %5d%n&quot;, 42);        // &quot;Número:    42&quot;
+
+// Emplenar amb zeros
+System.out.printf(&quot;Codi: %04d%n&quot;, 7);          // &quot;Codi: 0007&quot;
+
+// Alineació a l&#39;esquerra
+System.out.printf(&quot;%-10s|%n&quot;, &quot;Hola&quot;);         // &quot;Hola      |&quot;
+
+// Separador de milers (des de Java 7)
+System.out.printf(&quot;Valor: %,d%n&quot;, 1234567);    // &quot;Valor: 1.234.567&quot;
+
+// Signe sempre visible
+System.out.printf(&quot;Positiu: %+d%n&quot;, 25);       // &quot;Positiu: +25&quot;
+
+// Notació científica
+System.out.printf(&quot;Científica: %e%n&quot;, 123.45); // &quot;Científica: 1.234500e+02&quot;
+    </code></pre>
+  </div>
+</div>
+
+
+    <p><strong>Exemple complet amb diferents formats:</strong></p>
 
     
     <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
@@ -922,18 +1040,43 @@ public class SolucioString {
                     
                     
                     
+                    
+                    
+                    
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                        
+                                        
+                                
+                                
+                    
+                    
                     <div class="nav-link-wrapper">
                         
                     </div>
                     
                     <div class="nav-link-wrapper">
                         
-                            
-                                
-                            
-                                
-                                <a href="/ioc/da2_0485b2/unitat-5/bloc-2/" class="nav-button" aria-label="Bloc següent: E/S basada en fitxers">Següent →</a>
-                                
+                        <a href="/ioc/da2_0485b2/unitat-5/bloc-2/" class="nav-button" aria-label="Bloc següent: E/S basada en fitxers">Següent →</a>
                         
                     </div>
                 </div>
@@ -950,8 +1093,8 @@ public class SolucioString {
             </div>
             <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
                     <span class="progress-label">Unitat</span>
-                    <span class="progress-text" data-pos="5" data-total="1">(5/1)</span>
-                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 500%"></div></div>
+                    <span class="progress-text" data-pos="5" data-total="2">(5/2)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 250%"></div></div>
                 </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
                         <span class="progress-label">Bloc</span>
                         <span class="progress-text" data-pos="1" data-total="2">(1/2)</span>

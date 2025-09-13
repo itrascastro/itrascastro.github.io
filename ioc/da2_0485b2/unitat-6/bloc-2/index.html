@@ -1,0 +1,2284 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 2: Col·leccions i tipus de dades avançats | Programació II - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="6">
+    <meta name="page-bloc" content="2">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 2: Col·leccions i tipus de dades avançats | Programació II</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 2: Col·leccions i tipus de dades avançats" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Framework de col·leccions Java: List, Set, Map i les seves implementacions" />
+<meta property="og:description" content="Framework de col·leccions Java: List, Set, Map i les seves implementacions" />
+<link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-6/bloc-2/" />
+<meta property="og:url" content="http://localhost:4003/ioc/da2_0485b2/unitat-6/bloc-2/" />
+<meta property="og:site_name" content="Programació II" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 2: Col·leccions i tipus de dades avançats" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Framework de col·leccions Java: List, Set, Map i les seves implementacions","headline":"Bloc 2: Col·leccions i tipus de dades avançats","url":"http://localhost:4003/ioc/da2_0485b2/unitat-6/bloc-2/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-6/bloc-2/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/da2_0485b2/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4003/ioc/da2_0485b2/feed.xml" title="Programació II" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/code-block.css">
+    <script src="/ioc/da2_0485b2/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/da2_0485b2/" class="logo-link">
+                <img src="/ioc/da2_0485b2/assets/images/logo_IOC_light.jpg" 
+                     alt="Institut Obert de Catalunya" 
+                     class="logo logo-light">
+                <img src="/ioc/da2_0485b2/assets/images/logo_IOC_dark.png" 
+                     alt="Institut Obert de Catalunya" 
+                     class="logo logo-dark">
+            </a>
+            <a href="/ioc/da2_0485b2/" class="title-link">
+                <h1>DA2_0485B2 - Programació II</h1>
+            </a>
+        </div>
+        <div class="header-controls">
+            <div class="nav-dropdown" id="nav-dropdown">
+                <button class="nav-dropdown-btn" id="nav-dropdown-btn">Navegació</button>
+                <div class="nav-dropdown-content" id="nav-dropdown-content">
+                    <a href="/ioc/da2_0485b2/" class="nav-dropdown-item ">Índex del Curs</a>
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-5/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 5 - Bloc 1: Conceptes bàsics d'E/S per consola
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-5/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 5 - Bloc 2: E/S basada en fitxers
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-6/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 6 - Bloc 1: Estructures de dades bàsiques
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-6/bloc-2/" class="nav-dropdown-item current">
+                                Unitat 6 - Bloc 2: Col·leccions i tipus de dades avançats
+                            </a>
+                        
+                    
+                </div>
+            </div>
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <!-- Contingut d'aquest Bloc -->
+            <div class="sidebar-section">
+                <h3>Contingut del Bloc</h3>
+                
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat6_Bloc2_Seccio1" class="nav-link" data-section="Unitat6_Bloc2_Seccio1">Introducció al Framework de Col·leccions de Java</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat6_Bloc2_Seccio2" class="nav-link" data-section="Unitat6_Bloc2_Seccio2">Interfície List i les seves Implementacions</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat6_Bloc2_Seccio3" class="nav-link" data-section="Unitat6_Bloc2_Seccio3">Interfície Set i Eliminació de Duplicats</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat6_Bloc2_Seccio4" class="nav-link" data-section="Unitat6_Bloc2_Seccio4">Interfície Map i Estructures Clau-Valor</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat6_Bloc2_Seccio5" class="nav-link" data-section="Unitat6_Bloc2_Seccio5">Algorismes i Utilitats per a Col·leccions</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat6_Bloc2_Seccio6" class="nav-link" data-section="Unitat6_Bloc2_Seccio6">Rendiment i Selecció d'Estructures</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat6_Bloc2_Seccio7" class="nav-link" data-section="Unitat6_Bloc2_Seccio7">Exercicis Pràctics</a>
+        </div>
+    
+
+
+
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/da2_0485b2/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/da2_0485b2/unitat-6/" class="horizontal-nav-item">
+                                Unitat 6: Aplicació de les estructures d'emmagatzematge (RA6)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 6.2: Col·leccions i tipus de dades avançats
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<!--
+  Pàgina de contingut del Bloc 2 (Unitat 6)
+  Contingut sobre col·leccions i estructures de dades avançades
+-->
+
+<div class="section">
+    <h2 id="Unitat6_Bloc2_Seccio1">Introducció al Framework de Col·leccions de Java</h2>
+    
+    <p>El Framework de Col·leccions de Java (Java Collections Framework) és un conjunt d'interfícies, classes i algorismes que proporcionen estructures de dades dinàmiques i algorismes per manipular-les de manera eficient i consistent.</p>
+
+    <h3>Evolució: D'Arrays a Col·leccions</h3>
+    
+    <p>Mentre que els arrays tenen limitacions com la mida fixa, les col·leccions ofereixen flexibilitat i funcionalitat avançada:</p>
+
+    <table class="responsive-table">
+        <thead>
+            <tr>
+                <th>Característica</th>
+                <th>Arrays</th>
+                <th>Col·leccions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Mida</strong></td>
+                <td>Fixa (definida en temps de creació)</td>
+                <td>Dinàmica (pot créixer/decreixe)</td>
+            </tr>
+            <tr>
+                <td><strong>Tipus de dades</strong></td>
+                <td>Primitius i objectes</td>
+                <td>Només objectes (amb autoboxing)</td>
+            </tr>
+            <tr>
+                <td><strong>Operacions</strong></td>
+                <td>Bàsiques (accés per índex)</td>
+                <td>Avançades (cerca, ordenació, etc.)</td>
+            </tr>
+            <tr>
+                <td><strong>Seguretat de tipus</strong></td>
+                <td>Compilació</td>
+                <td>Generics (compilació + execució)</td>
+            </tr>
+            <tr>
+                <td><strong>Rendiment</strong></td>
+                <td>Molt alt per accés directe</td>
+                <td>Variable segons implementació</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Jerarquia d'Interfícies</h3>
+    
+    <p>El framework s'organitza al voltant de tres interfícies principals:</p>
+    
+    <ul>
+        <li><strong>Collection:</strong> Interfície base per a grups d'objectes</li>
+        <li><strong>List:</strong> Col·leccions ordenades amb elements duplicats</li>
+        <li><strong>Set:</strong> Col·leccions sense elements duplicats</li>
+        <li><strong>Map:</strong> Col·leccions de parells clau-valor (no hereta de Collection)</li>
+    </ul>
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Generics:</strong> Característica de Java que permet especificar el tipus d'objectes que pot contenir una col·lecció, proporcionant seguretat de tipus en temps de compilació.</p>
+  </div>
+</div>
+
+
+    <h3>Avantatges del Framework de Col·leccions</h3>
+    
+    <ul>
+        <li><strong>Consistència:</strong> API uniforme per a totes les col·leccions</li>
+        <li><strong>Eficiència:</strong> Implementacions optimitzades per diferents casos d'ús</li>
+        <li><strong>Interoperabilitat:</strong> Les col·leccions es poden combinar i convertir</li>
+        <li><strong>Extensibilitat:</strong> Es poden crear implementacions personalitzades</li>
+        <li><strong>Algorismes integrats:</strong> Mètodes per ordenar, cercar i manipular</li>
+    </ul>
+
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <strong>Objectius d'aquest bloc:</strong><br>
+       • Comprendre la jerarquia d'interfícies del framework de col·leccions<br>
+       • Dominar List, Set i Map amb les seves implementacions principals<br>
+       • Aplicar algorismes de cerca i ordenació amb col·leccions<br>
+       • Utilitzar generics per assegurar la seguretat de tipus<br>
+       • Seleccionar l'estructura adequada per a cada problema
+    
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Explica'm quan hauria d'usar un Array vs ArrayList vs LinkedList en diferents escenaris. Considera factors com rendiment, operacions freqüents i mida de dades típica.</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat6_Bloc2_Seccio2">Interfície List i les seves Implementacions</h2>
+    
+    <p>La interfície <code>List</code> representa col·leccions ordenades (seqüències) que permeten elements duplicats. Els elements es poden accedir per índex i es mantenen en l'ordre d'inserció.</p>
+
+    <h3>Característiques de List</h3>
+    
+    <ul>
+        <li><strong>Indexada:</strong> Accés per posició (0, 1, 2, ...)</li>
+        <li><strong>Ordenada:</strong> Manté l'ordre d'inserció</li>
+        <li><strong>Duplicats:</strong> Permet elements repetits</li>
+        <li><strong>Null:</strong> Accepta elements null</li>
+    </ul>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+import java.util.*;
+
+public class ExempleList {
+    public static void main(String[] args) {
+        // Creació amb generics
+        List&lt;String&gt; noms = new ArrayList&lt;&gt;();
+        
+        // Afegir elements
+        noms.add(&quot;Anna&quot;);
+        noms.add(&quot;Bernat&quot;);
+        noms.add(&quot;Carla&quot;);
+        noms.add(&quot;Anna&quot;); // Duplicat permès
+        
+        // Accés per índex
+        System.out.println(&quot;Primer element: &quot; + noms.get(0));
+        
+        // Mida de la llista
+        System.out.println(&quot;Mida: &quot; + noms.size());
+        
+        // Recórrer la llista
+        for (String nom : noms) {
+            System.out.println(&quot;- &quot; + nom);
+        }
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>ArrayList: Implementació basada en Array Dinàmic</h3>
+    
+    <p><code>ArrayList</code> utilitza un array intern que es redimensiona automàticament quan cal:</p>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+import java.util.ArrayList;
+
+public class ExempleArrayList {
+    public static void main(String[] args) {
+        // Crear amb capacitat inicial (opcional)
+        ArrayList&lt;Integer&gt; numeros = new ArrayList&lt;&gt;(10);
+        
+        // Afegir elements
+        for (int i = 1; i &lt;= 5; i++) {
+            numeros.add(i * 10);
+        }
+        
+        // Inserir en posició específica
+        numeros.add(2, 25); // Insereix 25 a la posició 2
+        
+        // Modificar element
+        numeros.set(0, 5); // Canvia el primer element a 5
+        
+        // Eliminar per índex
+        numeros.remove(1); // Elimina l&#39;element a la posició 1
+        
+        // Eliminar per valor
+        numeros.remove(Integer.valueOf(25)); // Elimina el valor 25
+        
+        // Mostrar resultat
+        System.out.println(&quot;ArrayList final: &quot; + numeros);
+        
+        // Informació sobre capacitat
+        System.out.println(&quot;Mida: &quot; + numeros.size());
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>LinkedList: Implementació basada en Llista Enllaçada</h3>
+    
+    <p><code>LinkedList</code> utilitza nodes enllaçats, excel·lent per inserció i eliminació freqüents:</p>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+import java.util.LinkedList;
+
+public class ExempleLinkedList {
+    public static void main(String[] args) {
+        LinkedList&lt;String&gt; tasques = new LinkedList&lt;&gt;();
+        
+        // Afegir al final
+        tasques.add(&quot;Tasca 1&quot;);
+        tasques.add(&quot;Tasca 2&quot;);
+        
+        // Afegir al principi
+        tasques.addFirst(&quot;Tasca Urgent&quot;);
+        
+        // Afegir al final (equivalent a add())
+        tasques.addLast(&quot;Tasca Final&quot;);
+        
+        // Accedir als extrems
+        System.out.println(&quot;Primera: &quot; + tasques.getFirst());
+        System.out.println(&quot;Última: &quot; + tasques.getLast());
+        
+        // Eliminar extrems
+        String primera = tasques.removeFirst();
+        String ultima = tasques.removeLast();
+        
+        System.out.println(&quot;Eliminades: &quot; + primera + &quot; i &quot; + ultima);
+        System.out.println(&quot;Tasques restants: &quot; + tasques);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Comparació de Rendiment: ArrayList vs LinkedList</h3>
+
+    <table class="responsive-table">
+        <thead>
+            <tr>
+                <th>Operació</th>
+                <th>ArrayList</th>
+                <th>LinkedList</th>
+                <th>Millor per</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Accés per índex</strong></td>
+                <td>O(1)</td>
+                <td>O(n)</td>
+                <td>ArrayList</td>
+            </tr>
+            <tr>
+                <td><strong>Inserció al final</strong></td>
+                <td>O(1)*</td>
+                <td>O(1)</td>
+                <td>Empat</td>
+            </tr>
+            <tr>
+                <td><strong>Inserció al principi</strong></td>
+                <td>O(n)</td>
+                <td>O(1)</td>
+                <td>LinkedList</td>
+            </tr>
+            <tr>
+                <td><strong>Inserció al mig</strong></td>
+                <td>O(n)</td>
+                <td>O(n)</td>
+                <td>LinkedList (menys còpies)</td>
+            </tr>
+            <tr>
+                <td><strong>Eliminació per índex</strong></td>
+                <td>O(n)</td>
+                <td>O(n)</td>
+                <td>LinkedList (menys còpies)</td>
+            </tr>
+            <tr>
+                <td><strong>Memòria per element</strong></td>
+                <td>Només l'objecte</td>
+                <td>Objecte + 2 referències</td>
+                <td>ArrayList</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p><em>* O(1) amortitzat, pot ser O(n) quan cal redimensionar l'array intern</em></p>
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Complexitat Amortitzada:</strong> Temps mitjà per operació calculat sobre una seqüència d'operacions. Algunes operacions poden ser costoses individualment, però el cost mitjà és baix.</p>
+  </div>
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Crea'm un exemple pràctic que mostri clarament quan usar ArrayList vs LinkedList. Per exemple, un sistema de gestió de cua d'impressió vs un sistema d'accés aleatori a dades.</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat6_Bloc2_Seccio3">Interfície Set i Eliminació de Duplicats</h2>
+    
+    <p>La interfície <code>Set</code> representa col·leccions que no permeten elements duplicats. És ideal per garantir unicitat i realitzar operacions de conjunts matemàtics.</p>
+
+    <h3>Característiques de Set</h3>
+    
+    <ul>
+        <li><strong>Unicitat:</strong> No permet elements duplicats</li>
+        <li><strong>Mètode equals():</strong> Utilitza equals() per detectar duplicats</li>
+        <li><strong>Null:</strong> Com a màxim un element null</li>
+        <li><strong>Operacions de conjunt:</strong> Unió, intersecció, diferència</li>
+    </ul>
+
+    <h3>HashSet: Set basat en Taula Hash</h3>
+    
+    <p><code>HashSet</code> ofereix operacions O(1) mitjà, però no manté ordre:</p>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+import java.util.HashSet;
+import java.util.Set;
+
+public class ExempleHashSet {
+    public static void main(String[] args) {
+        Set&lt;String&gt; ciutats = new HashSet&lt;&gt;();
+        
+        // Afegir elements
+        ciutats.add(&quot;Barcelona&quot;);
+        ciutats.add(&quot;Madrid&quot;);
+        ciutats.add(&quot;València&quot;);
+        ciutats.add(&quot;Barcelona&quot;); // Duplicat ignorat
+        
+        System.out.println(&quot;Ciutats úniques: &quot; + ciutats.size()); // 3
+        System.out.println(&quot;Contingut: &quot; + ciutats);
+        
+        // Comprovar existència
+        if (ciutats.contains(&quot;Barcelona&quot;)) {
+            System.out.println(&quot;Barcelona està al conjunt&quot;);
+        }
+        
+        // Eliminar duplicats d&#39;una llista
+        eliminarDuplicats();
+    }
+    
+    public static void eliminarDuplicats() {
+        // Llista amb duplicats
+        List&lt;Integer&gt; llistaAmbDuplicats = Arrays.asList(1, 2, 2, 3, 4, 3, 5);
+        
+        // Eliminar duplicats
+        Set&lt;Integer&gt; setSenseRepeticions = new HashSet&lt;&gt;(llistaAmbDuplicats);
+        List&lt;Integer&gt; llistaSenseDuplicats = new ArrayList&lt;&gt;(setSenseRepeticions);
+        
+        System.out.println(&quot;Original: &quot; + llistaAmbDuplicats);
+        System.out.println(&quot;Sense duplicats: &quot; + llistaSenseDuplicats);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>TreeSet: Set Ordenat</h3>
+    
+    <p><code>TreeSet</code> manté els elements ordenats utilitzant un arbre binari balancejat:</p>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+import java.util.TreeSet;
+
+public class ExempleTreeSet {
+    public static void main(String[] args) {
+        TreeSet&lt;Integer&gt; numerosOrdenats = new TreeSet&lt;&gt;();
+        
+        // Afegir elements desordenats
+        numerosOrdenats.add(50);
+        numerosOrdenats.add(20);
+        numerosOrdenats.add(80);
+        numerosOrdenats.add(10);
+        numerosOrdenats.add(30);
+        
+        System.out.println(&quot;Elements ordenats: &quot; + numerosOrdenats);
+        
+        // Operacions específiques de TreeSet
+        System.out.println(&quot;Primer element: &quot; + numerosOrdenats.first());
+        System.out.println(&quot;Últim element: &quot; + numerosOrdenats.last());
+        
+        // Subconjunts
+        System.out.println(&quot;Menors que 40: &quot; + numerosOrdenats.headSet(40));
+        System.out.println(&quot;Majors o iguals a 30: &quot; + numerosOrdenats.tailSet(30));
+        System.out.println(&quot;Entre 20 i 60: &quot; + numerosOrdenats.subSet(20, 60));
+        
+        // Elements més propers
+        System.out.println(&quot;Menor o igual a 45: &quot; + numerosOrdenats.floor(45)); // 30
+        System.out.println(&quot;Major a 45: &quot; + numerosOrdenats.higher(45)); // 50
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Operacions de Conjunts</h3>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+import java.util.*;
+
+public class OperacionsConjunts {
+    public static void main(String[] args) {
+        Set&lt;String&gt; conjuntA = new HashSet&lt;&gt;(Arrays.asList(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;));
+        Set&lt;String&gt; conjuntB = new HashSet&lt;&gt;(Arrays.asList(&quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;));
+        
+        // Unió (A ∪ B)
+        Set&lt;String&gt; unio = new HashSet&lt;&gt;(conjuntA);
+        unio.addAll(conjuntB);
+        System.out.println(&quot;Unió: &quot; + unio);
+        
+        // Intersecció (A ∩ B)
+        Set&lt;String&gt; interseccio = new HashSet&lt;&gt;(conjuntA);
+        interseccio.retainAll(conjuntB);
+        System.out.println(&quot;Intersecció: &quot; + interseccio);
+        
+        // Diferència (A - B)
+        Set&lt;String&gt; diferencia = new HashSet&lt;&gt;(conjuntA);
+        diferencia.removeAll(conjuntB);
+        System.out.println(&quot;Diferència A-B: &quot; + diferencia);
+        
+        // Diferència simètrica (A △ B)
+        Set&lt;String&gt; diferenciaSimetrica = new HashSet&lt;&gt;(unio);
+        diferenciaSimetrica.removeAll(interseccio);
+        System.out.println(&quot;Diferència simètrica: &quot; + diferenciaSimetrica);
+        
+        // Verificar si un conjunt és subconjunt d&#39;un altre
+        Set&lt;String&gt; subconjunt = new HashSet&lt;&gt;(Arrays.asList(&quot;A&quot;, &quot;B&quot;));
+        boolean esSubconjunt = conjuntA.containsAll(subconjunt);
+        System.out.println(&quot;És subconjunt: &quot; + esSubconjunt);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Taula Hash:</strong> Estructura de dades que utilitza una funció hash per mapejar claus a posicions, oferint accés O(1) mitjà per a operacions de cerca, inserció i eliminació.</p>
+  </div>
+</div>
+
+
+    <!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <strong>Important:</strong> Per utilitzar objectes personalitzats en HashSet, cal implementar correctament els mètodes <code>equals()</code> i <code>hashCode()</code>. Si no, els duplicats no es detectaran adequadament.
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Explica'm com implementar equals() i hashCode() per una classe Persona (nom, dni) per poder usar-la correctament en HashSet. També vull entendre què passa si només implemento un dels dos mètodes.</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat6_Bloc2_Seccio4">Interfície Map i Estructures Clau-Valor</h2>
+    
+    <p>La interfície <code>Map</code> representa col·leccions de parells clau-valor, on cada clau és única i s'associa amb un valor. És similar a un diccionari o taula de consulta.</p>
+
+    <h3>Característiques de Map</h3>
+    
+    <ul>
+        <li><strong>Claus úniques:</strong> Cada clau apareix com a màxim una vegada</li>
+        <li><strong>Associació clau-valor:</strong> Cada clau té un valor associat</li>
+        <li><strong>Null:</strong> Pot acceptar clau null i valors null (depenent de la implementació)</li>
+        <li><strong>No hereta de Collection:</strong> Té la seva pròpia jerarquia</li>
+    </ul>
+
+    <h3>HashMap: Map basat en Taula Hash</h3>
+    
+    <p><code>HashMap</code> ofereix operacions O(1) mitjà però no garanteix ordre:</p>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+import java.util.HashMap;
+import java.util.Map;
+
+public class ExempleHashMap {
+    public static void main(String[] args) {
+        // Crear un diccionari de traduccions
+        Map&lt;String, String&gt; traduccions = new HashMap&lt;&gt;();
+        
+        // Afegir parells clau-valor
+        traduccions.put(&quot;hello&quot;, &quot;hola&quot;);
+        traduccions.put(&quot;world&quot;, &quot;món&quot;);
+        traduccions.put(&quot;computer&quot;, &quot;ordinador&quot;);
+        traduccions.put(&quot;programming&quot;, &quot;programació&quot;);
+        
+        // Accedir a valors per clau
+        String traduccio = traduccions.get(&quot;hello&quot;);
+        System.out.println(&quot;hello -&gt; &quot; + traduccio);
+        
+        // Verificar existència
+        if (traduccions.containsKey(&quot;world&quot;)) {
+            System.out.println(&quot;La clau &#39;world&#39; existeix&quot;);
+        }
+        
+        if (traduccions.containsValue(&quot;ordinador&quot;)) {
+            System.out.println(&quot;El valor &#39;ordinador&#39; existeix&quot;);
+        }
+        
+        // Recórrer el map
+        System.out.println(&quot;\nTotes les traduccions:&quot;);
+        for (Map.Entry&lt;String, String&gt; entrada : traduccions.entrySet()) {
+            System.out.println(entrada.getKey() + &quot; -&gt; &quot; + entrada.getValue());
+        }
+        
+        // Alternatives de recorregut
+        System.out.println(&quot;\nNomés claus:&quot;);
+        for (String clau : traduccions.keySet()) {
+            System.out.println(&quot;- &quot; + clau);
+        }
+        
+        System.out.println(&quot;\nNomés valors:&quot;);
+        for (String valor : traduccions.values()) {
+            System.out.println(&quot;- &quot; + valor);
+        }
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>TreeMap: Map Ordenat per Claus</h3>
+    
+    <p><code>TreeMap</code> manté les claus ordenades utilitzant un arbre binari balancejat:</p>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+import java.util.TreeMap;
+
+public class ExempleTreeMap {
+    public static void main(String[] args) {
+        // Comptador de paraules ordenat alfabèticament
+        TreeMap&lt;String, Integer&gt; comptadorParaules = new TreeMap&lt;&gt;();
+        
+        String[] paraules = {&quot;gat&quot;, &quot;gos&quot;, &quot;au&quot;, &quot;peix&quot;, &quot;gat&quot;, &quot;au&quot;, &quot;gat&quot;};
+        
+        // Comptar freqüència de paraules
+        for (String paraula : paraules) {
+            comptadorParaules.put(paraula, 
+                comptadorParaules.getOrDefault(paraula, 0) + 1);
+        }
+        
+        System.out.println(&quot;Freqüència de paraules (ordenat):&quot;);
+        comptadorParaules.forEach((paraula, freq) -&gt; 
+            System.out.println(paraula + &quot;: &quot; + freq + &quot; vegades&quot;));
+        
+        // Operacions específiques de TreeMap
+        System.out.println(&quot;\nPrimera clau: &quot; + comptadorParaules.firstKey());
+        System.out.println(&quot;Última clau: &quot; + comptadorParaules.lastKey());
+        
+        // Subconjunts de claus
+        System.out.println(&quot;Claus fins &#39;gos&#39;: &quot; + comptadorParaules.headMap(&quot;gos&quot;));
+        System.out.println(&quot;Claus des de &#39;gat&#39;: &quot; + comptadorParaules.tailMap(&quot;gat&quot;));
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Exemple Pràctic: Sistema de Gestió d'Estudiants</h3>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+import java.util.*;
+
+class Estudiant {
+    private String nom;
+    private int edat;
+    private double nota;
+    
+    public Estudiant(String nom, int edat, double nota) {
+        this.nom = nom;
+        this.edat = edat;
+        this.nota = nota;
+    }
+    
+    // Getters
+    public String getNom() { return nom; }
+    public int getEdat() { return edat; }
+    public double getNota() { return nota; }
+    
+    @Override
+    public String toString() {
+        return String.format(&quot;%s (%d anys, nota: %.1f)&quot;, nom, edat, nota);
+    }
+}
+
+public class SistemaEstudiants {
+    public static void main(String[] args) {
+        // Map principal: DNI -&gt; Estudiant
+        Map&lt;String, Estudiant&gt; estudiants = new HashMap&lt;&gt;();
+        
+        // Afegir estudiants
+        estudiants.put(&quot;12345678A&quot;, new Estudiant(&quot;Anna Martí&quot;, 20, 8.5));
+        estudiants.put(&quot;87654321B&quot;, new Estudiant(&quot;Bernat Soler&quot;, 19, 7.2));
+        estudiants.put(&quot;11111111C&quot;, new Estudiant(&quot;Carla Vidal&quot;, 21, 9.1));
+        estudiants.put(&quot;22222222D&quot;, new Estudiant(&quot;David Font&quot;, 20, 6.8));
+        
+        // Buscar per DNI
+        String dniCercat = &quot;12345678A&quot;;
+        Estudiant trobat = estudiants.get(dniCercat);
+        if (trobat != null) {
+            System.out.println(&quot;Estudiant trobat: &quot; + trobat);
+        }
+        
+        // Crear índex per edat
+        Map&lt;Integer, List&lt;Estudiant&gt;&gt; perEdat = new HashMap&lt;&gt;();
+        for (Estudiant est : estudiants.values()) {
+            perEdat.computeIfAbsent(est.getEdat(), k -&gt; new ArrayList&lt;&gt;()).add(est);
+        }
+        
+        System.out.println(&quot;\nEstudiants de 20 anys:&quot;);
+        List&lt;Estudiant&gt; estudiants20 = perEdat.get(20);
+        if (estudiants20 != null) {
+            estudiants20.forEach(System.out::println);
+        }
+        
+        // Estadístiques
+        calcularEstadistiques(estudiants.values());
+    }
+    
+    public static void calcularEstadistiques(Collection&lt;Estudiant&gt; estudiants) {
+        if (estudiants.isEmpty()) return;
+        
+        double sumaEdat = 0, sumaNota = 0;
+        double maxNota = Double.MIN_VALUE;
+        double minNota = Double.MAX_VALUE;
+        
+        for (Estudiant est : estudiants) {
+            sumaEdat += est.getEdat();
+            sumaNota += est.getNota();
+            maxNota = Math.max(maxNota, est.getNota());
+            minNota = Math.min(minNota, est.getNota());
+        }
+        
+        int total = estudiants.size();
+        System.out.println(&quot;\n=== ESTADÍSTIQUES ===&quot;);
+        System.out.printf(&quot;Total estudiants: %d%n&quot;, total);
+        System.out.printf(&quot;Edat mitjana: %.1f anys%n&quot;, sumaEdat / total);
+        System.out.printf(&quot;Nota mitjana: %.2f%n&quot;, sumaNota / total);
+        System.out.printf(&quot;Millor nota: %.1f%n&quot;, maxNota);
+        System.out.printf(&quot;Pitjor nota: %.1f%n&quot;, minNota);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Comparació de Implementacions de Map</h3>
+
+    <table class="responsive-table">
+        <thead>
+            <tr>
+                <th>Implementació</th>
+                <th>Ordre</th>
+                <th>Complexitat (get/put)</th>
+                <th>Null</th>
+                <th>Millor ús</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>HashMap</strong></td>
+                <td>No garanteix</td>
+                <td>O(1) mitjà</td>
+                <td>Una clau null, valors null</td>
+                <td>Rendiment general</td>
+            </tr>
+            <tr>
+                <td><strong>TreeMap</strong></td>
+                <td>Claus ordenades</td>
+                <td>O(log n)</td>
+                <td>No clau null, valors null</td>
+                <td>Claus ordenades</td>
+            </tr>
+            <tr>
+                <td><strong>LinkedHashMap</strong></td>
+                <td>Inserció o accés</td>
+                <td>O(1) mitjà</td>
+                <td>Una clau null, valors null</td>
+                <td>Ordre d'inserció</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>computeIfAbsent:</strong> Mètode de Map que només calcula i insereix un valor si la clau no existeix, útil per inicialitzar col·leccions dins de maps.</p>
+  </div>
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Implementa un sistema de cau (cache) LRU (Least Recently Used) utilitzant LinkedHashMap. El cache ha de tenir una mida màxima i eliminar automàticament l'element menys recentment utilitzat quan es supera la capacitat.</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat6_Bloc2_Seccio5">Algorismes i Utilitats per a Col·leccions</h2>
+    
+    <p>Java proporciona la classe <code>Collections</code> amb mètodes estàtics per manipular col·leccions, i els streams per processar dades de manera funcional.</p>
+
+    <h3>Classe Collections: Algorismes Integrats</h3>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+import java.util.*;
+
+public class UtilitatsCollections {
+    public static void main(String[] args) {
+        List&lt;Integer&gt; numeros = new ArrayList&lt;&gt;(Arrays.asList(5, 2, 8, 1, 9, 3));
+        System.out.println(&quot;Llista original: &quot; + numeros);
+        
+        // Ordenació
+        Collections.sort(numeros);
+        System.out.println(&quot;Ordenada: &quot; + numeros);
+        
+        // Barrejar (shuffle)
+        Collections.shuffle(numeros);
+        System.out.println(&quot;Barrejada: &quot; + numeros);
+        
+        // Revertir
+        Collections.reverse(numeros);
+        System.out.println(&quot;Revertida: &quot; + numeros);
+        
+        // Cerca binària (requereix llista ordenada)
+        Collections.sort(numeros);
+        int posicio = Collections.binarySearch(numeros, 5);
+        System.out.println(&quot;Posició del 5: &quot; + posicio);
+        
+        // Màxim i mínim
+        int max = Collections.max(numeros);
+        int min = Collections.min(numeros);
+        System.out.printf(&quot;Màxim: %d, Mínim: %d%n&quot;, max, min);
+        
+        // Freqüència d&#39;un element
+        List&lt;String&gt; lletres = Arrays.asList(&quot;a&quot;, &quot;b&quot;, &quot;a&quot;, &quot;c&quot;, &quot;a&quot;, &quot;b&quot;);
+        int freqA = Collections.frequency(lletres, &quot;a&quot;);
+        System.out.println(&quot;Freqüència de &#39;a&#39;: &quot; + freqA);
+        
+        // Emplenar amb un valor
+        List&lt;String&gt; llista = new ArrayList&lt;&gt;(Arrays.asList(&quot;x&quot;, &quot;y&quot;, &quot;z&quot;));
+        Collections.fill(llista, &quot;0&quot;);
+        System.out.println(&quot;Emplenada: &quot; + llista);
+        
+        // Rotació
+        List&lt;Integer&gt; nums = new ArrayList&lt;&gt;(Arrays.asList(1, 2, 3, 4, 5));
+        Collections.rotate(nums, 2);
+        System.out.println(&quot;Rotada 2 posicions: &quot; + nums);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Ordenació Personalitzada amb Comparator</h3>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+import java.util.*;
+
+class Persona {
+    String nom;
+    int edat;
+    
+    public Persona(String nom, int edat) {
+        this.nom = nom;
+        this.edat = edat;
+    }
+    
+    @Override
+    public String toString() {
+        return nom + &quot; (&quot; + edat + &quot;)&quot;;
+    }
+}
+
+public class OrdenacioPersonalitzada {
+    public static void main(String[] args) {
+        List&lt;Persona&gt; persones = Arrays.asList(
+            new Persona(&quot;Anna&quot;, 25),
+            new Persona(&quot;Bernat&quot;, 30),
+            new Persona(&quot;Carla&quot;, 20),
+            new Persona(&quot;David&quot;, 35)
+        );
+        
+        System.out.println(&quot;Original: &quot; + persones);
+        
+        // Ordenar per edat (ascendent)
+        persones.sort(Comparator.comparing(p -&gt; p.edat));
+        System.out.println(&quot;Per edat: &quot; + persones);
+        
+        // Ordenar per nom (alfabètic)
+        persones.sort(Comparator.comparing(p -&gt; p.nom));
+        System.out.println(&quot;Per nom: &quot; + persones);
+        
+        // Ordenar per edat (descendent)
+        persones.sort(Comparator.comparing((Persona p) -&gt; p.edat).reversed());
+        System.out.println(&quot;Per edat (desc): &quot; + persones);
+        
+        // Ordenació múltiple: primer per edat, després per nom
+        List&lt;Persona&gt; mes = Arrays.asList(
+            new Persona(&quot;Anna&quot;, 25), new Persona(&quot;Bernat&quot;, 25),
+            new Persona(&quot;Carla&quot;, 30), new Persona(&quot;Anna&quot;, 20)
+        );
+        
+        mes.sort(Comparator.comparing((Persona p) -&gt; p.edat)
+                          .thenComparing(p -&gt; p.nom));
+        System.out.println(&quot;Múltiple: &quot; + mes);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Introducció a Streams</h3>
+    
+    <p>Els streams permeten processar col·leccions de manera funcional i declarativa:</p>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class IntroduccioStreams {
+    public static void main(String[] args) {
+        List&lt;String&gt; noms = Arrays.asList(
+            &quot;Anna&quot;, &quot;Bernat&quot;, &quot;Carla&quot;, &quot;David&quot;, &quot;Elena&quot;, &quot;Ferran&quot;
+        );
+        
+        // Filtrar noms que comencen per &#39;A&#39; o &#39;E&#39;
+        List&lt;String&gt; filtrats = noms.stream()
+            .filter(nom -&gt; nom.startsWith(&quot;A&quot;) || nom.startsWith(&quot;E&quot;))
+            .collect(Collectors.toList());
+        System.out.println(&quot;Noms amb A o E: &quot; + filtrats);
+        
+        // Convertir a majúscules
+        List&lt;String&gt; majuscules = noms.stream()
+            .map(String::toUpperCase)
+            .collect(Collectors.toList());
+        System.out.println(&quot;Majúscules: &quot; + majuscules);
+        
+        // Comptar noms amb més de 5 caràcters
+        long nomsCurts = noms.stream()
+            .filter(nom -&gt; nom.length() &gt; 5)
+            .count();
+        System.out.println(&quot;Noms amb més de 5 caràcters: &quot; + nomsCurts);
+        
+        // Trobar el nom més llarg
+        Optional&lt;String&gt; mesLlarg = noms.stream()
+            .max(Comparator.comparing(String::length));
+        mesLlarg.ifPresent(nom -&gt; System.out.println(&quot;Nom més llarg: &quot; + nom));
+        
+        // Exemple amb números
+        List&lt;Integer&gt; numeros = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        
+        // Suma de quadrats de números parells
+        int sumaQuadrats = numeros.stream()
+            .filter(n -&gt; n % 2 == 0)        // Filtrar parells
+            .mapToInt(n -&gt; n * n)           // Elevar al quadrat
+            .sum();                         // Sumar tot
+        System.out.println(&quot;Suma de quadrats de parells: &quot; + sumaQuadrats);
+        
+        // Agrupar noms per longitud
+        Map&lt;Integer, List&lt;String&gt;&gt; perLongitud = noms.stream()
+            .collect(Collectors.groupingBy(String::length));
+        System.out.println(&quot;Agrupats per longitud: &quot; + perLongitud);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Rendiment: Quan Usar Streams vs Bucles Tradicionals</h3>
+
+    <table class="responsive-table">
+        <thead>
+            <tr>
+                <th>Criteri</th>
+                <th>Bucles Tradicionals</th>
+                <th>Streams</th>
+                <th>Recomanació</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Rendiment</strong></td>
+                <td>Més ràpid per operacions simples</td>
+                <td>Overhead per col·leccions petites</td>
+                <td>Bucles per &lt;100 elements</td>
+            </tr>
+            <tr>
+                <td><strong>Llegibilitat</strong></td>
+                <td>Verbosos per lògica complexa</td>
+                <td>Declaratius i expressius</td>
+                <td>Streams per lògica complexa</td>
+            </tr>
+            <tr>
+                <td><strong>Paral·lelització</strong></td>
+                <td>Manual i propensa a errors</td>
+                <td>parallelStream() automàtic</td>
+                <td>Streams per paral·lelisme</td>
+            </tr>
+            <tr>
+                <td><strong>Operacions múltiples</strong></td>
+                <td>Múltiples iteracions</td>
+                <td>Una sola passada</td>
+                <td>Streams per operacions encadenades</td>
+            </tr>
+            <tr>
+                <td><strong>Debugging</strong></td>
+                <td>Més fàcil amb breakpoints</td>
+                <td>Més difícil de depurar</td>
+                <td>Bucles per debugging intensiu</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <strong>Consells per a streams:</strong><br>
+       • Usa streams per operacions de transformació i filtratge<br>
+       • Evita efectes secundaris dins de lambda expressions<br>
+       • Considera parallelStream() per col·leccions grans (>10.000 elements)<br>
+       • Utilitza mètodes específics com mapToInt() per evitar boxing<br>
+       • Sempre tanca streams que treballen amb recursos externs
+    
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Crea'm un exemple avançat que combini Map, Set i List per gestionar un sistema de biblioteca: llibres amb categories, autors i disponibilitat. Inclou operacions com buscar per categoria, autors més prolífics i llibres disponibles.</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat6_Bloc2_Seccio6">Rendiment i Selecció d'Estructures</h2>
+    
+    <p>La selecció adequada de l'estructura de dades és crucial per al rendiment de l'aplicació. Aquest apartat proporciona guies pràctiques per triar la col·lecció òptima.</p>
+
+    <h3>Matriu de Decisió per Col·leccions</h3>
+
+    <table class="responsive-table">
+        <thead>
+            <tr>
+                <th>Necessitats</th>
+                <th>Col·lecció Recomanada</th>
+                <th>Alternativa</th>
+                <th>Evitar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Accés aleatori ràpid + mida variable</td>
+                <td><code>ArrayList</code></td>
+                <td><code>Array</code> (mida fixa)</td>
+                <td><code>LinkedList</code></td>
+            </tr>
+            <tr>
+                <td>Inserció/eliminació freqüent</td>
+                <td><code>LinkedList</code></td>
+                <td><code>ArrayDeque</code></td>
+                <td><code>ArrayList</code></td>
+            </tr>
+            <tr>
+                <td>Elements únics sense ordre</td>
+                <td><code>HashSet</code></td>
+                <td><code>LinkedHashSet</code></td>
+                <td><code>TreeSet</code></td>
+            </tr>
+            <tr>
+                <td>Elements únics ordenats</td>
+                <td><code>TreeSet</code></td>
+                <td><code>LinkedHashSet + sort</code></td>
+                <td><code>HashSet</code></td>
+            </tr>
+            <tr>
+                <td>Diccionari ràpid</td>
+                <td><code>HashMap</code></td>
+                <td><code>LinkedHashMap</code></td>
+                <td><code>TreeMap</code></td>
+            </tr>
+            <tr>
+                <td>Diccionari ordenat</td>
+                <td><code>TreeMap</code></td>
+                <td><code>LinkedHashMap</code></td>
+                <td><code>HashMap</code></td>
+            </tr>
+            <tr>
+                <td>Pila (LIFO)</td>
+                <td><code>ArrayDeque</code></td>
+                <td><code>Stack</code></td>
+                <td><code>ArrayList</code></td>
+            </tr>
+            <tr>
+                <td>Cua (FIFO)</td>
+                <td><code>ArrayDeque</code></td>
+                <td><code>LinkedList</code></td>
+                <td><code>ArrayList</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Test de Rendiment Pràctic</h3>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+import java.util.*;
+
+public class TestRendiment {
+    private static final int N = 100_000;
+    
+    public static void main(String[] args) {
+        System.out.println(&quot;Test de rendiment amb &quot; + N + &quot; elements\n&quot;);
+        
+        testList();
+        testSet();
+        testMap();
+    }
+    
+    public static void testList() {
+        System.out.println(&quot;=== TEST LLISTES ===&quot;);
+        
+        // ArrayList vs LinkedList per inserció al principi
+        testInsertAtBeginning();
+        
+        // ArrayList vs LinkedList per accés aleatori
+        testRandomAccess();
+    }
+    
+    private static void testInsertAtBeginning() {
+        // ArrayList
+        long start = System.currentTimeMillis();
+        List&lt;Integer&gt; arrayList = new ArrayList&lt;&gt;();
+        for (int i = 0; i &lt; N; i++) {
+            arrayList.add(0, i); // Inserir al principi
+        }
+        long arrayListTime = System.currentTimeMillis() - start;
+        
+        // LinkedList
+        start = System.currentTimeMillis();
+        List&lt;Integer&gt; linkedList = new LinkedList&lt;&gt;();
+        for (int i = 0; i &lt; N; i++) {
+            linkedList.add(0, i); // Inserir al principi
+        }
+        long linkedListTime = System.currentTimeMillis() - start;
+        
+        System.out.printf(&quot;Inserció al principi:%n&quot;);
+        System.out.printf(&quot;  ArrayList: %d ms%n&quot;, arrayListTime);
+        System.out.printf(&quot;  LinkedList: %d ms%n&quot;, linkedListTime);
+        System.out.printf(&quot;  LinkedList és %.1fx més ràpida%n%n&quot;, 
+                         (double)arrayListTime / linkedListTime);
+    }
+    
+    private static void testRandomAccess() {
+        // Preparar dades
+        List&lt;Integer&gt; arrayList = new ArrayList&lt;&gt;();
+        List&lt;Integer&gt; linkedList = new LinkedList&lt;&gt;();
+        
+        for (int i = 0; i &lt; N; i++) {
+            arrayList.add(i);
+            linkedList.add(i);
+        }
+        
+        Random random = new Random();
+        
+        // ArrayList - accés aleatori
+        long start = System.currentTimeMillis();
+        for (int i = 0; i &lt; N; i++) {
+            int index = random.nextInt(N);
+            arrayList.get(index);
+        }
+        long arrayListTime = System.currentTimeMillis() - start;
+        
+        // LinkedList - accés aleatori
+        start = System.currentTimeMillis();
+        for (int i = 0; i &lt; N; i++) {
+            int index = random.nextInt(N);
+            linkedList.get(index);
+        }
+        long linkedListTime = System.currentTimeMillis() - start;
+        
+        System.out.printf(&quot;Accés aleatori:%n&quot;);
+        System.out.printf(&quot;  ArrayList: %d ms%n&quot;, arrayListTime);
+        System.out.printf(&quot;  LinkedList: %d ms%n&quot;, linkedListTime);
+        System.out.printf(&quot;  ArrayList és %.1fx més ràpida%n%n&quot;, 
+                         (double)linkedListTime / arrayListTime);
+    }
+    
+    public static void testSet() {
+        System.out.println(&quot;=== TEST SETS ===&quot;);
+        
+        Set&lt;Integer&gt; hashSet = new HashSet&lt;&gt;();
+        Set&lt;Integer&gt; treeSet = new TreeSet&lt;&gt;();
+        
+        // Test d&#39;inserció
+        long start = System.currentTimeMillis();
+        for (int i = 0; i &lt; N; i++) {
+            hashSet.add(i);
+        }
+        long hashSetTime = System.currentTimeMillis() - start;
+        
+        start = System.currentTimeMillis();
+        for (int i = 0; i &lt; N; i++) {
+            treeSet.add(i);
+        }
+        long treeSetTime = System.currentTimeMillis() - start;
+        
+        System.out.printf(&quot;Inserció en Set:%n&quot;);
+        System.out.printf(&quot;  HashSet: %d ms%n&quot;, hashSetTime);
+        System.out.printf(&quot;  TreeSet: %d ms%n&quot;, treeSetTime);
+        System.out.printf(&quot;  HashSet és %.1fx més ràpid%n%n&quot;, 
+                         (double)treeSetTime / hashSetTime);
+    }
+    
+    public static void testMap() {
+        System.out.println(&quot;=== TEST MAPS ===&quot;);
+        
+        Map&lt;Integer, String&gt; hashMap = new HashMap&lt;&gt;();
+        Map&lt;Integer, String&gt; treeMap = new TreeMap&lt;&gt;();
+        
+        // Test de put
+        long start = System.currentTimeMillis();
+        for (int i = 0; i &lt; N; i++) {
+            hashMap.put(i, &quot;valor&quot; + i);
+        }
+        long hashMapTime = System.currentTimeMillis() - start;
+        
+        start = System.currentTimeMillis();
+        for (int i = 0; i &lt; N; i++) {
+            treeMap.put(i, &quot;valor&quot; + i);
+        }
+        long treeMapTime = System.currentTimeMillis() - start;
+        
+        System.out.printf(&quot;Inserció en Map:%n&quot;);
+        System.out.printf(&quot;  HashMap: %d ms%n&quot;, hashMapTime);
+        System.out.printf(&quot;  TreeMap: %d ms%n&quot;, treeMapTime);
+        System.out.printf(&quot;  HashMap és %.1fx més ràpid%n&quot;, 
+                         (double)treeMapTime / hashMapTime);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Bones Pràctiques per al Rendiment</h3>
+    
+    <ul>
+        <li><strong>Capacitat inicial:</strong> Especifica la capacitat inicial per HashMap i ArrayList si coneixes la mida aproximada</li>
+        <li><strong>Load factor:</strong> Ajusta el factor de càrrega per HashSet i HashMap segons el teu cas d'ús</li>
+        <li><strong>Immutabilitat:</strong> Usa col·leccions immutables quan sigui possible per evitar còpies defensives</li>
+        <li><strong>Iteració:</strong> Utilitza enhanced for loop o streams en lloc d'iteradors manuals</li>
+        <li><strong>Eliminació:</strong> Usa iterator.remove() per eliminar elements durant la iteració</li>
+    </ul>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+import java.util.*;
+
+public class BonesPractiques {
+    public static void main(String[] args) {
+        // 1. Capacitat inicial
+        List&lt;String&gt; llistaGran = new ArrayList&lt;&gt;(10000); // Evita redimensionaments
+        Map&lt;String, Integer&gt; mapGran = new HashMap&lt;&gt;(1000, 0.8f); // Custom load factor
+        
+        // 2. Eliminació segura durant iteració
+        List&lt;Integer&gt; numeros = new ArrayList&lt;&gt;(Arrays.asList(1, 2, 3, 4, 5, 6));
+        
+        // MAL: ConcurrentModificationException
+        // for (Integer num : numeros) {
+        //     if (num % 2 == 0) numeros.remove(num); // ERROR!
+        // }
+        
+        // BÉ: Usar iterator
+        Iterator&lt;Integer&gt; it = numeros.iterator();
+        while (it.hasNext()) {
+            if (it.next() % 2 == 0) {
+                it.remove(); // Segur
+            }
+        }
+        System.out.println(&quot;Després d&#39;eliminar parells: &quot; + numeros);
+        
+        // 3. Col·leccions immutables (Java 9+)
+        List&lt;String&gt; immutable = List.of(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;);
+        Set&lt;Integer&gt; setImmutable = Set.of(1, 2, 3);
+        Map&lt;String, Integer&gt; mapImmutable = Map.of(&quot;un&quot;, 1, &quot;dos&quot;, 2);
+        
+        // 4. Comparació eficient per ordenació
+        List&lt;String&gt; paraules = Arrays.asList(&quot;zebra&quot;, &quot;ànec&quot;, &quot;gat&quot;, &quot;elefant&quot;);
+        
+        // Ordenació natural (alfabètica)
+        Collections.sort(paraules);
+        
+        // Ordenació per longitud (custom)
+        paraules.sort(Comparator.comparing(String::length));
+        
+        System.out.println(&quot;Ordenades per longitud: &quot; + paraules);
+        
+        // 5. Conversió eficient entre col·leccions
+        Set&lt;String&gt; set = new HashSet&lt;&gt;(Arrays.asList(&quot;a&quot;, &quot;b&quot;, &quot;a&quot;, &quot;c&quot;));
+        List&lt;String&gt; llistaSenseDuplicats = new ArrayList&lt;&gt;(set);
+        
+        System.out.println(&quot;Sense duplicats: &quot; + llistaSenseDuplicats);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <strong>Errors comuns:</strong><br>
+       • Modificar col·leccions durant iteració sense usar Iterator.remove()<br>
+       • Usar TreeSet/TreeMap sense necessitat d'ordre<br>
+       • No especificar capacitat inicial per col·leccions grans<br>
+       • Comparar objectes sense implementar equals() i hashCode()<br>
+       • Usar LinkedList per accés aleatori freqüent
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Dissenya un benchmark complet per comparar ArrayList vs LinkedList vs ArrayDeque en diferents escenaris: inserció al principi/final/mig, eliminació i accés aleatori. Vull entendre quan cada estructura és òptima.</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat6_Bloc2_Seccio7">Exercicis Pràctics</h2>
+    
+    <p>Per consolidar els coneixements sobre col·leccions, es proposen els següents exercicis graduats per dificultat:</p>
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Gestió de Llista de Compra</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Crea un programa que gestioni una llista de compra utilitzant ArrayList. Ha de permetre afegir productes, eliminar-los, comprovar si un producte està a la llista i mostrar tots els productes ordenats alfabèticament.</p></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Fàcil</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">20 min</span>
+      
+    </div>
+
+    
+  </div>
+</div>
+
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Comptador de Paraules</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Implementa un programa que llegeixi un text i compti la freqüència de cada paraula utilitzant HashMap. Mostra les paraules ordenades per freqüència (de més a menys freqüent).</p></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Fàcil</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">25 min</span>
+      
+    </div>
+
+    
+  </div>
+</div>
+
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Eliminació de Duplicats</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Escriu un programa que llegeixi una llista de números enters i elimini els duplicats mantenint l'ordre original. Compara l'eficiència d'usar HashSet vs LinkedHashSet per aquesta tasca.</p></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">30 min</span>
+      
+    </div>
+
+    
+  </div>
+</div>
+
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Sistema d'Inventari</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Desenvolupa un sistema d'inventari per una botiga que utilitzi Map per emmagatzemar productes (codi -> Producte) i Set per categories. Inclou operacions de cerca per categoria i actualització d'estoc.</p></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">40 min</span>
+      
+    </div>
+
+    
+  </div>
+</div>
+
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Anàlisi de Xarxes Socials</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Crea un sistema que modelitzi una xarxa social simple utilitzant Map&lt;Usuari, Set&lt;Usuari&gt;&gt; per representar amistats. Implementa funcions per trobar amics comuns, suggerir amistats i calcular el grau de separació entre usuaris.</p></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Avançat</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">50 min</span>
+      
+    </div>
+
+    
+  </div>
+</div>
+
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Cache LRU amb LinkedHashMap</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Implementa un cache LRU (Least Recently Used) utilitzant LinkedHashMap. El cache ha de tenir una capacitat màxima i eliminar automàticament l'element menys recentment utilitzat quan es supera. Inclou mètriques de hit/miss rate.</p></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Avançat</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">45 min</span>
+      
+    </div>
+
+    
+  </div>
+</div>
+
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Comparador Multi-criteri</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Crea una classe Empleat amb nom, departament, salari i antiguitat. Implementa diferents estratègies d'ordenació utilitzant Comparator: per salari (desc), per departament i salari, i per antiguitat amb desempat per nom.</p></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Avançat</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">35 min</span>
+      
+    </div>
+
+    
+  </div>
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Per l'exercici d'anàlisi de xarxes socials: com puc implementar un algorisme eficient per trobar el camí més curt entre dos usuaris? Vull entendre tant BFS com si hi ha alternatives més optimitzades.</div>
+  </div>
+</div>
+
+</div>
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 2: Col·leccions i tipus de dades avançats",
+  "description": "Framework de col·leccions Java: List, Set, Map i les seves implementacions",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Programació II — IOC",
+    "description": "Materials del mòdul Programació II - DA2_0485B2"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/da2_0485b2/unitat-6/bloc-1/" class="nav-button" aria-label="Bloc anterior: Estructures de dades bàsiques">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="6" data-total="2">(6/2)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 300%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="2" data-total="2">(2/2)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="7">(1/7)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 14%"></div></div>
+                    </div></div>
+            <div class="footer-actions">
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/da2_0485b2/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts del lloc -->
+    <script src="/ioc/da2_0485b2/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

@@ -18,21 +18,21 @@
 <meta property="og:locale" content="ca_ES" />
 <meta name="description" content="Lectura, escriptura i gestió de fitxers en Java amb fluxos, excepcions i objectes" />
 <meta property="og:description" content="Lectura, escriptura i gestió de fitxers en Java amb fluxos, excepcions i objectes" />
-<link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0485b2/unitat-5/bloc-2/" />
-<meta property="og:url" content="https://itrascastro.github.io/ioc/da2_0485b2/unitat-5/bloc-2/" />
+<link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-5/bloc-2/" />
+<meta property="og:url" content="http://localhost:4003/ioc/da2_0485b2/unitat-5/bloc-2/" />
 <meta property="og:site_name" content="Programació II" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Bloc 2: E/S basada en fitxers" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Lectura, escriptura i gestió de fitxers en Java amb fluxos, excepcions i objectes","headline":"Bloc 2: E/S basada en fitxers","url":"https://itrascastro.github.io/ioc/da2_0485b2/unitat-5/bloc-2/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Lectura, escriptura i gestió de fitxers en Java amb fluxos, excepcions i objectes","headline":"Bloc 2: E/S basada en fitxers","url":"http://localhost:4003/ioc/da2_0485b2/unitat-5/bloc-2/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0485b2/unitat-5/bloc-2/">
+    <link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-5/bloc-2/">
     <!-- Rich editor styles (for embedded notes panel) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
     <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -48,7 +48,7 @@
     <link rel="icon" type="image/x-icon" href="/ioc/da2_0485b2/assets/images/favicon.ico">
     
     <!-- RSS Feed -->
-    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/da2_0485b2/feed.xml" title="Programació II" />
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4003/ioc/da2_0485b2/feed.xml" title="Programació II" />
 
     <!-- Syntax Highlighting (Prism) -->
     <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
@@ -98,11 +98,21 @@
                     
                         
                             <a href="/ioc/da2_0485b2/unitat-5/bloc-1/" class="nav-dropdown-item ">
-                                Bloc 1: Conceptes bàsics d'E/S per consola
+                                Unitat 5 - Bloc 1: Conceptes bàsics d'E/S per consola
                             </a>
                         
                             <a href="/ioc/da2_0485b2/unitat-5/bloc-2/" class="nav-dropdown-item current">
-                                Bloc 2: E/S basada en fitxers
+                                Unitat 5 - Bloc 2: E/S basada en fitxers
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-6/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 6 - Bloc 1: Estructures de dades bàsiques
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-6/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 6 - Bloc 2: Col·leccions i tipus de dades avançats
                             </a>
                         
                     
@@ -243,7 +253,53 @@
         
         
         <div class="nav-item">
-            <a href="#Unitat5_Bloc2_Seccio5" class="nav-link" data-section="Unitat5_Bloc2_Seccio5">Exercicis Pràctics</a>
+            <a href="#Unitat5_Bloc2_Seccio5" class="nav-link" data-section="Unitat5_Bloc2_Seccio5">Rendiment i Bones Pràctiques</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat5_Bloc2_Seccio6" class="nav-link" data-section="Unitat5_Bloc2_Seccio6">Exercicis Pràctics</a>
         </div>
     
 
@@ -783,7 +839,300 @@ public class EscriureProductes {
 </div>
 
 <div class="section">
-    <h2 id="Unitat5_Bloc2_Seccio5">Exercicis Pràctics</h2>
+    <h2 id="Unitat5_Bloc2_Seccio5">Rendiment i Bones Pràctiques</h2>
+    
+    <p>Quan treballem amb fitxers, especialment de grans dimensions, el rendiment pot ser crític. Aquest apartat cobreix les millors pràctiques per optimitzar les operacions d'E/S.</p>
+
+    <h3>Comparació de Rendiment: Buffered vs. No Buffered</h3>
+    
+    <p>Les classes <code>BufferedReader</code> i <code>BufferedWriter</code> milloren significativament el rendiment perquè minimitzen les crides al sistema operatiu:</p>
+
+    <table class="responsive-table">
+        <thead>
+            <tr>
+                <th>Classe</th>
+                <th>Buffer Intern</th>
+                <th>Crides al SO</th>
+                <th>Rendiment</th>
+                <th>Ús Recomanat</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>FileReader</code></td>
+                <td>No</td>
+                <td>Una per caràcter</td>
+                <td>Molt lent</td>
+                <td>Fitxers molt petits</td>
+            </tr>
+            <tr>
+                <td><code>BufferedReader</code></td>
+                <td>8192 bytes</td>
+                <td>Una per buffer</td>
+                <td>Ràpid</td>
+                <td>Lectura general</td>
+            </tr>
+            <tr>
+                <td><code>Scanner</code></td>
+                <td>Intern</td>
+                <td>Variable</td>
+                <td>Mitjà</td>
+                <td>Parsing de dades</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Patrons de Disseny per a E/S Robusta</h3>
+    
+    <p>Els patrons següents ajuden a escriure codi més mantenible i eficient:</p>
+
+    <h4>1. Patrón Try-with-Resources (Recomanat)</h4>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+// Gestió automàtica de recursos
+try (BufferedReader reader = Files.newBufferedReader(Paths.get(&quot;dades.txt&quot;));
+     BufferedWriter writer = Files.newBufferedWriter(Paths.get(&quot;sortida.txt&quot;))) {
+    
+    String linia;
+    while ((linia = reader.readLine()) != null) {
+        writer.write(linia.toUpperCase());
+        writer.newLine();
+    }
+    
+} catch (IOException e) {
+    System.err.println(&quot;Error d&#39;E/S: &quot; + e.getMessage());
+}
+// Els recursos es tanquen automàticament
+    </code></pre>
+  </div>
+</div>
+
+
+    <h4>2. Validació i Sanitització de Dades</h4>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public static boolean validarLinia(String linia) {
+    // Verificar que la línia no sigui null ni buida
+    if (linia == null || linia.trim().isEmpty()) {
+        return false;
+    }
+    
+    // Verificar format específic (exemple: CSV amb 3 camps)
+    String[] camps = linia.split(&quot;,&quot;);
+    if (camps.length != 3) {
+        return false;
+    }
+    
+    // Validacions específiques per camp
+    try {
+        Integer.parseInt(camps[1].trim()); // Segon camp ha de ser número
+        return true;
+    } catch (NumberFormatException e) {
+        return false;
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Gestió de Fitxers Grans: Processament per Lots</h3>
+    
+    <p>Per fitxers que no caben en memòria, processem les dades per lots:</p>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public static void processarFitxerGran(String nomFitxer, int midaLot) {
+    try (BufferedReader reader = Files.newBufferedReader(Paths.get(nomFitxer))) {
+        List&lt;String&gt; lot = new ArrayList&lt;&gt;(midaLot);
+        String linia;
+        
+        while ((linia = reader.readLine()) != null) {
+            lot.add(linia);
+            
+            // Processar quan el lot està ple
+            if (lot.size() &gt;= midaLot) {
+                processarLot(lot);
+                lot.clear(); // Alliberar memòria
+            }
+        }
+        
+        // Processar les línies restants
+        if (!lot.isEmpty()) {
+            processarLot(lot);
+        }
+        
+    } catch (IOException e) {
+        System.err.println(&quot;Error processant fitxer: &quot; + e.getMessage());
+    }
+}
+
+private static void processarLot(List&lt;String&gt; lot) {
+    // Lògica específica per processar el lot
+    for (String linia : lot) {
+        // Processar cada línia
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Monitorització i Logging</h3>
+    
+    <p>És important registrar informació sobre el procés per facilitar la depuració:</p>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public static void llegirAmbLog(String nomFitxer) {
+    long tempsInici = System.currentTimeMillis();
+    int liniesProcessades = 0;
+    int liniesErrònies = 0;
+    
+    try (BufferedReader reader = Files.newBufferedReader(Paths.get(nomFitxer))) {
+        String linia;
+        
+        while ((linia = reader.readLine()) != null) {
+            liniesProcessades++;
+            
+            if (!validarLinia(linia)) {
+                liniesErrònies++;
+                System.err.printf(&quot;Línia %d invàlida: %s%n&quot;, liniesProcessades, linia);
+                continue;
+            }
+            
+            // Processar línia vàlida
+            // ...
+            
+            // Informar progrés cada 1000 línies
+            if (liniesProcessades % 1000 == 0) {
+                System.out.printf(&quot;Processades %d línies...%n&quot;, liniesProcessades);
+            }
+        }
+        
+    } catch (IOException e) {
+        System.err.println(&quot;Error llegint fitxer: &quot; + e.getMessage());
+        return;
+    }
+    
+    long tempsFinal = System.currentTimeMillis();
+    System.out.printf(&quot;Procés completat:%n&quot; +
+                     &quot;- Línies processades: %d%n&quot; +
+                     &quot;- Línies errònies: %d%n&quot; +
+                     &quot;- Temps total: %d ms%n&quot;,
+                     liniesProcessades, liniesErrònies, (tempsFinal - tempsInici));
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <strong>Consells de rendiment:</strong><br>
+       • Utilitza sempre BufferedReader/BufferedWriter per fitxers de text<br>
+       • Processa dades per lots quan els fitxers són molt grans<br>
+       • Valida les dades abans de processar-les<br>
+       • Registra informació útil per facilitar la depuració<br>
+       • Tanca sempre els recursos utilitzant try-with-resources
+    
+</div>
+
+
+    <!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <strong>Errors comuns:</strong><br>
+       • No tancar fitxers (memory leaks)<br>
+       • Carregar fitxers grans completament en memòria<br>
+       • No validar dades d'entrada<br>
+       • Ignorar excepcions d'E/S<br>
+       • Utilitzar classes no buffered per fitxers grans
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Com puc optimitzar la lectura d'un fitxer CSV de 100MB amb 2 milions de línies? Vull processar només les línies que compleixin certes condicions i generar estadístiques en temps real.</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat5_Bloc2_Seccio6">Exercicis Pràctics</h2>
     
     <p>Per consolidar els coneixements, es proposen els següents exercicis:</p>
 
@@ -963,24 +1312,50 @@ public class EscriureProductes {
                     
                     
                     
-                    <div class="nav-link-wrapper">
+                    
+                    
+                    
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
                         
                             
                                 
+                                
+                                
+                                
+                                
                                     
-                                    <a href="/ioc/da2_0485b2/unitat-5/bloc-1/" class="nav-button" aria-label="Bloc anterior: Conceptes bàsics d'E/S per consola">← Anterior</a>
                                     
-                            
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/da2_0485b2/unitat-5/bloc-1/" class="nav-button" aria-label="Bloc anterior: Conceptes bàsics d'E/S per consola">← Anterior</a>
                         
                     </div>
                     
                     <div class="nav-link-wrapper">
-                        
-                            
-                                
-                            
-                                
-                            
                         
                     </div>
                 </div>
@@ -997,8 +1372,8 @@ public class EscriureProductes {
             </div>
             <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
                     <span class="progress-label">Unitat</span>
-                    <span class="progress-text" data-pos="5" data-total="1">(5/1)</span>
-                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 500%"></div></div>
+                    <span class="progress-text" data-pos="5" data-total="2">(5/2)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 250%"></div></div>
                 </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
                         <span class="progress-label">Bloc</span>
                         <span class="progress-text" data-pos="2" data-total="2">(2/2)</span>
@@ -1007,8 +1382,8 @@ public class EscriureProductes {
 
                     <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
                         <span class="progress-label">Secció</span>
-                        <span class="progress-text" data-pos="1" data-total="5">(1/5)</span>
-                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 20%"></div></div>
+                        <span class="progress-text" data-pos="1" data-total="6">(1/6)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 16%"></div></div>
                     </div></div>
             <div class="footer-actions">
                 <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>

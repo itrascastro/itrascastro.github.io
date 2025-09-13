@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 1: Estructures de dades bàsiques | Programació II - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="6">
+    <meta name="page-bloc" content="1">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 1: Estructures de dades bàsiques | Programació II</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 1: Estructures de dades bàsiques" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Arrays unidimensionals i bidimensionals en Java" />
+<meta property="og:description" content="Arrays unidimensionals i bidimensionals en Java" />
+<link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-6/bloc-1/" />
+<meta property="og:url" content="http://localhost:4003/ioc/da2_0485b2/unitat-6/bloc-1/" />
+<meta property="og:site_name" content="Programació II" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 1: Estructures de dades bàsiques" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Arrays unidimensionals i bidimensionals en Java","headline":"Bloc 1: Estructures de dades bàsiques","url":"http://localhost:4003/ioc/da2_0485b2/unitat-6/bloc-1/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-6/bloc-1/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/da2_0485b2/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4003/ioc/da2_0485b2/feed.xml" title="Programació II" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/code-block.css">
+    <script src="/ioc/da2_0485b2/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/da2_0485b2/" class="logo-link">
+                <img src="/ioc/da2_0485b2/assets/images/logo_IOC_light.jpg" 
+                     alt="Institut Obert de Catalunya" 
+                     class="logo logo-light">
+                <img src="/ioc/da2_0485b2/assets/images/logo_IOC_dark.png" 
+                     alt="Institut Obert de Catalunya" 
+                     class="logo logo-dark">
+            </a>
+            <a href="/ioc/da2_0485b2/" class="title-link">
+                <h1>DA2_0485B2 - Programació II</h1>
+            </a>
+        </div>
+        <div class="header-controls">
+            <div class="nav-dropdown" id="nav-dropdown">
+                <button class="nav-dropdown-btn" id="nav-dropdown-btn">Navegació</button>
+                <div class="nav-dropdown-content" id="nav-dropdown-content">
+                    <a href="/ioc/da2_0485b2/" class="nav-dropdown-item ">Índex del Curs</a>
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-5/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 5 - Bloc 1: Conceptes bàsics d'E/S per consola
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-5/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 5 - Bloc 2: E/S basada en fitxers
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-6/bloc-1/" class="nav-dropdown-item current">
+                                Unitat 6 - Bloc 1: Estructures de dades bàsiques
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-6/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 6 - Bloc 2: Col·leccions i tipus de dades avançats
+                            </a>
+                        
+                    
+                </div>
+            </div>
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <!-- Contingut d'aquest Bloc -->
+            <div class="sidebar-section">
+                <h3>Contingut del Bloc</h3>
+                
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat6_Bloc1_Seccio1" class="nav-link" data-section="Unitat6_Bloc1_Seccio1">Introducció a les Estructures de Dades</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat6_Bloc1_Seccio2" class="nav-link" data-section="Unitat6_Bloc1_Seccio2">Arrays Unidimensionals</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat6_Bloc1_Seccio3" class="nav-link" data-section="Unitat6_Bloc1_Seccio3">Arrays Bidimensionals</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat6_Bloc1_Seccio4" class="nav-link" data-section="Unitat6_Bloc1_Seccio4">Algorismes de Cerca i Ordenació</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat6_Bloc1_Seccio5" class="nav-link" data-section="Unitat6_Bloc1_Seccio5">Exercicis Pràctics</a>
+        </div>
+    
+
+
+
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/da2_0485b2/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/da2_0485b2/unitat-6/" class="horizontal-nav-item">
+                                Unitat 6: Aplicació de les estructures d'emmagatzematge (RA6)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 6.1: Estructures de dades bàsiques
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<!--
+  Pàgina de contingut del Bloc 1 (Unitat 6)
+  Contingut extret del PDF: U6 - Nucli 1_ Estructures de dades bàsiques.pdf
+-->
+
+<div class="section">
+    <h2 id="Unitat6_Bloc1_Seccio1">Introducció a les Estructures de Dades</h2>
+    
+    <p>Les estructures de dades són fonamentals en programació per organitzar, gestionar i emmagatzemar informació de manera eficient. En aquest bloc introductori explorarem els arrays, que són la base de moltes altres estructures de dades més complexes.</p>
+
+    <h3>Què són les Estructures de Dades?</h3>
+    
+    <p>Una estructura de dades és una forma particular d'organitzar i emmagatzemar dades per facilitar l'accés i les modificacions posteriors. Les estructures de dades defineixen:</p>
+    
+    <ul>
+        <li><strong>Com s'organitzen les dades:</strong> La disposició física o lògica dels elements</li>
+        <li><strong>Com s'accedeix a les dades:</strong> Els mètodes per llegir o modificar elements</li>
+        <li><strong>Quines operacions es poden realitzar:</strong> Inserció, eliminació, cerca, ordenació, etc.</li>
+        <li><strong>L'eficiència temporal i espacial:</strong> Cost computacional de les operacions</li>
+    </ul>
+
+    <h3>Classificació de les Estructures de Dades</h3>
+    
+    <p>Les estructures de dades es poden classificar en diferents categories:</p>
+    
+    <table class="responsive-table">
+        <thead>
+            <tr>
+                <th>Tipus</th>
+                <th>Característiques</th>
+                <th>Exemples</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Primitives</strong></td>
+                <td>Tipus bàsics del llenguatge</td>
+                <td>int, double, boolean, char</td>
+            </tr>
+            <tr>
+                <td><strong>Lineals</strong></td>
+                <td>Elements organitzats seqüencialment</td>
+                <td>Arrays, Llistes, Piles, Cues</td>
+            </tr>
+            <tr>
+                <td><strong>No Lineals</strong></td>
+                <td>Relacions jeràrquiques o de xarxa</td>
+                <td>Arbres, Grafs, Taules Hash</td>
+            </tr>
+            <tr>
+                <td><strong>Estàtiques</strong></td>
+                <td>Mida fixa en temps de compilació</td>
+                <td>Arrays tradicionals</td>
+            </tr>
+            <tr>
+                <td><strong>Dinàmiques</strong></td>
+                <td>Mida variable en temps d'execució</td>
+                <td>ArrayList, LinkedList, HashMap</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Els Arrays: Estructures Lineals Estàtiques</h3>
+    
+    <p>Els arrays són la forma més bàsica d'estructura de dades lineal. Consisteixen en una col·lecció d'elements del mateix tipus, emmagatzemats en posicions de memòria consecutives i accessibles mitjançant un índex numèric.</p>
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Array:</strong> Estructura de dades que conté una col·lecció d'elements del mateix tipus, organitzats seqüencialment i accessibles mitjançant un índex numèric que comença en 0.</p>
+  </div>
+</div>
+
+
+    <h3>Avantatges i Inconvenients dels Arrays</h3>
+    
+    <p><strong>Avantatges:</strong></p>
+    <ul>
+        <li><strong>Accés directe:</strong> Temps constant O(1) per accedir a qualsevol element</li>
+        <li><strong>Eficiència de memòria:</strong> Emmagatzematge contigu sense sobrecàrrega</li>
+        <li><strong>Simplicitat:</strong> Fàcils d'entendre i implementar</li>
+        <li><strong>Compatibilitat:</strong> Suport natiu en gairebé tots els llenguatges</li>
+    </ul>
+
+    <p><strong>Inconvenients:</strong></p>
+    <ul>
+        <li><strong>Mida fixa:</strong> No es pot canviar la mida després de la creació</li>
+        <li><strong>Inserció/eliminació costosa:</strong> Requereix desplaçar elements O(n)</li>
+        <li><strong>Memòria preasignada:</strong> Pot malbaratar espai si no s'usa completament</li>
+        <li><strong>Tipus homogeni:</strong> Tots els elements han de ser del mateix tipus</li>
+    </ul>
+
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <strong>Objectius d'aquest bloc:</strong><br>
+       • Comprendre els arrays unidimensionals i bidimensionals<br>
+       • Dominar les operacions bàsiques: creació, accés, recorregut<br>
+       • Implementar algorismes fonamentals de cerca i ordenació<br>
+       • Aplicar arrays per resoldre problemes pràctics
+    
+</div>
+
+
+    <h3>Memòria i Rendiment dels Arrays</h3>
+    
+    <p>Els arrays són extremadament eficients gràcies a la seva organització en memòria:</p>
+    
+    <ul>
+        <li><strong>Localitat espacial:</strong> Elements consecutius ocupen posicions adjacents de memòria</li>
+        <li><strong>Accés indexat:</strong> Fórmula matemàtica: direcció = base + (índex × mida_element)</li>
+        <li><strong>Cache-friendly:</strong> Aprofiten la memòria cau del processador per millor rendiment</li>
+        <li><strong>Predicibilitat:</strong> El compilador pot optimitzar l'accés als arrays</li>
+    </ul>
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Explica'm com es relacionen els arrays amb altres estructures de dades més avançades com ArrayList, LinkedList i HashMap. Quines són les bases teòriques que els arrays proporcionen per entendre aquestes estructures?</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat6_Bloc1_Seccio2">Arrays Unidimensionals</h2>
+    
+    <h3>Declaració i Inicialització</h3>
+    
+    <p>Un array es pot declarar de diferents maneres:</p>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+int[] numeros = new int[5]; // Array sense inicialitzar
+int[] valors = {1, 5, 10, -3, 8}; // Array inicialitzat
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Accés als Elements</h3>
+    
+    <p>Els elements d'un array s'accedeixen mitjançant el seu índex:</p>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+System.out.println(&quot;Primer element: &quot; + valors[0]); // Mostra 1
+valors[2] = 100; // Modifica el valor a la posició 2
+    </code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Índex:</strong> Posició d'un element dins de l'array. Els índexs comencen sempre en 0 i van fins a la longitud de l'array menys 1.</p>
+  </div>
+</div>
+
+
+    <h3>Recorregut d'un Array</h3>
+    
+    <p>Per recórrer tots els elements d'un array utilitzem bucles:</p>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public static void imprimirArray(int[] a) {
+    for (int i = 0; i &lt; a.length; i++) {
+        System.out.print(a[i] + &quot; &quot;);
+    }
+    System.out.println();
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Cerca en un Array</h3>
+    
+    <p>Implementació d'un algorisme de cerca lineal:</p>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public static void buscar(int[] a, int n) {
+    boolean trobat = false;
+    int i = 0;
+    while (!trobat &amp;&amp; i &lt; a.length) {
+        if (a[i] == n) {
+            trobat = true;
+        }
+        i++;
+    }
+    if (trobat) {
+        System.out.println(&quot;Element trobat a la posició &quot; + (i - 1));
+    } else {
+        System.out.println(&quot;Element no trobat&quot;);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Suma dels Elements d'un Array</h3>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public static void sumaArray(int[] a) {
+    int suma = 0;
+    for (int i = 0; i &lt; a.length; i++) {
+        suma += a[i];
+    }
+    System.out.println(&quot;Suma total: &quot; + suma);
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Rellenar un Array amb Valors Aleatoris</h3>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+import java.util.Random;
+
+public static void rellenarAleatorios(int[] a) {
+    Random aleatori = new Random();
+    for (int i = 0; i &lt; a.length; i++) {
+        a[i] = aleatori.nextInt(100); // Nombre entre 0 i 99
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Com puc optimitzar els algorismes de cerca en arrays? Explica'm la diferència entre cerca lineal i cerca binària, i quan usar cada una.</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat6_Bloc1_Seccio3">Arrays Bidimensionals</h2>
+    
+    <p>Els arrays bidimensionals (matrius) permeten organitzar dades en files i columnes:</p>
+
+    <h3>Declaració i Inicialització</h3>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+int[][] matriu = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Accés als Elements</h3>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+System.out.println(matriu[1][2]); // Mostra 6
+matriu[0][1] = 20; // Modifica el valor a la posició [0][1]
+    </code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Matriu:</strong> Array bidimensional que organitza elements en files i columnes. S'accedeix als elements amb dos índexs: [fila][columna].</p>
+  </div>
+</div>
+
+
+    <h3>Imprimir una Matriu</h3>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public static void imprimirMatriu(int[][] a) {
+    for (int i = 0; i &lt; a.length; i++) {
+        for (int j = 0; j &lt; a[i].length; j++) {
+            System.out.print(a[i][j] + &quot; &quot;);
+        }
+        System.out.println();
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Modificació de la Diagonal Principal</h3>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public static void modificarDiagonal(int[][] a) {
+    for (int i = 0; i &lt; a.length; i++) {
+        a[i][i] = 1;
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Suma de Tots els Elements</h3>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public static int sumaMatriu(int[][] a) {
+    int suma = 0;
+    for (int i = 0; i &lt; a.length; i++) {
+        for (int j = 0; j &lt; a[i].length; j++) {
+            suma += a[i][j];
+        }
+    }
+    return suma;
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Suma per Files i Columnes</h3>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public static void sumarFilesColumnes(int[][] a) {
+    for (int i = 0; i &lt; a.length; i++) {
+        int sumaFil = 0;
+        int sumaCol = 0;
+        for (int j = 0; j &lt; a[i].length; j++) {
+            sumaFil += a[i][j];
+            sumaCol += a[j][i];
+        }
+        System.out.println(&quot;Fila &quot; + i + &quot; suma: &quot; + sumaFil);
+        System.out.println(&quot;Columna &quot; + i + &quot; suma: &quot; + sumaCol);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Explica'm com funcionan les matrius irregulars (jagged arrays) en Java i proporciona exemples d'ús pràctic on serien útils.</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat6_Bloc1_Seccio4">Algorismes de Cerca i Ordenació</h2>
+    
+    <p>Els arrays són la base per implementar algorismes fonamentals de cerca i ordenació. Aquests algorismes són essencials per gestionar i processar dades de manera eficient.</p>
+
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    Els algorismes de cerca i ordenació són fonamentals en programació. La cerca lineal té complexitat O(n), mentre que la cerca binària té O(log n) però requereix que l'array estigui ordenat.
+    
+</div>
+
+
+    <h3>Algorismes de Cerca</h3>
+    
+    <h4>Cerca Lineal (Seqüencial)</h4>
+    <p>La cerca lineal recorre l'array element per element fins trobar el valor buscat:</p>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public static int cercaLineal(int[] array, int valor) {
+    for (int i = 0; i &lt; array.length; i++) {
+        if (array[i] == valor) {
+            return i; // Retorna l&#39;índex on s&#39;ha trobat
+        }
+    }
+    return -1; // No trobat
+}
+
+// Versió que retorna informació detallada
+public static void cercaLinealDetallada(int[] array, int valor) {
+    int comparacions = 0;
+    boolean trobat = false;
+    int posicio = -1;
+    
+    for (int i = 0; i &lt; array.length; i++) {
+        comparacions++;
+        if (array[i] == valor) {
+            trobat = true;
+            posicio = i;
+            break;
+        }
+    }
+    
+    System.out.println(&quot;Valor &quot; + valor + &quot;: &quot; + (trobat ? &quot;trobat a posició &quot; + posicio : &quot;no trobat&quot;));
+    System.out.println(&quot;Comparacions realitzades: &quot; + comparacions);
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Cerca Lineal:</strong> Algorisme que busca un element recorrent l'array des del primer element fins al últim. Complexitat temporal: O(n).</p>
+  </div>
+</div>
+
+
+    <h4>Cerca Binària</h4>
+    <p>La cerca binària funciona només amb arrays ordenats, dividint repetidament l'espai de cerca per la meitat:</p>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public static int cercaBinaria(int[] array, int valor) {
+    int esquerra = 0;
+    int dreta = array.length - 1;
+    
+    while (esquerra &lt;= dreta) {
+        int mig = (esquerra + dreta) / 2;
+        
+        if (array[mig] == valor) {
+            return mig; // Trobat!
+        } else if (array[mig] &lt; valor) {
+            esquerra = mig + 1; // Buscar a la meitat dreta
+        } else {
+            dreta = mig - 1; // Buscar a la meitat esquerra
+        }
+    }
+    
+    return -1; // No trobat
+}
+
+// Versió recursiva
+public static int cercaBinariaRecursiva(int[] array, int valor, int esquerra, int dreta) {
+    if (esquerra &gt; dreta) {
+        return -1; // No trobat
+    }
+    
+    int mig = (esquerra + dreta) / 2;
+    
+    if (array[mig] == valor) {
+        return mig;
+    } else if (array[mig] &lt; valor) {
+        return cercaBinariaRecursiva(array, valor, mig + 1, dreta);
+    } else {
+        return cercaBinariaRecursiva(array, valor, esquerra, mig - 1);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Cerca Binària:</strong> Algorisme eficient per buscar en arrays ordenats que divideix l'espai de cerca per la meitat en cada iteració. Complexitat temporal: O(log n).</p>
+  </div>
+</div>
+
+
+    <h3>Algorismes d'Ordenació</h3>
+    
+    <h4>Ordenació Bombolla (Bubble Sort)</h4>
+    <p>Compara elements adjacents i els intercanvia si estan en l'ordre incorrecte:</p>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public static void ordenaBombolla(int[] array) {
+    int n = array.length;
+    boolean intercanviat;
+    
+    for (int i = 0; i &lt; n - 1; i++) {
+        intercanviat = false;
+        
+        // Últims i elements ja estan ordenats
+        for (int j = 0; j &lt; n - 1 - i; j++) {
+            if (array[j] &gt; array[j + 1]) {
+                // Intercanvi
+                int temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
+                intercanviat = true;
+            }
+        }
+        
+        // Si no hi ha hagut intercanvis, l&#39;array ja està ordenat
+        if (!intercanviat) {
+            break;
+        }
+    }
+}
+
+// Versió amb informació de debug
+public static void ordenaBombollaDetallada(int[] array) {
+    int n = array.length;
+    int passades = 0;
+    int intercanvis = 0;
+    
+    for (int i = 0; i &lt; n - 1; i++) {
+        passades++;
+        boolean intercanviat = false;
+        
+        System.out.println(&quot;Passada &quot; + passades + &quot;: &quot; + java.util.Arrays.toString(array));
+        
+        for (int j = 0; j &lt; n - 1 - i; j++) {
+            if (array[j] &gt; array[j + 1]) {
+                int temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
+                intercanviat = true;
+                intercanvis++;
+            }
+        }
+        
+        if (!intercanviat) break;
+    }
+    
+    System.out.println(&quot;Resultat final: &quot; + java.util.Arrays.toString(array));
+    System.out.println(&quot;Passades: &quot; + passades + &quot;, Intercanvis: &quot; + intercanvis);
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h4>Ordenació per Selecció (Selection Sort)</h4>
+    <p>Troba repetidament l'element mínim i l'ubica al principi:</p>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public static void ordenaSeleccio(int[] array) {
+    int n = array.length;
+    
+    for (int i = 0; i &lt; n - 1; i++) {
+        // Trobar l&#39;índex del mínim element
+        int indexMin = i;
+        for (int j = i + 1; j &lt; n; j++) {
+            if (array[j] &lt; array[indexMin]) {
+                indexMin = j;
+            }
+        }
+        
+        // Intercanviar l&#39;element mínim amb el primer element
+        if (indexMin != i) {
+            int temp = array[i];
+            array[i] = array[indexMin];
+            array[indexMin] = temp;
+        }
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h4>Ordenació per Inserció (Insertion Sort)</h4>
+    <p>Construeix l'array ordenat element per element, inserint cada nou element en la seva posició correcta:</p>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public static void ordenaInsercio(int[] array) {
+    for (int i = 1; i &lt; array.length; i++) {
+        int clau = array[i];
+        int j = i - 1;
+        
+        // Moure elements majors que &#39;clau&#39; una posició endavant
+        while (j &gt;= 0 &amp;&amp; array[j] &gt; clau) {
+            array[j + 1] = array[j];
+            j--;
+        }
+        
+        array[j + 1] = clau;
+    }
+}
+
+// Versió detallada que mostra el procés
+public static void ordenaInsercioDetallada(int[] array) {
+    System.out.println(&quot;Array inicial: &quot; + java.util.Arrays.toString(array));
+    
+    for (int i = 1; i &lt; array.length; i++) {
+        int clau = array[i];
+        int j = i - 1;
+        
+        System.out.println(&quot;Inserint &quot; + clau + &quot; en posició correcta...&quot;);
+        
+        while (j &gt;= 0 &amp;&amp; array[j] &gt; clau) {
+            array[j + 1] = array[j];
+            j--;
+        }
+        
+        array[j + 1] = clau;
+        System.out.println(&quot;Després del pas &quot; + i + &quot;: &quot; + java.util.Arrays.toString(array));
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Comparació d'Algorismes</h3>
+    
+    <table class="responsive-table">
+        <thead>
+            <tr>
+                <th>Algorisme</th>
+                <th>Complexitat Millor Cas</th>
+                <th>Complexitat Cas Mitjà</th>
+                <th>Complexitat Pitjor Cas</th>
+                <th>Espai</th>
+                <th>Estable</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Cerca Lineal</strong></td>
+                <td><code>O(1)</code></td>
+                <td><code>O(n)</code></td>
+                <td><code>O(n)</code></td>
+                <td><code>O(1)</code></td>
+                <td>N/A</td>
+            </tr>
+            <tr>
+                <td><strong>Cerca Binària</strong></td>
+                <td><code>O(1)</code></td>
+                <td><code>O(log n)</code></td>
+                <td><code>O(log n)</code></td>
+                <td><code>O(1)</code></td>
+                <td>N/A</td>
+            </tr>
+            <tr>
+                <td><strong>Bombolla</strong></td>
+                <td><code>O(n)</code></td>
+                <td><code>O(n²)</code></td>
+                <td><code>O(n²)</code></td>
+                <td><code>O(1)</code></td>
+                <td>Sí</td>
+            </tr>
+            <tr>
+                <td><strong>Selecció</strong></td>
+                <td><code>O(n²)</code></td>
+                <td><code>O(n²)</code></td>
+                <td><code>O(n²)</code></td>
+                <td><code>O(1)</code></td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td><strong>Inserció</strong></td>
+                <td><code>O(n)</code></td>
+                <td><code>O(n²)</code></td>
+                <td><code>O(n²)</code></td>
+                <td><code>O(1)</code></td>
+                <td>Sí</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Algorisme Estable:</strong> Un algorisme d'ordenació és estable si manté l'ordre relatiu d'elements amb claus iguals.</p>
+  </div>
+</div>
+
+
+    <h3>Exemple Pràctic Complet</h3>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public class AlgorismesArrays {
+    public static void main(String[] args) {
+        // Array de prova
+        int[] numeros = {64, 34, 25, 12, 22, 11, 90, 5};
+        
+        System.out.println(&quot;=== PROVES DE CERCA ===&quot;);
+        System.out.println(&quot;Array: &quot; + java.util.Arrays.toString(numeros));
+        
+        // Cerca lineal
+        int valorBuscat = 22;
+        int resultat = cercaLineal(numeros, valorBuscat);
+        System.out.println(&quot;Cerca lineal de &quot; + valorBuscat + &quot;: &quot; + 
+                          (resultat != -1 ? &quot;trobat a posició &quot; + resultat : &quot;no trobat&quot;));
+        
+        System.out.println(&quot;\n=== PROVES D&#39;ORDENACIÓ ===&quot;);
+        
+        // Provar cada algorisme amb còpia de l&#39;array
+        int[] copia1 = numeros.clone();
+        int[] copia2 = numeros.clone();
+        int[] copia3 = numeros.clone();
+        
+        System.out.println(&quot;Array original: &quot; + java.util.Arrays.toString(numeros));
+        
+        ordenaBombolla(copia1);
+        System.out.println(&quot;Bombolla: &quot; + java.util.Arrays.toString(copia1));
+        
+        ordenaSeleccio(copia2);
+        System.out.println(&quot;Selecció: &quot; + java.util.Arrays.toString(copia2));
+        
+        ordenaInsercio(copia3);
+        System.out.println(&quot;Inserció: &quot; + java.util.Arrays.toString(copia3));
+        
+        // Provar cerca binària amb array ordenat
+        System.out.println(&quot;\n=== CERCA BINÀRIA ===&quot;);
+        int resultatBinari = cercaBinaria(copia1, valorBuscat);
+        System.out.println(&quot;Cerca binària de &quot; + valorBuscat + &quot; en array ordenat: &quot; + 
+                          (resultatBinari != -1 ? &quot;trobat a posició &quot; + resultatBinari : &quot;no trobat&quot;));
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <strong>Important:</strong> Sempre verifica els límits de l'array per evitar <code>ArrayIndexOutOfBoundsException</code>. L'últim índex vàlid és sempre <code>array.length - 1</code>.
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Explica'm quan seria millor usar QuickSort o MergeSort en lloc d'aquests algorismes bàsics. També vull entendre com implementar una cerca binària per a cadenes de text.</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat6_Bloc1_Seccio5">Exercicis Pràctics</h2>
+    
+    <p>A continuació es proposen exercicis per practicar amb arrays:</p>
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Invertir un Array</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Escriu un programa que inverteixi un array de 5 elements.</p></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Fàcil</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+  </div>
+</div>
+
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Mitjana d'una Matriu</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Crea una matriu 4x4 i calcula la mitjana dels seus valors.</p></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Fàcil</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">20 min</span>
+      
+    </div>
+
+    
+  </div>
+</div>
+
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Cerca en Array i Matriu</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Escriu un programa que cerqui un valor tant en un array com en una matriu.</p></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">25 min</span>
+      
+    </div>
+
+    
+  </div>
+</div>
+
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Valor Màxim</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Implementa una funció per calcular el valor més gran d'un array i d'una matriu.</p></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">20 min</span>
+      
+    </div>
+
+    
+  </div>
+</div>
+
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Diagonal Aleatòria</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Crea una matriu 5x5 i omple la diagonal principal amb nombres aleatoris.</p></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">25 min</span>
+      
+    </div>
+
+    
+  </div>
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Crea'm exercicis addicionals amb arrays que incloguin ordenació, cerca binària i manipulació de matrius. Vull practicar conceptes més avançats.</div>
+  </div>
+</div>
+
+</div>
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 1: Estructures de dades bàsiques",
+  "description": "Arrays unidimensionals i bidimensionals en Java",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Programació II — IOC",
+    "description": "Materials del mòdul Programació II - DA2_0485B2"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                        
+                                        
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/da2_0485b2/unitat-6/bloc-2/" class="nav-button" aria-label="Bloc següent: Col·leccions i tipus de dades avançats">Següent →</a>
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="6" data-total="2">(6/2)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 300%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="1" data-total="2">(1/2)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 50%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="5">(1/5)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 20%"></div></div>
+                    </div></div>
+            <div class="footer-actions">
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/da2_0485b2/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts del lloc -->
+    <script src="/ioc/da2_0485b2/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>
