@@ -1,0 +1,1844 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 1: Herència, polimorfisme i composició | Programació II - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="7">
+    <meta name="page-bloc" content="1">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 1: Herència, polimorfisme i composició | Programació II</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 1: Herència, polimorfisme i composició" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Fonaments de la programació orientada a objectes: classes, objectes, herència, polimorfisme i composició" />
+<meta property="og:description" content="Fonaments de la programació orientada a objectes: classes, objectes, herència, polimorfisme i composició" />
+<link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-7/bloc-1/" />
+<meta property="og:url" content="http://localhost:4003/ioc/da2_0485b2/unitat-7/bloc-1/" />
+<meta property="og:site_name" content="Programació II" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 1: Herència, polimorfisme i composició" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Fonaments de la programació orientada a objectes: classes, objectes, herència, polimorfisme i composició","headline":"Bloc 1: Herència, polimorfisme i composició","url":"http://localhost:4003/ioc/da2_0485b2/unitat-7/bloc-1/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-7/bloc-1/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/da2_0485b2/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4003/ioc/da2_0485b2/feed.xml" title="Programació II" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/code-block.css">
+    <script src="/ioc/da2_0485b2/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/da2_0485b2/" class="logo-link">
+                <img src="/ioc/da2_0485b2/assets/images/logo_IOC_light.jpg" 
+                     alt="Institut Obert de Catalunya" 
+                     class="logo logo-light">
+                <img src="/ioc/da2_0485b2/assets/images/logo_IOC_dark.png" 
+                     alt="Institut Obert de Catalunya" 
+                     class="logo logo-dark">
+            </a>
+            <a href="/ioc/da2_0485b2/" class="title-link">
+                <h1>DA2_0485B2 - Programació II</h1>
+            </a>
+        </div>
+        <div class="header-controls">
+            <div class="nav-dropdown" id="nav-dropdown">
+                <button class="nav-dropdown-btn" id="nav-dropdown-btn">Navegació</button>
+                <div class="nav-dropdown-content" id="nav-dropdown-content">
+                    <a href="/ioc/da2_0485b2/" class="nav-dropdown-item ">Índex del Curs</a>
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-5/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 5 - Bloc 1: Conceptes bàsics d'E/S per consola
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-5/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 5 - Bloc 2: E/S basada en fitxers
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-6/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 6 - Bloc 1: Estructures de dades bàsiques
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-6/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 6 - Bloc 2: Col·leccions i tipus de dades avançats
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-7/bloc-1/" class="nav-dropdown-item current">
+                                Unitat 7 - Bloc 1: Herència, polimorfisme i composició
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-7/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 7 - Bloc 2: Característiques avançades i abstracció
+                            </a>
+                        
+                    
+                </div>
+            </div>
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <!-- Contingut d'aquest Bloc -->
+            <div class="sidebar-section">
+                <h3>Contingut del Bloc</h3>
+                
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat7_Bloc1_Seccio1" class="nav-link" data-section="Unitat7_Bloc1_Seccio1">Fonaments de la Programació Orientada a Objectes</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat7_Bloc1_Seccio2" class="nav-link" data-section="Unitat7_Bloc1_Seccio2">Classes i Objectes en Java</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat7_Bloc1_Seccio3" class="nav-link" data-section="Unitat7_Bloc1_Seccio3">La Paraula Clau 'this'</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat7_Bloc1_Seccio4" class="nav-link" data-section="Unitat7_Bloc1_Seccio4">Herència en Java</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat7_Bloc1_Seccio5" class="nav-link" data-section="Unitat7_Bloc1_Seccio5">Polimorfisme</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat7_Bloc1_Seccio6" class="nav-link" data-section="Unitat7_Bloc1_Seccio6">Composició vs Herència</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat7_Bloc1_Seccio7" class="nav-link" data-section="Unitat7_Bloc1_Seccio7">Pràctiques</a>
+        </div>
+    
+
+
+
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/da2_0485b2/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/da2_0485b2/unitat-7/" class="horizontal-nav-item">
+                                Unitat 7: Utilització avançada de classes (RA7)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 7.1: Herència, polimorfisme i composició
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<!--
+  Pàgina de contingut del Bloc 1 (Unitat 7)
+  Contingut basat en PDF: U7 - Nucli 1_ Herència, polimorfisme i composició.pdf
+  + Fonaments de classes i objectes afegits
+-->
+
+<div class="section">
+    <h2 id="Unitat7_Bloc1_Seccio1">Fonaments de la Programació Orientada a Objectes</h2>
+    
+    <p>La Programació Orientada a Objectes (POO) és un paradigma de programació que organitza el codi en <strong>classes</strong> i <strong>objectes</strong>, permetent una millor abstracció, reutilització i manteniment del codi.</p>
+
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    Els pilars fonamentals de la POO són:<br>
+       • <strong>Encapsulació:</strong> Agrupar dades i mètodes relacionats.<br>
+       • <strong>Herència:</strong> Crear noves classes basades en classes existents.<br>
+       • <strong>Polimorfisme:</strong> Utilitzar una interfície comuna per diferents tipus d'objectes.<br>
+       • <strong>Abstracció:</strong> Amagar la complexitat interna i mostrar només el necessari.
+    
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Quin és l'avantatge d'usar encapsulació en lloc de fer tots els atributs públics? Explica amb un exemple simple.</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat7_Bloc1_Seccio2">Classes i Objectes en Java</h2>
+    
+    <h3>Definició de Classes</h3>
+    
+    <p>Una <strong>classe</strong> és un model o plantilla que defineix les propietats (atributs) i comportaments (mètodes) que tindran els objectes creats a partir d'ella.</p>
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Classe:</strong> Plantilla que defineix els atributs i mètodes que compartiran tots els objectes del mateix tipus. És com un plànol per construir objectes.</p>
+  </div>
+</div>
+
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public class Persona {
+    // Atributs (propietats de la classe)
+    private String nom;
+    private int edat;
+    private String email;
+    
+    // Constructor per defecte
+    public Persona() {
+        this.nom = &quot;&quot;;
+        this.edat = 0;
+        this.email = &quot;&quot;;
+    }
+    
+    // Constructor amb paràmetres
+    public Persona(String nom, int edat, String email) {
+        this.nom = nom;
+        this.edat = edat;
+        this.email = email;
+    }
+    
+    // Mètodes getter i setter
+    public String getNom() {
+        return nom;
+    }
+    
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+    
+    public int getEdat() {
+        return edat;
+    }
+    
+    public void setEdat(int edat) {
+        if (edat &gt;= 0) {
+            this.edat = edat;
+        }
+    }
+    
+    // Mètode per mostrar informació
+    public void mostrarInfo() {
+        System.out.println(&quot;Nom: &quot; + nom);
+        System.out.println(&quot;Edat: &quot; + edat);
+        System.out.println(&quot;Email: &quot; + email);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Creació i Ús d'Objectes</h3>
+    
+    <p>Un <strong>objecte</strong> és una instància concreta d'una classe. Quan creem un objecte, estem creant una entitat amb els atributs i mètodes definits en la seva classe.</p>
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Objecte:</strong> Instància específica d'una classe que té valors concrets per als seus atributs i pot executar els mètodes definits en la classe.</p>
+  </div>
+</div>
+
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public class ExemplePersona {
+    public static void main(String[] args) {
+        // Crear objectes de la classe Persona
+        Persona persona1 = new Persona();
+        Persona persona2 = new Persona(&quot;Anna&quot;, 25, &quot;anna@email.com&quot;);
+        
+        // Utilitzar mètodes dels objectes
+        persona1.setNom(&quot;Jordi&quot;);
+        persona1.setEdat(30);
+        
+        System.out.println(&quot;=== Persona 1 ===&quot;);
+        persona1.mostrarInfo();
+        
+        System.out.println(&quot;\n=== Persona 2 ===&quot;);
+        persona2.mostrarInfo();
+        
+        // Comparar objectes
+        System.out.println(&quot;Són la mateixa persona? &quot; + 
+                          (persona1.getNom().equals(persona2.getNom())));
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Modificadors d'Accés</h3>
+    
+    <p>Java utilitza modificadors d'accés per controlar la visibilitat dels atributs i mètodes:</p>
+    
+    <table class="responsive-table">
+        <thead>
+            <tr>
+                <th>Modificador</th>
+                <th>Classe</th>
+                <th>Paquet</th>
+                <th>Subclasse</th>
+                <th>Tots</th>
+                <th>Ús Recomanat</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>private</code></td>
+                <td>✓</td>
+                <td>✗</td>
+                <td>✗</td>
+                <td>✗</td>
+                <td>Atributs interns</td>
+            </tr>
+            <tr>
+                <td><code>package</code> (per defecte)</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✗</td>
+                <td>✗</td>
+                <td>Classes del mateix paquet</td>
+            </tr>
+            <tr>
+                <td><code>protected</code></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✗</td>
+                <td>Herència</td>
+            </tr>
+            <tr>
+                <td><code>public</code></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>API pública</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section">
+    <h2 id="Unitat7_Bloc1_Seccio3">La Paraula Clau 'this'</h2>
+    
+    <p>La paraula clau <code>this</code> fa referència a l'objecte actual dins d'un mètode o constructor. S'utilitza per:</p>
+    
+    <ul>
+        <li>Diferenciar entre atributs i paràmetres amb el mateix nom</li>
+        <li>Passar l'objecte actual com a paràmetre</li>
+        <li>Cridar un constructor des d'un altre constructor</li>
+    </ul>
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>this:</strong> Referència a l'objecte actual. Permet accedir als atributs i mètodes de l'instància actual des de dins la mateixa classe.</p>
+  </div>
+</div>
+
+
+    <h3>Ús Bàsic de 'this'</h3>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public class Cotxe {
+    private String marca;
+    private String model;
+    private int any;
+    
+    // Sense &#39;this&#39; - noms diferents
+    public void setMarca(String m) {
+        marca = m; // Funciona, però no és clar
+    }
+    
+    // Amb &#39;this&#39; - noms iguals
+    public void setModel(String model) {
+        this.model = model; // Necessari per diferenciar
+    }
+    
+    // Constructor amb &#39;this&#39;
+    public Cotxe(String marca, String model, int any) {
+        this.marca = marca;
+        this.model = model;
+        this.any = any;
+    }
+    
+    // Mètode que retorna &#39;this&#39; per encadenar crides
+    public Cotxe setAny(int any) {
+        this.any = any;
+        return this; // Permet encadenar mètodes
+    }
+    
+    public void mostrarInfo() {
+        System.out.println(this.marca + &quot; &quot; + this.model + &quot; (&quot; + this.any + &quot;)&quot;);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Constructors Encadenats amb 'this'</h3>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public class Producte {
+    private String nom;
+    private double preu;
+    private String categoria;
+    
+    // Constructor principal
+    public Producte(String nom, double preu, String categoria) {
+        this.nom = nom;
+        this.preu = preu;
+        this.categoria = categoria;
+    }
+    
+    // Constructor que crida al principal
+    public Producte(String nom, double preu) {
+        this(nom, preu, &quot;General&quot;); // Crida al constructor principal
+    }
+    
+    // Constructor per defecte
+    public Producte() {
+        this(&quot;Producte&quot;, 0.0, &quot;General&quot;); // Crida al constructor principal
+    }
+    
+    // Exemple d&#39;encadenament de mètodes
+    public static void main(String[] args) {
+        Cotxe cotxe = new Cotxe(&quot;Toyota&quot;, &quot;Corolla&quot;, 2020);
+        cotxe.setAny(2023).mostrarInfo(); // Encadenament possible gràcies a &#39;return this&#39;
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <strong>Bones pràctiques amb 'this':</strong><br>
+       • Utilitzar sempre en constructors per claredat<br>
+       • Usar quan hi ha ambigüitat de noms<br>
+       • Retornar 'this' en mètodes setter per permetre encadenament<br>
+       • Evitar l'ús innecessari quan no hi ha conflicte de noms
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat7_Bloc1_Seccio4">Herència en Java</h2>
+    
+    <p>L'<strong>herència</strong> permet crear noves classes basades en classes existents, heretant els seus atributs i mètodes. És un dels pilars fonamentals de la POO.</p>
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Herència:</strong> Mecanisme que permet crear una nova classe (subclasse) basada en una classe existent (superclasse), heretant els seus atributs i mètodes.</p>
+  </div>
+</div>
+
+
+    <h3>Conceptes Bàsics</h3>
+    
+    <ul>
+        <li><strong>Superclasse (classe pare):</strong> La classe de la qual s'hereta</li>
+        <li><strong>Subclasse (classe filla):</strong> La classe que hereta</li>
+        <li><strong>Paraula clau extends:</strong> Indica relació d'herència</li>
+        <li><strong>Paraula clau super:</strong> Referència a la superclasse</li>
+    </ul>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+// Superclasse
+public class Animal {
+    protected String nom;
+    protected int edat;
+    
+    public Animal(String nom, int edat) {
+        this.nom = nom;
+        this.edat = edat;
+    }
+    
+    public void menjar() {
+        System.out.println(nom + &quot; està menjant&quot;);
+    }
+    
+    public void dormir() {
+        System.out.println(nom + &quot; està dormint&quot;);
+    }
+    
+    public void mostrarInfo() {
+        System.out.println(&quot;Nom: &quot; + nom + &quot;, Edat: &quot; + edat);
+    }
+}
+
+// Subclasse
+public class Gos extends Animal {
+    private String raca;
+    
+    public Gos(String nom, int edat, String raca) {
+        super(nom, edat); // Crida al constructor de la superclasse
+        this.raca = raca;
+    }
+    
+    // Mètode específic de Gos
+    public void bordar() {
+        System.out.println(nom + &quot; està bordant: Bup bup!&quot;);
+    }
+    
+    // Sobrescriptura de mètode
+    @Override
+    public void mostrarInfo() {
+        super.mostrarInfo(); // Crida al mètode de la superclasse
+        System.out.println(&quot;Raça: &quot; + raca);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>La Paraula Clau 'super'</h3>
+    
+    <p><code>super</code> s'utilitza per accedir als membres de la superclasse des de la subclasse:</p>
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>super:</strong> Referència a la superclasse immediata. Permet accedir als constructors, mètodes i atributs de la classe pare.</p>
+  </div>
+</div>
+
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public class Gat extends Animal {
+    private boolean esInterior;
+    
+    public Gat(String nom, int edat, boolean esInterior) {
+        super(nom, edat); // Constructor de Animal
+        this.esInterior = esInterior;
+    }
+    
+    public void miolar() {
+        System.out.println(nom + &quot; fa miau&quot;);
+    }
+    
+    @Override
+    public void menjar() {
+        System.out.println(nom + &quot; menja elegantment&quot;);
+        super.dormir(); // Crida al mètode dormir() de Animal després de menjar
+    }
+    
+    @Override
+    public void mostrarInfo() {
+        super.mostrarInfo(); // Informació bàsica d&#39;Animal
+        System.out.println(&quot;Viu a l&#39;interior: &quot; + (esInterior ? &quot;Sí&quot; : &quot;No&quot;));
+    }
+}
+
+// Exemple d&#39;ús
+public class ExempleHerencia {
+    public static void main(String[] args) {
+        Gos gos = new Gos(&quot;Rex&quot;, 3, &quot;Pastor Alemany&quot;);
+        Gat gat = new Gat(&quot;Misi&quot;, 2, true);
+        
+        System.out.println(&quot;=== Informació del gos ===&quot;);
+        gos.mostrarInfo();
+        gos.menjar();
+        gos.bordar();
+        
+        System.out.println(&quot;\n=== Informació del gat ===&quot;);
+        gat.mostrarInfo();
+        gat.menjar();
+        gat.miolar();
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Sobrescriptura de Mètodes (@Override)</h3>
+    
+    <p>La <strong>sobrescriptura</strong> permet a una subclasse proporcionar una implementació específica d'un mètode que ja està definit en la seva superclasse.</p>
+
+    <!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <strong>Regles de sobrescriptura:</strong><br>
+       • El mètode ha de tenir la mateixa signatura (nom, paràmetres, tipus de retorn)<br>
+       • No pot ser més restrictiu en accessibilitat<br>
+       • Ha d'usar l'anotació @Override per evitar errors<br>
+       • Els mètodes finals, estàtics i privats no es poden sobrescriure
+</div>
+
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public class Vehicle {
+    protected String marca;
+    protected int any;
+    
+    public Vehicle(String marca, int any) {
+        this.marca = marca;
+        this.any = any;
+    }
+    
+    public void arrancar() {
+        System.out.println(&quot;El vehicle està arrencant...&quot;);
+    }
+    
+    public void mostrarInfo() {
+        System.out.println(&quot;Vehicle: &quot; + marca + &quot; (&quot; + any + &quot;)&quot;);
+    }
+    
+    // Mètode final - no es pot sobrescriure
+    public final void numeroSerie() {
+        System.out.println(&quot;Número de sèrie: VH&quot; + hashCode());
+    }
+}
+
+public class Motocicleta extends Vehicle {
+    private boolean teCarrozzeria;
+    
+    public Motocicleta(String marca, int any, boolean teCarrozzeria) {
+        super(marca, any);
+        this.teCarrozzeria = teCarrozzeria;
+    }
+    
+    @Override
+    public void arrancar() {
+        System.out.println(&quot;La motocicleta arrenca amb un rugit!&quot;);
+        super.arrancar(); // Opcional: cridar la implementació del pare
+    }
+    
+    @Override
+    public void mostrarInfo() {
+        super.mostrarInfo();
+        System.out.println(&quot;Carrosseria: &quot; + (teCarrozzeria ? &quot;Sí&quot; : &quot;No&quot;));
+    }
+    
+    // Mètode específic de Motocicleta
+    public void ferCaballito() {
+        System.out.println(&quot;La motocicleta fa un caballito!&quot;);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Per què no puc cridar un mètode privat de la superclasse des de la subclasse? Com puc accedir a mètodes de la classe pare?</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat7_Bloc1_Seccio5">Polimorfisme</h2>
+    
+    <p>El <strong>polimorfisme</strong> permet que objectes de diferents classes puguin ser tractats com objectes d'una classe comuna, proporcionant implementacions específiques dels mètodes.</p>
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Polimorfisme:</strong> Capacitat dels objectes de respondre de manera diferent al mateix missatge (mètode) segons el seu tipus real. Permet tractar objectes de diferents classes de manera uniforme.</p>
+  </div>
+</div>
+
+
+    <h3>Polimorfisme per Herència</h3>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+// Exemple amb la jerarquia Animal
+public class ExemplePolimorfisme {
+    public static void main(String[] args) {
+        // Polimorfisme: variables de tipus Animal que apunten a objectes específics
+        Animal animal1 = new Gos(&quot;Toby&quot;, 4, &quot;Labrador&quot;);
+        Animal animal2 = new Gat(&quot;Luna&quot;, 2, false);
+        Animal animal3 = new Animal(&quot;Genèric&quot;, 1);
+        
+        // Array polimòrfic
+        Animal[] animals = {animal1, animal2, animal3};
+        
+        // Comportament polimòrfic: cada animal respon diferent
+        System.out.println(&quot;=== Comportament polimòrfic ===&quot;);
+        for (Animal animal : animals) {
+            animal.mostrarInfo(); // Crida la versió sobrescrita de cada classe
+            animal.menjar();      // Comportament específic de cada tipus
+            System.out.println(&quot;---&quot;);
+        }
+        
+        // Casting per accedir a mètodes específics
+        if (animal1 instanceof Gos) {
+            Gos gos = (Gos) animal1;
+            gos.bordar(); // Només disponible després del casting
+        }
+        
+        if (animal2 instanceof Gat) {
+            ((Gat) animal2).miolar(); // Casting directe
+        }
+    }
+    
+    // Mètode que accepta qualsevol Animal (polimorfisme de paràmetres)
+    public static void cuidarAnimal(Animal animal) {
+        System.out.println(&quot;Cuidant l&#39;animal:&quot;);
+        animal.mostrarInfo();
+        animal.menjar();
+        animal.dormir();
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Operador instanceof i Casting</h3>
+    
+    <p>L'operador <code>instanceof</code> permet verificar el tipus real d'un objecte abans de fer un casting:</p>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public class GestorAnimals {
+    
+    public static void processarAnimal(Animal animal) {
+        // Informació general (disponible per tots)
+        animal.mostrarInfo();
+        animal.menjar();
+        
+        // Comportament específic segons el tipus
+        if (animal instanceof Gos) {
+            Gos gos = (Gos) animal;
+            gos.bordar();
+            System.out.println(&quot;Aquest gos és de raça específica&quot;);
+            
+        } else if (animal instanceof Gat) {
+            Gat gat = (Gat) animal;
+            gat.miolar();
+            System.out.println(&quot;Aquest gat té comportament felí&quot;);
+            
+        } else {
+            System.out.println(&quot;Animal genèric&quot;);
+        }
+    }
+    
+    public static void main(String[] args) {
+        Animal[] refugi = {
+            new Gos(&quot;Max&quot;, 5, &quot;Golden Retriever&quot;),
+            new Gat(&quot;Whiskers&quot;, 3, true),
+            new Animal(&quot;Exòtic&quot;, 2)
+        };
+        
+        for (Animal animal : refugi) {
+            processarAnimal(animal);
+            System.out.println(&quot;=&quot; .repeat(30));
+        }
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Polimorfisme en Acció: Exemple Pràctic</h3>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+// Simulació d&#39;un sistema de formes geomètriques
+abstract class Forma {
+    protected String color;
+    
+    public Forma(String color) {
+        this.color = color;
+    }
+    
+    // Mètodes abstractes (han de ser implementats per les subclasses)
+    public abstract double calcularArea();
+    public abstract double calcularPerimetre();
+    
+    // Mètode concret (opcional sobrescriure)
+    public void mostrarInfo() {
+        System.out.printf(&quot;Forma de color %s - Àrea: %.2f - Perímetre: %.2f%n&quot;,
+                         color, calcularArea(), calcularPerimetre());
+    }
+}
+
+class Rectangle extends Forma {
+    private double ample, alt;
+    
+    public Rectangle(String color, double ample, double alt) {
+        super(color);
+        this.ample = ample;
+        this.alt = alt;
+    }
+    
+    @Override
+    public double calcularArea() {
+        return ample * alt;
+    }
+    
+    @Override
+    public double calcularPerimetre() {
+        return 2 * (ample + alt);
+    }
+}
+
+class Cercle extends Forma {
+    private double radi;
+    
+    public Cercle(String color, double radi) {
+        super(color);
+        this.radi = radi;
+    }
+    
+    @Override
+    public double calcularArea() {
+        return Math.PI * radi * radi;
+    }
+    
+    @Override
+    public double calcularPerimetre() {
+        return 2 * Math.PI * radi;
+    }
+}
+
+// Ús polimòrfic
+public class CalculadoraFormes {
+    public static void main(String[] args) {
+        Forma[] formes = {
+            new Rectangle(&quot;Blau&quot;, 5, 3),
+            new Cercle(&quot;Vermell&quot;, 2.5),
+            new Rectangle(&quot;Verd&quot;, 4, 4)
+        };
+        
+        double areaTotal = 0;
+        
+        System.out.println(&quot;=== Càlcul polimòrfic ===&quot;);
+        for (Forma forma : formes) {
+            forma.mostrarInfo(); // Polimorfisme en acció
+            areaTotal += forma.calcularArea();
+        }
+        
+        System.out.printf(&quot;\nÀrea total de totes les formes: %.2f%n&quot;, areaTotal);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <strong>Avantatges del polimorfisme:</strong><br>
+       • Codi més flexible i extensible<br>
+       • Facilita la reutilització i el manteniment<br>
+       • Permet tractar objectes diversos de manera uniforme<br>
+       • Base per a molts patrons de disseny
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat7_Bloc1_Seccio6">Composició vs Herència</h2>
+    
+    <p>La <strong>composició</strong> és una alternativa a l'herència que consisteix a construir classes utilitzant objectes d'altres classes com a components interns.</p>
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Composició:</strong> Relació 'té un' on una classe conté objectes d'altres classes com a atributs. És una alternativa a l'herència que proporciona major flexibilitat.</p>
+  </div>
+</div>
+
+
+    <h3>Diferències entre Herència i Composició</h3>
+    
+    <table class="responsive-table">
+        <thead>
+            <tr>
+                <th>Aspecte</th>
+                <th>Herència (és un)</th>
+                <th>Composició (té un)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Relació</strong></td>
+                <td>Gos "és un" Animal</td>
+                <td>Cotxe "té un" Motor</td>
+            </tr>
+            <tr>
+                <td><strong>Acoblament</strong></td>
+                <td>Fort (subclasse depèn de superclasse)</td>
+                <td>Dèbil (classes independents)</td>
+            </tr>
+            <tr>
+                <td><strong>Flexibilitat</strong></td>
+                <td>Limitada (una sola superclasse)</td>
+                <td>Alta (múltiples components)</td>
+            </tr>
+            <tr>
+                <td><strong>Reutilització</strong></td>
+                <td>Per herència</td>
+                <td>Per delegació</td>
+            </tr>
+            <tr>
+                <td><strong>Canvis en runtime</strong></td>
+                <td>Impossible</td>
+                <td>Possible</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Exemple de Composició</h3>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+// Components independents
+class Motor {
+    private String tipus;
+    private int potencia;
+    
+    public Motor(String tipus, int potencia) {
+        this.tipus = tipus;
+        this.potencia = potencia;
+    }
+    
+    public void arrancar() {
+        System.out.println(&quot;Motor &quot; + tipus + &quot; arrencant (&quot; + potencia + &quot; CV)&quot;);
+    }
+    
+    public void aturar() {
+        System.out.println(&quot;Motor &quot; + tipus + &quot; aturat&quot;);
+    }
+    
+    public String getTipus() { return tipus; }
+    public int getPotencia() { return potencia; }
+}
+
+class Roda {
+    private double diametre;
+    private String tipus;
+    
+    public Roda(double diametre, String tipus) {
+        this.diametre = diametre;
+        this.tipus = tipus;
+    }
+    
+    public void girar() {
+        System.out.println(&quot;Roda &quot; + tipus + &quot; de &quot; + diametre + &quot;\&quot; girant&quot;);
+    }
+    
+    public double getDiametre() { return diametre; }
+    public String getTipus() { return tipus; }
+}
+
+// Classe principal que usa composició
+class Cotxe {
+    private String marca;
+    private String model;
+    private Motor motor;        // Composició: Cotxe &quot;té un&quot; Motor
+    private Roda[] rodes;       // Composició: Cotxe &quot;té&quot; Rodes
+    
+    public Cotxe(String marca, String model, Motor motor) {
+        this.marca = marca;
+        this.model = model;
+        this.motor = motor;
+        
+        // Crear rodes per defecte
+        this.rodes = new Roda[4];
+        for (int i = 0; i &lt; 4; i++) {
+            rodes[i] = new Roda(17.0, &quot;Estàndard&quot;);
+        }
+    }
+    
+    // Delegar comportament al motor
+    public void arrancar() {
+        System.out.println(marca + &quot; &quot; + model + &quot; arrencant:&quot;);
+        motor.arrancar();
+    }
+    
+    public void aturar() {
+        motor.aturar();
+        System.out.println(marca + &quot; &quot; + model + &quot; aturat&quot;);
+    }
+    
+    // Delegar comportament a les rodes
+    public void conduir() {
+        System.out.println(&quot;Conduint el &quot; + marca + &quot; &quot; + model);
+        for (Roda roda : rodes) {
+            roda.girar();
+        }
+    }
+    
+    // Canviar components en runtime (flexibilitat de la composició)
+    public void canviarMotor(Motor nouMotor) {
+        System.out.println(&quot;Canviant motor...&quot;);
+        this.motor = nouMotor;
+    }
+    
+    public void canviarRodes(Roda novaRoda) {
+        for (int i = 0; i &lt; rodes.length; i++) {
+            rodes[i] = novaRoda;
+        }
+    }
+    
+    public void mostrarEspecificacions() {
+        System.out.println(&quot;=== &quot; + marca + &quot; &quot; + model + &quot; ===&quot;);
+        System.out.println(&quot;Motor: &quot; + motor.getTipus() + &quot; (&quot; + motor.getPotencia() + &quot; CV)&quot;);
+        System.out.println(&quot;Rodes: &quot; + rodes[0].getTipus() + &quot; &quot; + rodes[0].getDiametre() + &quot;\&quot;&quot;);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Composició vs Herència: Exemple Comparatiu</h3>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+// HERÈNCIA - Relació &quot;és un&quot;
+class VehicleBase {
+    protected String marca;
+    protected void arrancar() { System.out.println(&quot;Arrencant vehicle&quot;); }
+}
+
+class CotxeHerencia extends VehicleBase {
+    public CotxeHerencia(String marca) {
+        this.marca = marca;
+    }
+    
+    @Override
+    public void arrancar() {
+        System.out.println(&quot;Arrencant cotxe &quot; + marca);
+    }
+    
+    // Problemàtic: Si volem canviar el tipus de motor, hem de crear subclasses
+    // CotxeDiesel, CotxeGasolina, CotxeElectric...
+}
+
+// COMPOSICIÓ - Relació &quot;té un&quot;
+class CotxeComposicio {
+    private String marca;
+    private Motor motor;
+    
+    public CotxeComposicio(String marca, Motor motor) {
+        this.marca = marca;
+        this.motor = motor;
+    }
+    
+    public void arrancar() {
+        System.out.println(&quot;Arrencant cotxe &quot; + marca);
+        motor.arrancar(); // Delegar al component
+    }
+    
+    // Flexibilitat: podem canviar el motor dinàmicament
+    public void canviarMotor(Motor nouMotor) {
+        this.motor = nouMotor;
+    }
+}
+
+// Exemple d&#39;ús
+public class ComparacioHerenciaComposicio {
+    public static void main(String[] args) {
+        // Composició: més flexibilitat
+        Motor motorGasolina = new Motor(&quot;Gasolina&quot;, 150);
+        Motor motorElectric = new Motor(&quot;Elèctric&quot;, 200);
+        
+        CotxeComposicio tesla = new CotxeComposicio(&quot;Tesla Model 3&quot;, motorElectric);
+        tesla.arrancar();
+        tesla.mostrarEspecificacions();
+        
+        // Canviar components en runtime
+        tesla.canviarMotor(motorGasolina); // Simulació de canvi
+        System.out.println(&quot;\nDesprés del canvi de motor:&quot;);
+        tesla.mostrarEspecificacions();
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Quan Usar Herència vs Composició</h3>
+    
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <strong>Usa HERÈNCIA quan:</strong><br>
+       • Hi ha una relació clara 'és un' (Gos és un Animal)<br>
+       • Vols aprofitar el polimorfisme<br>
+       • Les classes estan estretament relacionades<br>
+       • Necessites sobrescriure comportaments específics<br><br>
+       
+       <strong>Usa COMPOSICIÓ quan:</strong><br>
+       • Hi ha una relació 'té un' (Cotxe té un Motor)<br>
+       • Vols major flexibilitat i menys acoblament<br>
+       • Necessites canviar comportaments en runtime<br>
+       • Vols combinar funcionalitats de múltiples classes
+    
+</div>
+
+
+    <!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <strong>Principi:</strong> 'Favor composition over inheritance' - En general, prefereix la composició sobre l'herència per crear sistemes més flexibles i mantenibles.
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Si tinc un 'Animal[] animals' amb gossos i gats, com puc cridar el mètode 'miolar()' només dels gats?</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat7_Bloc1_Seccio7">Pràctiques</h2>
+    
+    <p>Exercicis per consolidar els conceptes de POO, herència, polimorfisme i composició.</p>
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Pràctica amb 'this'</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Crea una classe <code>Cotxe</code> amb els atributs <code>marca</code>, <code>model</code> i <code>any</code>. Implementa:</p>
+       <ul>
+           <li>Constructor que utilitza <code>this</code> per assignar els paràmetres</li>
+           <li>Mètode <code>setAny(int any)</code> que retorni <code>this</code> per encadenar</li>
+           <li>Prova l'encadenament: <code>cotxe.setAny(2023).mostrarInfo()</code></li>
+       </ul></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Fàcil</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">10 min</span>
+      
+    </div>
+
+    
+  </div>
+</div>
+
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Herència Bàsica</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Crea una jerarquia simple d'animals:</p>
+       <ul>
+           <li>Classe <code>Animal</code> amb nom i mètode <code>fer_so()</code></li>
+           <li>Classe <code>Gos</code> que hereta d'Animal i sobrescriu <code>fer_so()</code></li>
+           <li>Utilitza <code>super()</code> en el constructor del gos</li>
+           <li>Crea objectes i prova el polimorfisme</li>
+       </ul></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Fàcil</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+  </div>
+</div>
+
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Composició vs Herència</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Compara herència i composició creant dues versions d'un cotxe:</p>
+       <ul>
+           <li>Versió 1: <code>CotxeElectric extends Cotxe</code></li>
+           <li>Versió 2: <code>Cotxe</code> amb atribut <code>Motor motor</code></li>
+           <li>Implementa el mètode <code>arrancar()</code> en ambdues versions</li>
+           <li>Reflexiona: quan és millor cada aproximació?</li>
+       </ul></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">20 min</span>
+      
+    </div>
+
+    
+  </div>
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">En quin cas és millor usar composició en lloc d'herència? Dona'm un exemple senzill per entendre-ho.</div>
+  </div>
+</div>
+
+</div>
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 1: Herència, polimorfisme i composició",
+  "description": "Fonaments de la programació orientada a objectes: classes, objectes, herència, polimorfisme i composició",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Programació II — IOC",
+    "description": "Materials del mòdul Programació II - DA2_0485B2"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                        
+                                        
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/da2_0485b2/unitat-7/bloc-2/" class="nav-button" aria-label="Bloc següent: Característiques avançades i abstracció">Següent →</a>
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="7" data-total="3">(7/3)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 233%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="1" data-total="2">(1/2)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 50%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="7">(1/7)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 14%"></div></div>
+                    </div></div>
+            <div class="footer-actions">
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/da2_0485b2/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts del lloc -->
+    <script src="/ioc/da2_0485b2/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

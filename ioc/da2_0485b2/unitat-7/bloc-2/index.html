@@ -1,0 +1,2526 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 2: Característiques avançades i abstracció | Programació II - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="7">
+    <meta name="page-bloc" content="2">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 2: Característiques avançades i abstracció | Programació II</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 2: Característiques avançades i abstracció" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Classes abstractes, interfícies, principis SOLID i patrons de disseny orientats a objectes" />
+<meta property="og:description" content="Classes abstractes, interfícies, principis SOLID i patrons de disseny orientats a objectes" />
+<link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-7/bloc-2/" />
+<meta property="og:url" content="http://localhost:4003/ioc/da2_0485b2/unitat-7/bloc-2/" />
+<meta property="og:site_name" content="Programació II" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 2: Característiques avançades i abstracció" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Classes abstractes, interfícies, principis SOLID i patrons de disseny orientats a objectes","headline":"Bloc 2: Característiques avançades i abstracció","url":"http://localhost:4003/ioc/da2_0485b2/unitat-7/bloc-2/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-7/bloc-2/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/da2_0485b2/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4003/ioc/da2_0485b2/feed.xml" title="Programació II" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/code-block.css">
+    <script src="/ioc/da2_0485b2/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/da2_0485b2/" class="logo-link">
+                <img src="/ioc/da2_0485b2/assets/images/logo_IOC_light.jpg" 
+                     alt="Institut Obert de Catalunya" 
+                     class="logo logo-light">
+                <img src="/ioc/da2_0485b2/assets/images/logo_IOC_dark.png" 
+                     alt="Institut Obert de Catalunya" 
+                     class="logo logo-dark">
+            </a>
+            <a href="/ioc/da2_0485b2/" class="title-link">
+                <h1>DA2_0485B2 - Programació II</h1>
+            </a>
+        </div>
+        <div class="header-controls">
+            <div class="nav-dropdown" id="nav-dropdown">
+                <button class="nav-dropdown-btn" id="nav-dropdown-btn">Navegació</button>
+                <div class="nav-dropdown-content" id="nav-dropdown-content">
+                    <a href="/ioc/da2_0485b2/" class="nav-dropdown-item ">Índex del Curs</a>
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-5/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 5 - Bloc 1: Conceptes bàsics d'E/S per consola
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-5/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 5 - Bloc 2: E/S basada en fitxers
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-6/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 6 - Bloc 1: Estructures de dades bàsiques
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-6/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 6 - Bloc 2: Col·leccions i tipus de dades avançats
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-7/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 7 - Bloc 1: Herència, polimorfisme i composició
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-7/bloc-2/" class="nav-dropdown-item current">
+                                Unitat 7 - Bloc 2: Característiques avançades i abstracció
+                            </a>
+                        
+                    
+                </div>
+            </div>
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <!-- Contingut d'aquest Bloc -->
+            <div class="sidebar-section">
+                <h3>Contingut del Bloc</h3>
+                
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat7_Bloc2_Seccio1" class="nav-link" data-section="Unitat7_Bloc2_Seccio1">Classes Abstractes</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat7_Bloc2_Seccio2" class="nav-link" data-section="Unitat7_Bloc2_Seccio2">Interfícies</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat7_Bloc2_Seccio3" class="nav-link" data-section="Unitat7_Bloc2_Seccio3">Classes Abstractes vs Interfícies</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat7_Bloc2_Seccio4" class="nav-link" data-section="Unitat7_Bloc2_Seccio4">Principis SOLID</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat7_Bloc2_Seccio5" class="nav-link" data-section="Unitat7_Bloc2_Seccio5">Introducció als Patrons de Disseny</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat7_Bloc2_Seccio6" class="nav-link" data-section="Unitat7_Bloc2_Seccio6">Pràctiques</a>
+        </div>
+    
+
+
+
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/da2_0485b2/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/da2_0485b2/unitat-7/" class="horizontal-nav-item">
+                                Unitat 7: Utilització avançada de classes (RA7)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 7.2: Característiques avançades i abstracció
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<!--
+  Pàgina de contingut del Bloc 2 (Unitat 7)
+  Contingut sobre característiques avançades de POO i abstracció
+-->
+
+<div class="section">
+    <h2 id="Unitat7_Bloc2_Seccio1">Classes Abstractes</h2>
+    
+    <p>Una <strong>classe abstracta</strong> és una classe que no es pot instanciar directament i que està dissenyada per ser heretada per altres classes. Pot contenir mètodes concrets i mètodes abstractes.</p>
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Classe Abstracta:</strong> Classe que no pot ser instanciada i que conté un o més mètodes abstractes. Serveix com a plantilla per a subclasses que han d'implementar els mètodes abstractes.</p>
+  </div>
+</div>
+
+
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    Característiques de les classes abstractes:<br>
+       • Utilitzen la paraula clau <code>abstract</code><br>
+       • No es poden instanciar amb <code>new</code><br>
+       • Poden tenir mètodes concrets i abstractes<br>
+       • Poden tenir constructors, atributs i mètodes estàtics<br>
+       • Les subclasses han d'implementar tots els mètodes abstractes
+    
+</div>
+
+
+    <h3>Sintaxi i Exemple Bàsic</h3>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+// Classe abstracta base
+public abstract class Figura {
+    protected String nom;
+    protected String color;
+    
+    // Constructor (les classes abstractes poden tenir constructors)
+    public Figura(String nom, String color) {
+        this.nom = nom;
+        this.color = color;
+    }
+    
+    // Mètodes concrets (implementació proporcionada)
+    public String getNom() {
+        return nom;
+    }
+    
+    public String getColor() {
+        return color;
+    }
+    
+    public void mostrarInfo() {
+        System.out.println(&quot;Figura: &quot; + nom + &quot; de color &quot; + color);
+    }
+    
+    // Mètodes abstractes (han de ser implementats per les subclasses)
+    public abstract double calcularArea();
+    public abstract double calcularPerimetre();
+    public abstract void dibuixar();
+}
+
+// Subclasse concreta que implementa tots els mètodes abstractes
+public class Quadrat extends Figura {
+    private double costat;
+    
+    public Quadrat(String color, double costat) {
+        super(&quot;Quadrat&quot;, color); // Cridar constructor de la classe abstracta
+        this.costat = costat;
+    }
+    
+    @Override
+    public double calcularArea() {
+        return costat * costat;
+    }
+    
+    @Override
+    public double calcularPerimetre() {
+        return 4 * costat;
+    }
+    
+    @Override
+    public void dibuixar() {
+        System.out.println(&quot;Dibuixant un quadrat de &quot; + costat + &quot; unitats&quot;);
+    }
+    
+    // Mètode específic de Quadrat
+    public double getCostat() {
+        return costat;
+    }
+}
+
+public class Triangle extends Figura {
+    private double base, altura, costat1, costat2;
+    
+    public Triangle(String color, double base, double altura, double costat1, double costat2) {
+        super(&quot;Triangle&quot;, color);
+        this.base = base;
+        this.altura = altura;
+        this.costat1 = costat1;
+        this.costat2 = costat2;
+    }
+    
+    @Override
+    public double calcularArea() {
+        return (base * altura) / 2.0;
+    }
+    
+    @Override
+    public double calcularPerimetre() {
+        return base + costat1 + costat2;
+    }
+    
+    @Override
+    public void dibuixar() {
+        System.out.println(&quot;Dibuixant un triangle amb base &quot; + base + &quot; i altura &quot; + altura);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Exemple d'Ús de Classes Abstractes</h3>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public class ExempleClassesAbstractes {
+    public static void main(String[] args) {
+        // Error de compilació: no es pot instanciar una classe abstracta
+        // Figura figura = new Figura(&quot;Test&quot;, &quot;Blau&quot;); // ❌ No funciona
+        
+        // Crear instàncies de subclasses concretes
+        Figura quadrat = new Quadrat(&quot;Vermell&quot;, 5.0);
+        Figura triangle = new Triangle(&quot;Blau&quot;, 6.0, 4.0, 3.0, 5.0);
+        
+        // Array polimòrfic amb figures
+        Figura[] figures = {quadrat, triangle};
+        
+        System.out.println(&quot;=== Informació de les figures ===&quot;);
+        for (Figura figura : figures) {
+            figura.mostrarInfo();
+            figura.dibuixar();
+            System.out.printf(&quot;Àrea: %.2f, Perímetre: %.2f%n&quot;, 
+                             figura.calcularArea(), figura.calcularPerimetre());
+            System.out.println(&quot;---&quot;);
+        }
+        
+        // Processar figures de manera polimòrfica
+        double areaTotal = calcularAreaTotal(figures);
+        System.out.printf(&quot;Àrea total de totes les figures: %.2f%n&quot;, areaTotal);
+    }
+    
+    // Mètode que treballa amb classes abstractes polimòrficament
+    public static double calcularAreaTotal(Figura[] figures) {
+        double total = 0;
+        for (Figura figura : figures) {
+            total += figura.calcularArea(); // Polimorfisme
+        }
+        return total;
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Puc implementar mètodes en una interfície? Quina és la diferència amb els mètodes per defecte?</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat7_Bloc2_Seccio2">Interfícies</h2>
+    
+    <p>Una <strong>interfície</strong> defineix un contracte que les classes han de complir, especificant quins mètodes han d'implementar sense proporcionar la implementació.</p>
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Interfície:</strong> Contracte que especifica un conjunt de mètodes que una classe ha d'implementar. Defineix 'què' ha de fer una classe, però no 'com' ho ha de fer.</p>
+  </div>
+</div>
+
+
+    <h3>Característiques de les Interfícies</h3>
+    
+    <ul>
+        <li>Tots els mètodes són implícitament <code>public</code> i <code>abstract</code> (Java 7 i anteriors)</li>
+        <li>Poden tenir mètodes per defecte i estàtics (Java 8+)</li>
+        <li>Tots els atributs són implícitament <code>public</code>, <code>static</code> i <code>final</code></li>
+        <li>Una classe pot implementar múltiples interfícies</li>
+        <li>Les interfícies poden estendre altres interfícies</li>
+    </ul>
+
+    <h3>Sintaxi i Exemple Bàsic</h3>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+// Interfície bàsica
+public interface Drawable {
+    // Constant (implícitament public static final)
+    String DEFAULT_COLOR = &quot;Negre&quot;;
+    
+    // Mètodes abstractes (implícitament public abstract)
+    void dibuixar();
+    void moure(int x, int y);
+    void canviarColor(String color);
+}
+
+// Interfície per objectes que es poden redimensionar
+public interface Resizable {
+    void redimensionar(double factor);
+    double getArea();
+}
+
+// Interfície per objectes que es poden rotar
+public interface Rotatable {
+    void rotar(double angle);
+    double getAngle();
+}
+
+// Classe que implementa múltiples interfícies
+public class Rectangle implements Drawable, Resizable, Rotatable {
+    private double ample, alt;
+    private int x, y;
+    private String color;
+    private double angle;
+    
+    public Rectangle(double ample, double alt) {
+        this.ample = ample;
+        this.alt = alt;
+        this.x = 0;
+        this.y = 0;
+        this.color = Drawable.DEFAULT_COLOR;
+        this.angle = 0.0;
+    }
+    
+    // Implementació de Drawable
+    @Override
+    public void dibuixar() {
+        System.out.printf(&quot;Dibuixant rectangle de %.1fx%.1f a (%d,%d) en color %s%n&quot;,
+                         ample, alt, x, y, color);
+    }
+    
+    @Override
+    public void moure(int x, int y) {
+        this.x = x;
+        this.y = y;
+        System.out.printf(&quot;Rectangle mogut a (%d,%d)%n&quot;, x, y);
+    }
+    
+    @Override
+    public void canviarColor(String color) {
+        this.color = color;
+        System.out.println(&quot;Color canviat a: &quot; + color);
+    }
+    
+    // Implementació de Resizable
+    @Override
+    public void redimensionar(double factor) {
+        this.ample *= factor;
+        this.alt *= factor;
+        System.out.printf(&quot;Rectangle redimensionat (factor %.2f): %.1fx%.1f%n&quot;, 
+                         factor, ample, alt);
+    }
+    
+    @Override
+    public double getArea() {
+        return ample * alt;
+    }
+    
+    // Implementació de Rotatable
+    @Override
+    public void rotar(double angle) {
+        this.angle += angle;
+        System.out.printf(&quot;Rectangle rotat %.1f graus (total: %.1f)%n&quot;, angle, this.angle);
+    }
+    
+    @Override
+    public double getAngle() {
+        return angle;
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Mètodes per Defecte i Estàtics (Java 8+)</h3>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+public interface Shape {
+    // Mètode abstracte tradicional
+    double calcularArea();
+    
+    // Mètode per defecte (Java 8+)
+    default void mostrarInfo() {
+        System.out.println(&quot;Aquesta és una forma amb àrea: &quot; + calcularArea());
+    }
+    
+    default boolean esGran() {
+        return calcularArea() &gt; 100.0;
+    }
+    
+    // Mètode estàtic (Java 8+)
+    static void compararArea(Shape s1, Shape s2) {
+        System.out.printf(&quot;Forma 1: %.2f, Forma 2: %.2f%n&quot;, 
+                         s1.calcularArea(), s2.calcularArea());
+        if (s1.calcularArea() &gt; s2.calcularArea()) {
+            System.out.println(&quot;La forma 1 és més gran&quot;);
+        } else if (s2.calcularArea() &gt; s1.calcularArea()) {
+            System.out.println(&quot;La forma 2 és més gran&quot;);
+        } else {
+            System.out.println(&quot;Les formes tenen la mateixa àrea&quot;);
+        }
+    }
+}
+
+public class Cercle implements Shape {
+    private double radi;
+    
+    public Cercle(double radi) {
+        this.radi = radi;
+    }
+    
+    @Override
+    public double calcularArea() {
+        return Math.PI * radi * radi;
+    }
+    
+    // Pot sobrescriure el mètode per defecte si cal
+    @Override
+    public void mostrarInfo() {
+        System.out.printf(&quot;Cercle amb radi %.2f i àrea %.2f%n&quot;, radi, calcularArea());
+    }
+}
+
+// Exemple d&#39;ús
+public class ExempleInterficies {
+    public static void main(String[] args) {
+        Cercle cercle = new Cercle(5.0);
+        Rectangle rectangle = new Rectangle(4.0, 6.0);
+        
+        // Usar mètodes implementats
+        System.out.println(&quot;=== Operacions bàsiques ===&quot;);
+        cercle.mostrarInfo();
+        rectangle.dibuixar();
+        rectangle.moure(10, 20);
+        
+        // Usar mètodes per defecte
+        System.out.println(&quot;\n=== Mètodes per defecte ===&quot;);
+        System.out.println(&quot;El cercle és gran? &quot; + cercle.esGran());
+        System.out.println(&quot;El rectangle és gran? &quot; + rectangle.esGran());
+        
+        // Usar mètode estàtic
+        System.out.println(&quot;\n=== Comparació d&#39;àrees ===&quot;);
+        Shape.compararArea(cercle, rectangle);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Herència d'Interfícies</h3>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+// Interfície base
+public interface Movable {
+    void moure(int deltaX, int deltaY);
+    void setPosition(int x, int y);
+}
+
+// Interfície que estén Movable
+public interface Animated extends Movable {
+    void iniciarAnimacio();
+    void aturarAnimacio();
+    boolean estaAnimant();
+    
+    // Mètode per defecte que usa mètodes de la interfície pare
+    default void animarMoviment(int x, int y, int steps) {
+        iniciarAnimacio();
+        for (int i = 1; i &lt;= steps; i++) {
+            moure(x/steps, y/steps);
+            try {
+                Thread.sleep(100); // Pausa per veure l&#39;animació
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        aturarAnimacio();
+    }
+}
+
+// Classe que implementa la interfície estesa
+public class Sprite implements Animated {
+    private int x, y;
+    private String nom;
+    private boolean animating;
+    
+    public Sprite(String nom) {
+        this.nom = nom;
+        this.x = 0;
+        this.y = 0;
+        this.animating = false;
+    }
+    
+    // Implementació de Movable
+    @Override
+    public void moure(int deltaX, int deltaY) {
+        this.x += deltaX;
+        this.y += deltaY;
+        System.out.printf(&quot;%s mogut a (%d, %d)%n&quot;, nom, x, y);
+    }
+    
+    @Override
+    public void setPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
+        System.out.printf(&quot;%s posicionat a (%d, %d)%n&quot;, nom, x, y);
+    }
+    
+    // Implementació de Animated
+    @Override
+    public void iniciarAnimacio() {
+        animating = true;
+        System.out.println(nom + &quot; ha començat l&#39;animació&quot;);
+    }
+    
+    @Override
+    public void aturarAnimacio() {
+        animating = false;
+        System.out.println(nom + &quot; ha aturat l&#39;animació&quot;);
+    }
+    
+    @Override
+    public boolean estaAnimant() {
+        return animating;
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <strong>Avantatges de les interfícies:</strong><br>
+       • Permeten herència múltiple de comportament<br>
+       • Defineixen contractes clars entre classes<br>
+       • Faciliten el testing amb mocks<br>
+       • Promouen el desacoblament de codi<br>
+       • Essencials per a molts patrons de disseny
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat7_Bloc2_Seccio3">Classes Abstractes vs Interfícies</h2>
+    
+    <p>Tant les classes abstractes com les interfícies permeten definir mètodes que han de ser implementats per altres classes, però tenen diferències importants:</p>
+
+    <table class="responsive-table">
+        <thead>
+            <tr>
+                <th>Aspecte</th>
+                <th>Classe Abstracta</th>
+                <th>Interfície</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Herència</strong></td>
+                <td>Una sola classe (extends)</td>
+                <td>Múltiples interfícies (implements)</td>
+            </tr>
+            <tr>
+                <td><strong>Mètodes</strong></td>
+                <td>Concrets i abstractes</td>
+                <td>Abstractes, per defecte i estàtics</td>
+            </tr>
+            <tr>
+                <td><strong>Atributs</strong></td>
+                <td>Qualsevol tipus d'atribut</td>
+                <td>Només constants (public static final)</td>
+            </tr>
+            <tr>
+                <td><strong>Constructors</strong></td>
+                <td>Sí, poden tenir</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td><strong>Modificadors d'accés</strong></td>
+                <td>Qualsevol</td>
+                <td>Només public (implícit)</td>
+            </tr>
+            <tr>
+                <td><strong>Quan usar</strong></td>
+                <td>Relació "és un" amb codi comú</td>
+                <td>Contracte de comportament</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Exemple Comparatiu Pràctic</h3>
+    
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+// ESCENARI: Sistema de pagaments
+
+// Opció 1: Classe abstracta quan hi ha codi comú
+public abstract class ProcessadorPagament {
+    protected String nomProcessador;
+    protected double comissio;
+    
+    public ProcessadorPagament(String nom, double comissio) {
+        this.nomProcessador = nom;
+        this.comissio = comissio;
+    }
+    
+    // Mètode concret comú a tots els processadors
+    public double calcularComissio(double amount) {
+        return amount * comissio;
+    }
+    
+    public void registrarTransaccio(double amount) {
+        System.out.printf(&quot;Transacció de %.2f€ registrada amb %s%n&quot;, amount, nomProcessador);
+    }
+    
+    // Mètodes abstractes que han d&#39;implementar les subclasses
+    public abstract boolean processarPagament(double amount);
+    public abstract void verificarFons(double amount);
+}
+
+class ProcessadorTarjeta extends ProcessadorPagament {
+    private String numeroTarjeta;
+    
+    public ProcessadorTarjeta(String numero) {
+        super(&quot;Processador Targeta&quot;, 0.025); // 2.5% comissió
+        this.numeroTarjeta = numero;
+    }
+    
+    @Override
+    public boolean processarPagament(double amount) {
+        verificarFons(amount);
+        System.out.printf(&quot;Pagament de %.2f€ processat amb targeta ****%s%n&quot;, 
+                         amount, numeroTarjeta.substring(numeroTarjeta.length()-4));
+        return true;
+    }
+    
+    @Override
+    public void verificarFons(double amount) {
+        System.out.println(&quot;Verificant fons amb el banc...&quot;);
+        // Lògica específica per targetes
+    }
+}
+
+// Opció 2: Interfície per definir contractes
+public interface Reemborsable {
+    boolean pucReemborsar(String transaccioId);
+    void procesarReemborsament(String transaccioId, double amount);
+}
+
+public interface Encriptable {
+    String encriptar(String dades);
+    String desencriptar(String dades);
+}
+
+// Classe que combina herència d&#39;abstracta amb implementació d&#39;interfícies
+class ProcessadorPayPal extends ProcessadorPagament 
+                        implements Reemborsable, Encriptable {
+    
+    public ProcessadorPayPal() {
+        super(&quot;PayPal&quot;, 0.029); // 2.9% comissió
+    }
+    
+    @Override
+    public boolean processarPagament(double amount) {
+        String dadesEncriptades = encriptar(&quot;amount:&quot; + amount);
+        verificarFons(amount);
+        System.out.printf(&quot;Pagament de %.2f€ processat via PayPal%n&quot;, amount);
+        return true;
+    }
+    
+    @Override
+    public void verificarFons(double amount) {
+        System.out.println(&quot;Verificant compte PayPal...&quot;);
+    }
+    
+    // Implementació de Reemborsable
+    @Override
+    public boolean pucReemborsar(String transaccioId) {
+        return true; // PayPal sempre permet reemborsaments
+    }
+    
+    @Override
+    public void procesarReemborsament(String transaccioId, double amount) {
+        System.out.printf(&quot;Reemborsament de %.2f€ processat per PayPal (ID: %s)%n&quot;, 
+                         amount, transaccioId);
+    }
+    
+    // Implementació de Encriptable
+    @Override
+    public String encriptar(String dades) {
+        return &quot;ENC_&quot; + dades + &quot;_ENC&quot;; // Simulació simple
+    }
+    
+    @Override
+    public String desencriptar(String dades) {
+        return dades.replace(&quot;ENC_&quot;, &quot;&quot;).replace(&quot;_ENC&quot;, &quot;&quot;);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Quan Usar Cadascun</h3>
+    
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <strong>Usa CLASSE ABSTRACTA quan:</strong><br>
+       • Vols compartir codi entre classes relacionades<br>
+       • Necessites atributs no constants<br>
+       • Vols proporcionar implementació per defecte<br>
+       • Hi ha una relació jeràrquica clara<br><br>
+       
+       <strong>Usa INTERFÍCIE quan:</strong><br>
+       • Vols definir un contracte de comportament<br>
+       • Necessites herència múltiple<br>
+       • Vols permetre implementació flexible<br>
+       • Les classes no estan relacionades jeràrquicament
+    
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Què passa si una classe implementa dues interfícies que tenen el mateix mètode? Com es resol?</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat7_Bloc2_Seccio4">Principis SOLID</h2>
+    
+    <p>Els principis <strong>SOLID</strong> són cinc principis de disseny orientat a objectes que ajuden a crear codi més mantenible, flexible i robust.</p>
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>SOLID:</strong> Acrònim de cinc principis de disseny de programari: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, i Dependency Inversion.</p>
+  </div>
+</div>
+
+
+    <h3>1. Single Responsibility Principle (SRP)</h3>
+    
+    <p><strong>"Una classe ha de tenir només una raó per canviar"</strong></p>
+    
+    <!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <strong>Problema:</strong> Classes que fan massa coses són difícils de mantenir, provar i reutilitzar.
+</div>
+
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+// ❌ Violació del SRP - La classe fa massa coses
+class GestorUsuari {
+    public void crearUsuari(String nom, String email) {
+        // Validació
+        if (nom == null || email == null) {
+            throw new IllegalArgumentException(&quot;Nom i email són obligatoris&quot;);
+        }
+        
+        // Guardar a base de dades
+        System.out.println(&quot;Guardant usuari a la BD: &quot; + nom);
+        
+        // Enviar email de benvinguda
+        System.out.println(&quot;Enviant email de benvinguda a: &quot; + email);
+        
+        // Registrar en logs
+        System.out.println(&quot;LOG: Usuari creat - &quot; + nom);
+    }
+}
+
+// ✅ Aplicació del SRP - Responsabilitats separades
+class Usuari {
+    private String nom;
+    private String email;
+    
+    public Usuari(String nom, String email) {
+        this.nom = nom;
+        this.email = email;
+    }
+    
+    // Getters i validació bàsica
+    public String getNom() { return nom; }
+    public String getEmail() { return email; }
+    
+    public boolean esValid() {
+        return nom != null &amp;&amp; !nom.trim().isEmpty() &amp;&amp; 
+               email != null &amp;&amp; email.contains(&quot;@&quot;);
+    }
+}
+
+class RepositoriUsuari {
+    public void guardar(Usuari usuari) {
+        System.out.println(&quot;Guardant usuari a la BD: &quot; + usuari.getNom());
+    }
+}
+
+class ServeiEmail {
+    public void enviarBenvinguda(Usuari usuari) {
+        System.out.println(&quot;Enviant email de benvinguda a: &quot; + usuari.getEmail());
+    }
+}
+
+class Logger {
+    public void registrar(String missatge) {
+        System.out.println(&quot;LOG: &quot; + missatge);
+    }
+}
+
+// Classe que coordina (però no fa tot)
+class ServeiUsuari {
+    private RepositoriUsuari repositori;
+    private ServeiEmail serveiEmail;
+    private Logger logger;
+    
+    public ServeiUsuari() {
+        this.repositori = new RepositoriUsuari();
+        this.serveiEmail = new ServeiEmail();
+        this.logger = new Logger();
+    }
+    
+    public void crearUsuari(String nom, String email) {
+        Usuari usuari = new Usuari(nom, email);
+        
+        if (!usuari.esValid()) {
+            throw new IllegalArgumentException(&quot;Dades d&#39;usuari no vàlides&quot;);
+        }
+        
+        repositori.guardar(usuari);
+        serveiEmail.enviarBenvinguda(usuari);
+        logger.registrar(&quot;Usuari creat - &quot; + usuari.getNom());
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>2. Open/Closed Principle (OCP)</h3>
+    
+    <p><strong>"Les entitats de programari han d'estar obertes per a l'extensió però tancades per a la modificació"</strong></p>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+// ❌ Violació del OCP - Cal modificar la classe per afegir nous tipus
+class CalculadoraArea {
+    public double calcularArea(Object forma) {
+        if (forma instanceof Rectangle) {
+            Rectangle r = (Rectangle) forma;
+            return r.getAmple() * r.getAlt();
+        } else if (forma instanceof Cercle) {
+            Cercle c = (Cercle) forma;
+            return Math.PI * c.getRadi() * c.getRadi();
+        }
+        // Per afegir Triangle, cal modificar aquesta classe ❌
+        return 0;
+    }
+}
+
+// ✅ Aplicació del OCP - Extensible sense modificació
+interface Forma {
+    double calcularArea();
+}
+
+class RectangleOCP implements Forma {
+    private double ample, alt;
+    
+    public RectangleOCP(double ample, double alt) {
+        this.ample = ample;
+        this.alt = alt;
+    }
+    
+    @Override
+    public double calcularArea() {
+        return ample * alt;
+    }
+}
+
+class CercleOCP implements Forma {
+    private double radi;
+    
+    public CercleOCP(double radi) {
+        this.radi = radi;
+    }
+    
+    @Override
+    public double calcularArea() {
+        return Math.PI * radi * radi;
+    }
+}
+
+// Nova forma es pot afegir sense modificar el calculador ✅
+class TriangleOCP implements Forma {
+    private double base, altura;
+    
+    public TriangleOCP(double base, double altura) {
+        this.base = base;
+        this.altura = altura;
+    }
+    
+    @Override
+    public double calcularArea() {
+        return (base * altura) / 2.0;
+    }
+}
+
+class CalculadoraAreaOCP {
+    public double calcularArea(Forma forma) {
+        return forma.calcularArea(); // No cal modificar mai aquesta classe!
+    }
+    
+    public double calcularAreaTotal(Forma[] formes) {
+        double total = 0;
+        for (Forma forma : formes) {
+            total += forma.calcularArea();
+        }
+        return total;
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>3. Liskov Substitution Principle (LSP)</h3>
+    
+    <p><strong>"Els objectes de les subclasses han de poder substituir els objectes de la superclasse sense trencar la funcionalitat"</strong></p>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+// ❌ Violació del LSP
+class Ocell {
+    public void volar() {
+        System.out.println(&quot;L&#39;ocell està volant&quot;);
+    }
+}
+
+class Pingui extends Ocell {
+    @Override
+    public void volar() {
+        throw new UnsupportedOperationException(&quot;Els pingüins no poden volar!&quot;);
+    }
+}
+
+// Problema: Pingui no es pot usar on s&#39;espera un Ocell
+// public static void ferVolarOcell(Ocell ocell) {
+//     ocell.volar(); // Fallarà amb Pingui!
+// }
+
+// ✅ Aplicació del LSP - Jerarquia correcta
+abstract class OcellLSP {
+    public abstract void moure();
+    
+    public void menjar() {
+        System.out.println(&quot;L&#39;ocell està menjant&quot;);
+    }
+}
+
+class OcellVolador extends OcellLSP {
+    @Override
+    public void moure() {
+        volar();
+    }
+    
+    public void volar() {
+        System.out.println(&quot;L&#39;ocell està volant&quot;);
+    }
+}
+
+class OcellCaminador extends OcellLSP {
+    @Override
+    public void moure() {
+        caminar();
+    }
+    
+    public void caminar() {
+        System.out.println(&quot;L&#39;ocell està caminant&quot;);
+    }
+}
+
+class Aguila extends OcellVolador {
+    @Override
+    public void volar() {
+        System.out.println(&quot;L&#39;àguila vola alt i ràpid&quot;);
+    }
+}
+
+class PinguiLSP extends OcellCaminador {
+    @Override
+    public void caminar() {
+        System.out.println(&quot;El pingüí camina i neda&quot;);
+    }
+    
+    public void nedar() {
+        System.out.println(&quot;El pingüí neda molt bé&quot;);
+    }
+}
+
+// Ara funciona correctament
+class GestorOcells {
+    public static void ferMoureOcell(OcellLSP ocell) {
+        ocell.moure(); // Funciona amb qualsevol subclasse ✅
+        ocell.menjar(); // També funciona
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>4. Interface Segregation Principle (ISP)</h3>
+    
+    <p><strong>"Cap client no ha de ser forçat a dependre d'interfícies que no utilitza"</strong></p>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+// ❌ Violació del ISP - Interfície massa gran
+interface Treballador {
+    void treballar();
+    void menjar();
+    void dormir();
+    void programar();      // No tots els treballadors programen!
+    void dissenyar();      // No tots els treballadors dissenyen!
+    void gestionar();      // No tots els treballadors gestionen!
+}
+
+// ✅ Aplicació del ISP - Interfícies específiques
+interface Treballable {
+    void treballar();
+}
+
+interface Alimentable {
+    void menjar();
+}
+
+interface Descansable {
+    void dormir();
+}
+
+interface Programable {
+    void programar();
+}
+
+interface Dissenyable {
+    void dissenyar();
+}
+
+interface Gestionar {
+    void gestionar();
+}
+
+// Les classes només implementen el que necessiten
+class Programador implements Treballable, Alimentable, Descansable, Programable {
+    @Override
+    public void treballar() {
+        System.out.println(&quot;Programador treballant en codi&quot;);
+    }
+    
+    @Override
+    public void menjar() {
+        System.out.println(&quot;Programador menjant (probablement pizza)&quot;);
+    }
+    
+    @Override
+    public void dormir() {
+        System.out.println(&quot;Programador dormint (poc)&quot;);
+    }
+    
+    @Override
+    public void programar() {
+        System.out.println(&quot;Escrivint codi Java&quot;);
+    }
+}
+
+class Dissenyador implements Treballable, Alimentable, Descansable, Dissenyable {
+    @Override
+    public void treballar() {
+        System.out.println(&quot;Dissenyador creant interfícies&quot;);
+    }
+    
+    @Override
+    public void menjar() {
+        System.out.println(&quot;Dissenyador menjant saludablement&quot;);
+    }
+    
+    @Override
+    public void dormir() {
+        System.out.println(&quot;Dissenyador dormint per inspiració&quot;);
+    }
+    
+    @Override
+    public void dissenyar() {
+        System.out.println(&quot;Creant dissenys UX/UI&quot;);
+    }
+}
+
+class Gerent implements Treballable, Alimentable, Descansable, Gestionar {
+    @Override
+    public void treballar() {
+        System.out.println(&quot;Gerent coordinant l&#39;equip&quot;);
+    }
+    
+    @Override
+    public void menjar() {
+        System.out.println(&quot;Gerent menjant en reunions&quot;);
+    }
+    
+    @Override
+    public void dormir() {
+        System.out.println(&quot;Gerent dormint poc per stress&quot;);
+    }
+    
+    @Override
+    public void gestionar() {
+        System.out.println(&quot;Gestionant projectes i personal&quot;);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>5. Dependency Inversion Principle (DIP)</h3>
+    
+    <p><strong>"Dependre d'abstraccions, no de concrecions"</strong></p>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+// ❌ Violació del DIP - Dependència de concrecions
+class ServeiEmailConcret {
+    public void enviarEmail(String destinatari, String missatge) {
+        System.out.println(&quot;Enviant email via Gmail a &quot; + destinatari + &quot;: &quot; + missatge);
+    }
+}
+
+class NotificadorConcret {
+    private ServeiEmailConcret serveiEmail; // Dependència concreta ❌
+    
+    public NotificadorConcret() {
+        this.serveiEmail = new ServeiEmailConcret(); // Acoblament fort ❌
+    }
+    
+    public void notificar(String usuari, String missatge) {
+        serveiEmail.enviarEmail(usuari, missatge);
+    }
+}
+
+// ✅ Aplicació del DIP - Dependència d&#39;abstraccions
+interface ServeiNotificacio {
+    void enviarNotificacio(String destinatari, String missatge);
+}
+
+class ServeiEmail implements ServeiNotificacio {
+    @Override
+    public void enviarNotificacio(String destinatari, String missatge) {
+        System.out.println(&quot;Email enviat a &quot; + destinatari + &quot;: &quot; + missatge);
+    }
+}
+
+class ServeiSMS implements ServeiNotificacio {
+    @Override
+    public void enviarNotificacio(String destinatari, String missatge) {
+        System.out.println(&quot;SMS enviat a &quot; + destinatari + &quot;: &quot; + missatge);
+    }
+}
+
+class ServeiPush implements ServeiNotificacio {
+    @Override
+    public void enviarNotificacio(String destinatari, String missatge) {
+        System.out.println(&quot;Push notification enviada a &quot; + destinatari + &quot;: &quot; + missatge);
+    }
+}
+
+// Notificador que depèn d&#39;abstracció
+class Notificador {
+    private ServeiNotificacio serveiNotificacio; // Dependència d&#39;abstracció ✅
+    
+    // Injecció de dependència via constructor
+    public Notificador(ServeiNotificacio serveiNotificacio) {
+        this.serveiNotificacio = serveiNotificacio;
+    }
+    
+    public void notificar(String usuari, String missatge) {
+        serveiNotificacio.enviarNotificacio(usuari, missatge);
+    }
+    
+    // Mètode per canviar el servei en runtime
+    public void canviarServei(ServeiNotificacio nouServei) {
+        this.serveiNotificacio = nouServei;
+    }
+}
+
+// Exemple d&#39;ús flexible
+class ExempleDIP {
+    public static void main(String[] args) {
+        // Podem canviar fàcilment la implementació
+        Notificador notificador = new Notificador(new ServeiEmail());
+        notificador.notificar(&quot;user@email.com&quot;, &quot;Hola món!&quot;);
+        
+        // Canviar a SMS sense modificar Notificador
+        notificador.canviarServei(new ServeiSMS());
+        notificador.notificar(&quot;123456789&quot;, &quot;Hola via SMS!&quot;);
+        
+        // Canviar a Push notifications
+        notificador.canviarServei(new ServeiPush());
+        notificador.notificar(&quot;user123&quot;, &quot;Hola via Push!&quot;);
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <strong>Beneficis dels principis SOLID:</strong><br>
+       • Codi més mantenible i llegible<br>
+       • Facilitat per afegir noves funcionalitats<br>
+       • Millor testabilitat del codi<br>
+       • Menor acoblament entre components<br>
+       • Major reutilització de codi
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Què vol dir que una classe 'depenga d'abstraccions i no de concrecions'? Pots donar-me un exemple simple?</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat7_Bloc2_Seccio5">Introducció als Patrons de Disseny</h2>
+    
+    <p>Els <strong>patrons de disseny</strong> són solucions reutilitzables a problemes comuns en el disseny de programari. Representen les millors pràctiques desenvolupades per programadors experimentats.</p>
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Patró de Disseny:</strong> Solució general i reutilitzable a un problema comú en el disseny de programari. Descriuen com organitzar classes i objectes per resoldre problemes específics.</p>
+  </div>
+</div>
+
+
+    <h3>Tipus de Patrons de Disseny</h3>
+    
+    <ul>
+        <li><strong>Patrons Creacionals:</strong> Com crear objectes (Singleton, Factory, Builder)</li>
+        <li><strong>Patrons Estructurals:</strong> Com compondre objectes (Adapter, Decorator, Facade)</li>
+        <li><strong>Patrons de Comportament:</strong> Com interactuen els objectes (Observer, Strategy, Command)</li>
+    </ul>
+
+    <h3>Patró Singleton (Creacional)</h3>
+    
+    <p>Garanteix que una classe només tingui una instància i proporciona un punt d'accés global a aquesta instància.</p>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+// Implementació Thread-Safe del Singleton
+public class ConfiguradorSistema {
+    // Instància única (volatile per a thread safety)
+    private static volatile ConfiguradorSistema instancia;
+    
+    // Configuració del sistema
+    private String baseDades;
+    private String servidorEmail;
+    private int portAPI;
+    
+    // Constructor privat per evitar instanciació externa
+    private ConfiguradorSistema() {
+        // Carregar configuració per defecte
+        this.baseDades = &quot;localhost:5432/app&quot;;
+        this.servidorEmail = &quot;smtp.email.com&quot;;
+        this.portAPI = 8080;
+    }
+    
+    // Mètode per obtenir la instància única (thread-safe)
+    public static ConfiguradorSistema getInstance() {
+        if (instancia == null) {
+            synchronized (ConfiguradorSistema.class) {
+                if (instancia == null) {
+                    instancia = new ConfiguradorSistema();
+                }
+            }
+        }
+        return instancia;
+    }
+    
+    // Mètodes de configuració
+    public String getBaseDades() { return baseDades; }
+    public void setBaseDades(String baseDades) { this.baseDades = baseDades; }
+    
+    public String getServidorEmail() { return servidorEmail; }
+    public void setServidorEmail(String servidorEmail) { this.servidorEmail = servidorEmail; }
+    
+    public int getPortAPI() { return portAPI; }
+    public void setPortAPI(int portAPI) { this.portAPI = portAPI; }
+    
+    public void mostrarConfiguracio() {
+        System.out.println(&quot;=== Configuració del Sistema ===&quot;);
+        System.out.println(&quot;Base de dades: &quot; + baseDades);
+        System.out.println(&quot;Servidor email: &quot; + servidorEmail);
+        System.out.println(&quot;Port API: &quot; + portAPI);
+    }
+}
+
+// Exemple d&#39;ús
+class ExempleSingleton {
+    public static void main(String[] args) {
+        // Obtenir la instància única
+        ConfiguradorSistema config1 = ConfiguradorSistema.getInstance();
+        ConfiguradorSistema config2 = ConfiguradorSistema.getInstance();
+        
+        // Verificar que és la mateixa instància
+        System.out.println(&quot;És la mateixa instància? &quot; + (config1 == config2));
+        
+        // Modificar configuració des d&#39;una referència
+        config1.setBaseDades(&quot;production.db.com:5432/app&quot;);
+        
+        // La modificació es veu des de totes les referències
+        config2.mostrarConfiguracio();
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Patró Observer (Comportament)</h3>
+    
+    <p>Defineix una dependència un-a-molts entre objectes de manera que quan un objecte canvia d'estat, tots els seus dependents són notificats automàticament.</p>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+import java.util.*;
+
+// Interfície per als observadors
+interface ObservadorTemperatura {
+    void actualitzarTemperatura(double temperatura);
+}
+
+// Subject (Observable)
+class SensorTemperatura {
+    private List&lt;ObservadorTemperatura&gt; observadors;
+    private double temperatura;
+    
+    public SensorTemperatura() {
+        this.observadors = new ArrayList&lt;&gt;();
+        this.temperatura = 20.0; // Temperatura inicial
+    }
+    
+    // Gestió d&#39;observadors
+    public void afegirObservador(ObservadorTemperatura observador) {
+        observadors.add(observador);
+        System.out.println(&quot;Observador afegit. Total: &quot; + observadors.size());
+    }
+    
+    public void eliminarObservador(ObservadorTemperatura observador) {
+        observadors.remove(observador);
+        System.out.println(&quot;Observador eliminat. Total: &quot; + observadors.size());
+    }
+    
+    // Notificar a tots els observadors
+    private void notificarObservadors() {
+        System.out.println(&quot;Notificant &quot; + observadors.size() + &quot; observadors...&quot;);
+        for (ObservadorTemperatura observador : observadors) {
+            observador.actualitzarTemperatura(temperatura);
+        }
+    }
+    
+    // Canviar temperatura i notificar
+    public void setTemperatura(double novaTemperatura) {
+        if (this.temperatura != novaTemperatura) {
+            System.out.printf(&quot;Temperatura canviada de %.1f°C a %.1f°C%n&quot;, 
+                             this.temperatura, novaTemperatura);
+            this.temperatura = novaTemperatura;
+            notificarObservadors();
+        }
+    }
+    
+    public double getTemperatura() {
+        return temperatura;
+    }
+}
+
+// Observadors concrets
+class DisplayTemperatura implements ObservadorTemperatura {
+    private String nom;
+    
+    public DisplayTemperatura(String nom) {
+        this.nom = nom;
+    }
+    
+    @Override
+    public void actualitzarTemperatura(double temperatura) {
+        System.out.printf(&quot;[%s] Mostrant temperatura: %.1f°C%n&quot;, nom, temperatura);
+    }
+}
+
+class AlertaTemperatura implements ObservadorTemperatura {
+    private double llindarAlt;
+    private double llindarBaix;
+    
+    public AlertaTemperatura(double llindarBaix, double llindarAlt) {
+        this.llindarBaix = llindarBaix;
+        this.llindarAlt = llindarAlt;
+    }
+    
+    @Override
+    public void actualitzarTemperatura(double temperatura) {
+        if (temperatura &gt; llindarAlt) {
+            System.out.printf(&quot;⚠️ ALERTA: Temperatura massa alta! %.1f°C (màx: %.1f°C)%n&quot;, 
+                             temperatura, llindarAlt);
+        } else if (temperatura &lt; llindarBaix) {
+            System.out.printf(&quot;❄️ ALERTA: Temperatura massa baixa! %.1f°C (mín: %.1f°C)%n&quot;, 
+                             temperatura, llindarBaix);
+        } else {
+            System.out.printf(&quot;✅ Temperatura dins del rang normal: %.1f°C%n&quot;, temperatura);
+        }
+    }
+}
+
+class RegistradorTemperatura implements ObservadorTemperatura {
+    private List&lt;String&gt; historial;
+    
+    public RegistradorTemperatura() {
+        this.historial = new ArrayList&lt;&gt;();
+    }
+    
+    @Override
+    public void actualitzarTemperatura(double temperatura) {
+        String registre = String.format(&quot;%.1f°C a %s&quot;, 
+                                       temperatura, new Date().toString());
+        historial.add(registre);
+        System.out.printf(&quot;📝 Registrat: %s%n&quot;, registre);
+    }
+    
+    public void mostrarHistorial() {
+        System.out.println(&quot;=== Historial de temperatures ===&quot;);
+        for (String registre : historial) {
+            System.out.println(registre);
+        }
+    }
+}
+
+// Exemple d&#39;ús
+class ExempleObserver {
+    public static void main(String[] args) {
+        // Crear el sensor (subject)
+        SensorTemperatura sensor = new SensorTemperatura();
+        
+        // Crear observadors
+        DisplayTemperatura display1 = new DisplayTemperatura(&quot;Display Principal&quot;);
+        DisplayTemperatura display2 = new DisplayTemperatura(&quot;Display Secundari&quot;);
+        AlertaTemperatura alerta = new AlertaTemperatura(5.0, 35.0);
+        RegistradorTemperatura registrador = new RegistradorTemperatura();
+        
+        // Registrar observadors
+        sensor.afegirObservador(display1);
+        sensor.afegirObservador(display2);
+        sensor.afegirObservador(alerta);
+        sensor.afegirObservador(registrador);
+        
+        // Simular canvis de temperatura
+        System.out.println(&quot;\n=== Simulant canvis de temperatura ===&quot;);
+        sensor.setTemperatura(25.5);
+        
+        System.out.println(&quot;\n&quot; + &quot;=&quot;.repeat(50));
+        sensor.setTemperatura(40.0); // Alerta alta
+        
+        System.out.println(&quot;\n&quot; + &quot;=&quot;.repeat(50));
+        sensor.setTemperatura(-5.0); // Alerta baixa
+        
+        System.out.println(&quot;\n&quot; + &quot;=&quot;.repeat(50));
+        sensor.setTemperatura(22.0); // Normal
+        
+        // Mostrar historial
+        System.out.println(&quot;\n&quot;);
+        registrador.mostrarHistorial();
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <h3>Patró Strategy (Comportament)</h3>
+    
+    <p>Defineix una família d'algoritmes, encapsula cadascun i els fa intercanviables. Strategy permet que l'algoritme variï independentment dels clients que l'utilitzen.</p>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
+// Estratègia d&#39;ordenació
+interface EstrategiaOrdenacio {
+    void ordenar(int[] array);
+    String getNom();
+}
+
+// Implementacions concretes d&#39;estratègies
+class BubbleSort implements EstrategiaOrdenacio {
+    @Override
+    public void ordenar(int[] array) {
+        System.out.println(&quot;Ordenant amb Bubble Sort...&quot;);
+        for (int i = 0; i &lt; array.length - 1; i++) {
+            for (int j = 0; j &lt; array.length - i - 1; j++) {
+                if (array[j] &gt; array[j + 1]) {
+                    // Intercanviar elements
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+    }
+    
+    @Override
+    public String getNom() {
+        return &quot;Bubble Sort&quot;;
+    }
+}
+
+class QuickSort implements EstrategiaOrdenacio {
+    @Override
+    public void ordenar(int[] array) {
+        System.out.println(&quot;Ordenant amb Quick Sort...&quot;);
+        quickSort(array, 0, array.length - 1);
+    }
+    
+    private void quickSort(int[] array, int low, int high) {
+        if (low &lt; high) {
+            int pi = partition(array, low, high);
+            quickSort(array, low, pi - 1);
+            quickSort(array, pi + 1, high);
+        }
+    }
+    
+    private int partition(int[] array, int low, int high) {
+        int pivot = array[high];
+        int i = (low - 1);
+        
+        for (int j = low; j &lt; high; j++) {
+            if (array[j] &lt;= pivot) {
+                i++;
+                int temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+        
+        int temp = array[i + 1];
+        array[i + 1] = array[high];
+        array[high] = temp;
+        
+        return i + 1;
+    }
+    
+    @Override
+    public String getNom() {
+        return &quot;Quick Sort&quot;;
+    }
+}
+
+class SelectionSort implements EstrategiaOrdenacio {
+    @Override
+    public void ordenar(int[] array) {
+        System.out.println(&quot;Ordenant amb Selection Sort...&quot;);
+        for (int i = 0; i &lt; array.length - 1; i++) {
+            int minIdx = i;
+            for (int j = i + 1; j &lt; array.length; j++) {
+                if (array[j] &lt; array[minIdx]) {
+                    minIdx = j;
+                }
+            }
+            int temp = array[minIdx];
+            array[minIdx] = array[i];
+            array[i] = temp;
+        }
+    }
+    
+    @Override
+    public String getNom() {
+        return &quot;Selection Sort&quot;;
+    }
+}
+
+// Context que utilitza les estratègies
+class OrdenadorContext {
+    private EstrategiaOrdenacio estrategia;
+    
+    public OrdenadorContext(EstrategiaOrdenacio estrategia) {
+        this.estrategia = estrategia;
+    }
+    
+    public void setEstrategia(EstrategiaOrdenacio estrategia) {
+        this.estrategia = estrategia;
+    }
+    
+    public void ordenarArray(int[] array) {
+        long startTime = System.nanoTime();
+        estrategia.ordenar(array);
+        long endTime = System.nanoTime();
+        
+        System.out.printf(&quot;Ordenació completada amb %s en %.2f ms%n&quot;, 
+                         estrategia.getNom(), (endTime - startTime) / 1_000_000.0);
+    }
+    
+    // Factory method per seleccionar estratègia segons mida
+    public static EstrategiaOrdenacio seleccionarEstrategia(int midaArray) {
+        if (midaArray &lt; 10) {
+            return new BubbleSort(); // Simple per arrays petits
+        } else if (midaArray &lt; 100) {
+            return new SelectionSort(); // Eficient per arrays mitjans
+        } else {
+            return new QuickSort(); // Ràpid per arrays grans
+        }
+    }
+}
+
+// Exemple d&#39;ús
+class ExempleStrategy {
+    public static void main(String[] args) {
+        // Arrays de prova
+        int[] arrayPetit = {64, 34, 25, 12, 22, 11, 90};
+        int[] arrayMitja = new int[50];
+        int[] arrayGran = new int[1000];
+        
+        // Omplir arrays amb números aleatoris
+        Random random = new Random();
+        for (int i = 0; i &lt; arrayMitja.length; i++) {
+            arrayMitja[i] = random.nextInt(100);
+        }
+        for (int i = 0; i &lt; arrayGran.length; i++) {
+            arrayGran[i] = random.nextInt(1000);
+        }
+        
+        OrdenadorContext ordenador = new OrdenadorContext(new BubbleSort());
+        
+        // Ordenar array petit
+        System.out.println(&quot;=== Array petit ===&quot;);
+        System.out.println(&quot;Original: &quot; + Arrays.toString(arrayPetit));
+        ordenador.ordenarArray(arrayPetit.clone());
+        
+        // Canviar estratègia automàticament segons mida
+        System.out.println(&quot;\n=== Array mitjà (50 elements) ===&quot;);
+        ordenador.setEstrategia(OrdenadorContext.seleccionarEstrategia(50));
+        ordenador.ordenarArray(arrayMitja.clone());
+        
+        System.out.println(&quot;\n=== Array gran (1000 elements) ===&quot;);
+        ordenador.setEstrategia(OrdenadorContext.seleccionarEstrategia(1000));
+        ordenador.ordenarArray(arrayGran.clone());
+        
+        // Comparar totes les estratègies en el mateix array
+        System.out.println(&quot;\n=== Comparació d&#39;estratègies ===&quot;);
+        EstrategiaOrdenacio[] estrategies = {
+            new BubbleSort(),
+            new SelectionSort(),
+            new QuickSort()
+        };
+        
+        for (EstrategiaOrdenacio estrategia : estrategies) {
+            ordenador.setEstrategia(estrategia);
+            ordenador.ordenarArray(arrayMitja.clone());
+        }
+    }
+}
+    </code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <strong>Avantatges dels patrons de disseny:</strong><br>
+       • Solucions provades a problemes comuns<br>
+       • Milloren la comunicació entre desenvolupadors<br>
+       • Promouen bones pràctiques de disseny<br>
+       • Faciliten la reutilització i manteniment del codi<br>
+       • Basen en principis sòlids com SOLID
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">En el patró Singleton, per què el constructor ha de ser privat? Què passaria si fós públic?</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat7_Bloc2_Seccio6">Pràctiques</h2>
+    
+    <p>Exercicis avançats per consolidar els conceptes de classes abstractes, interfícies, principis SOLID i patrons de disseny.</p>
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Classes Abstractes vs Interfícies</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Practica la diferència entre classe abstracta i interfície:</p>
+       <ul>
+           <li>Crea la classe abstracta <code>Forma</code> amb mètode concret <code>mostrarInfo()</code> i abstracte <code>calcularArea()</code></li>
+           <li>Crea la interfície <code>Coloreable</code> amb mètodes <code>setColor()</code> i <code>getColor()</code></li>
+           <li>Implementa <code>Cercle</code> que hereta de <code>Forma</code> i implementa <code>Coloreable</code></li>
+       </ul></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Fàcil</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+  </div>
+</div>
+
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Principi SRP</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Identifica i corregeix violacions del principi de responsabilitat única:</p>
+       <ul>
+           <li>Analitza aquesta classe: <code>class Usuari { validar(), guardarBD(), enviarEmail() }</code></li>
+           <li>Separa les responsabilitats en classes diferents</li>
+           <li>Crea <code>ValidadorUsuari</code>, <code>RepositoriUsuari</code>, <code>ServeiEmail</code></li>
+       </ul></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Fàcil</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">10 min</span>
+      
+    </div>
+
+    
+  </div>
+</div>
+
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Patró Observer Simple</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Implementa un patró Observer bàsic:</p>
+       <ul>
+           <li>Crea <code>TermostatObservable</code> que notifica canvis de temperatura</li>
+           <li>Implementa dos observadors: <code>DisplayTemperatura</code> i <code>AlertaTemperatura</code></li>
+           <li>Prova afegint/eliminant observadors i canviant la temperatura</li>
+       </ul></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">20 min</span>
+      
+    </div>
+
+    
+  </div>
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">En el patró Observer, com puc evitar que un observador rebenti tot el sistema si fa una excepció?</div>
+  </div>
+</div>
+
+</div>
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 2: Característiques avançades i abstracció",
+  "description": "Classes abstractes, interfícies, principis SOLID i patrons de disseny orientats a objectes",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Programació II — IOC",
+    "description": "Materials del mòdul Programació II - DA2_0485B2"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/da2_0485b2/unitat-7/bloc-1/" class="nav-button" aria-label="Bloc anterior: Herència, polimorfisme i composició">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="7" data-total="3">(7/3)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 233%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="2" data-total="2">(2/2)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="6">(1/6)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 16%"></div></div>
+                    </div></div>
+            <div class="footer-actions">
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/da2_0485b2/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts del lloc -->
+    <script src="/ioc/da2_0485b2/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>
