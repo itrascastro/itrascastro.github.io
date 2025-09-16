@@ -114,6 +114,8 @@ class Bootstrap {
                 case 'export-calendar-ics': icsExporter.exportCalendar(appStateManager.getSelectedCalendarId()); break;
                 case 'export-calendar-html': htmlExporter.exportCalendar(appStateManager.getSelectedCalendarId()); break;
                 case 'export-compact-html': compactHtmlExporter.exportCalendar(appStateManager.getSelectedCalendarId()); break;
+                case 'compact-zoom-inc': this.updateCompactZoom(0.1); break;
+                case 'compact-zoom-dec': this.updateCompactZoom(-0.1); break;
                 case 'import-calendar-ics': calendarManager.importIcsToCalendar(appStateManager.getSelectedCalendarId()); break;
                 case 'delete-calendar': calendarManager.deleteCalendar(appStateManager.getSelectedCalendarId()); break;
                 case 'edit-calendar': modalRenderer.openCalendarEditModal(appStateManager.getSelectedCalendarId()); break;
@@ -130,6 +132,18 @@ class Bootstrap {
         } catch (error) {
             errorManager.handleError(error);
         }
+    }
+
+    // === CONTROL DE ZOOM COMPACT ===
+    updateCompactZoom(delta) {
+        const min = 0.6, max = 1.6;
+        let z = appStateManager.appState.compactZoom || 1;
+        z = Math.min(max, Math.max(min, Math.round((z + delta) * 10) / 10));
+        appStateManager.appState.compactZoom = z;
+        document.body.style.setProperty('--compact-zoom', z);
+        const label = document.getElementById('compactZoomLabel');
+        if (label) label.textContent = `${Math.round(z * 100)}%`;
+        storageManager.saveToStorage();
     }
 
 }

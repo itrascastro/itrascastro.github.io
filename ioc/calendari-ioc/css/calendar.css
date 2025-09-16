@@ -23,6 +23,7 @@
     grid-area: main; 
     display: flex; 
     flex-direction: column; 
+    position: relative;
     background-color: var(--card-bg-color); 
     border-radius: 10px; 
     border: 1px solid var(--border-color); 
@@ -106,6 +107,24 @@
     color: var(--main-text-color); 
 }
 
+/* Controls de zoom per a la vista compacta */
+.compact-zoom-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.compact-zoom-controls .zoom-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--main-text-color);
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.compact-zoom-controls #compactZoomLabel { font-size: 0.9em; color: var(--secondary-text-color); min-width: 44px; text-align: center; }
+
 /* === GRAELLA DEL CALENDARI === */
 .calendar-grid-wrapper { 
     flex-grow: 1; 
@@ -115,6 +134,83 @@
     overflow-y: auto;
     min-height: 0;
 }
+
+/* Només per a la vista compacta: cantonades quadrades del marc del calendari */
+/* Eliminar: no tocar cantonades globals del contenidor principal */
+
+/* Zoom de vista compacta (escala global del wrapper) */
+body { --compact-zoom: 1; }
+
+/* Canvas i contingut escalat per a zoom amb scroll real */
+.compact-zoom-canvas { position: relative; width: 100%; }
+.compact-zoom-content { position: absolute; top: 0; left: 0; transform-origin: top left; width: 100%; }
+
+/* Slider de zoom (fora de l'scroll), a la cantonada inferior dreta */
+.compact-zoom-slider {
+    position: absolute;
+    right: 16px;
+    bottom: 6px;
+    display: none;
+    align-items: center;
+    gap: 3px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+    z-index: 10;
+}
+
+body[data-current-view="compact"] .compact-zoom-slider { display: flex; }
+
+.compact-zoom-slider input[type="range"] {
+    width: 120px;
+    height: 4px; /* altura molt fina */
+    background: transparent;
+    accent-color: var(--accent-color);
+    -webkit-appearance: none;
+}
+
+/* WebKit */
+.compact-zoom-slider input[type="range"]::-webkit-slider-runnable-track {
+    height: 4px;
+    background: linear-gradient(to right,
+        var(--accent-color) 0%,
+        var(--accent-color) var(--progress, 100%),
+        var(--border-color) var(--progress, 100%),
+        var(--border-color) 100%);
+    border-radius: 4px;
+}
+.compact-zoom-slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 10px;
+    height: 10px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    margin-top: -3px; /* centrar sobre pista de 4px */
+    border: none;
+}
+
+/* Firefox */
+.compact-zoom-slider input[type="range"]::-moz-range-track {
+    height: 4px;
+    background: var(--border-color);
+    border-radius: 4px;
+}
+.compact-zoom-slider input[type="range"]::-moz-range-progress {
+    height: 4px;
+    background: var(--accent-color);
+    border-radius: 4px;
+}
+.compact-zoom-slider input[type="range"]::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+    background: var(--accent-color);
+    border: none;
+    border-radius: 50%;
+}
+
+.compact-zoom-slider .zoom-label { display: none; }
 
 .calendar-grid { 
     display: grid; 
@@ -505,7 +601,7 @@ body[data-current-view="compact"] .calendar-grid-wrapper {
 .compact-view-container {
     height: 100%;
     background-color: var(--bg-color);
-    border-radius: 8px;
+    border-radius: 0; /* cantonades quadrades per al marc del calendari compacte */
     overflow: hidden;
 }
 
@@ -808,13 +904,15 @@ body[data-current-view="compact"] .calendar-grid-wrapper {
     min-height: 12px;
 }
 
-.compact-day-cell:hover {
-    background-color: #f8f9fa;
+/* No canviem el fons en hover a la vista compacta */
+body[data-current-view="compact"] .compact-day-cell:hover {
+    background-color: var(--card-bg-color);
 }
 
 .compact-day-cell.today {
-    background-color: #e3f2fd;
-    border: 1px solid var(--accent-color);
+    /* En vista compacta no remarquem el dia d'avui amb fons diferent */
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
 }
 
 .compact-day-cell.has-events {

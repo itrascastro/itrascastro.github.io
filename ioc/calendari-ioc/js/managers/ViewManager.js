@@ -221,21 +221,81 @@ class ViewManager {
     renderCompactView(calendar) {
         const gridWrapper = document.getElementById('calendar-grid-wrapper');
         const periodDisplay = document.getElementById('current-period-display');
-        
+
         const compactHTML = this.renderers.compact.render(calendar, appStateManager.currentDate, 'DOM');
-        gridWrapper.innerHTML = compactHTML;
-        
+        // Inserir dins d'un canvas per poder calcular mida escalada i activar scroll
+        gridWrapper.innerHTML = `<div class="compact-zoom-canvas"><div class="compact-zoom-content">${compactHTML}</div></div>`;
+
         // Actualitzar títol del període amb rang complet del calendari
         const startDate = dateHelper.parseUTC(calendar.startDate);
         const endDate = dateHelper.parseUTC(calendar.endDate);
         const periodTitle = `${calendar.name} (Vista Compacta)`;
         periodDisplay.textContent = periodTitle;
-        
+
         // Configurar drag & drop (reutilitza la lògica de la vista mensual)
         dragDropHelper.setupDragAndDrop(gridWrapper, calendar);
-        
+
         // Actualitzar navegació (desactivar botons per vista compacta)
         this.updateNavigationButtons();
+
+        // Aplicar zoom guardat i preparar slider fix al contenidor
+        const z = appStateManager.appState.compactZoom || 1;
+        document.body.style.setProperty('--compact-zoom', z);
+        // Crear slider si no existeix i posicionar-lo fora de l'scroll
+        const container = document.querySelector('.calendar-container');
+        if (container && !container.querySelector('#compactZoomSlider')) {
+            const slider = document.createElement('div');
+            slider.className = 'compact-zoom-slider';
+            slider.id = 'compactZoomSlider';
+            slider.innerHTML = `
+                <input id="compactZoomRange" type="range" min="60" max="160" step="5" value="${Math.round(z*100)}" aria-label="Zoom vista compacta">
+            `;
+            container.appendChild(slider);
+            const range = slider.querySelector('#compactZoomRange');
+            const label = slider.querySelector('#compactZoomLabel');
+            const applyZoomLayout = () => {
+                const canvas = gridWrapper.querySelector('.compact-zoom-canvas');
+                const content = gridWrapper.querySelector('.compact-zoom-content');
+                if (!canvas || !content) return;
+                const val = Math.max(60, Math.min(160, parseInt(range.value, 10)));
+                const newZ = Math.round((val / 100) * 10) / 10;
+                appStateManager.appState.compactZoom = newZ;
+                // Escalar només verticalment i ajustar alçada del canvas per provocar scroll real
+                content.style.transform = `scaleY(${newZ})`;
+                // Mesurar alçada base sense escala (scrollHeight no es veu afectat pel transform)
+                const h = content.scrollHeight;
+                canvas.style.width = '100%';
+                canvas.style.height = `${Math.round(h * newZ)}px`;
+                // Actualitzar progrés visual del track (0-100 segons posició)
+                // Progress per a WebKit: punt exacte del centre del thumb
+                const trackPercent = ((val - 60) / (160 - 60)) * 100; // 0..100
+                range.style.setProperty('--progress', `${trackPercent}%`);
+                if (label) label.textContent = `${val}%`;
+                storageManager.saveToStorage();
+            };
+            range.addEventListener('input', applyZoomLayout);
+            // Inicialitzar layout amb zoom actual
+            applyZoomLayout();
+        } else if (container) {
+            // Actualitzar valor existent
+            const range = container.querySelector('#compactZoomRange');
+            const label = container.querySelector('#compactZoomLabel');
+            if (range) range.value = Math.round(z*100);
+            if (label) label.textContent = `${Math.round(z*100)}%`;
+            // Recalcular canvas per zoom actual després de re-render
+            const canvas = gridWrapper.querySelector('.compact-zoom-canvas');
+            const content = gridWrapper.querySelector('.compact-zoom-content');
+            if (canvas && content) {
+                content.style.transform = `scaleY(${z})`;
+                canvas.style.width = '100%';
+                canvas.style.height = `${Math.round(content.scrollHeight * z)}px`;
+            }
+            if (range) {
+                const val = Math.round(z*100);
+                const trackPercent = ((val - 60) / (160 - 60)) * 100; // 0..100
+                range.style.setProperty('--progress', `${trackPercent}%`);
+            }
+        }
     }
     
     // Renderitzar vista mensual

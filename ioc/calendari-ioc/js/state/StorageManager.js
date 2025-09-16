@@ -98,6 +98,10 @@ class StorageManager {
             if (!appStateManager.lastVisitedMonths) {
                 appStateManager.lastVisitedMonths = {};
             }
+            // Valor per defecte de zoom compacte si no existeix
+            if (typeof appStateManager.appState.compactZoom !== 'number') {
+                appStateManager.appState.compactZoom = 1;
+            }
         
             if (!appStateManager.appState.systemCategoryColors) {
                 appStateManager.appState.systemCategoryColors = {};

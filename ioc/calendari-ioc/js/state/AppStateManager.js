@@ -41,6 +41,8 @@ class AppStateManager {
             categoryTemplates: [],  // Catàleg global de categories d'usuari
             systemCategoryColors: {}, // Colors assignats a categories de sistema
             unplacedEvents: [], // Esdeveniments no ubicats en replicació
+            // Zoom de la vista compacta (persistit)
+            compactZoom: 1,
             /**
              * Sistema de persistència de navegació per calendari
              * @type {Object.<string, string>} lastVisitedMonths
