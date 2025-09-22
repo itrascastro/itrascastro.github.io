@@ -111,19 +111,8 @@
 .compact-zoom-controls {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
 }
-
-.compact-zoom-controls .zoom-btn {
-    background: none;
-    border: 1px solid var(--border-color);
-    color: var(--main-text-color);
-    width: 28px; height: 28px;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.compact-zoom-controls #compactZoomLabel { font-size: 0.9em; color: var(--secondary-text-color); min-width: 44px; text-align: center; }
 
 /* === GRAELLA DEL CALENDARI === */
 .calendar-grid-wrapper { 
@@ -149,10 +138,10 @@ body { --compact-zoom: 1; }
 .compact-zoom-slider {
     position: absolute;
     right: 16px;
-    bottom: 6px;
+    bottom: 2px;
     display: none;
     align-items: center;
-    gap: 3px;
+    gap: 4px;
     background: transparent;
     border: none;
     border-radius: 0;
@@ -165,10 +154,13 @@ body[data-current-view="compact"] .compact-zoom-slider { display: flex; }
 
 .compact-zoom-slider input[type="range"] {
     width: 120px;
-    height: 4px; /* altura molt fina */
+    height: 12px;
     background: transparent;
     accent-color: var(--accent-color);
     -webkit-appearance: none;
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
 }
 
 /* WebKit */
@@ -211,6 +203,30 @@ body[data-current-view="compact"] .compact-zoom-slider { display: flex; }
 }
 
 .compact-zoom-slider .zoom-label { display: none; }
+
+.compact-zoom-slider .compact-fullscreen-btn {
+    background: none;
+    border: none;
+    color: var(--secondary-text-color);
+    width: 14px;
+    height: 12px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.compact-zoom-slider .compact-fullscreen-btn:hover,
+.compact-zoom-slider .compact-fullscreen-btn:focus {
+    color: var(--main-text-color);
+}
+
+.compact-zoom-slider .compact-fullscreen-btn svg {
+    width: 10px;
+    height: 10px;
+}
 
 .calendar-grid { 
     display: grid; 
@@ -509,6 +525,12 @@ body[data-current-view="compact"] .compact-zoom-slider { display: flex; }
     margin-bottom: 20px; 
 }
 
+.modal-header-actions {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+}
+
 .modal-title { 
     color: var(--main-text-color); 
     font-size: 1.2em; 
@@ -537,6 +559,8 @@ body[data-current-view="compact"] .compact-zoom-slider { display: flex; }
 .modal-body { 
     padding: 0 24px; 
 }
+
+
 
 .modal-body .form-group { 
     margin-bottom: 20px; 

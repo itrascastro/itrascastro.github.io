@@ -116,6 +116,7 @@ class Bootstrap {
                 case 'export-compact-html': compactHtmlExporter.exportCalendar(appStateManager.getSelectedCalendarId()); break;
                 case 'compact-zoom-inc': this.updateCompactZoom(0.1); break;
                 case 'compact-zoom-dec': this.updateCompactZoom(-0.1); break;
+                case 'open-compact-fullscreen': viewManager.openCompactFullscreen(); break;
                 case 'import-calendar-ics': calendarManager.importIcsToCalendar(appStateManager.getSelectedCalendarId()); break;
                 case 'delete-calendar': calendarManager.deleteCalendar(appStateManager.getSelectedCalendarId()); break;
                 case 'edit-calendar': modalRenderer.openCalendarEditModal(appStateManager.getSelectedCalendarId()); break;
@@ -141,8 +142,6 @@ class Bootstrap {
         z = Math.min(max, Math.max(min, Math.round((z + delta) * 10) / 10));
         appStateManager.appState.compactZoom = z;
         document.body.style.setProperty('--compact-zoom', z);
-        const label = document.getElementById('compactZoomLabel');
-        if (label) label.textContent = `${Math.round(z * 100)}%`;
         storageManager.saveToStorage();
     }
 
