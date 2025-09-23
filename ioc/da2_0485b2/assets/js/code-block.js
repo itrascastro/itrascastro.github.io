@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const toggleExpandBtn = block.querySelector(".toggle-expand");
     const copyBtn = block.querySelector(".copy-btn");
 
-    // Obtenir codi original abans de qualsevol processament
+    // Obtenir codi original ja netejat pel template
     const originalCode = code.textContent;
     const lines = originalCode.split("\n");
     const lineCount = lines.length;

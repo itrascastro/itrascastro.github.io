@@ -1,0 +1,2237 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 2: Gestió i manteniment de dades | Programació II - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="8">
+    <meta name="page-bloc" content="2">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 2: Gestió i manteniment de dades | Programació II</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 2: Gestió i manteniment de dades" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Tutorial complet: configuració de l’entorn, implementació d’Hibernate i verificació amb PostgreSQL" />
+<meta property="og:description" content="Tutorial complet: configuració de l’entorn, implementació d’Hibernate i verificació amb PostgreSQL" />
+<link rel="canonical" href="http://localhost:4001/ioc/da2_0485b2/unitat-8/bloc-2/" />
+<meta property="og:url" content="http://localhost:4001/ioc/da2_0485b2/unitat-8/bloc-2/" />
+<meta property="og:site_name" content="Programació II" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 2: Gestió i manteniment de dades" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Tutorial complet: configuració de l’entorn, implementació d’Hibernate i verificació amb PostgreSQL","headline":"Bloc 2: Gestió i manteniment de dades","url":"http://localhost:4001/ioc/da2_0485b2/unitat-8/bloc-2/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="http://localhost:4001/ioc/da2_0485b2/unitat-8/bloc-2/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/da2_0485b2/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4001/ioc/da2_0485b2/feed.xml" title="Programació II" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/code-block.css">
+    <script src="/ioc/da2_0485b2/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/da2_0485b2/" class="logo-link">
+                <img src="/ioc/da2_0485b2/assets/images/logo_IOC_light.jpg" 
+                     alt="Institut Obert de Catalunya" 
+                     class="logo logo-light">
+                <img src="/ioc/da2_0485b2/assets/images/logo_IOC_dark.png" 
+                     alt="Institut Obert de Catalunya" 
+                     class="logo logo-dark">
+            </a>
+            <a href="/ioc/da2_0485b2/" class="title-link">
+                <h1>DA2_0485B2 - Programació II</h1>
+            </a>
+        </div>
+        <div class="header-controls">
+            <div class="nav-dropdown" id="nav-dropdown">
+                <button class="nav-dropdown-btn" id="nav-dropdown-btn">Navegació</button>
+                <div class="nav-dropdown-content" id="nav-dropdown-content">
+                    <a href="/ioc/da2_0485b2/" class="nav-dropdown-item ">Índex del Curs</a>
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-5/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 5 - Bloc 1: Conceptes bàsics d'E/S per consola
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-5/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 5 - Bloc 2: E/S basada en fitxers
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-6/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 6 - Bloc 1: Estructures de dades bàsiques
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-6/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 6 - Bloc 2: Col·leccions i tipus de dades avançats
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-7/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 7 - Bloc 1: Herència, polimorfisme i composició
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-7/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 7 - Bloc 2: Característiques avançades i abstracció
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-8/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 8 - Bloc 1: Fonaments de bases de dades orientades a objectes
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-8/bloc-2/" class="nav-dropdown-item current">
+                                Unitat 8 - Bloc 2: Gestió i manteniment de dades
+                            </a>
+                        
+                    
+                </div>
+            </div>
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <!-- Contingut d'aquest Bloc -->
+            <div class="sidebar-section">
+                <h3>Contingut del Bloc</h3>
+                
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat8_Bloc2_Seccio1" class="nav-link" data-section="Unitat8_Bloc2_Seccio1">Preparació de l'entorn de treball</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat8_Bloc2_Seccio2" class="nav-link" data-section="Unitat8_Bloc2_Seccio2">Configuració de la base de dades PostgreSQL</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat8_Bloc2_Seccio3" class="nav-link" data-section="Unitat8_Bloc2_Seccio3">Configuració de Visual Studio Code i extensions</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat8_Bloc2_Seccio4" class="nav-link" data-section="Unitat8_Bloc2_Seccio4">Creació del projecte Maven</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat8_Bloc2_Seccio5" class="nav-link" data-section="Unitat8_Bloc2_Seccio5">Configuració de Hibernate</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat8_Bloc2_Seccio6" class="nav-link" data-section="Unitat8_Bloc2_Seccio6">Implementació de les classes Java</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat8_Bloc2_Seccio7" class="nav-link" data-section="Unitat8_Bloc2_Seccio7">Compilació, proves i execució final</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/da2_0485b2/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/da2_0485b2/unitat-8/" class="horizontal-nav-item">
+                                Unitat 8: Manteniment i gestió de bases de dades (RA8 i RA9)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 8.2: Gestió i manteniment de dades
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<!--
+  Bloc 2 (Unitat 8) - Transcripció i enriquiment del tutorial validat
+  Font principal: tutorial-hibernate-postgresql-vscode.pdf (42 pàgines)
+  Objectiu: l'alumne pot seguir el pas a pas sense recursos addicionals.
+-->
+
+<div class="section">
+    <h2 id="Unitat8_Bloc2_Seccio1">Preparació de l'entorn de treball</h2>
+
+    <!-- Component: Objectius del bloc/unitat -->
+
+
+
+<div class="objectius-box">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-bullseye" aria-hidden="true"></i> Objectius</div>
+  <div class="component-content">
+    <ul>
+      
+        <li>Comprendre l'abast del projecte i les habilitats que s'adquiriran</li>
+      
+        <li>Instal·lar totes les eines necessàries (Java 21, PostgreSQL 16, Visual Studio Code, Maven)</li>
+      
+        <li>Validar la configuració de l'entorn abans de continuar</li>
+      
+    </ul>
+  </div>
+  <!-- IMPORTANT: també es pot usar via front matter: page.objectius (array) -->
+</div>
+
+
+
+    <h3>Què aprendràs en aquest bloc</h3>
+    <p>Treballaràs amb una aplicació Java moderna que utilitza Hibernate 6 per connectar-se a PostgreSQL. Aprendràs a configurar un <em>toolchain</em> complet: instal·lació de dependències, configuració de Visual Studio Code, creació d'un projecte Maven, implementació de classes i execució de proves.</p>
+
+    <h3>Software necessari</h3>
+    <ul>
+        <li>Java JDK 21 (Temurin o equivalent).</li>
+        <li>PostgreSQL 16 (amb eines <code>psql</code> o pgAdmin).</li>
+        <li>Visual Studio Code (última versió estable).</li>
+        <li>Extensions de VS Code per a Java i Maven.</li>
+        <li>Apache Maven (normalment inclòs a l'Extension Pack for Java).</li>
+    </ul>
+
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    El tutorial es basa en Java 21 i PostgreSQL 16. Versions inferiors poden provocar incompatibilitats amb Hibernate 6.
+    
+</div>
+
+
+    <h3>Instal·lació del JDK 21</h3>
+    <p>Segueix les instruccions específiques per al teu sistema operatiu. Després de cada instal·lació, comprova la versió amb <code>java -version</code>.</p>
+
+    <h4>Windows</h4>
+    <ol>
+        <li>Visita <a href="https://adoptium.net" target="_blank" rel="noopener">adoptium.net</a> i descarrega <strong>Temurin JDK 21</strong> per a Windows.</li>
+        <li>Executa l'instal·lador i deixa les opcions per defecte.</li>
+        <li>Marca l'opció «Establir les variables d'entorn JAVA_HOME».</li>
+        <li>Finalitza l'assistent i obre el <em>Símbol del sistema</em>.</li>
+        <li>Escriu <code>java -version</code>; hauries de veure una sortida similar a:<br><code>openjdk version "21.0.2" 2024-01-16</code></li>
+    </ol>
+
+    <h4>macOS</h4>
+    <ol>
+        <li>Obre Terminal.</li>
+        <li>Si utilitzes Homebrew: <code>brew tap homebrew/cask-versions</code> i després <code>brew install --cask temurin21</code>.</li>
+        <li>Sense Homebrew, descarrega l'instal·lador des d'<a href="https://adoptium.net" target="_blank" rel="noopener">adoptium.net</a> i segueix l'assistent.</li>
+        <li>Verifica la instal·lació amb <code>java -version</code>.</li>
+    </ol>
+
+    <h4>Linux (Ubuntu/Debian)</h4>
+    <ol>
+        <li>Obre Terminal i executa:<br><code>sudo apt update</code><br><code>sudo apt install openjdk-21-jdk</code></li>
+        <li>Si el repositori no disposa de la versió 21, afegeix un PPA oficial (vegeu tutorial).</li>
+        <li>Verifica amb <code>java -version</code>.</li>
+    </ol>
+
+    <!-- Component: Checklist accessible -->
+<div class="checklist" role="group" aria-label="Checklist inicial">
+    <div class="checklist-title">Checklist inicial</div>
+    
+    
+    <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="checklist-checkbox" aria-hidden="true"></div>
+        <div class="checklist-text">JAVA_HOME apunta al directori del JDK 21</div>
+    </div>
+    
+    <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="checklist-checkbox" aria-hidden="true"></div>
+        <div class="checklist-text">La comanda java -version retorna la versió correcta</div>
+    </div>
+    
+    <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="checklist-checkbox" aria-hidden="true"></div>
+        <div class="checklist-text">El PATH inclou les eines del JDK</div>
+    </div>
+    
+    <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Comprova que JAVA_HOME i java -version retornen la configuració esperada al meu sistema (Windows/Mac/Linux). Dona'm un script que pugui executar directament.</div>
+  </div>
+</div>
+
+
+    <!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    No avancis cap als passos de PostgreSQL fins a tenir el JDK configurat i verificat; Hibernate necessita el JDK per arrencar.
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat8_Bloc2_Seccio2">Configuració de la base de dades PostgreSQL</h2>
+
+    <p>PostgreSQL serà el servei de bases de dades on Hibernate realitzarà les operacions CRUD. Segueix la guia per instal·lar-lo, ajustar l'autenticació i crear els recursos necessaris.</p>
+
+    <h3>Instal·lació de PostgreSQL 16</h3>
+
+    <h4>Windows</h4>
+    <ol>
+        <li>Visita <a href="https://www.postgresql.org/download/windows/" target="_blank" rel="noopener">postgresql.org</a> i descarrega l'instal·lador de PostgreSQL 16.</li>
+        <li>Executa l'assistent, seleccionant tots els components (pgAdmin, línia d'ordres, Stack Builder opcional).</li>
+        <li>Defineix una contrasenya per a l'usuari administrador <code>postgres</code> i recorda-la.</li>
+        <li>Deixa el port per defecte (5432) i completa la instal·lació.</li>
+        <li>Verifica l'accés obrint pgAdmin 4 o executant <code>psql -U postgres</code>.</li>
+    </ol>
+
+    <h4>macOS</h4>
+    <ol>
+        <li>Amb Homebrew: <code>brew install postgresql@16</code>.</li>
+        <li>Inicia el servei: <code>brew services start postgresql@16</code>.</li>
+        <li>Alternativament, utilitza l'instal·lador oficial de la web.</li>
+        <li>Comprova la versió amb <code>psql --version</code>.</li>
+    </ol>
+
+    <h4>Linux (Ubuntu/Debian)</h4>
+    <ol>
+        <li>Afegeix el repositori oficial si cal i instal·la:<br><code>sudo apt update</code><br><code>sudo apt install postgresql-16 postgresql-contrib-16</code></li>
+        <li>Inicia el servei: <code>sudo systemctl start postgresql</code></li>
+        <li>Activa l'arrencada automàtica: <code>sudo systemctl enable postgresql</code></li>
+        <li>Verifica l'estat: <code>sudo systemctl status postgresql</code></li>
+    </ol>
+
+    <h3>Autenticació en Linux (error «Peer authentication failed»)</h3>
+    <ol>
+        <li>Localitza <code>pg_hba.conf</code>:<br><code>sudo find /etc/postgresql -name "pg_hba.conf"</code></li>
+        <li>Edita'l (substitueix <code>X.X</code> per la teva versió):<br><code>sudo nano /etc/postgresql/X.X/main/pg_hba.conf</code></li>
+        <li>Canvia els mètodes <code>peer</code>/<code>scram-sha-256</code> per <code>md5</code> en connexions locals:</li>
+    </ol>
+
+    
+    <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text"># TYPE  DATABASE        USER            ADDRESS             METHOD
+local   all             all                                 md5
+host    all             all             127.0.0.1/32        md5
+host    all             all             ::1/128             md5</code></pre>
+  </div>
+</div>
+
+
+    <ol start="4">
+        <li>Desa els canvis i reinicia PostgreSQL:<br><code>sudo systemctl restart postgresql</code></li>
+        <li>Torna a provar la connexió:<br><code>psql -U hibuser -d hibernatedb</code></li>
+    </ol>
+
+    <!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    Utilitza contrasenyes reals i segures en entorns de producció. En aquest tutorial s'utilitza 'password' només per facilitar la pràctica.
+</div>
+
+
+    <h3>Creació de l'usuari i base de dades</h3>
+    <p>Executa les ordres següents des de <code>psql</code> amb l'usuari administrador <code>postgres</code>.</p>
+
+    
+    <div class="code-block" data-lang="sql" role="region" aria-label="Bloc de codi sql">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">SQL</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-sql">-- Connecta com a superusuari
+psql -U postgres
+
+-- Usuari dedicat al projecte
+CREATE USER hibuser WITH PASSWORD &#39;password&#39;;
+
+-- Base de dades principal
+CREATE DATABASE hibernatedb OWNER hibuser;
+
+-- Atorga permisos addicionals (si cal)
+GRANT ALL PRIVILEGES ON DATABASE hibernatedb TO hibuser;
+
+-- Canvia a la nova base de dades
+\c hibernatedb
+
+-- Concedeix permisos sobre l&#39;esquema
+GRANT ALL ON SCHEMA public TO hibuser;</code></pre>
+  </div>
+</div>
+
+
+    <p>Verifica que l'usuari es pot connectar:</p>
+
+    
+    <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">psql -h localhost -U hibuser -d hibernatedb -W</code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    Si veus el prompt <code>hibernatedb=></code>, la configuració de PostgreSQL està llesta.
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Necessito scripts SQL per inserir dades de prova a la taula productes (nom, preu, stock) un cop creada la base de dades hibernatedb. Escriu-los per PostgreSQL.</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat8_Bloc2_Seccio3">Configuració de Visual Studio Code i extensions</h2>
+
+    <h3>Instal·lació de Visual Studio Code</h3>
+    <ol>
+        <li>Descarrega l'instal·lador corresponent a <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">code.visualstudio.com</a>.</li>
+        <li>Instal·la'l amb permisos d'administrador (Windows) o mou l'app a <code>/Applications</code> (macOS).</li>
+        <li>Obre VS Code i inicia la sessió amb el teu compte per sincronitzar configuracions (opcional).</li>
+    </ol>
+
+    <h3>Extensions imprescindibles</h3>
+    <ul>
+        <li><strong>Extension Pack for Java</strong> (inclou Language Support, Debugger, Test Runner, Maven for Java).</li>
+        <li><strong>Project Manager for Java</strong> (facilita la creació de projectes).</li>
+        <li><strong>Database Client</strong> (o una extensió similar) per consultar PostgreSQL des del mateix editor.</li>
+    </ul>
+
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    Després d'instal·lar l'Extension Pack for Java, VS Code demanarà descarregar els components necessaris. Accepta totes les descàrregues.
+    
+</div>
+
+
+    <h3>Configurar Maven i el JDK a VS Code</h3>
+    <ol>
+        <li>Obre la paleta de comandes (<code>Ctrl/Cmd + Shift + P</code>) i cerca <em>Preferences: Open Settings (JSON)</em>.</li>
+        <li>Afegeix (o adapta) la configuració següent:</li>
+    </ol>
+
+    
+    <div class="code-block" data-lang="json" role="region" aria-label="Bloc de codi json">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JSON</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-json">{
+    &quot;java.configuration.runtimes&quot;: [
+        {
+            &quot;name&quot;: &quot;JavaSE-21&quot;,
+            &quot;path&quot;: &quot;/ruta/al/jdk-21&quot;
+        }
+    ],
+    &quot;maven.executable.path&quot;: &quot;/ruta/al/mvn&quot;
+}</code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Quines opcions de configuració recomanes a VS Code per millorar el rendiment del Java Language Server en projectes Maven grans? Dona'm fragments per afegir a settings.json.</div>
+  </div>
+</div>
+
+
+    <h3>Connexió a la base de dades des de VS Code</h3>
+    <p>Si instal·les un visor de bases de dades, afegeix una connexió nova amb els paràmetres:</p>
+    <ul>
+        <li><strong>Host:</strong> <code>localhost</code></li>
+        <li><strong>Port:</strong> <code>5432</code></li>
+        <li><strong>Database:</strong> <code>hibernatedb</code></li>
+        <li><strong>User:</strong> <code>hibuser</code></li>
+        <li><strong>Password:</strong> <code>password</code></li>
+    </ul>
+
+    <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    Amb VS Code preparat tens un únic entorn per escriure codi, executar Maven, consultar PostgreSQL i depurar.
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat8_Bloc2_Seccio4">Creació del projecte Maven</h2>
+
+    <p>El tutorial construeix un projecte anomenat <code>hibernate-demo</code> amb paquet base <code>cat.exemple</code>. Crea'l directament des de VS Code o via terminal.</p>
+
+    <h3>Generar l'estructura</h3>
+    <ol>
+        <li>Obre VS Code i prem <strong>Ctrl/Cmd + Shift + P</strong>.</li>
+        <li>Escriu <em>Maven: Create Maven Project</em> i selecciona <em>maven-archetype-quickstart</em>.</li>
+        <li>Escull la versió més recent (1.4 a data del tutorial).</li>
+        <li>Introdueix <strong>cat.exemple</strong> com a <em>Group Id</em>.</li>
+        <li>Introdueix <strong>hibernate-demo</strong> com a <em>Artifact Id</em>.</li>
+        <li>Mantenim la versió <code>1.0-SNAPSHOT</code> (o la que prefereixis).</li>
+        <li>Selecciona el directori on vols crear el projecte i espera a que Maven generi l'esquelet.</li>
+    </ol>
+
+    <h3>Verificació de l'estructura</h3>
+    <p>A l'explorador hauries de veure:</p>
+
+    
+    <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">hibernate-demo/
+├── pom.xml
+├── src
+│   ├── main
+│   │   └── java
+│   │       └── cat
+│   │           └── exemple
+│   │               └── App.java
+│   └── test
+│       └── java
+│           └── cat
+│               └── exemple
+│                   └── AppTest.java
+└── README.md</code></pre>
+  </div>
+</div>
+
+
+    <p>Substituirem la classe <code>App</code> per <code>Application</code> més endavant. De moment, deixa els fitxers generats.</p>
+
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    Si Maven no apareix a la barra lateral, obre la paleta de comandes i executa 'Maven: Reload project'.
+    
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Crea un script bash que generi l'estructura del projecte hibernate-demo i col·loqui esquelets buits per a HibernateUtil, Producte, ProducteDAO i Application.</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat8_Bloc2_Seccio5">Configuració de Hibernate</h2>
+
+    <h3>Actualitzar <code>pom.xml</code></h3>
+    <p>Obre el fitxer <code>pom.xml</code> i substitueix el contingut pel fragment del tutorial:</p>
+
+    
+    <div class="code-block" data-lang="xml" role="region" aria-label="Bloc de codi xml">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">XML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
+         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+    &lt;groupId&gt;cat.exemple&lt;/groupId&gt;
+    &lt;artifactId&gt;hibernate-demo&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+
+    &lt;properties&gt;
+        &lt;maven.compiler.source&gt;21&lt;/maven.compiler.source&gt;
+        &lt;maven.compiler.target&gt;21&lt;/maven.compiler.target&gt;
+        &lt;project.build.sourceEncoding&gt;UTF8&lt;/project.build.sourceEncoding&gt;
+        &lt;hibernate.version&gt;6.4.4.Final&lt;/hibernate.version&gt;
+        &lt;postgresql.version&gt;42.7.2&lt;/postgresql.version&gt;
+    &lt;/properties&gt;
+
+    &lt;dependencies&gt;
+        &lt;!-- Hibernate Core --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.hibernate.orm&lt;/groupId&gt;
+            &lt;artifactId&gt;hibernate-core&lt;/artifactId&gt;
+            &lt;version&gt;${hibernate.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;!-- Driver JDBC de PostgreSQL --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.postgresql&lt;/groupId&gt;
+            &lt;artifactId&gt;postgresql&lt;/artifactId&gt;
+            &lt;version&gt;${postgresql.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;!-- Jakarta Persistence API --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;jakarta.persistence&lt;/groupId&gt;
+            &lt;artifactId&gt;jakarta.persistence-api&lt;/artifactId&gt;
+            &lt;version&gt;3.1.0&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;!-- Logging --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+            &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
+            &lt;version&gt;2.0.9&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+            &lt;artifactId&gt;slf4j-simple&lt;/artifactId&gt;
+            &lt;version&gt;2.0.9&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;!-- JUnit per als tests --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;junit&lt;/groupId&gt;
+            &lt;artifactId&gt;junit&lt;/artifactId&gt;
+            &lt;version&gt;4.13.2&lt;/version&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.11.0&lt;/version&gt;
+                &lt;configuration&gt;
+                    &lt;source&gt;${maven.compiler.source}&lt;/source&gt;
+                    &lt;target&gt;${maven.compiler.target}&lt;/target&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+                &lt;artifactId&gt;exec-maven-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.1.0&lt;/version&gt;
+                &lt;configuration&gt;
+                    &lt;mainClass&gt;cat.exemple.Application&lt;/mainClass&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+&lt;/project&gt;</code></pre>
+  </div>
+</div>
+
+
+    <ol>
+        <li>Desa el fitxer i accepta l'alerta «Maven project configuration updated».</li>
+        <li>Si no apareix, executa manualment <em>Maven: Update project</em>.</li>
+        <li>Espera a que Maven descarregui totes les dependències (observa la barra d'estat).</li>
+    </ol>
+
+    <!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    Aquest conjunt de versions està testat amb el tutorial. Canviar versions pot introduir incompatibilitats amb Java 21.
+</div>
+
+
+    <h3>Crear <code>hibernate.cfg.xml</code></h3>
+    <ol>
+        <li>Crea la carpeta <code>src/main/resources</code> si no existeix.</li>
+        <li>Afegeix el fitxer <code>hibernate.cfg.xml</code> amb el contingut següent:</li>
+    </ol>
+
+    
+    <div class="code-block" data-lang="xml" role="region" aria-label="Bloc de codi xml">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">XML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-xml">&lt;?xml version=&#39;1.0&#39; encoding=&#39;utf-8&#39;?&gt;
+&lt;!DOCTYPE hibernate-configuration PUBLIC
+        &quot;http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd&quot;&gt;
+&lt;hibernate-configuration&gt;
+    &lt;session-factory&gt;
+        &lt;property name=&quot;hibernate.connection.driver_class&quot;&gt;org.postgresql.Driver&lt;/property&gt;
+        &lt;property name=&quot;hibernate.connection.url&quot;&gt;jdbc:postgresql://localhost:5432/hibernatedb&lt;/property&gt;
+        &lt;property name=&quot;hibernate.connection.username&quot;&gt;hibuser&lt;/property&gt;
+        &lt;property name=&quot;hibernate.connection.password&quot;&gt;password&lt;/property&gt;
+        &lt;property name=&quot;hibernate.dialect&quot;&gt;org.hibernate.dialect.PostgreSQLDialect&lt;/property&gt;
+        &lt;property name=&quot;hibernate.hbm2ddl.auto&quot;&gt;update&lt;/property&gt;
+        &lt;property name=&quot;hibernate.show_sql&quot;&gt;true&lt;/property&gt;
+        &lt;property name=&quot;hibernate.format_sql&quot;&gt;true&lt;/property&gt;
+        &lt;property name=&quot;hibernate.current_session_context_class&quot;&gt;thread&lt;/property&gt;
+        &lt;property name=&quot;hibernate.mapping.precedence&quot;&gt;class,hbm&lt;/property&gt;
+
+        &lt;mapping class=&quot;cat.exemple.model.Producte&quot; /&gt;
+    &lt;/session-factory&gt;
+&lt;/hibernate-configuration&gt;</code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    L'opció <code>hibernate.hbm2ddl.auto=update</code> crea o modifica les taules a cada arrencada. En entorns productius utilitza eines de migració.
+    
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Transforma el fitxer hibernate.cfg.xml perquè utilitzi propietats o variables d'entorn quan desplegui a un servidor remots. Dona'm un exemple complet.</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat8_Bloc2_Seccio6">Implementació de les classes Java</h2>
+
+    <p>Aquesta secció replica els passos exactes del tutorial per construir les classes <code>HibernateUtil</code>, <code>Producte</code>, <code>ProducteDAO</code> i <code>Application</code>. Segueix l'ordre indicat per evitar errors de dependència.</p>
+
+    <h3>Organització de paquets</h3>
+    <p>Crea els paquets següents dins de <code>src/main/java</code>:</p>
+    <ul>
+        <li><code>cat.exemple.util</code></li>
+        <li><code>cat.exemple.model</code></li>
+        <li><code>cat.exemple.dao</code></li>
+    </ul>
+
+    <h3>Classe <code>HibernateUtil</code></h3>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">package cat.exemple.util;
+
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+
+import cat.exemple.model.Producte;
+
+public class HibernateUtil {
+    private static final SessionFactory sessionFactory;
+
+    static {
+        try {
+            Configuration configuration = new Configuration();
+            configuration.configure(&quot;hibernate.cfg.xml&quot;);
+            configuration.addAnnotatedClass(Producte.class);
+
+            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
+                .applySettings(configuration.getProperties())
+                .build();
+
+            sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+            System.out.println(&quot;Hibernate SessionFactory inicialitzat amb èxit&quot;);
+        } catch (Throwable ex) {
+            System.err.println(&quot;Error en la inicialització de SessionFactory: &quot; + ex);
+            ex.printStackTrace();
+            throw new ExceptionInInitializerError(ex);
+        }
+    }
+
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public static void shutdown() {
+        if (sessionFactory != null &amp;&amp; !sessionFactory.isClosed()) {
+            sessionFactory.close();
+            System.out.println(&quot;SessionFactory tancat&quot;);
+        }
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Com puc registrar automàticament totes les classes del paquet cat.exemple.model a Hibernate sense cridar addAnnotatedClass per cadascuna? Dona'm opcions.</div>
+  </div>
+</div>
+
+
+    <h3>Classe model <code>Producte</code></h3>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">package cat.exemple.model;
+
+import jakarta.persistence.*;
+import java.math.BigDecimal;
+
+@Entity
+@Table(name = &quot;productes&quot;)
+public class Producte {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = &quot;nom&quot;, nullable = false, length = 100)
+    private String nom;
+
+    @Column(name = &quot;preu&quot;, precision = 10, scale = 2)
+    private BigDecimal preu;
+
+    @Column(name = &quot;stock&quot;)
+    private Integer stock;
+
+    public Producte() {
+    }
+
+    public Producte(String nom, BigDecimal preu, Integer stock) {
+        this.nom = nom;
+        this.preu = preu;
+        this.stock = stock;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public BigDecimal getPreu() {
+        return preu;
+    }
+
+    public void setPreu(BigDecimal preu) {
+        this.preu = preu;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    @Override
+    public String toString() {
+        return &quot;Producte [id=&quot; + id + &quot;, nom=&quot; + nom + &quot;, preu=&quot; + preu + &quot;, stock=&quot; + stock + &quot;]&quot;;
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    El model utilitza anotacions de Jakarta Persistence (JPA 3). Això assegura compatibilitat amb Hibernate 6.
+    
+</div>
+
+
+    <h3>Classe DAO <code>ProducteDAO</code></h3>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">package cat.exemple.dao;
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
+import cat.exemple.model.Producte;
+import cat.exemple.util.HibernateUtil;
+
+public class ProducteDAO {
+
+    /**
+     * Desa un producte a la base de dades i retorna l&#39;identificador generat.
+     */
+    public Long save(Producte producte) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            Long id = (Long) session.save(producte);
+            transaction.commit();
+            return id;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    /**
+     * Obté un producte pel seu identificador.
+     */
+    public Producte getById(Long id) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.get(Producte.class, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    /**
+     * Retorna tots els productes.
+     */
+    public List&lt;Producte&gt; getAll() {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query&lt;Producte&gt; query = session.createQuery(&quot;from Producte&quot;, Producte.class);
+            return query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    /**
+     * Actualitza un producte existent.
+     */
+    public void update(Producte producte) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            session.update(producte);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    /**
+     * Elimina un producte.
+     */
+    public void delete(Producte producte) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            session.delete(producte);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    /**
+     * Cerca productes pel nom.
+     */
+    public List&lt;Producte&gt; findByName(String nom) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query&lt;Producte&gt; query = session.createQuery(&quot;from Producte where nom like :nom&quot;, Producte.class);
+            query.setParameter(&quot;nom&quot;, &quot;%&quot; + nom + &quot;%&quot;);
+            return query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    Hibernate 6 introdueix nous mètodes (persist/merge/remove). El tutorial manté save/update/delete per simplicitat, però tingues-ho present per a projectes avançats.
+</div>
+
+
+    <h3>Classe principal <code>Application</code></h3>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">package cat.exemple;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import cat.exemple.dao.ProducteDAO;
+import cat.exemple.model.Producte;
+import cat.exemple.util.HibernateUtil;
+
+public class Application {
+    private static final ProducteDAO producteDAO = new ProducteDAO();
+
+    public static void main(String[] args) {
+        try {
+            System.out.println(&quot;Iniciant aplicació Hibernate amb PostgreSQL...&quot;);
+
+            crearProductes();
+            mostrarTotsElsProductes();
+            actualitzarProducte();
+            cercarProductesPerNom(&quot;por&quot;);
+            eliminarProducte();
+            mostrarTotsElsProductes();
+
+            System.out.println(&quot;Fi de l&#39;aplicació&quot;);
+        } catch (Exception e) {
+            System.err.println(&quot;Error en l&#39;aplicació: &quot; + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            HibernateUtil.shutdown();
+        }
+    }
+
+    private static void crearProductes() {
+        System.out.println(&quot;\n=== Creant productes ===&quot;);
+        Producte p1 = new Producte(&quot;Portàtil XPS&quot;, new BigDecimal(&quot;1299.99&quot;), 10);
+        Producte p2 = new Producte(&quot;Teclat Mecànic&quot;, new BigDecimal(&quot;89.99&quot;), 25);
+        Producte p3 = new Producte(&quot;Ratolí Gaming&quot;, new BigDecimal(&quot;49.99&quot;), 30);
+
+        producteDAO.save(p1);
+        producteDAO.save(p2);
+        producteDAO.save(p3);
+        System.out.println(&quot;Productes creats amb èxit&quot;);
+    }
+
+    private static void mostrarTotsElsProductes() {
+        System.out.println(&quot;\n=== Tots els productes ===&quot;);
+        List&lt;Producte&gt; productes = producteDAO.getAll();
+        if (productes.isEmpty()) {
+            System.out.println(&quot;No hi ha productes a la base de dades.&quot;);
+        } else {
+            for (Producte p : productes) {
+                System.out.println(p);
+            }
+        }
+    }
+
+    private static void actualitzarProducte() {
+        System.out.println(&quot;\n=== Actualitzant producte ===&quot;);
+        List&lt;Producte&gt; productes = producteDAO.getAll();
+        if (!productes.isEmpty()) {
+            Producte producte = productes.get(0);
+            System.out.println(&quot;Producte abans d&#39;actualitzar: &quot; + producte);
+
+            producte.setPreu(new BigDecimal(&quot;1199.99&quot;));
+            producte.setStock(producte.getStock() - 2);
+            producteDAO.update(producte);
+
+            producte = producteDAO.getById(producte.getId());
+            System.out.println(&quot;Producte després d&#39;actualitzar: &quot; + producte);
+        } else {
+            System.out.println(&quot;No hi ha productes per actualitzar.&quot;);
+        }
+    }
+
+    private static void cercarProductesPerNom(String nom) {
+        System.out.println(&quot;\n=== Cercant productes amb nom que contingui &#39;&quot; + nom + &quot;&#39; ===&quot;);
+        List&lt;Producte&gt; productes = producteDAO.findByName(nom);
+        if (productes.isEmpty()) {
+            System.out.println(&quot;Cap producte trobat amb el nom &#39;&quot; + nom + &quot;&#39;&quot;);
+        } else {
+            for (Producte p : productes) {
+                System.out.println(p);
+            }
+        }
+    }
+
+    private static void eliminarProducte() {
+        System.out.println(&quot;\n=== Eliminant producte ===&quot;);
+        List&lt;Producte&gt; productes = producteDAO.getAll();
+        if (!productes.isEmpty()) {
+            Producte producteAEliminar = productes.get(productes.size() - 1);
+            System.out.println(&quot;Eliminant: &quot; + producteAEliminar);
+            producteDAO.delete(producteAEliminar);
+            System.out.println(&quot;Producte eliminat&quot;);
+        } else {
+            System.out.println(&quot;No hi ha productes per eliminar.&quot;);
+        }
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+    <h3>Fitxer de test <code>AppTest</code></h3>
+    <ol>
+        <li>Obre <code>src/test/java/cat/exemple/AppTest.java</code>.</li>
+        <li>Confirma que conté:</li>
+    </ol>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">package cat.exemple;
+
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+public class AppTest {
+    @Test
+    public void shouldAnswerWithTrue() {
+        assertTrue(true);
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Vull afegir tests unitats per ProducteDAO utilitzant una base de dades en memòria (H2). Especifica quines dependències i configuracions haig d'afegir i entrega'm un exemple de test.</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat8_Bloc2_Seccio7">Compilació, proves i execució final</h2>
+
+    <h3>Compilació i execució de Maven</h3>
+    <ol>
+        <li>Obre la barra lateral de Maven a VS Code.</li>
+        <li>Executa <code>clean</code> i després <code>compile</code> (clic dret → <em>Run</em>).</li>
+        <li>Comprova la consola: ha d'aparèixer <strong>BUILD SUCCESS</strong>.</li>
+    </ol>
+
+    
+    <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">mvn clean
+mvn compile</code></pre>
+  </div>
+</div>
+
+
+    <h3>Execució dels tests JUnit</h3>
+    <ol>
+        <li>Al menú Maven → Lifecycle, executa <code>test</code>.</li>
+        <li>Alternativament, obre <code>AppTest.java</code> i fes clic a <em>Run Test</em>.</li>
+        <li>Confirma que els tests acaben amb <strong>BUILD SUCCESS</strong>.</li>
+    </ol>
+
+    <h3>Execució de l'aplicació</h3>
+    <ol>
+        <li>Assegura't que el servei PostgreSQL està actiu.</li>
+        <li>Executa el plugin <code>exec:java</code> (Plugins → exec → exec:java → Run).</li>
+        <li>O bé, obre <code>Application.java</code> i fes clic al botó <em>Run</em>.</li>
+        <li>Observa els logs d'Hibernate: es mostraran les consultes SQL generades.</li>
+    </ol>
+
+    
+    <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">mvn exec:java -Dexec.mainClass=&quot;cat.exemple.Application&quot;</code></pre>
+  </div>
+</div>
+
+
+    <h3>Verificació a PostgreSQL</h3>
+    <ol>
+        <li>Connecta't: <code>psql -U hibuser -d hibernatedb</code>.</li>
+        <li>Llista les taules amb <code>\dt</code>.</li>
+        <li>Consulta el contingut: <code>SELECT * FROM productes;</code></li>
+        <li>Confirma que els registres coincideixen amb els mostrats per l'aplicació (incloent l'actualització i l'eliminació).</li>
+    </ol>
+
+    
+    <div class="code-block" data-lang="sql" role="region" aria-label="Bloc de codi sql">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">SQL</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-sql">psql -h localhost -U hibuser -d hibernatedb -W
+\dt
+SELECT * FROM productes;
+\q</code></pre>
+  </div>
+</div>
+
+
+    <h3>Visor de bases de dades a VS Code</h3>
+    <ol>
+        <li>Obre l'extensió de Base de Dades instal·lada.</li>
+        <li>Crea una connexió nova amb les credencials del tutorial.</li>
+        <li>Explora la taula <code>productes</code> i actualitza-la després d'executar l'aplicació per veure els canvis en temps real.</li>
+    </ol>
+
+    <h3>Solució de problemes comuns</h3>
+    <!-- Component: Checklist accessible -->
+<div class="checklist" role="group" aria-label="Diagnòstic ràpid">
+    <div class="checklist-title">Diagnòstic ràpid</div>
+    
+    
+    <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="checklist-checkbox" aria-hidden="true"></div>
+        <div class="checklist-text">PostgreSQL en execució (servei actiu)</div>
+    </div>
+    
+    <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="checklist-checkbox" aria-hidden="true"></div>
+        <div class="checklist-text">Credencials correctes a hibernate.cfg.xml</div>
+    </div>
+    
+    <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="checklist-checkbox" aria-hidden="true"></div>
+        <div class="checklist-text">Autenticació Linux configurada a md5</div>
+    </div>
+    
+    <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="checklist-checkbox" aria-hidden="true"></div>
+        <div class="checklist-text">Dependències Maven descarregades sense errors</div>
+    </div>
+    
+    <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+    <h4>Problemes de connexió</h4>
+    <ul>
+        <li>Comprova <code>hibernate.cfg.xml</code> (URL, usuari, contrasenya).</li>
+        <li>Intenta connectar-te manualment amb <code>psql</code>.</li>
+        <li>En Windows, assegura't que el directori <code>PostgreSQL\bin</code> és al PATH.</li>
+    </ul>
+
+    <h4>Errors d'autenticació en Linux</h4>
+    <ul>
+        <li>Revisa <code>pg_hba.conf</code> i canvia a <code>md5</code>.</li>
+        <li>Reinicia el servei: <code>sudo systemctl restart postgresql</code>.</li>
+    </ul>
+
+    <h4>Problemes amb Maven o VS Code</h4>
+    <ul>
+        <li>Executa <em>Maven: Clean</em> i <em>Maven: Update project</em>.</li>
+        <li>Si hi ha errors d'import, comprova que el <code>pom.xml</code> està guardat i sense conflictes.</li>
+    </ul>
+    <h4>Problemes amb els tests</h4>
+    <ul>
+        <li>Confirma que la dependència de JUnit (4.13.2) és present al <code>pom.xml</code>.</li>
+        <li>Actualitza el projecte Maven després d'afegir la dependència.</li>
+        <li>Verifica que el paquet del test sigui <code>cat.exemple</code> i que la classe <code>AppTest</code> importi les classes correctes.</li>
+        <li>Executa els tests des de la línia d'ordres amb <code>mvn test</code> per veure el traç complet.</li>
+    </ul>
+
+    <h4>Problemes amb Hibernate</h4>
+    <ul>
+        <li>Activa <code>&lt;property name="hibernate.use_sql_comments"&gt;true&lt;/property&gt;</code> per obtenir logs més descriptius.</li>
+        <li>Revisa que totes les classes anotades estan registrades a <code>HibernateUtil</code> i al fitxer de configuració.</li>
+        <li>Si hi ha conflictes d'esquema, canvia temporalment <code>hibernate.hbm2ddl.auto</code> a <code>create</code> i torna a <code>update</code> un cop resolt.</li>
+        <li>Buida la base de dades o ajusta les dades d'entrada quan es produeixin errors de restriccions (per exemple, columnes úniques).</li>
+    </ul>
+
+    <h3>Activitat d'ampliació</h3>
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Afegeix l'entitat Categoria</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Crea la classe <code>Categoria</code> amb relació <em>One-to-Many</em> a <code>Producte</code>. Actualitza <code>Producte</code>, registra la classe a Hibernate i estèn <code>Application</code> perquè mostri la categoria a cada producte.</p></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjana</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">25 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Declara @OneToMany i @ManyToOne amb les anotacions corresponents</li>
+        
+        <li>Afegeix la nova entitat a HibernateUtil i al fitxer hibernate.cfg.xml</li>
+        
+        <li>Crea un mètode al DAO per llistar productes agrupats per categoria</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+
+    
+    
+    <details class="solution-toggle">
+        <summary>Mostra la solució orientativa</summary>
+        <!-- Component: Solució -->
+<div class="solution-box" role="region" aria-label="Solució">
+    <div class="component-header solution-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Solució</div>
+    
+<ul>
+    <li>Defineix <code>Categoria</code> amb <code>@OneToMany(mappedBy="categoria")</code> i registra-la a Hibernate.</li>
+    <li>Actualitza <code>Producte</code> per afegir <code>@ManyToOne</code> i la columna <code>categoria_id</code>.</li>
+    <li>Ajusta <code>HibernateUtil</code> i <code>hibernate.cfg.xml</code> per incloure la nova entitat.</li>
+    <li>Extén <code>Application</code> per crear categories i associar-les als productes abans de llistar-los.</li>
+</ul>
+    
+</div>
+
+        <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">// src/main/java/cat/exemple/model/Categoria.java
+package cat.exemple.model;
+
+import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = &quot;categories&quot;)
+public class Categoria {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, length = 80, unique = true)
+    private String nom;
+
+    @OneToMany(mappedBy = &quot;categoria&quot;, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List&lt;Producte&gt; productes = new ArrayList&lt;&gt;();
+
+    public Categoria() {}
+
+    public Categoria(String nom) {
+        this.nom = nom;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public List&lt;Producte&gt; getProductes() {
+        return productes;
+    }
+}
+
+// Afegir al fitxer Producte.java
+@ManyToOne(fetch = FetchType.LAZY)
+@JoinColumn(name = &quot;categoria_id&quot;)
+private Categoria categoria;
+
+public Categoria getCategoria() {
+    return categoria;
+}
+
+public void setCategoria(Categoria categoria) {
+    this.categoria = categoria;
+}
+
+// HibernateUtil.java
+configuration.addAnnotatedClass(Categoria.class);
+
+// hibernate.cfg.xml
+&lt;mapping class=&quot;cat.exemple.model.Categoria&quot; /&gt;
+
+// Application.java (fragment)
+Categoria tecnologia = new Categoria(&quot;Tecnologia&quot;);
+Categoria periferiques = new Categoria(&quot;Perifèrics&quot;);
+
+Producte p1 = new Producte(&quot;Portàtil XPS&quot;, new BigDecimal(&quot;1299.99&quot;), 10);
+p1.setCategoria(tecnologia);
+Producte p2 = new Producte(&quot;Teclat Mecànic&quot;, new BigDecimal(&quot;89.99&quot;), 25);
+p2.setCategoria(periferiques);
+
+producteDAO.save(p1);
+producteDAO.save(p2);</code></pre>
+  </div>
+</div>
+
+    </details>
+
+    <h4>Utilització de consultes més complexes</h4>
+    <ul>
+        <li>Afegeix mètodes a <code>ProducteDAO</code> utilitzant la Criteria API o consultes HQL amb <code>ORDER BY</code>, filtres i agregacions.</li>
+        <li>Experimenta amb <code>JOIN FETCH</code> per carregar categories i productes en una sola consulta.</li>
+        <li>Analitza el rendiment activant <code>show_sql</code> i els comentaris SQL.</li>
+    </ul>
+
+    <h4>Afegir una interfície d'usuari</h4>
+    <ul>
+        <li>Afegeix dependències de JavaFX o Swing al <code>pom.xml</code> per construir una UI d'escriptori.</li>
+        <li>Crea pantalles per llistar productes, afegir-ne de nous i actualitzar-ne el preu.</li>
+        <li>Centralitza la lògica a la capa de servei per mantenir la UI desacoblada.</li>
+    </ul>
+
+    <h3>Resum final</h3>
+    <p>Has completat un projecte funcional amb Hibernate 6, PostgreSQL i Maven:</p>
+    <ul>
+        <li>Instal·lació i configuració de totes les eines necessàries.</li>
+        <li>Creació d'un projecte Maven estructurat.</li>
+        <li>Configuració d'Hibernate i implementació de la capa de persistència.</li>
+        <li>Execució de CRUD complet i verificació directament a PostgreSQL.</li>
+        <li>Diagnòstic dels errors més habituals i suggeriments d'ampliació.</li>
+    </ul>
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Proposa nous casos d'ús (per exemple comandes i factures) i descriu quines entitats, DAOs i relacions hauria d'afegir per suportar-los amb Hibernate 6.</div>
+  </div>
+</div>
+
+
+    <h3>Referències i recursos</h3>
+    <ul>
+        <li><a href="https://hibernate.org/orm/documentation/" target="_blank" rel="noopener">Documentació oficial d'Hibernate ORM</a></li>
+        <li><a href="https://www.postgresql.org/docs/" target="_blank" rel="noopener">Manual oficial de PostgreSQL</a></li>
+        <li><a href="https://code.visualstudio.com/docs/java/java-tutorial" target="_blank" rel="noopener">Guia de Java a Visual Studio Code</a></li>
+    </ul>
+
+    <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    Amb el tutorial completat tens una base sòlida per abordar RA8 i RA9 i construir aplicacions empresarials amb Hibernate.
+</div>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 2: Gestió i manteniment de dades",
+  "description": "Tutorial complet: configuració de l'entorn, implementació d'Hibernate i verificació amb PostgreSQL",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Programació II — IOC",
+    "description": "Materials del mòdul Programació II - DA2_0485B2"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/da2_0485b2/unitat-8/bloc-1/" class="nav-button" aria-label="Bloc anterior: Fonaments de bases de dades orientades a objectes">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="8" data-total="4">(8/4)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 200%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="2" data-total="2">(2/2)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="7">(1/7)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 14%"></div></div>
+                    </div></div>
+            <div class="footer-actions">
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/da2_0485b2/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts del lloc -->
+    <script src="/ioc/da2_0485b2/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

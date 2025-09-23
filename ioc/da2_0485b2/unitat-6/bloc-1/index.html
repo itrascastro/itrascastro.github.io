@@ -18,21 +18,21 @@
 <meta property="og:locale" content="ca_ES" />
 <meta name="description" content="Arrays unidimensionals i bidimensionals en Java" />
 <meta property="og:description" content="Arrays unidimensionals i bidimensionals en Java" />
-<link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-6/bloc-1/" />
-<meta property="og:url" content="http://localhost:4003/ioc/da2_0485b2/unitat-6/bloc-1/" />
+<link rel="canonical" href="http://localhost:4001/ioc/da2_0485b2/unitat-6/bloc-1/" />
+<meta property="og:url" content="http://localhost:4001/ioc/da2_0485b2/unitat-6/bloc-1/" />
 <meta property="og:site_name" content="Programació II" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Bloc 1: Estructures de dades bàsiques" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Arrays unidimensionals i bidimensionals en Java","headline":"Bloc 1: Estructures de dades bàsiques","url":"http://localhost:4003/ioc/da2_0485b2/unitat-6/bloc-1/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Arrays unidimensionals i bidimensionals en Java","headline":"Bloc 1: Estructures de dades bàsiques","url":"http://localhost:4001/ioc/da2_0485b2/unitat-6/bloc-1/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-6/bloc-1/">
+    <link rel="canonical" href="http://localhost:4001/ioc/da2_0485b2/unitat-6/bloc-1/">
     <!-- Rich editor styles (for embedded notes panel) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
     <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -48,7 +48,7 @@
     <link rel="icon" type="image/x-icon" href="/ioc/da2_0485b2/assets/images/favicon.ico">
     
     <!-- RSS Feed -->
-    <link type="application/atom+xml" rel="alternate" href="http://localhost:4003/ioc/da2_0485b2/feed.xml" title="Programació II" />
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4001/ioc/da2_0485b2/feed.xml" title="Programació II" />
 
     <!-- Syntax Highlighting (Prism) -->
     <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
@@ -123,6 +123,16 @@
                         
                             <a href="/ioc/da2_0485b2/unitat-7/bloc-2/" class="nav-dropdown-item ">
                                 Unitat 7 - Bloc 2: Característiques avançades i abstracció
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-8/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 8 - Bloc 1: Fonaments de bases de dades orientades a objectes
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-8/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 8 - Bloc 2: Gestió i manteniment de dades
                             </a>
                         
                     
@@ -566,10 +576,8 @@
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-int[] numeros = new int[5]; // Array sense inicialitzar
-int[] valors = {1, 5, 10, -3, 8}; // Array inicialitzat
-    </code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">int[] numeros = new int[5]; // Array sense inicialitzar
+int[] valors = {1, 5, 10, -3, 8}; // Array inicialitzat</code></pre>
   </div>
 </div>
 
@@ -594,10 +602,8 @@ int[] valors = {1, 5, 10, -3, 8}; // Array inicialitzat
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-System.out.println(&quot;Primer element: &quot; + valors[0]); // Mostra 1
-valors[2] = 100; // Modifica el valor a la posició 2
-    </code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">System.out.println(&quot;Primer element: &quot; + valors[0]); // Mostra 1
+valors[2] = 100; // Modifica el valor a la posició 2</code></pre>
   </div>
 </div>
 
@@ -631,14 +637,12 @@ valors[2] = 100; // Modifica el valor a la posició 2
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public static void imprimirArray(int[] a) {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static void imprimirArray(int[] a) {
     for (int i = 0; i &lt; a.length; i++) {
         System.out.print(a[i] + &quot; &quot;);
     }
     System.out.println();
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -663,8 +667,7 @@ public static void imprimirArray(int[] a) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public static void buscar(int[] a, int n) {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static void buscar(int[] a, int n) {
     boolean trobat = false;
     int i = 0;
     while (!trobat &amp;&amp; i &lt; a.length) {
@@ -678,8 +681,7 @@ public static void buscar(int[] a, int n) {
     } else {
         System.out.println(&quot;Element no trobat&quot;);
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -702,15 +704,13 @@ public static void buscar(int[] a, int n) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public static void sumaArray(int[] a) {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static void sumaArray(int[] a) {
     int suma = 0;
     for (int i = 0; i &lt; a.length; i++) {
         suma += a[i];
     }
     System.out.println(&quot;Suma total: &quot; + suma);
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -733,16 +733,14 @@ public static void sumaArray(int[] a) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.util.Random;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.Random;
 
 public static void rellenarAleatorios(int[] a) {
     Random aleatori = new Random();
     for (int i = 0; i &lt; a.length; i++) {
         a[i] = aleatori.nextInt(100); // Nombre entre 0 i 99
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -787,13 +785,11 @@ public static void rellenarAleatorios(int[] a) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-int[][] matriu = {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">int[][] matriu = {
     {1, 2, 3},
     {4, 5, 6},
     {7, 8, 9}
-};
-    </code></pre>
+};</code></pre>
   </div>
 </div>
 
@@ -816,10 +812,8 @@ int[][] matriu = {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-System.out.println(matriu[1][2]); // Mostra 6
-matriu[0][1] = 20; // Modifica el valor a la posició [0][1]
-    </code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">System.out.println(matriu[1][2]); // Mostra 6
+matriu[0][1] = 20; // Modifica el valor a la posició [0][1]</code></pre>
   </div>
 </div>
 
@@ -851,16 +845,14 @@ matriu[0][1] = 20; // Modifica el valor a la posició [0][1]
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public static void imprimirMatriu(int[][] a) {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static void imprimirMatriu(int[][] a) {
     for (int i = 0; i &lt; a.length; i++) {
         for (int j = 0; j &lt; a[i].length; j++) {
             System.out.print(a[i][j] + &quot; &quot;);
         }
         System.out.println();
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -883,13 +875,11 @@ public static void imprimirMatriu(int[][] a) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public static void modificarDiagonal(int[][] a) {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static void modificarDiagonal(int[][] a) {
     for (int i = 0; i &lt; a.length; i++) {
         a[i][i] = 1;
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -912,8 +902,7 @@ public static void modificarDiagonal(int[][] a) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public static int sumaMatriu(int[][] a) {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static int sumaMatriu(int[][] a) {
     int suma = 0;
     for (int i = 0; i &lt; a.length; i++) {
         for (int j = 0; j &lt; a[i].length; j++) {
@@ -921,8 +910,7 @@ public static int sumaMatriu(int[][] a) {
         }
     }
     return suma;
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -945,8 +933,7 @@ public static int sumaMatriu(int[][] a) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public static void sumarFilesColumnes(int[][] a) {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static void sumarFilesColumnes(int[][] a) {
     for (int i = 0; i &lt; a.length; i++) {
         int sumaFil = 0;
         int sumaCol = 0;
@@ -957,8 +944,7 @@ public static void sumarFilesColumnes(int[][] a) {
         System.out.println(&quot;Fila &quot; + i + &quot; suma: &quot; + sumaFil);
         System.out.println(&quot;Columna &quot; + i + &quot; suma: &quot; + sumaCol);
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1014,8 +1000,7 @@ public static void sumarFilesColumnes(int[][] a) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public static int cercaLineal(int[] array, int valor) {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static int cercaLineal(int[] array, int valor) {
     for (int i = 0; i &lt; array.length; i++) {
         if (array[i] == valor) {
             return i; // Retorna l&#39;índex on s&#39;ha trobat
@@ -1041,8 +1026,7 @@ public static void cercaLinealDetallada(int[] array, int valor) {
     
     System.out.println(&quot;Valor &quot; + valor + &quot;: &quot; + (trobat ? &quot;trobat a posició &quot; + posicio : &quot;no trobat&quot;));
     System.out.println(&quot;Comparacions realitzades: &quot; + comparacions);
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1075,8 +1059,7 @@ public static void cercaLinealDetallada(int[] array, int valor) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public static int cercaBinaria(int[] array, int valor) {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static int cercaBinaria(int[] array, int valor) {
     int esquerra = 0;
     int dreta = array.length - 1;
     
@@ -1110,8 +1093,7 @@ public static int cercaBinariaRecursiva(int[] array, int valor, int esquerra, in
     } else {
         return cercaBinariaRecursiva(array, valor, esquerra, mig - 1);
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1146,8 +1128,7 @@ public static int cercaBinariaRecursiva(int[] array, int valor, int esquerra, in
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public static void ordenaBombolla(int[] array) {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static void ordenaBombolla(int[] array) {
     int n = array.length;
     boolean intercanviat;
     
@@ -1199,8 +1180,7 @@ public static void ordenaBombollaDetallada(int[] array) {
     
     System.out.println(&quot;Resultat final: &quot; + java.util.Arrays.toString(array));
     System.out.println(&quot;Passades: &quot; + passades + &quot;, Intercanvis: &quot; + intercanvis);
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1224,8 +1204,7 @@ public static void ordenaBombollaDetallada(int[] array) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public static void ordenaSeleccio(int[] array) {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static void ordenaSeleccio(int[] array) {
     int n = array.length;
     
     for (int i = 0; i &lt; n - 1; i++) {
@@ -1244,8 +1223,7 @@ public static void ordenaSeleccio(int[] array) {
             array[indexMin] = temp;
         }
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1269,8 +1247,7 @@ public static void ordenaSeleccio(int[] array) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public static void ordenaInsercio(int[] array) {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static void ordenaInsercio(int[] array) {
     for (int i = 1; i &lt; array.length; i++) {
         int clau = array[i];
         int j = i - 1;
@@ -1303,8 +1280,7 @@ public static void ordenaInsercioDetallada(int[] array) {
         array[j + 1] = clau;
         System.out.println(&quot;Després del pas &quot; + i + &quot;: &quot; + java.util.Arrays.toString(array));
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1393,8 +1369,7 @@ public static void ordenaInsercioDetallada(int[] array) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public class AlgorismesArrays {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class AlgorismesArrays {
     public static void main(String[] args) {
         // Array de prova
         int[] numeros = {64, 34, 25, 12, 22, 11, 90, 5};
@@ -1432,8 +1407,7 @@ public class AlgorismesArrays {
         System.out.println(&quot;Cerca binària de &quot; + valorBuscat + &quot; en array ordenat: &quot; + 
                           (resultatBinari != -1 ? &quot;trobat a posició &quot; + resultatBinari : &quot;no trobat&quot;));
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1698,8 +1672,8 @@ public class AlgorismesArrays {
             </div>
             <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
                     <span class="progress-label">Unitat</span>
-                    <span class="progress-text" data-pos="6" data-total="3">(6/3)</span>
-                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 200%"></div></div>
+                    <span class="progress-text" data-pos="6" data-total="4">(6/4)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 150%"></div></div>
                 </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
                         <span class="progress-label">Bloc</span>
                         <span class="progress-text" data-pos="1" data-total="2">(1/2)</span>

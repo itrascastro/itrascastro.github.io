@@ -235,6 +235,34 @@
   background: var(--cb-scrollbar-thumb-hover, #777);
 }
 
+/* Desactivar border-radius i altres estils per elements dins de blocs de codi */
+.code-block .code-inline,
+.code-block code .code-inline,
+.code-block span,
+.code-block code span {
+  border-radius: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+/* Forçar estils tipogràfics uniformes per tots els llenguatges i elements */
+.code-block code,
+.code-block code *,
+.code-block pre,
+.code-block pre *,
+.code-block .language-markup,
+.code-block .language-markup *,
+.code-block .language-html,
+.code-block .language-html *,
+.code-block .language-xml,
+.code-block .language-xml * {
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  font-family: 'Fira Code', monospace !important;
+  font-weight: normal !important;
+}
+
 /* Colors per scrollbars en mode clar */
 [data-theme='light'] .code-block {
   --cb-scrollbar-track: #dde3ea; /* lleugerament més fosc */

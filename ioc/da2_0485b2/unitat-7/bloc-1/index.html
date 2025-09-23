@@ -18,21 +18,21 @@
 <meta property="og:locale" content="ca_ES" />
 <meta name="description" content="Fonaments de la programació orientada a objectes: classes, objectes, herència, polimorfisme i composició" />
 <meta property="og:description" content="Fonaments de la programació orientada a objectes: classes, objectes, herència, polimorfisme i composició" />
-<link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-7/bloc-1/" />
-<meta property="og:url" content="http://localhost:4003/ioc/da2_0485b2/unitat-7/bloc-1/" />
+<link rel="canonical" href="http://localhost:4001/ioc/da2_0485b2/unitat-7/bloc-1/" />
+<meta property="og:url" content="http://localhost:4001/ioc/da2_0485b2/unitat-7/bloc-1/" />
 <meta property="og:site_name" content="Programació II" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Bloc 1: Herència, polimorfisme i composició" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Fonaments de la programació orientada a objectes: classes, objectes, herència, polimorfisme i composició","headline":"Bloc 1: Herència, polimorfisme i composició","url":"http://localhost:4003/ioc/da2_0485b2/unitat-7/bloc-1/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Fonaments de la programació orientada a objectes: classes, objectes, herència, polimorfisme i composició","headline":"Bloc 1: Herència, polimorfisme i composició","url":"http://localhost:4001/ioc/da2_0485b2/unitat-7/bloc-1/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-7/bloc-1/">
+    <link rel="canonical" href="http://localhost:4001/ioc/da2_0485b2/unitat-7/bloc-1/">
     <!-- Rich editor styles (for embedded notes panel) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
     <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -48,7 +48,7 @@
     <link rel="icon" type="image/x-icon" href="/ioc/da2_0485b2/assets/images/favicon.ico">
     
     <!-- RSS Feed -->
-    <link type="application/atom+xml" rel="alternate" href="http://localhost:4003/ioc/da2_0485b2/feed.xml" title="Programació II" />
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4001/ioc/da2_0485b2/feed.xml" title="Programació II" />
 
     <!-- Syntax Highlighting (Prism) -->
     <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
@@ -123,6 +123,16 @@
                         
                             <a href="/ioc/da2_0485b2/unitat-7/bloc-2/" class="nav-dropdown-item ">
                                 Unitat 7 - Bloc 2: Característiques avançades i abstracció
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-8/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 8 - Bloc 1: Fonaments de bases de dades orientades a objectes
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-8/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 8 - Bloc 2: Gestió i manteniment de dades
                             </a>
                         
                     
@@ -461,8 +471,7 @@
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public class Persona {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class Persona {
     // Atributs (propietats de la classe)
     private String nom;
     private int edat;
@@ -507,8 +516,7 @@ public class Persona {
         System.out.println(&quot;Edat: &quot; + edat);
         System.out.println(&quot;Email: &quot; + email);
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -542,8 +550,7 @@ public class Persona {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public class ExemplePersona {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class ExemplePersona {
     public static void main(String[] args) {
         // Crear objectes de la classe Persona
         Persona persona1 = new Persona();
@@ -563,8 +570,7 @@ public class ExemplePersona {
         System.out.println(&quot;Són la mateixa persona? &quot; + 
                           (persona1.getNom().equals(persona2.getNom())));
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -659,8 +665,7 @@ public class ExemplePersona {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public class Cotxe {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class Cotxe {
     private String marca;
     private String model;
     private int any;
@@ -691,8 +696,7 @@ public class Cotxe {
     public void mostrarInfo() {
         System.out.println(this.marca + &quot; &quot; + this.model + &quot; (&quot; + this.any + &quot;)&quot;);
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -715,8 +719,7 @@ public class Cotxe {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public class Producte {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class Producte {
     private String nom;
     private double preu;
     private String categoria;
@@ -743,8 +746,7 @@ public class Producte {
         Cotxe cotxe = new Cotxe(&quot;Toyota&quot;, &quot;Corolla&quot;, 2020);
         cotxe.setAny(2023).mostrarInfo(); // Encadenament possible gràcies a &#39;return this&#39;
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -800,8 +802,7 @@ public class Producte {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-// Superclasse
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">// Superclasse
 public class Animal {
     protected String nom;
     protected int edat;
@@ -844,8 +845,7 @@ public class Gos extends Animal {
         super.mostrarInfo(); // Crida al mètode de la superclasse
         System.out.println(&quot;Raça: &quot; + raca);
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -879,8 +879,7 @@ public class Gos extends Animal {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public class Gat extends Animal {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class Gat extends Animal {
     private boolean esInterior;
     
     public Gat(String nom, int edat, boolean esInterior) {
@@ -921,8 +920,7 @@ public class ExempleHerencia {
         gat.menjar();
         gat.miolar();
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -958,8 +956,7 @@ public class ExempleHerencia {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public class Vehicle {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class Vehicle {
     protected String marca;
     protected int any;
     
@@ -1006,8 +1003,7 @@ public class Motocicleta extends Vehicle {
     public void ferCaballito() {
         System.out.println(&quot;La motocicleta fa un caballito!&quot;);
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1061,8 +1057,7 @@ public class Motocicleta extends Vehicle {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-// Exemple amb la jerarquia Animal
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">// Exemple amb la jerarquia Animal
 public class ExemplePolimorfisme {
     public static void main(String[] args) {
         // Polimorfisme: variables de tipus Animal que apunten a objectes específics
@@ -1099,8 +1094,7 @@ public class ExemplePolimorfisme {
         animal.menjar();
         animal.dormir();
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1125,8 +1119,7 @@ public class ExemplePolimorfisme {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public class GestorAnimals {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class GestorAnimals {
     
     public static void processarAnimal(Animal animal) {
         // Informació general (disponible per tots)
@@ -1161,8 +1154,7 @@ public class GestorAnimals {
             System.out.println(&quot;=&quot; .repeat(30));
         }
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1185,8 +1177,7 @@ public class GestorAnimals {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-// Simulació d&#39;un sistema de formes geomètriques
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">// Simulació d&#39;un sistema de formes geomètriques
 abstract class Forma {
     protected String color;
     
@@ -1263,8 +1254,7 @@ public class CalculadoraFormes {
         
         System.out.printf(&quot;\nÀrea total de totes les formes: %.2f%n&quot;, areaTotal);
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1352,8 +1342,7 @@ public class CalculadoraFormes {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-// Components independents
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">// Components independents
 class Motor {
     private String tipus;
     private int potencia;
@@ -1447,8 +1436,7 @@ class Cotxe {
         System.out.println(&quot;Motor: &quot; + motor.getTipus() + &quot; (&quot; + motor.getPotencia() + &quot; CV)&quot;);
         System.out.println(&quot;Rodes: &quot; + rodes[0].getTipus() + &quot; &quot; + rodes[0].getDiametre() + &quot;\&quot;&quot;);
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1471,8 +1459,7 @@ class Cotxe {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-// HERÈNCIA - Relació &quot;és un&quot;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">// HERÈNCIA - Relació &quot;és un&quot;
 class VehicleBase {
     protected String marca;
     protected void arrancar() { System.out.println(&quot;Arrencant vehicle&quot;); }
@@ -1529,8 +1516,7 @@ public class ComparacioHerenciaComposicio {
         System.out.println(&quot;\nDesprés del canvi de motor:&quot;);
         tesla.mostrarEspecificacions();
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1790,8 +1776,8 @@ public class ComparacioHerenciaComposicio {
             </div>
             <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
                     <span class="progress-label">Unitat</span>
-                    <span class="progress-text" data-pos="7" data-total="3">(7/3)</span>
-                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 233%"></div></div>
+                    <span class="progress-text" data-pos="7" data-total="4">(7/4)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 175%"></div></div>
                 </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
                         <span class="progress-label">Bloc</span>
                         <span class="progress-text" data-pos="1" data-total="2">(1/2)</span>

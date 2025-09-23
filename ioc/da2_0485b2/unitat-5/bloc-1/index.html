@@ -18,21 +18,21 @@
 <meta property="og:locale" content="ca_ES" />
 <meta name="description" content="Introducció a l’entrada/sortida en Java per consola amb Scanner i System.out" />
 <meta property="og:description" content="Introducció a l’entrada/sortida en Java per consola amb Scanner i System.out" />
-<link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-5/bloc-1/" />
-<meta property="og:url" content="http://localhost:4003/ioc/da2_0485b2/unitat-5/bloc-1/" />
+<link rel="canonical" href="http://localhost:4001/ioc/da2_0485b2/unitat-5/bloc-1/" />
+<meta property="og:url" content="http://localhost:4001/ioc/da2_0485b2/unitat-5/bloc-1/" />
 <meta property="og:site_name" content="Programació II" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Bloc 1: Conceptes bàsics d’E/S per consola" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Introducció a l’entrada/sortida en Java per consola amb Scanner i System.out","headline":"Bloc 1: Conceptes bàsics d’E/S per consola","url":"http://localhost:4003/ioc/da2_0485b2/unitat-5/bloc-1/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Introducció a l’entrada/sortida en Java per consola amb Scanner i System.out","headline":"Bloc 1: Conceptes bàsics d’E/S per consola","url":"http://localhost:4001/ioc/da2_0485b2/unitat-5/bloc-1/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-5/bloc-1/">
+    <link rel="canonical" href="http://localhost:4001/ioc/da2_0485b2/unitat-5/bloc-1/">
     <!-- Rich editor styles (for embedded notes panel) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
     <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -48,7 +48,7 @@
     <link rel="icon" type="image/x-icon" href="/ioc/da2_0485b2/assets/images/favicon.ico">
     
     <!-- RSS Feed -->
-    <link type="application/atom+xml" rel="alternate" href="http://localhost:4003/ioc/da2_0485b2/feed.xml" title="Programació II" />
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4001/ioc/da2_0485b2/feed.xml" title="Programació II" />
 
     <!-- Syntax Highlighting (Prism) -->
     <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
@@ -123,6 +123,16 @@
                         
                             <a href="/ioc/da2_0485b2/unitat-7/bloc-2/" class="nav-dropdown-item ">
                                 Unitat 7 - Bloc 2: Característiques avançades i abstracció
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-8/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 8 - Bloc 1: Fonaments de bases de dades orientades a objectes
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-8/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 8 - Bloc 2: Gestió i manteniment de dades
                             </a>
                         
                     
@@ -383,11 +393,9 @@
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-System.out.println(&quot;Hola, món!&quot;); // Salta de línia automàticament
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">System.out.println(&quot;Hola, món!&quot;); // Salta de línia automàticament
 System.out.print(&quot;Aquest text no canvia de línia.&quot;);
-System.out.println(&quot; Aquest sí.&quot;); // Ara sí que canvia de línia
-    </code></pre>
+System.out.println(&quot; Aquest sí.&quot;); // Ara sí que canvia de línia</code></pre>
   </div>
 </div>
 
@@ -412,8 +420,7 @@ System.out.println(&quot; Aquest sí.&quot;); // Ara sí que canvia de línia
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.util.Scanner;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.Scanner;
 
 public class EntradaDades {
     public static void main(String[] args) {
@@ -429,8 +436,7 @@ public class EntradaDades {
         
         teclat.close();
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -468,9 +474,7 @@ public class EntradaDades {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-System.out.printf(&quot;Nom: %s | Edat: %d | Alçada: %.2f metres\n&quot;, &quot;Pau&quot;, 25, 1.75);
-    </code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">System.out.printf(&quot;Nom: %s | Edat: %d | Alçada: %.2f metres\n&quot;, &quot;Pau&quot;, 25, 1.75);</code></pre>
   </div>
 </div>
 
@@ -561,8 +565,7 @@ System.out.printf(&quot;Nom: %s | Edat: %d | Alçada: %.2f metres\n&quot;, &quot
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-// Amplada mínima del camp
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">// Amplada mínima del camp
 System.out.printf(&quot;Número: %5d%n&quot;, 42);        // &quot;Número:    42&quot;
 
 // Emplenar amb zeros
@@ -578,8 +581,7 @@ System.out.printf(&quot;Valor: %,d%n&quot;, 1234567);    // &quot;Valor: 1.234.5
 System.out.printf(&quot;Positiu: %+d%n&quot;, 25);       // &quot;Positiu: +25&quot;
 
 // Notació científica
-System.out.printf(&quot;Científica: %e%n&quot;, 123.45); // &quot;Científica: 1.234500e+02&quot;
-    </code></pre>
+System.out.printf(&quot;Científica: %e%n&quot;, 123.45); // &quot;Científica: 1.234500e+02&quot;</code></pre>
   </div>
 </div>
 
@@ -602,10 +604,8 @@ System.out.printf(&quot;Científica: %e%n&quot;, 123.45); // &quot;Científica: 
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-double preu = 1234.56789;
-System.out.printf(&quot;Preu amb format: %.2f€\n&quot;, preu);
-    </code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">double preu = 1234.56789;
+System.out.printf(&quot;Preu amb format: %.2f€\n&quot;, preu);</code></pre>
   </div>
 </div>
 
@@ -630,10 +630,8 @@ System.out.printf(&quot;Preu amb format: %.2f€\n&quot;, preu);
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-String missatge = String.format(&quot;El valor és %.3f&quot;, 12.34567);
-System.out.println(missatge);
-    </code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">String missatge = String.format(&quot;El valor és %.3f&quot;, 12.34567);
+System.out.println(missatge);</code></pre>
   </div>
 </div>
 
@@ -723,8 +721,7 @@ System.out.println(missatge);
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.util.Scanner;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.Scanner;
 
 public class ExempleScanner {
     public static void main(String[] args) {
@@ -744,8 +741,7 @@ public class ExempleScanner {
         
         teclat.close();
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -779,8 +775,7 @@ public class ExempleScanner {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.util.Scanner;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.Scanner;
 
 public class ProblemaScanner {
     public static void main(String[] args) {
@@ -796,8 +791,7 @@ public class ProblemaScanner {
         
         scanner.close();
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -822,8 +816,7 @@ public class ProblemaScanner {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.util.Scanner;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.Scanner;
 
 public class SolucioBuffer {
     public static void main(String[] args) {
@@ -840,8 +833,7 @@ public class SolucioBuffer {
         
         scanner.close();
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -866,8 +858,7 @@ public class SolucioBuffer {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.util.Scanner;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.Scanner;
 
 public class SolucioString {
     public static void main(String[] args) {
@@ -883,8 +874,7 @@ public class SolucioString {
         
         scanner.close();
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1103,8 +1093,8 @@ public class SolucioString {
             </div>
             <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
                     <span class="progress-label">Unitat</span>
-                    <span class="progress-text" data-pos="5" data-total="3">(5/3)</span>
-                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 166%"></div></div>
+                    <span class="progress-text" data-pos="5" data-total="4">(5/4)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 125%"></div></div>
                 </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
                         <span class="progress-label">Bloc</span>
                         <span class="progress-text" data-pos="1" data-total="2">(1/2)</span>

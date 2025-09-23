@@ -18,21 +18,21 @@
 <meta property="og:locale" content="ca_ES" />
 <meta name="description" content="Lectura, escriptura i gestió de fitxers en Java amb fluxos, excepcions i objectes" />
 <meta property="og:description" content="Lectura, escriptura i gestió de fitxers en Java amb fluxos, excepcions i objectes" />
-<link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-5/bloc-2/" />
-<meta property="og:url" content="http://localhost:4003/ioc/da2_0485b2/unitat-5/bloc-2/" />
+<link rel="canonical" href="http://localhost:4001/ioc/da2_0485b2/unitat-5/bloc-2/" />
+<meta property="og:url" content="http://localhost:4001/ioc/da2_0485b2/unitat-5/bloc-2/" />
 <meta property="og:site_name" content="Programació II" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Bloc 2: E/S basada en fitxers" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Lectura, escriptura i gestió de fitxers en Java amb fluxos, excepcions i objectes","headline":"Bloc 2: E/S basada en fitxers","url":"http://localhost:4003/ioc/da2_0485b2/unitat-5/bloc-2/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Lectura, escriptura i gestió de fitxers en Java amb fluxos, excepcions i objectes","headline":"Bloc 2: E/S basada en fitxers","url":"http://localhost:4001/ioc/da2_0485b2/unitat-5/bloc-2/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-5/bloc-2/">
+    <link rel="canonical" href="http://localhost:4001/ioc/da2_0485b2/unitat-5/bloc-2/">
     <!-- Rich editor styles (for embedded notes panel) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
     <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -48,7 +48,7 @@
     <link rel="icon" type="image/x-icon" href="/ioc/da2_0485b2/assets/images/favicon.ico">
     
     <!-- RSS Feed -->
-    <link type="application/atom+xml" rel="alternate" href="http://localhost:4003/ioc/da2_0485b2/feed.xml" title="Programació II" />
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4001/ioc/da2_0485b2/feed.xml" title="Programació II" />
 
     <!-- Syntax Highlighting (Prism) -->
     <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
@@ -123,6 +123,16 @@
                         
                             <a href="/ioc/da2_0485b2/unitat-7/bloc-2/" class="nav-dropdown-item ">
                                 Unitat 7 - Bloc 2: Característiques avançades i abstracció
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-8/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 8 - Bloc 1: Fonaments de bases de dades orientades a objectes
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-8/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 8 - Bloc 2: Gestió i manteniment de dades
                             </a>
                         
                     
@@ -472,13 +482,11 @@
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-try (BufferedReader br = new BufferedReader(new FileReader(&quot;dades.txt&quot;))) {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">try (BufferedReader br = new BufferedReader(new FileReader(&quot;dades.txt&quot;))) {
     // Processar el fitxer
 } catch (IOException ex) {
     System.err.println(&quot;Error: &quot; + ex.getMessage());
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -534,8 +542,7 @@ try (BufferedReader br = new BufferedReader(new FileReader(&quot;dades.txt&quot;
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.io.*;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.io.*;
 
 public class LlegirLinies {
     public static void main(String[] args) {
@@ -557,8 +564,7 @@ public class LlegirLinies {
             System.out.println(linies[i]);
         }
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -583,8 +589,7 @@ public class LlegirLinies {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.io.File;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -607,8 +612,7 @@ public class LlegirNumeros {
             System.out.println(numeros[i]);
         }
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -633,8 +637,7 @@ public class LlegirNumeros {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.io.FileReader;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.io.FileReader;
 import java.io.IOException;
 
 public class LlegirCaracters {
@@ -648,8 +651,7 @@ public class LlegirCaracters {
             System.err.println(&quot;Error en llegir el fitxer: &quot; + ex.getMessage());
         }
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -689,8 +691,7 @@ public class LlegirCaracters {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public class Producte {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class Producte {
     private String nom;
     private double preu;
     
@@ -713,8 +714,7 @@ public class Producte {
     public String toString() {
         return nom + &quot;, &quot; + preu + &quot; €&quot;;
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -739,8 +739,7 @@ public class Producte {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.io.BufferedReader;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -768,8 +767,7 @@ public class LlegirProductes {
             System.out.println(productes[i]);
         }
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -794,8 +792,7 @@ public class LlegirProductes {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.io.BufferedWriter;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -818,8 +815,7 @@ public class EscriureProductes {
             System.err.println(&quot;Error en escriure el fitxer: &quot; + ex.getMessage());
         }
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -914,8 +910,7 @@ public class EscriureProductes {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-// Gestió automàtica de recursos
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">// Gestió automàtica de recursos
 try (BufferedReader reader = Files.newBufferedReader(Paths.get(&quot;dades.txt&quot;));
      BufferedWriter writer = Files.newBufferedWriter(Paths.get(&quot;sortida.txt&quot;))) {
     
@@ -928,8 +923,7 @@ try (BufferedReader reader = Files.newBufferedReader(Paths.get(&quot;dades.txt&q
 } catch (IOException e) {
     System.err.println(&quot;Error d&#39;E/S: &quot; + e.getMessage());
 }
-// Els recursos es tanquen automàticament
-    </code></pre>
+// Els recursos es tanquen automàticament</code></pre>
   </div>
 </div>
 
@@ -952,8 +946,7 @@ try (BufferedReader reader = Files.newBufferedReader(Paths.get(&quot;dades.txt&q
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public static boolean validarLinia(String linia) {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static boolean validarLinia(String linia) {
     // Verificar que la línia no sigui null ni buida
     if (linia == null || linia.trim().isEmpty()) {
         return false;
@@ -972,8 +965,7 @@ public static boolean validarLinia(String linia) {
     } catch (NumberFormatException e) {
         return false;
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -998,8 +990,7 @@ public static boolean validarLinia(String linia) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public static void processarFitxerGran(String nomFitxer, int midaLot) {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static void processarFitxerGran(String nomFitxer, int midaLot) {
     try (BufferedReader reader = Files.newBufferedReader(Paths.get(nomFitxer))) {
         List&lt;String&gt; lot = new ArrayList&lt;&gt;(midaLot);
         String linia;
@@ -1029,8 +1020,7 @@ private static void processarLot(List&lt;String&gt; lot) {
     for (String linia : lot) {
         // Processar cada línia
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1055,8 +1045,7 @@ private static void processarLot(List&lt;String&gt; lot) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-public static void llegirAmbLog(String nomFitxer) {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static void llegirAmbLog(String nomFitxer) {
     long tempsInici = System.currentTimeMillis();
     int liniesProcessades = 0;
     int liniesErrònies = 0;
@@ -1093,8 +1082,7 @@ public static void llegirAmbLog(String nomFitxer) {
                      &quot;- Línies errònies: %d%n&quot; +
                      &quot;- Temps total: %d ms%n&quot;,
                      liniesProcessades, liniesErrònies, (tempsFinal - tempsInici));
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1382,8 +1370,8 @@ public static void llegirAmbLog(String nomFitxer) {
             </div>
             <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
                     <span class="progress-label">Unitat</span>
-                    <span class="progress-text" data-pos="5" data-total="3">(5/3)</span>
-                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 166%"></div></div>
+                    <span class="progress-text" data-pos="5" data-total="4">(5/4)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 125%"></div></div>
                 </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
                         <span class="progress-label">Bloc</span>
                         <span class="progress-text" data-pos="2" data-total="2">(2/2)</span>

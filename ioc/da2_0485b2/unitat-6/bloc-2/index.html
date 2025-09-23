@@ -18,21 +18,21 @@
 <meta property="og:locale" content="ca_ES" />
 <meta name="description" content="Framework de col·leccions Java: List, Set, Map i les seves implementacions" />
 <meta property="og:description" content="Framework de col·leccions Java: List, Set, Map i les seves implementacions" />
-<link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-6/bloc-2/" />
-<meta property="og:url" content="http://localhost:4003/ioc/da2_0485b2/unitat-6/bloc-2/" />
+<link rel="canonical" href="http://localhost:4001/ioc/da2_0485b2/unitat-6/bloc-2/" />
+<meta property="og:url" content="http://localhost:4001/ioc/da2_0485b2/unitat-6/bloc-2/" />
 <meta property="og:site_name" content="Programació II" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Bloc 2: Col·leccions i tipus de dades avançats" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Framework de col·leccions Java: List, Set, Map i les seves implementacions","headline":"Bloc 2: Col·leccions i tipus de dades avançats","url":"http://localhost:4003/ioc/da2_0485b2/unitat-6/bloc-2/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Framework de col·leccions Java: List, Set, Map i les seves implementacions","headline":"Bloc 2: Col·leccions i tipus de dades avançats","url":"http://localhost:4001/ioc/da2_0485b2/unitat-6/bloc-2/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="canonical" href="http://localhost:4003/ioc/da2_0485b2/unitat-6/bloc-2/">
+    <link rel="canonical" href="http://localhost:4001/ioc/da2_0485b2/unitat-6/bloc-2/">
     <!-- Rich editor styles (for embedded notes panel) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
     <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -48,7 +48,7 @@
     <link rel="icon" type="image/x-icon" href="/ioc/da2_0485b2/assets/images/favicon.ico">
     
     <!-- RSS Feed -->
-    <link type="application/atom+xml" rel="alternate" href="http://localhost:4003/ioc/da2_0485b2/feed.xml" title="Programació II" />
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4001/ioc/da2_0485b2/feed.xml" title="Programació II" />
 
     <!-- Syntax Highlighting (Prism) -->
     <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
@@ -123,6 +123,16 @@
                         
                             <a href="/ioc/da2_0485b2/unitat-7/bloc-2/" class="nav-dropdown-item ">
                                 Unitat 7 - Bloc 2: Característiques avançades i abstracció
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-8/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 8 - Bloc 1: Fonaments de bases de dades orientades a objectes
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-8/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 8 - Bloc 2: Gestió i manteniment de dades
                             </a>
                         
                     
@@ -570,8 +580,7 @@
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.util.*;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.*;
 
 public class ExempleList {
     public static void main(String[] args) {
@@ -595,8 +604,7 @@ public class ExempleList {
             System.out.println(&quot;- &quot; + nom);
         }
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -621,8 +629,7 @@ public class ExempleList {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.util.ArrayList;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.ArrayList;
 
 public class ExempleArrayList {
     public static void main(String[] args) {
@@ -652,8 +659,7 @@ public class ExempleArrayList {
         // Informació sobre capacitat
         System.out.println(&quot;Mida: &quot; + numeros.size());
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -678,8 +684,7 @@ public class ExempleArrayList {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.util.LinkedList;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.LinkedList;
 
 public class ExempleLinkedList {
     public static void main(String[] args) {
@@ -706,8 +711,7 @@ public class ExempleLinkedList {
         System.out.println(&quot;Eliminades: &quot; + primera + &quot; i &quot; + ultima);
         System.out.println(&quot;Tasques restants: &quot; + tasques);
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -825,8 +829,7 @@ public class ExempleLinkedList {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.util.HashSet;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.HashSet;
 import java.util.Set;
 
 public class ExempleHashSet {
@@ -862,8 +865,7 @@ public class ExempleHashSet {
         System.out.println(&quot;Original: &quot; + llistaAmbDuplicats);
         System.out.println(&quot;Sense duplicats: &quot; + llistaSenseDuplicats);
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -888,8 +890,7 @@ public class ExempleHashSet {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.util.TreeSet;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.TreeSet;
 
 public class ExempleTreeSet {
     public static void main(String[] args) {
@@ -917,8 +918,7 @@ public class ExempleTreeSet {
         System.out.println(&quot;Menor o igual a 45: &quot; + numerosOrdenats.floor(45)); // 30
         System.out.println(&quot;Major a 45: &quot; + numerosOrdenats.higher(45)); // 50
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -941,8 +941,7 @@ public class ExempleTreeSet {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.util.*;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.*;
 
 public class OperacionsConjunts {
     public static void main(String[] args) {
@@ -974,8 +973,7 @@ public class OperacionsConjunts {
         boolean esSubconjunt = conjuntA.containsAll(subconjunt);
         System.out.println(&quot;És subconjunt: &quot; + esSubconjunt);
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1047,8 +1045,7 @@ public class OperacionsConjunts {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.util.HashMap;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.HashMap;
 import java.util.Map;
 
 public class ExempleHashMap {
@@ -1092,8 +1089,7 @@ public class ExempleHashMap {
             System.out.println(&quot;- &quot; + valor);
         }
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1118,8 +1114,7 @@ public class ExempleHashMap {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.util.TreeMap;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.TreeMap;
 
 public class ExempleTreeMap {
     public static void main(String[] args) {
@@ -1146,8 +1141,7 @@ public class ExempleTreeMap {
         System.out.println(&quot;Claus fins &#39;gos&#39;: &quot; + comptadorParaules.headMap(&quot;gos&quot;));
         System.out.println(&quot;Claus des de &#39;gat&#39;: &quot; + comptadorParaules.tailMap(&quot;gat&quot;));
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1170,8 +1164,7 @@ public class ExempleTreeMap {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.util.*;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.*;
 
 class Estudiant {
     private String nom;
@@ -1251,8 +1244,7 @@ public class SistemaEstudiants {
         System.out.printf(&quot;Millor nota: %.1f%n&quot;, maxNota);
         System.out.printf(&quot;Pitjor nota: %.1f%n&quot;, minNota);
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1343,8 +1335,7 @@ public class SistemaEstudiants {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.util.*;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.*;
 
 public class UtilitatsCollections {
     public static void main(String[] args) {
@@ -1388,8 +1379,7 @@ public class UtilitatsCollections {
         Collections.rotate(nums, 2);
         System.out.println(&quot;Rotada 2 posicions: &quot; + nums);
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1412,8 +1402,7 @@ public class UtilitatsCollections {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.util.*;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.*;
 
 class Persona {
     String nom;
@@ -1463,8 +1452,7 @@ public class OrdenacioPersonalitzada {
                           .thenComparing(p -&gt; p.nom));
         System.out.println(&quot;Múltiple: &quot; + mes);
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1489,8 +1477,7 @@ public class OrdenacioPersonalitzada {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.util.*;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.*;
 import java.util.stream.Collectors;
 
 public class IntroduccioStreams {
@@ -1537,8 +1524,7 @@ public class IntroduccioStreams {
             .collect(Collectors.groupingBy(String::length));
         System.out.println(&quot;Agrupats per longitud: &quot; + perLongitud);
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1704,8 +1690,7 @@ public class IntroduccioStreams {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.util.*;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.*;
 
 public class TestRendiment {
     private static final int N = 100_000;
@@ -1838,8 +1823,7 @@ public class TestRendiment {
         System.out.printf(&quot;  HashMap és %.1fx més ràpid%n&quot;, 
                          (double)treeMapTime / hashMapTime);
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1870,8 +1854,7 @@ public class TestRendiment {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">
-import java.util.*;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.*;
 
 public class BonesPractiques {
     public static void main(String[] args) {
@@ -1918,8 +1901,7 @@ public class BonesPractiques {
         
         System.out.println(&quot;Sense duplicats: &quot; + llistaSenseDuplicats);
     }
-}
-    </code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -2240,8 +2222,8 @@ public class BonesPractiques {
             </div>
             <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
                     <span class="progress-label">Unitat</span>
-                    <span class="progress-text" data-pos="6" data-total="3">(6/3)</span>
-                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 200%"></div></div>
+                    <span class="progress-text" data-pos="6" data-total="4">(6/4)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 150%"></div></div>
                 </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
                         <span class="progress-label">Bloc</span>
                         <span class="progress-text" data-pos="2" data-total="2">(2/2)</span>

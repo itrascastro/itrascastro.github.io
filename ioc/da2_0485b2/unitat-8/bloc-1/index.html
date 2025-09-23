@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 1: Fonaments de bases de dades orientades a objectes | Programació II - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="8">
+    <meta name="page-bloc" content="1">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 1: Fonaments de bases de dades orientades a objectes | Programació II</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 1: Fonaments de bases de dades orientades a objectes" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Principis d’ORM, arquitectura de Hibernate, mapatge d’entitats, gestió de sessions i bones pràctiques de persistència" />
+<meta property="og:description" content="Principis d’ORM, arquitectura de Hibernate, mapatge d’entitats, gestió de sessions i bones pràctiques de persistència" />
+<link rel="canonical" href="http://localhost:4001/ioc/da2_0485b2/unitat-8/bloc-1/" />
+<meta property="og:url" content="http://localhost:4001/ioc/da2_0485b2/unitat-8/bloc-1/" />
+<meta property="og:site_name" content="Programació II" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 1: Fonaments de bases de dades orientades a objectes" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Principis d’ORM, arquitectura de Hibernate, mapatge d’entitats, gestió de sessions i bones pràctiques de persistència","headline":"Bloc 1: Fonaments de bases de dades orientades a objectes","url":"http://localhost:4001/ioc/da2_0485b2/unitat-8/bloc-1/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="http://localhost:4001/ioc/da2_0485b2/unitat-8/bloc-1/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/da2_0485b2/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4001/ioc/da2_0485b2/feed.xml" title="Programació II" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/da2_0485b2/assets/css/code-block.css">
+    <script src="/ioc/da2_0485b2/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/da2_0485b2/" class="logo-link">
+                <img src="/ioc/da2_0485b2/assets/images/logo_IOC_light.jpg" 
+                     alt="Institut Obert de Catalunya" 
+                     class="logo logo-light">
+                <img src="/ioc/da2_0485b2/assets/images/logo_IOC_dark.png" 
+                     alt="Institut Obert de Catalunya" 
+                     class="logo logo-dark">
+            </a>
+            <a href="/ioc/da2_0485b2/" class="title-link">
+                <h1>DA2_0485B2 - Programació II</h1>
+            </a>
+        </div>
+        <div class="header-controls">
+            <div class="nav-dropdown" id="nav-dropdown">
+                <button class="nav-dropdown-btn" id="nav-dropdown-btn">Navegació</button>
+                <div class="nav-dropdown-content" id="nav-dropdown-content">
+                    <a href="/ioc/da2_0485b2/" class="nav-dropdown-item ">Índex del Curs</a>
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-5/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 5 - Bloc 1: Conceptes bàsics d'E/S per consola
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-5/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 5 - Bloc 2: E/S basada en fitxers
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-6/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 6 - Bloc 1: Estructures de dades bàsiques
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-6/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 6 - Bloc 2: Col·leccions i tipus de dades avançats
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-7/bloc-1/" class="nav-dropdown-item ">
+                                Unitat 7 - Bloc 1: Herència, polimorfisme i composició
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-7/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 7 - Bloc 2: Característiques avançades i abstracció
+                            </a>
+                        
+                    
+                        
+                            <a href="/ioc/da2_0485b2/unitat-8/bloc-1/" class="nav-dropdown-item current">
+                                Unitat 8 - Bloc 1: Fonaments de bases de dades orientades a objectes
+                            </a>
+                        
+                            <a href="/ioc/da2_0485b2/unitat-8/bloc-2/" class="nav-dropdown-item ">
+                                Unitat 8 - Bloc 2: Gestió i manteniment de dades
+                            </a>
+                        
+                    
+                </div>
+            </div>
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <!-- Contingut d'aquest Bloc -->
+            <div class="sidebar-section">
+                <h3>Contingut del Bloc</h3>
+                
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat8_Bloc1_Seccio1" class="nav-link" data-section="Unitat8_Bloc1_Seccio1">Introducció a la persistència i ORM</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat8_Bloc1_Seccio2" class="nav-link" data-section="Unitat8_Bloc1_Seccio2">Arquitectura de Hibernate i components clau</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat8_Bloc1_Seccio3" class="nav-link" data-section="Unitat8_Bloc1_Seccio3">Mapatge d'entitats i relacions</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat8_Bloc1_Seccio4" class="nav-link" data-section="Unitat8_Bloc1_Seccio4">Gestió de sessions i transaccions</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat8_Bloc1_Seccio5" class="nav-link" data-section="Unitat8_Bloc1_Seccio5">Patró DAO i capa de servei</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat8_Bloc1_Seccio6" class="nav-link" data-section="Unitat8_Bloc1_Seccio6">Bones pràctiques i optimització</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+
+
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/da2_0485b2/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/da2_0485b2/unitat-8/" class="horizontal-nav-item">
+                                Unitat 8: Manteniment i gestió de bases de dades (RA8 i RA9)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 8.1: Fonaments de bases de dades orientades a objectes
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<!--
+  Bloc 1 (Unitat 8) basat en:
+  - material-hibernate-postgresql-v2.pdf (conceptes i aprofundiment teòric)
+  - tutorial-hibernate-postgresql-vscode.pdf (context pràctic de suport)
+  Objectiu: consolidar RA8 i RA9 abans del tutorial pràctic del Bloc 2.
+-->
+
+<div class="section">
+    <h2 id="Unitat8_Bloc1_Seccio1">Introducció a la persistència i ORM</h2>
+
+    <!-- Component: Objectius del bloc/unitat -->
+
+
+
+<div class="objectius-box">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-bullseye" aria-hidden="true"></i> Objectius</div>
+  <div class="component-content">
+    <ul>
+      
+        <li>Comprendre el paper de l'ORM en aplicacions empresarials</li>
+      
+        <li>Identificar els avantatges de separar lògica de negoci i accés a dades</li>
+      
+        <li>Relacionar RA8 i RA9 amb processos reals de manteniment</li>
+      
+    </ul>
+  </div>
+  <!-- IMPORTANT: també es pot usar via front matter: page.objectius (array) -->
+</div>
+
+
+
+    <p>Les aplicacions empresarials necessiten emmagatzemar i recuperar informació de forma segura i consistent. La <strong>persistència</strong> fa referència a mantenir l'estat dels objectes més enllà de l'execució del programa, habitualment en una base de dades relacional. Sense un marc coherent, la traducció entre objectes i taules genera codi repetitiu, errors subtils i dificultats de manteniment.</p>
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>ORM (Object-Relational Mapping):</strong> Tècnica que automatitza la correspondència entre el model d'objectes d'una aplicació i l'esquema relacional d'una base de dades, eliminant gran part del codi SQL explícit.</p>
+  </div>
+</div>
+
+
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    Hibernate és un dels ORM més utilitzats a l'ecosistema Java. Ofereix compatibilitat amb l'especificació JPA, suporta múltiples bases de dades (PostgreSQL, MySQL, Oracle...) i disposa de mecanismes avançats de cache, validació i gestió de transaccions.
+    
+</div>
+
+
+    <!-- Component: Suggeriment d'ampliació simplificat -->
+<div class="suggestion-box" role="note">
+    <div class="component-header suggestion-header" role="heading" aria-level="4"><i class="bi bi-lightbulb" aria-hidden="true"></i> Suggeriment</div>
+    Imagina que Hibernate actua com un intèrpret simultani: escolta les peticions dels teus objectes Java i les tradueix a SQL perfecte per a PostgreSQL, sense que t'hagis de preocupar pels detalls de la gramàtica.
+</div>
+
+
+    <p>Sense un ORM, cada equip ha de mantenir codi de baix nivell per establir connexions, construir SQL i transformar resultats en objectes. Aquest patró és repetitiu, difícil de provar i especialment fràgil quan l'esquema de la base de dades evoluciona.</p>
+
+    <p>En el context del mòdul, RA8 cobreix la <em>persistència de dades</em> i RA9 se centra en la <em>gestió i manteniment</em>. Hibernate uneix ambdós resultats: permet definir lògiques d'accés que són alhora eficients i sostenibles al llarg del temps.</p>
+
+    <p><em>Per visualitzar-ho millor, contrasta el flux manual amb el que ofereix Hibernate.</em></p>
+
+    <h3>Sense Hibernate vs amb Hibernate</h3>
+
+    <h4>Sense Hibernate: codi orientat a taules</h4>
+    <p>El desenvolupador treballa amb files i columnes. Cada consulta requereix construir SQL, gestionar recursos i transformar els resultats en objectes manualment.</p>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">String sql = &quot;SELECT id, nom, preu FROM productes WHERE id = ?&quot;;
+try (Connection conn = DriverManager.getConnection(url, user, pass);
+     PreparedStatement ps = conn.prepareStatement(sql)) {
+    ps.setLong(1, 42L);
+    try (ResultSet rs = ps.executeQuery()) {
+        if (rs.next()) {
+            Long id = rs.getLong(&quot;id&quot;);
+            String nom = rs.getString(&quot;nom&quot;);
+            BigDecimal preu = rs.getBigDecimal(&quot;preu&quot;);
+            // TODO: crear i omplir l&#39;objecte Producte manualment
+        }
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+    <p>El codi està lligat a l'estructura de la taula (<code>id</code>, <code>nom</code>, <code>preu</code>) i duplica la lògica de mapeig a tots els mètodes.</p>
+
+    <h4>Amb Hibernate: codi orientat a objectes</h4>
+    <p>En lloc de manipular files, treballes amb instàncies de classes. Les consultes retornen objectes i només cal aplicar la lògica de negoci.</p>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.math.BigDecimal;
+
+public class ProducteService {
+    private final ProducteDAO producteDAO;
+
+    public ProducteService(ProducteDAO producteDAO) {
+        this.producteDAO = producteDAO;
+    }
+
+    public void actualitzaPreu(Long id, BigDecimal nouPreu) {
+        Producte producte = producteDAO
+            .trobarPerId(id)
+            .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Producte inexistent&quot;));
+
+        producte.setPreu(nouPreu);
+        producteDAO.desa(producte);
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+    <p>Hibernate s'encarrega d'obrir la sessió, generar el SQL, sincronitzar els canvis i validar les regles declarades a les anotacions. El desenvolupador se centra en lògica d'objectes.</p>
+
+    <ul>
+        <li><strong>Menys codi repetitiu:</strong> el mapeig camp a camp desapareix, reduint errors i duplicacions.</li>
+        <li><strong>Coherència i mantenibilitat:</strong> els canvis d'esquema s'apliquen a les entitats i es reflecteixen automàticament a les consultes.</li>
+        <li><strong>Abstracció de recursos:</strong> la gestió de connexions i transaccions queda encapsulada, evitant fuites i estats inconsistents.</li>
+    </ul>
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Explica en paraules pròpies què guanyes quan substitueixes el patró JDBC manual per Hibernate. Identifica com a mínim dues millores en mantenibilitat.</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat8_Bloc1_Seccio2">Arquitectura de Hibernate i components clau</h2>
+
+    <p>Hibernate organitza la persistència al voltant de diversos components que cooperen per gestionar sessions, mapatges i transaccions. Comprendre'ls és essencial per diagnosticar problemes i escalar el sistema.</p>
+
+    <table class="responsive-table">
+        <thead>
+            <tr>
+                <th>Component</th>
+                <th>Funció principal</th>
+                <th>Quan intervenir-hi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>SessionFactory</code></td>
+                <td>Factoría immutable que gestiona la configuració i crea sessions.</td>
+                <td>Durant l'arrencada de l'aplicació o quan cal reconfigurar connexions.</td>
+            </tr>
+            <tr>
+                <td><code>Session</code></td>
+                <td>Context d'interacció amb la base de dades: carrega, desa i sincronitza entitats.</td>
+                <td>A cada operació unitària de negoci (petició web, cas d'ús, procés batch).</td>
+            </tr>
+            <tr>
+                <td><code>Transaction</code></td>
+                <td>Garantitza atomicitat i coherència agrupant múltiples operacions.</td>
+                <td>Quan es requereix assegurar <em>all-or-nothing</em> en operacions de dades.</td>
+            </tr>
+            <tr>
+                <td><code>Configuration</code></td>
+                <td>Carrega propietats i mapatges des de fitxers <code>hibernate.cfg.xml</code> o equivalents.</td>
+                <td>En la preparació de l'entorn o quan es despleguen nous mapatges.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    Evita crear múltiples <code>SessionFactory</code>: és costós i pot saturar la base de dades. Construeix-lo una única vegada i reutilitza'l arreu de l'aplicació.
+</div>
+
+
+    <p>A nivell de configuració, Hibernate combina propietats (URL, usuari, dialecte SQL), mapatges d'entitats i integració amb l'API JPA. Els fitxers de configuració admeten format XML o propietats, i també es poden establir mitjançant objectes Java o <em>Spring Boot</em>.</p>
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Relaciona cada component de Hibernate amb una tasca concreta del teu projecte (per exemple, quan utilitzaràs la SessionFactory o la Transaction).</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat8_Bloc1_Seccio3">Mapatge d'entitats i relacions</h2>
+
+    <p>La clau de qualsevol ORM és descriure com els objectes es corresponen amb les taules relacionals. Hibernate utilitza anotacions JPA o fitxers XML per definir entitats, claus primàries i relacions.</p>
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Entitat:</strong> Classe Java persistent que es correspon amb una taula de la base de dades; cada instància representa una fila.</p>
+  </div>
+</div>
+
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import jakarta.persistence.*;
+import java.math.BigDecimal;
+
+@Entity
+@Table(name = &quot;productes&quot;)
+public class Producte {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, length = 120)
+    private String nom;
+
+    @Column(name = &quot;preu&quot;, precision = 10, scale = 2)
+    private BigDecimal preu;
+
+    @Enumerated(EnumType.STRING)
+    private Categoria categoria;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = &quot;proveidor_id&quot;)
+    private Proveidor proveidor;
+
+    // getters, setters i constructors
+}</code></pre>
+  </div>
+</div>
+
+
+    <p>Les anotacions controlen la traducció a SQL:</p>
+    <ul>
+        <li><code>@Table</code> defineix la taula i opcionalment l'esquema.</li>
+        <li><code>@Column</code> ajusta propietats com la longitud, nul·litat o precisió.</li>
+        <li><code>@ManyToOne</code>, <code>@OneToMany</code> i <code>@ManyToMany</code> gestionen relacions amb claus foranes.</li>
+    </ul>
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Tria una entitat del teu projecte personal i explica quines anotacions JPA necessitaria. Pots demanar a l'IA que et proposi les anotacions si li facilites els atributs.</div>
+  </div>
+</div>
+
+
+    <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    Mapatge correcte = menys SQL manual, però no evitarem entendre el model relacional. Cal dissenyar bé l'esquema i validar-lo amb l'equip de bases de dades.
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat8_Bloc1_Seccio4">Gestió de sessions i transaccions</h2>
+
+    <p>Les sessions actuen com una «unitat de treball». Agrupen totes les operacions que comparteixen un mateix context d'emmagatzematge. Quan una sessió es tanca, Hibernate sincronitza l'estat dels objectes (<em>dirty checking</em>) amb la base de dades.</p>
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Transaction tx = null;
+try (Session session = sessionFactory.openSession()) {
+    tx = session.beginTransaction();
+
+    Producte producte = session.get(Producte.class, 42L);
+    producte.setPreu(new BigDecimal(&quot;24.90&quot;));
+
+    session.persist(producte);
+
+    tx.commit(); // Desar els canvis de forma atòmica
+} catch (Exception ex) {
+    if (tx != null) {
+        tx.rollback(); // Recuperar coherència en cas d&#39;error
+    }
+    throw ex;
+}</code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    El <em>dirty checking</em> de Hibernate detecta modificacions sobre entitats gestionades i genera el SQL necessari. Això redueix la quantitat de codi, però cal delimitar correctament les fronteres de la sessió.
+    
+</div>
+
+
+    <!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    No deixis sessions obertes en aplicacions web. Utilitza patrons com <em>Session per request</em> o el suport transaccional de Spring per assegurar tancaments automàtics.
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat8_Bloc1_Seccio5">Patró DAO i capa de servei</h2>
+
+    <p>Separar l'accés a dades de la lògica de negoci facilita el manteniment i les proves. El <strong>patró DAO</strong> encapsula les operacions CRUD sobre una entitat, mentre que la <strong>capa de servei</strong> orquestra regles de negoci i transaccions.</p>
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>DAO (Data Access Object):</strong> Classe o interfície que centralitza totes les operacions de persistència d'una entitat o agregat.</p>
+  </div>
+</div>
+
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class ProducteDAO {
+    private final SessionFactory sessionFactory;
+
+    public ProducteDAO(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    public Optional&lt;Producte&gt; trobarPerId(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            return Optional.ofNullable(session.get(Producte.class, id));
+        }
+    }
+
+    public void desa(Producte producte) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction tx = session.beginTransaction();
+            session.merge(producte);
+            tx.commit();
+        }
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+    <p>La capa de servei pot injectar múltiples DAOs, aplicar regles de validació, gestionar transaccions distribuïdes o coordinar serveis externs. Aquesta separació és crítica per RA9, on cal garantir mantenibilitat i monitoratge.</p>
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Com dividiries la lògica d'un cas d'ús (per exemple, crear una comanda) entre la capa de servei i els DAO? Demana a l'IA que t'ajudi a esbossar els passos.</div>
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2 id="Unitat8_Bloc1_Seccio6">Bones pràctiques i optimització</h2>
+
+    <!-- Component: Checklist accessible -->
+<div class="checklist" role="group" aria-label="Recomanacions clau">
+    <div class="checklist-title">Recomanacions clau</div>
+    
+    
+    <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="checklist-checkbox" aria-hidden="true"></div>
+        <div class="checklist-text">Selecciona un dialecte i driver coherent amb la versió de PostgreSQL</div>
+    </div>
+    
+    <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="checklist-checkbox" aria-hidden="true"></div>
+        <div class="checklist-text">Defineix columnes amb longitud i precisió explícita per evitar discrepàncies</div>
+    </div>
+    
+    <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="checklist-checkbox" aria-hidden="true"></div>
+        <div class="checklist-text">Utilitza <em>fetch</em> lazy per relacions que no es necessiten sempre</div>
+    </div>
+    
+    <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="checklist-checkbox" aria-hidden="true"></div>
+        <div class="checklist-text">Activa la segona memòria cau només quan hi ha beneficis mesurables</div>
+    </div>
+    
+    <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+        <div class="checklist-checkbox" aria-hidden="true"></div>
+        <div class="checklist-text">Registra consultes llogades per detectar N+1 i colls d'ampolla</div>
+    </div>
+    
+    <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+    <p>Altres aspectes a considerar:</p>
+    <ul>
+        <li><strong>Validació:</strong> integra <code>Jakarta Bean Validation</code> per assegurar la coherència abans d'arribar a la base de dades.</li>
+        <li><strong>Seguretat:</strong> utilitza usuaris amb privilegis limitats i configura SSL si l'entorn ho requereix.</li>
+        <li><strong>Migracions:</strong> empra eines com Flyway o Liquibase per versionar canvis estructurals i mantenir entorns alineats.</li>
+    </ul>
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Quin seria el teu pla per diagnosticar una consulta Hibernate que triga massa? Detalla tres proves o mètriques a revisar.</div>
+  </div>
+</div>
+
+
+    <h3>Activitats de pràctica</h3>
+    <p>Posa en pràctica el que has après amb aquests exercicis guiats. Pots demanar ajuda a una IA generativa quan t'encallis.</p>
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Mapatge bàsic d'una entitat</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Anota la classe <code>Client</code> perquè es pugui persistir amb JPA.</p><p>Indica la clau primària i assegura que l'atribut <code>email</code> no pot ser nul.</p></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Fàcil</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">10 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Recorda utilitzar @Entity i @Id</li>
+        
+        <li>Pots definir la longitud màxima amb @Column(length = ...)</li>
+        
+        <li>La clau primària pot generar-se amb GenerationType.IDENTITY</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class Client {
+    private Long id;
+    private String nom;
+    private String email;
+}</code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Demana a l'IA que revisi la teva anotació de la classe <code>Client</code> i et proposi millores (per exemple, restriccions addicionals).</div>
+  </div>
+</div>
+
+
+    
+    
+    <details class="solution-toggle">
+        <summary>Mostra la solució</summary>
+        <!-- Component: Solució -->
+<div class="solution-box" role="region" aria-label="Solució">
+    <div class="component-header solution-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Solució</div>
+    
+<p>Una possible solució anota la classe amb <code>@Entity</code>, defineix la clau primària amb <code>@Id</code> i força que el correu sigui obligatori amb <code>@Column(nullable = false)</code>.</p>
+    
+</div>
+
+        <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import jakarta.persistence.*;
+
+@Entity
+@Table(name = &quot;clients&quot;)
+public class Client {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, length = 80)
+    private String nom;
+
+    @Column(nullable = false, length = 120, unique = true)
+    private String email;
+
+    // getters i setters
+}</code></pre>
+  </div>
+</div>
+
+    </details>
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Refactoritza una operació JDBC</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Reescriu aquest fragment JDBC utilitzant Hibernate i el patró DAO.</p></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjana</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Identifica on obres i tanques la connexió</li>
+        
+        <li>Tradueix el SQL a una operació de sessió (get/merge)</li>
+        
+        <li>Gestiona la transacció amb commit i rollback</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+
+    
+    <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">String sql = &quot;UPDATE productes SET preu = ? WHERE id = ?&quot;;
+try (Connection conn = DriverManager.getConnection(url, user, pass);
+     PreparedStatement ps = conn.prepareStatement(sql)) {
+    ps.setBigDecimal(1, nouPreu);
+    ps.setLong(2, idProducte);
+    ps.executeUpdate();
+}</code></pre>
+  </div>
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Pregunta a l'IA com quedaria aquest canvi en un mètode del teu DAO. Dona-li el codi JDBC i demana-li que et retorni l'equivalent amb Hibernate.</div>
+  </div>
+</div>
+
+
+    
+    
+    <details class="solution-toggle">
+        <summary>Mostra la solució</summary>
+        <!-- Component: Solució -->
+<div class="solution-box" role="region" aria-label="Solució">
+    <div class="component-header solution-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Solució</div>
+    
+<p>Amb Hibernate encapsulem l'operació en un DAO i utilitzem una sessió per carregar l'entitat, modificar-la i confirmar la transacció.</p>
+    
+</div>
+
+        <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public void actualitzaPreu(Long idProducte, BigDecimal nouPreu) {
+    Transaction tx = null;
+    try (Session session = sessionFactory.openSession()) {
+        tx = session.beginTransaction();
+
+        Producte producte = session.get(Producte.class, idProducte);
+        producte.setPreu(nouPreu);
+
+        session.persist(producte);
+        tx.commit();
+    } catch (Exception ex) {
+        if (tx != null) {
+            tx.rollback();
+        }
+        throw ex;
+    }
+}</code></pre>
+  </div>
+</div>
+
+    </details>
+
+    <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Dissenya una transacció coherent</div>
+  <div class="component-content">
+    
+    <div class="exercise-description"><p>Descriu els passos que seguiries per processar una comanda: validar les línies, actualitzar estoc i enregistrar el pagament en una sola transacció.</p></div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjana</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">10 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Recorda encapsular la lògica en un servei</li>
+        
+        <li>Garanteix que totes les operacions comparteixen la mateixa transacció</li>
+        
+        <li>Preveu què passa si alguna operació falla</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+
+    <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt">Demana a l'IA que et generi un esborrany de pseudocodi per a la transacció completa, indicant quan obrir i tancar la sessió.</div>
+  </div>
+</div>
+
+
+    
+    <details class="solution-toggle">
+        <summary>Mostra la solució</summary>
+        <!-- Component: Solució -->
+<div class="solution-box" role="region" aria-label="Solució">
+    <div class="component-header solution-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Solució</div>
+    
+<p>Una proposta hauria d'incloure: validació de dades d'entrada, una transacció única que carregui productes, actualitzi estoc, desi la comanda i registri el pagament; si qualsevol pas falla, es fa <em>rollback</em> per deixar la base de dades consistent.</p>
+<ul>
+    <li>Obrir sessió i transacció al servei.</li>
+    <li>Carregar productes amb <code>session.get()</code> i verificar estoc.</li>
+    <li>Crear l'entitat <code>Comanda</code> i afegir línies.</li>
+    <li>Persistir la comanda i registrar l'entrada de pagament.</li>
+    <li>Fer <code>commit</code>; en cas d'excepció, <code>rollback</code> i informar l'usuari.</li>
+</ul>
+    
+</div>
+
+    </details>
+
+    <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    Quan completis aquests exercicis tindràs les bases per abordar el tutorial del Bloc 2 amb confiança i connectar teoria i pràctica.
+</div>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 1: Fonaments de bases de dades orientades a objectes",
+  "description": "Principis d'ORM, arquitectura de Hibernate, mapatge d'entitats, gestió de sessions i bones pràctiques de persistència",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Programació II — IOC",
+    "description": "Materials del mòdul Programació II - DA2_0485B2"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                        
+                                        
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/da2_0485b2/unitat-8/bloc-2/" class="nav-button" aria-label="Bloc següent: Gestió i manteniment de dades">Següent →</a>
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="8" data-total="4">(8/4)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 200%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="1" data-total="2">(1/2)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 50%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="6">(1/6)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 16%"></div></div>
+                    </div></div>
+            <div class="footer-actions">
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/da2_0485b2/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts del lloc -->
+    <script src="/ioc/da2_0485b2/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/da2_0485b2/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>
