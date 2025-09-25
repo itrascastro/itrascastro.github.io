@@ -150,7 +150,13 @@ function initializeFooterCollapse() {
   };
 
   const safeGet = () => {
-    try { return localStorage.getItem(STORAGE_KEY) === '1'; } catch (error) { return false; }
+    try {
+      const value = localStorage.getItem(STORAGE_KEY);
+      if (value === null) return null;
+      return value === '1';
+    } catch (error) {
+      return null;
+    }
   };
 
   const setIcon = (collapsed) => {
@@ -170,8 +176,14 @@ function initializeFooterCollapse() {
       return;
     }
 
-    if (safeGet()) {
+    const storedCollapsed = safeGet();
+    if (storedCollapsed === true) {
       body.classList.add('footer-collapsed');
+    } else if (storedCollapsed === false) {
+      body.classList.remove('footer-collapsed');
+    } else if (!body.classList.contains('footer-collapsed')) {
+      body.classList.add('footer-collapsed');
+      safeSet(true);
     }
 
     const collapsed = body.classList.contains('footer-collapsed');
