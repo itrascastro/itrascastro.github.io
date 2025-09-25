@@ -30,6 +30,186 @@ function initializeNavDropdown() {
 }
 
 
+function initializeSidebarToggle() {
+  const sidebars = Array.from(document.querySelectorAll('.sidebar'));
+  if (sidebars.length === 0) return;
+
+  const mq = window.matchMedia('(max-width: 1024px)');
+
+  const applyState = () => {
+    sidebars.forEach(sidebar => {
+      const toggle = sidebar.querySelector('.sidebar-toggle');
+      if (!toggle) return;
+
+      if (mq.matches) {
+        sidebar.classList.add('is-collapsible');
+        const isOpen = sidebar.classList.contains('is-open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        toggle.tabIndex = 0;
+      } else {
+        sidebar.classList.remove('is-collapsible');
+        sidebar.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.tabIndex = -1;
+      }
+    });
+  };
+
+  sidebars.forEach(sidebar => {
+    const toggle = sidebar.querySelector('.sidebar-toggle');
+    const links = sidebar.querySelectorAll('.sidebar-scroll a');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', () => {
+      const isOpen = sidebar.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        if (!mq.matches) return;
+        sidebar.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  });
+
+  applyState();
+  if (typeof mq.addEventListener === 'function') {
+    mq.addEventListener('change', applyState);
+  } else if (typeof mq.addListener === 'function') {
+    mq.addListener(applyState);
+  }
+}
+
+
+function initializeOffcanvasNavigation() {
+  const body = document.body;
+  const toggle = document.querySelector('.nav-panel-toggle');
+  const nav = document.querySelector('.offcanvas-nav');
+  const backdrop = document.querySelector('.offcanvas-backdrop');
+  const closeBtn = document.querySelector('.offcanvas-close');
+  if (!toggle || !nav || !backdrop || !closeBtn) return;
+
+  nav.setAttribute('tabindex', '-1');
+
+  const closeNav = () => {
+    body.classList.remove('offcanvas-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Obre la navegació');
+    nav.setAttribute('aria-hidden', 'true');
+    backdrop.hidden = true;
+    try { toggle.focus({ preventScroll: true }); } catch (error) { toggle.focus(); }
+  };
+
+  const openNav = () => {
+    body.classList.add('offcanvas-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Tanca la navegació');
+    nav.setAttribute('aria-hidden', 'false');
+    backdrop.hidden = false;
+    nav.focus({ preventScroll: true });
+  };
+
+  toggle.addEventListener('click', () => {
+    if (body.classList.contains('offcanvas-open')) {
+      closeNav();
+    } else {
+      openNav();
+    }
+  });
+
+  closeBtn.addEventListener('click', closeNav);
+  backdrop.addEventListener('click', closeNav);
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && body.classList.contains('offcanvas-open')) {
+      closeNav();
+    }
+  });
+
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (!link.classList.contains('offcanvas-static')) {
+        closeNav();
+      }
+    });
+  });
+}
+
+function initializeFooterCollapse() {
+  const body = document.body;
+  const toggle = document.querySelector('.footer-collapse-toggle');
+  if (!toggle) return;
+
+  const mq = window.matchMedia('(max-width: 1024px)');
+  const STORAGE_KEY = 'ioc-footer-collapsed';
+
+  const safeSet = (value) => {
+    try { localStorage.setItem(STORAGE_KEY, value ? '1' : '0'); } catch (error) { /* ignore */ }
+  };
+
+  const safeGet = () => {
+    try { return localStorage.getItem(STORAGE_KEY) === '1'; } catch (error) { return false; }
+  };
+
+  const setIcon = (collapsed) => {
+    const icon = toggle.querySelector('i');
+    if (!icon) return;
+    icon.classList.remove('bi-chevron-down', 'bi-chevron-up');
+    icon.classList.add(collapsed ? 'bi-chevron-up' : 'bi-chevron-down');
+  };
+
+  const sync = () => {
+    if (!mq.matches) {
+      body.classList.remove('footer-collapsed');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Amaga el peu de pàgina');
+      toggle.tabIndex = -1;
+      setIcon(false);
+      return;
+    }
+
+    if (safeGet()) {
+      body.classList.add('footer-collapsed');
+    }
+
+    const collapsed = body.classList.contains('footer-collapsed');
+    toggle.setAttribute('aria-expanded', String(!collapsed));
+    toggle.setAttribute('aria-label', collapsed ? 'Mostra el peu de pàgina' : 'Amaga el peu de pàgina');
+    toggle.tabIndex = 0;
+    setIcon(collapsed);
+  };
+
+  toggle.addEventListener('click', () => {
+    if (!mq.matches) return;
+    const collapsed = body.classList.toggle('footer-collapsed');
+    safeSet(collapsed);
+    sync();
+  });
+
+  sync();
+
+  if (typeof mq.addEventListener === 'function') {
+    mq.addEventListener('change', sync);
+  } else if (typeof mq.addListener === 'function') {
+    mq.addListener(sync);
+  }
+}
+
+function initializeResponsiveTables() {
+  const tables = Array.from(document.querySelectorAll('.content-body table'));
+  if (!tables.length) return;
+
+  tables.forEach(table => {
+    if (table.closest('.table-responsive')) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'table-responsive';
+    table.parentNode.insertBefore(wrapper, table);
+    wrapper.appendChild(table);
+  });
+}
+
 // Tema fosc/clar + tema Prism
 function initializeThemeToggle() {
   const themeToggle = document.getElementById('theme-toggle');
@@ -63,6 +243,10 @@ function initializeThemeToggle() {
 document.addEventListener('DOMContentLoaded', function () {
   initializeThemeToggle();
   initializeNavDropdown();
+  initializeSidebarToggle();
+  initializeOffcanvasNavigation();
+  initializeFooterCollapse();
+  initializeResponsiveTables();
   initializeFooterProgress();
   initializePromptCopy();
   initializeTocActive();

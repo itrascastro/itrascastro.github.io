@@ -78,69 +78,76 @@
     <!-- Header fix -->
     <header class="header" role="banner" id="top">
         <div class="header-brand">
-            <a href="/ioc/da2_0485b2/" class="logo-link">
-                <img src="/ioc/da2_0485b2/assets/images/logo_IOC_light.jpg" 
-                     alt="Institut Obert de Catalunya" 
-                     class="logo logo-light">
-                <img src="/ioc/da2_0485b2/assets/images/logo_IOC_dark.png" 
-                     alt="Institut Obert de Catalunya" 
-                     class="logo logo-dark">
+            <a href="/ioc/da2_0485b2/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/da2_0485b2/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/da2_0485b2/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
             </a>
             <a href="/ioc/da2_0485b2/" class="title-link">
                 <h1>DA2_0485B2 - Programació II</h1>
             </a>
         </div>
-        <div class="header-controls">
-            <div class="nav-dropdown" id="nav-dropdown">
-                <button class="nav-dropdown-btn" id="nav-dropdown-btn">Navegació</button>
-                <div class="nav-dropdown-content" id="nav-dropdown-content">
-                    <a href="/ioc/da2_0485b2/" class="nav-dropdown-item ">Índex del Curs</a>
-                    
-                        
-                            <a href="/ioc/da2_0485b2/unitat-5/bloc-1/" class="nav-dropdown-item ">
-                                Unitat 5 - Bloc 1: Conceptes bàsics d'E/S per consola
-                            </a>
-                        
-                            <a href="/ioc/da2_0485b2/unitat-5/bloc-2/" class="nav-dropdown-item ">
-                                Unitat 5 - Bloc 2: E/S basada en fitxers
-                            </a>
-                        
-                    
-                        
-                            <a href="/ioc/da2_0485b2/unitat-6/bloc-1/" class="nav-dropdown-item ">
-                                Unitat 6 - Bloc 1: Estructures de dades bàsiques
-                            </a>
-                        
-                            <a href="/ioc/da2_0485b2/unitat-6/bloc-2/" class="nav-dropdown-item ">
-                                Unitat 6 - Bloc 2: Col·leccions i tipus de dades avançats
-                            </a>
-                        
-                    
-                        
-                            <a href="/ioc/da2_0485b2/unitat-7/bloc-1/" class="nav-dropdown-item ">
-                                Unitat 7 - Bloc 1: Herència, polimorfisme i composició
-                            </a>
-                        
-                            <a href="/ioc/da2_0485b2/unitat-7/bloc-2/" class="nav-dropdown-item ">
-                                Unitat 7 - Bloc 2: Característiques avançades i abstracció
-                            </a>
-                        
-                    
-                        
-                            <a href="/ioc/da2_0485b2/unitat-8/bloc-1/" class="nav-dropdown-item ">
-                                Unitat 8 - Bloc 1: Fonaments de bases de dades orientades a objectes
-                            </a>
-                        
-                            <a href="/ioc/da2_0485b2/unitat-8/bloc-2/" class="nav-dropdown-item ">
-                                Unitat 8 - Bloc 2: Gestió i manteniment de dades
-                            </a>
-                        
-                    
-                </div>
-            </div>
+        <div class="header-actions">
             <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
         </div>
     </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/da2_0485b2/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/da2_0485b2/unitat-5/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 5 - Bloc 1: Conceptes bàsics d'E/S per consola
+                    </a>
+                
+                    <a href="/ioc/da2_0485b2/unitat-5/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 5 - Bloc 2: E/S basada en fitxers
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_0485b2/unitat-6/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 6 - Bloc 1: Estructures de dades bàsiques
+                    </a>
+                
+                    <a href="/ioc/da2_0485b2/unitat-6/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 6 - Bloc 2: Col·leccions i tipus de dades avançats
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_0485b2/unitat-7/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 7 - Bloc 1: Herència, polimorfisme i composició
+                    </a>
+                
+                    <a href="/ioc/da2_0485b2/unitat-7/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 7 - Bloc 2: Característiques avançades i abstracció
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_0485b2/unitat-8/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 8 - Bloc 1: Fonaments de bases de dades orientades a objectes
+                    </a>
+                
+                    <a href="/ioc/da2_0485b2/unitat-8/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 8 - Bloc 2: Gestió i manteniment de dades
+                    </a>
+                
+            
+        </div>
+    </nav>
 
     <div class="container">
         <!-- Sidebar Navegació -->
@@ -296,7 +303,10 @@ així com els algorismes associats per treballar amb aquestes estructures de man
                     <span class="progress-text" data-pos="6" data-total="4">(6/4)</span>
                     <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 150%"></div></div>
                 </div></div>
-            <div class="footer-actions">
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
                 <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
                 <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
                 <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
