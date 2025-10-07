@@ -330,11 +330,12 @@
         </div>
         
         <div class="terminal-body" id="terminal-output">
-            <div class="output-line success">Benvingut al portfolio interactiu d'Ismael Trascastro</div>
-            <div class="output-line info">Enginyer Informàtic · Professor · Desenvolupador</div>
-            <div class="output-line command-output">Escriu 'help' per veure els comandos disponibles</div>
-            <div class="output-line command-output">Escriu 'theme' per canviar de tema</div>
-            <div class="output-line command-output">Escriu 'about' per començar</div>
+            <div class="output-line success" id="welcome-msg">Benvingut al portfolio interactiu d'Ismael Trascastro</div>
+            <div class="output-line info" id="subtitle-msg">Enginyer Informàtic · Professor · Desenvolupador</div>
+            <div class="output-line command-output" id="help-msg">Escriu 'help' per veure els comandos disponibles</div>
+            <div class="output-line command-output" id="theme-msg">Escriu 'theme' per canviar de tema</div>
+            <div class="output-line command-output" id="lang-msg">Escriu 'idioma ca/es/en' per canviar l'idioma</div>
+            <div class="output-line command-output" id="start-msg">Escriu 'about' per començar</div>
         </div>
     </div>
 
@@ -342,6 +343,50 @@
         const terminal = document.getElementById('terminal-output');
         let commandHistory = [];
         let historyIndex = -1;
+        let currentLang = 'ca'; // idioma per defecte: català
+
+        const translations = {
+            ca: {
+                welcome: "Benvingut al portfolio interactiu d'Ismael Trascastro",
+                subtitle: "Enginyer Informàtic · Professor · Desenvolupador",
+                helpMsg: "Escriu 'help' per veure els comandos disponibles",
+                themeMsg: "Escriu 'theme' per canviar de tema",
+                langMsg: "Escriu 'idioma ca/es/en' per canviar l'idioma",
+                startMsg: "Escriu 'about' per començar",
+                langChanged: "Idioma canviat a:",
+                catalan: "Català",
+                spanish: "Castellà",
+                english: "Anglès"
+            },
+            es: {
+                welcome: "Bienvenido al portfolio interactivo de Ismael Trascastro",
+                subtitle: "Ingeniero Informático · Profesor · Desarrollador",
+                helpMsg: "Escribe 'help' para ver los comandos disponibles",
+                themeMsg: "Escribe 'theme' para cambiar de tema",
+                langMsg: "Escribe 'idioma ca/es/en' para cambiar el idioma",
+                startMsg: "Escribe 'about' para comenzar",
+                langChanged: "Idioma cambiado a:",
+                catalan: "Catalán",
+                spanish: "Castellano",
+                english: "Inglés"
+            },
+            en: {
+                welcome: "Welcome to Ismael Trascastro's interactive portfolio",
+                subtitle: "Computer Engineer · Professor · Developer",
+                helpMsg: "Type 'help' to see available commands",
+                themeMsg: "Type 'theme' to change theme",
+                langMsg: "Type 'idioma ca/es/en' to change language",
+                startMsg: "Type 'about' to start",
+                langChanged: "Language changed to:",
+                catalan: "Catalan",
+                spanish: "Spanish",
+                english: "English"
+            }
+        };
+
+        function t(key) {
+            return translations[currentLang][key] || key;
+        }
 
         function toggleTheme() {
             document.body.classList.toggle('dark');
@@ -350,11 +395,40 @@
             return `Theme canviat a: ${currentTheme}`;
         }
 
+        function changeLanguage(lang) {
+            const validLangs = ['ca', 'es', 'en'];
+            if (!validLangs.includes(lang)) {
+                return currentLang === 'ca' ? 'Idioma no vàlid. Usa: ca, es, en' :
+                       currentLang === 'es' ? 'Idioma no válido. Usa: ca, es, en' :
+                       'Invalid language. Use: ca, es, en';
+            }
+            currentLang = lang;
+            
+            // Actualitzar missatges inicials
+            const welcomeEl = document.getElementById('welcome-msg');
+            const subtitleEl = document.getElementById('subtitle-msg');
+            const helpEl = document.getElementById('help-msg');
+            const themeEl = document.getElementById('theme-msg');
+            const langEl = document.getElementById('lang-msg');
+            const startEl = document.getElementById('start-msg');
+            
+            if (welcomeEl) welcomeEl.textContent = t('welcome');
+            if (subtitleEl) subtitleEl.textContent = t('subtitle');
+            if (helpEl) helpEl.textContent = t('helpMsg');
+            if (themeEl) themeEl.textContent = t('themeMsg');
+            if (langEl) langEl.textContent = t('langMsg');
+            if (startEl) startEl.textContent = t('startMsg');
+            
+            const langNames = {ca: t('catalan'), es: t('spanish'), en: t('english')};
+            return `${t('langChanged')} ${langNames[lang]}`;
+        }
+
         const commands = {
             help: {
                 desc: 'Mostra tots els comandos disponibles',
                 exec: () => {
-                    return `<span class="help-command">about</span>       <span class="help-desc">Informació personal i contacte</span>
+                    const helps = {
+                        ca: `<span class="help-command">about</span>       <span class="help-desc">Informació personal i contacte</span>
 <span class="help-command">projectes</span>   <span class="help-desc">Projectes destacats</span>
 <span class="help-command">experiencia</span> <span class="help-desc">Experiència docent</span>
 <span class="help-command">skills</span>      <span class="help-desc">Coneixements tècnics</span>
@@ -362,16 +436,46 @@
 <span class="help-command">idiomes</span>     <span class="help-desc">Idiomes que parlo</span>
 <span class="help-command">photo</span>       <span class="help-desc">Mostra la foto</span>
 <span class="help-command">theme</span>       <span class="help-desc">Canvia entre tema fosc i clar</span>
+<span class="help-command">idioma</span>      <span class="help-desc">Canvia l'idioma (ca/es/en)</span>
 <span class="help-command">clear</span>       <span class="help-desc">Neteja la terminal</span>
 <span class="help-command">ls</span>          <span class="help-desc">Llista contingut disponible</span>
 <span class="help-command">whoami</span>      <span class="help-desc">Qui soc?</span>
-<span class="help-command">date</span>        <span class="help-desc">Data actual</span>`;
+<span class="help-command">date</span>        <span class="help-desc">Data actual</span>`,
+                        es: `<span class="help-command">about</span>       <span class="help-desc">Información personal y contacto</span>
+<span class="help-command">projectes</span>   <span class="help-desc">Proyectos destacados</span>
+<span class="help-command">experiencia</span> <span class="help-desc">Experiencia docente</span>
+<span class="help-command">skills</span>      <span class="help-desc">Conocimientos técnicos</span>
+<span class="help-command">xarxa</span>       <span class="help-desc">Enlaces y redes sociales</span>
+<span class="help-command">idiomes</span>     <span class="help-desc">Idiomas que hablo</span>
+<span class="help-command">photo</span>       <span class="help-desc">Muestra la foto</span>
+<span class="help-command">theme</span>       <span class="help-desc">Cambia entre tema oscuro y claro</span>
+<span class="help-command">idioma</span>      <span class="help-desc">Cambia el idioma (ca/es/en)</span>
+<span class="help-command">clear</span>       <span class="help-desc">Limpia la terminal</span>
+<span class="help-command">ls</span>          <span class="help-desc">Lista contenido disponible</span>
+<span class="help-command">whoami</span>      <span class="help-desc">¿Quién soy?</span>
+<span class="help-command">date</span>        <span class="help-desc">Fecha actual</span>`,
+                        en: `<span class="help-command">about</span>       <span class="help-desc">Personal information and contact</span>
+<span class="help-command">projectes</span>   <span class="help-desc">Featured projects</span>
+<span class="help-command">experiencia</span> <span class="help-desc">Teaching experience</span>
+<span class="help-command">skills</span>      <span class="help-desc">Technical skills</span>
+<span class="help-command">xarxa</span>       <span class="help-desc">Links and social networks</span>
+<span class="help-command">idiomes</span>     <span class="help-desc">Languages I speak</span>
+<span class="help-command">photo</span>       <span class="help-desc">Show photo</span>
+<span class="help-command">theme</span>       <span class="help-desc">Switch between dark and light theme</span>
+<span class="help-command">idioma</span>      <span class="help-desc">Change language (ca/es/en)</span>
+<span class="help-command">clear</span>       <span class="help-desc">Clear terminal</span>
+<span class="help-command">ls</span>          <span class="help-desc">List available content</span>
+<span class="help-command">whoami</span>      <span class="help-desc">Who am I?</span>
+<span class="help-command">date</span>        <span class="help-desc">Current date</span>`
+                    };
+                    return helps[currentLang];
                 }
             },
             about: {
                 desc: 'Informació personal',
                 exec: () => {
-                    return `<span class="section-title">INFORMACIÓ PERSONAL</span>
+                    const abouts = {
+                        ca: `<span class="section-title">INFORMACIÓ PERSONAL</span>
 
 <span class="info">Nom:</span> Ismael Trascastro
 <span class="info">Nascut:</span> Málaga, 14/11/1973
@@ -383,7 +487,46 @@
 <span class="warning">// Professor de Cicles Formatius (DAM, DAW, ASIX)</span>
 <span class="warning">// Formador Symfony, Zend Framework, PHP</span>
 <span class="warning">// Expert en Angular</span>
-<span class="warning">// Creador del framework Xen: <a href="https://github.com/xenframework" class="file-link" target="_blank">github.com/xenframework</a></span>`;
+<span class="warning">// Creador del framework Xen: <a href="https://github.com/xenframework" class="file-link" target="_blank">github.com/xenframework</a></span>`,
+                        es: `<span class="section-title">INFORMACIÓN PERSONAL</span>
+
+<span class="info">Nombre:</span> Ismael Trascastro
+<span class="info">Nacido:</span> Málaga, 14/11/1973
+<span class="info">Ubicación:</span> Viladecans, Barcelona
+<span class="info">Email:</span> <a href="mailto:itrascastro@gmail.com" class="file-link">itrascastro@gmail.com</a>
+<span class="info">Teléfono:</span> +34 644 26 48 14
+
+<span class="warning">// Ingeniero en Informática</span>
+<span class="warning">// Profesor de Ciclos Formativos (DAM, DAW, ASIX)</span>
+<span class="warning">// Formador Symfony, Zend Framework, PHP</span>
+<span class="warning">// Experto en Angular</span>
+<span class="warning">// Creador del framework Xen: <a href="https://github.com/xenframework" class="file-link" target="_blank">github.com/xenframework</a></span>`,
+                        en: `<span class="section-title">PERSONAL INFORMATION</span>
+
+<span class="info">Name:</span> Ismael Trascastro
+<span class="info">Born:</span> Málaga, 14/11/1973
+<span class="info">Location:</span> Viladecans, Barcelona
+<span class="info">Email:</span> <a href="mailto:itrascastro@gmail.com" class="file-link">itrascastro@gmail.com</a>
+<span class="info">Phone:</span> +34 644 26 48 14
+
+<span class="warning">// Computer Engineer</span>
+<span class="warning">// Vocational Training Teacher (DAM, DAW, ASIX)</span>
+<span class="warning">// Trainer Symfony, Zend Framework, PHP</span>
+<span class="warning">// Angular Expert</span>
+<span class="warning">// Creator of Xen framework: <a href="https://github.com/xenframework" class="file-link" target="_blank">github.com/xenframework</a></span>`
+                    };
+                    return abouts[currentLang];
+                }
+            },
+            idioma: {
+                desc: 'Canvia idioma',
+                exec: (args) => {
+                    if (!args || args.length === 0) {
+                        return currentLang === 'ca' ? 'Ús: idioma ca|es|en' :
+                               currentLang === 'es' ? 'Uso: idioma ca|es|en' :
+                               'Usage: idioma ca|es|en';
+                    }
+                    return changeLanguage(args[0]);
                 }
             },
             projectes: {
@@ -497,21 +640,47 @@ Git · SQL · REST APIs · Responsive Design
             idiomes: {
                 desc: 'Idiomes',
                 exec: () => {
-                    return `<span class="section-title">IDIOMES</span>
+                    const idiomes = {
+                        ca: `<span class="section-title">IDIOMES</span>
 
 <span class="success">Català</span>   <span class="info">Nivell C2</span>
 <span class="success">Anglès</span>   <span class="info">Nivell C1</span>
-<span class="success">Castellà</span> <span class="info">Natiu</span>`;
+<span class="success">Castellà</span> <span class="info">Natiu</span>`,
+                        es: `<span class="section-title">IDIOMAS</span>
+
+<span class="success">Catalán</span>  <span class="info">Nivel C2</span>
+<span class="success">Inglés</span>   <span class="info">Nivel C1</span>
+<span class="success">Castellano</span> <span class="info">Nativo</span>`,
+                        en: `<span class="section-title">LANGUAGES</span>
+
+<span class="success">Catalan</span>  <span class="info">Level C2</span>
+<span class="success">English</span>  <span class="info">Level C1</span>
+<span class="success">Spanish</span>  <span class="info">Native</span>`
+                    };
+                    return idiomes[currentLang];
                 }
             },
             photo: {
                 desc: 'Mostra la foto',
                 exec: () => {
-                    return `<span class="section-title">FOTO</span>
+                    const photos = {
+                        ca: `<span class="section-title">FOTO</span>
 
-<img src="http://www.gravatar.com/avatar/f30d9d38be800e4569aeea819fb271be" alt="Ismael Trascastro" style="max-width: 300px; border: 2px solid #33ff33; border-radius: 8px; margin-top: 1rem;">
+<img src="URL_DE_LA_TEVA_FOTO" alt="Ismael Trascastro" style="max-width: 300px; border: 2px solid #33ff33; border-radius: 8px; margin-top: 1rem;">
 
-<span class="info">Ismael Trascastro - Enginyer Informàtic</span>`;
+<span class="info">Ismael Trascastro - Enginyer Informàtic</span>`,
+                        es: `<span class="section-title">FOTO</span>
+
+<img src="URL_DE_LA_TEVA_FOTO" alt="Ismael Trascastro" style="max-width: 300px; border: 2px solid #33ff33; border-radius: 8px; margin-top: 1rem;">
+
+<span class="info">Ismael Trascastro - Ingeniero Informático</span>`,
+                        en: `<span class="section-title">PHOTO</span>
+
+<img src="URL_DE_LA_TEVA_FOTO" alt="Ismael Trascastro" style="max-width: 300px; border: 2px solid #33ff33; border-radius: 8px; margin-top: 1rem;">
+
+<span class="info">Ismael Trascastro - Computer Engineer</span>`
+                    };
+                    return photos[currentLang];
                 }
             },
             theme: {
@@ -530,7 +699,14 @@ photo.jpg`;
             },
             whoami: {
                 desc: 'Qui soc',
-                exec: () => 'itrascastro - Enginyer, Professor, Desenvolupador'
+                exec: () => {
+                    const whoamis = {
+                        ca: 'itrascastro - Enginyer, Professor, Desenvolupador',
+                        es: 'itrascastro - Ingeniero, Profesor, Desarrollador',
+                        en: 'itrascastro - Engineer, Professor, Developer'
+                    };
+                    return whoamis[currentLang];
+                }
             },
             date: {
                 desc: 'Data actual',
@@ -554,21 +730,29 @@ photo.jpg`;
         }
 
         function executeCommand(cmd) {
-            const trimmedCmd = cmd.trim().toLowerCase();
+            const trimmedCmd = cmd.trim();
+            const parts = trimmedCmd.split(' ');
+            const command = parts[0].toLowerCase();
+            const args = parts.slice(1);
             
             addLine(`<span class="user">itrascastro</span>@<span class="path">portfolio</span>:~$ ${cmd}`);
             
-            if (trimmedCmd === '') {
+            if (command === '') {
                 return;
             }
 
-            if (commands[trimmedCmd]) {
-                const output = commands[trimmedCmd].exec();
+            if (commands[command]) {
+                const output = commands[command].exec(args);
                 if (output !== null) {
                     addLine(output, 'command-output');
                 }
             } else {
-                addLine(`bash: ${cmd}: command not found. Escriu 'help' per veure els comandos disponibles.`, 'error');
+                const errorMsgs = {
+                    ca: `bash: ${command}: command not found. Escriu 'help' per veure els comandos disponibles.`,
+                    es: `bash: ${command}: comando no encontrado. Escribe 'help' para ver los comandos disponibles.`,
+                    en: `bash: ${command}: command not found. Type 'help' to see available commands.`
+                };
+                addLine(errorMsgs[currentLang], 'error');
             }
         }
 
