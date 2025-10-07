@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>itrascastro@terminal</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+            transition: background 0.3s ease;
+        }
+
+        body.dark {
+            background: #0c0c0c;
+            color: #33ff33;
+        }
+
+        body.light {
+            background: #f5f5f5;
+            color: #1a1a1a;
+        }
+
+        .terminal-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+        }
+
+        body.dark .terminal-container {
+            background: #0c0c0c;
+        }
+
+        body.light .terminal-container {
+            background: #ffffff;
+        }
+
+        .terminal-header {
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        body.dark .terminal-header {
+            background: #1a1a1a;
+            border-bottom: 1px solid #33ff33;
+        }
+
+        body.light .terminal-header {
+            background: #e0e0e0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .terminal-button:nth-child(1) {
+            background: #ff5f56;
+        }
+
+        .terminal-button:nth-child(2) {
+            background: #ffbd2e;
+        }
+
+        .terminal-button:nth-child(3) {
+            background: #27c93f;
+        }
+
+        .terminal-button:hover { 
+            opacity: 0.8;
+        }
+
+        .terminal-title {
+            margin-left: auto;
+            font-size: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        body.dark .terminal-title {
+            color: #888;
+        }
+
+        body.light .terminal-title {
+            color: #666;
+        }
+
+        .terminal-body {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            overflow-x: hidden;
+            transition: background 0.3s ease;
+        }
+
+        body.dark .terminal-body {
+            background: #0c0c0c;
+        }
+
+        body.light .terminal-body {
+            background: #ffffff;
+        }
+
+        .terminal-body::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        body.dark .terminal-body::-webkit-scrollbar-track {
+            background: #0c0c0c;
+        }
+
+        body.light .terminal-body::-webkit-scrollbar-track {
+            background: #f5f5f5;
+        }
+
+        body.dark .terminal-body::-webkit-scrollbar-thumb {
+            background: #33ff33;
+        }
+
+        body.light .terminal-body::-webkit-scrollbar-thumb {
+            background: #999;
+        }
+
+        .output-line {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .prompt-line {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .prompt {
+            margin-right: 0.5rem;
+        }
+
+        body.dark .user {
+            color: #88ff88;
+        }
+
+        body.light .user {
+            color: #0066cc;
+            font-weight: 600;
+        }
+
+        body.dark .path {
+            color: #5fd7ff;
+        }
+
+        body.light .path {
+            color: #cc6600;
+            font-weight: 600;
+        }
+
+        #command-input {
+            background: transparent;
+            border: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            outline: none;
+            flex: 1;
+            transition: color 0.3s ease;
+        }
+
+        body.dark #command-input {
+            color: #33ff33;
+            caret-color: transparent;
+        }
+
+        body.light #command-input {
+            color: #1a1a1a;
+            caret-color: transparent;
+        }
+
+        .input-wrapper {
+            position: relative;
+            flex: 1;
+            display: inline-block;
+        }
+
+        .custom-cursor {
+            position: absolute;
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            animation: blink 1s infinite;
+            pointer-events: none;
+        }
+
+        body.dark .custom-cursor {
+            background: #33ff33;
+        }
+
+        body.light .custom-cursor {
+            background: #1a1a1a;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        body.dark .command-output {
+            color: #aaa;
+        }
+
+        body.light .command-output {
+            color: #333;
+        }
+
+        body.dark .error {
+            color: #ff3333;
+        }
+
+        body.light .error {
+            color: #cc0000;
+        }
+
+        body.dark .success {
+            color: #33ff33;
+        }
+
+        body.light .success {
+            color: #007700;
+            font-weight: 600;
+        }
+
+        body.dark .info {
+            color: #5fd7ff;
+        }
+
+        body.light .info {
+            color: #0066cc;
+            font-weight: 600;
+        }
+
+        body.dark .warning {
+            color: #ffcc00;
+        }
+
+        body.light .warning {
+            color: #cc6600;
+        }
+
+        .section-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        body.dark .section-title {
+            color: #5fd7ff;
+        }
+
+        body.light .section-title {
+            color: #0066cc;
+        }
+
+        .file-link {
+            text-decoration: none;
+            border-bottom: 1px dotted;
+            transition: all 0.3s ease;
+        }
+
+        body.dark .file-link {
+            color: #88ff88;
+            border-bottom-color: #88ff88;
+        }
+
+        body.dark .file-link:hover {
+            color: #33ff33;
+            border-bottom: 1px solid #33ff33;
+        }
+
+        body.light .file-link {
+            color: #007700;
+            border-bottom-color: #007700;
+        }
+
+        body.light .file-link:hover {
+            color: #005500;
+            border-bottom: 1px solid #005500;
+        }
+
+        body.dark .help-command {
+            color: #88ff88;
+        }
+
+        body.light .help-command {
+            color: #007700;
+            font-weight: 600;
+        }
+
+        body.dark .help-desc {
+            color: #888;
+        }
+
+        body.light .help-desc {
+            color: #666;
+        }
+    </style>
+</head>
+<body class="dark">
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <div class="terminal-button"></div>
+            <div class="terminal-button"></div>
+            <div class="terminal-button"></div>
+            <span class="terminal-title">itrascastro@portfolio:~</span>
+        </div>
+        
+        <div class="terminal-body" id="terminal-output">
+            <div class="output-line success">Benvingut al portfolio interactiu d'Ismael Trascastro</div>
+            <div class="output-line info">Enginyer Informàtic · Professor · Desenvolupador</div>
+            <div class="output-line command-output">Escriu 'help' per veure els comandos disponibles</div>
+            <div class="output-line command-output">Escriu 'theme' per canviar de tema</div>
+            <div class="output-line command-output">Escriu 'about' per començar</div>
+        </div>
+    </div>
+
+    <script>
+        const terminal = document.getElementById('terminal-output');
+        let commandHistory = [];
+        let historyIndex = -1;
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            document.body.classList.toggle('light');
+            const currentTheme = document.body.classList.contains('dark') ? 'dark' : 'light';
+            return `Theme canviat a: ${currentTheme}`;
+        }
+
+        const commands = {
+            help: {
+                desc: 'Mostra tots els comandos disponibles',
+                exec: () => {
+                    return `<span class="help-command">about</span>       <span class="help-desc">Informació personal i contacte</span>
+<span class="help-command">projectes</span>   <span class="help-desc">Projectes destacats</span>
+<span class="help-command">experiencia</span> <span class="help-desc">Experiència docent</span>
+<span class="help-command">skills</span>      <span class="help-desc">Coneixements tècnics</span>
+<span class="help-command">xarxa</span>       <span class="help-desc">Enllaços i xarxes socials</span>
+<span class="help-command">idiomes</span>     <span class="help-desc">Idiomes que parlo</span>
+<span class="help-command">photo</span>       <span class="help-desc">Mostra la foto</span>
+<span class="help-command">theme</span>       <span class="help-desc">Canvia entre tema fosc i clar</span>
+<span class="help-command">clear</span>       <span class="help-desc">Neteja la terminal</span>
+<span class="help-command">ls</span>          <span class="help-desc">Llista contingut disponible</span>
+<span class="help-command">whoami</span>      <span class="help-desc">Qui soc?</span>
+<span class="help-command">date</span>        <span class="help-desc">Data actual</span>`;
+                }
+            },
+            about: {
+                desc: 'Informació personal',
+                exec: () => {
+                    return `<span class="section-title">INFORMACIÓ PERSONAL</span>
+
+<span class="info">Nom:</span> Ismael Trascastro
+<span class="info">Nascut:</span> Málaga, 14/11/1973
+<span class="info">Ubicació:</span> Viladecans, Barcelona
+<span class="info">Email:</span> <a href="mailto:itrascastro@gmail.com" class="file-link">itrascastro@gmail.com</a>
+<span class="info">Telèfon:</span> +34 644 26 48 14
+
+<span class="warning">// Enginyer en Informàtica</span>
+<span class="warning">// Professor de Cicles Formatius (DAM, DAW, ASIX)</span>
+<span class="warning">// Formador Symfony, Zend Framework, PHP</span>
+<span class="warning">// Expert en Angular</span>
+<span class="warning">// Creador del framework Xen: <a href="https://github.com/xenframework" class="file-link" target="_blank">github.com/xenframework</a></span>`;
+                }
+            },
+            projectes: {
+                desc: 'Projectes destacats',
+                exec: () => {
+                    return `<span class="section-title">PROJECTES DESTACATS</span>
+
+<span class="success">1. CALENDARI IOC</span>
+   Sistema de gestió de calendari per a centres escolars
+   Stack: JavaScript Vanilla
+   Repo: <a href="https://github.com/itrascastro/calendari-ioc.git" class="file-link" target="_blank">github.com/itrascastro/calendari-ioc</a>
+
+<span class="success">2. CURS ANGULAR - OPTATIVA DAM/DAW</span>
+   Materials didàctics complets per a curs d'Angular
+   Optativa per a cicles DAM i DAW al IOC
+   Stack: Angular
+   Repo: <a href="https://github.com/itrascastro/ioc-da2-optativa-angular.git" class="file-link" target="_blank">github.com/itrascastro/ioc-da2-optativa-angular</a>
+
+<span class="success">3. PLANTILLA MATERIALS DIDÀCTICS</span>
+   Sistema de plantilles per crear contingut educatiu interactiu
+   Stack: Jekyll + JavaScript Vanilla
+   Repo: <a href="https://github.com/itrascastro/ioc-da2_0485b2.git" class="file-link" target="_blank">github.com/itrascastro/ioc-da2_0485b2</a>
+
+<span class="success">4. MOODLE OFFLINE GRADING SYSTEM</span>
+   Sistema d'avaluació i generació automàtica de feedback
+   Google Sheets amb rúbriques, estadístiques i correcció de tests
+   Modes: Rubric, Manual, Hybrid
+   Info: <a href="https://itrascastro.github.io/moodle-offline-task-grading-spreadsheet/" class="file-link" target="_blank">itrascastro.github.io/moodle-offline-task-grading-spreadsheet</a>
+
+<span class="success">5. TRASCASTRO ACL MODULE</span>
+   Mòdul de control d'accés per a Zend Framework
+   Permet definir permisos ACL directament a les rutes
+   Publicat a Packagist i Zend Modules
+   Info: <a href="https://itrascastro.github.io/zend-framework-acl-module/" class="file-link" target="_blank">itrascastro.github.io/zend-framework-acl-module</a>
+
+<span class="success">6. XEN FRAMEWORK</span>
+   Framework PHP custom desenvolupat des de zero
+   Patterns: MVC, Dependency Injection, Front Controller
+   Repo: <a href="https://github.com/xenframework" class="file-link" target="_blank">github.com/xenframework</a>`;
+                }
+            },
+            experiencia: {
+                desc: 'Experiència professional',
+                exec: () => {
+                    return `<span class="section-title">EXPERIÈNCIA PROFESSIONAL</span>
+
+<span class="info">[2024 - ACTUALITAT]</span> <span class="success">Professor Titular @ IOC</span>
+Institut Obert de Catalunya
+Mòduls: M3-ASIX, M3/M7/M9/M10-DAM
+Modalitat: Online
+
+<span class="info">[2023]</span> <span class="success">Professor @ Institut Online FOC</span>
+Mòduls: M4 (Llenguatges de marques i sistemes de gestió d'informació)
+        M9 (Implantació d'aplicacions web) ASIR
+Web: <a href="https://www.fp-informatica.com/" class="file-link" target="_blank">fp-informatica.com</a>
+
+<span class="info">[2015 - 2023]</span> <span class="success">Professor Col·laborador @ IOC</span>
+M03 DAW, FCT, Tutories
+
+<span class="info">[2014 - ACTUALITAT]</span> <span class="success">Formador per a Empreses @ Alfa9</span>
+Formació Symfony i frameworks PHP per a empreses
+Web: <a href="https://alfa9.com" class="file-link" target="_blank">alfa9.com</a>
+
+<span class="info">[2007 - 2024]</span> <span class="success">Professor Cicles Formatius</span>
+17 anys d'experiència docent
+Cicles: DAM, DAW, ASIX
+Mòduls: Programació, Desenvolupament Web, Sistemes Operatius,
+        Administració Xarxes, Projectes Finals
+
+<span class="warning">Total cursos formació professorat: 38</span>
+Inclou: Anglès, AICLE, Google Tools, Robòtica, Linux, etc.`;
+                }
+            },
+            skills: {
+                desc: 'Coneixements tècnics',
+                exec: () => {
+                    return `<span class="section-title">STACK TÈCNIC</span>
+
+<span class="info">[LLENGUATGES]</span>
+PHP · JavaScript · TypeScript · Python · Java · C/C++ · C# · Bash · HTML5 · CSS
+
+<span class="info">[FRAMEWORKS]</span>
+Symfony · Zend Framework · Angular · Spring Boot · Bootstrap · Jekyll · jQuery
+
+<span class="info">[PATRONS DE DISSENY]</span>
+MVC · POO · Front Controller · Factory · Decorator
+Singleton · Dependency Injection
+
+<span class="info">[SISTEMES OPERATIUS]</span>
+Linux · Windows · MacOS
+
+<span class="info">[ALTRES]</span>
+Git · SQL · REST APIs · Responsive Design
+
+<span class="warning">// Expert en Angular - Materials didàctics optativa DAM/DAW</span>`;
+                }
+            },
+            xarxa: {
+                desc: 'Xarxes socials',
+                exec: () => {
+                    return `<span class="section-title">PRESÈNCIA ONLINE</span>
+
+<span class="info">Web:</span>          <a href="https://itrascastro.github.io" class="file-link" target="_blank">itrascastro.github.io</a>
+<span class="info">GitHub:</span>        <a href="https://github.com/itrascastro" class="file-link" target="_blank">github.com/itrascastro</a>
+<span class="info">LinkedIn:</span>      <a href="https://www.linkedin.com/pub/ismael-trascastro/98/a93/417" class="file-link" target="_blank">linkedin.com/in/ismael-trascastro</a>
+<span class="info">YouTube:</span>       <a href="https://www.youtube.com/user/ismael3334" class="file-link" target="_blank">youtube.com/user/ismael3334</a>
+<span class="info">StackOverflow:</span> <a href="https://stackoverflow.com/users/2113231/itrascastro" class="file-link" target="_blank">stackoverflow.com/users/2113231</a>
+<span class="info">Twitter:</span>       <a href="https://twitter.com/itrascastro" class="file-link" target="_blank">@itrascastro</a>`;
+                }
+            },
+            idiomes: {
+                desc: 'Idiomes',
+                exec: () => {
+                    return `<span class="section-title">IDIOMES</span>
+
+<span class="success">Català</span>   <span class="info">Nivell C2</span>
+<span class="success">Anglès</span>   <span class="info">Nivell C1</span>
+<span class="success">Castellà</span> <span class="info">Natiu</span>`;
+                }
+            },
+            photo: {
+                desc: 'Mostra la foto',
+                exec: () => {
+                    return `<span class="section-title">FOTO</span>
+
+<img src="http://www.gravatar.com/avatar/f30d9d38be800e4569aeea819fb271be" alt="Ismael Trascastro" style="max-width: 300px; border: 2px solid #33ff33; border-radius: 8px; margin-top: 1rem;">
+
+<span class="info">Ismael Trascastro - Enginyer Informàtic</span>`;
+                }
+            },
+            theme: {
+                desc: 'Canvia el tema',
+                exec: () => {
+                    return toggleTheme();
+                }
+            },
+            ls: {
+                desc: 'Llista contingut',
+                exec: () => {
+                    return `about.txt       projectes/      skills.json
+experiencia.md  xarxa.html      idiomes.txt
+photo.jpg`;
+                }
+            },
+            whoami: {
+                desc: 'Qui soc',
+                exec: () => 'itrascastro - Enginyer, Professor, Desenvolupador'
+            },
+            date: {
+                desc: 'Data actual',
+                exec: () => new Date().toString()
+            },
+            clear: {
+                desc: 'Neteja la terminal',
+                exec: () => {
+                    terminal.innerHTML = '';
+                    return null;
+                }
+            }
+        };
+
+        function addLine(content, className = '') {
+            const line = document.createElement('div');
+            line.className = `output-line ${className}`;
+            line.innerHTML = content;
+            terminal.appendChild(line);
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        function executeCommand(cmd) {
+            const trimmedCmd = cmd.trim().toLowerCase();
+            
+            addLine(`<span class="user">itrascastro</span>@<span class="path">portfolio</span>:~$ ${cmd}`);
+            
+            if (trimmedCmd === '') {
+                return;
+            }
+
+            if (commands[trimmedCmd]) {
+                const output = commands[trimmedCmd].exec();
+                if (output !== null) {
+                    addLine(output, 'command-output');
+                }
+            } else {
+                addLine(`bash: ${cmd}: command not found. Escriu 'help' per veure els comandos disponibles.`, 'error');
+            }
+        }
+
+        function createPrompt() {
+            const promptLine = document.createElement('div');
+            promptLine.className = 'prompt-line';
+            promptLine.innerHTML = `
+                <span class="prompt"><span class="user">itrascastro</span>@<span class="path">portfolio</span>:~$</span>
+                <div class="input-wrapper">
+                    <input type="text" id="command-input" autofocus autocomplete="off" spellcheck="false">
+                    <span class="custom-cursor"></span>
+                </div>
+            `;
+            terminal.appendChild(promptLine);
+            
+            const input = document.getElementById('command-input');
+            const cursor = promptLine.querySelector('.custom-cursor');
+            input.focus();
+            
+            function updateCursorPosition() {
+                const textWidth = getTextWidth(input.value, '1rem JetBrains Mono');
+                cursor.style.left = textWidth + 'px';
+            }
+            
+            function getTextWidth(text, font) {
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                context.font = font;
+                return context.measureText(text).width;
+            }
+            
+            input.addEventListener('input', updateCursorPosition);
+            updateCursorPosition();
+            
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    const cmd = input.value;
+                    commandHistory.unshift(cmd);
+                    historyIndex = -1;
+                    promptLine.remove();
+                    executeCommand(cmd);
+                    createPrompt();
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    if (historyIndex < commandHistory.length - 1) {
+                        historyIndex++;
+                        input.value = commandHistory[historyIndex];
+                        updateCursorPosition();
+                    }
+                } else if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    if (historyIndex > 0) {
+                        historyIndex--;
+                        input.value = commandHistory[historyIndex];
+                        updateCursorPosition();
+                    } else {
+                        historyIndex = -1;
+                        input.value = '';
+                        updateCursorPosition();
+                    }
+                } else if (e.key === 'Tab') {
+                    e.preventDefault();
+                    const partial = input.value.toLowerCase();
+                    const matches = Object.keys(commands).filter(cmd => cmd.startsWith(partial));
+                    if (matches.length === 1) {
+                        input.value = matches[0];
+                        updateCursorPosition();
+                    }
+                }
+            });
+            
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        createPrompt();
+
+        document.addEventListener('click', () => {
+            const input = document.getElementById('command-input');
+            if (input) input.focus();
+        });
+    </script>
+</body>
+</html>
