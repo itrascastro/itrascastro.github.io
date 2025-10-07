@@ -318,6 +318,68 @@
         body.light .help-desc {
             color: #666;
         }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+
+            .terminal-body {
+                padding: 1rem;
+                font-size: 0.75rem;
+                line-height: 1.5;
+            }
+
+            .output-line {
+                margin-bottom: 0.4rem;
+            }
+
+            .section-title {
+                font-size: 1rem;
+                margin: 0.8rem 0 0.4rem 0;
+            }
+
+            .prompt-line {
+                margin-top: 0.8rem;
+            }
+
+            #command-input {
+                font-size: 0.85rem;
+            }
+
+            .custom-cursor {
+                width: 8px;
+                height: 14px;
+            }
+
+            .terminal-header {
+                padding: 0.4rem 0.8rem;
+            }
+
+            .terminal-title {
+                font-size: 0.7rem;
+            }
+
+            .terminal-button {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .terminal-body {
+                padding: 0.8rem;
+                font-size: 0.7rem;
+            }
+
+            .section-title {
+                font-size: 0.9rem;
+            }
+
+            #command-input {
+                font-size: 0.75rem;
+            }
+        }
     </style>
 </head>
 <body class="dark">
@@ -335,7 +397,6 @@
             <div class="output-line command-output" id="help-msg">Escriu 'help' per veure els comandos disponibles</div>
             <div class="output-line command-output" id="theme-msg">Escriu 'theme' per canviar de tema</div>
             <div class="output-line command-output" id="lang-msg">Escriu 'idioma ca/es/en' per canviar l'idioma</div>
-            <div class="output-line command-output" id="start-msg">Escriu 'about' per començar</div>
         </div>
     </div>
 
@@ -352,7 +413,6 @@
                 helpMsg: "Escriu 'help' per veure els comandos disponibles",
                 themeMsg: "Escriu 'theme' per canviar de tema",
                 langMsg: "Escriu 'idioma ca/es/en' per canviar l'idioma",
-                startMsg: "Escriu 'about' per començar",
                 langChanged: "Idioma canviat a:",
                 catalan: "Català",
                 spanish: "Castellà",
@@ -364,7 +424,6 @@
                 helpMsg: "Escribe 'help' para ver los comandos disponibles",
                 themeMsg: "Escribe 'theme' para cambiar de tema",
                 langMsg: "Escribe 'idioma ca/es/en' para cambiar el idioma",
-                startMsg: "Escribe 'about' para comenzar",
                 langChanged: "Idioma cambiado a:",
                 catalan: "Catalán",
                 spanish: "Castellano",
@@ -376,7 +435,6 @@
                 helpMsg: "Type 'help' to see available commands",
                 themeMsg: "Type 'theme' to change theme",
                 langMsg: "Type 'idioma ca/es/en' to change language",
-                startMsg: "Type 'about' to start",
                 langChanged: "Language changed to:",
                 catalan: "Catalan",
                 spanish: "Spanish",
@@ -410,14 +468,12 @@
             const helpEl = document.getElementById('help-msg');
             const themeEl = document.getElementById('theme-msg');
             const langEl = document.getElementById('lang-msg');
-            const startEl = document.getElementById('start-msg');
             
             if (welcomeEl) welcomeEl.textContent = t('welcome');
             if (subtitleEl) subtitleEl.textContent = t('subtitle');
             if (helpEl) helpEl.textContent = t('helpMsg');
             if (themeEl) themeEl.textContent = t('themeMsg');
             if (langEl) langEl.textContent = t('langMsg');
-            if (startEl) startEl.textContent = t('startMsg');
             
             const langNames = {ca: t('catalan'), es: t('spanish'), en: t('english')};
             return `${t('langChanged')} ${langNames[lang]}`;
@@ -428,7 +484,7 @@
                 desc: 'Mostra tots els comandos disponibles',
                 exec: () => {
                     const helps = {
-                        ca: `<span class="help-command">about</span>       <span class="help-desc">Informació personal i contacte</span>
+                        ca: `<span class="help-command">whoami</span>      <span class="help-desc">Qui soc? Informació personal</span>
 <span class="help-command">projectes</span>   <span class="help-desc">Projectes destacats</span>
 <span class="help-command">experiencia</span> <span class="help-desc">Experiència docent</span>
 <span class="help-command">skills</span>      <span class="help-desc">Coneixements tècnics</span>
@@ -439,9 +495,8 @@
 <span class="help-command">idioma</span>      <span class="help-desc">Canvia l'idioma (ca/es/en)</span>
 <span class="help-command">clear</span>       <span class="help-desc">Neteja la terminal</span>
 <span class="help-command">ls</span>          <span class="help-desc">Llista contingut disponible</span>
-<span class="help-command">whoami</span>      <span class="help-desc">Qui soc?</span>
 <span class="help-command">date</span>        <span class="help-desc">Data actual</span>`,
-                        es: `<span class="help-command">about</span>       <span class="help-desc">Información personal y contacto</span>
+                        es: `<span class="help-command">whoami</span>      <span class="help-desc">¿Quién soy? Información personal</span>
 <span class="help-command">projectes</span>   <span class="help-desc">Proyectos destacados</span>
 <span class="help-command">experiencia</span> <span class="help-desc">Experiencia docente</span>
 <span class="help-command">skills</span>      <span class="help-desc">Conocimientos técnicos</span>
@@ -452,9 +507,8 @@
 <span class="help-command">idioma</span>      <span class="help-desc">Cambia el idioma (ca/es/en)</span>
 <span class="help-command">clear</span>       <span class="help-desc">Limpia la terminal</span>
 <span class="help-command">ls</span>          <span class="help-desc">Lista contenido disponible</span>
-<span class="help-command">whoami</span>      <span class="help-desc">¿Quién soy?</span>
 <span class="help-command">date</span>        <span class="help-desc">Fecha actual</span>`,
-                        en: `<span class="help-command">about</span>       <span class="help-desc">Personal information and contact</span>
+                        en: `<span class="help-command">whoami</span>      <span class="help-desc">Who am I? Personal information</span>
 <span class="help-command">projectes</span>   <span class="help-desc">Featured projects</span>
 <span class="help-command">experiencia</span> <span class="help-desc">Teaching experience</span>
 <span class="help-command">skills</span>      <span class="help-desc">Technical skills</span>
@@ -465,16 +519,15 @@
 <span class="help-command">idioma</span>      <span class="help-desc">Change language (ca/es/en)</span>
 <span class="help-command">clear</span>       <span class="help-desc">Clear terminal</span>
 <span class="help-command">ls</span>          <span class="help-desc">List available content</span>
-<span class="help-command">whoami</span>      <span class="help-desc">Who am I?</span>
 <span class="help-command">date</span>        <span class="help-desc">Current date</span>`
                     };
                     return helps[currentLang];
                 }
             },
-            about: {
-                desc: 'Informació personal',
+            whoami: {
+                desc: 'Qui soc',
                 exec: () => {
-                    const abouts = {
+                    const whoamis = {
                         ca: `<span class="section-title">INFORMACIÓ PERSONAL</span>
 
 <span class="info">Nom:</span> Ismael Trascastro
@@ -515,7 +568,7 @@
 <span class="warning">// Angular Expert</span>
 <span class="warning">// Creator of Xen framework: <a href="https://github.com/xenframework" class="file-link" target="_blank">github.com/xenframework</a></span>`
                     };
-                    return abouts[currentLang];
+                    return whoamis[currentLang];
                 }
             },
             idioma: {
@@ -627,14 +680,33 @@ Git · SQL · REST APIs · Responsive Design
             xarxa: {
                 desc: 'Xarxes socials',
                 exec: () => {
-                    return `<span class="section-title">PRESÈNCIA ONLINE</span>
+                    const xarxes = {
+                        ca: `<span class="section-title">PRESÈNCIA ONLINE</span>
 
-<span class="info">Web:</span>          <a href="https://itrascastro.github.io" class="file-link" target="_blank">itrascastro.github.io</a>
+<span class="info">Web:</span>           <a href="https://itrascastro.github.io" class="file-link" target="_blank">itrascastro.github.io</a>
 <span class="info">GitHub:</span>        <a href="https://github.com/itrascastro" class="file-link" target="_blank">github.com/itrascastro</a>
 <span class="info">LinkedIn:</span>      <a href="https://www.linkedin.com/pub/ismael-trascastro/98/a93/417" class="file-link" target="_blank">linkedin.com/in/ismael-trascastro</a>
 <span class="info">YouTube:</span>       <a href="https://www.youtube.com/user/ismael3334" class="file-link" target="_blank">youtube.com/user/ismael3334</a>
 <span class="info">StackOverflow:</span> <a href="https://stackoverflow.com/users/2113231/itrascastro" class="file-link" target="_blank">stackoverflow.com/users/2113231</a>
-<span class="info">Twitter:</span>       <a href="https://twitter.com/itrascastro" class="file-link" target="_blank">@itrascastro</a>`;
+<span class="info">Twitter:</span>       <a href="https://twitter.com/itrascastro" class="file-link" target="_blank">@itrascastro</a>`,
+                        es: `<span class="section-title">PRESENCIA ONLINE</span>
+
+<span class="info">Web:</span>           <a href="https://itrascastro.github.io" class="file-link" target="_blank">itrascastro.github.io</a>
+<span class="info">GitHub:</span>        <a href="https://github.com/itrascastro" class="file-link" target="_blank">github.com/itrascastro</a>
+<span class="info">LinkedIn:</span>      <a href="https://www.linkedin.com/pub/ismael-trascastro/98/a93/417" class="file-link" target="_blank">linkedin.com/in/ismael-trascastro</a>
+<span class="info">YouTube:</span>       <a href="https://www.youtube.com/user/ismael3334" class="file-link" target="_blank">youtube.com/user/ismael3334</a>
+<span class="info">StackOverflow:</span> <a href="https://stackoverflow.com/users/2113231/itrascastro" class="file-link" target="_blank">stackoverflow.com/users/2113231</a>
+<span class="info">Twitter:</span>       <a href="https://twitter.com/itrascastro" class="file-link" target="_blank">@itrascastro</a>`,
+                        en: `<span class="section-title">ONLINE PRESENCE</span>
+
+<span class="info">Web:</span>           <a href="https://itrascastro.github.io" class="file-link" target="_blank">itrascastro.github.io</a>
+<span class="info">GitHub:</span>        <a href="https://github.com/itrascastro" class="file-link" target="_blank">github.com/itrascastro</a>
+<span class="info">LinkedIn:</span>      <a href="https://www.linkedin.com/pub/ismael-trascastro/98/a93/417" class="file-link" target="_blank">linkedin.com/in/ismael-trascastro</a>
+<span class="info">YouTube:</span>       <a href="https://www.youtube.com/user/ismael3334" class="file-link" target="_blank">youtube.com/user/ismael3334</a>
+<span class="info">StackOverflow:</span> <a href="https://stackoverflow.com/users/2113231/itrascastro" class="file-link" target="_blank">stackoverflow.com/users/2113231</a>
+<span class="info">Twitter:</span>       <a href="https://twitter.com/itrascastro" class="file-link" target="_blank">@itrascastro</a>`
+                    };
+                    return xarxes[currentLang];
                 }
             },
             idiomes: {
@@ -692,20 +764,9 @@ Git · SQL · REST APIs · Responsive Design
             ls: {
                 desc: 'Llista contingut',
                 exec: () => {
-                    return `about.txt       projectes/      skills.json
+                    return `whoami.txt      projectes/      skills.json
 experiencia.md  xarxa.html      idiomes.txt
 photo.jpg`;
-                }
-            },
-            whoami: {
-                desc: 'Qui soc',
-                exec: () => {
-                    const whoamis = {
-                        ca: 'itrascastro - Enginyer, Professor, Desenvolupador',
-                        es: 'itrascastro - Ingeniero, Profesor, Desarrollador',
-                        en: 'itrascastro - Engineer, Professor, Developer'
-                    };
-                    return whoamis[currentLang];
                 }
             },
             date: {
@@ -726,7 +787,20 @@ photo.jpg`;
             line.className = `output-line ${className}`;
             line.innerHTML = content;
             terminal.appendChild(line);
-            terminal.scrollTop = terminal.scrollHeight;
+            
+            // Si hi ha una imatge, esperar a que carregui abans de fer scroll
+            const img = line.querySelector('img');
+            if (img) {
+                img.onload = () => {
+                    terminal.scrollTop = terminal.scrollHeight;
+                };
+                // Si la imatge ja està carregada (cache)
+                if (img.complete) {
+                    terminal.scrollTop = terminal.scrollHeight;
+                }
+            } else {
+                terminal.scrollTop = terminal.scrollHeight;
+            }
         }
 
         function executeCommand(cmd) {
