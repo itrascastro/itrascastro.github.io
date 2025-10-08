@@ -2,7 +2,7 @@
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>itrascastro@terminal</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -17,10 +17,15 @@
             padding: 0;
             margin: 0;
             overflow: hidden;
+            width: 100%;
             height: 100vh;
-            height: 100dvh; /* Para móviles modernos */
+            height: 100dvh;
             transition: background 0.3s ease;
-            position: relative;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
         }
 
         body.dark {
@@ -35,12 +40,14 @@
 
         .terminal-container {
             width: 100%;
+            max-width: 100%;
             height: 100vh;
-            height: 100dvh; /* Para móviles modernos */
+            height: 100dvh;
             display: flex;
             flex-direction: column;
             transition: background 0.3s ease;
             position: relative;
+            overflow: hidden;
         }
 
         body.dark .terminal-container {
@@ -111,6 +118,9 @@
             padding: 1.5rem;
             overflow-y: auto;
             overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
             transition: background 0.3s ease;
             -webkit-overflow-scrolling: touch;
         }
@@ -148,6 +158,9 @@
             line-height: 1.6;
             white-space: pre-wrap;
             word-wrap: break-word;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            max-width: 100%;
         }
 
         .prompt-line {
@@ -202,6 +215,8 @@
             position: relative;
             flex: 1;
             display: inline-block;
+            max-width: 100%;
+            overflow: hidden;
         }
 
         .custom-cursor {
@@ -228,10 +243,18 @@
 
         body.dark .command-output {
             color: #aaa;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            word-break: break-word;
+            overflow-wrap: break-word;
         }
 
         body.light .command-output {
             color: #333;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            word-break: break-word;
+            overflow-wrap: break-word;
         }
 
         body.dark .error {
@@ -286,6 +309,8 @@
             text-decoration: none;
             border-bottom: 1px dotted;
             transition: all 0.3s ease;
+            word-break: break-all;
+            overflow-wrap: break-word;
         }
 
         body.dark .file-link {
@@ -325,9 +350,14 @@
             color: #666;
         }
 
+        img {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+
         @media (max-width: 768px) {
             .terminal-body {
-                padding: 1.5rem;
+                padding: 1rem 1.5rem;
                 font-size: 0.8rem;
                 line-height: 1.6;
             }
@@ -338,6 +368,8 @@
 
             #command-input {
                 font-size: 0.8rem;
+                width: 100%;
+                max-width: 100%;
             }
 
             .custom-cursor {
@@ -355,11 +387,16 @@
                 height: 10px;
                 flex-shrink: 0;
             }
+
+            .prompt-line {
+                flex-wrap: nowrap;
+                max-width: 100%;
+            }
         }
 
         @media (max-width: 480px) {
             .terminal-body {
-                padding: 1.2rem;
+                padding: 1rem 1.2rem;
                 font-size: 0.75rem;
             }
 
@@ -729,17 +766,17 @@ Git · SQL · REST APIs · Responsive Design
                     const photos = {
                         ca: `<span class="section-title">FOTO</span>
 
-<img src="http://www.gravatar.com/avatar/f30d9d38be800e4569aeea819fb271be" alt="Ismael Trascastro" style="max-width: 300px; border: 2px solid #33ff33; border-radius: 8px; margin-top: 1rem;">
+<img src="http://www.gravatar.com/avatar/f30d9d38be800e4569aeea819fb271be" alt="Ismael Trascastro" style="max-width: 100%; width: 300px; border: 2px solid #33ff33; border-radius: 8px; margin-top: 1rem; display: block;">
 
 <span class="info">Ismael Trascastro - Enginyer Informàtic</span>`,
                         es: `<span class="section-title">FOTO</span>
 
-<img src="http://www.gravatar.com/avatar/f30d9d38be800e4569aeea819fb271be" alt="Ismael Trascastro" style="max-width: 300px; border: 2px solid #33ff33; border-radius: 8px; margin-top: 1rem;">
+<img src="http://www.gravatar.com/avatar/f30d9d38be800e4569aeea819fb271be" alt="Ismael Trascastro" style="max-width: 100%; width: 300px; border: 2px solid #33ff33; border-radius: 8px; margin-top: 1rem; display: block;">
 
 <span class="info">Ismael Trascastro - Ingeniero Informático</span>`,
                         en: `<span class="section-title">PHOTO</span>
 
-<img src="http://www.gravatar.com/avatar/f30d9d38be800e4569aeea819fb271be" alt="Ismael Trascastro" style="max-width: 300px; border: 2px solid #33ff33; border-radius: 8px; margin-top: 1rem;">
+<img src="http://www.gravatar.com/avatar/f30d9d38be800e4569aeea819fb271be" alt="Ismael Trascastro" style="max-width: 100%; width: 300px; border: 2px solid #33ff33; border-radius: 8px; margin-top: 1rem; display: block;">
 
 <span class="info">Ismael Trascastro - Computer Engineer</span>`
                     };
@@ -838,7 +875,12 @@ photo.jpg`;
             input.focus();
             
             function updateCursorPosition() {
-                const textWidth = getTextWidth(input.value, '1rem JetBrains Mono');
+                // Obtener el tamaño de fuente REAL del input
+                const computedStyle = window.getComputedStyle(input);
+                const fontSize = computedStyle.fontSize;
+                const fontFamily = computedStyle.fontFamily;
+                
+                const textWidth = getTextWidth(input.value, `${fontSize} ${fontFamily}`);
                 cursor.style.left = textWidth + 'px';
             }
             
