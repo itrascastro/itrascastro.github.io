@@ -413,9 +413,9 @@
 <body class="dark">
     <div class="terminal-container">
         <div class="terminal-header">
-            <div class="terminal-button"></div>
-            <div class="terminal-button"></div>
-            <div class="terminal-button"></div>
+            <div class="terminal-button" id="btn-red" title="Clear"></div>
+            <div class="terminal-button" id="btn-yellow" title="Theme"></div>
+            <div class="terminal-button" id="btn-green" title="Help"></div>
             <span class="terminal-title">itrascastro@portfolio:~</span>
         </div>
         
@@ -512,42 +512,111 @@
                 desc: 'Mostra tots els comandos disponibles',
                 exec: () => {
                     const helps = {
-                        ca: `<span class="help-command">whoami</span>      <span class="help-desc">Qui soc? Informació personal</span>
-<span class="help-command">projectes</span>   <span class="help-desc">Projectes destacats</span>
-<span class="help-command">experiencia</span> <span class="help-desc">Experiència docent</span>
-<span class="help-command">skills</span>      <span class="help-desc">Coneixements tècnics</span>
-<span class="help-command">xarxa</span>       <span class="help-desc">Enllaços i xarxes socials</span>
-<span class="help-command">idiomes</span>     <span class="help-desc">Idiomes que parlo</span>
-<span class="help-command">photo</span>       <span class="help-desc">Mostra la foto</span>
-<span class="help-command">theme</span>       <span class="help-desc">Canvia entre tema fosc i clar</span>
-<span class="help-command">idioma</span>      <span class="help-desc">Canvia l'idioma (ca/es/en)</span>
-<span class="help-command">clear</span>       <span class="help-desc">Neteja la terminal</span>
-<span class="help-command">ls</span>          <span class="help-desc">Llista contingut disponible</span>
-<span class="help-command">date</span>        <span class="help-desc">Data actual</span>`,
-                        es: `<span class="help-command">whoami</span>      <span class="help-desc">¿Quién soy? Información personal</span>
-<span class="help-command">projectes</span>   <span class="help-desc">Proyectos destacados</span>
-<span class="help-command">experiencia</span> <span class="help-desc">Experiencia docente</span>
-<span class="help-command">skills</span>      <span class="help-desc">Conocimientos técnicos</span>
-<span class="help-command">xarxa</span>       <span class="help-desc">Enlaces y redes sociales</span>
-<span class="help-command">idiomes</span>     <span class="help-desc">Idiomas que hablo</span>
-<span class="help-command">photo</span>       <span class="help-desc">Muestra la foto</span>
-<span class="help-command">theme</span>       <span class="help-desc">Cambia entre tema oscuro y claro</span>
-<span class="help-command">idioma</span>      <span class="help-desc">Cambia el idioma (ca/es/en)</span>
-<span class="help-command">clear</span>       <span class="help-desc">Limpia la terminal</span>
-<span class="help-command">ls</span>          <span class="help-desc">Lista contenido disponible</span>
-<span class="help-command">date</span>        <span class="help-desc">Fecha actual</span>`,
-                        en: `<span class="help-command">whoami</span>      <span class="help-desc">Who am I? Personal information</span>
-<span class="help-command">projectes</span>   <span class="help-desc">Featured projects</span>
-<span class="help-command">experiencia</span> <span class="help-desc">Teaching experience</span>
-<span class="help-command">skills</span>      <span class="help-desc">Technical skills</span>
-<span class="help-command">xarxa</span>       <span class="help-desc">Links and social networks</span>
-<span class="help-command">idiomes</span>     <span class="help-desc">Languages I speak</span>
-<span class="help-command">photo</span>       <span class="help-desc">Show photo</span>
-<span class="help-command">theme</span>       <span class="help-desc">Switch between dark and light theme</span>
-<span class="help-command">idioma</span>      <span class="help-desc">Change language (ca/es/en)</span>
-<span class="help-command">clear</span>       <span class="help-desc">Clear terminal</span>
-<span class="help-command">ls</span>          <span class="help-desc">List available content</span>
-<span class="help-command">date</span>        <span class="help-desc">Current date</span>`
+                        ca: `<span class="help-command">whoami</span>
+Qui soc? Informació personal
+
+<span class="help-command">projectes</span>
+Projectes destacats
+
+<span class="help-command">experiencia</span>
+Experiència docent
+
+<span class="help-command">skills</span>
+Coneixements tècnics
+
+<span class="help-command">xarxa</span>
+Enllaços i xarxes socials
+
+<span class="help-command">idiomes</span>
+Idiomes que parlo
+
+<span class="help-command">photo</span>
+Mostra la foto
+
+<span class="help-command">theme</span>
+Canvia entre tema fosc i clar
+
+<span class="help-command">idioma</span>
+Canvia l'idioma (ca/es/en)
+
+<span class="help-command">clear</span>
+Neteja la terminal
+
+<span class="help-command">ls</span>
+Llista contingut disponible
+
+<span class="help-command">date</span>
+Data actual`,
+                        es: `<span class="help-command">whoami</span>
+¿Quién soy? Información personal
+
+<span class="help-command">projectes</span>
+Proyectos destacados
+
+<span class="help-command">experiencia</span>
+Experiencia docente
+
+<span class="help-command">skills</span>
+Conocimientos técnicos
+
+<span class="help-command">xarxa</span>
+Enlaces y redes sociales
+
+<span class="help-command">idiomes</span>
+Idiomas que hablo
+
+<span class="help-command">photo</span>
+Muestra la foto
+
+<span class="help-command">theme</span>
+Cambia entre tema oscuro y claro
+
+<span class="help-command">idioma</span>
+Cambia el idioma (ca/es/en)
+
+<span class="help-command">clear</span>
+Limpia la terminal
+
+<span class="help-command">ls</span>
+Lista contenido disponible
+
+<span class="help-command">date</span>
+Fecha actual`,
+                        en: `<span class="help-command">whoami</span>
+Who am I? Personal information
+
+<span class="help-command">projectes</span>
+Featured projects
+
+<span class="help-command">experiencia</span>
+Teaching experience
+
+<span class="help-command">skills</span>
+Technical skills
+
+<span class="help-command">xarxa</span>
+Links and social networks
+
+<span class="help-command">idiomes</span>
+Languages I speak
+
+<span class="help-command">photo</span>
+Show photo
+
+<span class="help-command">theme</span>
+Switch between dark and light theme
+
+<span class="help-command">idioma</span>
+Change language (ca/es/en)
+
+<span class="help-command">clear</span>
+Clear terminal
+
+<span class="help-command">ls</span>
+List available content
+
+<span class="help-command">date</span>
+Current date`
                     };
                     return helps[currentLang];
                 }
@@ -558,43 +627,73 @@
                     const whoamis = {
                         ca: `<span class="section-title">INFORMACIÓ PERSONAL</span>
 
-<span class="info">Nom:</span> Ismael Trascastro
-<span class="info">Nascut:</span> Málaga, 14/11/1973
-<span class="info">Ubicació:</span> Viladecans, Barcelona
-<span class="info">Email:</span> <a href="mailto:itrascastro@gmail.com" class="file-link">itrascastro@gmail.com</a>
-<span class="info">Telèfon:</span> +34 644 26 48 14
+<span class="info">Nom:</span>
+Ismael Trascastro
+
+<span class="info">Nascut:</span>
+Málaga, 14/11/1973
+
+<span class="info">Ubicació:</span>
+Viladecans, Barcelona
+
+<span class="info">Email:</span>
+itrascastro@gmail.com
+
+<span class="info">Telèfon:</span>
++34 644 26 48 14
 
 <span class="warning">// Enginyer en Informàtica</span>
 <span class="warning">// Professor de Cicles Formatius (DAM, DAW, ASIX)</span>
 <span class="warning">// Formador Symfony, Zend Framework, PHP</span>
 <span class="warning">// Expert en Angular</span>
-<span class="warning">// Creador del framework Xen: <a href="https://github.com/xenframework" class="file-link" target="_blank">github.com/xenframework</a></span>`,
+<span class="warning">// Creador del framework Xen</span>
+<span class="warning">// github.com/xenframework</span>`,
                         es: `<span class="section-title">INFORMACIÓN PERSONAL</span>
 
-<span class="info">Nombre:</span> Ismael Trascastro
-<span class="info">Nacido:</span> Málaga, 14/11/1973
-<span class="info">Ubicación:</span> Viladecans, Barcelona
-<span class="info">Email:</span> <a href="mailto:itrascastro@gmail.com" class="file-link">itrascastro@gmail.com</a>
-<span class="info">Teléfono:</span> +34 644 26 48 14
+<span class="info">Nombre:</span>
+Ismael Trascastro
+
+<span class="info">Nacido:</span>
+Málaga, 14/11/1973
+
+<span class="info">Ubicación:</span>
+Viladecans, Barcelona
+
+<span class="info">Email:</span>
+itrascastro@gmail.com
+
+<span class="info">Teléfono:</span>
++34 644 26 48 14
 
 <span class="warning">// Ingeniero en Informática</span>
 <span class="warning">// Profesor de Ciclos Formativos (DAM, DAW, ASIX)</span>
 <span class="warning">// Formador Symfony, Zend Framework, PHP</span>
 <span class="warning">// Experto en Angular</span>
-<span class="warning">// Creador del framework Xen: <a href="https://github.com/xenframework" class="file-link" target="_blank">github.com/xenframework</a></span>`,
+<span class="warning">// Creador del framework Xen</span>
+<span class="warning">// github.com/xenframework</span>`,
                         en: `<span class="section-title">PERSONAL INFORMATION</span>
 
-<span class="info">Name:</span> Ismael Trascastro
-<span class="info">Born:</span> Málaga, 14/11/1973
-<span class="info">Location:</span> Viladecans, Barcelona
-<span class="info">Email:</span> <a href="mailto:itrascastro@gmail.com" class="file-link">itrascastro@gmail.com</a>
-<span class="info">Phone:</span> +34 644 26 48 14
+<span class="info">Name:</span>
+Ismael Trascastro
+
+<span class="info">Born:</span>
+Málaga, 14/11/1973
+
+<span class="info">Location:</span>
+Viladecans, Barcelona
+
+<span class="info">Email:</span>
+itrascastro@gmail.com
+
+<span class="info">Phone:</span>
++34 644 26 48 14
 
 <span class="warning">// Computer Engineer</span>
 <span class="warning">// Vocational Training Teacher (DAM, DAW, ASIX)</span>
 <span class="warning">// Trainer Symfony, Zend Framework, PHP</span>
 <span class="warning">// Angular Expert</span>
-<span class="warning">// Creator of Xen framework: <a href="https://github.com/xenframework" class="file-link" target="_blank">github.com/xenframework</a></span>`
+<span class="warning">// Creator of Xen framework</span>
+<span class="warning">// github.com/xenframework</span>`
                     };
                     return whoamis[currentLang];
                 }
@@ -616,37 +715,37 @@
                     return `<span class="section-title">PROJECTES DESTACATS</span>
 
 <span class="success">1. CALENDARI IOC</span>
-   Sistema de gestió de calendari per a centres escolars
-   Stack: JavaScript Vanilla
-   Repo: <a href="https://github.com/itrascastro/calendari-ioc.git" class="file-link" target="_blank">github.com/itrascastro/calendari-ioc</a>
+Sistema de gestió de calendari per a centres escolars
+Stack: JavaScript Vanilla
+Repo: github.com/itrascastro/calendari-ioc
 
 <span class="success">2. CURS ANGULAR - OPTATIVA DAM/DAW</span>
-   Materials didàctics complets per a curs d'Angular
-   Optativa per a cicles DAM i DAW al IOC
-   Stack: Angular
-   Repo: <a href="https://github.com/itrascastro/ioc-da2-optativa-angular.git" class="file-link" target="_blank">github.com/itrascastro/ioc-da2-optativa-angular</a>
+Materials didàctics complets per a curs d'Angular
+Optativa per a cicles DAM i DAW al IOC
+Stack: Angular
+Repo: github.com/itrascastro/ioc-da2-optativa-angular
 
 <span class="success">3. PLANTILLA MATERIALS DIDÀCTICS</span>
-   Sistema de plantilles per crear contingut educatiu interactiu
-   Stack: Jekyll + JavaScript Vanilla
-   Repo: <a href="https://github.com/itrascastro/ioc-da2_0485b2.git" class="file-link" target="_blank">github.com/itrascastro/ioc-da2_0485b2</a>
+Sistema de plantilles per crear contingut educatiu interactiu
+Stack: Jekyll + JavaScript Vanilla
+Repo: github.com/itrascastro/ioc-da2_0485b2
 
 <span class="success">4. MOODLE OFFLINE GRADING SYSTEM</span>
-   Sistema d'avaluació i generació automàtica de feedback
-   Google Sheets amb rúbriques, estadístiques i correcció de tests
-   Modes: Rubric, Manual, Hybrid
-   Info: <a href="https://itrascastro.github.io/moodle-offline-task-grading-spreadsheet/" class="file-link" target="_blank">itrascastro.github.io/moodle-offline-task-grading-spreadsheet</a>
+Sistema d'avaluació i generació automàtica de feedback
+Google Sheets amb rúbriques, estadístiques i correcció de tests
+Modes: Rubric, Manual, Hybrid
+Info: itrascastro.github.io/moodle-offline-task-grading-spreadsheet
 
 <span class="success">5. TRASCASTRO ACL MODULE</span>
-   Mòdul de control d'accés per a Zend Framework
-   Permet definir permisos ACL directament a les rutes
-   Publicat a Packagist i Zend Modules
-   Info: <a href="https://itrascastro.github.io/zend-framework-acl-module/" class="file-link" target="_blank">itrascastro.github.io/zend-framework-acl-module</a>
+Mòdul de control d'accés per a Zend Framework
+Permet definir permisos ACL directament a les rutes
+Publicat a Packagist i Zend Modules
+Info: itrascastro.github.io/zend-framework-acl-module
 
 <span class="success">6. XEN FRAMEWORK</span>
-   Framework PHP custom desenvolupat des de zero
-   Patterns: MVC, Dependency Injection, Front Controller
-   Repo: <a href="https://github.com/xenframework" class="file-link" target="_blank">github.com/xenframework</a>`;
+Framework PHP custom desenvolupat des de zero
+Patterns: MVC, Dependency Injection, Front Controller
+Repo: github.com/xenframework`;
                 }
             },
             experiencia: {
@@ -654,28 +753,32 @@
                 exec: () => {
                     return `<span class="section-title">EXPERIÈNCIA PROFESSIONAL</span>
 
-<span class="info">[2024 - ACTUALITAT]</span> <span class="success">Professor Titular @ IOC</span>
+<span class="info">[2024 - ACTUALITAT]</span>
+<span class="success">Professor Titular @ IOC</span>
 Institut Obert de Catalunya
 Mòduls: M3-ASIX, M3/M7/M9/M10-DAM
 Modalitat: Online
 
-<span class="info">[2023]</span> <span class="success">Professor @ Institut Online FOC</span>
+<span class="info">[2023]</span>
+<span class="success">Professor @ Institut Online FOC</span>
 Mòduls: M4 (Llenguatges de marques i sistemes de gestió d'informació)
-        M9 (Implantació d'aplicacions web) ASIR
-Web: <a href="https://www.fp-informatica.com/" class="file-link" target="_blank">fp-informatica.com</a>
+M9 (Implantació d'aplicacions web) ASIR
+Web: fp-informatica.com
 
-<span class="info">[2015 - 2023]</span> <span class="success">Professor Col·laborador @ IOC</span>
+<span class="info">[2015 - 2023]</span>
+<span class="success">Professor Col·laborador @ IOC</span>
 M03 DAW, FCT, Tutories
 
-<span class="info">[2014 - ACTUALITAT]</span> <span class="success">Formador per a Empreses @ Alfa9</span>
+<span class="info">[2014 - ACTUALITAT]</span>
+<span class="success">Formador per a Empreses @ Alfa9</span>
 Formació Symfony i frameworks PHP per a empreses
-Web: <a href="https://alfa9.com" class="file-link" target="_blank">alfa9.com</a>
+Web: alfa9.com
 
-<span class="info">[2007 - 2024]</span> <span class="success">Professor Cicles Formatius</span>
+<span class="info">[2007 - 2024]</span>
+<span class="success">Professor Cicles Formatius</span>
 17 anys d'experiència docent
 Cicles: DAM, DAW, ASIX
-Mòduls: Programació, Desenvolupament Web, Sistemes Operatius,
-        Administració Xarxes, Projectes Finals
+Mòduls: Programació, Desenvolupament Web, Sistemes Operatius, Administració Xarxes, Projectes Finals
 
 <span class="warning">Total cursos formació professorat: 38</span>
 Inclou: Anglès, AICLE, Google Tools, Robòtica, Linux, etc.`;
@@ -687,22 +790,22 @@ Inclou: Anglès, AICLE, Google Tools, Robòtica, Linux, etc.`;
                     return `<span class="section-title">STACK TÈCNIC</span>
 
 <span class="info">[LLENGUATGES]</span>
-PHP · JavaScript · TypeScript · Python · Java · C/C++ · C# · Bash · HTML5 · CSS
+PHP, JavaScript, TypeScript, Python, Java, C/C++, C#, Bash, HTML5, CSS
 
 <span class="info">[FRAMEWORKS]</span>
-Symfony · Zend Framework · Angular · Spring Boot · Bootstrap · Jekyll · jQuery
+Symfony, Zend Framework, Angular, Spring Boot, Bootstrap, Jekyll, jQuery
 
 <span class="info">[PATRONS DE DISSENY]</span>
-MVC · POO · Front Controller · Factory · Decorator
-Singleton · Dependency Injection
+MVC, POO, Front Controller, Factory, Decorator, Singleton, Dependency Injection
 
 <span class="info">[SISTEMES OPERATIUS]</span>
-Linux · Windows · MacOS
+Linux, Windows, MacOS
 
 <span class="info">[ALTRES]</span>
-Git · SQL · REST APIs · Responsive Design
+Git, SQL, REST APIs, Responsive Design
 
-<span class="warning">// Expert en Angular - Materials didàctics optativa DAM/DAW</span>`;
+<span class="warning">// Expert en Angular</span>
+<span class="warning">// Materials didàctics optativa DAM/DAW</span>`;
                 }
             },
             xarxa: {
@@ -711,28 +814,61 @@ Git · SQL · REST APIs · Responsive Design
                     const xarxes = {
                         ca: `<span class="section-title">PRESÈNCIA ONLINE</span>
 
-<span class="info">Web:</span>           <a href="https://itrascastro.github.io" class="file-link" target="_blank">itrascastro.github.io</a>
-<span class="info">GitHub:</span>        <a href="https://github.com/itrascastro" class="file-link" target="_blank">github.com/itrascastro</a>
-<span class="info">LinkedIn:</span>      <a href="https://www.linkedin.com/pub/ismael-trascastro/98/a93/417" class="file-link" target="_blank">linkedin.com/in/ismael-trascastro</a>
-<span class="info">YouTube:</span>       <a href="https://www.youtube.com/user/ismael3334" class="file-link" target="_blank">youtube.com/user/ismael3334</a>
-<span class="info">StackOverflow:</span> <a href="https://stackoverflow.com/users/2113231/itrascastro" class="file-link" target="_blank">stackoverflow.com/users/2113231</a>
-<span class="info">Twitter:</span>       <a href="https://twitter.com/itrascastro" class="file-link" target="_blank">@itrascastro</a>`,
+<span class="info">Web:</span>
+itrascastro.github.io
+
+<span class="info">GitHub:</span>
+github.com/itrascastro
+
+<span class="info">LinkedIn:</span>
+linkedin.com/in/ismael-trascastro
+
+<span class="info">YouTube:</span>
+youtube.com/user/ismael3334
+
+<span class="info">StackOverflow:</span>
+stackoverflow.com/users/2113231
+
+<span class="info">Twitter:</span>
+@itrascastro`,
                         es: `<span class="section-title">PRESENCIA ONLINE</span>
 
-<span class="info">Web:</span>           <a href="https://itrascastro.github.io" class="file-link" target="_blank">itrascastro.github.io</a>
-<span class="info">GitHub:</span>        <a href="https://github.com/itrascastro" class="file-link" target="_blank">github.com/itrascastro</a>
-<span class="info">LinkedIn:</span>      <a href="https://www.linkedin.com/pub/ismael-trascastro/98/a93/417" class="file-link" target="_blank">linkedin.com/in/ismael-trascastro</a>
-<span class="info">YouTube:</span>       <a href="https://www.youtube.com/user/ismael3334" class="file-link" target="_blank">youtube.com/user/ismael3334</a>
-<span class="info">StackOverflow:</span> <a href="https://stackoverflow.com/users/2113231/itrascastro" class="file-link" target="_blank">stackoverflow.com/users/2113231</a>
-<span class="info">Twitter:</span>       <a href="https://twitter.com/itrascastro" class="file-link" target="_blank">@itrascastro</a>`,
+<span class="info">Web:</span>
+itrascastro.github.io
+
+<span class="info">GitHub:</span>
+github.com/itrascastro
+
+<span class="info">LinkedIn:</span>
+linkedin.com/in/ismael-trascastro
+
+<span class="info">YouTube:</span>
+youtube.com/user/ismael3334
+
+<span class="info">StackOverflow:</span>
+stackoverflow.com/users/2113231
+
+<span class="info">Twitter:</span>
+@itrascastro`,
                         en: `<span class="section-title">ONLINE PRESENCE</span>
 
-<span class="info">Web:</span>           <a href="https://itrascastro.github.io" class="file-link" target="_blank">itrascastro.github.io</a>
-<span class="info">GitHub:</span>        <a href="https://github.com/itrascastro" class="file-link" target="_blank">github.com/itrascastro</a>
-<span class="info">LinkedIn:</span>      <a href="https://www.linkedin.com/pub/ismael-trascastro/98/a93/417" class="file-link" target="_blank">linkedin.com/in/ismael-trascastro</a>
-<span class="info">YouTube:</span>       <a href="https://www.youtube.com/user/ismael3334" class="file-link" target="_blank">youtube.com/user/ismael3334</a>
-<span class="info">StackOverflow:</span> <a href="https://stackoverflow.com/users/2113231/itrascastro" class="file-link" target="_blank">stackoverflow.com/users/2113231</a>
-<span class="info">Twitter:</span>       <a href="https://twitter.com/itrascastro" class="file-link" target="_blank">@itrascastro</a>`
+<span class="info">Web:</span>
+itrascastro.github.io
+
+<span class="info">GitHub:</span>
+github.com/itrascastro
+
+<span class="info">LinkedIn:</span>
+linkedin.com/in/ismael-trascastro
+
+<span class="info">YouTube:</span>
+youtube.com/user/ismael3334
+
+<span class="info">StackOverflow:</span>
+stackoverflow.com/users/2113231
+
+<span class="info">Twitter:</span>
+@itrascastro`
                     };
                     return xarxes[currentLang];
                 }
@@ -743,19 +879,34 @@ Git · SQL · REST APIs · Responsive Design
                     const idiomes = {
                         ca: `<span class="section-title">IDIOMES</span>
 
-<span class="success">Català</span>   <span class="info">Nivell C2</span>
-<span class="success">Anglès</span>   <span class="info">Nivell C1</span>
-<span class="success">Castellà</span> <span class="info">Natiu</span>`,
+<span class="success">Català</span>
+Nivell C2
+
+<span class="success">Anglès</span>
+Nivell C1
+
+<span class="success">Castellà</span>
+Natiu`,
                         es: `<span class="section-title">IDIOMAS</span>
 
-<span class="success">Catalán</span>  <span class="info">Nivel C2</span>
-<span class="success">Inglés</span>   <span class="info">Nivel C1</span>
-<span class="success">Castellano</span> <span class="info">Nativo</span>`,
+<span class="success">Catalán</span>
+Nivel C2
+
+<span class="success">Inglés</span>
+Nivel C1
+
+<span class="success">Castellano</span>
+Nativo`,
                         en: `<span class="section-title">LANGUAGES</span>
 
-<span class="success">Catalan</span>  <span class="info">Level C2</span>
-<span class="success">English</span>  <span class="info">Level C1</span>
-<span class="success">Spanish</span>  <span class="info">Native</span>`
+<span class="success">Catalan</span>
+Level C2
+
+<span class="success">English</span>
+Level C1
+
+<span class="success">Spanish</span>
+Native`
                     };
                     return idiomes[currentLang];
                 }
@@ -792,8 +943,12 @@ Git · SQL · REST APIs · Responsive Design
             ls: {
                 desc: 'Llista contingut',
                 exec: () => {
-                    return `whoami.txt      projectes/      skills.json
-experiencia.md  xarxa.html      idiomes.txt
+                    return `whoami.txt
+projectes/
+skills.json
+experiencia.md
+xarxa.html
+idiomes.txt
 photo.jpg`;
                 }
             },
@@ -939,6 +1094,31 @@ photo.jpg`;
         document.addEventListener('click', () => {
             const input = document.getElementById('command-input');
             if (input) input.focus();
+        });
+
+        // Funcionalidad de los botones
+        document.getElementById('btn-red').addEventListener('click', (e) => {
+            e.stopPropagation();
+            const promptLine = terminal.querySelector('.prompt-line');
+            if (promptLine) promptLine.remove();
+            executeCommand('clear');
+            createPrompt();
+        });
+
+        document.getElementById('btn-yellow').addEventListener('click', (e) => {
+            e.stopPropagation();
+            const promptLine = terminal.querySelector('.prompt-line');
+            if (promptLine) promptLine.remove();
+            executeCommand('theme');
+            createPrompt();
+        });
+
+        document.getElementById('btn-green').addEventListener('click', (e) => {
+            e.stopPropagation();
+            const promptLine = terminal.querySelector('.prompt-line');
+            if (promptLine) promptLine.remove();
+            executeCommand('help');
+            createPrompt();
         });
     </script>
 </body>
