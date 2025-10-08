@@ -637,7 +637,7 @@ Málaga, 14/11/1973
 Viladecans, Barcelona
 
 <span class="info">Email:</span>
-itrascastro@gmail.com
+<a href="mailto:itrascastro@gmail.com" class="file-link">itrascastro@gmail.com</a>
 
 <span class="info">Telèfon:</span>
 +34 644 26 48 14
@@ -647,7 +647,7 @@ itrascastro@gmail.com
 <span class="warning">// Formador Symfony, Zend Framework, PHP</span>
 <span class="warning">// Expert en Angular</span>
 <span class="warning">// Creador del framework Xen</span>
-<span class="warning">// github.com/xenframework</span>`,
+<a href="https://github.com/xenframework" class="file-link" target="_blank">github.com/xenframework</a>`,
                         es: `<span class="section-title">INFORMACIÓN PERSONAL</span>
 
 <span class="info">Nombre:</span>
@@ -660,7 +660,7 @@ Málaga, 14/11/1973
 Viladecans, Barcelona
 
 <span class="info">Email:</span>
-itrascastro@gmail.com
+<a href="mailto:itrascastro@gmail.com" class="file-link">itrascastro@gmail.com</a>
 
 <span class="info">Teléfono:</span>
 +34 644 26 48 14
@@ -670,7 +670,7 @@ itrascastro@gmail.com
 <span class="warning">// Formador Symfony, Zend Framework, PHP</span>
 <span class="warning">// Experto en Angular</span>
 <span class="warning">// Creador del framework Xen</span>
-<span class="warning">// github.com/xenframework</span>`,
+<a href="https://github.com/xenframework" class="file-link" target="_blank">github.com/xenframework</a>`,
                         en: `<span class="section-title">PERSONAL INFORMATION</span>
 
 <span class="info">Name:</span>
@@ -683,7 +683,7 @@ Málaga, 14/11/1973
 Viladecans, Barcelona
 
 <span class="info">Email:</span>
-itrascastro@gmail.com
+<a href="mailto:itrascastro@gmail.com" class="file-link">itrascastro@gmail.com</a>
 
 <span class="info">Phone:</span>
 +34 644 26 48 14
@@ -693,7 +693,7 @@ itrascastro@gmail.com
 <span class="warning">// Trainer Symfony, Zend Framework, PHP</span>
 <span class="warning">// Angular Expert</span>
 <span class="warning">// Creator of Xen framework</span>
-<span class="warning">// github.com/xenframework</span>`
+<a href="https://github.com/xenframework" class="file-link" target="_blank">github.com/xenframework</a>`
                     };
                     return whoamis[currentLang];
                 }
@@ -712,46 +712,118 @@ itrascastro@gmail.com
             projectes: {
                 desc: 'Projectes destacats',
                 exec: () => {
-                    return `<span class="section-title">PROJECTES DESTACATS</span>
+                    const projectes = {
+                        ca: `<span class="section-title">PROJECTES DESTACATS</span>
 
 <span class="success">1. CALENDARI IOC</span>
 Sistema de gestió de calendari per a centres escolars
 Stack: JavaScript Vanilla
-Repo: github.com/itrascastro/calendari-ioc
+<a href="https://github.com/itrascastro/calendari-ioc.git" class="file-link" target="_blank">github.com/itrascastro/calendari-ioc</a>
 
 <span class="success">2. CURS ANGULAR - OPTATIVA DAM/DAW</span>
 Materials didàctics complets per a curs d'Angular
 Optativa per a cicles DAM i DAW al IOC
 Stack: Angular
-Repo: github.com/itrascastro/ioc-da2-optativa-angular
+<a href="https://github.com/itrascastro/ioc-da2-optativa-angular.git" class="file-link" target="_blank">github.com/itrascastro/ioc-da2-optativa-angular</a>
 
 <span class="success">3. PLANTILLA MATERIALS DIDÀCTICS</span>
 Sistema de plantilles per crear contingut educatiu interactiu
 Stack: Jekyll + JavaScript Vanilla
-Repo: github.com/itrascastro/ioc-da2_0485b2
+<a href="https://github.com/itrascastro/ioc-da2_0485b2.git" class="file-link" target="_blank">github.com/itrascastro/ioc-da2_0485b2</a>
 
 <span class="success">4. MOODLE OFFLINE GRADING SYSTEM</span>
 Sistema d'avaluació i generació automàtica de feedback
 Google Sheets amb rúbriques, estadístiques i correcció de tests
 Modes: Rubric, Manual, Hybrid
-Info: itrascastro.github.io/moodle-offline-task-grading-spreadsheet
+<a href="https://itrascastro.github.io/moodle-offline-task-grading-spreadsheet/" class="file-link" target="_blank">itrascastro.github.io/moodle-offline-task-grading-spreadsheet</a>
 
 <span class="success">5. TRASCASTRO ACL MODULE</span>
 Mòdul de control d'accés per a Zend Framework
 Permet definir permisos ACL directament a les rutes
 Publicat a Packagist i Zend Modules
-Info: itrascastro.github.io/zend-framework-acl-module
+<a href="https://itrascastro.github.io/zend-framework-acl-module/" class="file-link" target="_blank">itrascastro.github.io/zend-framework-acl-module</a>
 
 <span class="success">6. XEN FRAMEWORK</span>
 Framework PHP custom desenvolupat des de zero
 Patterns: MVC, Dependency Injection, Front Controller
-Repo: github.com/xenframework`;
+<a href="https://github.com/xenframework" class="file-link" target="_blank">github.com/xenframework</a>`,
+                        es: `<span class="section-title">PROYECTOS DESTACADOS</span>
+
+<span class="success">1. CALENDARI IOC</span>
+Sistema de gestión de calendario para centros escolares
+Stack: JavaScript Vanilla
+<a href="https://github.com/itrascastro/calendari-ioc.git" class="file-link" target="_blank">github.com/itrascastro/calendari-ioc</a>
+
+<span class="success">2. CURSO ANGULAR - OPTATIVA DAM/DAW</span>
+Materiales didácticos completos para curso de Angular
+Optativa para ciclos DAM y DAW en el IOC
+Stack: Angular
+<a href="https://github.com/itrascastro/ioc-da2-optativa-angular.git" class="file-link" target="_blank">github.com/itrascastro/ioc-da2-optativa-angular</a>
+
+<span class="success">3. PLANTILLA MATERIALES DIDÁCTICOS</span>
+Sistema de plantillas para crear contenido educativo interactivo
+Stack: Jekyll + JavaScript Vanilla
+<a href="https://github.com/itrascastro/ioc-da2_0485b2.git" class="file-link" target="_blank">github.com/itrascastro/ioc-da2_0485b2</a>
+
+<span class="success">4. MOODLE OFFLINE GRADING SYSTEM</span>
+Sistema de evaluación y generación automática de feedback
+Google Sheets con rúbricas, estadísticas y corrección de tests
+Modos: Rubric, Manual, Hybrid
+<a href="https://itrascastro.github.io/moodle-offline-task-grading-spreadsheet/" class="file-link" target="_blank">itrascastro.github.io/moodle-offline-task-grading-spreadsheet</a>
+
+<span class="success">5. TRASCASTRO ACL MODULE</span>
+Módulo de control de acceso para Zend Framework
+Permite definir permisos ACL directamente en las rutas
+Publicado en Packagist y Zend Modules
+<a href="https://itrascastro.github.io/zend-framework-acl-module/" class="file-link" target="_blank">itrascastro.github.io/zend-framework-acl-module</a>
+
+<span class="success">6. XEN FRAMEWORK</span>
+Framework PHP custom desarrollado desde cero
+Patterns: MVC, Dependency Injection, Front Controller
+<a href="https://github.com/xenframework" class="file-link" target="_blank">github.com/xenframework</a>`,
+                        en: `<span class="section-title">FEATURED PROJECTS</span>
+
+<span class="success">1. CALENDARI IOC</span>
+Calendar management system for schools
+Stack: JavaScript Vanilla
+<a href="https://github.com/itrascastro/calendari-ioc.git" class="file-link" target="_blank">github.com/itrascastro/calendari-ioc</a>
+
+<span class="success">2. ANGULAR COURSE - DAM/DAW ELECTIVE</span>
+Complete Angular course teaching materials
+Elective for DAM and DAW programs at IOC
+Stack: Angular
+<a href="https://github.com/itrascastro/ioc-da2-optativa-angular.git" class="file-link" target="_blank">github.com/itrascastro/ioc-da2-optativa-angular</a>
+
+<span class="success">3. TEACHING MATERIALS TEMPLATE</span>
+Template system for creating interactive educational content
+Stack: Jekyll + JavaScript Vanilla
+<a href="https://github.com/itrascastro/ioc-da2_0485b2.git" class="file-link" target="_blank">github.com/itrascastro/ioc-da2_0485b2</a>
+
+<span class="success">4. MOODLE OFFLINE GRADING SYSTEM</span>
+Evaluation system with automatic feedback generation
+Google Sheets with rubrics, statistics and test grading
+Modes: Rubric, Manual, Hybrid
+<a href="https://itrascastro.github.io/moodle-offline-task-grading-spreadsheet/" class="file-link" target="_blank">itrascastro.github.io/moodle-offline-task-grading-spreadsheet</a>
+
+<span class="success">5. TRASCASTRO ACL MODULE</span>
+Access control module for Zend Framework
+Define ACL permissions directly in routes
+Published on Packagist and Zend Modules
+<a href="https://itrascastro.github.io/zend-framework-acl-module/" class="file-link" target="_blank">itrascastro.github.io/zend-framework-acl-module</a>
+
+<span class="success">6. XEN FRAMEWORK</span>
+Custom PHP framework built from scratch
+Patterns: MVC, Dependency Injection, Front Controller
+<a href="https://github.com/xenframework" class="file-link" target="_blank">github.com/xenframework</a>`
+                    };
+                    return projectes[currentLang];
                 }
             },
             experiencia: {
                 desc: 'Experiència professional',
                 exec: () => {
-                    return `<span class="section-title">EXPERIÈNCIA PROFESSIONAL</span>
+                    const experiencies = {
+                        ca: `<span class="section-title">EXPERIÈNCIA PROFESSIONAL</span>
 
 <span class="info">[2024 - ACTUALITAT]</span>
 <span class="success">Professor Titular @ IOC</span>
@@ -763,7 +835,7 @@ Modalitat: Online
 <span class="success">Professor @ Institut Online FOC</span>
 Mòduls: M4 (Llenguatges de marques i sistemes de gestió d'informació)
 M9 (Implantació d'aplicacions web) ASIR
-Web: fp-informatica.com
+<a href="https://www.fp-informatica.com/" class="file-link" target="_blank">fp-informatica.com</a>
 
 <span class="info">[2015 - 2023]</span>
 <span class="success">Professor Col·laborador @ IOC</span>
@@ -772,7 +844,7 @@ M03 DAW, FCT, Tutories
 <span class="info">[2014 - ACTUALITAT]</span>
 <span class="success">Formador per a Empreses @ Alfa9</span>
 Formació Symfony i frameworks PHP per a empreses
-Web: alfa9.com
+<a href="https://alfa9.com" class="file-link" target="_blank">alfa9.com</a>
 
 <span class="info">[2007 - 2024]</span>
 <span class="success">Professor Cicles Formatius</span>
@@ -781,7 +853,71 @@ Cicles: DAM, DAW, ASIX
 Mòduls: Programació, Desenvolupament Web, Sistemes Operatius, Administració Xarxes, Projectes Finals
 
 <span class="warning">Total cursos formació professorat: 38</span>
-Inclou: Anglès, AICLE, Google Tools, Robòtica, Linux, etc.`;
+Inclou: Anglès, AICLE, Google Tools, Robòtica, Linux, etc.`,
+                        es: `<span class="section-title">EXPERIENCIA PROFESIONAL</span>
+
+<span class="info">[2024 - ACTUALIDAD]</span>
+<span class="success">Profesor Titular @ IOC</span>
+Institut Obert de Catalunya
+Módulos: M3-ASIX, M3/M7/M9/M10-DAM
+Modalidad: Online
+
+<span class="info">[2023]</span>
+<span class="success">Profesor @ Institut Online FOC</span>
+Módulos: M4 (Lenguajes de marcas y sistemas de gestión de información)
+M9 (Implantación de aplicaciones web) ASIR
+<a href="https://www.fp-informatica.com/" class="file-link" target="_blank">fp-informatica.com</a>
+
+<span class="info">[2015 - 2023]</span>
+<span class="success">Profesor Colaborador @ IOC</span>
+M03 DAW, FCT, Tutorías
+
+<span class="info">[2014 - ACTUALIDAD]</span>
+<span class="success">Formador para Empresas @ Alfa9</span>
+Formación Symfony y frameworks PHP para empresas
+<a href="https://alfa9.com" class="file-link" target="_blank">alfa9.com</a>
+
+<span class="info">[2007 - 2024]</span>
+<span class="success">Profesor Ciclos Formativos</span>
+17 años de experiencia docente
+Ciclos: DAM, DAW, ASIX
+Módulos: Programación, Desarrollo Web, Sistemas Operativos, Administración Redes, Proyectos Finales
+
+<span class="warning">Total cursos formación profesorado: 38</span>
+Incluye: Inglés, AICLE, Google Tools, Robótica, Linux, etc.`,
+                        en: `<span class="section-title">PROFESSIONAL EXPERIENCE</span>
+
+<span class="info">[2024 - PRESENT]</span>
+<span class="success">Full Professor @ IOC</span>
+Institut Obert de Catalunya
+Modules: M3-ASIX, M3/M7/M9/M10-DAM
+Mode: Online
+
+<span class="info">[2023]</span>
+<span class="success">Professor @ Institut Online FOC</span>
+Modules: M4 (Markup languages and information management systems)
+M9 (Web applications deployment) ASIR
+<a href="https://www.fp-informatica.com/" class="file-link" target="_blank">fp-informatica.com</a>
+
+<span class="info">[2015 - 2023]</span>
+<span class="success">Associate Professor @ IOC</span>
+M03 DAW, FCT, Tutoring
+
+<span class="info">[2014 - PRESENT]</span>
+<span class="success">Corporate Trainer @ Alfa9</span>
+Symfony and PHP frameworks training for companies
+<a href="https://alfa9.com" class="file-link" target="_blank">alfa9.com</a>
+
+<span class="info">[2007 - 2024]</span>
+<span class="success">Vocational Training Teacher</span>
+17 years of teaching experience
+Programs: DAM, DAW, ASIX
+Modules: Programming, Web Development, Operating Systems, Network Administration, Final Projects
+
+<span class="warning">Total teacher training courses: 38</span>
+Including: English, AICLE, Google Tools, Robotics, Linux, etc.`
+                    };
+                    return experiencies[currentLang];
                 }
             },
             skills: {
@@ -815,60 +951,60 @@ Git, SQL, REST APIs, Responsive Design
                         ca: `<span class="section-title">PRESÈNCIA ONLINE</span>
 
 <span class="info">Web:</span>
-itrascastro.github.io
+<a href="https://itrascastro.github.io" class="file-link" target="_blank">itrascastro.github.io</a>
 
 <span class="info">GitHub:</span>
-github.com/itrascastro
+<a href="https://github.com/itrascastro" class="file-link" target="_blank">github.com/itrascastro</a>
 
 <span class="info">LinkedIn:</span>
-linkedin.com/in/ismael-trascastro
+<a href="https://www.linkedin.com/pub/ismael-trascastro/98/a93/417" class="file-link" target="_blank">linkedin.com/in/ismael-trascastro</a>
 
 <span class="info">YouTube:</span>
-youtube.com/user/ismael3334
+<a href="https://www.youtube.com/user/ismael3334" class="file-link" target="_blank">youtube.com/user/ismael3334</a>
 
 <span class="info">StackOverflow:</span>
-stackoverflow.com/users/2113231
+<a href="https://stackoverflow.com/users/2113231/itrascastro" class="file-link" target="_blank">stackoverflow.com/users/2113231</a>
 
 <span class="info">Twitter:</span>
-@itrascastro`,
+<a href="https://twitter.com/itrascastro" class="file-link" target="_blank">@itrascastro</a>`,
                         es: `<span class="section-title">PRESENCIA ONLINE</span>
 
 <span class="info">Web:</span>
-itrascastro.github.io
+<a href="https://itrascastro.github.io" class="file-link" target="_blank">itrascastro.github.io</a>
 
 <span class="info">GitHub:</span>
-github.com/itrascastro
+<a href="https://github.com/itrascastro" class="file-link" target="_blank">github.com/itrascastro</a>
 
 <span class="info">LinkedIn:</span>
-linkedin.com/in/ismael-trascastro
+<a href="https://www.linkedin.com/pub/ismael-trascastro/98/a93/417" class="file-link" target="_blank">linkedin.com/in/ismael-trascastro</a>
 
 <span class="info">YouTube:</span>
-youtube.com/user/ismael3334
+<a href="https://www.youtube.com/user/ismael3334" class="file-link" target="_blank">youtube.com/user/ismael3334</a>
 
 <span class="info">StackOverflow:</span>
-stackoverflow.com/users/2113231
+<a href="https://stackoverflow.com/users/2113231/itrascastro" class="file-link" target="_blank">stackoverflow.com/users/2113231</a>
 
 <span class="info">Twitter:</span>
-@itrascastro`,
+<a href="https://twitter.com/itrascastro" class="file-link" target="_blank">@itrascastro</a>`,
                         en: `<span class="section-title">ONLINE PRESENCE</span>
 
 <span class="info">Web:</span>
-itrascastro.github.io
+<a href="https://itrascastro.github.io" class="file-link" target="_blank">itrascastro.github.io</a>
 
 <span class="info">GitHub:</span>
-github.com/itrascastro
+<a href="https://github.com/itrascastro" class="file-link" target="_blank">github.com/itrascastro</a>
 
 <span class="info">LinkedIn:</span>
-linkedin.com/in/ismael-trascastro
+<a href="https://www.linkedin.com/pub/ismael-trascastro/98/a93/417" class="file-link" target="_blank">linkedin.com/in/ismael-trascastro</a>
 
 <span class="info">YouTube:</span>
-youtube.com/user/ismael3334
+<a href="https://www.youtube.com/user/ismael3334" class="file-link" target="_blank">youtube.com/user/ismael3334</a>
 
 <span class="info">StackOverflow:</span>
-stackoverflow.com/users/2113231
+<a href="https://stackoverflow.com/users/2113231/itrascastro" class="file-link" target="_blank">stackoverflow.com/users/2113231</a>
 
 <span class="info">Twitter:</span>
-@itrascastro`
+<a href="https://twitter.com/itrascastro" class="file-link" target="_blank">@itrascastro</a>`
                     };
                     return xarxes[currentLang];
                 }
@@ -1096,29 +1232,27 @@ photo.jpg`;
             if (input) input.focus();
         });
 
-        // Funcionalidad de los botones
-        document.getElementById('btn-red').addEventListener('click', (e) => {
-            e.stopPropagation();
+        // Funcionalidad de los botones - DRY
+        function executeButtonCommand(command) {
             const promptLine = terminal.querySelector('.prompt-line');
             if (promptLine) promptLine.remove();
-            executeCommand('clear');
+            executeCommand(command);
             createPrompt();
+        }
+
+        document.getElementById('btn-red').addEventListener('click', (e) => {
+            e.stopPropagation();
+            executeButtonCommand('clear');
         });
 
         document.getElementById('btn-yellow').addEventListener('click', (e) => {
             e.stopPropagation();
-            const promptLine = terminal.querySelector('.prompt-line');
-            if (promptLine) promptLine.remove();
-            executeCommand('theme');
-            createPrompt();
+            executeButtonCommand('theme');
         });
 
         document.getElementById('btn-green').addEventListener('click', (e) => {
             e.stopPropagation();
-            const promptLine = terminal.querySelector('.prompt-line');
-            if (promptLine) promptLine.remove();
-            executeCommand('help');
-            createPrompt();
+            executeButtonCommand('help');
         });
     </script>
 </body>
