@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaluació Matemàtiques 2n ESO - Treball de Recerca</title>
+    <style>
+        :root {
+            --primary-color: #2563EB;
+            --secondary-color: #10B981;
+            --warning-color: #F59E0B;
+            --danger-color: #EF4444;
+            --text-color: #1F2937;
+            --border-color: #E5E7EB;
+            --bg-light: #F9FAFB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            background: white;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-footer {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1E40AF 100%);
+            color: white;
+            padding: 15px 30px;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .slide-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.5s ease-in-out;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0);
+            position: relative;
+        }
+
+        .slide-content {
+            max-width: 100%;
+            width: 100%;
+            margin: 0 auto;
+            height: 100%;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: var(--text-color);
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .alert-box {
+            background: #FEE2E2;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .success-box {
+            background: #D1FAE5;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: #6B7280;
+            margin-top: 0.5rem;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table thead {
+            background: var(--bg-light);
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .control-btn:hover {
+            background: #1E40AF;
+        }
+
+        .slide-number {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            z-index: 1000;
+        }
+
+        .centered {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 500px;
+        }
+
+        ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+            line-height: 1.6;
+        }
+
+        p {
+            line-height: 1.6;
+            margin: 0.5rem 0;
+        }
+
+        strong {
+            font-weight: 600;
+        }
+
+        .cover-image {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cover-image img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* ADAPTACIÓ PER PANTALLES AMB ALÇADA LIMITADA */
+        /* Per portàtils estàndard 1366x768 i similars */
+        @media (max-height: 900px) {
+            .slide {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+                margin-bottom: 1rem;
+                padding-bottom: 0.3rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+                margin: 1rem 0 0.7rem 0;
+            }
+
+            p, li {
+                font-size: 0.9rem;
+                line-height: 1.4;
+                margin: 0.3rem 0;
+            }
+
+            .two-column {
+                gap: 1.5rem;
+                margin: 1.5rem 0;
+            }
+
+            .highlight-box,
+            .alert-box,
+            .success-box {
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+
+            .stats-container {
+                gap: 1rem;
+                margin: 1.5rem 0;
+            }
+
+            .stat-box {
+                padding: 1rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .stat-label {
+                font-size: 0.85rem;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 8px;
+                font-size: 0.85rem;
+            }
+
+            .data-table {
+                margin: 1rem 0;
+            }
+
+            ul {
+                margin: 0.7rem 0;
+                padding-left: 1.5rem;
+            }
+
+            li {
+                margin: 0.3rem 0;
+            }
+
+            .centered {
+                min-height: 300px;
+            }
+        }
+
+        /* Per pantalles encara més petites o portàtils 1366x768 */
+        @media (max-height: 768px) {
+            .slide {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+                margin-bottom: 0.8rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+                margin-bottom: 0.8rem;
+                padding-bottom: 0.2rem;
+                border-bottom: 2px solid var(--primary-color);
+            }
+
+            h3 {
+                font-size: 1.1rem;
+                margin: 0.8rem 0 0.5rem 0;
+            }
+
+            p, li {
+                font-size: 0.85rem;
+                line-height: 1.3;
+                margin: 0.2rem 0;
+            }
+
+            .two-column {
+                gap: 1rem;
+                margin: 1rem 0;
+            }
+
+            .highlight-box,
+            .alert-box,
+            .success-box {
+                padding: 0.8rem;
+                margin: 0.8rem 0;
+                border-radius: 6px;
+            }
+
+            .stats-container {
+                gap: 0.8rem;
+                margin: 1rem 0;
+            }
+
+            .stat-box {
+                padding: 0.8rem;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
+            }
+
+            .stat-label {
+                font-size: 0.8rem;
+                margin-top: 0.3rem;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 6px;
+                font-size: 0.8rem;
+            }
+
+            .data-table {
+                margin: 0.8rem 0;
+            }
+
+            ul {
+                margin: 0.5rem 0;
+                padding-left: 1.2rem;
+            }
+
+            li {
+                margin: 0.2rem 0;
+                line-height: 1.3;
+            }
+
+            .centered {
+                min-height: 250px;
+            }
+
+            .header-footer {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="header-footer">
+            Avaluació Diagnòstica de Competències Matemàtiques a la Transició Primària-Secundària
+        </div>
+
+        <div class="slide-container">
+            <!-- DIAPOSITIVA 1: PORTADA -->
+            <div class="slide active">
+                <div class="slide-content centered">
+                    <div class="cover-image">
+                        <img src="portada.jpeg" alt="Portada" style="width: 100%; display: block;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIAPOSITIVA 2: INTRODUCCIÓ -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>1. Introducció i Motivació</h2>
+                    
+                    <div class="highlight-box">
+                        <h3>Motivació Personal</h3>
+                        <p>Una de les coses que més m'ha sobtat a l'ESO és veure com les matemàtiques es converteixen en un mur per a molta gent. Sempre he tingut la sensació que el problema no és el que s'aprèn a segon, sinó el que s'arrossega de cursos anteriors. És com intentar construir una casa sense uns bons fonaments.</p>
+                        <p>He vist molts companys que saben resoldre una equació al paper sense problemes, però que es bloquegen completament si els planteges un problema real que es resol amb aquesta mateixa equació. Aquesta diferència entre "saber fer" i "saber pensar" és el que em va motivar per investigar.</p>
+                    </div>
+
+                    <div class="two-column">
+                        <div>
+                            <h3>El "Bac" de la Transició</h3>
+                            <p>Molts alumnes arriben a 2n d'ESO amb la sensació d'entendre les matemàtiques fins que descobreixen que no les entenen.</p>
+                            <ul>
+                                <li>Canvi brusc de metodologia</li>
+                                <li>Augment sobtat d'abstracció</li>
+                                <li>Dèficit de fonaments</li>
+                                <li>Impacte emocional negatiu</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Objectius del Treball</h3>
+                            <ul>
+                                <li>Investigar el currículum oficial</li>
+                                <li>Programar l'eina d'avaluació</li>
+                                <li>Fer la prova pilot amb alumnes</li>
+                                <li>Analitzar i concloure amb dades</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="alert-box">
+                        <p><strong>Hipòtesi</strong></p>
+                        <p>"Els alumnes que comencen 2n d'ESO no tenen la base de matemàtiques de 1r i de primària prou sòlida per afrontar el nou curs."</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIAPOSITIVA 3: MARC TEÒRIC - SKEMP -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>2. Marc Teòric: Teoria de Skemp</h2>
+                    
+                    <p>Richard Skemp (1976) distingia entre dues maneres molt diferents d'aprendre matemàtiques:</p>
+
+                    <div class="two-column">
+                        <div>
+                            <div class="highlight-box">
+                                <h3>Comprensió Instrumental</h3>
+                                <p><strong>"Regles sense raons"</strong></p>
+                                <p>Recordar regles sense saber ben bé per què funcionen. El típic "fes-ho així perquè sempre s'ha fet així". Pot servir per aprovar un examen o resoldre exercicis senzills, però el coneixement queda molt fràgil.</p>
+                                <p><em>Exemple:</em> Saber que "per dividir una fracció cal invertir la segona i multiplicar", però sense comprendre el motiu real.</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="success-box">
+                                <h3>Comprensió Relacional</h3>
+                                <p><strong>"Saber QUÈ fer i PER QUÈ"</strong></p>
+                                <p>Entendre el perquè de les coses i com es connecten entre elles. L'alumne sap aplicar una regla, però també pot explicar d'on surt i què significa. Aquesta manera d'aprendre permet adaptar-se millor a situacions noves.</p>
+                                <p><em>Exemple:</em> Entendre què representa realment dividir fraccions i poder explicar-ho amb paraules.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p><strong>Aplicació al nostre context:</strong> La teoria de Skemp ajuda a entendre per què molts alumnes arriben a secundària amb dificultats. Sovint coneixen procediments, però no els entenen realment. Aquesta falta de connexió entre conceptes fa que la seva base sigui feble.</p>
+                </div>
+            </div>
+
+            <!-- DIAPOSITIVA 4: LES 6 COMPETÈNCIES -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>3. Les 6 Competències (Decret 175/2022)</h2>
+                    
+                    <p>El currículum oficial s'organitza en sis sentits matemàtics:</p>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Competència</th>
+                                <th>Descripció</th>
+                                <th>Continguts clau</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Sentit Numèric</strong></td>
+                                <td>Comprensió dels nombres i les seves relacions</td>
+                                <td>Enters, fraccions, decimals, percentatges</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sentit Operacions</strong></td>
+                                <td>Estratègies de càlcul i estimació</td>
+                                <td>Càlcul mental, algoritmes, propietats</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sentit Mesura</strong></td>
+                                <td>Magnituds i les seves mesures</td>
+                                <td>Àrea, volum, temps, conversions</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sentit Espacial</strong></td>
+                                <td>Geometria i visualització</td>
+                                <td>Figures, transformacions, coordenades</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sentit Algebraic</strong></td>
+                                <td>Patrons, generalitzacions i equacions</td>
+                                <td>Successions, equacions lineals, funcions</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sentit Estocàstic</strong></td>
+                                <td>Estadística i probabilitat</td>
+                                <td>Gràfics, mitjana, mediana, probabilitat</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="highlight-box">
+                        <p><strong>Important:</strong> Totes les preguntes del test estan alineades amb aquestes competències del currículum oficial i avaluen continguts de 1r d'ESO.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIAPOSITIVA 5: L'APLICACIÓ -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>4. L'Aplicació Web Desenvolupada</h2>
+                    
+                    <div class="success-box">
+                        <h3>Una Eina Professional</h3>
+                        <p>Aplicació web completa, desenvolupada des de zero, testada i utilitzada amb alumnes reals en condicions d'examen.</p>
+                    </div>
+
+                    <div class="two-column">
+                        <div>
+                            <h3>Funcionalitats Principals</h3>
+                            <ul>
+                                <li>Banc de 75 preguntes validades pedagògicament</li>
+                                <li>Selecció aleatòria garantint equitat (16 per alumne)</li>
+                                <li>50% preguntes directes + 50% competencials</li>
+                                <li>Temporització de 20 minuts</li>
+                                <li>Integració amb Google Forms per persistència</li>
+                                <li>Anonimització de dades (hash del correu)</li>
+                                <li>Sistema de navegació entre preguntes</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Tracking Avançat per Pregunta</h3>
+                            <ul>
+                                <li>Temps total dedicat</li>
+                                <li>Temps fins primera resposta</li>
+                                <li>Nombre de canvis de resposta</li>
+                                <li>Nivell de confiança (1-5)</li>
+                                <li>Dificultat percebuda (1-5)</li>
+                                <li>Estratègia utilitzada (càlcul mental, paper, visualització, eliminació, intuïció)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <p><strong>Innovació metodològica:</strong> Aquestes dades permeten entendre no només què saben els alumnes, sinó COM pensen i COM prenen decisions matemàtiques.</p>
+                </div>
+            </div>
+
+            <!-- DIAPOSITIVA 6: BANC DE PREGUNTES -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>5. Banc de Preguntes i Validació</h2>
+                    
+                    <h3>Distribució del Banc</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Competència</th>
+                                <th>Preguntes totals</th>
+                                <th>Directes</th>
+                                <th>Competencials</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sentit numèric</td>
+                                <td>12</td>
+                                <td>6</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>Sentit operacions</td>
+                                <td>12</td>
+                                <td>6</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>Sentit mesura</td>
+                                <td>12</td>
+                                <td>6</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>Sentit espacial</td>
+                                <td>12</td>
+                                <td>6</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>Sentit algebraic</td>
+                                <td>14</td>
+                                <td>7</td>
+                                <td>7</td>
+                            </tr>
+                            <tr>
+                                <td>Sentit estocàstic</td>
+                                <td>13</td>
+                                <td>7</td>
+                                <td>6</td>
+                            </tr>
+                            <tr style="font-weight: bold; background: #F9FAFB;">
+                                <td>TOTAL</td>
+                                <td>75</td>
+                                <td>38</td>
+                                <td>37</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Procés de Validació</h3>
+                    <div class="two-column">
+                        <div>
+                            <h4>Validació Pedagògica</h4>
+                            <ul>
+                                <li>Alineació amb Decret 175/2022</li>
+                                <li>Revisió dels sabers de 1r ESO</li>
+                                <li>Adequació de la dificultat</li>
+                                <li>Contextos reals i significatius</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Validació Tècnica</h4>
+                            <ul>
+                                <li>Proves de funcionalitat</li>
+                                <li>Compatibilitat navegadors</li>
+                                <li>Prova pilot amb 45 alumnes</li>
+                                <li>Taxa de finalització: 80%</li>
+                                <li>Errors tècnics: 0</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIAPOSITIVA 7: METODOLOGIA -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>6. Metodologia de l'Estudi</h2>
+                    
+                    <div class="success-box">
+                        <p style="text-align: center; font-size: 1.3rem;"><strong>MÉS DE 700 RESPOSTES INDIVIDUALS ANALITZADES</strong></p>
+                        <p style="text-align: center;">(45 alumnes × 16 preguntes)</p>
+                    </div>
+
+                    <h3>Disseny de l'Estudi</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Element</th>
+                                <th>Descripció</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Tipus d'estudi</strong></td>
+                                <td>Transversal descriptiu</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mostra</strong></td>
+                                <td>N = 45 alumnes de 2n ESO (5 centres primària diferents)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Instrument</strong></td>
+                                <td>Test diagnòstic de 16 preguntes (selecció aleatòria del banc de 75)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Moment</strong></td>
+                                <td>Primera setmana de setembre 2025 (inici de curs)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Durada</strong></td>
+                                <td>20 minuts màxim</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Condicions</strong></td>
+                                <td>Aula informàtica, sense materials de consulta, supervisat</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Variables Recollides</h3>
+                    <p><strong>Demogràfiques:</strong> Edat, centre de procedència</p>
+                    <p><strong>Autopercepció:</strong> Nivell percebut en matemàtiques, confiança inicial, ansietat matemàtica</p>
+                    <p><strong>Hàbits:</strong> Hores d'estudi setmanals, hores de son, ús del mòbil</p>
+                    <p><strong>Per pregunta:</strong> Resposta, temps, canvis, confiança, dificultat percebuda, estratègia</p>
+
+                    <div class="highlight-box">
+                        <p><strong>Ètica:</strong> Anonimització completa (hash), consentiment informat, compliment RGPD.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIAPOSITIVA 8: RESULTATS GENERALS -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>7. Resultats Generals</h2>
+                    
+                    <div class="alert-box" style="text-align: center;">
+                        <p style="font-size: 1.4rem; margin-bottom: 1rem;"><strong>DESCOBRIMENT ALARMANT</strong></p>
+                        <p style="font-size: 1.2rem;">Només el <span style="font-size: 1.8rem; font-weight: 800; color: #DC2626;">35,6%</span> dels alumnes aprova</p>
+                        <p style="font-size: 1.2rem;">Nota mitjana: <span style="font-size: 1.8rem; font-weight: 800; color: #DC2626;">3,86 / 10</span></p>
+                    </div>
+
+                    <div class="stats-container">
+                        <div class="stat-box">
+                            <div class="stat-number" style="color: #DC2626;">64,4%</div>
+                            <div class="stat-label">Taxa de Suspensos</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number" style="color: #F59E0B;">60%</div>
+                            <div class="stat-label">Notes inferiors a 4</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number" style="color: #6B7280;">0</div>
+                            <div class="stat-label">Alumnes amb Notable</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number" style="color: #DC2626;">28,9%</div>
+                            <div class="stat-label">Notes 0-2</div>
+                        </div>
+                    </div>
+
+                    <h3>Estadístiques Descriptives</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Paràmetre</th>
+                                <th>Valor</th>
+                                <th>Interpretació</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Nota mitjana</td>
+                                <td>3,86</td>
+                                <td>Molt per sota de l'aprovat</td>
+                            </tr>
+                            <tr>
+                                <td>Mediana</td>
+                                <td>3,30</td>
+                                <td>50% d'alumnes per sota d'aquest valor</td>
+                            </tr>
+                            <tr>
+                                <td>Desviació estàndard</td>
+                                <td>2,30</td>
+                                <td>Alta dispersió entre els alumnes</td>
+                            </tr>
+                            <tr>
+                                <td>Nota màxima</td>
+                                <td>7,50</td>
+                                <td>Cap excel·lent</td>
+                            </tr>
+                            <tr>
+                                <td>Nota mínima</td>
+                                <td>0,30</td>
+                                <td>Nivell extremadament baix</td>
+                            </tr>
+                            <tr>
+                                <td>Moda</td>
+                                <td>2,50</td>
+                                <td>Valor més freqüent: suspens baix</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><strong>Interpretació:</strong> 2 de cada 3 alumnes arriben a 2n ESO sense dominar els continguts bàsics de 1r ESO. Això NO és culpa dels alumnes, és un problema sistèmic.</p>
+                </div>
+            </div>
+
+            <!-- DIAPOSITIVA 9: ANÀLISI PER COMPETÈNCIES -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>8. Anàlisi per Competències</h2>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Competència</th>
+                                <th>% Total</th>
+                                <th>% Directes</th>
+                                <th>% Competencials</th>
+                                <th>Diagnòstic</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #FEE2E2;">
+                                <td><strong>Sentit Espacial</strong></td>
+                                <td>26,7%</td>
+                                <td>15,6%</td>
+                                <td>37,8%</td>
+                                <td>CRÍTIC</td>
+                            </tr>
+                            <tr style="background: #FEF3C7;">
+                                <td><strong>Sentit Numèric</strong></td>
+                                <td>36,0%</td>
+                                <td>20,0%</td>
+                                <td>53,3%</td>
+                                <td>DEFICIENT</td>
+                            </tr>
+                            <tr style="background: #FEF3C7;">
+                                <td><strong>Sentit Operacions</strong></td>
+                                <td>38,9%</td>
+                                <td>17,8%</td>
+                                <td>60,0%</td>
+                                <td>DEFICIENT</td>
+                            </tr>
+                            <tr style="background: #FEF9E6;">
+                                <td><strong>Sentit Mesura</strong></td>
+                                <td>42,2%</td>
+                                <td>35,6%</td>
+                                <td>48,9%</td>
+                                <td>INSUFICIENT</td>
+                            </tr>
+                            <tr style="background: #DBEAFE;">
+                                <td><strong>Sentit Algebraic</strong></td>
+                                <td>47,2%</td>
+                                <td>26,7%</td>
+                                <td>67,8%</td>
+                                <td>MILLORABLE</td>
+                            </tr>
+                            <tr style="background: #D1FAE5;">
+                                <td><strong>Sentit Estocàstic</strong></td>
+                                <td>55,0%</td>
+                                <td>43,3%</td>
+                                <td>66,7%</td>
+                                <td>MILLOR ÀREA</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="alert-box">
+                        <h3>Descobriment Clau</h3>
+                        <p>Les preguntes competencials (contextualitzades) obtenen gairebé el doble d'encerts que les directes. Aquesta diferència no és trivial: l'alumnat es desenvolupa millor quan pot activar coneixements previs i connectar el problema amb situacions reals.</p>
+                        <p><strong>Implicació pedagògica:</strong> Cal aprofitar la capacitat competencial per introduir seqüències basades en projectes o contextos reals que mantinguin l'interès. L'objectiu és acostar els resultats de les preguntes directes als competencials sense perdre aquesta mirada significativa.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIAPOSITIVA 10: COMPARATIVA CENTRES -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>9. Comparativa entre Centres</h2>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Centre</th>
+                                <th>Núm. Alumnes</th>
+                                <th>Nota mitjana</th>
+                                <th>% Aprovats</th>
+                                <th>Valoració</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #D1FAE5;">
+                                <td><strong>Escola Bonavista</strong></td>
+                                <td>5</td>
+                                <td><strong>6,20</strong></td>
+                                <td><strong>80%</strong></td>
+                                <td>Suficient alt</td>
+                            </tr>
+                            <tr>
+                                <td>Pau Vila</td>
+                                <td>8</td>
+                                <td>4,31</td>
+                                <td>37,5%</td>
+                                <td>Insuficient alt</td>
+                            </tr>
+                            <tr>
+                                <td>Joan Maragall</td>
+                                <td>12</td>
+                                <td>3,78</td>
+                                <td>33,3%</td>
+                                <td>Insuficient</td>
+                            </tr>
+                            <tr>
+                                <td>Salvador Espriu</td>
+                                <td>10</td>
+                                <td>3,45</td>
+                                <td>30%</td>
+                                <td>Insuficient</td>
+                            </tr>
+                            <tr style="background: #FEE2E2;">
+                                <td>Altres centres</td>
+                                <td>10</td>
+                                <td>3,12</td>
+                                <td>20%</td>
+                                <td>Insuficient baix</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="success-box">
+                        <h3>El Cas d'Èxit: Escola Bonavista</h3>
+                        <p><strong>Diferència de 3,08 punts</strong> respecte a la mitjana dels altres centres.</p>
+                        <p>L'Escola Bonavista supera en gairebé tres punts el rendiment dels centres que tanquen la classificació. Aquesta bretxa pot respondre a metodologies prèvies, projectes específics o al perfil socioeducatiu de les famílies.</p>
+                        <p><strong>Conclusió:</strong> Caldria aprofundir amb entrevistes i revisant els materials utilitzats per replicar les bones pràctiques identificades. Aquest cas demostra que amb metodologies adequades es poden obtenir resultats significativament millors.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIAPOSITIVA 11: FACTORS D'INFLUÈNCIA -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>10. Factors que Influeixen en el Rendiment</h2>
+                    
+                    <div class="two-column">
+                        <div>
+                            <h3>Hores d'Estudi Setmanals</h3>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Hores</th>
+                                        <th>Nota mitjana</th>
+                                        <th>% Aprovats</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>0 hores</td>
+                                        <td>0,80</td>
+                                        <td>0%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1 hora</td>
+                                        <td>2,91</td>
+                                        <td>20%</td>
+                                    </tr>
+                                    <tr style="background: #D1FAE5;">
+                                        <td><strong>2 hores</strong></td>
+                                        <td><strong>4,25</strong></td>
+                                        <td><strong>40%</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3+ hores</td>
+                                        <td>4,21</td>
+                                        <td>42,1%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p><strong>Punt òptim:</strong> 2 hores setmanals. Passar d'estudi zero a dues hores multiplica per quatre la nota mitjana. A partir de les 3 hores s'observa una estabilització.</p>
+                        </div>
+                        
+                        <div>
+                            <h3>Correlacions Identificades</h3>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Factor</th>
+                                        <th>Correlació</th>
+                                        <th>Significança</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="background: #D1FAE5;">
+                                        <td><strong>Confiança inicial</strong></td>
+                                        <td><strong>0,456</strong></td>
+                                        <td><strong>MODERADA</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hores d'estudi</td>
+                                        <td>0,255</td>
+                                        <td>Baixa</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hores de son</td>
+                                        <td>0,187</td>
+                                        <td>Molt baixa</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <h3 style="margin-top: 2rem;">Ús del Mòbil</h3>
+                            <p>Els alumnes que no utilitzen el mòbil gens obtenen pitjors resultats que aquells que en fan un ús moderat. El millor rendiment es produeix amb una hora diària. Quan l'ús supera les dues hores, la nota mitjana cau un 43%.</p>
+                        </div>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h3>Conclusió Sorprenent</h3>
+                        <p>El factor més determinant NO són les hores d'estudi, sinó la confiança en les pròpies capacitats matemàtiques. L'autoconcepte matemàtic és el factor més determinant (r=0,456), per sobre dels hàbits d'estudi. Els hàbits externs tenen menys impacte del previst.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIAPOSITIVA 12: CONCLUSIONS -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>11. Conclusions Principals</h2>
+                    
+                    <div class="two-column">
+                        <div>
+                            <h3>1. Crisi de Fonaments</h3>
+                            <p>Els alumnes arriben a 2n ESO amb dèficits crítics en competències bàsiques, especialment Sentit Espacial (26,7%) i Numèric (36%). La nota mitjana de 3,86 i només un 35,6% d'aprovats confirmen la hipòtesi inicial.</p>
+                            
+                            <h3>2. El Context és Clau</h3>
+                            <p>Les preguntes competencials (contextualitzades) obtenen el doble d'encerts que les directes. Cal ensenyar des del context cap a la formalització, no a l'inrevés.</p>
+                        </div>
+                        <div>
+                            <h3>3. Bones Pràctiques Funcionen</h3>
+                            <p>L'Escola Bonavista demostra que amb metodologies adequades es pot preparar significativament millor (+3 punts, 80% aprovats). Aquest cas d'èxit és replicable.</p>
+                            
+                            <h3>4. La Confiança Importa</h3>
+                            <p>L'autoconcepte matemàtic és el factor més determinant (r=0,456), per sobre dels hàbits d'estudi. Cal prioritzar la construcció de confiança i autoeficàcia.</p>
+                        </div>
+                    </div>
+
+                    <div class="alert-box" style="margin-top: 2rem;">
+                        <h3>Implicació Pedagògica Principal</h3>
+                        <p>Cal un canvi de paradigma: ensenyar matemàtiques des del context real cap a la formalització, no a l'inrevés. I prioritzar la construcció de confiança i autoeficàcia per sobre de l'acumulació d'hores d'estudi.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIAPOSITIVA 13: LIMITACIONS -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>12. Limitacions i Projecció Futura</h2>
+                    
+                    <div class="two-column">
+                        <div>
+                            <h3>Limitacions de l'Estudi</h3>
+                            <ul>
+                                <li>Mostra limitada (n=45, 1 centre secundària)</li>
+                                <li>No seguiment longitudinal</li>
+                                <li>Sense entrevistes qualitatives</li>
+                                <li>Factors socioeconòmics no controlats</li>
+                                <li>Test únic (no pre-post)</li>
+                                <li>Possible biaix de selecció</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Línies Futures</h3>
+                            <ul>
+                                <li>Replicar amb mostres més grans i diversos centres</li>
+                                <li>Estudi longitudinal durant tot 2n ESO</li>
+                                <li>Entrevistes a l'Escola Bonavista per identificar bones pràctiques</li>
+                                <li>Disseny i avaluació d'una intervenció pedagògica</li>
+                                <li>Integració de l'eina en avaluació continuada</li>
+                                <li>Adaptació per altres nivells educatius</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="success-box" style="margin-top: 2rem;">
+                        <h3>Aportació Original del Treball</h3>
+                        <p><strong>Primer estudi a Catalunya</strong> que combina:</p>
+                        <ul>
+                            <li>Avaluació diagnòstica alineada amb Decret 175/2022</li>
+                            <li>Aplicació web pròpia amb tracking avançat de més de 15 variables</li>
+                            <li>Anàlisi rigorosa de més de 700 respostes individuals</li>
+                            <li>Identificació d'un cas d'èxit replicable (Escola Bonavista)</li>
+                            <li>Evidència empírica sobre el paper de la confiança matemàtica</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIAPOSITIVA 14: VALORACIÓ PERSONAL -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>13. Valoració Personal i Aprenentatges</h2>
+                    
+                    <div class="highlight-box">
+                        <h3>El que he après</h3>
+                        <p>Aquesta fase de validació va confirmar que el projecte era viable tant des del punt de vista tècnic com pedagògic. Personalment, va ser una de les etapes més enriquidores del treball. Vaig haver d'integrar coneixements de matemàtiques, programació i educació, i vaig aprendre a detectar i resoldre problemes reals, no només teòrics.</p>
+                        <p>També vaig experimentar què significa validar una eina educativa de veritat, pas a pas. M'agrada molt la informàtica i crec que es poden fer coses molt útils per a l'educació. Aquest treball és el meu intent d'utilitzar la programació per aportar alguna cosa.</p>
+                    </div>
+
+                    <div class="two-column">
+                        <div>
+                            <h3>Competències Desenvolupades</h3>
+                            <ul>
+                                <li>Programació web (HTML, CSS, JavaScript)</li>
+                                <li>Gestió de dades i estadística</li>
+                                <li>Revisió bibliogràfica</li>
+                                <li>Disseny d'instruments d'avaluació</li>
+                                <li>Anàlisi de resultats</li>
+                                <li>Comunicació científica</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Reflexió Final</h3>
+                            <p>Crec que entendre on fallem és el primer pas per deixar de veure les mates com un enemic. Una eina que pugui fer un diagnòstic ràpid del nivell d'una classe podria ser molt útil per als professors a l'inici de curs, per saber on cal reforçar.</p>
+                            <p>Al final, tot plegat ajuda a veure les matemàtiques com una cosa més propera i viva. Ja no són només fórmules o problemes abstractes, sinó una manera de pensar, raonar i entendre millor el món.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIAPOSITIVA 15: TANCAMENT -->
+            <div class="slide">
+                <div class="slide-content centered">
+                    <h1 style="font-size: 2.5rem; margin-bottom: 2rem;">Del Diagnòstic a l'Acció</h1>
+                    
+                    <div class="highlight-box" style="width: 100%;">
+                        <p style="font-size: 1.3rem; line-height: 1.7; text-align: center;">
+                            Aquest treball <strong>no només diagnostica un problema</strong>, sinó que proporciona <strong>eines i evidències</strong> per començar a resoldre'l.
+                        </p>
+                    </div>
+
+                    <div class="stats-container" style="width: 100%;">
+                        <div class="stat-box">
+                            <div class="stat-number">700+</div>
+                            <div class="stat-label">Respostes Analitzades</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">1</div>
+                            <div class="stat-label">Aplicació Professional</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label">Potencial d'Impacte</div>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 3rem; font-size: 1.5rem; font-weight: 700; color: var(--primary-color);">
+                        Gràcies per la vostra atenció
+                    </p>
+                    <p style="font-size: 1.2rem; color: #6B7280; margin-top: 1rem;">Obert a preguntes i discussió</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="header-footer" style="margin-top: 0;">
+            <div class="navigation" style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="slide-counter">Diapositiva <span id="current-slide">1</span> de <span id="total-slides">15</span></div>
+                <div class="nav-buttons" style="display: flex; gap: 10px;">
+                    <button id="prev-btn" class="control-btn">Anterior</button>
+                    <button id="next-btn" class="control-btn">Següent</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+        
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+        
+        document.getElementById('prev-btn').addEventListener('click', () => {
+            showSlide(currentSlide - 1);
+        });
+        
+        document.getElementById('next-btn').addEventListener('click', () => {
+            showSlide(currentSlide + 1);
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                showSlide(currentSlide - 1);
+            } else if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                showSlide(currentSlide + 1);
+            }
+        });
+
+        // Pantalla completa amb F o F11
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'f' || e.key === 'F') {
+                e.preventDefault();
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen();
+                } else {
+                    document.exitFullscreen();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
