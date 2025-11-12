@@ -1156,10 +1156,11 @@ GRANT ALL ON SCHEMA public TO hibuser;</code></pre>
   </div>
 
   <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-xml">&lt;?xml version=&#39;1.0&#39; encoding=&#39;utf-8&#39;?&gt;
+  <div class="line-numbers" aria-hidden="true"></div>
+  <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-xml">&lt;?xml version=&#39;1.0&#39; encoding=&#39;utf-8&#39;?&gt;
 &lt;!DOCTYPE hibernate-configuration PUBLIC
-        &quot;http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd&quot;&gt;
+    &quot;-//Hibernate/Hibernate Configuration DTD 3.0//EN&quot;
+    &quot;http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd&quot;&gt;
 &lt;hibernate-configuration&gt;
     &lt;session-factory&gt;
         &lt;property name=&quot;hibernate.connection.driver_class&quot;&gt;org.postgresql.Driver&lt;/property&gt;
@@ -1176,7 +1177,6 @@ GRANT ALL ON SCHEMA public TO hibuser;</code></pre>
         &lt;mapping class=&quot;cat.exemple.model.Producte&quot; /&gt;
     &lt;/session-factory&gt;
 &lt;/hibernate-configuration&gt;</code></pre>
-  </div>
 </div>
 
 
