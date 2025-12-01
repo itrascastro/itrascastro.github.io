@@ -1,52 +1,417 @@
----
-layout: default
-title: "Unitat 3: Serveis i gestió de dades (RA3)"
-description: "Tercera unitat del curs - Creació de serveis, injecció de dependències i gestió d'estat"
-sidebar: false
-breadcrumb: true
-unitat: 3
----
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Unitat 3: Serveis i gestió de dades (RA3) | DA2_OA01 - Programació Avançada (Angular) - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="3">
+    
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Unitat 3: Serveis i gestió de dades (RA3) | DA2_OA01 - Programació Avançada (Angular)</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Unitat 3: Serveis i gestió de dades (RA3)" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Tercera unitat del curs - Creació de serveis, injecció de dependències i gestió d’estat" />
+<meta property="og:description" content="Tercera unitat del curs - Creació de serveis, injecció de dependències i gestió d’estat" />
+<link rel="canonical" href="http://localhost:4006/ioc/da2_oa01/unitat-3/" />
+<meta property="og:url" content="http://localhost:4006/ioc/da2_oa01/unitat-3/" />
+<meta property="og:site_name" content="DA2_OA01 - Programació Avançada (Angular)" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Unitat 3: Serveis i gestió de dades (RA3)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Tercera unitat del curs - Creació de serveis, injecció de dependències i gestió d’estat","headline":"Unitat 3: Serveis i gestió de dades (RA3)","url":"http://localhost:4006/ioc/da2_oa01/unitat-3/"}</script>
+<!-- End Jekyll SEO tag -->
 
-{% assign current_unitat = null %}
-{% for unitat in site.curs.unitats %}
-    {% if unitat.numero == page.unitat %}
-        {% assign current_unitat = unitat %}
-        {% break %}
-    {% endif %}
-{% endfor %}
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/da2_oa01/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="http://localhost:4006/ioc/da2_oa01/unitat-3/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/da2_oa01/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/da2_oa01/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4006/ioc/da2_oa01/feed.xml" title="DA2_OA01 - Programació Avançada (Angular)" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/da2_oa01/assets/css/code-block.css">
+    <script src="/ioc/da2_oa01/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="default-layout">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/da2_oa01/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/da2_oa01/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/da2_oa01/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/da2_oa01/" class="title-link">
+                <h1>DA2_OA01 - DA2_OA01 - Programació Avançada (Angular)</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/da2_oa01/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/da2_oa01/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Conceptes fonamentals i instal·lació
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Entorn de desenvolupament integrat
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Creació del projecte base
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Cas d'ús: Preparació de l'entorn
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_oa01/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Components i comunicació bàsica
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Data binding i events
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Formularis amb vinculació bidireccional
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Cas d'ús: Catàleg d'elements
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_oa01/unitat-3/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 1: Serveis i separació de responsabilitats
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-3/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 2: Gestió d'estat i comunicació entre components
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-3/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 3: Optimització i bones pràctiques
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-3/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 4: Cas d'ús: Catàleg amb API REST
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_oa01/unitat-4/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 4 - Bloc 1: Sistema de rutes i navegació
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-4/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 4 - Bloc 2: Arquitectura escalable
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-4/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 4 - Bloc 3: Optimització de rendiment
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-4/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 4 - Bloc 4: Cas d'ús: Aplicació completa
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/da2_oa01/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/da2_oa01/unitat-3/" class="horizontal-nav-item">
+                                Unitat 3: Serveis i gestió de dades (RA3)
+                            </a>
+                        
+                        
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+    
+
+    
+
+    
+        
+        
 
 <div class="unit-page">
     <div class="unit-hero">
-        <div class="unit-badge">Unitat {{ current_unitat.numero }}</div>
-        <h1 class="unit-title">{{ current_unitat.nom }}</h1>
+        <div class="unit-badge">Unitat 3</div>
+        <h1 class="unit-title">Serveis i gestió de dades (RA3)</h1>
     </div>
 
     <div class="unit-introduction">
         <h2>Descripció de la Unitat</h2>
         <div class="unit-description-content">
-            {% include_relative descripcio.html %}
+            <p>
+    En aquesta unitat aprendreu a gestionar <strong>lògica de negoci i dades</strong> utilitzant
+    <strong>serveis Angular</strong>. Dominareu la injecció de dependències, la separació de
+    responsabilitats, la integració amb APIs REST mitjançant HttpClient, i la gestió d'estat
+    amb RxJS i observables.
+</p>
+
+<p>
+    En finalitzar, tindreu un catàleg funcional connectat a una API REST, amb gestió d'errors,
+    transformació de dades, patrons de servei avançats i aplicareu les millors pràctiques
+    de testing i gestió de subscripcions.
+</p>
+
         </div>
     </div>
 
     <div class="unit-content">
         <div class="blocks-grid">
-            {% for bloc in current_unitat.blocs %}
+            
                 <div class="block-card">
                     <div class="block-card-header">
-                        <span class="block-number">{{ page.unitat }}.{{ bloc.numero }}</span>
-                        <h3 class="block-title">{{ bloc.nom }}</h3>
+                        <span class="block-number">3.1</span>
+                        <h3 class="block-title">Serveis i separació de responsabilitats</h3>
                     </div>
                     <div class="block-summary">
                         <h4 class="summary-title">Què aprendreu:</h4>
                         <div class="block-description">
-                            {% include_relative bloc-{{ bloc.numero }}/descripcio.html %}
+                            <ul>
+    <li>Descobrir els <strong>serveis Angular</strong> i la <strong>injecció de dependències</strong> com a patrons fonamentals</li>
+    <li>Separar la lògica de negoci dels components per crear aplicacions mantenibles</li>
+    <li>Crear serveis amb <strong>Angular CLI</strong> i utilitzar el decorador @Injectable</li>
+    <li>Implementar patrons de servei per a la gestió centralitzada de dades</li>
+    <li>Integrar serveis als components per gestionar dades de forma eficient i escalable</li>
+</ul>
+
                         </div>
                     </div>
-                    <a href="{{ bloc.url | relative_url }}" class="block-action">
+                    <a href="/ioc/da2_oa01/unitat-3/bloc-1/" class="block-action">
                         <span class="block-link-text">Començar bloc →</span>
                     </a>
                 </div>
-            {% endfor %}
+            
+                <div class="block-card">
+                    <div class="block-card-header">
+                        <span class="block-number">3.2</span>
+                        <h3 class="block-title">Gestió d'estat i comunicació entre components</h3>
+                    </div>
+                    <div class="block-summary">
+                        <h4 class="summary-title">Què aprendreu:</h4>
+                        <div class="block-description">
+                            <ul>
+    <li>Gestionar <strong>estat reactiu</strong> utilitzant <strong>RxJS</strong> i <strong>observables</strong></li>
+    <li>Dominar Subjects i BehaviorSubjects per compartir dades entre components</li>
+    <li>Implementar <strong>patrons de comunicació avançats</strong> amb programació reactiva</li>
+    <li>Utilitzar <strong>operadors RxJS</strong> per transformar fluxos de dades eficientment</li>
+    <li>Aplicar les millors pràctiques de gestió d'estat en aplicacions Angular</li>
+</ul>
+
+                        </div>
+                    </div>
+                    <a href="/ioc/da2_oa01/unitat-3/bloc-2/" class="block-action">
+                        <span class="block-link-text">Començar bloc →</span>
+                    </a>
+                </div>
+            
+                <div class="block-card">
+                    <div class="block-card-header">
+                        <span class="block-number">3.3</span>
+                        <h3 class="block-title">Optimització i bones pràctiques</h3>
+                    </div>
+                    <div class="block-summary">
+                        <h4 class="summary-title">Què aprendreu:</h4>
+                        <div class="block-description">
+                            <ul>
+    <li>Aprofundir en <strong>patrons avançats de serveis</strong> per arquitectures complexes</li>
+    <li>Implementar sistemes de <strong>caché</strong> per optimitzar consultes repetitives</li>
+    <li>Gestionar subscripcions eficientment per <strong>prevenir memory leaks</strong></li>
+    <li>Fer <strong>testing de serveis</strong> amb Jasmine i Karma</li>
+    <li>Aplicar bones pràctiques per mantenir el codi escalable i mantenible</li>
+</ul>
+
+                        </div>
+                    </div>
+                    <a href="/ioc/da2_oa01/unitat-3/bloc-3/" class="block-action">
+                        <span class="block-link-text">Començar bloc →</span>
+                    </a>
+                </div>
+            
+                <div class="block-card">
+                    <div class="block-card-header">
+                        <span class="block-number">3.4</span>
+                        <h3 class="block-title">Cas d'ús: Catàleg amb API REST</h3>
+                    </div>
+                    <div class="block-summary">
+                        <h4 class="summary-title">Què aprendreu:</h4>
+                        <div class="block-description">
+                            <ul>
+    <li>Integrar tots els coneixements en una <strong>aplicació de catàleg connectada a API REST</strong></li>
+    <li>Implementar serveis amb <strong>HttpClient</strong> per comunicació amb el backend</li>
+    <li>Gestionar l'estat amb <strong>observables</strong> i transformació de dades amb operadors RxJS</li>
+    <li>Implementar <strong>gestió d'errors</strong> i sistema de caché per millorar el rendiment</li>
+    <li>Aplicar tots els patrons i bones pràctiques apreses durant la unitat</li>
+</ul>
+
+                        </div>
+                    </div>
+                    <a href="/ioc/da2_oa01/unitat-3/bloc-4/" class="block-action">
+                        <span class="block-link-text">Començar bloc →</span>
+                    </a>
+                </div>
+            
         </div>
     </div>
 </div>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="3" data-total="4">(3/4)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 75%"></div></div>
+                </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/da2_oa01/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts del lloc -->
+    <script src="/ioc/da2_oa01/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/da2_oa01/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/da2_oa01/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/da2_oa01/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/da2_oa01/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/da2_oa01/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/da2_oa01/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

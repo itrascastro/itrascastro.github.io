@@ -1,17 +1,859 @@
----
-layout: bloc
-title: "Cas d'ús: Aplicació completa amb navegació i optimització"
-unitat: 4
-bloc: 4
-bloc_numero: 4
----
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Cas d'ús: Aplicació completa amb navegació i optimització | DA2_OA01 - Programació Avançada (Angular) - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="4">
+    <meta name="page-bloc" content="4">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Cas d’ús: Aplicació completa amb navegació i optimització | DA2_OA01 - Programació Avançada (Angular)</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Cas d’ús: Aplicació completa amb navegació i optimització" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Materials del mòdul DA2_OA01 - Programació Avançada amb Angular" />
+<meta property="og:description" content="Materials del mòdul DA2_OA01 - Programació Avançada amb Angular" />
+<link rel="canonical" href="http://localhost:4006/ioc/da2_oa01/unitat-4/bloc-4/" />
+<meta property="og:url" content="http://localhost:4006/ioc/da2_oa01/unitat-4/bloc-4/" />
+<meta property="og:site_name" content="DA2_OA01 - Programació Avançada (Angular)" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Cas d’ús: Aplicació completa amb navegació i optimització" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Materials del mòdul DA2_OA01 - Programació Avançada amb Angular","headline":"Cas d’ús: Aplicació completa amb navegació i optimització","url":"http://localhost:4006/ioc/da2_oa01/unitat-4/bloc-4/"}</script>
+<!-- End Jekyll SEO tag -->
 
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/da2_oa01/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="http://localhost:4006/ioc/da2_oa01/unitat-4/bloc-4/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/da2_oa01/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/da2_oa01/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4006/ioc/da2_oa01/feed.xml" title="DA2_OA01 - Programació Avançada (Angular)" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/da2_oa01/assets/css/code-block.css">
+    <script src="/ioc/da2_oa01/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/da2_oa01/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/da2_oa01/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/da2_oa01/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/da2_oa01/" class="title-link">
+                <h1>DA2_OA01 - DA2_OA01 - Programació Avançada (Angular)</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/da2_oa01/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/da2_oa01/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Conceptes fonamentals i instal·lació
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Entorn de desenvolupament integrat
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Creació del projecte base
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Cas d'ús: Preparació de l'entorn
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_oa01/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Components i comunicació bàsica
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Data binding i events
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Formularis amb vinculació bidireccional
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Cas d'ús: Catàleg d'elements
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_oa01/unitat-3/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 1: Serveis i separació de responsabilitats
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-3/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 2: Gestió d'estat i comunicació entre components
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-3/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 3: Optimització i bones pràctiques
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-3/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 4: Cas d'ús: Catàleg amb API REST
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_oa01/unitat-4/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 4 - Bloc 1: Sistema de rutes i navegació
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-4/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 4 - Bloc 2: Arquitectura escalable
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-4/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 4 - Bloc 3: Optimització de rendiment
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-4/bloc-4/" class="nav-dropdown-item current">
+                        Unitat 4 - Bloc 4: Cas d'ús: Aplicació completa
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat4_Bloc4_Seccio0" class="nav-link" data-section="Unitat4_Bloc4_Seccio0">Introducció</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat4_Bloc4_Seccio1" class="nav-link" data-section="Unitat4_Bloc4_Seccio1">1. Prerequisits</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat4_Bloc4_Seccio2" class="nav-link" data-section="Unitat4_Bloc4_Seccio2">2. Visió general de l'aplicació</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat4_Bloc4_Seccio3" class="nav-link" data-section="Unitat4_Bloc4_Seccio3">3. Sistema de rutes complet</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat4_Bloc4_Seccio4" class="nav-link" data-section="Unitat4_Bloc4_Seccio4">4. Vista de detall amb paràmetres</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat4_Bloc4_Seccio5" class="nav-link" data-section="Unitat4_Bloc4_Seccio5">5. Guàrdies i gestió d'estat</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat4_Bloc4_Seccio6" class="nav-link" data-section="Unitat4_Bloc4_Seccio6">6. Modularització i lazy loading</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat4_Bloc4_Seccio7" class="nav-link" data-section="Unitat4_Bloc4_Seccio7">7. Optimitzacions de rendiment</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat4_Bloc4_Seccio8" class="nav-link" data-section="Unitat4_Bloc4_Seccio8">8. Verificació i build de producció</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat4_Bloc4_Seccio9" class="nav-link" data-section="Unitat4_Bloc4_Seccio9">9. Autoavaluació</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat4_Bloc4_Seccio10" class="nav-link" data-section="Unitat4_Bloc4_Seccio10">10. Recapitulació</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/da2_oa01/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/da2_oa01/unitat-4/" class="horizontal-nav-item">
+                                Unitat 4: Navegació i arquitectura d'aplicacions (RA4)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 4.4: Cas d'ús: Aplicació completa
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
 <!-- SECCIÓ 0: Introducció -->
 <div class="section cas-dus" id="Unitat4_Bloc4_Seccio0">
   <h2 id="Unitat4_Bloc4_Seccio0">Introducció</h2>
 
   <!-- MULTIMÈDIA -->
-  {% include multimedia-youtube.html unitat=4 bloc=4 seccio=0 %}
+  <!--
+  ════════════════════════════════════════════════════════════════
+  Component: Enllaços multimèdia YouTube
+  ════════════════════════════════════════════════════════════════
+
+  Paràmetres:
+    - unitat: número de la unitat (1-4)
+    - bloc: número del bloc (1-4)
+    - seccio: número de la secció (1-3)
+
+  Exemple d'ús:
+    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
+
+  El component busca automàticament les URLs corresponents a
+  site.data.multimedia i mostra els botons de vídeo i àudio.
+  ════════════════════════════════════════════════════════════════
+-->
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+<div class="multimedia-resources">
+  <div class="multimedia-header">
+    <i class="bi bi-play-circle-fill"></i>
+    <span>Contingut multimèdia d'aquesta lectura</span>
+  </div>
+
+  <div class="multimedia-buttons">
+    
+    <a href="https://www.youtube.com/watch?v=HYJWQZXbj9c" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Cas d'ús 4.4 · Aplicació completa amb navegació i optimització">
+      <i class="bi bi-youtube"></i>
+      <span>Veure vídeo</span>
+      <i class="bi bi-box-arrow-up-right"></i>
+    </a>
+    
+
+    
+    <a href="https://www.youtube.com/watch?v=ICJFOTyyJ-Q" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Cas d'ús 4.4 · Aplicació completa amb navegació i optimització">
+      <i class="bi bi-mic-fill"></i>
+      <span>Escoltar àudio</span>
+      <i class="bi bi-box-arrow-up-right"></i>
+    </a>
+    
+  </div>
+
+  
+  
+</div>
+  
+
+
 
   <div class="info_box">
     <p>En aquest cas d'ús pràctic, integrareu tots els conceptes treballats al llarg del mòdul per construir una aplicació completa de catàleg d'elements amb Angular. Desenvolupareu "Catàleg Universal", una SPA amb navegació multi-pàgina, arquitectura organitzada, optimitzacions de rendiment aplicades i desplegament a producció.</p>
@@ -127,21 +969,91 @@ bloc_numero: 4
 
   <h3>1.1. Entorn preparat</h3>
 
-  {% include checklist.html elements="Angular CLI instal·lat i funcional|Node.js i npm operatius|VS Code amb extensions d'Angular|Git configurat amb repositori remot" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Angular CLI instal·lat i funcional</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Node.js i npm operatius</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">VS Code amb extensions d'Angular</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Git configurat amb repositori remot</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>1.2. Coneixements previs</h3>
 
-  {% include checklist.html elements="Unitat 1: Entorn de desenvolupament preparat|Unitat 2: Components, directives i formularis|Unitat 3: Serveis, HTTP i integració amb APIs|Lectures 4.1, 4.2 i 4.3: Rutes, arquitectura i optimització" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Unitat 1: Entorn de desenvolupament preparat</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Unitat 2: Components, directives i formularis</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Unitat 3: Serveis, HTTP i integració amb APIs</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Lectures 4.1, 4.2 i 4.3: Rutes, arquitectura i optimització</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>1.3. Verificació inicial</h3>
 
   <p>Executeu les següents comandes per assegurar-vos que el vostre entorn està llest:</p>
 
-{% capture code_001 %}ng version
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng version
 git --version
 node --version
-npm --version{% endcapture %}
-{% include code-block.html lang="bash" code=code_001 %}
+npm --version</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Punt d'autocomprovació:</strong> Tots els comandaments han de retornar versions sense errors.</p>
 
@@ -153,19 +1065,53 @@ npm --version{% endcapture %}
 
   <h3>2.1. Estructura de rutes</h3>
 
-{% capture code_002 %}/                       → HomeComponent (llistat complet)
+
+<div class="code-block" data-lang="plaintext" role="region" aria-label="Bloc de codi plaintext">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">PLAINTEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-plaintext">/                       → HomeComponent (llistat complet)
 /search                 → SearchComponent (cerca avançada)
 /item/:id               → DetailComponent (detall amb ID)
 /favorites              → FavoritesModule (lazy loaded, protegit)
   /favorites/list       → FavoritesListComponent
   /favorites/settings   → FavoritesSettingsComponent
 /login                  → LoginComponent (autenticació simulada)
-/404                    → NotFoundComponent{% endcapture %}
-{% include code-block.html lang="plaintext" code=code_002 %}
+/404                    → NotFoundComponent</code></pre>
+  </div>
+</div>
+
 
   <h3>2.2. Arquitectura de components</h3>
 
-{% capture code_003 %}AppComponent (contenidor principal)
+
+<div class="code-block" data-lang="plaintext" role="region" aria-label="Bloc de codi plaintext">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">PLAINTEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-plaintext">AppComponent (contenidor principal)
 ├── HeaderComponent (navegació)
 ├── router-outlet (contingut dinàmic)
 │   ├── HomeComponent
@@ -178,13 +1124,31 @@ npm --version{% endcapture %}
 │   │   ├── FavoritesListComponent
 │   │   └── FavoritesSettingsComponent
 │   └── LoginComponent
-└── FooterComponent{% endcapture %}
-{% include code-block.html lang="plaintext" code=code_003 %}
+└── FooterComponent</code></pre>
+  </div>
+</div>
+
 
   <h3>2.3. Serveis</h3>
 
-{% capture code_004 %}CoreModule
-├── ItemService (gestió d'elements)
+
+<div class="code-block" data-lang="plaintext" role="region" aria-label="Bloc de codi plaintext">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">PLAINTEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-plaintext">CoreModule
+├── ItemService (gestió d&#39;elements)
 ├── AuthService (autenticació simulada)
 ├── StateService (estat global)
 └── FavoriteService (gestió de preferits)
@@ -192,8 +1156,10 @@ npm --version{% endcapture %}
 SharedModule
 ├── LoaderComponent
 ├── ErrorComponent
-└── ItemCardComponent{% endcapture %}
-{% include code-block.html lang="plaintext" code=code_004 %}
+└── ItemCardComponent</code></pre>
+  </div>
+</div>
+
 
 </div>
 
@@ -209,7 +1175,23 @@ SharedModule
 
   <p>Creeu un nou projecte Angular amb routing habilitat i organitzeu l'estructura de carpetes:</p>
 
-{% capture code_005 %}# Crear nou projecte Angular amb routing
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Crear nou projecte Angular amb routing
 ng new cataleg-universal --routing --style=css --skip-git
 cd cataleg-universal
 
@@ -224,18 +1206,57 @@ mkdir -p src/app/features/detail
 mkdir -p src/app/features/login
 
 # Verificar que ng serve arrenca
-ng serve{% endcapture %}
-{% include code-block.html lang="bash" code=code_005 %}
+ng serve</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Checkpoint:</strong></p>
 
-  {% include checklist.html elements="Projecte creat sense errors|Estructura de carpetes organitzada|Servidor arrenca a http://localhost:4200" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Projecte creat sense errors</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Estructura de carpetes organitzada</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Servidor arrenca a http://localhost:4200</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>3.2. Crear components per a cada ruta</h3>
 
   <p>Genereu els components necessaris per a les diferents vistes de l'aplicació:</p>
 
-{% capture code_006 %}# Components principals
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Components principals
 ng generate component features/home --skip-tests
 ng generate component features/search --skip-tests
 ng generate component features/detail --skip-tests
@@ -243,19 +1264,60 @@ ng generate component features/login --skip-tests
 ng generate component shared/components/header --skip-tests
 ng generate component shared/components/footer --skip-tests
 ng generate component shared/components/item-card --skip-tests
-ng generate component shared/components/not-found --skip-tests{% endcapture %}
-{% include code-block.html lang="bash" code=code_006 %}
+ng generate component shared/components/not-found --skip-tests</code></pre>
+  </div>
+</div>
+
 
   <p>Verifiqueu que els components s'han creat correctament:</p>
 
-{% capture code_007 %}# Llistar components creats
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Llistar components creats
 ls -la src/app/features/
-ls -la src/app/shared/components/{% endcapture %}
-{% include code-block.html lang="bash" code=code_007 %}
+ls -la src/app/shared/components/</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Checkpoint:</strong></p>
 
-  {% include checklist.html elements="8 components creats correctament|Fitxers .ts, .html, .css generats per cada component|No hi ha errors de compilació" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">8 components creats correctament</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Fitxers .ts, .html, .css generats per cada component</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">No hi ha errors de compilació</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>3.3. Configurar rutes principals</h3>
 
@@ -263,39 +1325,78 @@ ls -la src/app/shared/components/{% endcapture %}
 
   <p><strong>Fitxer:</strong> <code>src/app/app-routing.module.ts</code></p>
 
-{% capture code_008 %}import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './features/home/home.component';
-import { SearchComponent } from './features/search/search.component';
-import { DetailComponent } from './features/detail/detail.component';
-import { LoginComponent } from './features/login/login.component';
-import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { NgModule } from &#39;@angular/core&#39;;
+import { RouterModule, Routes } from &#39;@angular/router&#39;;
+import { HomeComponent } from &#39;./features/home/home.component&#39;;
+import { SearchComponent } from &#39;./features/search/search.component&#39;;
+import { DetailComponent } from &#39;./features/detail/detail.component&#39;;
+import { LoginComponent } from &#39;./features/login/login.component&#39;;
+import { NotFoundComponent } from &#39;./shared/components/not-found/not-found.component&#39;;
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'search', component: SearchComponent },
-  { path: 'item/:id', component: DetailComponent },
-  { path: 'login', component: LoginComponent },
+  { path: &#39;&#39;, redirectTo: &#39;/home&#39;, pathMatch: &#39;full&#39; },
+  { path: &#39;home&#39;, component: HomeComponent },
+  { path: &#39;search&#39;, component: SearchComponent },
+  { path: &#39;item/:id&#39;, component: DetailComponent },
+  { path: &#39;login&#39;, component: LoginComponent },
   {
-    path: 'favorites',
-    loadChildren: () => import('./features/favorites/favorites.module').then(m => m.FavoritesModule)
+    path: &#39;favorites&#39;,
+    loadChildren: () =&gt; import(&#39;./features/favorites/favorites.module&#39;).then(m =&gt; m.FavoritesModule)
     // Nota: crearem aquest mòdul més endavant
   },
-  { path: '404', component: NotFoundComponent },
-  { path: '**', redirectTo: '/404' }
+  { path: &#39;404&#39;, component: NotFoundComponent },
+  { path: &#39;**&#39;, redirectTo: &#39;/404&#39; }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }{% endcapture %}
-{% include code-block.html lang="typescript" code=code_008 %}
+export class AppRoutingModule { }</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Checkpoint:</strong></p>
 
-  {% include checklist.html elements="Rutes definides correctament|Redirect a /home funciona|Ruta 404 configurada per paths no existents" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Rutes definides correctament</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Redirect a /home funciona</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Ruta 404 configurada per paths no existents</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>3.4. Implementar navegació al header</h3>
 
@@ -303,25 +1404,59 @@ export class AppRoutingModule { }{% endcapture %}
 
   <p><strong>Fitxer:</strong> <code>src/app/shared/components/header/header.component.html</code></p>
 
-{% capture code_009 %}<header class="header">
-  <div class="container">
-    <h1 class="logo">
-      <a routerLink="/home">Catàleg Universal</a>
-    </h1>
 
-    <nav class="nav">
-      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">Inici</a>
-      <a routerLink="/search" routerLinkActive="active" class="nav-link">Cerca</a>
-      <a routerLink="/favorites" routerLinkActive="active" class="nav-link">Preferits</a>
-      <a routerLink="/login" routerLinkActive="active" class="nav-link">Login</a>
-    </nav>
+<div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">HTML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
   </div>
-</header>{% endcapture %}
-{% include code-block.html lang="html" code=code_009 %}
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;header class=&quot;header&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;h1 class=&quot;logo&quot;&gt;
+      &lt;a routerLink=&quot;/home&quot;&gt;Catàleg Universal&lt;/a&gt;
+    &lt;/h1&gt;
+
+    &lt;nav class=&quot;nav&quot;&gt;
+      &lt;a routerLink=&quot;/home&quot; routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot; class=&quot;nav-link&quot;&gt;Inici&lt;/a&gt;
+      &lt;a routerLink=&quot;/search&quot; routerLinkActive=&quot;active&quot; class=&quot;nav-link&quot;&gt;Cerca&lt;/a&gt;
+      &lt;a routerLink=&quot;/favorites&quot; routerLinkActive=&quot;active&quot; class=&quot;nav-link&quot;&gt;Preferits&lt;/a&gt;
+      &lt;a routerLink=&quot;/login&quot; routerLinkActive=&quot;active&quot; class=&quot;nav-link&quot;&gt;Login&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/div&gt;
+&lt;/header&gt;</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Fitxer:</strong> <code>src/app/shared/components/header/header.component.css</code></p>
 
-{% capture code_010 %}.header {
+
+<div class="code-block" data-lang="css" role="region" aria-label="Bloc de codi css">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSS</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-css">.header {
   background: #2196F3;
   color: white;
   padding: 1rem 0;
@@ -364,37 +1499,101 @@ export class AppRoutingModule { }{% endcapture %}
 .nav-link.active {
   background-color: rgba(255,255,255,0.2);
   font-weight: bold;
-}{% endcapture %}
-{% include code-block.html lang="css" code=code_010 %}
+}</code></pre>
+  </div>
+</div>
+
 
   <p>Actualitzeu el component arrel per incloure la navegació:</p>
 
   <p><strong>Fitxer:</strong> <code>src/app/app.component.html</code></p>
 
-{% capture code_011 %}<app-header></app-header>
 
-<main class="main-content">
-  <router-outlet></router-outlet>
-</main>
+<div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">HTML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
 
-<app-footer></app-footer>{% endcapture %}
-{% include code-block.html lang="html" code=code_011 %}
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;app-header&gt;&lt;/app-header&gt;
+
+&lt;main class=&quot;main-content&quot;&gt;
+  &lt;router-outlet&gt;&lt;/router-outlet&gt;
+&lt;/main&gt;
+
+&lt;app-footer&gt;&lt;/app-footer&gt;</code></pre>
+  </div>
+</div>
+
 
   <p>Verifiqueu la navegació:</p>
 
-{% capture code_012 %}# Arrencar aplicació
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Arrencar aplicació
 ng serve
 
 # Provar al navegador:
 # - Clicar cada enllaç del menú
 # - Verificar que la ruta activa es destaca
 # - Provar URL directa: http://localhost:4200/search
-# - Verificar que 404 funciona: http://localhost:4200/invalid{% endcapture %}
-{% include code-block.html lang="bash" code=code_012 %}
+# - Verificar que 404 funciona: http://localhost:4200/invalid</code></pre>
+  </div>
+</div>
+
 
   <h3>Checkpoint</h3>
 
-  {% include checklist.html elements="Navegació funciona entre totes les rutes|Enllaç actiu es destaca visualment|Ruta 404 captura paths no existents|No hi ha errors a la consola" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Navegació funciona entre totes les rutes</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Enllaç actiu es destaca visualment</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Ruta 404 captura paths no existents</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">No hi ha errors a la consola</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>Resolució de problemes</h3>
 
@@ -446,52 +1645,104 @@ ng serve
 
   <p><strong>Fitxer:</strong> <code>src/app/core/models/item.model.ts</code></p>
 
-{% capture code_013 %}export interface Item {
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">export interface Item {
   id: number;
   title: string;
   body: string;
   userId: number;
-}{% endcapture %}
-{% include code-block.html lang="typescript" code=code_013 %}
+}</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Fitxer:</strong> <code>src/app/core/services/item.service.ts</code></p>
 
-{% capture code_014 %}import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Item } from '../models/item.model';
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Injectable } from &#39;@angular/core&#39;;
+import { HttpClient } from &#39;@angular/common/http&#39;;
+import { Observable } from &#39;rxjs&#39;;
+import { Item } from &#39;../models/item.model&#39;;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: &#39;root&#39;
 })
 export class ItemService {
-  private apiUrl = 'https://jsonplaceholder.typicode.com/posts';
+  private apiUrl = &#39;https://jsonplaceholder.typicode.com/posts&#39;;
 
   constructor(private http: HttpClient) {}
 
-  getAllItems(): Observable<Item[]> {
-    return this.http.get<Item[]>(this.apiUrl);
+  getAllItems(): Observable&lt;Item[]&gt; {
+    return this.http.get&lt;Item[]&gt;(this.apiUrl);
   }
 
-  getItemById(id: number): Observable<Item> {
-    return this.http.get<Item>(`${this.apiUrl}/${id}`);
+  getItemById(id: number): Observable&lt;Item&gt; {
+    return this.http.get&lt;Item&gt;(`${this.apiUrl}/${id}`);
   }
 
   searchItems(query: string, items: Item[]): Item[] {
     const lowerQuery = query.toLowerCase();
-    return items.filter(item =>
+    return items.filter(item =&gt;
       item.title.toLowerCase().includes(lowerQuery) ||
       item.body.toLowerCase().includes(lowerQuery)
     );
   }
-}{% endcapture %}
-{% include code-block.html lang="typescript" code=code_014 %}
+}</code></pre>
+  </div>
+</div>
+
 
   <p>Importeu HttpClientModule al mòdul principal:</p>
 
   <p><strong>Fitxer:</strong> <code>src/app/app.module.ts</code></p>
 
-{% capture code_015 %}import { HttpClientModule } from '@angular/common/http';
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { HttpClientModule } from &#39;@angular/common/http&#39;;
 
 @NgModule({
   imports: [
@@ -501,12 +1752,35 @@ export class ItemService {
   ],
   // ...
 })
-export class AppModule { }{% endcapture %}
-{% include code-block.html lang="typescript" code=code_015 %}
+export class AppModule { }</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Checkpoint:</strong></p>
 
-  {% include checklist.html elements="Model Item definit amb interfície|ItemService creat amb mètodes HTTP|HttpClientModule importat correctament" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Model Item definit amb interfície</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">ItemService creat amb mètodes HTTP</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">HttpClientModule importat correctament</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>4.2. Implementar component de llistat</h3>
 
@@ -514,20 +1788,36 @@ export class AppModule { }{% endcapture %}
 
   <p><strong>Fitxer:</strong> <code>src/app/features/home/home.component.ts</code></p>
 
-{% capture code_016 %}import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ItemService } from '../../core/services/item.service';
-import { Item } from '../../core/models/item.model';
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, OnInit } from &#39;@angular/core&#39;;
+import { Router } from &#39;@angular/router&#39;;
+import { ItemService } from &#39;../../core/services/item.service&#39;;
+import { Item } from &#39;../../core/models/item.model&#39;;
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: &#39;app-home&#39;,
+  templateUrl: &#39;./home.component.html&#39;,
+  styleUrls: [&#39;./home.component.css&#39;]
 })
 export class HomeComponent implements OnInit {
   items: Item[] = [];
   loading = true;
-  error = '';
+  error = &#39;&#39;;
 
   constructor(
     private itemService: ItemService,
@@ -541,12 +1831,12 @@ export class HomeComponent implements OnInit {
   loadItems(): void {
     this.loading = true;
     this.itemService.getAllItems().subscribe({
-      next: (data) => {
+      next: (data) =&gt; {
         this.items = data;
         this.loading = false;
       },
-      error: (err) => {
-        this.error = 'Error carregant elements';
+      error: (err) =&gt; {
+        this.error = &#39;Error carregant elements&#39;;
         this.loading = false;
         console.error(err);
       }
@@ -554,40 +1844,76 @@ export class HomeComponent implements OnInit {
   }
 
   viewDetail(id: number): void {
-    this.router.navigate(['/item', id]);
+    this.router.navigate([&#39;/item&#39;, id]);
   }
 
   trackByItemId(index: number, item: Item): number {
     return item.id;
   }
-}{% endcapture %}
-{% include code-block.html lang="typescript" code=code_016 %}
+}</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Fitxer:</strong> <code>src/app/features/home/home.component.html</code></p>
 
-{% capture code_017 %}{% raw %}<div class="container">
-  <h2>Catàleg complet ({{ items.length }} elements)</h2>
 
-  <!-- Loading -->
-  <div *ngIf="loading" class="loading">Carregant elements...</div>
-
-  <!-- Error -->
-  <div *ngIf="error" class="error">{{ error }}</div>
-
-  <!-- Llistat -->
-  <div *ngIf="!loading && !error" class="items-grid">
-    <div *ngFor="let item of items; trackBy: trackByItemId" class="item-card" (click)="viewDetail(item.id)">
-      <h3>{{ item.title }}</h3>
-      <p>{{ item.body | slice:0:100 }}...</p>
-      <span class="item-id">ID: {{ item.id }}</span>
+<div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">HTML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
     </div>
   </div>
-</div>{% endraw %}{% endcapture %}
-{% include code-block.html lang="html" code=code_017 %}
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div class=&quot;container&quot;&gt;
+  &lt;h2&gt;Catàleg complet ({{ items.length }} elements)&lt;/h2&gt;
+
+  &lt;!-- Loading --&gt;
+  &lt;div *ngIf=&quot;loading&quot; class=&quot;loading&quot;&gt;Carregant elements...&lt;/div&gt;
+
+  &lt;!-- Error --&gt;
+  &lt;div *ngIf=&quot;error&quot; class=&quot;error&quot;&gt;{{ error }}&lt;/div&gt;
+
+  &lt;!-- Llistat --&gt;
+  &lt;div *ngIf=&quot;!loading &amp;&amp; !error&quot; class=&quot;items-grid&quot;&gt;
+    &lt;div *ngFor=&quot;let item of items; trackBy: trackByItemId&quot; class=&quot;item-card&quot; (click)=&quot;viewDetail(item.id)&quot;&gt;
+      &lt;h3&gt;{{ item.title }}&lt;/h3&gt;
+      &lt;p&gt;{{ item.body | slice:0:100 }}...&lt;/p&gt;
+      &lt;span class=&quot;item-id&quot;&gt;ID: {{ item.id }}&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Fitxer:</strong> <code>src/app/features/home/home.component.css</code></p>
 
-{% capture code_018 %}.container {
+
+<div class="code-block" data-lang="css" role="region" aria-label="Bloc de codi css">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSS</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-css">.container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
@@ -642,12 +1968,40 @@ export class HomeComponent implements OnInit {
   border-radius: 12px;
   font-size: 0.875rem;
   margin-top: 1rem;
-}{% endcapture %}
-{% include code-block.html lang="css" code=code_018 %}
+}</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Checkpoint:</strong></p>
 
-  {% include checklist.html elements="Llistat mostra 100 elements de JSONPlaceholder|Clicar una targeta navega a /item/:id|Loading apareix mentre carrega|trackBy implementat per rendiment" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Llistat mostra 100 elements de JSONPlaceholder</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Clicar una targeta navega a /item/:id</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Loading apareix mentre carrega</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">trackBy implementat per rendiment</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>4.3. Implementar component de detall</h3>
 
@@ -655,20 +2009,36 @@ export class HomeComponent implements OnInit {
 
   <p><strong>Fitxer:</strong> <code>src/app/features/detail/detail.component.ts</code></p>
 
-{% capture code_019 %}import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ItemService } from '../../core/services/item.service';
-import { Item } from '../../core/models/item.model';
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, OnInit } from &#39;@angular/core&#39;;
+import { ActivatedRoute, Router } from &#39;@angular/router&#39;;
+import { ItemService } from &#39;../../core/services/item.service&#39;;
+import { Item } from &#39;../../core/models/item.model&#39;;
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.css']
+  selector: &#39;app-detail&#39;,
+  templateUrl: &#39;./detail.component.html&#39;,
+  styleUrls: [&#39;./detail.component.css&#39;]
 })
 export class DetailComponent implements OnInit {
   item: Item | null = null;
   loading = true;
-  error = '';
+  error = &#39;&#39;;
   itemId: number = 0;
 
   constructor(
@@ -679,8 +2049,8 @@ export class DetailComponent implements OnInit {
 
   ngOnInit(): void {
     // Capturar paràmetre ID de la ruta
-    this.route.params.subscribe(params => {
-      this.itemId = +params['id'];  // Convertir a number
+    this.route.params.subscribe(params =&gt; {
+      this.itemId = +params[&#39;id&#39;];  // Convertir a number
       this.loadItem(this.itemId);
     });
   }
@@ -688,12 +2058,12 @@ export class DetailComponent implements OnInit {
   loadItem(id: number): void {
     this.loading = true;
     this.itemService.getItemById(id).subscribe({
-      next: (data) => {
+      next: (data) =&gt; {
         this.item = data;
         this.loading = false;
       },
-      error: (err) => {
-        this.error = 'Element no trobat';
+      error: (err) =&gt; {
+        this.error = &#39;Element no trobat&#39;;
         this.loading = false;
         console.error(err);
       }
@@ -701,65 +2071,101 @@ export class DetailComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['/home']);
+    this.router.navigate([&#39;/home&#39;]);
   }
 
   goToNext(): void {
     const nextId = this.itemId + 1;
-    this.router.navigate(['/item', nextId]);
+    this.router.navigate([&#39;/item&#39;, nextId]);
   }
 
   goToPrevious(): void {
-    if (this.itemId > 1) {
+    if (this.itemId &gt; 1) {
       const prevId = this.itemId - 1;
-      this.router.navigate(['/item', prevId]);
+      this.router.navigate([&#39;/item&#39;, prevId]);
     }
   }
-}{% endcapture %}
-{% include code-block.html lang="typescript" code=code_019 %}
+}</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Fitxer:</strong> <code>src/app/features/detail/detail.component.html</code></p>
 
-{% capture code_020 %}{% raw %}<div class="container">
-  <!-- Loading -->
-  <div *ngIf="loading" class="loading">Carregant detall...</div>
 
-  <!-- Error -->
-  <div *ngIf="error" class="error">
-    <p>{{ error }}</p>
-    <button (click)="goBack()" class="btn-primary">Tornar al llistat</button>
-  </div>
-
-  <!-- Detall -->
-  <div *ngIf="item && !loading" class="detail">
-    <div class="detail-header">
-      <button (click)="goBack()" class="btn-back">← Tornar</button>
-      <span class="item-badge">ID: {{ item.id }}</span>
+<div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">HTML</span>
+      
     </div>
-
-    <h1>{{ item.title }}</h1>
-
-    <div class="detail-meta">
-      <span>Usuari ID: {{ item.userId }}</span>
-      <span>Element: {{ item.id }} / 100</span>
-    </div>
-
-    <div class="detail-content">
-      <h3>Descripció completa</h3>
-      <p>{{ item.body }}</p>
-    </div>
-
-    <div class="detail-actions">
-      <button (click)="goToPrevious()" [disabled]="itemId <= 1" class="btn-secondary">← Anterior</button>
-      <button (click)="goToNext()" [disabled]="itemId >= 100" class="btn-secondary">Següent →</button>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
     </div>
   </div>
-</div>{% endraw %}{% endcapture %}
-{% include code-block.html lang="html" code=code_020 %}
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div class=&quot;container&quot;&gt;
+  &lt;!-- Loading --&gt;
+  &lt;div *ngIf=&quot;loading&quot; class=&quot;loading&quot;&gt;Carregant detall...&lt;/div&gt;
+
+  &lt;!-- Error --&gt;
+  &lt;div *ngIf=&quot;error&quot; class=&quot;error&quot;&gt;
+    &lt;p&gt;{{ error }}&lt;/p&gt;
+    &lt;button (click)=&quot;goBack()&quot; class=&quot;btn-primary&quot;&gt;Tornar al llistat&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Detall --&gt;
+  &lt;div *ngIf=&quot;item &amp;&amp; !loading&quot; class=&quot;detail&quot;&gt;
+    &lt;div class=&quot;detail-header&quot;&gt;
+      &lt;button (click)=&quot;goBack()&quot; class=&quot;btn-back&quot;&gt;← Tornar&lt;/button&gt;
+      &lt;span class=&quot;item-badge&quot;&gt;ID: {{ item.id }}&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;h1&gt;{{ item.title }}&lt;/h1&gt;
+
+    &lt;div class=&quot;detail-meta&quot;&gt;
+      &lt;span&gt;Usuari ID: {{ item.userId }}&lt;/span&gt;
+      &lt;span&gt;Element: {{ item.id }} / 100&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;detail-content&quot;&gt;
+      &lt;h3&gt;Descripció completa&lt;/h3&gt;
+      &lt;p&gt;{{ item.body }}&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;detail-actions&quot;&gt;
+      &lt;button (click)=&quot;goToPrevious()&quot; [disabled]=&quot;itemId &lt;= 1&quot; class=&quot;btn-secondary&quot;&gt;← Anterior&lt;/button&gt;
+      &lt;button (click)=&quot;goToNext()&quot; [disabled]=&quot;itemId &gt;= 100&quot; class=&quot;btn-secondary&quot;&gt;Següent →&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Fitxer:</strong> <code>src/app/features/detail/detail.component.css</code></p>
 
-{% capture code_021 %}.container {
+
+<div class="code-block" data-lang="css" role="region" aria-label="Bloc de codi css">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSS</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-css">.container {
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
@@ -871,12 +2277,30 @@ export class DetailComponent implements OnInit {
 
 .btn-primary:hover {
   background: #45a049;
-}{% endcapture %}
-{% include code-block.html lang="css" code=code_021 %}
+}</code></pre>
+  </div>
+</div>
+
 
   <p>Verifiqueu la funcionalitat completa:</p>
 
-{% capture code_022 %}# 1. Navegar a Home
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># 1. Navegar a Home
 http://localhost:4200/home
 
 # 2. Clicar qualsevol element
@@ -885,12 +2309,50 @@ http://localhost:4200/home
 # 3. Verificar que mostra detall correcte
 # 4. Provar botons Anterior/Següent
 # 5. Provar botó Tornar
-# 6. Provar URL directa: http://localhost:4200/item/25{% endcapture %}
-{% include code-block.html lang="bash" code=code_022 %}
+# 6. Provar URL directa: http://localhost:4200/item/25</code></pre>
+  </div>
+</div>
+
 
   <h3>Checkpoint</h3>
 
-  {% include checklist.html elements="Llistat mostra tots els elements de l'API|Clicar element navega a detall amb ID correcte|Component de detall captura paràmetre de ruta|Detall mostra informació completa de l'element|Navegació Anterior/Següent funciona|Botó Tornar retorna al llistat" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Llistat mostra tots els elements de l'API</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Clicar element navega a detall amb ID correcte</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Component de detall captura paràmetre de ruta</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Detall mostra informació completa de l'element</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Navegació Anterior/Següent funciona</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Botó Tornar retorna al llistat</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>Resolució de problemes</h3>
 
@@ -942,30 +2404,64 @@ http://localhost:4200/home
 
   <p><strong>Fitxer:</strong> <code>src/app/core/models/user.model.ts</code></p>
 
-{% capture code_023 %}export interface User {
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">export interface User {
   id: number;
   username: string;
   email: string;
-}{% endcapture %}
-{% include code-block.html lang="typescript" code=code_023 %}
+}</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Fitxer:</strong> <code>src/app/core/services/auth.service.ts</code></p>
 
-{% capture code_024 %}import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from '../models/user.model';
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Injectable } from &#39;@angular/core&#39;;
+import { BehaviorSubject, Observable } from &#39;rxjs&#39;;
+import { User } from &#39;../models/user.model&#39;;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: &#39;root&#39;
 })
 export class AuthService {
-  private currentUserSubject: BehaviorSubject<User | null>;
-  public currentUser: Observable<User | null>;
+  private currentUserSubject: BehaviorSubject&lt;User | null&gt;;
+  public currentUser: Observable&lt;User | null&gt;;
 
   constructor() {
     // Recuperar usuari de localStorage si existeix
-    const storedUser = localStorage.getItem('currentUser');
-    this.currentUserSubject = new BehaviorSubject<User | null>(
+    const storedUser = localStorage.getItem(&#39;currentUser&#39;);
+    this.currentUserSubject = new BehaviorSubject&lt;User | null&gt;(
       storedUser ? JSON.parse(storedUser) : null
     );
     this.currentUser = this.currentUserSubject.asObservable();
@@ -975,18 +2471,18 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
-  login(username: string, password: string): Observable<boolean> {
-    return new Observable(observer => {
-      // Simulació d'autenticació
-      setTimeout(() => {
-        if (username && password.length >= 4) {
+  login(username: string, password: string): Observable&lt;boolean&gt; {
+    return new Observable(observer =&gt; {
+      // Simulació d&#39;autenticació
+      setTimeout(() =&gt; {
+        if (username &amp;&amp; password.length &gt;= 4) {
           const user: User = {
             id: 1,
             username: username,
             email: `${username}@example.com`
           };
 
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          localStorage.setItem(&#39;currentUser&#39;, JSON.stringify(user));
           this.currentUserSubject.next(user);
           observer.next(true);
           observer.complete();
@@ -999,19 +2495,47 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem(&#39;currentUser&#39;);
     this.currentUserSubject.next(null);
   }
 
   isAuthenticated(): boolean {
     return this.currentUserValue !== null;
   }
-}{% endcapture %}
-{% include code-block.html lang="typescript" code=code_024 %}
+}</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Checkpoint:</strong></p>
 
-  {% include checklist.html elements="AuthService creat amb estat reactiu|Login simulat amb validació bàsica|Logout neteja estat correctament|isAuthenticated retorna estat correcte" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">AuthService creat amb estat reactiu</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Login simulat amb validació bàsica</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Logout neteja estat correctament</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">isAuthenticated retorna estat correcte</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>5.2. Implementar component de login</h3>
 
@@ -1019,20 +2543,36 @@ export class AuthService {
 
   <p><strong>Fitxer:</strong> <code>src/app/features/login/login.component.ts</code></p>
 
-{% capture code_025 %}import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../../core/services/auth.service';
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component } from &#39;@angular/core&#39;;
+import { Router } from &#39;@angular/router&#39;;
+import { AuthService } from &#39;../../core/services/auth.service&#39;;
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: &#39;app-login&#39;,
+  templateUrl: &#39;./login.component.html&#39;,
+  styleUrls: [&#39;./login.component.css&#39;]
 })
 export class LoginComponent {
-  username = '';
-  password = '';
+  username = &#39;&#39;;
+  password = &#39;&#39;;
   loading = false;
-  error = '';
+  error = &#39;&#39;;
 
   constructor(
     private authService: AuthService,
@@ -1040,84 +2580,120 @@ export class LoginComponent {
   ) {
     // Si ja està autenticat, redirigir a home
     if (this.authService.isAuthenticated()) {
-      this.router.navigate(['/home']);
+      this.router.navigate([&#39;/home&#39;]);
     }
   }
 
   onSubmit(): void {
-    this.error = '';
+    this.error = &#39;&#39;;
 
     if (!this.username || !this.password) {
-      this.error = 'Usuari i contrasenya són obligatoris';
+      this.error = &#39;Usuari i contrasenya són obligatoris&#39;;
       return;
     }
 
-    if (this.password.length < 4) {
-      this.error = 'La contrasenya ha de tenir almenys 4 caràcters';
+    if (this.password.length &lt; 4) {
+      this.error = &#39;La contrasenya ha de tenir almenys 4 caràcters&#39;;
       return;
     }
 
     this.loading = true;
 
     this.authService.login(this.username, this.password).subscribe({
-      next: (success) => {
+      next: (success) =&gt; {
         this.loading = false;
         if (success) {
-          this.router.navigate(['/favorites']);
+          this.router.navigate([&#39;/favorites&#39;]);
         } else {
-          this.error = 'Credencials incorrectes';
+          this.error = &#39;Credencials incorrectes&#39;;
         }
       },
-      error: (err) => {
+      error: (err) =&gt; {
         this.loading = false;
-        this.error = 'Error durant el login';
+        this.error = &#39;Error durant el login&#39;;
         console.error(err);
       }
     });
   }
-}{% endcapture %}
-{% include code-block.html lang="typescript" code=code_025 %}
+}</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Fitxer:</strong> <code>src/app/features/login/login.component.html</code></p>
 
-{% capture code_026 %}{% raw %}<div class="container">
-  <div class="login-box">
-    <h2>Iniciar sessió</h2>
-    <p class="subtitle">Accedeix a la teva zona de preferits</p>
 
-    <form (ngSubmit)="onSubmit()" class="login-form">
-      <!-- Usuari -->
-      <div class="form-group">
-        <label for="username">Usuari:</label>
-        <input type="text" id="username" [(ngModel)]="username" name="username" placeholder="Introdueix el teu usuari" [disabled]="loading" class="form-input">
-      </div>
-
-      <!-- Contrasenya -->
-      <div class="form-group">
-        <label for="password">Contrasenya:</label>
-        <input type="password" id="password" [(ngModel)]="password" name="password" placeholder="Mínim 4 caràcters" [disabled]="loading" class="form-input">
-      </div>
-
-      <!-- Error -->
-      <div *ngIf="error" class="error-message">{{ error }}</div>
-
-      <!-- Submit -->
-      <button type="submit" [disabled]="loading" class="btn-login">
-        <span *ngIf="!loading">Entrar</span>
-        <span *ngIf="loading">Autenticant...</span>
-      </button>
-    </form>
-
-    <div class="hint">
-      <strong>Hint:</strong> Qualsevol usuari i contrasenya ≥4 caràcters funciona
+<div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">HTML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
     </div>
   </div>
-</div>{% endraw %}{% endcapture %}
-{% include code-block.html lang="html" code=code_026 %}
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;login-box&quot;&gt;
+    &lt;h2&gt;Iniciar sessió&lt;/h2&gt;
+    &lt;p class=&quot;subtitle&quot;&gt;Accedeix a la teva zona de preferits&lt;/p&gt;
+
+    &lt;form (ngSubmit)=&quot;onSubmit()&quot; class=&quot;login-form&quot;&gt;
+      &lt;!-- Usuari --&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;username&quot;&gt;Usuari:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;username&quot; [(ngModel)]=&quot;username&quot; name=&quot;username&quot; placeholder=&quot;Introdueix el teu usuari&quot; [disabled]=&quot;loading&quot; class=&quot;form-input&quot;&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Contrasenya --&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;password&quot;&gt;Contrasenya:&lt;/label&gt;
+        &lt;input type=&quot;password&quot; id=&quot;password&quot; [(ngModel)]=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;Mínim 4 caràcters&quot; [disabled]=&quot;loading&quot; class=&quot;form-input&quot;&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Error --&gt;
+      &lt;div *ngIf=&quot;error&quot; class=&quot;error-message&quot;&gt;{{ error }}&lt;/div&gt;
+
+      &lt;!-- Submit --&gt;
+      &lt;button type=&quot;submit&quot; [disabled]=&quot;loading&quot; class=&quot;btn-login&quot;&gt;
+        &lt;span *ngIf=&quot;!loading&quot;&gt;Entrar&lt;/span&gt;
+        &lt;span *ngIf=&quot;loading&quot;&gt;Autenticant...&lt;/span&gt;
+      &lt;/button&gt;
+    &lt;/form&gt;
+
+    &lt;div class=&quot;hint&quot;&gt;
+      &lt;strong&gt;Hint:&lt;/strong&gt; Qualsevol usuari i contrasenya ≥4 caràcters funciona
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Fitxer:</strong> <code>src/app/features/login/login.component.css</code></p>
 
-{% capture code_027 %}.container {
+
+<div class="code-block" data-lang="css" role="region" aria-label="Bloc de codi css">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSS</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-css">.container {
   max-width: 400px;
   margin: 4rem auto;
   padding: 2rem;
@@ -1212,14 +2788,32 @@ export class LoginComponent {
   border-radius: 4px;
   font-size: 0.875rem;
   text-align: center;
-}{% endcapture %}
-{% include code-block.html lang="css" code=code_027 %}
+}</code></pre>
+  </div>
+</div>
+
 
   <p>Importeu FormsModule al mòdul principal:</p>
 
   <p><strong>Fitxer:</strong> <code>src/app/app.module.ts</code></p>
 
-{% capture code_028 %}import { FormsModule } from '@angular/forms';
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { FormsModule } from &#39;@angular/forms&#39;;
 
 @NgModule({
   imports: [
@@ -1228,29 +2822,91 @@ export class LoginComponent {
   ],
   // ...
 })
-export class AppModule { }{% endcapture %}
-{% include code-block.html lang="typescript" code=code_028 %}
+export class AppModule { }</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Checkpoint:</strong></p>
 
-  {% include checklist.html elements="Login mostra formulari correctament|Validacions funcionen (usuari i contrasenya)|Login simulat funciona amb credencials vàlides|Redirigeix a /favorites després de login" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Login mostra formulari correctament</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Validacions funcionen (usuari i contrasenya)</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Login simulat funciona amb credencials vàlides</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Redirigeix a /favorites després de login</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>5.3. Crear guàrdia d'autenticació</h3>
 
   <p>Genereu i implementeu la guàrdia que protegirà les rutes privades:</p>
 
-{% capture code_029 %}# Generar guàrdia
-ng generate guard core/guards/auth --skip-tests{% endcapture %}
-{% include code-block.html lang="bash" code=code_029 %}
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Generar guàrdia
+ng generate guard core/guards/auth --skip-tests</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Fitxer:</strong> <code>src/app/core/guards/auth.guard.ts</code></p>
 
-{% capture code_030 %}import { Injectable } from '@angular/core';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Injectable } from &#39;@angular/core&#39;;
+import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from &#39;@angular/router&#39;;
+import { AuthService } from &#39;../services/auth.service&#39;;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: &#39;root&#39;
 })
 export class AuthGuard implements CanActivate {
 
@@ -1271,17 +2927,45 @@ export class AuthGuard implements CanActivate {
     }
 
     // No autenticat, redirigir a login
-    this.router.navigate(['/login'], {
+    this.router.navigate([&#39;/login&#39;], {
       queryParams: { returnUrl: state.url }
     });
     return false;
   }
-}{% endcapture %}
-{% include code-block.html lang="typescript" code=code_030 %}
+}</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Checkpoint:</strong></p>
 
-  {% include checklist.html elements="AuthGuard creat correctament|Verifica estat d'autenticació|Redirigeix a /login si no autenticat|Guarda returnUrl per tornar després" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">AuthGuard creat correctament</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Verifica estat d'autenticació</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Redirigeix a /login si no autenticat</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Guarda returnUrl per tornar després</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>5.4. Actualitzar header amb estat d'usuari</h3>
 
@@ -1289,15 +2973,31 @@ export class AuthGuard implements CanActivate {
 
   <p><strong>Fitxer:</strong> <code>src/app/shared/components/header/header.component.ts</code></p>
 
-{% capture code_031 %}import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../../../core/services/auth.service';
-import { User } from '../../../core/models/user.model';
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, OnInit } from &#39;@angular/core&#39;;
+import { Router } from &#39;@angular/router&#39;;
+import { AuthService } from &#39;../../../core/services/auth.service&#39;;
+import { User } from &#39;../../../core/models/user.model&#39;;
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: &#39;app-header&#39;,
+  templateUrl: &#39;./header.component.html&#39;,
+  styleUrls: [&#39;./header.component.css&#39;]
 })
 export class HeaderComponent implements OnInit {
   currentUser: User | null = null;
@@ -1308,51 +3008,87 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService.currentUser.subscribe(user => {
+    this.authService.currentUser.subscribe(user =&gt; {
       this.currentUser = user;
     });
   }
 
   logout(): void {
     this.authService.logout();
-    this.router.navigate(['/login']);
+    this.router.navigate([&#39;/login&#39;]);
   }
-}{% endcapture %}
-{% include code-block.html lang="typescript" code=code_031 %}
+}</code></pre>
+  </div>
+</div>
+
 
   <p>Actualitzeu el template del header:</p>
 
   <p><strong>Fitxer:</strong> <code>src/app/shared/components/header/header.component.html</code></p>
 
-{% capture code_032 %}{% raw %}<header class="header">
-  <div class="container">
-    <h1 class="logo">
-      <a routerLink="/home">Catàleg Universal</a>
-    </h1>
 
-    <nav class="nav">
-      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">Inici</a>
-      <a routerLink="/search" routerLinkActive="active" class="nav-link">Cerca</a>
-      <a routerLink="/favorites" routerLinkActive="active" class="nav-link">Preferits</a>
-
-      <!-- Mostra Login si NO està autenticat -->
-      <a *ngIf="!currentUser" routerLink="/login" routerLinkActive="active" class="nav-link">Login</a>
-
-      <!-- Mostra usuari i Logout si està autenticat -->
-      <div *ngIf="currentUser" class="user-menu">
-        <span class="username">{{ currentUser.username }}</span>
-        <button (click)="logout()" class="btn-logout">Sortir</button>
-      </div>
-    </nav>
+<div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">HTML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
   </div>
-</header>{% endraw %}{% endcapture %}
-{% include code-block.html lang="html" code=code_032 %}
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;header class=&quot;header&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;h1 class=&quot;logo&quot;&gt;
+      &lt;a routerLink=&quot;/home&quot;&gt;Catàleg Universal&lt;/a&gt;
+    &lt;/h1&gt;
+
+    &lt;nav class=&quot;nav&quot;&gt;
+      &lt;a routerLink=&quot;/home&quot; routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot; class=&quot;nav-link&quot;&gt;Inici&lt;/a&gt;
+      &lt;a routerLink=&quot;/search&quot; routerLinkActive=&quot;active&quot; class=&quot;nav-link&quot;&gt;Cerca&lt;/a&gt;
+      &lt;a routerLink=&quot;/favorites&quot; routerLinkActive=&quot;active&quot; class=&quot;nav-link&quot;&gt;Preferits&lt;/a&gt;
+
+      &lt;!-- Mostra Login si NO està autenticat --&gt;
+      &lt;a *ngIf=&quot;!currentUser&quot; routerLink=&quot;/login&quot; routerLinkActive=&quot;active&quot; class=&quot;nav-link&quot;&gt;Login&lt;/a&gt;
+
+      &lt;!-- Mostra usuari i Logout si està autenticat --&gt;
+      &lt;div *ngIf=&quot;currentUser&quot; class=&quot;user-menu&quot;&gt;
+        &lt;span class=&quot;username&quot;&gt;{{ currentUser.username }}&lt;/span&gt;
+        &lt;button (click)=&quot;logout()&quot; class=&quot;btn-logout&quot;&gt;Sortir&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/nav&gt;
+  &lt;/div&gt;
+&lt;/header&gt;</code></pre>
+  </div>
+</div>
+
 
   <p>Afegiu els estils per al menú d'usuari:</p>
 
   <p><strong>Fitxer:</strong> <code>src/app/shared/components/header/header.component.css</code></p>
 
-{% capture code_033 %}/* ... estils anteriors ... */
+
+<div class="code-block" data-lang="css" role="region" aria-label="Bloc de codi css">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSS</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-css">/* ... estils anteriors ... */
 
 .user-menu {
   display: flex;
@@ -1377,12 +3113,45 @@ export class HeaderComponent implements OnInit {
 
 .btn-logout:hover {
   background: rgba(255,255,255,0.3);
-}{% endcapture %}
-{% include code-block.html lang="css" code=code_033 %}
+}</code></pre>
+  </div>
+</div>
+
 
   <h3>Checkpoint</h3>
 
-  {% include checklist.html elements="AuthService gestiona estat d'autenticació|Login funciona amb credencials simulades|Header mostra nom d'usuari quan està autenticat|Botó Logout funciona correctament|AuthGuard protegeix rutes (aplicarem al següent bloc)" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">AuthService gestiona estat d'autenticació</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Login funciona amb credencials simulades</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Header mostra nom d'usuari quan està autenticat</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Botó Logout funciona correctament</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">AuthGuard protegeix rutes (aplicarem al següent bloc)</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>Resolució de problemes</h3>
 
@@ -1432,45 +3201,115 @@ export class HeaderComponent implements OnInit {
 
   <p>Genereu un mòdul funcional amb el seu propi sistema de rutes:</p>
 
-{% capture code_034 %}# Generar mòdul amb routing
-ng generate module features/favorites --routing{% endcapture %}
-{% include code-block.html lang="bash" code=code_034 %}
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Generar mòdul amb routing
+ng generate module features/favorites --routing</code></pre>
+  </div>
+</div>
+
 
   <p>Creeu els components del mòdul:</p>
 
-{% capture code_035 %}ng generate component features/favorites/favorites-list --skip-tests
-ng generate component features/favorites/favorites-settings --skip-tests{% endcapture %}
-{% include code-block.html lang="bash" code=code_035 %}
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng generate component features/favorites/favorites-list --skip-tests
+ng generate component features/favorites/favorites-settings --skip-tests</code></pre>
+  </div>
+</div>
+
 
   <p>Configureu les rutes internes del mòdul:</p>
 
   <p><strong>Fitxer:</strong> <code>src/app/features/favorites/favorites-routing.module.ts</code></p>
 
-{% capture code_036 %}import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { FavoritesListComponent } from './favorites-list/favorites-list.component';
-import { FavoritesSettingsComponent } from './favorites-settings/favorites-settings.component';
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { NgModule } from &#39;@angular/core&#39;;
+import { RouterModule, Routes } from &#39;@angular/router&#39;;
+import { FavoritesListComponent } from &#39;./favorites-list/favorites-list.component&#39;;
+import { FavoritesSettingsComponent } from &#39;./favorites-settings/favorites-settings.component&#39;;
 
 const routes: Routes = [
-  { path: '', redirectTo: 'list', pathMatch: 'full' },
-  { path: 'list', component: FavoritesListComponent },
-  { path: 'settings', component: FavoritesSettingsComponent }
+  { path: &#39;&#39;, redirectTo: &#39;list&#39;, pathMatch: &#39;full&#39; },
+  { path: &#39;list&#39;, component: FavoritesListComponent },
+  { path: &#39;settings&#39;, component: FavoritesSettingsComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class FavoritesRoutingModule { }{% endcapture %}
-{% include code-block.html lang="typescript" code=code_036 %}
+export class FavoritesRoutingModule { }</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Fitxer:</strong> <code>src/app/features/favorites/favorites.module.ts</code></p>
 
-{% capture code_037 %}import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FavoritesRoutingModule } from './favorites-routing.module';
-import { FavoritesListComponent } from './favorites-list/favorites-list.component';
-import { FavoritesSettingsComponent } from './favorites-settings/favorites-settings.component';
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { NgModule } from &#39;@angular/core&#39;;
+import { CommonModule } from &#39;@angular/common&#39;;
+import { FavoritesRoutingModule } from &#39;./favorites-routing.module&#39;;
+import { FavoritesListComponent } from &#39;./favorites-list/favorites-list.component&#39;;
+import { FavoritesSettingsComponent } from &#39;./favorites-settings/favorites-settings.component&#39;;
 
 @NgModule({
   declarations: [
@@ -1482,12 +3321,35 @@ import { FavoritesSettingsComponent } from './favorites-settings/favorites-setti
     FavoritesRoutingModule
   ]
 })
-export class FavoritesModule { }{% endcapture %}
-{% include code-block.html lang="typescript" code=code_037 %}
+export class FavoritesModule { }</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Checkpoint:</strong></p>
 
-  {% include checklist.html elements="FavoritesModule creat amb routing propi|Components del mòdul generats|Rutes internes configurades (list, settings)" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">FavoritesModule creat amb routing propi</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Components del mòdul generats</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Rutes internes configurades (list, settings)</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>6.2. Implementar components de preferits</h3>
 
@@ -1495,40 +3357,74 @@ export class FavoritesModule { }{% endcapture %}
 
   <p><strong>Fitxer:</strong> <code>src/app/features/favorites/favorites-list/favorites-list.component.html</code></p>
 
-{% capture code_038 %}{% raw %}<div class="favorites-container">
-  <div class="favorites-header">
-    <h2>Els meus preferits</h2>
-    <a routerLink="/favorites/settings" class="btn-settings">⚙️ Configuració</a>
-  </div>
 
-  <div class="favorites-content">
-    <div class="welcome-message">
-      <h3>Zona de preferits</h3>
-      <p>Aquesta és una zona protegida que només els usuaris autenticats poden veure.</p>
-      <p>Aquí podríeu gestionar els vostres elements favorits, crear llistes personalitzades, etc.</p>
+<div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">HTML</span>
+      
     </div>
-
-    <div class="feature-list">
-      <div class="feature-card">
-        <h4>📌 Guardar preferits</h4>
-        <p>Marca els elements que més t'agradin per trobar-los fàcilment</p>
-      </div>
-      <div class="feature-card">
-        <h4>📝 Crear llistes</h4>
-        <p>Organitza els teus preferits en col·leccions temàtiques</p>
-      </div>
-      <div class="feature-card">
-        <h4>🔔 Notificacions</h4>
-        <p>Rep alertes quan hi hagi novetats als teus preferits</p>
-      </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
     </div>
   </div>
-</div>{% endraw %}{% endcapture %}
-{% include code-block.html lang="html" code=code_038 %}
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div class=&quot;favorites-container&quot;&gt;
+  &lt;div class=&quot;favorites-header&quot;&gt;
+    &lt;h2&gt;Els meus preferits&lt;/h2&gt;
+    &lt;a routerLink=&quot;/favorites/settings&quot; class=&quot;btn-settings&quot;&gt;⚙️ Configuració&lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;favorites-content&quot;&gt;
+    &lt;div class=&quot;welcome-message&quot;&gt;
+      &lt;h3&gt;Zona de preferits&lt;/h3&gt;
+      &lt;p&gt;Aquesta és una zona protegida que només els usuaris autenticats poden veure.&lt;/p&gt;
+      &lt;p&gt;Aquí podríeu gestionar els vostres elements favorits, crear llistes personalitzades, etc.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;feature-list&quot;&gt;
+      &lt;div class=&quot;feature-card&quot;&gt;
+        &lt;h4&gt;📌 Guardar preferits&lt;/h4&gt;
+        &lt;p&gt;Marca els elements que més t&#39;agradin per trobar-los fàcilment&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;feature-card&quot;&gt;
+        &lt;h4&gt;📝 Crear llistes&lt;/h4&gt;
+        &lt;p&gt;Organitza els teus preferits en col·leccions temàtiques&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;feature-card&quot;&gt;
+        &lt;h4&gt;🔔 Notificacions&lt;/h4&gt;
+        &lt;p&gt;Rep alertes quan hi hagi novetats als teus preferits&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Fitxer:</strong> <code>src/app/features/favorites/favorites-list/favorites-list.component.css</code></p>
 
-{% capture code_039 %}.favorites-container {
+
+<div class="code-block" data-lang="css" role="region" aria-label="Bloc de codi css">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSS</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-css">.favorites-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
@@ -1613,53 +3509,89 @@ export class FavoritesModule { }{% endcapture %}
   margin: 0;
   color: #666;
   line-height: 1.5;
-}{% endcapture %}
-{% include code-block.html lang="css" code=code_039 %}
+}</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Fitxer:</strong> <code>src/app/features/favorites/favorites-settings/favorites-settings.component.html</code></p>
 
-{% capture code_040 %}{% raw %}<div class="settings-container">
-  <div class="settings-header">
-    <h2>Configuració de preferits</h2>
-    <a routerLink="/favorites/list" class="btn-back">← Tornar a preferits</a>
+
+<div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">HTML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
   </div>
 
-  <div class="settings-content">
-    <div class="settings-section">
-      <h3>Opcions de visualització</h3>
-      <label class="checkbox-label">
-        <input type="checkbox" checked>
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div class=&quot;settings-container&quot;&gt;
+  &lt;div class=&quot;settings-header&quot;&gt;
+    &lt;h2&gt;Configuració de preferits&lt;/h2&gt;
+    &lt;a routerLink=&quot;/favorites/list&quot; class=&quot;btn-back&quot;&gt;← Tornar a preferits&lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;settings-content&quot;&gt;
+    &lt;div class=&quot;settings-section&quot;&gt;
+      &lt;h3&gt;Opcions de visualització&lt;/h3&gt;
+      &lt;label class=&quot;checkbox-label&quot;&gt;
+        &lt;input type=&quot;checkbox&quot; checked&gt;
         Mostrar imatges als preferits
-      </label>
-      <label class="checkbox-label">
-        <input type="checkbox" checked>
-        Ordenar per data d'addició
-      </label>
-    </div>
+      &lt;/label&gt;
+      &lt;label class=&quot;checkbox-label&quot;&gt;
+        &lt;input type=&quot;checkbox&quot; checked&gt;
+        Ordenar per data d&#39;addició
+      &lt;/label&gt;
+    &lt;/div&gt;
 
-    <div class="settings-section">
-      <h3>Notificacions</h3>
-      <label class="checkbox-label">
-        <input type="checkbox">
+    &lt;div class=&quot;settings-section&quot;&gt;
+      &lt;h3&gt;Notificacions&lt;/h3&gt;
+      &lt;label class=&quot;checkbox-label&quot;&gt;
+        &lt;input type=&quot;checkbox&quot;&gt;
         Alertes de nous elements similars
-      </label>
-      <label class="checkbox-label">
-        <input type="checkbox">
+      &lt;/label&gt;
+      &lt;label class=&quot;checkbox-label&quot;&gt;
+        &lt;input type=&quot;checkbox&quot;&gt;
         Resum setmanal per correu
-      </label>
-    </div>
+      &lt;/label&gt;
+    &lt;/div&gt;
 
-    <div class="settings-actions">
-      <button class="btn-save">Guardar canvis</button>
-      <button class="btn-cancel">Cancel·lar</button>
-    </div>
+    &lt;div class=&quot;settings-actions&quot;&gt;
+      &lt;button class=&quot;btn-save&quot;&gt;Guardar canvis&lt;/button&gt;
+      &lt;button class=&quot;btn-cancel&quot;&gt;Cancel·lar&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
   </div>
-</div>{% endraw %}{% endcapture %}
-{% include code-block.html lang="html" code=code_040 %}
+</div>
+
 
   <p><strong>Fitxer:</strong> <code>src/app/features/favorites/favorites-settings/favorites-settings.component.css</code></p>
 
-{% capture code_041 %}.settings-container {
+
+<div class="code-block" data-lang="css" role="region" aria-label="Bloc de codi css">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSS</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-css">.settings-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
@@ -1753,12 +3685,35 @@ export class FavoritesModule { }{% endcapture %}
 
 .btn-cancel:hover {
   background: #d0d0d0;
-}{% endcapture %}
-{% include code-block.html lang="css" code=code_041 %}
+}</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Checkpoint:</strong></p>
 
-  {% include checklist.html elements="Components de preferits implementats|Navegació interna funciona (list ↔ settings)|UI mostra zona protegida correctament" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Components de preferits implementats</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Navegació interna funciona (list ↔ settings)</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">UI mostra zona protegida correctament</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>6.3. Configurar lazy loading i protecció</h3>
 
@@ -1766,28 +3721,62 @@ export class FavoritesModule { }{% endcapture %}
 
   <p><strong>Fitxer:</strong> <code>src/app/app-routing.module.ts</code></p>
 
-{% capture code_042 %}import { AuthGuard } from './core/guards/auth.guard';
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { AuthGuard } from &#39;./core/guards/auth.guard&#39;;
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'search', component: SearchComponent },
-  { path: 'item/:id', component: DetailComponent },
-  { path: 'login', component: LoginComponent },
+  { path: &#39;&#39;, redirectTo: &#39;/home&#39;, pathMatch: &#39;full&#39; },
+  { path: &#39;home&#39;, component: HomeComponent },
+  { path: &#39;search&#39;, component: SearchComponent },
+  { path: &#39;item/:id&#39;, component: DetailComponent },
+  { path: &#39;login&#39;, component: LoginComponent },
   {
-    path: 'favorites',
-    loadChildren: () => import('./features/favorites/favorites.module')
-      .then(m => m.FavoritesModule),
+    path: &#39;favorites&#39;,
+    loadChildren: () =&gt; import(&#39;./features/favorites/favorites.module&#39;)
+      .then(m =&gt; m.FavoritesModule),
     canActivate: [AuthGuard]  // ← Protegir amb guàrdia
   },
-  { path: '404', component: NotFoundComponent },
-  { path: '**', redirectTo: '/404' }
-];{% endcapture %}
-{% include code-block.html lang="typescript" code=code_042 %}
+  { path: &#39;404&#39;, component: NotFoundComponent },
+  { path: &#39;**&#39;, redirectTo: &#39;/404&#39; }
+];</code></pre>
+  </div>
+</div>
+
 
   <p>Verifiqueu que el lazy loading funciona correctament:</p>
 
-{% capture code_043 %}# 1. Compilar amb stats
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># 1. Compilar amb stats
 ng build --configuration production --stats-json
 
 # 2. Verificar que crea chunk separat
@@ -1795,12 +3784,30 @@ ls -lh dist/cataleg-universal/browser/
 
 # Hauríeu de veure:
 # - main.*.js
-# - features-favorites-favorites-module.*.js  ← Chunk separat!{% endcapture %}
-{% include code-block.html lang="bash" code=code_043 %}
+# - features-favorites-favorites-module.*.js  ← Chunk separat!</code></pre>
+  </div>
+</div>
+
 
   <p>Proveu el flux complet d'autenticació i accés:</p>
 
-{% capture code_044 %}1. Navegar sense login → /favorites
+
+<div class="code-block" data-lang="plaintext" role="region" aria-label="Bloc de codi plaintext">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">PLAINTEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-plaintext">1. Navegar sense login → /favorites
    → Hauria de redirigir a /login
 
 2. Fer login amb credencials
@@ -1811,12 +3818,45 @@ ls -lh dist/cataleg-universal/browser/
 
 4. Fer logout
    → Tornar a intentar /favorites
-   → Hauria de redirigir a /login novament{% endcapture %}
-{% include code-block.html lang="plaintext" code=code_044 %}
+   → Hauria de redirigir a /login novament</code></pre>
+  </div>
+</div>
+
 
   <h3>Checkpoint</h3>
 
-  {% include checklist.html elements="FavoritesModule crea chunk separat (lazy loading)|AuthGuard protegeix totes les rutes de /favorites|Login correcte dona accés a preferits|Logout revoca accés correctament|returnUrl funciona després del login" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">FavoritesModule crea chunk separat (lazy loading)</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">AuthGuard protegeix totes les rutes de /favorites</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Login correcte dona accés a preferits</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Logout revoca accés correctament</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">returnUrl funciona després del login</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>Resolució de problemes</h3>
 
@@ -1868,69 +3908,178 @@ ls -lh dist/cataleg-universal/browser/
 
   <p><strong>Fitxer:</strong> <code>src/app/features/home/home.component.ts</code></p>
 
-{% capture code_045 %}import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, OnInit, ChangeDetectionStrategy } from &#39;@angular/core&#39;;
 // ... altres imports ...
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  selector: &#39;app-home&#39;,
+  templateUrl: &#39;./home.component.html&#39;,
+  styleUrls: [&#39;./home.component.css&#39;],
   changeDetection: ChangeDetectionStrategy.OnPush  // ← Afegir OnPush
 })
 export class HomeComponent implements OnInit {
   // ... codi existent ...
-}{% endcapture %}
-{% include code-block.html lang="typescript" code=code_045 %}
+}</code></pre>
+  </div>
+</div>
+
 
   <p>Creeu component presentacional amb OnPush per les targetes:</p>
 
   <p><strong>Fitxer:</strong> <code>src/app/shared/components/item-card/item-card.component.ts</code></p>
 
-{% capture code_046 %}import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { Item } from '../../../core/models/item.model';
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from &#39;@angular/core&#39;;
+import { Item } from &#39;../../../core/models/item.model&#39;;
 
 @Component({
-  selector: 'app-item-card',
-  templateUrl: './item-card.component.html',
-  styleUrls: ['./item-card.component.css'],
+  selector: &#39;app-item-card&#39;,
+  templateUrl: &#39;./item-card.component.html&#39;,
+  styleUrls: [&#39;./item-card.component.css&#39;],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItemCardComponent {
   @Input() item!: Item;
-  @Output() cardClick = new EventEmitter<number>();
+  @Output() cardClick = new EventEmitter&lt;number&gt;();
 
   onCardClick(): void {
     this.cardClick.emit(this.item.id);
   }
-}{% endcapture %}
-{% include code-block.html lang="typescript" code=code_046 %}
+}</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Fitxer:</strong> <code>src/app/shared/components/item-card/item-card.component.html</code></p>
 
-{% capture code_047 %}{% raw %}<div class="item-card" (click)="onCardClick()">
-  <h3>{{ item.title }}</h3>
-  <p>{{ item.body }}</p>
-  <span class="item-id">ID: {{ item.id }}</span>
-</div>{% endraw %}{% endcapture %}
-{% include code-block.html lang="html" code=code_047 %}
+
+<div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">HTML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div class=&quot;item-card&quot; (click)=&quot;onCardClick()&quot;&gt;
+  &lt;h3&gt;{{ item.title }}&lt;/h3&gt;
+  &lt;p&gt;{{ item.body }}&lt;/p&gt;
+  &lt;span class=&quot;item-id&quot;&gt;ID: {{ item.id }}&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Checkpoint:</strong></p>
 
-  {% include checklist.html elements="OnPush aplicat a components contenidors|Components presentacionals amb @Input i @Output|Immutabilitat respectada (no mutacions directes)" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">OnPush aplicat a components contenidors</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Components presentacionals amb @Input i @Output</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Immutabilitat respectada (no mutacions directes)</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>7.2. Implementar scroll virtual amb CDK</h3>
 
   <p>Instal·leu Angular CDK per virtualització de llistes:</p>
 
-{% capture code_048 %}# Instal·lar Angular CDK
-npm install @angular/cdk{% endcapture %}
-{% include code-block.html lang="bash" code=code_048 %}
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Instal·lar Angular CDK
+npm install @angular/cdk</code></pre>
+  </div>
+</div>
+
 
   <p>Importeu el mòdul de scrolling:</p>
 
   <p><strong>Fitxer:</strong> <code>src/app/app.module.ts</code></p>
 
-{% capture code_049 %}import { ScrollingModule } from '@angular/cdk/scrolling';
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { ScrollingModule } from &#39;@angular/cdk/scrolling&#39;;
 
 @NgModule({
   imports: [
@@ -1939,34 +4088,70 @@ npm install @angular/cdk{% endcapture %}
   ],
   // ...
 })
-export class AppModule { }{% endcapture %}
-{% include code-block.html lang="typescript" code=code_049 %}
+export class AppModule { }</code></pre>
+  </div>
+</div>
+
 
   <p>Actualitzeu el component Home per usar scroll virtual:</p>
 
   <p><strong>Fitxer:</strong> <code>src/app/features/home/home.component.html</code></p>
 
-{% capture code_050 %}{% raw %}<div class="container">
-  <h2>Catàleg complet ({{ items.length }} elements)</h2>
 
-  <!-- Loading -->
-  <div *ngIf="loading" class="loading">Carregant elements...</div>
-
-  <!-- Error -->
-  <div *ngIf="error" class="error">{{ error }}</div>
-
-  <!-- Llistat amb scroll virtual -->
-  <cdk-virtual-scroll-viewport *ngIf="!loading && !error" itemSize="200" class="viewport">
-    <div *cdkVirtualFor="let item of items; trackBy: trackByItemId" class="item-wrapper">
-      <app-item-card [item]="item" (cardClick)="viewDetail($event)"></app-item-card>
+<div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">HTML</span>
+      
     </div>
-  </cdk-virtual-scroll-viewport>
-</div>{% endraw %}{% endcapture %}
-{% include code-block.html lang="html" code=code_050 %}
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div class=&quot;container&quot;&gt;
+  &lt;h2&gt;Catàleg complet ({{ items.length }} elements)&lt;/h2&gt;
+
+  &lt;!-- Loading --&gt;
+  &lt;div *ngIf=&quot;loading&quot; class=&quot;loading&quot;&gt;Carregant elements...&lt;/div&gt;
+
+  &lt;!-- Error --&gt;
+  &lt;div *ngIf=&quot;error&quot; class=&quot;error&quot;&gt;{{ error }}&lt;/div&gt;
+
+  &lt;!-- Llistat amb scroll virtual --&gt;
+  &lt;cdk-virtual-scroll-viewport *ngIf=&quot;!loading &amp;&amp; !error&quot; itemSize=&quot;200&quot; class=&quot;viewport&quot;&gt;
+    &lt;div *cdkVirtualFor=&quot;let item of items; trackBy: trackByItemId&quot; class=&quot;item-wrapper&quot;&gt;
+      &lt;app-item-card [item]=&quot;item&quot; (cardClick)=&quot;viewDetail($event)&quot;&gt;&lt;/app-item-card&gt;
+    &lt;/div&gt;
+  &lt;/cdk-virtual-scroll-viewport&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Fitxer:</strong> <code>src/app/features/home/home.component.css</code></p>
 
-{% capture code_051 %}/* ... estils anteriors ... */
+
+<div class="code-block" data-lang="css" role="region" aria-label="Bloc de codi css">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSS</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-css">/* ... estils anteriors ... */
 
 .viewport {
   height: 80vh;
@@ -1978,18 +4163,62 @@ export class AppModule { }{% endcapture %}
 .item-wrapper {
   padding: 1rem;
   border-bottom: 1px solid #f0f0f0;
-}{% endcapture %}
-{% include code-block.html lang="css" code=code_051 %}
+}</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Checkpoint:</strong></p>
 
-  {% include checklist.html elements="Angular CDK instal·lat correctament|ScrollingModule importat|cdk-virtual-scroll-viewport funciona|Només elements visibles es renderitzen" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Angular CDK instal·lat correctament</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">ScrollingModule importat</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">cdk-virtual-scroll-viewport funciona</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Només elements visibles es renderitzen</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>7.3. Mesurar rendiment</h3>
 
   <p>Utilitzeu les eines de desenvolupament del navegador per mesurar l'impacte de les optimitzacions:</p>
 
-{% capture code_052 %}# 1. Obrir Chrome DevTools
+
+<div class="code-block" data-lang="plaintext" role="region" aria-label="Bloc de codi plaintext">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">PLAINTEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-plaintext"># 1. Obrir Chrome DevTools
 # 2. Anar a Performance tab
 # 3. Gravar mentre navegues:
 #    - Scroll per la llista
@@ -2001,12 +4230,30 @@ export class AppModule { }{% endcapture %}
 #    - Rendering time (hauria de ser menor amb virtualització)
 #    - FPS (hauria de ser més constant)
 
-# 5. Comparar abans/després d'OnPush{% endcapture %}
-{% include code-block.html lang="plaintext" code=code_052 %}
+# 5. Comparar abans/després d&#39;OnPush</code></pre>
+  </div>
+</div>
+
 
   <p>Proveu amb el Lighthouse integrat:</p>
 
-{% capture code_053 %}# 1. Obrir Chrome DevTools
+
+<div class="code-block" data-lang="plaintext" role="region" aria-label="Bloc de codi plaintext">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">PLAINTEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-plaintext"># 1. Obrir Chrome DevTools
 # 2. Anar a Lighthouse tab
 # 3. Seleccionar:
 #    - Performance
@@ -2016,12 +4263,45 @@ export class AppModule { }{% endcapture %}
 # Buscar millores a:
 # - First Contentful Paint (FCP)
 # - Time to Interactive (TTI)
-# - Total Blocking Time (TBT){% endcapture %}
-{% include code-block.html lang="plaintext" code=code_053 %}
+# - Total Blocking Time (TBT)</code></pre>
+  </div>
+</div>
+
 
   <h3>Checkpoint</h3>
 
-  {% include checklist.html elements="OnPush redueix cicles de detecció de canvis|Virtualització millora scroll amb 100 elements|Lighthouse mostra millores de rendiment|FPS més constant durant scroll|Bundle size reduït amb lazy loading" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">OnPush redueix cicles de detecció de canvis</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Virtualització millora scroll amb 100 elements</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Lighthouse mostra millores de rendiment</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">FPS més constant durant scroll</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Bundle size reduït amb lazy loading</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>Comparativa de rendiment</h3>
 
@@ -2110,25 +4390,87 @@ export class AppModule { }{% endcapture %}
 
   <p>Compileu l'aplicació amb optimitzacions de producció:</p>
 
-{% capture code_054 %}# Build de producció amb stats
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Build de producció amb stats
 ng build --configuration production --stats-json
 
 # Verificar sortida
-ls -lh dist/cataleg-universal/browser/{% endcapture %}
-{% include code-block.html lang="bash" code=code_054 %}
+ls -lh dist/cataleg-universal/browser/</code></pre>
+  </div>
+</div>
+
 
   <p>Analitzeu el contingut dels bundles generats:</p>
 
-{% capture code_055 %}# Instal·lar webpack-bundle-analyzer
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Instal·lar webpack-bundle-analyzer
 npm install --save-dev webpack-bundle-analyzer
 
 # Analitzar bundles
-npx webpack-bundle-analyzer dist/cataleg-universal/browser/stats.json{% endcapture %}
-{% include code-block.html lang="bash" code=code_055 %}
+npx webpack-bundle-analyzer dist/cataleg-universal/browser/stats.json</code></pre>
+  </div>
+</div>
+
 
   <p><strong>Checkpoint:</strong></p>
 
-  {% include checklist.html elements="Build de producció completa sense errors|Chunks separats per lazy loading visibles|Bundle analyzer mostra distribució de mides|Compressió gzip aplicada automàticament" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Build de producció completa sense errors</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Chunks separats per lazy loading visibles</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Bundle analyzer mostra distribució de mides</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Compressió gzip aplicada automàticament</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>8.2. Checklist de funcionalitats</h3>
 
@@ -2136,27 +4478,178 @@ npx webpack-bundle-analyzer dist/cataleg-universal/browser/stats.json{% endcaptu
 
   <h4>Navegació i rutes</h4>
 
-  {% include checklist.html elements="/ redirigeix a /home correctament|Totes les rutes principals funcionen (home, search, item/:id, login, favorites)|404 captura rutes inexistents|Navegació del header actualitza ruta activa" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">/ redirigeix a /home correctament</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Totes les rutes principals funcionen (home, search, item/:id, login, favorites)</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">404 captura rutes inexistents</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Navegació del header actualitza ruta activa</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h4>Vista de detall</h4>
 
-  {% include checklist.html elements="Paràmetre :id es captura correctament|API retorna dades de l'element|Botons Anterior/Següent funcionen|Botó Tornar retorna a /home" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Paràmetre :id es captura correctament</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">API retorna dades de l'element</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Botons Anterior/Següent funcionen</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Botó Tornar retorna a /home</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h4>Autenticació</h4>
 
-  {% include checklist.html elements="Login valida credencials (mínim 4 caràcters)|Estat d'usuari es guarda a localStorage|Header mostra usuari autenticat|Logout neteja estat i redirigeix" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Login valida credencials (mínim 4 caràcters)</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Estat d'usuari es guarda a localStorage</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Header mostra usuari autenticat</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Logout neteja estat i redirigeix</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h4>Protecció de rutes</h4>
 
-  {% include checklist.html elements="AuthGuard bloqueja /favorites sense login|Login correcte dona accés a favorites|returnUrl funciona després de login|Logout revoca accés a favorites" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">AuthGuard bloqueja /favorites sense login</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Login correcte dona accés a favorites</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">returnUrl funciona després de login</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Logout revoca accés a favorites</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h4>Lazy loading</h4>
 
-  {% include checklist.html elements="FavoritesModule crea chunk separat|Chunk només es carrega quan s'accedeix a /favorites|Network tab mostra càrrega diferida" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">FavoritesModule crea chunk separat</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Chunk només es carrega quan s'accedeix a /favorites</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Network tab mostra càrrega diferida</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h4>Optimitzacions</h4>
 
-  {% include checklist.html elements="OnPush aplicat a components|Virtualització funciona amb scroll|trackBy implementat correctament|DevTools mostra millores de rendiment" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">OnPush aplicat a components</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Virtualització funciona amb scroll</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">trackBy implementat correctament</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">DevTools mostra millores de rendiment</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>8.3. Anàlisi de mides</h3>
 
@@ -2198,7 +4691,23 @@ npx webpack-bundle-analyzer dist/cataleg-universal/browser/stats.json{% endcaptu
 
   <p>Verifiqueu que l'aplicació està llesta per publicar:</p>
 
-{% capture code_056 %}# Servir build local
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Servir build local
 npx http-server dist/cataleg-universal/browser -p 8080
 
 # Provar a: http://localhost:8080
@@ -2207,8 +4716,10 @@ npx http-server dist/cataleg-universal/browser -p 8080
 # - Navegació funciona
 # - Assets carreguen correctament
 # - No hi ha errors a la consola
-# - Rutes funcionen sense hash (#){% endcapture %}
-{% include code-block.html lang="bash" code=code_056 %}
+# - Rutes funcionen sense hash (#)</code></pre>
+  </div>
+</div>
+
 
   <p>Creeu fitxer de configuració per desplegament:</p>
 
@@ -2216,21 +4727,55 @@ npx http-server dist/cataleg-universal/browser -p 8080
 
   <p><strong>Fitxer:</strong> <code>vercel.json</code></p>
 
-{% capture code_057 %}{
-  "buildCommand": "ng build --configuration production",
-  "outputDirectory": "dist/cataleg-universal/browser",
-  "rewrites": [
+
+<div class="code-block" data-lang="json" role="region" aria-label="Bloc de codi json">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JSON</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-json">{
+  &quot;buildCommand&quot;: &quot;ng build --configuration production&quot;,
+  &quot;outputDirectory&quot;: &quot;dist/cataleg-universal/browser&quot;,
+  &quot;rewrites&quot;: [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      &quot;source&quot;: &quot;/(.*)&quot;,
+      &quot;destination&quot;: &quot;/index.html&quot;
     }
   ]
-}{% endcapture %}
-{% include code-block.html lang="json" code=code_057 %}
+}</code></pre>
+  </div>
+</div>
+
 
   <p>Passos per desplegar a Vercel:</p>
 
-{% capture code_058 %}# 1. Instal·lar Vercel CLI (opcional, també pots usar la web)
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># 1. Instal·lar Vercel CLI (opcional, també pots usar la web)
 npm install -g vercel
 
 # 2. Login a Vercel
@@ -2243,31 +4788,67 @@ vercel
 #    - Set up and deploy? Y
 #    - Which scope? (seleccionar el teu compte)
 #    - Link to existing project? N
-#    - What's your project's name? cataleg-universal
+#    - What&#39;s your project&#39;s name? cataleg-universal
 #    - In which directory is your code located? ./
 #    - Want to override the settings? N
 
 # 5. Per desplegament de producció:
-vercel --prod{% endcapture %}
-{% include code-block.html lang="bash" code=code_058 %}
+vercel --prod</code></pre>
+  </div>
+</div>
+
 
   <h4>Opció 2: Desplegament a Netlify</h4>
 
   <p><strong>Fitxer:</strong> <code>netlify.toml</code></p>
 
-{% capture code_059 %}[build]
-  publish = "dist/cataleg-universal/browser"
-  command = "ng build --configuration production"
+
+<div class="code-block" data-lang="toml" role="region" aria-label="Bloc de codi toml">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TOML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-toml">[build]
+  publish = &quot;dist/cataleg-universal/browser&quot;
+  command = &quot;ng build --configuration production&quot;
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200{% endcapture %}
-{% include code-block.html lang="toml" code=code_059 %}
+  from = &quot;/*&quot;
+  to = &quot;/index.html&quot;
+  status = 200</code></pre>
+  </div>
+</div>
+
 
   <p>Passos per desplegar a Netlify:</p>
 
-{% capture code_060 %}# 1. Instal·lar Netlify CLI (opcional)
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># 1. Instal·lar Netlify CLI (opcional)
 npm install -g netlify-cli
 
 # 2. Login a Netlify
@@ -2281,8 +4862,10 @@ netlify init
 #    - New site from Git
 #    - Connectar repositori
 #    - Build command: ng build --configuration production
-#    - Publish directory: dist/cataleg-universal/browser{% endcapture %}
-{% include code-block.html lang="bash" code=code_060 %}
+#    - Publish directory: dist/cataleg-universal/browser</code></pre>
+  </div>
+</div>
+
 
   <div class="info_box">
     <p><strong>Recomanació:</strong> Vercel ofereix integració excel·lent amb Angular i detecta automàticament la configuració. És una opció molt convenient per projectes Angular.</p>
@@ -2290,7 +4873,38 @@ netlify init
 
   <h3>Checkpoint final</h3>
 
-  {% include checklist.html elements="Build de producció completa sense warnings|Totes les funcionalitats verificades|Bundle analyzer executat i revisat|Aplicació servida localment funciona|Preparada per desplegament a hosting" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Build de producció completa sense warnings</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Totes les funcionalitats verificades</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Bundle analyzer executat i revisat</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Aplicació servida localment funciona</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Preparada per desplegament a hosting</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>Resolució de problemes</h3>
 
@@ -2336,31 +4950,213 @@ netlify init
 
   <h3>Sistema de rutes (RA4.1)</h3>
 
-  {% include checklist.html elements="He configurat correctament totes les rutes principals|La navegació entre vistes funciona sense errors|Els enllaços actius es destaquen visualment|La ruta 404 captura paths inexistents" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">He configurat correctament totes les rutes principals</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">La navegació entre vistes funciona sense errors</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Els enllaços actius es destaquen visualment</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">La ruta 404 captura paths inexistents</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>Gestió de paràmetres (RA4.1)</h3>
 
-  {% include checklist.html elements="La vista de detall captura l'ID de la URL|Els paràmetres es processen correctament|La navegació amb paràmetres funciona|He implementat trackBy per rendiment" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">La vista de detall captura l'ID de la URL</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Els paràmetres es processen correctament</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">La navegació amb paràmetres funciona</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">He implementat trackBy per rendiment</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>Autenticació i estat (RA4.2, RA4.3)</h3>
 
-  {% include checklist.html elements="El servei d'autenticació gestiona l'estat global|El login simula correctament l'autenticació|L'estat es preserva amb localStorage|El logout neteja l'estat correctament" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">El servei d'autenticació gestiona l'estat global</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">El login simula correctament l'autenticació</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">L'estat es preserva amb localStorage</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">El logout neteja l'estat correctament</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>Protecció de rutes (RA4.3)</h3>
 
-  {% include checklist.html elements="La guàrdia bloqueja accés no autoritzat|Les redireccions funcionen correctament|El returnUrl preserva la destinació original|Totes les rutes protegides estan verificades" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">La guàrdia bloqueja accés no autoritzat</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Les redireccions funcionen correctament</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">El returnUrl preserva la destinació original</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Totes les rutes protegides estan verificades</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>Modularització (RA4.4)</h3>
 
-  {% include checklist.html elements="He creat un mòdul funcional amb routing propi|El lazy loading funciona correctament|El chunk separat es genera al build|La càrrega diferida es verifica al Network tab" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">He creat un mòdul funcional amb routing propi</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">El lazy loading funciona correctament</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">El chunk separat es genera al build</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">La càrrega diferida es verifica al Network tab</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>Optimitzacions (RA4.4)</h3>
 
-  {% include checklist.html elements="He aplicat OnPush on correspon|La virtualització millora el rendiment|He mesurat l'impacte amb DevTools|El bundle size s'ha reduït amb lazy loading" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">He aplicat OnPush on correspon</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">La virtualització millora el rendiment</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">He mesurat l'impacte amb DevTools</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">El bundle size s'ha reduït amb lazy loading</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
   <h3>Verificació i desplegament (RA4.5)</h3>
 
-  {% include checklist.html elements="El build de producció completa sense errors|He analitzat la mida dels bundles|Totes les funcionalitats estan verificades|L'aplicació està llesta per publicar" %}
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">El build de producció completa sense errors</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">He analitzat la mida dels bundles</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Totes les funcionalitats estan verificades</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">L'aplicació està llesta per publicar</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 
 </div>
 
@@ -2432,3 +5228,187 @@ netlify init
   </div>
 
 </div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Cas d'ús: Aplicació completa amb navegació i optimització",
+  "description": "",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "DA2_OA01 - Programació Avançada (Angular) — IOC",
+    "description": "Materials del mòdul DA2_OA01 - Programació Avançada amb Angular"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                    
+                                        
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/da2_oa01/unitat-4/bloc-3/" class="nav-button" aria-label="Bloc anterior: Optimització de rendiment">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="4" data-total="4">(4/4)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="4" data-total="4">(4/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="11">(1/11)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 9%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/da2_oa01/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts del lloc -->
+    <script src="/ioc/da2_oa01/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/da2_oa01/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/da2_oa01/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/da2_oa01/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/da2_oa01/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/da2_oa01/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/da2_oa01/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>
