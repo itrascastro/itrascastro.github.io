@@ -1,0 +1,5676 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 1: Conceptes fonamentals i instal·lació | DA2_OA01 - Programació Avançada (Angular) - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="1">
+    <meta name="page-bloc" content="1">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 1: Conceptes fonamentals i instal·lació | DA2_OA01 - Programació Avançada (Angular)</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 1: Conceptes fonamentals i instal·lació" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Frameworks de costat client, requisits del sistema i configuració de Node.js" />
+<meta property="og:description" content="Frameworks de costat client, requisits del sistema i configuració de Node.js" />
+<link rel="canonical" href="http://localhost:4004/ioc/da2_oa01/unitat-1/bloc-1/" />
+<meta property="og:url" content="http://localhost:4004/ioc/da2_oa01/unitat-1/bloc-1/" />
+<meta property="og:site_name" content="DA2_OA01 - Programació Avançada (Angular)" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 1: Conceptes fonamentals i instal·lació" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Frameworks de costat client, requisits del sistema i configuració de Node.js","headline":"Bloc 1: Conceptes fonamentals i instal·lació","url":"http://localhost:4004/ioc/da2_oa01/unitat-1/bloc-1/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/da2_oa01/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="http://localhost:4004/ioc/da2_oa01/unitat-1/bloc-1/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/da2_oa01/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/da2_oa01/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4004/ioc/da2_oa01/feed.xml" title="DA2_OA01 - Programació Avançada (Angular)" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/da2_oa01/assets/css/code-block.css">
+    <script src="/ioc/da2_oa01/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/da2_oa01">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/da2_oa01/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/da2_oa01/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/da2_oa01/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/da2_oa01/" class="title-link">
+                <h1>DA2_OA01 - DA2_OA01 - Programació Avançada (Angular)</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/da2_oa01/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/da2_oa01/unitat-1/bloc-1/" class="nav-dropdown-item current">
+                        Unitat 1 - Bloc 1: Conceptes fonamentals i instal·lació
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Entorn de desenvolupament integrat
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Creació del projecte base
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Cas d'ús: Preparació de l'entorn
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_oa01/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Components i comunicació bàsica
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Data binding i events
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Formularis amb vinculació bidireccional
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Cas d'ús: Catàleg d'elements
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_oa01/unitat-3/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 1: Serveis i separació de responsabilitats
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-3/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 2: Gestió d'estat i comunicació entre components
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-3/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 3: Optimització i bones pràctiques
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-3/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 4: Cas d'ús: Catàleg amb API REST
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_oa01/unitat-4/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 4 - Bloc 1: Sistema de rutes i navegació
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-4/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 4 - Bloc 2: Arquitectura escalable
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-4/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 4 - Bloc 3: Optimització de rendiment
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-4/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 4 - Bloc 4: Cas d'ús: Aplicació completa
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc1_Seccio1" class="nav-link" data-section="Unitat1_Bloc1_Seccio1">1. Què són els marcs de treball (frameworks) de costat client</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc1_Seccio2" class="nav-link" data-section="Unitat1_Bloc1_Seccio2">2. Requisits del sistema i eines necessàries</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc1_Seccio3" class="nav-link" data-section="Unitat1_Bloc1_Seccio3">3. Instal·lació del motor d'execució i gestor de paquets</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/da2_oa01/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/da2_oa01/unitat-1/" class="horizontal-nav-item">
+                                Unitat 1: Preparació de l'entorn de desenvolupament (RA1)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 1.1: Conceptes fonamentals i instal·lació
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<!--
+  ═══════════════════════════════════════════════════════════════════
+  BLOC 1 - UNITAT 1
+  Contingut migrat des de:
+  - .resources/Autoria/Unitat1/Lliço1/OA1/lectura-u1-l1-oa1.md
+  - .resources/Autoria/Unitat1/Lliço1/OA2/lectura-u1-l1-oa2.md
+  - .resources/Autoria/Unitat1/Lliço1/OA3/lectura-u1-l1-oa3.md
+  ═══════════════════════════════════════════════════════════════════
+-->
+
+<div class="section" id="Unitat1_Bloc1_Seccio1">
+  <h2 id="Unitat1_Bloc1_Seccio1">1. Què són els marcs de treball (frameworks) de costat client</h2>
+
+  <!-- MULTIMÈDIA -->
+  <!--
+  ════════════════════════════════════════════════════════════════
+  Component: Enllaços multimèdia YouTube
+  ════════════════════════════════════════════════════════════════
+
+  Paràmetres:
+    - unitat: número de la unitat (1-4)
+    - bloc: número del bloc (1-4)
+    - seccio: número de la secció (1-3)
+
+  Exemple d'ús:
+    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
+
+  El component busca automàticament les URLs corresponents a
+  site.data.multimedia i mostra els botons de vídeo i àudio.
+  ════════════════════════════════════════════════════════════════
+-->
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+<div class="multimedia-resources">
+  <div class="multimedia-header">
+    <i class="bi bi-play-circle-fill"></i>
+    <span>Contingut multimèdia d'aquesta lectura</span>
+  </div>
+
+  <div class="multimedia-buttons">
+    
+    <a href="https://www.youtube.com/watch?v=lXNTsNpgZLI" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 1.1.1 · Què són els marcs de treball (frameworks) de costat client">
+      <i class="bi bi-youtube"></i>
+      <span>Veure vídeo</span>
+      <i class="bi bi-box-arrow-up-right"></i>
+    </a>
+    
+
+    
+    <a href="https://www.youtube.com/watch?v=wishB0ereto" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 1.1.1 · Què són els marcs de treball (frameworks) de costat client">
+      <i class="bi bi-mic-fill"></i>
+      <span>Escoltar àudio</span>
+      <i class="bi bi-box-arrow-up-right"></i>
+    </a>
+    
+  </div>
+
+  
+  
+</div>
+  
+
+
+
+
+  <!-- Component: Objectius del bloc/unitat -->
+
+
+
+<div class="objectius-box">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-bullseye" aria-hidden="true"></i> Objectius</div>
+  <div class="component-content">
+    <ul>
+      
+        <li>Comprendre què és un marc de treball de costat client, per què s'utilitza i quines alternatives existeixen al mercat.</li>
+      
+        <li>Diferenciar les responsabilitats del client i del servidor dins d'una arquitectura web moderna.</li>
+      
+        <li>Identificar quan cal utilitzar un framework i quan no és necessari.</li>
+      
+    </ul>
+  </div>
+  <!-- IMPORTANT: també es pot usar via front matter: page.objectius (array) -->
+</div>
+
+
+
+  <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <strong>RA1 · Criteri 1</strong> — Identifica les eines imprescindibles i comprova que compleixen els requisits del sistema.
+    
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">1.1. Prerequisits</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+  <ul>
+    <li>Disposeu d'un navegador web actual (Chrome, Firefox, Safari o Edge) amb les eines de desenvolupador (<strong>DevTools</strong>) activades.</li>
+    <li>Teniu accés a Internet per consultar documentació oficial quan calgui.</li>
+    <li>Heu utilitzat aplicacions web modernes com a usuari (correu electrònic, xarxes socials, aplicacions de productivitat) i observat com responen sense recarregar tota la pàgina.</li>
+  </ul>
+
+  <p><strong>Verificació ràpida:</strong> Premeu <code>F12</code> al navegador i comproveu que s'obren les DevTools.</p>
+  <p><strong>Punt d'autocomprovació:</strong> Veieu pestanyes com Elements, Console, Network.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">1.2. Marc conceptual</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>1.2.1. Què és un framework de costat client</h4>
+  <p>Un framework és una eina per fer apps web sense recarregar la pàgina. S'executa al navegador i gestiona la interfície de manera dinàmica.</p>
+
+  <p><strong>Exemple mínim:</strong></p>
+  
+  <div class="code-block" data-lang="javascript" role="region" aria-label="Bloc de codi javascript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVASCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-javascript">// Sense framework: manipular DOM manualment
+document.getElementById(&#39;llista&#39;).innerHTML = &#39;&lt;li&gt;Element 1&lt;/li&gt;&lt;li&gt;Element 2&lt;/li&gt;&#39;;
+
+// Amb framework (Angular): declaratiu
+&lt;li *ngFor=&quot;let item of items&quot;&gt;&lt;/li&gt;</code></pre>
+  </div>
+</div>
+
+
+  <h4>1.2.2. Per què necessitem frameworks</h4>
+  <p><strong>Problema:</strong> Abans havíeu de manipular el DOM manualment per cada canvi. Molt codi repetitiu, difícil de mantenir.</p>
+  <p><strong>Solució:</strong> Els frameworks automatitzen això amb components reutilitzables. Declareu com voleu que es vegi la interfície i ells gestionen les actualitzacions.</p>
+
+  <h4>1.2.3. Quan usar frameworks</h4>
+  <ul>
+    <li><strong>Apps amb molta interacció:</strong> Filtres, cerca, actualitzacions en temps real</li>
+    <li><strong>Projectes que creixeran:</strong> Començar amb estructura clara evita reescriure</li>
+    <li><strong>Equips grans:</strong> Convencions comunes faciliten col·laboració</li>
+    <li><strong>Experiència tipus app nativa:</strong> Navegació fluida sense recàrregues</li>
+  </ul>
+
+  <h4>1.2.4. Arquitectura client/servidor</h4>
+  <p>En una app moderna:</p>
+
+  <p><strong>Servidor:</strong></p>
+  <ul>
+    <li>Dades: emmagatzema a BD</li>
+    <li>Lògica: validacions, càlculs</li>
+    <li>Seguretat: autenticació, permisos</li>
+    <li>API: exposa endpoints</li>
+  </ul>
+
+  <p><strong>Client (amb framework):</strong></p>
+  <ul>
+    <li>Presentació: mostra dades amb HTML/CSS</li>
+    <li>Interacció: captura clics, tecles</li>
+    <li>Navegació: canvia vistes sense recarregar</li>
+    <li>Estat local: recorda filtres, seleccions</li>
+  </ul>
+
+  <p>Aquesta separació permet que backend i frontend treballin en paral·lel.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">1.3. Model mental</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>1.3.1. Flux bàsic</h4>
+  
+  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Usuari clica botó → Framework detecta → Actualitza dades → Regenera vista → DOM canvia
+                     (sense recarregar pàgina completa)</code></pre>
+  </div>
+</div>
+
+
+  <h4>1.3.2. Conceptes clau</h4>
+  <ul>
+    <li><strong>SPA (Single Page Application):</strong> Carrega codi un cop, després només dades</li>
+    <li><strong>Component:</strong> Peça reutilitzable amb HTML + CSS + lògica pròpia</li>
+    <li><strong>Estat:</strong> Dades que recorden què ha fet l'usuari (filtres, seleccions)</li>
+    <li><strong>Reactiu:</strong> La interfície s'actualitza automàticament quan canvien les dades</li>
+  </ul>
+
+  <p>En aquesta lectura aprendreu els fonaments teòrics: per què van néixer els frameworks, com han evolucionat, què ofereixen i quan utilitzar-los.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">1.4. Arquitectura web: costat servidor vs costat client</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>1.4.1. Objectiu</h4>
+  <p>Entendre què fa el servidor i què fa el client.</p>
+
+  <h4>1.4.2. Divisió de responsabilitats</h4>
+  <p><strong>Servidor:</strong></p>
+  <ul>
+    <li>Dades: emmagatzema a BD</li>
+    <li>Lògica: validacions, càlculs</li>
+    <li>API: exposa endpoints</li>
+  </ul>
+
+  <p><strong>Client (amb framework):</strong></p>
+  <ul>
+    <li>Presentació: mostra dades amb HTML/CSS</li>
+    <li>Interacció: captura clics, tecles</li>
+    <li>Navegació: canvia vistes sense recarregar</li>
+  </ul>
+
+  <h4>1.4.3. Exemple pràctic</h4>
+  <p>Usuari filtra per categoria al catàleg:</p>
+  <ul>
+    <li><strong>Tradicional:</strong> Servidor genera tot l'HTML → recàrrega completa</li>
+    <li><strong>Modern:</strong> Client filtra localment → instantani, sense parpelleig</li>
+  </ul>
+
+  <p><strong>Clau:</strong> Separar responsabilitats = apps més ràpides i escalables.</p>
+
+  <h4>1.4.4. Resultat esperat</h4>
+  <p>Sabeu què gestiona cada part de l'arquitectura.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">1.5. Evolució històrica: des de pàgines estàtiques fins a aplicacions de pàgina única</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>1.5.1. Objectiu</h4>
+  <p>Entendre com hem passat de pàgines HTML estàtiques a apps web complexes.</p>
+
+  <h4>1.5.2. Les 4 fases</h4>
+
+  <p><strong>Fase 1: Pàgines estàtiques (anys 90)</strong></p>
+  <ul>
+    <li>HTML escrit a mà</li>
+    <li>Cap interactivitat</li>
+    <li>Cada pàgina = fitxer independent</li>
+  </ul>
+
+  <p><strong>Fase 2: Pàgines dinàmiques al servidor (finals anys 90 - anys 2000)</strong></p>
+  <ul>
+    <li>PHP, ASP generen HTML segons dades</li>
+    <li>JavaScript mínim al client</li>
+    <li>Limitació: cada clic recarrega tot</li>
+  </ul>
+
+  <p><strong>Fase 3: AJAX (mitjans anys 2000)</strong></p>
+  <ul>
+    <li>AJAX permet actualitzar parts sense recarregar</li>
+    <li>jQuery facilita manipular DOM</li>
+    <li>Limitació: codi desorganitzat en créixer</li>
+  </ul>
+
+  <p><strong>Fase 4: Frameworks moderns (anys 2010 - actualitat)</strong></p>
+  <ul>
+    <li>Angular, React, Vue introdueixen components</li>
+    <li>SPA: carreguen tot un cop, navegació local</li>
+    <li>Experiència similar a apps natives</li>
+  </ul>
+
+  <p><strong>Clau:</strong> Els frameworks són la resposta natural a la complexitat creixent de les apps web.</p>
+
+  <h4>1.5.3. Resultat esperat</h4>
+  <p>Compreneu per què existeixen els frameworks actuals.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">1.6. Què és un marc de treball de costat client</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>1.6.1. Objectiu</h4>
+  <p>Definir què ofereix un framework.</p>
+
+  <h4>1.6.2. Definició</h4>
+  <p>Un framework proporciona:</p>
+  <ul>
+    <li><strong>Components:</strong> peces reutilitzables (botó, llista, formulari)</li>
+    <li><strong>Plantilles:</strong> sintaxi per descriure HTML dinàmic</li>
+    <li><strong>Estat:</strong> sincronitza dades entre components</li>
+    <li><strong>Rutes:</strong> navegació sense recarregar</li>
+    <li><strong>CLI:</strong> eines per crear projectes i desenvolupar</li>
+  </ul>
+
+  <h4>1.6.3. Framework vs Llibreria</h4>
+  <ul>
+    <li><strong>Llibreria:</strong> Crideu funcions quan vulgueu (jQuery)</li>
+    <li><strong>Framework:</strong> Defineix l'estructura i crida el vostre codi (inversió de control)</li>
+  </ul>
+
+  <h4>1.6.4. Funcions principals</h4>
+  <ol>
+    <li><strong>Renderitzar interfície:</strong> Components generen HTML dinàmic</li>
+    <li><strong>Gestionar estat:</strong> Mantenir dades sincronitzades</li>
+    <li><strong>Enrutament:</strong> URLs sense recarregar (<code>/productes</code>, <code>/carret</code>)</li>
+    <li><strong>Serveis HTTP:</strong> Comunicar amb API del servidor</li>
+  </ol>
+
+  <p><strong>Clau:</strong> Framework = estructura + eines + ecosistema.</p>
+
+  <h4>1.6.5. Resultat esperat</h4>
+  <p>Sabeu què diferencia un framework d'una llibreria simple.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">1.7. Comparativa de frameworks populars</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>1.7.1. Objectiu</h4>
+  <p>Conèixer les opcions principals del mercat.</p>
+
+  <h4>1.7.2. Els 4 grans</h4>
+
+  <p><strong>Angular (Google, 2010)</strong></p>
+  <ul>
+    <li>Complet: tot inclòs (rutes, HTTP, formularis)</li>
+    <li>TypeScript obligatori</li>
+    <li>Opinió forta: una manera correcta de fer-ho</li>
+    <li>Ideal per: projectes grans, equips, educació</li>
+  </ul>
+
+  <p><strong>React (Meta/Facebook, 2013)</strong></p>
+  <ul>
+    <li>Llibreria enfocada en la vista</li>
+    <li>JSX: HTML dins JavaScript</li>
+    <li>Flexible: trieu llibreries externes</li>
+    <li>Ideal per: projectes de tot tipus, més popular</li>
+  </ul>
+
+  <p><strong>Vue (comunitat, 2014)</strong></p>
+  <ul>
+    <li>Progressiu: useu el que necessiteu</li>
+    <li>Sintaxi clara i fàcil d'aprendre</li>
+    <li>Balanç entre Angular i React</li>
+    <li>Ideal per: prototips ràpids, equips petits</li>
+  </ul>
+
+  <p><strong>Svelte (comunitat, 2016)</strong></p>
+  <ul>
+    <li>Compila a JavaScript optimitzat</li>
+    <li>Sense runtime virtual DOM</li>
+    <li>Menys codi, més rendiment</li>
+    <li>Ideal per: apps amb restriccions de pes</li>
+  </ul>
+
+  <h4>1.7.3. Per què triem Angular al curs?</h4>
+  <ul>
+    <li><strong>Estructura clara:</strong> Aprendre patrons des del principi</li>
+    <li><strong>Tot inclòs:</strong> No cal triar 10 llibreries externes</li>
+    <li><strong>TypeScript:</strong> Detecció d'errors abans d'executar</li>
+    <li><strong>Estabilitat:</strong> Versions predictibles, suport Google</li>
+  </ul>
+
+  <p><strong>Clau:</strong> Angular és ideal per aprendre fonaments abans d'explorar altres opcions.</p>
+
+  <h4>1.7.4. Resultat esperat</h4>
+  <p>Coneixeu les diferències bàsiques entre frameworks populars.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">1.8. Avantatges dels frameworks moderns</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>1.8.1. Objectiu</h4>
+  <p>Entendre per què els frameworks milloren la productivitat.</p>
+
+  <h4>1.8.2. Avantatges principals</h4>
+
+  <p><strong>1. Productivitat</strong></p>
+  <ul>
+    <li>Generadors de codi: <code>ng generate component</code></li>
+    <li>Hot reload: veieu canvis a l'instant</li>
+    <li>CLI integrat: un comando per tot</li>
+  </ul>
+
+  <p><strong>2. Mantenibilitat</strong></p>
+  <ul>
+    <li>Estructura clara: components, serveis, rutes</li>
+    <li>Convencions: tots segueixen el mateix patró</li>
+    <li>Testing integrat: proves automàtiques</li>
+  </ul>
+
+  <p><strong>3. Ecosistema</strong></p>
+  <ul>
+    <li>Llibreries: milers de components fets</li>
+    <li>Documentació: guies oficials extenses</li>
+    <li>Comunitat: solucions a Stack Overflow</li>
+  </ul>
+
+  <p><strong>4. Rendiment</strong></p>
+  <ul>
+    <li>Virtual DOM: actualitza només el mínim necessari</li>
+    <li>Lazy loading: carrega codi sota demanda</li>
+    <li>Optimitzacions automàtiques</li>
+  </ul>
+
+  <p><strong>Clau:</strong> Framework = menys temps resolent problemes comuns, més temps creant valor.</p>
+
+  <h4>1.8.3. Resultat esperat</h4>
+  <p>Compreneu els avantatges en productivitat i mantenibilitat.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">1.9. Components clau d'un framework</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>1.9.1. Objectiu</h4>
+  <p>Identificar les peces fonamentals.</p>
+
+  <h4>1.9.2. Els 4 pilars</h4>
+
+  <p><strong>1. Components</strong></p>
+  <p>Peces reutilitzables amb lògica pròpia.</p>
+  
+  <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Component({
+  selector: &#39;app-targeta&#39;,
+  template: &#39;&lt;div&gt;&lt;/div&gt;&#39;
+})</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>2. Rutes</strong></p>
+  <p>Navegació sense recarregar.</p>
+  
+  <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">{path: &#39;cataleg&#39;, component: CatalegComponent}</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>3. Serveis</strong></p>
+  <p>Lògica compartida entre components.</p>
+  
+  <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">catalogService.getElements()</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>4. Plantilles</strong></p>
+  <p>HTML dinàmic amb sintaxi especial.</p>
+  
+  <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">HTML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;li *ngFor=&quot;let item of items&quot;&gt;&lt;/li&gt;</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Clau:</strong> Components (vista) + Serveis (lògica) + Rutes (navegació) = app completa.</p>
+
+  <h4>1.9.3. Resultat esperat</h4>
+  <p>Sabeu identificar les peces bàsiques d'una app Angular.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">1.10. Casos d'ús reals: quan utilitzar frameworks</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>1.10.1. Objectiu</h4>
+  <p>Desenvolupar criteri per decidir si cal un framework.</p>
+
+  <h4>1.10.2. Quan SÍ utilitzar un framework</h4>
+
+  <p><strong>1. Apps amb interacció complexa</strong></p>
+  <ul>
+    <li>Exemple: Eina de gestió de projectes</li>
+    <li>Raó: Framework gestiona estat automàticament</li>
+  </ul>
+
+  <p><strong>2. Projectes que creixeran</strong></p>
+  <ul>
+    <li>Exemple: Catàleg que passarà de 5 a 20 funcionalitats</li>
+    <li>Raó: Estructura facilita escalar</li>
+  </ul>
+
+  <p><strong>3. Equips grans</strong></p>
+  <ul>
+    <li>Exemple: 10 desenvolupadors en paral·lel</li>
+    <li>Raó: Convencions eviten conflictes</li>
+  </ul>
+
+  <p><strong>4. Apps tipus SPA</strong></p>
+  <ul>
+    <li>Exemple: Correu electrònic, editor documents</li>
+    <li>Raó: Experiència fluida sense recàrregues</li>
+  </ul>
+
+  <h4>1.10.3. Quan NO utilitzar un framework</h4>
+
+  <p><strong>1. Pàgines informatives</strong></p>
+  <ul>
+    <li>Exemple: Web corporativa 5 pàgines</li>
+    <li>Raó: HTML/CSS clàssic més senzill</li>
+  </ul>
+
+  <p><strong>2. Landing pages</strong></p>
+  <ul>
+    <li>Exemple: Pàgina presentació producte</li>
+    <li>Raó: JavaScript mínim = càrrega ràpida</li>
+  </ul>
+
+  <p><strong>3. Restriccions de rendiment</strong></p>
+  <ul>
+    <li>Exemple: Dispositius antics</li>
+    <li>Raó: Frameworks afegeixen pes</li>
+  </ul>
+
+  <p><strong>4. Prototips ràpids sense experiència</strong></p>
+  <ul>
+    <li>Exemple: Prototip en 2 dies</li>
+    <li>Raó: Corba d'aprenentatge pot bloquejar</li>
+  </ul>
+
+  <h4>1.10.4. Taula de decisió ràpida</h4>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Pregunta</th>
+        <th>Resposta</th>
+        <th>Recomanació</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Necessiteu actualitzar parts sense recarregar?</td>
+        <td>Sí</td>
+        <td>Framework</td>
+      </tr>
+      <tr>
+        <td>Moltes interaccions i canvis d'estat?</td>
+        <td>Sí</td>
+        <td>Framework</td>
+      </tr>
+      <tr>
+        <td>Projecte durarà anys amb múltiples desenvolupadors?</td>
+        <td>Sí</td>
+        <td>Framework</td>
+      </tr>
+      <tr>
+        <td>Pàgina informativa amb contingut estàtic?</td>
+        <td>Sí</td>
+        <td>HTML/CSS clàssic</td>
+      </tr>
+      <tr>
+        <td>Prioritzar SEO i càrrega inicial ràpida?</td>
+        <td>Sí</td>
+        <td>Considerar SSR</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Clau:</strong> Framework quan la interacció i complexitat ho justifiquin.</p>
+
+  <h4>1.10.5. Resultat esperat</h4>
+  <p>Sabeu argumentar quan un framework aporta valor.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">1.11. Resum i preparació per a la següent sessió</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>1.11.1. Objectiu</h4>
+  <p>Consolidar el que s'ha après i preparar el següent pas.</p>
+
+  <h4>1.11.2. Què hem cobert</h4>
+  <ul>
+    <li>Arquitectura client/servidor</li>
+    <li>Evolució: de pàgines estàtiques a SPA</li>
+    <li>Definició de framework</li>
+    <li>Comparativa: Angular, React, Vue, Svelte</li>
+    <li>Avantatges: productivitat, mantenibilitat</li>
+    <li>Components clau: components, rutes, serveis</li>
+    <li>Casos d'ús: quan SÍ i quan NO</li>
+  </ul>
+
+  <h4>1.11.3. Què ve després</h4>
+  <p><strong>Secció 2:</strong> Identificar requisits (Node.js, npm, VS Code, Angular CLI, Git)</p>
+  <p><strong>Secció 3:</strong> Instal·lar i configurar aquestes eines (Windows/macOS/Linux)</p>
+
+  <h4>1.11.4. Contracte de sortida</h4>
+  <ul>
+    <li>Compreneu què és un framework i per què existeix</li>
+    <li>Sabeu comparar opcions i justificar Angular</li>
+    <li>Teniu criteri per decidir quan cal framework</li>
+  </ul>
+
+  <p><strong>Clau:</strong> Base conceptual sòlida abans d'instal·lar.</p>
+
+  <h4>1.11.5. Resultat esperat</h4>
+  <p>Disposeu dels fonaments per passar a la pràctica.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">1.12. Mini exemple pràctic · Inspecció d'una aplicació web moderna</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>1.12.1. Objectiu</h4>
+  <p>Observar amb DevTools com funciona una SPA real.</p>
+
+  <h4>1.12.2. Passos</h4>
+  <ol>
+    <li>Obriu navegador i aneu a app web moderna (Gmail, Twitter, LinkedIn)</li>
+    <li>Premeu <code>F12</code> per obrir DevTools</li>
+    <li>Aneu a pestanya <strong>Network</strong></li>
+    <li>Feu clic en diferents seccions de l'app</li>
+    <li>Observeu que <strong>no es recarrega la pàgina</strong>, només peticions AJAX (fetch/xhr)</li>
+    <li>Pestanya <strong>Elements</strong>: localitzeu components (llistes, botons, formularis)</li>
+  </ol>
+
+  <h4>1.12.3. Resultat esperat</h4>
+  <p>Heu vist en directe com una SPA funciona: pàgina no es recarrega mai, només peticions de dades i actualització dinàmica.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">1.13. Resolució de problemes</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <table>
+    <thead>
+      <tr>
+        <th>Símptoma</th>
+        <th>Causa probable</th>
+        <th>Solució</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>No trobo les DevTools</td>
+        <td>Navegador desactualitzat</td>
+        <td>Actualitzeu i premeu <code>F12</code> (Win/Linux) o <code>Cmd+Opt+I</code> (macOS)</td>
+      </tr>
+      <tr>
+        <td>Pestanya Network buida</td>
+        <td>Cal refrescar amb DevTools oberta</td>
+        <td>Obriu DevTools primer, després navegueu</td>
+      </tr>
+      <tr>
+        <td>No veig peticions AJAX</td>
+        <td>L'app no és SPA</td>
+        <td>Proveu Gmail, Twitter, LinkedIn</td>
+      </tr>
+      <tr>
+        <td>DevTools en anglès</td>
+        <td>Configuració idioma navegador</td>
+        <td>Settings → Languages (opcional canviar)</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">1.14. Prompts d'IA</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+  <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> formador de desenvolupament web. <strong>Tasca:</strong> explica amb un exemple quotidià la diferència entre una aplicació web tradicional i una SPA. Utilitza l'analogia d'un restaurant per fer-ho comprensible. <strong>Format:</strong> màxim 100 paraules.</div>
+  </div>
+</div>
+
+  <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> consultor tècnic. <strong>Tasca:</strong> enumera els tres avantatges principals d'utilitzar un framework en comptes de JavaScript sense estructura. Justifica cada avantatge amb un exemple d'un projecte de catàleg d'elements. <strong>Format:</strong> llista numerada.</div>
+  </div>
+</div>
+
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">1.15. Autoavaluació</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Autoavaluació · Secció 1">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc explicar la diferència entre responsabilitats del client i del servidor</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Conec l'evolució des de pàgines estàtiques fins a SPA</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé què és un framework i què el diferencia d'una llibreria</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc anomenar almenys tres frameworks i descriure'n diferències bàsiques</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Comprenc els avantatges dels frameworks moderns</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Identifico components clau: components, rutes, serveis, plantilles</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Tinc criteri per decidir quan cal utilitzar un framework</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">1.16. Síntesi</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+  <p>Heu après els fonaments teòrics dels frameworks de costat client: per què van néixer, com han evolucionat i què ofereixen. Compreneu l'arquitectura client/servidor, coneixeu les opcions principals (Angular, React, Vue, Svelte) i sabeu quan és adequat utilitzar un framework. Aquest coneixement conceptual és la base per a les properes seccions, on passareu a la instal·lació i configuració de l'entorn.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">1.17. Repàs de conceptes</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+  <ul>
+    <li><strong>Arquitectura client/servidor:</strong> separació de responsabilitats entre presentació (client) i lògica (servidor).</li>
+    <li><strong>SPA (Single Page Application):</strong> app que carrega codi un cop i gestiona navegació dinàmicament.</li>
+    <li><strong>Framework:</strong> estructura amb components, rutes, gestió d'estat i eines.</li>
+    <li><strong>Angular:</strong> framework complet amb opinió forta, ideal per projectes empresarials i educatius.</li>
+    <li><strong>Componentització:</strong> dividir interfície en peces reutilitzables.</li>
+    <li><strong>Hot reload:</strong> actualitza interfície automàticament en guardar canvis.</li>
+    <li><strong>API:</strong> punt d'accés que el servidor exposa per obtenir/enviar dades.</li>
+  </ul>
+  
+  </div>
+</div>
+
+
+</div>
+
+<div class="section" id="Unitat1_Bloc1_Seccio2">
+  <h2 id="Unitat1_Bloc1_Seccio2">2. Requisits del sistema i eines necessàries</h2>
+
+  <!-- MULTIMÈDIA -->
+  <!--
+  ════════════════════════════════════════════════════════════════
+  Component: Enllaços multimèdia YouTube
+  ════════════════════════════════════════════════════════════════
+
+  Paràmetres:
+    - unitat: número de la unitat (1-4)
+    - bloc: número del bloc (1-4)
+    - seccio: número de la secció (1-3)
+
+  Exemple d'ús:
+    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
+
+  El component busca automàticament les URLs corresponents a
+  site.data.multimedia i mostra els botons de vídeo i àudio.
+  ════════════════════════════════════════════════════════════════
+-->
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+<div class="multimedia-resources">
+  <div class="multimedia-header">
+    <i class="bi bi-play-circle-fill"></i>
+    <span>Contingut multimèdia d'aquesta lectura</span>
+  </div>
+
+  <div class="multimedia-buttons">
+    
+    <a href="https://www.youtube.com/watch?v=1p5WIMKX7O8" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 1.1.2 · Requisits del sistema i eines necessàries">
+      <i class="bi bi-youtube"></i>
+      <span>Veure vídeo</span>
+      <i class="bi bi-box-arrow-up-right"></i>
+    </a>
+    
+
+    
+    <a href="https://www.youtube.com/watch?v=TltpYnvrtsA" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 1.1.2 · Requisits del sistema i eines necessàries">
+      <i class="bi bi-mic-fill"></i>
+      <span>Escoltar àudio</span>
+      <i class="bi bi-box-arrow-up-right"></i>
+    </a>
+    
+  </div>
+
+  
+  
+</div>
+  
+
+
+
+
+  <!-- Component: Objectius del bloc/unitat -->
+
+
+
+<div class="objectius-box">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-bullseye" aria-hidden="true"></i> Objectius</div>
+  <div class="component-content">
+    <ul>
+      
+        <li>Identificar tots els requisits de maquinari i programari necessaris per començar a desenvolupar aplicacions de costat client.</li>
+      
+        <li>Comprendre la funció de cada eina de l'ecosistema de desenvolupament modern.</li>
+      
+        <li>Elaborar un checklist per verificar que el propi sistema compleix els requisits abans d'instal·lar res.</li>
+      
+    </ul>
+  </div>
+  <!-- IMPORTANT: també es pot usar via front matter: page.objectius (array) -->
+</div>
+
+
+
+  <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <strong>RA1 · Criteri 1</strong> — Identifica les eines imprescindibles i comprova que compleixen els requisits del sistema.
+    
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">2.1. Prerequisits</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+  <ul>
+    <li>Heu completat la Secció 1 i compreneu què és un framework de costat client i per què s'utilitza.</li>
+    <li>Disposeu d'accés a Internet per consultar versions actuals de programari.</li>
+    <li>Teniu capacitat per crear documents de text senzills (Markdown, TXT o similar) per documentar requisits.</li>
+  </ul>
+
+  <p><strong>Verificació ràpida:</strong> Podeu obrir una terminal al vostre sistema (PowerShell, Terminal o bash).</p>
+  <p><strong>Punt d'autocomprovació:</strong> Sabeu on trobar la terminal i executar comandes bàsiques.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">2.2. Marc conceptual</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>2.2.1. Què necessitem per desenvolupar</h4>
+  <p>Abans d'instal·lar, cal entendre l'ecosistema complet. Desenvolupar amb Angular requereix 7 capes d'eines que treballen juntes.</p>
+
+  <h4>2.2.2. Les 7 peces de l'ecosistema</h4>
+  <ol>
+    <li><strong>Sistema operatiu:</strong> Windows, macOS o Linux amb recursos suficients</li>
+    <li><strong>Node.js:</strong> Motor per executar JavaScript fora del navegador</li>
+    <li><strong>npm:</strong> Gestor de paquets per instal·lar llibreries</li>
+    <li><strong>Angular CLI:</strong> Comandes per crear projectes i components</li>
+    <li><strong>Editor:</strong> VS Code amb extensions específiques</li>
+    <li><strong>Git:</strong> Control de versions per guardar canvis</li>
+    <li><strong>Navegador:</strong> Chrome/Firefox amb DevTools per depurar</li>
+  </ol>
+
+  <h4>2.2.3. Per què tantes eines</h4>
+  <p>Cada eina resol un problema específic:</p>
+
+  <p><strong>Node.js:</strong> Executa el servidor de desenvolupament i compila el codi.</p>
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Node.js permet executar comandes com:
+ng serve  # Llença servidor local</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>npm:</strong> Gestiona dependències automàticament.</p>
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Instal·la 1.000+ paquets en segons
+npm install</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Angular CLI:</strong> Genera codi amb convencions.</p>
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Crea component amb HTML, CSS, TypeScript i test
+ng generate component targeta</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>VS Code:</strong> Autocompletat i detecció d'errors en temps real.</p>
+  <p><strong>Git:</strong> Permet desfer canvis i treballar en equip sense perdre feina.</p>
+
+  <h4>2.2.4. Quan necessitem cada eina</h4>
+  <ul>
+    <li><strong>Node.js + npm:</strong> SEMPRE (base de tot)</li>
+    <li><strong>Angular CLI:</strong> Per crear i gestionar projectes Angular</li>
+    <li><strong>VS Code:</strong> Recomanat (alternativa: WebStorm, Sublime)</li>
+    <li><strong>Git:</strong> Imprescindible per projectes professionals</li>
+    <li><strong>DevTools:</strong> Depurar l'app al navegador</li>
+  </ul>
+
+  <h4>2.2.5. Exemple de flux diari</h4>
+  
+  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">1. Obrir VS Code → 2. Editar codi → 3. Guardar (Git commit)
+↓
+4. ng serve → 5. Provar al navegador → 6. Depurar DevTools
+↓
+7. Repetir cicle</code></pre>
+  </div>
+</div>
+
+
+  <p>Aquesta secció detalla els <strong>requisits</strong> de cada eina. La <strong>instal·lació</strong> es farà a la Secció 3.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">2.3. Model mental</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>2.3.1. Flux de dependències</h4>
+  
+  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Sistema Operatiu
+    ↓ (necessari per tot)
+Node.js + npm
+    ↓ (s&#39;instal·la amb npm)
+Angular CLI
+    ↓ (crea projectes)
+Projecte Angular
+    ↔ VS Code (editar)
+    ↔ Git (versionar)
+    ↔ Navegador (provar)</code></pre>
+  </div>
+</div>
+
+
+  <h4>2.3.2. Conceptes clau</h4>
+  <ul>
+    <li><strong>LTS (Long Term Support):</strong> Versions estables mantingudes durant anys. Usar sempre LTS en producció.</li>
+    <li><strong>CLI (Command Line Interface):</strong> Eina per executar comandes a la terminal. Més ràpida que interfaces gràfiques.</li>
+    <li><strong>Dependencies:</strong> Llibreries externes que el projecte necessita. npm les gestiona automàticament.</li>
+    <li><strong>PATH:</strong> Variable del sistema que indica on buscar executables. Si no està configurat, les comandes no funcionen.</li>
+  </ul>
+
+  <h4>2.3.3. Ordre d'instal·lació</h4>
+  <p>1r Node.js → 2n npm (ve amb Node.js) → 3r Angular CLI → 4t VS Code, Git, extensions</p>
+
+  <p>En aquesta secció aprendreu a <strong>identificar</strong> requisits i <strong>comprendre</strong> cada eina abans de tocar res al sistema.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">2.4. Visió general de l'ecosistema de desenvolupament modern</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>2.4.1. Objectiu</h4>
+  <p>Veure totes les peces de l'entorn de desenvolupament.</p>
+
+  <h4>2.4.2. Diagrama de l'ecosistema</h4>
+  
+  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Sistema Operatiu (Windows / macOS / Linux)
+    ↓
+Node.js (motor d&#39;execució JavaScript)
+    ↓
+npm (gestor de paquets)
+    ↓
+Angular CLI (eina de línia d&#39;ordres)
+    ↓
+Projecte Angular (codi de l&#39;aplicació)
+    ←→ Visual Studio Code (editor)
+    ←→ Git (control de versions)
+    ←→ Navegador amb DevTools (proves i depuració)</code></pre>
+  </div>
+</div>
+
+
+  <h4>2.4.3. Flux de treball diari</h4>
+  <ol>
+    <li>Crear projecte: <code>ng new cataleg-elements</code></li>
+    <li>Editar codi: VS Code</li>
+    <li>Guardar canvis: <code>git commit</code></li>
+    <li>Llençar servidor: <code>ng serve</code></li>
+    <li>Provar: <code>http://localhost:4200</code></li>
+    <li>Depurar: DevTools si hi ha errors</li>
+    <li>Repetir cicle</li>
+  </ol>
+
+  <h4>2.4.4. Per què aquesta complexitat</h4>
+  <p>Altres entorns també tenen múltiples eines:</p>
+  <ul>
+    <li><strong>Android:</strong> JDK + Android Studio + emulador</li>
+    <li><strong>iOS:</strong> Xcode + simulador + certificats</li>
+    <li><strong>Web moderna:</strong> Node.js + npm + CLI + editor</li>
+  </ul>
+
+  <p>Diferència: l'entorn web és <strong>multiplataforma</strong> i <strong>gratuït</strong>.</p>
+
+  <p><strong>Clau:</strong> Cada eina té un propòsit clar; juntes formen un ecosistema coherent.</p>
+
+  <h4>2.4.5. Resultat esperat</h4>
+  <p>Compreneu com encaixen totes les peces de l'ecosistema.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">2.5. Requisits de maquinari: RAM, processador, espai en disc</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>2.5.1. Objectiu</h4>
+  <p>Saber si el vostre equip té prou recursos.</p>
+
+  <h4>2.5.2. Taula de requisits</h4>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>Mínim</th>
+        <th>Recomanat</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>CPU</strong></td>
+        <td>2 nuclis, 2 GHz</td>
+        <td>4+ nuclis, 3+ GHz</td>
+      </tr>
+      <tr>
+        <td><strong>RAM</strong></td>
+        <td>4 GB</td>
+        <td>8-16 GB</td>
+      </tr>
+      <tr>
+        <td><strong>Disc</strong></td>
+        <td>10 GB lliures (HDD)</td>
+        <td>20+ GB lliures (SSD)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>2.5.3. Per què aquests números</h4>
+  <ul>
+    <li><strong>CPU:</strong> Compilacions TypeScript + servidor <code>ng serve</code> = ús intensiu. Més nuclis = més ràpid.</li>
+    <li><strong>RAM:</strong> VS Code + navegador + servidor = 3-4 GB simultàniament. Amb 8 GB treballa còmode.</li>
+    <li><strong>SSD:</strong> npm instal·la milers de fitxers petits. SSD accelera 3-5x vs HDD.</li>
+  </ul>
+
+  <h4>2.5.4. Com comprovar l'equip</h4>
+
+  <p><strong>Windows:</strong></p>
+  
+  <div class="code-block" data-lang="powershell" role="region" aria-label="Bloc de codi powershell">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">POWERSHELL</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-powershell">systeminfo | findstr /C:&quot;Processor&quot; /C:&quot;Total Physical Memory&quot;</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>macOS:</strong></p>
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">sysctl -n machdep.cpu.brand_string
+sysctl hw.memsize</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Linux:</strong></p>
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">lscpu | grep &quot;Model name&quot;
+free -h</code></pre>
+  </div>
+</div>
+
+
+  <h4>2.5.5. Conseqüències de no complir mínims</h4>
+  <ul>
+    <li><strong>Poca RAM:</strong> Swap (memòria virtual) alenteix tot</li>
+    <li><strong>CPU lenta:</strong> Compilacions de 5s passen a 60s</li>
+    <li><strong>Poc espai:</strong> No podreu instal·lar dependències</li>
+  </ul>
+
+  <p><strong>Clau:</strong> 8 GB RAM + SSD = experiència fluida.</p>
+
+  <h4>2.5.6. Resultat esperat</h4>
+  <p>Sabeu els requisits i podeu mesurar el vostre equip.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">2.6. Sistemes operatius compatibles: Windows, macOS, Linux</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>2.6.1. Objectiu</h4>
+  <p>Comprendre particularitats de cada sistema.</p>
+
+  <h4>2.6.2. Compatibilitat general</h4>
+  <p>Angular funciona en:</p>
+  <ul>
+    <li>Windows 10/11</li>
+    <li>macOS 11+</li>
+    <li>Linux (Ubuntu 20.04+, Fedora, Debian, Arch...)</li>
+  </ul>
+
+  <h4>2.6.3. Particularitats per sistema</h4>
+
+  <p><strong>Windows:</strong></p>
+  <ul>
+    <li>Terminal: PowerShell (recomanat) o CMD (obsolet)</li>
+    <li>PATH: cal afegir manualment</li>
+    <li>Scripts: sintaxi pròpia (<code>$env:VARIABLE</code>)</li>
+    <li>Accents: evitar en rutes i noms</li>
+  </ul>
+
+  <p><strong>macOS:</strong></p>
+  <ul>
+    <li>Terminal: zsh (defecte des de Catalina)</li>
+    <li>Homebrew: gestor de paquets recomanat</li>
+    <li>Xcode Tools: necessari per Git</li>
+    <li>Permisos: sudo per instal·lacions globals</li>
+  </ul>
+
+  <p><strong>Linux:</strong></p>
+  <ul>
+    <li>Terminal: bash o zsh segons distribució</li>
+    <li>Gestor paquets: apt, dnf, pacman...</li>
+    <li>Permisos: sudo estàndard</li>
+    <li>Més control manual</li>
+  </ul>
+
+  <h4>2.6.4. Recomanacions</h4>
+  <ul>
+    <li><strong>Windows:</strong> Usar PowerShell, no CMD</li>
+    <li><strong>macOS:</strong> Instal·lar Homebrew primer</li>
+    <li><strong>Linux:</strong> Usar el gestor de paquets de la distribució</li>
+  </ul>
+
+  <p><strong>Clau:</strong> Tots els SO funcionen; Windows requereix més configuració manual.</p>
+
+  <h4>2.6.5. Resultat esperat</h4>
+  <p>Coneixeu les particularitats del vostre sistema operatiu.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">2.7. Node.js: què és i per què és necessari</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>2.7.1. Objectiu</h4>
+  <p>Entendre per què necessitem Node.js si l'app s'executa al navegador.</p>
+
+  <h4>2.7.2. Què és Node.js</h4>
+  <p>Motor JavaScript que s'executa fora del navegador. Basat en el motor V8 de Chrome.</p>
+
+  <h4>2.7.3. Per què necessitem Node.js</h4>
+  <p><strong>Problema:</strong> Angular CLI i les eines de construcció són programes JavaScript. El navegador no pot executar-los.</p>
+  <p><strong>Solució:</strong> Node.js executa aquestes eines al vostre ordinador.</p>
+
+  <h4>2.7.4. Exemples d'ús de Node.js</h4>
+  <ol>
+    <li><strong>Angular CLI:</strong> <code>ng serve</code> és un programa Node.js</li>
+    <li><strong>Servidor de desenvolupament:</strong> Servidor HTTP local amb hot reload</li>
+    <li><strong>Compilador TypeScript:</strong> Tradueix TypeScript a JavaScript</li>
+    <li><strong>Build tools:</strong> Webpack, Vite per empaquetar codi</li>
+  </ol>
+
+  <h4>2.7.5. Versions: LTS vs Current</h4>
+  <ul>
+    <li><strong>LTS (Long Term Support):</strong> 20.x, 22.x - Estable, mantinguda 3 anys</li>
+    <li><strong>Current:</strong> 23.x - Últimes funcionalitats, menys estable</li>
+  </ul>
+
+  <p><strong>Recomanació:</strong> Usar sempre LTS per projectes professionals.</p>
+
+  <h4>2.7.6. Com comprovar Node.js</h4>
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">node --version
+# Exemple: v20.10.0</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Clau:</strong> Node.js executa les eines de desenvolupament, no l'app final al navegador.</p>
+
+  <h4>2.7.7. Resultat esperat</h4>
+  <p>Compreneu per què Node.js és imprescindible.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">2.8. Gestor de paquets npm: automatitzar instal·lació de llibreries</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>2.8.1. Objectiu</h4>
+  <p>Entendre com npm gestiona dependències.</p>
+
+  <h4>2.8.2. Què és npm</h4>
+  <p><strong>Node Package Manager:</strong> Gestor que automatitza instal·lació, actualització i eliminació de llibreries.</p>
+
+  <h4>2.8.3. Per què existeix</h4>
+  <p><strong>Problema:</strong> Un projecte Angular necessita 1.000+ llibreries. Descarregar-les manualment és impossible.</p>
+  <p><strong>Solució:</strong> npm ho fa automàticament amb <code>npm install</code>.</p>
+
+  <h4>2.8.4. Conceptes clau</h4>
+
+  <p><strong>package.json:</strong> Fitxer amb la llista de dependències.</p>
+  
+  <div class="code-block" data-lang="json" role="region" aria-label="Bloc de codi json">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JSON</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-json">{
+  &quot;dependencies&quot;: {
+    &quot;@angular/core&quot;: &quot;^18.0.0&quot;,
+    &quot;rxjs&quot;: &quot;^7.8.0&quot;
+  }
+}</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>node_modules:</strong> Carpeta amb totes les llibreries instal·lades (300-500 MB).</p>
+
+  <p><strong>npm scripts:</strong> Comandes personalitzades.</p>
+  
+  <div class="code-block" data-lang="json" role="region" aria-label="Bloc de codi json">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JSON</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;ng serve&quot;,
+    &quot;build&quot;: &quot;ng build&quot;
+  }
+}</code></pre>
+  </div>
+</div>
+
+
+  <h4>2.8.5. Comandes bàsiques</h4>
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">npm install          # Instal·la tot
+npm install lodash   # Afegeix llibreria
+npm update          # Actualitza dependències
+npm list            # Llista instal·lades</code></pre>
+  </div>
+</div>
+
+
+  <h4>2.8.6. Versions de npm</h4>
+  <p>Ve amb Node.js. Node.js 20.x inclou npm 10.x.</p>
+
+  <p><strong>Clau:</strong> npm automatitza gestió de milers de dependències.</p>
+
+  <h4>2.8.7. Resultat esperat</h4>
+  <p>Sabeu què és npm i per què és essencial.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">2.9. Control de versions Git: guardar historial de canvis</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>2.9.1. Objectiu</h4>
+  <p>Comprendre per què Git és imprescindible.</p>
+
+  <h4>2.9.2. Què és Git</h4>
+  <p>Sistema per guardar historial de canvis del codi. Permet desfer errors i treballar en equip.</p>
+
+  <h4>2.9.3. Per què necessitem Git</h4>
+  <p><strong>Problema:</strong> Sense Git, perdeu feina si esborreu codi per error. Col·laborar és caòtic.</p>
+  <p><strong>Solució:</strong> Git guarda cada versió. Podeu veure què ha canviat, quan i per qui.</p>
+
+  <h4>2.9.4. Conceptes bàsics</h4>
+  <ul>
+    <li><strong>Repository (repo):</strong> Projecte amb historial de canvis</li>
+    <li><strong>Commit:</strong> Punt de control (snapshot) del codi</li>
+    <li><strong>Branch:</strong> Línia de desenvolupament independent</li>
+    <li><strong>Remote:</strong> Repositori al núvol (GitHub, GitLab)</li>
+  </ul>
+
+  <h4>2.9.5. Comandes essencials</h4>
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git init            # Crear repo
+git add .           # Preparar canvis
+git commit -m &quot;Missatge&quot;  # Guardar versió
+git status          # Veure estat
+git log             # Historial</code></pre>
+  </div>
+</div>
+
+
+  <h4>2.9.6. Per què és obligatori</h4>
+  <ul>
+    <li><strong>Desfer errors:</strong> <code>git checkout</code> recupera versions antigues</li>
+    <li><strong>Col·laboració:</strong> Múltiples persones sense conflictes</li>
+    <li><strong>Portfolio:</strong> GitHub mostra els vostres projectes</li>
+    <li><strong>Indústria:</strong> Totes les empreses usen Git</li>
+  </ul>
+
+  <p><strong>Clau:</strong> Git = màquina del temps per al codi.</p>
+
+  <h4>2.9.7. Resultat esperat</h4>
+  <p>Compreneu la importància de Git per treballar professionalment.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">2.10. CLI del framework: automatitzar tasques repetitives</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>2.10.1. Objectiu</h4>
+  <p>Entendre què automatitza Angular CLI.</p>
+
+  <h4>2.10.2. Què és Angular CLI</h4>
+  <p><strong>Command Line Interface:</strong> Eina de terminal per crear i gestionar projectes Angular.</p>
+
+  <h4>2.10.3. Per què existeix</h4>
+  <p><strong>Problema:</strong> Crear un component manualment requereix 5 fitxers (TypeScript, HTML, CSS, test, module). Molt propens a errors.</p>
+  <p><strong>Solució:</strong> <code>ng generate component targeta</code> crea tot en 2 segons amb convencions correctes.</p>
+
+  <h4>2.10.4. Comandes principals</h4>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Comanda</th>
+        <th>Funció</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>ng new</code></td>
+        <td>Crea projecte complet</td>
+      </tr>
+      <tr>
+        <td><code>ng serve</code></td>
+        <td>Servidor de desenvolupament</td>
+      </tr>
+      <tr>
+        <td><code>ng generate</code></td>
+        <td>Genera component, servei, etc.</td>
+      </tr>
+      <tr>
+        <td><code>ng build</code></td>
+        <td>Compila per producció</td>
+      </tr>
+      <tr>
+        <td><code>ng test</code></td>
+        <td>Executa tests</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>2.10.5. Exemples</h4>
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Crear projecte
+ng new cataleg-elements
+
+# Crear component
+ng generate component targeta
+
+# Llençar servidor
+ng serve --port 4300</code></pre>
+  </div>
+</div>
+
+
+  <h4>2.10.6. Avantatges</h4>
+  <ul>
+    <li><strong>Consistència:</strong> Tots els projectes Angular segueixen la mateixa estructura</li>
+    <li><strong>Productivitat:</strong> Component + test + estils en 2 segons</li>
+    <li><strong>Millors pràctiques:</strong> CLI aplica convencions recomanades</li>
+    <li><strong>Actualitzacions:</strong> <code>ng update</code> migra automàticament</li>
+  </ul>
+
+  <h4>2.10.7. Com comprovar CLI</h4>
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng version
+# Mostra: Angular CLI: 18.0.3</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Important:</strong> Requereix Node.js + npm instal·lats primer.</p>
+
+  <p><strong>Clau:</strong> Angular CLI automatitza tot el que és repetitiu.</p>
+
+  <h4>2.10.8. Resultat esperat</h4>
+  <p>Compreneu que CLI és essencial per treballar eficientment.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">2.11. Taula resum d'eines amb versions recomanades</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>2.11.1. Objectiu</h4>
+  <p>Referència ràpida de totes les eines.</p>
+
+  <h4>2.11.2. Taula completa</h4>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Eina</th>
+        <th>Versió</th>
+        <th>Comprovar</th>
+        <th>Descripció</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Node.js</strong></td>
+        <td>20.x o 22.x LTS</td>
+        <td><code>node --version</code></td>
+        <td>Motor JavaScript</td>
+      </tr>
+      <tr>
+        <td><strong>npm</strong></td>
+        <td>10.x</td>
+        <td><code>npm --version</code></td>
+        <td>Gestor paquets</td>
+      </tr>
+      <tr>
+        <td><strong>Angular CLI</strong></td>
+        <td>18.x</td>
+        <td><code>ng version</code></td>
+        <td>Eina línia d'ordres</td>
+      </tr>
+      <tr>
+        <td><strong>VS Code</strong></td>
+        <td>Última</td>
+        <td><code>code --version</code></td>
+        <td>Editor codi</td>
+      </tr>
+      <tr>
+        <td><strong>Git</strong></td>
+        <td>2.40+</td>
+        <td><code>git --version</code></td>
+        <td>Control versions</td>
+      </tr>
+      <tr>
+        <td><strong>Navegador</strong></td>
+        <td>Chrome/Firefox/Edge 120+</td>
+        <td>Obrir navegador</td>
+        <td>DevTools</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>2.11.3. Extensions VS Code recomanades</h4>
+  <ul>
+    <li><strong>Angular Language Service:</strong> Autocompletat plantilles</li>
+    <li><strong>ESLint:</strong> Detecció errors qualitat</li>
+    <li><strong>Prettier:</strong> Format automàtic</li>
+    <li><strong>GitLens:</strong> Visualització Git</li>
+    <li><strong>Path Intellisense:</strong> Autocompletat rutes</li>
+  </ul>
+
+  <h4>2.11.4. On trobar versions oficials</h4>
+  <ul>
+    <li>Node.js: https://nodejs.org</li>
+    <li>Angular CLI: https://angular.io</li>
+    <li>VS Code: https://code.visualstudio.com</li>
+    <li>Git: https://git-scm.com</li>
+  </ul>
+
+  <p><strong>Clau:</strong> Usar sempre versions LTS per estabilitat.</p>
+
+  <h4>2.11.5. Resultat esperat</h4>
+  <p>Teniu la llista clara de totes les eines necessàries.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">2.12. Preparació: checklist per verificar el propi sistema</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>2.12.1. Objectiu</h4>
+  <p>Crear un document personal per comprovar que esteu preparats.</p>
+
+  <h4>2.12.2. Checklist de requisits</h4>
+
+  
+  <div class="code-block" data-lang="markdown" role="region" aria-label="Bloc de codi markdown">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">MARKDOWN</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-markdown"># Checklist de requisits del sistema
+
+## Maquinari
+- [ ] CPU: _____ nuclis, _____ GHz (mínim 2)
+- [ ] RAM: _____ GB (mínim 4, recomanat 8-16)
+- [ ] Espai lliure: _____ GB (mínim 10)
+- [ ] Disc: HDD / SSD
+
+## Sistema operatiu
+- [ ] SO: Windows ___ / macOS ___ / Linux _____
+- [ ] Terminal: PowerShell / zsh / bash
+- [ ] Permisos: Administrador / sudo
+
+## Eines actuals (si n&#39;hi ha)
+- [ ] Node.js: _____ (`node --version`)
+- [ ] npm: _____ (`npm --version`)
+- [ ] Angular CLI: _____ (`ng version`)
+- [ ] VS Code: _____ (`code --version`)
+- [ ] Git: _____ (`git --version`)
+
+## Accés a Internet
+- [ ] Connexió estable
+- [ ] Proxy (si escau): _____
+
+## Observacions
+- Notes sobre el meu sistema:
+- Dubtes per resoldre:</code></pre>
+  </div>
+</div>
+
+
+  <h4>2.12.3. Com usar aquest checklist</h4>
+  <ol>
+    <li><strong>Abans de la Secció 3:</strong> Ompliu totes les caselles</li>
+    <li><strong>Durant la instal·lació:</strong> Marqueu eines instal·lades</li>
+    <li><strong>Després:</strong> Comproveu versions correctes</li>
+  </ol>
+
+  <p><strong>Clau:</strong> Checklist personal que us guiarà durant la instal·lació.</p>
+
+  <h4>2.12.4. Resultat esperat</h4>
+  <p>Teniu un checklist preparat per a la instal·lació.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">2.13. Mini exemple pràctic · Comprovar versions actuals</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>2.13.1. Objectiu</h4>
+  <p>Veure quines eines ja teniu instal·lades abans d'instal·lar res.</p>
+
+  <h4>2.13.2. Passos</h4>
+  <ol>
+    <li>Obriu terminal (PowerShell / Terminal / bash)</li>
+    <li>Executeu aquestes comandes:</li>
+  </ol>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">node --version
+npm --version
+ng version
+code --version
+git --version</code></pre>
+  </div>
+</div>
+
+
+  <ol start="3">
+    <li>Si retorna error "command not found", aquella eina <strong>no està instal·lada</strong></li>
+    <li>Si retorna versió, anoteu-la al checklist</li>
+  </ol>
+
+  <h4>2.13.3. Resultat esperat</h4>
+  <p>Sabeu exactament quines eines teniu i quines us falten.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">2.14. Resolució de problemes</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <table>
+    <thead>
+      <tr>
+        <th>Símptoma</th>
+        <th>Causa probable</th>
+        <th>Solució</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>No trobo terminal</td>
+        <td>No sabeu on és</td>
+        <td>Windows: "PowerShell" / macOS: "Terminal" / Linux: Ctrl+Alt+T</td>
+      </tr>
+      <tr>
+        <td><code>command not found</code></td>
+        <td>Eina no instal·lada</td>
+        <td>Normal; instal·larem a Secció 3</td>
+      </tr>
+      <tr>
+        <td>Versió molt antiga</td>
+        <td>Instal·lació obsoleta</td>
+        <td>Anoteu-la; actualitzarem</td>
+      </tr>
+      <tr>
+        <td>No tinc permisos</td>
+        <td>No sou administrador</td>
+        <td>Parleu amb administrador del sistema</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">2.15. Prompts d'IA</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+  <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> formador tècnic. <strong>Tasca:</strong> explica amb màxim 100 paraules per què necessitem Node.js si desenvolupem apps que s'executaran al navegador. <strong>Format:</strong> paràgraf curt.</div>
+  </div>
+</div>
+
+  <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> cap d'equip. <strong>Tasca:</strong> crea taula comparativa de npm vs yarn vs pnpm amb 4 característiques (velocitat, espai, compatibilitat, comunitat). <strong>Format:</strong> taula Markdown.</div>
+  </div>
+</div>
+
+  <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> consultor TIC. <strong>Tasca:</strong> genera checklist de 10 punts per verificar que un ordinador està preparat per Angular. Inclou maquinari, programari i connectivitat. <strong>Format:</strong> llista amb caselles.</div>
+  </div>
+</div>
+
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">2.16. Autoavaluació</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Autoavaluació · Secció 2">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Conec requisits de maquinari i sé si els compleixo</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc explicar per què necessitem Node.js</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Entenc què és npm i com gestiona dependències</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Comprenc la importància de Git</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé què automatitza Angular CLI</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Tinc llista clara d'eines amb versions recomanades</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">He omplert el checklist de requisits</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">2.17. Síntesi</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+  <p>Heu identificat tots els requisits de maquinari i programari per desenvolupar amb Angular. Compreneu la funció de cada eina (Node.js, npm, Git, CLI, VS Code) i teniu un checklist preparat. Ara esteu preparats per la Secció 3, on instal·lareu i configurareu totes aquestes eines pas a pas.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">2.18. Repàs de conceptes</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+  <ul>
+    <li><strong>Node.js:</strong> motor JavaScript que executa codi fora del navegador; necessari per CLI i npm.</li>
+    <li><strong>npm:</strong> gestor de paquets que automatitza instal·lació de llibreries.</li>
+    <li><strong>Angular CLI:</strong> eina de terminal que automatitza creació de projectes i components.</li>
+    <li><strong>Git:</strong> sistema de control de versions per guardar historial i treballar en equip.</li>
+    <li><strong>LTS:</strong> versions estables mantingudes durant anys; recomanades per producció.</li>
+    <li><strong>DevTools:</strong> eines de desenvolupador integrades als navegadors per depurar.</li>
+    <li><strong>PATH:</strong> variable del sistema que indica on buscar executables.</li>
+  </ul>
+  
+  </div>
+</div>
+
+
+</div>
+
+<div class="section" id="Unitat1_Bloc1_Seccio3">
+  <h2 id="Unitat1_Bloc1_Seccio3">3. Instal·lació del motor d'execució i gestor de paquets</h2>
+
+  <!-- MULTIMÈDIA -->
+  <!--
+  ════════════════════════════════════════════════════════════════
+  Component: Enllaços multimèdia YouTube
+  ════════════════════════════════════════════════════════════════
+
+  Paràmetres:
+    - unitat: número de la unitat (1-4)
+    - bloc: número del bloc (1-4)
+    - seccio: número de la secció (1-3)
+
+  Exemple d'ús:
+    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
+
+  El component busca automàticament les URLs corresponents a
+  site.data.multimedia i mostra els botons de vídeo i àudio.
+  ════════════════════════════════════════════════════════════════
+-->
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+<div class="multimedia-resources">
+  <div class="multimedia-header">
+    <i class="bi bi-play-circle-fill"></i>
+    <span>Contingut multimèdia d'aquesta lectura</span>
+  </div>
+
+  <div class="multimedia-buttons">
+    
+    <a href="https://www.youtube.com/watch?v=gz-QeFZaK9c" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 1.1.3 · Instal·lació del motor d'execució i gestor de paquets">
+      <i class="bi bi-youtube"></i>
+      <span>Veure vídeo</span>
+      <i class="bi bi-box-arrow-up-right"></i>
+    </a>
+    
+
+    
+    <a href="https://www.youtube.com/watch?v=tI4f_Io2UoM" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 1.1.3 · Instal·lació del motor d'execució i gestor de paquets">
+      <i class="bi bi-mic-fill"></i>
+      <span>Escoltar àudio</span>
+      <i class="bi bi-box-arrow-up-right"></i>
+    </a>
+    
+  </div>
+
+  
+  
+</div>
+  
+
+
+
+
+  <!-- Component: Objectius del bloc/unitat -->
+
+
+
+<div class="objectius-box">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-bullseye" aria-hidden="true"></i> Objectius</div>
+  <div class="component-content">
+    <ul>
+      
+        <li>Instal·lar el motor d'execució JavaScript (Node.js) i el gestor de paquets (npm) al sistema operatiu disponible.</li>
+      
+        <li>Verificar que la instal·lació funciona correctament amb comandes de terminal i interpretar les sortides.</li>
+      
+        <li>Utilitzar les comandes bàsiques de npm per inicialitzar projectes i instal·lar paquets de prova.</li>
+      
+    </ul>
+  </div>
+  <!-- IMPORTANT: també es pot usar via front matter: page.objectius (array) -->
+</div>
+
+
+
+  <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <strong>RA1 · Criteri 2</strong> — Instal·la i configura l'entorn de desenvolupament amb les eines i dependències necessàries.<br><strong>RA1 · Criteri 5</strong> — Verifica el funcionament global amb proves o exemples senzills.
+    
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">3.1. Prerequisits</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+  <ul>
+    <li>Heu completat les seccions 1 i 2 i compreneu què és Node.js, npm i per què són necessaris.</li>
+    <li>Disposeu de permisos per instal·lar programari al vostre sistema (administrador a Windows, <code>sudo</code> a macOS/Linux).</li>
+    <li>Teniu connexió a Internet estable per descarregar l'instal·lador oficial (aproximadament 30-50 MB).</li>
+    <li>Heu omplert el checklist de requisits de la Secció 2 i sabeu que el vostre equip compleix els mínims.</li>
+  </ul>
+
+  <p><strong>Verificació ràpida:</strong> Executeu <code>systeminfo</code> (Windows) o <code>sw_vers</code> (macOS) o <code>cat /etc/os-release</code> (Linux) per confirmar la versió del sistema operatiu.</p>
+  <p><strong>Punt d'autocomprovació:</strong> Podeu obrir la terminal (PowerShell, Terminal o bash) i executar comandes bàsiques.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">3.2. Marc conceptual</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>3.2.1. Què instal·larem</h4>
+  <p>Node.js és el motor que executa JavaScript fora del navegador. Quan instal·leu Node.js, automàticament s'instal·la <strong>npm</strong>, el gestor de paquets.</p>
+
+  <h4>3.2.2. Per què cal instal·lar-lo amb cura</h4>
+  <p>Tres aspectes crítics:</p>
+
+  <p><strong>1. PATH del sistema:</strong></p>
+  <p>Node.js s'ha d'afegir al PATH perquè pugueu executar <code>node</code> i <code>npm</code> des de qualsevol carpeta.</p>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Si PATH està correcte, això funciona des de qualsevol lloc:
+node --version
+npm --version</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>2. Versions LTS vs Current:</strong></p>
+  <ul>
+    <li><strong>LTS (Long Term Support):</strong> 20.x, 22.x - Estable, 30 mesos de manteniment</li>
+    <li><strong>Current:</strong> 23.x - Últimes funcionalitats, menys estable</li>
+  </ul>
+
+  <p><strong>Per aquest curs: SEMPRE LTS</strong></p>
+
+  <p><strong>3. Permisos:</strong></p>
+  <p>Instal·lació requereix administrador, però després treballeu com a usuari normal.</p>
+
+  <h4>3.2.3. Flux d'instal·lació</h4>
+  
+  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Descarregar instal·lador → Executar amb permisos → Afegir al PATH
+    ↓
+Tancar terminal antiga → Obrir terminal nova → Verificar versions
+    ↓
+Provar amb projecte test → Instal·lar paquet → Comprovar funcionament</code></pre>
+  </div>
+</div>
+
+
+  <h4>3.2.4. Diferències per sistema operatiu</h4>
+
+  <p><strong>Windows:</strong></p>
+  <ul>
+    <li>Instal·lador gràfic <code>.msi</code></li>
+    <li>PATH s'afegeix automàticament (normalment)</li>
+    <li>Pot requerir reiniciar PowerShell</li>
+  </ul>
+
+  <p><strong>macOS:</strong></p>
+  <ul>
+    <li>Instal·lador gràfic <code>.pkg</code></li>
+    <li>PATH s'afegeix a <code>.zshrc</code> o <code>.bash_profile</code></li>
+    <li>Pot usar Homebrew com a alternativa</li>
+  </ul>
+
+  <p><strong>Linux:</strong></p>
+  <ul>
+    <li>Sense instal·lador gràfic</li>
+    <li>Usar gestor de paquets (apt, dnf) o nvm</li>
+    <li>PATH s'afegeix a <code>.bashrc</code> o <code>.zshrc</code></li>
+  </ul>
+
+  <h4>3.2.5. Exemple de verificació completa</h4>
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># 1. Comprovar versions
+node --version    # Hauria de retornar v20.x.x o v22.x.x
+npm --version     # Hauria de retornar 10.x.x
+
+# 2. Provar REPL
+node
+&gt; 2 + 2
+4
+&gt; .exit
+
+# 3. Crear projecte mínim
+mkdir test-node
+cd test-node
+npm init -y
+echo &quot;console.log(&#39;Funciona!&#39;);&quot; &gt; index.js
+node index.js
+# Hauria de mostrar: Funciona!</code></pre>
+  </div>
+</div>
+
+
+  <p>Aquesta secció us guiarà pas a pas per <strong>Windows, macOS i Linux</strong>, verificant cada pas.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">3.3. Model mental</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>3.3.1. Flux de dependències</h4>
+  
+  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Instal·lador Node.js
+    ↓ (inclou automàticament)
+Node.js + npm instal·lats
+    ↓ (s&#39;afegeix a)
+PATH del sistema
+    ↓ (permet executar)
+Comandes node i npm
+    ↓ (des de qualsevol carpeta)
+Terminal</code></pre>
+  </div>
+</div>
+
+
+  <h4>3.3.2. Conceptes clau</h4>
+  <ul>
+    <li><strong>Instal·lador oficial vs gestors de paquets:</strong> Windows/macOS usen instal·lador gràfic; Linux usa apt/dnf o nvm</li>
+    <li><strong>Node.js inclou npm:</strong> No cal instal·lar per separat. Sempre van junts.</li>
+    <li><strong>Verificació immediata:</strong> Després d'instal·lar, executeu <code>node --version</code> i <code>npm --version</code></li>
+    <li><strong>Reiniciar terminal:</strong> Després d'instal·lar, tanqueu i reobriu la terminal perquè el PATH s'actualitzi</li>
+    <li><strong>Versions LTS:</strong> 20.x o 22.x són les recomanades. Eviteu versions obsoletes (&lt;18.x) o experimentals (23.x)</li>
+  </ul>
+
+  <h4>3.3.3. Ordre d'operacions</h4>
+  <ol>
+    <li>Descarregar instal·lador LTS</li>
+    <li>Executar amb permisos administrador</li>
+    <li>Tancar terminals velles</li>
+    <li>Obrir terminal nova</li>
+    <li>Verificar <code>node --version</code></li>
+    <li>Verificar <code>npm --version</code></li>
+    <li>Provar amb projecte test</li>
+  </ol>
+
+  <h4>3.3.4. Problemes comuns i solucions ràpides</h4>
+  <ul>
+    <li><strong>"command not found"</strong> → PATH no actualitzat, reiniciar terminal</li>
+    <li><strong>Permís denegat</strong> → No sou administrador o cal <code>sudo</code></li>
+    <li><strong>Versions antigues</strong> → Descarregar instal·lador nou i reinstal·lar</li>
+  </ul>
+
+  <p>En aquesta secció fareu la instal·lació real i verificareu que tot funciona.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">3.4. Preparació: verificar sistema operatiu i requisits previs</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>3.4.1. Objectiu</h4>
+  <p>Assegurar que el sistema està preparat abans de començar.</p>
+
+  <h4>3.4.2. Pas 1: Identificar el sistema operatiu</h4>
+
+  <p><strong>Windows:</strong></p>
+  
+  <div class="code-block" data-lang="powershell" role="region" aria-label="Bloc de codi powershell">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">POWERSHELL</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-powershell">systeminfo | findstr /B /C:&quot;OS Name&quot; /C:&quot;OS Version&quot;</code></pre>
+  </div>
+</div>
+
+  <p>Necessiteu: <strong>Windows 10/11</strong></p>
+
+  <p><strong>macOS:</strong></p>
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">sw_vers</code></pre>
+  </div>
+</div>
+
+  <p>Necessiteu: <strong>macOS 11+</strong></p>
+
+  <p><strong>Linux:</strong></p>
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">cat /etc/os-release</code></pre>
+  </div>
+</div>
+
+  <p>Recomanat: <strong>Ubuntu 20.04+, Fedora 35+, Debian 11+</strong></p>
+
+  <h4>3.4.3. Pas 2: Comprovar si Node.js ja està instal·lat</h4>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">node --version
+npm --version</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Si retorna versions:</strong> Anoteu-les. Si &lt;18.x, actualitzeu.</p>
+  <p><strong>Si retorna error:</strong> Perfecte, continueu amb la instal·lació.</p>
+
+  <h4>3.4.4. Pas 3: Verificar espai disponible</h4>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Windows
+Get-PSDrive C | Select-Object Used,Free
+
+# macOS/Linux
+df -h /</code></pre>
+  </div>
+</div>
+
+
+  <p>Necessiteu: <strong>Mínim 500 MB lliures</strong></p>
+
+  <p><strong>Clau:</strong> Verificar sistema abans d'instal·lar evita problemes posteriors.</p>
+
+  <h4>3.4.5. Resultat esperat</h4>
+  <p>Sabeu quin SO teniu, si Node.js ja està instal·lat i teniu espai suficient.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">3.5. Descàrrega de Node.js: lloc oficial, selecció de versió LTS</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>3.5.1. Objectiu</h4>
+  <p>Obtenir l'instal·lador oficial adequat.</p>
+
+  <h4>3.5.2. Pas 1: Accedir al lloc oficial</h4>
+  <p>Busqueu "Node.js official website" o accediu directament a la pàgina de descàrregues.</p>
+  <p><strong>Important:</strong> Només des del lloc oficial per seguretat.</p>
+
+  <h4>3.5.3. Pas 2: Entendre versions disponibles</h4>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Versió</th>
+        <th>Manteniment</th>
+        <th>Recomanació</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>LTS</strong> 20.x, 22.x</td>
+        <td>30 mesos</td>
+        <td><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> <strong>Usar aquesta</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Current</strong> 23.x</td>
+        <td>6 mesos</td>
+        <td><i class="bi bi-x-circle-fill text-danger" aria-hidden="true"></i> Només avançats</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>3.5.4. Pas 3: Seleccionar instal·lador</h4>
+
+  <p><strong>Windows:</strong> <code>node-v20.x.x-x64.msi</code> (~30-35 MB)</p>
+  <p><strong>macOS:</strong> <code>node-v20.x.x.pkg</code> (~30-35 MB) - ARM64 per M1/M2/M3, x64 per Intel</p>
+  <p><strong>Linux:</strong> Comandes terminal (sense instal·lador gràfic)</p>
+
+  <h4>3.5.5. Pas 4: Descarregar</h4>
+  <p>Feu clic al botó i deseu a Descàrregues.</p>
+
+  <h4>3.5.6. Pas 5: Verificar integritat (opcional)</h4>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Windows
+Get-FileHash .\node-v20.x.x-x64.msi -Algorithm SHA256
+
+# macOS/Linux
+shasum -a 256 node-v20.x.x.pkg</code></pre>
+  </div>
+</div>
+
+
+  <p>Compareu amb el hash del lloc oficial.</p>
+
+  <p><strong>Clau:</strong> Descarregar LTS des del lloc oficial garanteix estabilitat i seguretat.</p>
+
+  <h4>3.5.7. Resultat esperat</h4>
+  <p>Teniu l'instal·lador oficial LTS descarregat i verificat.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">3.6. Instal·lació pas a pas per a Windows</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>3.6.1. Objectiu</h4>
+  <p>Instal·lar Node.js i npm a Windows.</p>
+
+  <h4>3.6.2. Passos d'instal·lació</h4>
+
+  <p><strong>1. Executar instal·lador:</strong></p>
+  <ul>
+    <li>Doble clic a <code>node-v20.x.x-x64.msi</code></li>
+    <li>Permetre canvis al dispositiu (Sí)</li>
+  </ul>
+
+  <p><strong>2. Pantalla benvinguda:</strong></p>
+  <ul>
+    <li>Next</li>
+  </ul>
+
+  <p><strong>3. Acceptar llicència:</strong></p>
+  <ul>
+    <li>Marcar "I accept..."</li>
+    <li>Next</li>
+  </ul>
+
+  <p><strong>4. Carpeta d'instal·lació:</strong></p>
+  <ul>
+    <li>Defecte: <code>C:\Program Files\nodejs\</code></li>
+    <li>Recomanació: Deixar per defecte</li>
+    <li>Next</li>
+  </ul>
+
+  <p><strong>5. Seleccionar components:</strong></p>
+  <ul>
+    <li><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> Node.js runtime (obligatori)</li>
+    <li><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> npm package manager (obligatori)</li>
+    <li><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> <strong>Add to PATH (CRÍTIC - Sense això no funcionarà)</strong></li>
+    <li>⬜ Online documentation (opcional)</li>
+  </ul>
+
+  <p><strong>6. Eines natives (opcional):</strong></p>
+  <p>Podeu desmarcar. Només necessari per paquets amb compilació nativa.</p>
+
+  <p><strong>7. Instal·lar:</strong></p>
+  <ul>
+    <li>Install</li>
+    <li>Esperar 1-2 minuts</li>
+  </ul>
+
+  <p><strong>8. Finalitzar:</strong></p>
+  <ul>
+    <li>Finish</li>
+  </ul>
+
+  <h4>3.6.3. Verificació (IMPORTANT)</h4>
+
+  <p><strong>Tancar</strong> PowerShell vells i obrir <strong>nou PowerShell:</strong></p>
+
+  
+  <div class="code-block" data-lang="powershell" role="region" aria-label="Bloc de codi powershell">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">POWERSHELL</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-powershell">node --version
+# Hauria de retornar: v20.x.x
+
+npm --version
+# Hauria de retornar: 10.x.x</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Si funciona:</strong> <i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> Instal·lació correcta</p>
+  <p><strong>Si retorna error:</strong> Verificar PATH o reiniciar ordinador</p>
+
+  <p><strong>Clau:</strong> Tancar i reobrir terminal és essencial perquè PATH s'actualitzi.</p>
+
+  <h4>3.6.4. Resultat esperat</h4>
+  <p>Node.js i npm funcionen a Windows amb comandes verificades.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">3.7. Instal·lació pas a pas per a macOS</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>3.7.1. Objectiu</h4>
+  <p>Instal·lar Node.js i npm a macOS.</p>
+
+  <h4>3.7.2. Opció 1: Instal·lador gràfic (Recomanat per principiants)</h4>
+
+  <p><strong>Passos:</strong></p>
+  <ol>
+    <li>Doble clic a <code>node-v20.x.x.pkg</code></li>
+    <li>Continuar → Acceptar llicència</li>
+    <li>Instal·lar (cal password administrador)</li>
+    <li>Tancar</li>
+  </ol>
+
+  <p><strong>Verificació:</strong></p>
+  <p>Obrir Terminal nou:</p>
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">node --version
+npm --version</code></pre>
+  </div>
+</div>
+
+
+  <h4>3.7.3. Opció 2: Homebrew (Recomanat per usuaris experiència)</h4>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Instal·lar Homebrew (si no el teniu)
+/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;
+
+# Instal·lar Node.js
+brew install node@20
+
+# Afegir al PATH (si cal)
+echo &#39;export PATH=&quot;/opt/homebrew/opt/node@20/bin:$PATH&quot;&#39; &gt;&gt; ~/.zshrc
+source ~/.zshrc
+
+# Verificar
+node --version
+npm --version</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Clau:</strong> Homebrew simplifica actualitzacions futures amb <code>brew upgrade node</code>.</p>
+
+  <h4>3.7.4. Resultat esperat</h4>
+  <p>Node.js i npm funcionen a macOS amb comandes verificades.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">3.8. Instal·lació pas a pas per a Linux</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>3.8.1. Objectiu</h4>
+  <p>Instal·lar Node.js i npm a Linux.</p>
+
+  <h4>3.8.2. Opció 1: Gestor de paquets de la distribució</h4>
+
+  <p><strong>Ubuntu/Debian:</strong></p>
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Actualitzar repositoris
+sudo apt update
+
+# Instal·lar Node.js 20.x
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs
+
+# Verificar
+node --version
+npm --version</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Fedora:</strong></p>
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">sudo dnf install nodejs
+node --version
+npm --version</code></pre>
+  </div>
+</div>
+
+
+  <h4>3.8.3. Opció 2: nvm (Node Version Manager) - Recomanat</h4>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Instal·lar nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+
+# Recarregar configuració
+source ~/.bashrc  # o ~/.zshrc
+
+# Instal·lar Node.js 20 LTS
+nvm install 20
+nvm use 20
+
+# Verificar
+node --version
+npm --version</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Avantatge nvm:</strong> Canviar fàcilment entre versions (<code>nvm use 18</code>, <code>nvm use 20</code>).</p>
+
+  <p><strong>Clau:</strong> nvm és ideal per gestionar múltiples versions de Node.js.</p>
+
+  <h4>3.8.4. Resultat esperat</h4>
+  <p>Node.js i npm funcionen a Linux amb comandes verificades.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">3.9. Verificació completa de la instal·lació</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>3.9.1. Objectiu</h4>
+  <p>Comprovar que Node.js i npm funcionen correctament.</p>
+
+  <h4>3.9.2. Test 1: Versions</h4>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">node --version
+# Exemple: v20.10.0
+
+npm --version
+# Exemple: 10.2.3</code></pre>
+  </div>
+</div>
+
+
+  <p><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> Hauria de retornar versions, no errors.</p>
+
+  <h4>3.9.3. Test 2: REPL (Read-Eval-Print Loop)</h4>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">node
+&gt; 2 + 2
+4
+&gt; console.log(&#39;Funciona!&#39;)
+Funciona!
+undefined
+&gt; .exit</code></pre>
+  </div>
+</div>
+
+
+  <p><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> Hauria d'executar JavaScript interactivament.</p>
+
+  <h4>3.9.4. Test 3: Executar fitxer JavaScript</h4>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Crear fitxer
+echo &quot;console.log(&#39;Node.js funciona!&#39;);&quot; &gt; test.js
+
+# Executar
+node test.js
+
+# Hauria de mostrar:
+Node.js funciona!</code></pre>
+  </div>
+</div>
+
+
+  <h4>3.9.5. Test 4: npm help</h4>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">npm --help</code></pre>
+  </div>
+</div>
+
+
+  <p><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> Hauria de mostrar llista de comandes npm.</p>
+
+  <h4>3.9.6. Test 5: npm config</h4>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">npm config list</code></pre>
+  </div>
+</div>
+
+
+  <p><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> Hauria de mostrar configuració npm (registry, prefix, etc.).</p>
+
+  <p><strong>Clau:</strong> Verificar amb múltiples tests assegura que tot funciona correctament.</p>
+
+  <h4>3.9.7. Resultat esperat</h4>
+  <p>Totes les verificacions passen sense errors.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">3.10. Comandes bàsiques de npm: init, install, scripts</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>3.10.1. Objectiu</h4>
+  <p>Aprendre operacions essencials de npm.</p>
+
+  <h4>3.10.2. Comanda 1: npm init (Crear projecte)</h4>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Crear carpeta
+mkdir primer-projecte
+cd primer-projecte
+
+# Inicialitzar projecte (mode interactiu)
+npm init
+
+# O mode ràpid (accepta tot per defecte)
+npm init -y</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Resultat:</strong> Crea <code>package.json</code> amb metadades del projecte.</p>
+
+  <h4>3.10.3. Comanda 2: npm install (Instal·lar paquets)</h4>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Instal·lar paquet
+npm install lodash
+
+# Instal·lar múltiples paquets
+npm install chalk axios
+
+# Instal·lar com a dev dependency
+npm install --save-dev jest</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Resultat:</strong> Crea <code>node_modules/</code> i afegeix dependències a <code>package.json</code>.</p>
+
+  <h4>3.10.4. Comanda 3: Scripts personalitzats</h4>
+
+  <p>Editar <code>package.json</code>:</p>
+  
+  <div class="code-block" data-lang="json" role="region" aria-label="Bloc de codi json">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JSON</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;node index.js&quot;,
+    &quot;test&quot;: &quot;echo &#39;Tests aquí&#39;&quot;
+  }
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>Executar:</p>
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">npm start
+npm test
+npm run nomscript</code></pre>
+  </div>
+</div>
+
+
+  <h4>3.10.5. Comandes addicionals útils</h4>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">npm list              # Llista paquets instal·lats
+npm outdated         # Paquets desactualitzats
+npm update           # Actualitzar paquets
+npm uninstall lodash # Desinstal·lar paquet</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Clau:</strong> npm automatitza gestió de dependències i execució de scripts.</p>
+
+  <h4>3.10.6. Resultat esperat</h4>
+  <p>Sabeu crear projectes, instal·lar paquets i executar scripts.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">3.11. Resolució de problemes comuns</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>3.11.1. Objectiu</h4>
+  <p>Diagnosticar i resoldre errors típics.</p>
+
+  <h4>3.11.2. Problema 1: "command not found: node"</h4>
+
+  <p><strong>Causa:</strong> PATH no actualitzat o Node.js no instal·lat.</p>
+
+  <p><strong>Solució:</strong></p>
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># 1. Tancar i reobrir terminal
+# 2. Verificar PATH
+echo $PATH  # macOS/Linux
+$env:PATH   # Windows
+
+# 3. Si no hi és, afegir manualment
+# Windows: Editar variables d&#39;entorn del sistema
+# macOS/Linux: Afegir a ~/.bashrc o ~/.zshrc
+export PATH=&quot;/usr/local/bin:$PATH&quot;</code></pre>
+  </div>
+</div>
+
+
+  <h4>3.11.3. Problema 2: "npm ERR! code EACCES"</h4>
+
+  <p><strong>Causa:</strong> Permisos insuficients.</p>
+
+  <p><strong>Solució Linux/macOS:</strong></p>
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Configurar prefix npm
+mkdir ~/.npm-global
+npm config set prefix &#39;~/.npm-global&#39;
+
+# Afegir al PATH
+echo &#39;export PATH=~/.npm-global/bin:$PATH&#39; &gt;&gt; ~/.bashrc
+source ~/.bashrc</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Solució Windows:</strong></p>
+  <p>Executar PowerShell com administrador per instal·lacions globals.</p>
+
+  <h4>3.11.4. Problema 3: Instal·lacions lentes</h4>
+
+  <p><strong>Causa:</strong> Caché corrupta.</p>
+
+  <p><strong>Solució:</strong></p>
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">npm cache clean --force
+npm cache verify
+npm install</code></pre>
+  </div>
+</div>
+
+
+  <h4>3.11.5. Problema 4: <code>npm WARN deprecated</code></h4>
+
+  <p><strong>Causa:</strong> Paquet obsolet.</p>
+
+  <p><strong>Interpretació:</strong></p>
+  <ul>
+    <li>WARN <strong>no és error</strong> - paquet instal·lat correctament</li>
+    <li>Només avís que el paquet ja no es manté</li>
+    <li>Podeu ignorar tret que hi hagi problemes funcionals</li>
+  </ul>
+
+  <h4>3.11.6. Problema 5: <code>npm ERR! network</code></h4>
+
+  <p><strong>Causa:</strong> Problemes xarxa o proxy.</p>
+
+  <p><strong>Solució:</strong></p>
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Verificar connexió
+npm ping
+
+# Configurar proxy (si escau)
+npm config set proxy http://proxy.example.com:8080
+npm config set https-proxy http://proxy.example.com:8080</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Clau:</strong> La majoria de problemes es resolen reiniciant terminal o netejant caché.</p>
+
+  <h4>3.11.7. Resultat esperat</h4>
+  <p>Sabeu diagnosticar i resoldre errors comuns de Node.js i npm.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">3.12. Prova final: crear carpeta de test i inicialitzar npm</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>3.12.1. Objectiu</h4>
+  <p>Fer una prova completa del flux de treball.</p>
+
+  <h4>3.12.2. Flux complet</h4>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># 1. Crear carpeta
+mkdir ~/Desktop/prova-npm
+cd ~/Desktop/prova-npm
+
+# 2. Inicialitzar projecte
+npm init -y
+
+# 3. Crear fitxer JavaScript
+echo &quot;console.log(&#39;Node.js i npm funcionen!&#39;);&quot; &gt; index.js
+
+# 4. Afegir script
+npm pkg set scripts.start=&quot;node index.js&quot;
+
+# 5. Executar
+npm start
+# Hauria de mostrar: Node.js i npm funcionen!
+
+# 6. Instal·lar paquet
+npm install chalk
+
+# 7. Usar paquet (editar index.js manualment)
+# const chalk = require(&#39;chalk&#39;);
+# console.log(chalk.green(&#39;Tot funciona!&#39;));
+
+# 8. Executar de nou
+npm start
+# Hauria de mostrar text en verd
+
+# 9. Netejar (opcional)
+cd ..
+rm -rf prova-npm  # macOS/Linux
+# Remove-Item -Recurse -Force prova-npm  # Windows</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Clau:</strong> Prova completa confirma que Node.js, npm i paquets funcionen.</p>
+
+  <h4>3.12.3. Resultat esperat</h4>
+  <p>Heu creat projecte, instal·lat paquet i executat script amb èxit.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">3.13. Mini exemple pràctic · Verificació completa de l'entorn</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <h4>3.13.1. Objectiu</h4>
+  <p>Confirmar tot en menys de 5 minuts.</p>
+
+  <h4>3.13.2. Passos</h4>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Versions
+node --version
+npm --version
+
+# REPL ràpid
+node -e &quot;console.log(&#39;OK&#39;)&quot;
+
+# Projecte mínim
+cd ~/Desktop
+mkdir test-node
+cd test-node
+npm init -y
+echo &quot;console.log(&#39;Test complet!&#39;);&quot; &gt; index.js
+node index.js</code></pre>
+  </div>
+</div>
+
+
+  <h4>3.13.3. Resultat esperat</h4>
+  <p>Totes les comandes funcionen sense errors.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">3.14. Resolució de problemes</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+
+  <table>
+    <thead>
+      <tr>
+        <th>Símptoma</th>
+        <th>Causa probable</th>
+        <th>Solució</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>command not found: node</code></td>
+        <td>PATH no actualitzat</td>
+        <td>Tancar i reobrir terminal</td>
+      </tr>
+      <tr>
+        <td><code>npm ERR! code EACCES</code></td>
+        <td>Permisos insuficients</td>
+        <td>Configurar <code>npm config set prefix ~/.npm-global</code></td>
+      </tr>
+      <tr>
+        <td>Instal·lació lenta</td>
+        <td>Caché corrupta</td>
+        <td><code>npm cache clean --force</code></td>
+      </tr>
+      <tr>
+        <td>Versions antigues</td>
+        <td>Instal·lador desactualitzat</td>
+        <td>Descarregar últim LTS</td>
+      </tr>
+      <tr>
+        <td><code>npm WARN deprecated</code></td>
+        <td>Paquet obsolet</td>
+        <td>Normal; ignoreu si funciona</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">3.15. Prompts d'IA</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+  <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> instructor tècnic. <strong>Tasca:</strong> explica amb màxim 80 paraules què significa <code>v20.10.0</code> de <code>node --version</code>. Inclou què representa cada número. <strong>Format:</strong> paràgraf breu.</div>
+  </div>
+</div>
+
+  <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> tècnic de suport. <strong>Tasca:</strong> crea guia de 5 passos per verificar que Node.js està ben instal·lat. Cada pas amb comanda i resultat esperat. <strong>Format:</strong> llista numerada.</div>
+  </div>
+</div>
+
+  <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
+<div class="ai-prompt" role="note">
+  <div class="component-header ai-header" role="heading" aria-level="4">
+    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
+    <div class="ai-actions">
+      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
+        <i class="bi bi-clipboard" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <div class="ai-container">
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> formador. <strong>Tasca:</strong> proposa 3 solucions per "node no es reconeix com a comanda" a Windows. Ordena per probabilitat d'èxit. <strong>Format:</strong> llista numerada.</div>
+  </div>
+</div>
+
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">3.16. Autoavaluació</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Autoavaluació · Secció 3">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">He instal·lat Node.js LTS al meu sistema</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">He verificat que node --version i npm --version funcionen</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">He inicialitzat un projecte amb npm init -y</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">He instal·lat un paquet amb npm install</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">He executat un script amb npm start</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Comprenc com resoldre problemes de PATH i permisos</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">He netejat la carpeta de test</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">3.17. Síntesi</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+  <p>Heu instal·lat amb èxit Node.js i npm, verificat el funcionament i après operacions bàsiques del gestor de paquets. Ara disposeu de la base per instal·lar eines de desenvolupament i crear projectes. A les properes unitats instal·lareu VS Code, Git i Angular CLI.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">3.18. Repàs de conceptes</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+  <ul>
+    <li><strong>Node.js:</strong> motor JavaScript basat en V8 per executar codi fora del navegador.</li>
+    <li><strong>npm:</strong> gestor de paquets que s'instal·la automàticament amb Node.js.</li>
+    <li><strong>LTS:</strong> versions estables mantingudes 30 mesos; recomanades per producció.</li>
+    <li><strong>PATH:</strong> variable del sistema per buscar executables; necessària per <code>node</code> i <code>npm</code>.</li>
+    <li><strong>package.json:</strong> manifest del projecte amb dependències.</li>
+    <li><strong>node_modules:</strong> carpeta amb paquets instal·lats localment.</li>
+    <li><strong>npm init:</strong> crear nou projecte amb <code>package.json</code>.</li>
+    <li><strong>npm install:</strong> descarregar i instal·lar paquets.</li>
+    <li><strong>npm run:</strong> executar scripts de <code>package.json</code>.</li>
+  </ul>
+  
+  </div>
+</div>
+
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 1: Conceptes fonamentals i instal·lació",
+  "description": "Frameworks de costat client, requisits del sistema i configuració de Node.js",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "DA2_OA01 - Programació Avançada (Angular) — IOC",
+    "description": "Materials del mòdul DA2_OA01 - Programació Avançada amb Angular"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                        
+                                        
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/da2_oa01/unitat-1/bloc-2/" class="nav-button" aria-label="Bloc següent: Entorn de desenvolupament integrat">Següent →</a>
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="1" data-total="4">(1/4)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 25%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="1" data-total="4">(1/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 25%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="3">(1/3)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 33%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/da2_oa01/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/da2_oa01",
+        title: "DA2_OA01 - Programació Avançada (Angular)",
+        version: "v1.0",
+        cicle_modul: "DA2_OA01"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/da2_oa01/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/da2_oa01/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/da2_oa01/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/da2_oa01/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/da2_oa01/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/da2_oa01/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/da2_oa01/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

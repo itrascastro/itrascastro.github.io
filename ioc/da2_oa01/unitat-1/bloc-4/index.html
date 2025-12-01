@@ -1,0 +1,3391 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Cas d'ús: Preparació completa de l'entorn | DA2_OA01 - Programació Avançada (Angular) - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="1">
+    <meta name="page-bloc" content="4">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Cas d’ús: Preparació completa de l’entorn | DA2_OA01 - Programació Avançada (Angular)</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Cas d’ús: Preparació completa de l’entorn" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Materials del mòdul DA2_OA01 - Programació Avançada amb Angular" />
+<meta property="og:description" content="Materials del mòdul DA2_OA01 - Programació Avançada amb Angular" />
+<link rel="canonical" href="http://localhost:4004/ioc/da2_oa01/unitat-1/bloc-4/" />
+<meta property="og:url" content="http://localhost:4004/ioc/da2_oa01/unitat-1/bloc-4/" />
+<meta property="og:site_name" content="DA2_OA01 - Programació Avançada (Angular)" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Cas d’ús: Preparació completa de l’entorn" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Materials del mòdul DA2_OA01 - Programació Avançada amb Angular","headline":"Cas d’ús: Preparació completa de l’entorn","url":"http://localhost:4004/ioc/da2_oa01/unitat-1/bloc-4/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/da2_oa01/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="http://localhost:4004/ioc/da2_oa01/unitat-1/bloc-4/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/da2_oa01/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/da2_oa01/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4004/ioc/da2_oa01/feed.xml" title="DA2_OA01 - Programació Avançada (Angular)" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/da2_oa01/assets/css/code-block.css">
+    <script src="/ioc/da2_oa01/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/da2_oa01">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/da2_oa01/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/da2_oa01/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/da2_oa01/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/da2_oa01/" class="title-link">
+                <h1>DA2_OA01 - DA2_OA01 - Programació Avançada (Angular)</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/da2_oa01/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/da2_oa01/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Conceptes fonamentals i instal·lació
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Entorn de desenvolupament integrat
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Creació del projecte base
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-1/bloc-4/" class="nav-dropdown-item current">
+                        Unitat 1 - Bloc 4: Cas d'ús: Preparació de l'entorn
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_oa01/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Components i comunicació bàsica
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Data binding i events
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Formularis amb vinculació bidireccional
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Cas d'ús: Catàleg d'elements
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_oa01/unitat-3/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 1: Serveis i separació de responsabilitats
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-3/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 2: Gestió d'estat i comunicació entre components
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-3/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 3: Optimització i bones pràctiques
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-3/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 4: Cas d'ús: Catàleg amb API REST
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_oa01/unitat-4/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 4 - Bloc 1: Sistema de rutes i navegació
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-4/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 4 - Bloc 2: Arquitectura escalable
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-4/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 4 - Bloc 3: Optimització de rendiment
+                    </a>
+                
+                    <a href="/ioc/da2_oa01/unitat-4/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 4 - Bloc 4: Cas d'ús: Aplicació completa
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc4_Seccio0" class="nav-link" data-section="Unitat1_Bloc4_Seccio0">Introducció</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc4_Prerequisits" class="nav-link" data-section="Unitat1_Bloc4_Prerequisits">1. Prerequisits i verificació inicial</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc4_VisioGeneral" class="nav-link" data-section="Unitat1_Bloc4_VisioGeneral">2. Visió general de l'aplicació</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc4_Bloc1" class="nav-link" data-section="Unitat1_Bloc4_Bloc1">3. Verificació i configuració de l'entorn base</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc4_Bloc2" class="nav-link" data-section="Unitat1_Bloc4_Bloc2">4. Configuració Git i GitHub</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc4_Bloc3" class="nav-link" data-section="Unitat1_Bloc4_Bloc3">5. Generació del projecte Angular</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc4_Bloc4" class="nav-link" data-section="Unitat1_Bloc4_Bloc4">6. Servidor de desenvolupament i hot reload</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc4_Bloc5" class="nav-link" data-section="Unitat1_Bloc4_Bloc5">7. Publicació a GitHub</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc4_Resolucio" class="nav-link" data-section="Unitat1_Bloc4_Resolucio">8. Resolució de problemes globals</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc4_Autoavaluacio" class="nav-link" data-section="Unitat1_Bloc4_Autoavaluacio">9. Autoavaluació</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc4_Recapitulacio" class="nav-link" data-section="Unitat1_Bloc4_Recapitulacio">10. Recapitulació</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/da2_oa01/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/da2_oa01/unitat-1/" class="horizontal-nav-item">
+                                Unitat 1: Preparació de l'entorn de desenvolupament (RA1)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 1.4: Cas d'ús: Preparació de l'entorn
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<!-- SECCIÓ 0: Introducció -->
+<div class="section cas-dus" id="Unitat1_Bloc4_Seccio0">
+  <h2 id="Unitat1_Bloc4_Seccio0">Introducció</h2>
+
+  <!-- MULTIMÈDIA -->
+  <!--
+  ════════════════════════════════════════════════════════════════
+  Component: Enllaços multimèdia YouTube
+  ════════════════════════════════════════════════════════════════
+
+  Paràmetres:
+    - unitat: número de la unitat (1-4)
+    - bloc: número del bloc (1-4)
+    - seccio: número de la secció (1-3)
+
+  Exemple d'ús:
+    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
+
+  El component busca automàticament les URLs corresponents a
+  site.data.multimedia i mostra els botons de vídeo i àudio.
+  ════════════════════════════════════════════════════════════════
+-->
+
+
+
+
+
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+<div class="multimedia-resources">
+  <div class="multimedia-header">
+    <i class="bi bi-play-circle-fill"></i>
+    <span>Contingut multimèdia d'aquesta lectura</span>
+  </div>
+
+  <div class="multimedia-buttons">
+    
+    <a href="https://www.youtube.com/watch?v=GIS2-wzefyY" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Unitat 1 · Lliçó 4 · Cas d'ús: Preparació completa de l'entorn">
+      <i class="bi bi-youtube"></i>
+      <span>Veure vídeo</span>
+      <i class="bi bi-box-arrow-up-right"></i>
+    </a>
+    
+
+    
+    <a href="https://www.youtube.com/watch?v=PAbWq9qsx3E" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Unitat 1 · Lliçó 4 · Cas d'ús: Preparació completa de l'entorn">
+      <i class="bi bi-mic-fill"></i>
+      <span>Escoltar àudio</span>
+      <i class="bi bi-box-arrow-up-right"></i>
+    </a>
+    
+  </div>
+
+  
+  
+</div>
+  
+
+
+
+  <div class="info_box">
+    <p>En aquest cas d'ús pràctic, integrareu tots els conceptes treballats a la Unitat 1 per preparar l'entorn complet de desenvolupament Angular. Configurareu les eines necessàries, creareu el vostre primer projecte i el publicareu a GitHub, establint així les bases per a tot el curs.</p>
+
+    <p>Aquest cas d'ús representa un flux de treball realista que us permetrà aplicar els coneixements adquirits sobre instal·lació d'eines, configuració de l'entorn, generació de projectes i control de versions en un context integrat.</p>
+  </div>
+
+  <h3>Objectius</h3>
+
+  <p>En finalitzar aquest cas d'ús, hauríeu de ser capaços de:</p>
+
+  <ul>
+    <li>Verificar i configurar l'entorn tècnic complet (Node.js, npm, Angular CLI, VS Code, Git)</li>
+    <li>Generar el projecte base <code>cataleg-elements</code> amb estructura funcional</li>
+    <li>Validar servidor de desenvolupament amb hot reload operatiu</li>
+    <li>Publicar el projecte a GitHub amb control de versions actiu</li>
+    <li>Documentar el procés i preparar el projecte per a les següents unitats</li>
+  </ul>
+
+  <h3>Criteris d'avaluació (RA1)</h3>
+
+  <p>Aquest cas d'ús cobreix els següents criteris del <strong>Resultat d'Aprenentatge 1</strong>:</p>
+
+  <ul>
+    <li><strong>RA1.1:</strong> Identifica les eines imprescindibles i comprova que compleixen els requisits del sistema</li>
+    <li><strong>RA1.2:</strong> Instal·la i configura l'entorn de desenvolupament amb les eines i dependències necessàries</li>
+    <li><strong>RA1.3:</strong> Crea l'estructura base del projecte organitzant carpetes i fitxers de manera coherent</li>
+    <li><strong>RA1.4:</strong> Configura els fitxers d'execució i comprova que l'entorn arrenca correctament</li>
+    <li><strong>RA1.5:</strong> Verifica el funcionament global amb proves o exemples senzills</li>
+  </ul>
+
+  <h3>Lectures integrades</h3>
+
+  <p>Aquest cas d'ús integra els continguts de les següents lectures de la Unitat 1:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Lectura</th>
+        <th>Tema</th>
+        <th>Aplicació en el cas d'ús</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1.1.1</td>
+        <td>Frameworks de costat client</td>
+        <td>Context i comprensió de l'arquitectura Angular</td>
+      </tr>
+      <tr>
+        <td>1.1.2</td>
+        <td>Requisits del sistema</td>
+        <td>Verificació de versions i maquinari necessari</td>
+      </tr>
+      <tr>
+        <td>1.1.3</td>
+        <td>Node.js i npm</td>
+        <td>Instal·lació i gestió de paquets</td>
+      </tr>
+      <tr>
+        <td>1.2.1</td>
+        <td>Visual Studio Code</td>
+        <td>IDE amb extensions essencials per Angular</td>
+      </tr>
+      <tr>
+        <td>1.2.2</td>
+        <td>Git local</td>
+        <td>Control de versions i històric de canvis</td>
+      </tr>
+      <tr>
+        <td>1.2.3</td>
+        <td>GitHub</td>
+        <td>Repositoris remots i publicació</td>
+      </tr>
+      <tr>
+        <td>1.3.1</td>
+        <td>Angular CLI</td>
+        <td>Generació automatitzada de projectes</td>
+      </tr>
+      <tr>
+        <td>1.3.2</td>
+        <td>Estructura del projecte</td>
+        <td>Organització de carpetes i fitxers Angular</td>
+      </tr>
+      <tr>
+        <td>1.3.3</td>
+        <td>Servidor de desenvolupament</td>
+        <td>ng serve i funcionalitat de hot reload</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<div class="section cas-dus" id="Unitat1_Bloc4_Prerequisits">
+  <h2 id="Unitat1_Bloc4_Prerequisits">1. Prerequisits i verificació inicial</h2>
+
+  <p><strong>Abans de començar, necessiteu:</strong></p>
+
+  <ul>
+    <li>Node.js 18.x o 20.x instal·lat</li>
+    <li>npm 9.x o 10.x disponible</li>
+    <li>Git 2.x configurat</li>
+    <li>Visual Studio Code amb extensions: Angular Language Service, ESLint, Prettier</li>
+    <li>Compte GitHub creat i verificat</li>
+    <li>Carpeta de treball: <code>~/workspace</code> (Linux/macOS) o <code>%USERPROFILE%\workspace</code> (Windows)</li>
+  </ul>
+
+  <p><strong>Script de verificació ràpida (5'):</strong></p>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Linux/macOS
+cd ~/workspace &amp;&amp; node --version &amp;&amp; npm --version &amp;&amp; ng version | head -n 3 &amp;&amp; git --version &amp;&amp; code --version</code></pre>
+  </div>
+</div>
+
+
+  
+  <div class="code-block" data-lang="powershell" role="region" aria-label="Bloc de codi powershell">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">POWERSHELL</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-powershell"># Windows PowerShell
+Set-Location $env:USERPROFILE\workspace; node --version; npm --version; ng version | Select-String &quot;Angular CLI&quot;; git --version; code --version</code></pre>
+  </div>
+</div>
+
+
+  <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <i class='bi bi-check-lg'></i> <strong>Punt de control:</strong> Totes les comandes responen amb versions. Si alguna falla, instal·leu l'eina abans de continuar.
+</div>
+
+
+</div>
+
+<div class="section cas-dus" id="Unitat1_Bloc4_VisioGeneral">
+  <h2 id="Unitat1_Bloc4_VisioGeneral">2. Visió general de l'aplicació</h2>
+
+  <h3>Què construireu</h3>
+
+  <p>Un projecte Angular base anomenat <code>cataleg-elements</code> amb:</p>
+
+  <ul>
+    <li>Estructura moderna (standalone components)</li>
+    <li>Sistema de rutes activat</li>
+    <li>Preprocessador SCSS</li>
+    <li>Control de versions Git</li>
+    <li>Publicació a GitHub</li>
+  </ul>
+
+  <p>Aquest projecte serà la base per a totes les unitats següents del curs.</p>
+
+  <h3>Arquitectura del projecte</h3>
+
+  
+  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">cataleg-elements/
+├── src/
+│   ├── app/
+│   │   ├── components/    (preparatori)
+│   │   ├── services/      (preparatori)
+│   │   ├── models/        (preparatori)
+│   │   ├── pages/         (preparatori)
+│   │   ├── app.component.*
+│   │   └── app.config.ts
+│   ├── assets/
+│   └── index.html
+├── angular.json
+├── package.json
+├── tsconfig.json
+└── .gitignore</code></pre>
+  </div>
+</div>
+
+
+  <h3>Funcionalitats per bloc</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Bloc</th>
+        <th>Funcionalitat</th>
+        <th>On s'implementa</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Verificació entorn</td>
+        <td>Terminal global</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Configuració Git + GitHub</td>
+        <td>Terminal + navegador</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Generació projecte Angular</td>
+        <td><code>ng new cataleg-elements</code></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Servidor + hot reload</td>
+        <td><code>ng serve</code> + canvis HTML</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Publicació GitHub</td>
+        <td><code>git push</code> + validació web</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Conceptes aplicats</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Concepte (Lectura)</th>
+        <th>On s'aplica</th>
+        <th>Propòsit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Node.js i npm (1.1.3)</td>
+        <td>Instal·lació global</td>
+        <td>Executar Angular CLI</td>
+      </tr>
+      <tr>
+        <td>VS Code (1.2.1)</td>
+        <td>Editor projecte</td>
+        <td>Desenvolupament eficient</td>
+      </tr>
+      <tr>
+        <td>Git (1.2.2)</td>
+        <td>Carpeta projecte</td>
+        <td>Control versions local</td>
+      </tr>
+      <tr>
+        <td>GitHub (1.2.3)</td>
+        <td>Repositori remot</td>
+        <td>Publicació i backup</td>
+      </tr>
+      <tr>
+        <td>Angular CLI (1.3.1)</td>
+        <td><code>ng new</code>, <code>ng serve</code></td>
+        <td>Automatització tasques</td>
+      </tr>
+      <tr>
+        <td>Estructura (1.3.2)</td>
+        <td><code>src/app/</code></td>
+        <td>Organització codi</td>
+      </tr>
+      <tr>
+        <td>Hot reload (1.3.3)</td>
+        <td>Servidor desenvolupament</td>
+        <td>Feedback immediat</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<div class="section cas-dus" id="Unitat1_Bloc4_Bloc1">
+  <h2 id="Unitat1_Bloc4_Bloc1">3. Verificació i configuració de l'entorn base</h2>
+
+  <h3>3.1. Objectiu</h3>
+
+  <p>Confirmar que totes les eines necessàries estan instal·lades amb versions correctes i accessibles des del terminal.</p>
+
+  <h3>3.2. Context d'integració</h3>
+
+  <p>Aplica conceptes de Lectures 1.1.2 (requisits sistema) i 1.1.3 (Node.js/npm).</p>
+
+  <h3>3.3. Pas 1: Verificar versions d'eines</h3>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Linux/macOS
+node --version    # Esperat: v18.x.x o v20.x.x
+npm --version     # Esperat: 9.x.x o 10.x.x
+ng version        # Esperat: Angular CLI 18.x.x
+git --version     # Esperat: git version 2.x.x
+code --version    # Esperat: 1.x.x</code></pre>
+  </div>
+</div>
+
+
+  
+  <div class="code-block" data-lang="powershell" role="region" aria-label="Bloc de codi powershell">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">POWERSHELL</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-powershell"># Windows PowerShell
+node --version
+npm --version
+ng version
+git --version
+code --version</code></pre>
+  </div>
+</div>
+
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong> Totes les comandes mostren versions. Node.js ≥18, npm ≥9, Angular CLI 18.x.</p>
+
+  <p><strong>Resultat esperat:</strong></p>
+
+  
+  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">v20.11.0
+10.2.4
+Angular CLI: 18.2.0
+git version 2.43.0
+1.95.0</code></pre>
+  </div>
+</div>
+
+
+  <h3>3.4. Pas 2: Instal·lar Angular CLI si falta</h3>
+
+  <p>Si <code>ng version</code> falla:</p>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Instal·lació global
+npm install -g @angular/cli@18
+
+# Verificar instal·lació
+ng version</code></pre>
+  </div>
+</div>
+
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong></p>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng version</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Resultat:</strong> Angular CLI: 18.x.x</p>
+
+  <h3>3.5. Pas 3: Configurar opcions globals Angular CLI</h3>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Desactivar telemetria (opcional)
+ng analytics disable
+
+# Configurar npm com a gestor de paquets
+ng config -g cli.packageManager npm</code></pre>
+  </div>
+</div>
+
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong></p>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng config -g cli.packageManager</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Resultat:</strong> <code>npm</code></p>
+
+  <h3>3.6. Pas 4: Verificar extensions VS Code</h3>
+
+  <p>Obriu VS Code i aneu a Extensions (Ctrl+Shift+X):</p>
+
+  <ol>
+    <li><strong>Angular Language Service</strong> (<code>Angular.ng-template</code>)</li>
+    <li><strong>ESLint</strong> (<code>dbaeumer.vscode-eslint</code>)</li>
+    <li><strong>Prettier</strong> (<code>esbenp.prettier-vscode</code>)</li>
+  </ol>
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong> Pestanya Extensions mostra les 3 extensions instal·lades i activades.</p>
+
+  <h3>3.7. Pas 5: Verificar espai en disc</h3>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Linux/macOS
+df -h ~ | head -n 2
+
+# Windows PowerShell
+Get-PSDrive -PSProvider FileSystem | Where-Object Name -eq &#39;C&#39; | Select-Object Name, Used, Free</code></pre>
+  </div>
+</div>
+
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong> Mínim 5 GB lliures per al projecte i dependències.</p>
+
+  <h3>3.8. Troubleshooting</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Problema</th>
+        <th>Causa</th>
+        <th>Solució</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>ng: command not found</code></td>
+        <td>CLI no al PATH</td>
+        <td><strong>Linux/macOS:</strong> Afegiu <code>export PATH=$PATH:~/.npm-global/bin</code> a <code>~/.bashrc</code> / <code>~/.zshrc</code>. <strong>Windows:</strong> Reinicieu terminal després d'instal·lar.</td>
+      </tr>
+      <tr>
+        <td><code>npm: command not found</code></td>
+        <td>Node.js no instal·lat</td>
+        <td>Descarregueu des de https://nodejs.org i instal·leu versió LTS.</td>
+      </tr>
+      <tr>
+        <td>Extensions VS Code no apareixen</td>
+        <td>Marketplace no accessible</td>
+        <td>Verifiqueu connexió a internet. Proveu reiniciar VS Code.</td>
+      </tr>
+      <tr>
+        <td>Espai insuficient</td>
+        <td>Disc ple</td>
+        <td>Allibereu espai o utilitzeu un altre disc amb mínim 5 GB lliures.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3><i class="bi bi-check-lg"></i> 3.9. Checkpoint</h3>
+
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text"><code>node --version</code> respon amb v18.x o v20.x</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text"><code>npm --version</code> respon amb 9.x o 10.x</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text"><code>ng version</code> respon amb Angular CLI 18.x</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text"><code>git --version</code> respon amb 2.x</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">VS Code té les 3 extensions essencials instal·lades</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Teniu mínim 5 GB lliures en disc</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+</div>
+
+<div class="section cas-dus" id="Unitat1_Bloc4_Bloc2">
+  <h2 id="Unitat1_Bloc4_Bloc2">4. Configuració Git i GitHub</h2>
+
+  <h3>4.1. Objectiu</h3>
+
+  <p>Configurar Git amb identitat global i crear compte GitHub funcional per al control de versions remot.</p>
+
+  <h3>4.2. Context d'integració</h3>
+
+  <p>Aplica conceptes de Lectures 1.2.2 (Git local) i 1.2.3 (GitHub remot).</p>
+
+  <h3>4.3. Pas 1: Configurar identitat Git</h3>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Configuració global
+git config --global user.name &quot;El Vostre Nom&quot;
+git config --global user.email &quot;el.vostre.email@example.com&quot;
+
+# Verificar configuració
+git config --global --list</code></pre>
+  </div>
+</div>
+
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong></p>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git config --global user.name
+git config --global user.email</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Resultat:</strong> Mostra el vostre nom i email.</p>
+
+  <h3>4.4. Pas 2: Crear repositori de prova local</h3>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Linux/macOS
+cd ~/workspace
+mkdir prova-git &amp;&amp; cd prova-git
+git init
+
+# Windows PowerShell
+Set-Location $env:USERPROFILE\workspace
+New-Item -ItemType Directory -Name prova-git
+Set-Location prova-git
+git init</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Crear fitxer de prova:</strong></p>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">echo &quot;# Repositori de prova Git&quot; &gt; README.md
+git add README.md
+git commit -m &quot;feat: afegir README inicial&quot;</code></pre>
+  </div>
+</div>
+
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong></p>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git log --oneline</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Resultat:</strong> Mostra 1 commit amb el missatge "feat: afegir README inicial".</p>
+
+  <h3>4.5. Pas 3: Crear compte GitHub</h3>
+
+  <ol>
+    <li>Aneu a https://github.com/signup</li>
+    <li>Completeu registre amb email, contrasenya i nom d'usuari</li>
+    <li>Verifiqueu el correu electrònic (reviseu safata d'entrada i spam)</li>
+  </ol>
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong> Inicieu sessió a https://github.com i veieu el vostre perfil.</p>
+
+  <h3>4.6. Pas 4: Crear repositori remot de prova</h3>
+
+  <ol>
+    <li>A GitHub, cliqueu <strong>New repository</strong> (botó verd dalt a la dreta)</li>
+    <li><strong>Repository name:</strong> <code>prova-git</code></li>
+    <li><strong>Description:</strong> "Repositori de prova per verificar Git i GitHub"</li>
+    <li>Deixeu <strong>Public</strong> seleccionat</li>
+    <li><strong>NO</strong> marqueu "Add a README file" (ja el teniu)</li>
+    <li>Cliqueu <strong>Create repository</strong></li>
+  </ol>
+
+  <p><strong>Connectar local amb remot:</strong></p>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Des de ~/workspace/prova-git (o %USERPROFILE%\workspace\prova-git)
+git remote add origin https://github.com/EL-VOSTRE-USUARI/prova-git.git
+git branch -M main
+git push -u origin main</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Si demana credencials:</strong></p>
+
+  <ul>
+    <li><strong>Username:</strong> el vostre usuari GitHub</li>
+    <li><strong>Password:</strong> token d'accés personal (PAT) o contrasenya (deprecated)</li>
+  </ul>
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong> Aneu a https://github.com/EL-VOSTRE-USUARI/prova-git i veieu el README.md publicat.</p>
+
+  <h3>4.7. Troubleshooting</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Problema</th>
+        <th>Causa</th>
+        <th>Solució</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>git: command not found</code></td>
+        <td>Git no instal·lat</td>
+        <td><strong>Linux:</strong> <code>sudo apt install git</code>. <strong>macOS:</strong> <code>brew install git</code>. <strong>Windows:</strong> Descarregueu des de https://git-scm.com.</td>
+      </tr>
+      <tr>
+        <td>Email no verificat a GitHub</td>
+        <td>No heu clicat l'enllaç</td>
+        <td>Reviseu la safata d'entrada i spam. Reenviï l'email des de GitHub si cal.</td>
+      </tr>
+      <tr>
+        <td><code>git push</code> demana credencials contínuament</td>
+        <td>HTTPS sense cache</td>
+        <td>Configureu cache: <code>git config --global credential.helper cache</code> (Linux/macOS) o <code>git config --global credential.helper wincred</code> (Windows).</td>
+      </tr>
+      <tr>
+        <td>Error <code>remote: Permission denied</code></td>
+        <td>Credencials incorrectes</td>
+        <td>Creeu token PAT a GitHub (Settings → Developer settings → Personal access tokens) i utilitzeu-lo com a contrasenya.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3><i class="bi bi-check-lg"></i> 4.8. Checkpoint</h3>
+
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Git configurat amb nom i email globals</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Repositori local <code>prova-git</code> inicialitzat amb 1 commit</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Compte GitHub creat i email verificat</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Repositori remot <code>prova-git</code> creat a GitHub</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text"><code>git push</code> funciona i README.md és visible a GitHub</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+</div>
+
+<div class="section cas-dus" id="Unitat1_Bloc4_Bloc3">
+  <h2 id="Unitat1_Bloc4_Bloc3">5. Generació del projecte Angular</h2>
+
+  <h3>5.1. Objectiu</h3>
+
+  <p>Generar el projecte <code>cataleg-elements</code> amb Angular CLI i estructura preparada per al desenvolupament.</p>
+
+  <h3>5.2. Context d'integració</h3>
+
+  <p>Aplica conceptes de Lectures 1.3.1 (Angular CLI) i 1.3.2 (estructura projecte).</p>
+
+  <h3>5.3. Pas 1: Generar projecte amb ng new</h3>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Linux/macOS
+cd ~/workspace
+ng new cataleg-elements --routing --style=scss --ssr=false
+
+# Windows PowerShell
+Set-Location $env:USERPROFILE\workspace
+ng new cataleg-elements --routing --style=scss --ssr=false</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Opcions durant la generació:</strong></p>
+
+  <ul>
+    <li><strong>Standalone components?</strong> → Yes (Enter)</li>
+    <li><strong>Install dependencies?</strong> → Yes (Enter)</li>
+  </ul>
+
+  <p><strong>Espera:</strong> La instal·lació de dependències pot trigar 3-5 minuts.</p>
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong></p>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">cd cataleg-elements
+ls -la    # Linux/macOS
+dir       # Windows</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Resultat:</strong> Veieu carpetes <code>src/</code>, <code>node_modules/</code>, fitxers <code>angular.json</code>, <code>package.json</code>, etc.</p>
+
+  <h3>5.4. Pas 2: Explorar estructura generada</h3>
+
+  <p>Obriu el projecte a VS Code:</p>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">code .</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Carpetes principals:</strong></p>
+
+  <ul>
+    <li><code>src/app/</code> → Components i codi de l'aplicació</li>
+    <li><code>src/assets/</code> → Imatges, fonts, recursos estàtics</li>
+    <li><code>node_modules/</code> → Dependències npm (NO pujar a Git)</li>
+  </ul>
+
+  <p><strong>Fitxers clau:</strong></p>
+
+  <ul>
+    <li><code>angular.json</code> → Configuració Angular CLI</li>
+    <li><code>package.json</code> → Dependències i scripts npm</li>
+    <li><code>tsconfig.json</code> → Configuració TypeScript</li>
+    <li><code>.gitignore</code> → Fitxers exclosos de Git</li>
+  </ul>
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong> A VS Code, explorador lateral mostra totes aquestes carpetes i fitxers.</p>
+
+  <h3>5.5. Pas 3: Verificar package.json</h3>
+
+  <p>Obriu <code>package.json</code> i confirmeu dependències:</p>
+
+  
+  <div class="code-block" data-lang="json" role="region" aria-label="Bloc de codi json">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JSON</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-json">{
+  &quot;dependencies&quot;: {
+    &quot;@angular/animations&quot;: &quot;^18.2.0&quot;,
+    &quot;@angular/common&quot;: &quot;^18.2.0&quot;,
+    &quot;@angular/compiler&quot;: &quot;^18.2.0&quot;,
+    &quot;@angular/core&quot;: &quot;^18.2.0&quot;,
+    &quot;@angular/platform-browser&quot;: &quot;^18.2.0&quot;,
+    &quot;@angular/router&quot;: &quot;^18.2.0&quot;,
+    &quot;rxjs&quot;: &quot;~7.8.0&quot;,
+    &quot;tslib&quot;: &quot;^2.3.0&quot;,
+    &quot;zone.js&quot;: &quot;~0.14.10&quot;
+  }
+}</code></pre>
+  </div>
+</div>
+
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong> Versió Angular és 18.x.x.</p>
+
+  <h3>5.6. Pas 4: Crear carpetes preparatòries</h3>
+
+  <p>Des del terminal integrat de VS Code (Ctrl+`):</p>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Linux/macOS/Git Bash
+cd src/app
+mkdir components services models pages
+
+# Windows PowerShell
+Set-Location src\app
+New-Item -ItemType Directory -Name components
+New-Item -ItemType Directory -Name services
+New-Item -ItemType Directory -Name models
+New-Item -ItemType Directory -Name pages</code></pre>
+  </div>
+</div>
+
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong></p>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ls src/app/    # Linux/macOS
+dir src\app    # Windows</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Resultat:</strong> Veieu les 4 carpetes noves: <code>components/</code>, <code>services/</code>, <code>models/</code>, <code>pages/</code>.</p>
+
+  <h3>5.7. Pas 5: Crear fitxers .gitkeep</h3>
+
+  <p>Per mantenir les carpetes buides a Git:</p>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Linux/macOS/Git Bash
+touch src/app/components/.gitkeep
+touch src/app/services/.gitkeep
+touch src/app/models/.gitkeep
+touch src/app/pages/.gitkeep
+
+# Windows PowerShell
+New-Item src\app\components\.gitkeep
+New-Item src\app\services\.gitkeep
+New-Item src\app\models\.gitkeep
+New-Item src\app\pages\.gitkeep</code></pre>
+  </div>
+</div>
+
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong> Cada carpeta preparatòria conté un fitxer <code>.gitkeep</code>.</p>
+
+  <h3>5.8. Troubleshooting</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Problema</th>
+        <th>Causa</th>
+        <th>Solució</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>ng new</code> falla amb error de permisos</td>
+        <td>Permisos insuficients</td>
+        <td><strong>Linux/macOS:</strong> NO useu <code>sudo</code>. Canvieu ownership: <code>sudo chown -R $USER:$USER ~/workspace</code>. <strong>Windows:</strong> Executeu PowerShell com a administrador.</td>
+      </tr>
+      <tr>
+        <td><code>npm ERR! network</code> durant instal·lació</td>
+        <td>Connexió internet</td>
+        <td>Verifiqueu connexió. Proveu <code>npm config set registry https://registry.npmjs.org/</code>.</td>
+      </tr>
+      <tr>
+        <td>Instalació triga més de 10 minuts</td>
+        <td>npm lent o cache corrupte</td>
+        <td>Cancel·leu (Ctrl+C) i proveu <code>npm cache clean --force</code> abans de tornar a executar <code>ng new</code>.</td>
+      </tr>
+      <tr>
+        <td>Carpetes preparatòries no es veuen a Git</td>
+        <td>.gitignore massa restrictiu</td>
+        <td>Assegureu-vos que <code>.gitkeep</code> està dins de cada carpeta buida.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3><i class="bi bi-check-lg"></i> 5.9. Checkpoint</h3>
+
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Projecte <code>cataleg-elements</code> generat amb <code>ng new</code></div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Estructura amb <code>src/app/</code>, <code>angular.json</code>, <code>package.json</code> visible</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text"><code>node_modules/</code> instal·lat (200-400 MB)</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Carpetes preparatòries creades: <code>components/</code>, <code>services/</code>, <code>models/</code>, <code>pages/</code></div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Fitxers <code>.gitkeep</code> dins de cada carpeta preparatòria</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Projecte obert a VS Code sense errors</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+</div>
+
+<div class="section cas-dus" id="Unitat1_Bloc4_Bloc4">
+  <h2 id="Unitat1_Bloc4_Bloc4">6. Servidor de desenvolupament i hot reload</h2>
+
+  <h3>6.1. Objectiu</h3>
+
+  <p>Arrencar el servidor de desenvolupament, verificar hot reload i crear primers logs de depuració.</p>
+
+  <h3>6.2. Context d'integració</h3>
+
+  <p>Aplica conceptes de Lectura 1.3.3 (ng serve i hot reload).</p>
+
+  <h3>6.3. Pas 1: Arrencar servidor de desenvolupament</h3>
+
+  <p>Des del terminal de VS Code (assegureu-vos d'estar a <code>cataleg-elements/</code>):</p>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng serve</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Espera:</strong> Primera compilació pot trigar 30-60 segons.</p>
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong> Terminal mostra:</p>
+
+  
+  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">✔ Browser application bundle generation complete.
+Initial Chunk Files | Names         |  Raw Size
+main.js             | main          | 123.45 kB |
+
+Application bundle generation complete. [1.234 seconds]
+Watch mode enabled. Watching for file changes...
+➜  Local:   http://localhost:4200/</code></pre>
+  </div>
+</div>
+
+
+  <h3>6.4. Pas 2: Obrir aplicació al navegador</h3>
+
+  <p>Obriu el navegador i aneu a: http://localhost:4200</p>
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong> Veieu la pàgina d'Angular amb el logo i enllaços a documentació.</p>
+
+  <h3>6.5. Pas 3: Obrir consola del navegador</h3>
+
+  <p>Premeu <strong>F12</strong> per obrir DevTools → Pestanya <strong>Console</strong>.</p>
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong> No hi ha errors. Pot haver-hi warnings (avisos grocs), ignoreu-los de moment.</p>
+
+  <h3>6.6. Pas 4: Fer canvi HTML per validar hot reload</h3>
+
+  <p><strong>NO atureu el servidor.</strong> Obriu <code>src/app/app.component.html</code> a VS Code i <strong>esborreu tot el contingut</strong>. Substituïu-lo per:</p>
+
+  
+  <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">HTML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;h1&gt;Catàleg d&#39;Elements&lt;/h1&gt;
+&lt;p&gt;Benvingut al projecte base de la Unitat 1!&lt;/p&gt;</code></pre>
+  </div>
+</div>
+
+
+  <p>Deseu el fitxer (Ctrl+S).</p>
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong></p>
+
+  <ul>
+    <li>Terminal mostra: <code>✔ Compiled successfully</code></li>
+    <li>Navegador <strong>actualitza automàticament</strong> (sense F5)</li>
+    <li>Veieu el títol "Catàleg d'Elements" i el paràgraf</li>
+  </ul>
+
+  <h3>6.7. Pas 5: Afegir log de depuració a TypeScript</h3>
+
+  <p>Obriu <code>src/app/app.component.ts</code> i afegiu un <code>console.log</code> dins del constructor:</p>
+
+  
+  <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component } from &#39;@angular/core&#39;;
+import { RouterOutlet } from &#39;@angular/router&#39;;
+
+@Component({
+  selector: &#39;app-root&#39;,
+  standalone: true,
+  imports: [RouterOutlet],
+  templateUrl: &#39;./app.component.html&#39;,
+  styleUrl: &#39;./app.component.scss&#39;
+})
+export class AppComponent {
+  title = &#39;cataleg-elements&#39;;
+
+  constructor() {
+    console.log(&#39;✅ AppComponent carregat correctament!&#39;);
+  }
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>Deseu (Ctrl+S).</p>
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong></p>
+
+  <ul>
+    <li>Terminal: <code>✔ Compiled successfully</code></li>
+    <li>Consola del navegador: <code>✅ AppComponent carregat correctament!</code></li>
+  </ul>
+
+  <h3>6.8. Pas 6: Afegir estil SCSS</h3>
+
+  <p>Obriu <code>src/app/app.component.scss</code> i afegiu:</p>
+
+  
+  <div class="code-block" data-lang="scss" role="region" aria-label="Bloc de codi scss">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">SCSS</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-scss">h1 {
+  color: #1976d2;
+  font-family: &#39;Segoe UI&#39;, Tahoma, Geneva, Verdana, sans-serif;
+  margin: 2rem;
+}
+
+p {
+  margin: 2rem;
+  font-size: 1.1rem;
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>Deseu (Ctrl+S).</p>
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong></p>
+
+  <ul>
+    <li>Terminal: <code>✔ Compiled successfully</code></li>
+    <li>Navegador: Títol blau amb marge, text paràgraf més gran</li>
+  </ul>
+
+  <h3>6.9. Pas 7: Provar hot reload amb canvis ràpids</h3>
+
+  <p>Feu 3 canvis consecutius a <code>app.component.html</code> (un cada vegada, desant després de cada):</p>
+
+  <ol>
+    <li>Afegiu <code>&lt;h2&gt;Subtítol de prova&lt;/h2&gt;</code> després del paràgraf</li>
+    <li>Canvieu el text del paràgraf a "El hot reload funciona perfectament!"</li>
+    <li>Afegiu <code>&lt;p&gt;Canvi número 3&lt;/p&gt;</code></li>
+  </ol>
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong> Després de cada canvi, el navegador actualitza automàticament en 1-2 segons sense necessitat de prémer F5.</p>
+
+  <h3>6.10. Troubleshooting</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Problema</th>
+        <th>Causa</th>
+        <th>Solució</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>Port 4200 is already in use</code></td>
+        <td>Servidor previ executant-se</td>
+        <td>Trobeu el procés: <code>lsof -i :4200</code> (Linux/macOS) o <code>netstat -ano | findstr :4200</code> (Windows) i atureu-lo, o useu: <code>ng serve --port 4201</code>.</td>
+      </tr>
+      <tr>
+        <td>Hot reload no funciona</td>
+        <td>Watch mode no actiu</td>
+        <td>Atureu servidor (Ctrl+C) i proveu: <code>ng serve --poll=2000</code>.</td>
+      </tr>
+      <tr>
+        <td>Canvis HTML no es reflecteixen</td>
+        <td>Cache navegador</td>
+        <td>Premeu Ctrl+Shift+R (hard refresh) al navegador.</td>
+      </tr>
+      <tr>
+        <td><code>console.log</code> no apareix</td>
+        <td>Consola filtrada</td>
+        <td>A DevTools, assegureu-vos que el filtre és "All levels" (no només Errors).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3><i class="bi bi-check-lg"></i> 6.11. Checkpoint</h3>
+
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text"><code>ng serve</code> arrenca sense errors</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Aplicació accessible a http://localhost:4200</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Canvis a HTML es reflecteixen automàticament (hot reload)</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Canvis a TypeScript compilen i executen correctament</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text"><code>console.log</code> apareix a la consola del navegador</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Estils SCSS s'apliquen correctament</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+  <p><strong>Abans de continuar:</strong> Deixeu el servidor executant-se.</p>
+
+</div>
+
+<div class="section cas-dus" id="Unitat1_Bloc4_Bloc5">
+  <h2 id="Unitat1_Bloc4_Bloc5">7. Publicació a GitHub</h2>
+
+  <h3>7.1. Objectiu</h3>
+
+  <p>Inicialitzar Git al projecte, connectar amb repositori remot GitHub i publicar tots els canvis.</p>
+
+  <h3>7.2. Context d'integració</h3>
+
+  <p>Aplica conceptes de Lectures 1.2.2 (Git local) i 1.2.3 (GitHub remot).</p>
+
+  <h3>7.3. Pas 1: Aturar servidor de desenvolupament</h3>
+
+  <p>Al terminal on s'executa <code>ng serve</code>, premeu <strong>Ctrl+C</strong> per aturar-lo.</p>
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong> Terminal torna al prompt normal (sense missatges de watch mode).</p>
+
+  <h3>7.4. Pas 2: Inicialitzar repositori Git</h3>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Des de cataleg-elements/
+git init</code></pre>
+  </div>
+</div>
+
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong></p>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git status</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Resultat:</strong> Mostra tots els fitxers com "Untracked files".</p>
+
+  <h3>7.5. Pas 3: Afegir tots els fitxers</h3>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git add .</code></pre>
+  </div>
+</div>
+
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong></p>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git status</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Resultat:</strong> Tots els fitxers ara són "Changes to be committed" (verds).</p>
+
+  <h3>7.6. Pas 4: Primera confirmació</h3>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git commit -m &quot;feat: configuració inicial del projecte cataleg-elements&quot;</code></pre>
+  </div>
+</div>
+
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong></p>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git log --oneline</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Resultat:</strong> Mostra 1 commit amb el missatge especificat.</p>
+
+  <h3>7.7. Pas 5: Crear repositori remot a GitHub</h3>
+
+  <ol>
+    <li>Aneu a https://github.com i inicieu sessió</li>
+    <li>Cliqueu <strong>New repository</strong> (botó verd)</li>
+    <li><strong>Repository name:</strong> <code>cataleg-elements</code></li>
+    <li><strong>Description:</strong> "Projecte base Angular per al curs de frameworks"</li>
+    <li><strong>Public</strong> (deixeu-lo marcat)</li>
+    <li><strong>NO</strong> marqueu "Add a README file"</li>
+    <li>Cliqueu <strong>Create repository</strong></li>
+  </ol>
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong> GitHub mostra pàgina amb instruccions per connectar repositori existent.</p>
+
+  <h3>7.8. Pas 6: Connectar local amb remot</h3>
+
+  <p>Copieu l'URL del vostre repositori (format: <code>https://github.com/EL-VOSTRE-USUARI/cataleg-elements.git</code>) i executeu:</p>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git remote add origin https://github.com/EL-VOSTRE-USUARI/cataleg-elements.git
+git branch -M main</code></pre>
+  </div>
+</div>
+
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong></p>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git remote -v</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Resultat:</strong> Mostra <code>origin</code> amb l'URL de GitHub (fetch i push).</p>
+
+  <h3>7.9. Pas 7: Publicar canvis</h3>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git push -u origin main</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Si demana credencials:</strong></p>
+
+  <ul>
+    <li><strong>Username:</strong> el vostre usuari GitHub</li>
+    <li><strong>Password:</strong> token PAT (o contrasenya si encara funciona)</li>
+  </ul>
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong> Terminal mostra:</p>
+
+  
+  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Enumerating objects: X, done.
+Counting objects: 100% (X/X), done.
+Writing objects: 100% (X/X), Y KiB | Z MiB/s, done.
+To https://github.com/EL-VOSTRE-USUARI/cataleg-elements.git
+ * [new branch]      main -&gt; main</code></pre>
+  </div>
+</div>
+
+
+  <h3>7.10. Pas 8: Verificar publicació al navegador</h3>
+
+  <p>Aneu a https://github.com/EL-VOSTRE-USUARI/cataleg-elements</p>
+
+  <p><i class="bi bi-check-lg"></i> <strong>Verificació:</strong></p>
+
+  <ul>
+    <li>Veieu tots els fitxers del projecte</li>
+    <li>Readme pot estar absent (normal, no l'hem creat)</li>
+    <li><code>src/</code>, <code>angular.json</code>, <code>package.json</code>, etc. són visibles</li>
+    <li>Última confirmació mostra: "feat: configuració inicial..."</li>
+  </ul>
+
+  <h3>7.11. Pas 9: Anotar URL del repositori</h3>
+
+  <p>Copieu l'URL del repositori per a futures referències:</p>
+
+  
+  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">https://github.com/EL-VOSTRE-USUARI/cataleg-elements</code></pre>
+  </div>
+</div>
+
+
+  <p>Guardeu-la a un document local o al README del projecte.</p>
+
+  <h3>7.12. Troubleshooting</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Problema</th>
+        <th>Causa</th>
+        <th>Solució</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>git push</code> falla amb error 403</td>
+        <td>Credencials incorrectes</td>
+        <td>Creeu token PAT a GitHub (Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token). Àmbit: <code>repo</code>. Copieu el token i useu-lo com a contrasenya.</td>
+      </tr>
+      <tr>
+        <td><code>git remote add</code> diu "remote origin already exists"</td>
+        <td>Remote ja configurat</td>
+        <td>Elimineu amb <code>git remote remove origin</code> i torneu a afegir-lo.</td>
+      </tr>
+      <tr>
+        <td>Fitxers molt grans</td>
+        <td><code>node_modules/</code> sense ignorar</td>
+        <td>Verifiqueu que <code>.gitignore</code> conté <code>/node_modules/</code>. Si va pujar, elimineu-lo del repositori: <code>git rm -r --cached node_modules/</code> i torneu a fer commit.</td>
+      </tr>
+      <tr>
+        <td>Error "updates were rejected"</td>
+        <td>Branch local i remot divergeixen</td>
+        <td>Primera vegada: <code>git push -u origin main --force</code> (NOMÉS si el repositori remot està buit).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3><i class="bi bi-check-lg"></i> 7.13. Checkpoint</h3>
+
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Repositori Git inicialitzat a <code>cataleg-elements/</code></div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Primera confirmació realitzada amb tots els fitxers</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Repositori remot <code>cataleg-elements</code> creat a GitHub</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Repositori local connectat amb remot (<code>git remote -v</code> mostra origin)</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text"><code>git push</code> executat correctament</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Projecte visible a GitHub al navegador amb tots els fitxers</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">URL del repositori anotada per a futures referències</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+</div>
+
+<div class="section cas-dus" id="Unitat1_Bloc4_Resolucio">
+  <h2 id="Unitat1_Bloc4_Resolucio">8. Resolució de problemes globals</h2>
+
+  <h3>Problemes transversals</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Símptoma</th>
+        <th>On passa</th>
+        <th>Causa</th>
+        <th>Solució</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Comandes npm molt lentes</td>
+        <td>Terminal, <code>npm install</code></td>
+        <td>Cache npm corrupte</td>
+        <td><code>npm cache clean --force</code> i torneu a instal·lar</td>
+      </tr>
+      <tr>
+        <td>VS Code no detecta extensions Angular</td>
+        <td>Editor, fitxers <code>.html</code></td>
+        <td>Extension no activa</td>
+        <td>Reload window: Ctrl+Shift+P → "Developer: Reload Window"</td>
+      </tr>
+      <tr>
+        <td>Git demana credencials contínuament</td>
+        <td>Terminal, <code>git push</code></td>
+        <td>Sense cache credencials</td>
+        <td><code>git config --global credential.helper cache</code> (Linux/macOS) o <code>wincred</code> (Windows)</td>
+      </tr>
+      <tr>
+        <td>Hot reload intermitent</td>
+        <td>Navegador</td>
+        <td>Sistema fitxers lent</td>
+        <td><code>ng serve --poll=2000</code> per forçar polling cada 2s</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Errors de configuració</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Error</th>
+        <th>Causa</th>
+        <th>Solució Windows</th>
+        <th>Solució Linux/macOS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>PATH no actualitzat</td>
+        <td>Instal·lació recent</td>
+        <td>Reinicieu PowerShell</td>
+        <td>Feu <code>source ~/.bashrc</code> o <code>source ~/.zshrc</code></td>
+      </tr>
+      <tr>
+        <td>Permisos insuficients npm</td>
+        <td>Carpeta global protegida</td>
+        <td>Executeu PowerShell com admin</td>
+        <td>Canvieu ownership: <code>sudo chown -R $USER /usr/local/lib/node_modules</code></td>
+      </tr>
+      <tr>
+        <td>Port 4200 ocupat</td>
+        <td>Altra app executant-se</td>
+        <td><code>netstat -ano | findstr :4200</code>, després aturar procés</td>
+        <td><code>lsof -i :4200</code>, després <code>kill -9 PID</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Problemes de dependències</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Error</th>
+        <th>Causa</th>
+        <th>Solució</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>npm ERR! peer dependency</code></td>
+        <td>Versions incompatibles</td>
+        <td>Ignoreu si l'aplicació funciona, o proveu <code>npm install --legacy-peer-deps</code></td>
+      </tr>
+      <tr>
+        <td><code>Module not found</code></td>
+        <td>Dependència no instal·lada</td>
+        <td><code>npm install</code> des de la carpeta projecte</td>
+      </tr>
+      <tr>
+        <td>Compilació falla després d'actualitzar</td>
+        <td>Cache TypeScript corrupte</td>
+        <td>Elimineu <code>.angular/</code> i <code>node_modules/</code>, després <code>npm install</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<div class="section cas-dus" id="Unitat1_Bloc4_Autoavaluacio">
+  <h2 id="Unitat1_Bloc4_Autoavaluacio">9. Autoavaluació</h2>
+
+  <h3>Criteris objectius (Definition of Done)</h3>
+
+  <p><strong>L'entorn està complet quan:</strong></p>
+
+  <p><strong>Funcionalitat:</strong></p>
+
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text"><code>ng serve</code> arrenca i aplicació visible a localhost:4200</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Hot reload operatiu (canvis HTML/TS reflectits automàticament)</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Consola navegador sense errors crítics</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+  <p><strong>Projecte i estructura:</strong></p>
+
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Projecte <code>cataleg-elements</code> amb estructura Angular estàndard</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Carpetes preparatòries: <code>components/</code>, <code>services/</code>, <code>models/</code>, <code>pages/</code></div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text"><code>node_modules/</code> exclòs de Git (<code>.gitignore</code> correcte)</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+  <p><strong>Control de versions:</strong></p>
+
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Git configurat amb nom i email globals</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Repositori local amb confirmació inicial</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Repositori remot GitHub enllaçat</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text"><code>git push</code> funciona i projecte visible a GitHub</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+  <p><strong>Eines:</strong></p>
+
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Node.js 18.x/20.x i npm 9.x/10.x operatius</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Angular CLI 18.x instal·lada globalment</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">VS Code amb extensions essencials actives</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+  <h3>Competències adquirides</h3>
+
+  <p><strong>Configuració i entorn:</strong></p>
+
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé verificar versions d'eines amb terminal</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Entenc per què necessito Node.js per executar Angular</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc instal·lar paquets globals amb npm</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+  <p><strong>Git i GitHub:</strong></p>
+
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">He configurat Git amb identitat global</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé inicialitzar repositori i fer confirmacions</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc connectar repositori local amb remot</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc publicar canvis amb <code>git push</code></div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+  <p><strong>Projecte Angular:</strong></p>
+
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">He generat projecte amb <code>ng new</code> i opcions adequades</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Entenc estructura: <code>src/app/</code>, <code>angular.json</code>, <code>package.json</code></div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé per què <code>node_modules/</code> no es puja a Git</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+  <p><strong>Servidor de desenvolupament:</strong></p>
+
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc arrencar servidor amb <code>ng serve</code></div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Entenc què és el hot reload</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé fer canvis a HTML/TypeScript i verificar-los</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc interpretar missatges del terminal</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+  <p><strong>Resolució de problemes:</strong></p>
+
+  <!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Checklist">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé què fer si <code>ng</code> no es troba després d'instal·lar</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc canviar port si 4200 està ocupat</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Entenc com configurar credencials GitHub</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé activar polling si hot reload no funciona</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+</div>
+
+<div class="section cas-dus" id="Unitat1_Bloc4_Recapitulacio">
+  <h2 id="Unitat1_Bloc4_Recapitulacio">10. Recapitulació</h2>
+
+  <h3>Què hem aconseguit</h3>
+
+  <p>Disposeu d'un <strong>entorn Angular complet i verificat</strong> amb:</p>
+
+  <ol>
+    <li><strong>Eines operatives</strong>: Node.js, npm, Angular CLI, Git, VS Code amb extensions</li>
+    <li><strong>Projecte funcional</strong>: <code>cataleg-elements</code> amb estructura moderna, routing i SCSS</li>
+    <li><strong>Flux validat</strong>: Servidor de desenvolupament amb hot reload operatiu</li>
+    <li><strong>Control de versions</strong>: Git local i GitHub remot configurats i funcionals</li>
+    <li><strong>Carpetes preparatòries</strong>: Organització per a components, serveis, models i pàgines futures</li>
+  </ol>
+
+  <h3>Què queda preparat per a la Unitat 2</h3>
+
+  <p>A la <strong>Unitat 2 (RA2)</strong> començareu a crear components reals dins de <code>src/app/components/</code>, implementar vinculació de dades i directives. Tot s'afegirà al projecte <code>cataleg-elements</code> que acabeu de publicar a GitHub.</p>
+
+  <h3>Contracte de sortida</h3>
+
+  <p><i class="bi bi-check-lg"></i> <code>ng serve</code> arrenca sense errors i aplicació visible a localhost:4200</p>
+  <p><i class="bi bi-check-lg"></i> Hot reload operatiu (canvis HTML/TS reflectits automàticament)</p>
+  <p><i class="bi bi-check-lg"></i> Carpetes organitzades per afegir components i serveis</p>
+  <p><i class="bi bi-check-lg"></i> Git configurat i projecte publicat a GitHub</p>
+  <p><i class="bi bi-check-lg"></i> Podeu clonar el projecte des de GitHub en qualsevol moment</p>
+
+  <p><strong>Esteu preparats per començar la Unitat 2!</strong></p>
+
+  <h3>Referències ràpides</h3>
+
+  <p><strong>Comandes essencials:</strong></p>
+
+  
+  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng version              # Verificar Angular CLI
+ng new nom-projecte     # Generar projecte
+ng serve                # Arrencar servidor (localhost:4200)
+ng serve --port 4201    # Canviar port
+
+git status              # Estat repositori
+git add .               # Afegir tots els fitxers
+git commit -m &quot;missatge&quot; # Confirmar canvis
+git push                # Publicar a GitHub</code></pre>
+  </div>
+</div>
+
+
+  <p><strong>Troubleshooting ràpid:</strong></p>
+
+  <ul>
+    <li><code>ng: command not found</code> → Reiniciar terminal o verificar PATH</li>
+    <li>Port 4200 ocupat → <code>ng serve --port 4201</code></li>
+    <li>Hot reload no funciona → <code>ng serve --poll=2000</code></li>
+    <li>Git demana credencials → <code>git config --global credential.helper cache</code></li>
+  </ul>
+
+  <p><strong>Resolució de problemes detallada:</strong> Vegeu secció 8</p>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Cas d'ús: Preparació completa de l'entorn",
+  "description": "",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "DA2_OA01 - Programació Avançada (Angular) — IOC",
+    "description": "Materials del mòdul DA2_OA01 - Programació Avançada amb Angular"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                    
+                                        
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/da2_oa01/unitat-1/bloc-3/" class="nav-button" aria-label="Bloc anterior: Creació del projecte base">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="1" data-total="4">(1/4)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 25%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="4" data-total="4">(4/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="11">(1/11)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 9%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/da2_oa01/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/da2_oa01",
+        title: "DA2_OA01 - Programació Avançada (Angular)",
+        version: "v1.0",
+        cicle_modul: "DA2_OA01"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/da2_oa01/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/da2_oa01/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/da2_oa01/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/da2_oa01/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/da2_oa01/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/da2_oa01/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/da2_oa01/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>
