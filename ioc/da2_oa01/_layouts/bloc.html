@@ -1,0 +1,132 @@
+---
+layout: default
+sidebar: true
+---
+
+{% comment %} Metadata de bloc eliminada per disseny més net {% endcomment %}
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+{% if page.objectius %}
+<section class="learning-objectives">
+    {% include objectius.html objectius=page.objectius %}
+</section>
+{% endif %}
+
+<!-- Contingut principal -->
+{{ content }}
+
+<!-- Exercicis proposats (si estan definits) -->
+{% if page.exercicis %}
+<section class="proposed-exercises">
+    <h2>Exercicis Proposats</h2>
+    
+    {% for exercici in page.exercicis %}
+    <div class="exercise-item">
+        <h3 class="exercise-title">{{ exercici.nom }}</h3>
+        
+        {% if exercici.descripcio %}
+        <p class="exercise-description">{{ exercici.descripcio }}</p>
+        {% endif %}
+        
+        {% if exercici.dificultat %}
+        <span class="exercise-difficulty">
+            Dificultat: {{ exercici.dificultat }}
+        </span>
+        {% endif %}
+        
+        {% if exercici.temps %}
+        <span class="exercise-time">
+            Temps estimat: {{ exercici.temps }}
+        </span>
+        {% endif %}
+        
+        {% if exercici.pistes %}
+        <details class="exercise-hints">
+            <summary>Pistes per resoldre l'exercici</summary>
+            <ul>
+                {% for pista in exercici.pistes %}
+                <li>{{ pista }}</li>
+                {% endfor %}
+            </ul>
+        </details>
+        {% endif %}
+    </div>
+    {% endfor %}
+</section>
+{% endif %}
+
+<!-- Recursos addicionals -->
+{% if page.recursos %}
+<section class="additional-resources">
+    <h2>Recursos Addicionals</h2>
+    
+    <ul class="resource-list">
+        {% for recurs in page.recursos %}
+        <li class="resource-item">
+            <a href="{{ recurs.url }}" {% if recurs.external %}target="_blank" rel="noopener noreferrer"{% endif %} class="resource-link">
+                {% if recurs.tipus %}
+                <span class="resource-type">{{ recurs.tipus }}</span>
+                {% endif %}
+                <span class="resource-title">{{ recurs.nom }}</span>
+            </a>
+            {% if recurs.descripcio %}
+            <p class="resource-description">{{ recurs.descripcio }}</p>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endif %}
+
+<!-- Glossari del bloc -->
+{% if page.glossari %}
+<section class="bloc-glossary">
+    <h2>Glossari</h2>
+    
+    <dl class="glossary-list">
+        {% for terme in page.glossari %}
+        <div class="glossary-item">
+            <dt class="glossary-term">{{ terme.terme }}</dt>
+            <dd class="glossary-definition">{{ terme.definicio }}</dd>
+        </div>
+        {% endfor %}
+    </dl>
+</section>
+{% endif %}
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "{{ page.title }}",
+  "description": "{{ page.description | default: page.excerpt | strip_html | normalize_whitespace | truncate: 160 }}",
+  "author": {
+    "@type": "Organization",
+    "name": "{{ site.organization }}"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "{{ site.organization }}"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  {% if page.durada %}
+  "timeRequired": "{{ page.durada }}",
+  {% endif %}
+  {% if page.objectius %}
+  "teaches": [
+    {% for objectiu in page.objectius -%}
+    "{{ objectiu }}"{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ],
+  {% endif %}
+  "isPartOf": {
+    "@type": "Course",
+    "name": "{{ site.title }} — IOC",
+    "description": "{{ site.description }}"
+  }
+}
+</script>

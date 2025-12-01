@@ -1,0 +1,188 @@
+/* =============================
+   VISTA EDITOR (1 COLUMNA)
+   ============================= */
+
+.editor-container {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+  min-height: 0;
+  height: calc(100vh - var(--quadern-header-height) - var(--quadern-footer-height) - 40px); /* alinea exactament amb el sidebar fix */
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.editor-single { width: 100%; }
+
+/* legacy layout removed: .editor-panel, .editor-list */
+
+.editor-main { flex: 1; min-width: 480px; display: flex; flex-direction: column; min-height: 0; }
+
+/* Capçalera Editor subtil amb botó de sortida a la dreta */
+.editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  background: transparent;
+  border: none;
+  margin-bottom: 14px;
+}
+
+.exit-editor-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  color: var(--color-text);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.exit-editor-btn:hover {
+  border-color: var(--quadern-accent);
+  color: var(--quadern-accent);
+}
+
+/* Mode fosc: botó de sortida amb hover neutre */
+.quadern-layout[data-theme='dark'] .exit-editor-btn:hover {
+  background: #444;
+  border-color: #666;
+  color: var(--color-text);
+}
+
+.exit-editor-btn i {
+  font-size: 0.9rem;
+}
+
+/* Migas de pa estilitzades amb icones */
+.editor-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.crumb-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.crumb-link:hover {
+  background: var(--color-surface-dark);
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.crumb-link i {
+  font-size: 0.9rem;
+}
+
+.crumb-separator {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  opacity: 0.5;
+  margin: 0 2px;
+}
+
+.crumb-current {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(59, 130, 246, 0.08);
+  border-radius: 8px;
+  color: var(--quadern-accent);
+  font-weight: 600;
+}
+
+/* Mode fosc: breadcrumb actual sense accent blau */
+.quadern-layout[data-theme='dark'] .crumb-current {
+  background: var(--color-surface-dark);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.crumb-current i {
+  font-size: 0.9rem;
+}
+
+/* Header i formulari sense contenidors de panell */
+.editor-form { display: flex; flex-direction: column; gap: 10px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: 14px; flex: 1 1 auto; min-height: 0; }
+.editor-form input, .editor-form select { width: 100%; padding: 8px 12px; border: 1px solid var(--color-border); border-radius: 4px; background: var(--color-background); color: var(--color-text); font-size: 1rem; }
+/* removed: no #note-title field in 1-column editor */
+/* legacy inline actions removed */
+
+/* Inline edit del select de notas */
+.note-select-row { display: flex; align-items: center; gap: 8px; }
+.note-select-row #note-select { flex: 1 1 auto; }
+.inline-edit-btn, .inline-confirm-btn { flex: 0 0 auto; width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--color-border); border-radius: 6px; background: var(--color-surface); color: var(--color-text-muted); cursor: pointer; }
+.inline-edit-btn:hover, .inline-confirm-btn:hover { color: var(--color-text); background: var(--color-surface-dark); }
+.inline-confirm-btn { display: none; }
+.note-select-row.editing .inline-edit-btn { display: none; }
+.note-select-row.editing .inline-confirm-btn { display: inline-flex; border-color: var(--quadern-accent); color: var(--color-text); }
+.note-select-row input#note-title-inline { flex: 1 1 auto; }
+
+/* Área del rich editor – ocupar l'alçada disponible (toolbar fixa, editor flexible) */
+#qre-editor { flex: 1 1 auto; min-height: 320px; display: flex; min-height: 0; }
+.qre { display: flex; flex: 1 1 auto; min-height: 0; width: 100%; }
+.qre .panel { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; width: 100%; }
+.qre .panel .head { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; width: 100%; }
+.qre .panel .head .fields { display: flex; gap: 8px; flex: 1 1 auto; min-width: 0; }
+.qre .panel .head .fields:empty { display: none; }
+.qre .panel .head .fields input,
+.qre .panel .head .fields select { flex: 1 1 auto; width: 100%; }
+.qre .panel .head .actions { flex: 0 0 auto; margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.qre .panel .head .actions .status, #qre-editor .panel .head .status { color: var(--color-text-muted); font-size: 0.9rem; padding: 2px 10px; border: 1px solid var(--color-border); border-radius: 999px; background: var(--color-surface-dark); }
+.qre .panel .head .actions .status:empty, #qre-editor .panel .head .status:empty { display: none; }
+/* En l'editor principal, situar el status a l'esquerra del capçal */
+#qre-editor .panel .head { width: 100%; }
+#qre-editor .panel .head .status { margin-right: 8px; flex: 0 0 auto; }
+#qre-editor .panel .head .fields { flex: 1 1 auto; }
+#qre-editor .panel .head .actions { flex: 0 0 auto; margin-left: auto; }
+.qre .panel .editor { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; }
+.qre .panel .editor .ql-toolbar { flex: 0 0 auto; }
+.qre .panel .editor .ql-container { flex: 1 1 auto; min-height: 0; height: auto; }
+.qre .panel .editor .ql-editor { height: 100%; }
+
+/* Visually hidden utility for accessibility */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Llista de notes de la secció */
+#notes-list { margin-top: 16px; }
+
+/* legacy panel header/body removed */
+
+/* Editor Specific */
+/* legacy editor title/actions removed */
+
+/* legacy custom toolbar removed (using Quill toolbar) */
+
+/* legacy custom content area removed */
+
+/* legacy classic notes list styles removed */

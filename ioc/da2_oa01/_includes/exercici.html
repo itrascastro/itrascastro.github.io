@@ -1,0 +1,30 @@
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici{% if include.nom %}: {{ include.nom }}{% endif %}</div>
+  <div class="component-content">
+    {% if include.descripcio %}
+    <div class="exercise-description">{{ include.descripcio }}</div>
+    {% endif %}
+
+    <div class="exercise-meta">
+      {% if include.dificultat %}
+      <span class="badge" aria-label="Dificultat">{{ include.dificultat }}</span>
+      {% endif %}
+      {% if include.temps %}
+      <span class="badge" aria-label="Temps estimat">{{ include.temps }}</span>
+      {% endif %}
+    </div>
+
+    {% if include.pistes %}
+    {% assign pistes_array = include.pistes | split: '|' %}
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        {% for pista in pistes_array %}
+        <li>{{ pista | strip }}</li>
+        {% endfor %}
+      </ul>
+    </details>
+    {% endif %}
+  </div>
+</div>

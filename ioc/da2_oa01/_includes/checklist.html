@@ -1,0 +1,11 @@
+<!-- Component: Checklist (sense contenidor extern) -->
+{% assign elements_array = include.elements | split: "|" %}
+<div class="checklist-list" role="group" aria-label="{{ include.titol | default: 'Checklist' }}">
+  {% for element in elements_array %}
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">{{ element | strip }}</div>
+  </div>
+  {% endfor %}
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>

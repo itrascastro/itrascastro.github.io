@@ -1,0 +1,234 @@
+// Mixins SCSS
+
+// Media queries responsives
+@mixin media-query($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    @if $breakpoint-value > 0 {
+      @media (min-width: $breakpoint-value) {
+        @content;
+      }
+    } @else {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint `#{$breakpoint}` not found in $breakpoints.";
+  }
+}
+
+// Shortcuts per breakpoints
+@mixin mobile-up {
+  @include media-query('sm') {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @include media-query('md') {
+    @content;
+  }
+}
+
+@mixin desktop-up {
+  @include media-query('lg') {
+    @content;
+  }
+}
+
+@mixin large-up {
+  @include media-query('xl') {
+    @content;
+  }
+}
+
+// Clearfix
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+// Centrat vertical i horitzontal
+@mixin center-absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin center-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Truncar text
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-truncate-lines($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Visually hidden (per accessibilitat)
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// Reset de llistes
+@mixin list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+// Estils de botons
+@mixin button-variant($bg-color, $text-color: #fff, $hover-bg: null, $active-bg: null) {
+  color: $text-color;
+  background-color: $bg-color;
+  border-color: $bg-color;
+  
+  &:hover {
+    color: $text-color;
+    background-color: if($hover-bg, $hover-bg, $bg-color);
+    border-color: if($hover-bg, $hover-bg, $bg-color);
+  }
+  
+  &:focus {
+    color: $text-color;
+    background-color: if($hover-bg, $hover-bg, $bg-color);
+    border-color: if($hover-bg, $hover-bg, $bg-color);
+    box-shadow: 0 0 0 0.2rem rgba($bg-color, 0.5);
+  }
+  
+  &:active {
+    color: $text-color;
+    background-color: if($active-bg, $active-bg, $bg-color);
+    border-color: if($active-bg, $active-bg, $bg-color);
+  }
+}
+
+// Estils d'outline per botons
+@mixin button-outline-variant($color, $hover-bg: null) {
+  color: $color;
+  border-color: $color;
+  background-color: transparent;
+  
+  &:hover {
+    color: #fff;
+    background-color: if($hover-bg, $hover-bg, $color);
+    border-color: if($hover-bg, $hover-bg, $color);
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($color, 0.5);
+  }
+  
+  &:active {
+    color: #fff;
+    background-color: if($hover-bg, $hover-bg, $color);
+    border-color: if($hover-bg, $hover-bg, $color);
+  }
+}
+
+// Grid system
+@mixin make-container($max-width: var(--max-content-width)) {
+  width: 100%;
+  padding-right: var(--spacing-4);
+  padding-left: var(--spacing-4);
+  margin-right: auto;
+  margin-left: auto;
+  max-width: $max-width;
+}
+
+// Card component
+@mixin card {
+  background-color: var(--bg-color);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+@mixin card-header {
+  padding: var(--spacing-4);
+  background-color: var(--bg-alt);
+  border-bottom: var(--border-width) solid var(--border-color);
+}
+
+@mixin card-body {
+  padding: var(--spacing-4);
+}
+
+@mixin card-footer {
+  padding: var(--spacing-4);
+  background-color: var(--bg-alt);
+  border-top: var(--border-width) solid var(--border-color);
+}
+
+// Focus visible styling
+@mixin focus-visible {
+  &:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+  }
+  
+  // Fallback per navegadors que no suporten :focus-visible
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+// Transition helpers
+@mixin transition($properties...) {
+  $transitions: ();
+  @each $prop in $properties {
+    $transitions: append($transitions, #{$prop} var(--transition-base), comma);
+  }
+  transition: $transitions;
+}
+
+// Scroll behavior
+@mixin smooth-scroll {
+  scroll-behavior: smooth;
+  
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+}
+
+// Dark mode utilities
+@mixin dark-mode {
+  [data-theme="dark"] & {
+    @content;
+  }
+}
+
+// Print styles
+@mixin print-only {
+  @media print {
+    @content;
+  }
+}
+
+@mixin screen-only {
+  @media screen {
+    @content;
+  }
+}

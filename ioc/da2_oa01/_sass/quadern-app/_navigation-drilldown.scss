@@ -1,0 +1,182 @@
+/* Navigation Drill-Down */
+.nav-tree {
+  font-family: 'Inter', sans-serif;
+  background-color: white;
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+.tree-content {
+  padding: 0.75rem;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.tree-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tree-header-item {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.header-title-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.header-title-container > .breadcrumb-button:first-child {
+  padding-left: 0;
+}
+
+.breadcrumb-button {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-in-out;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #4b5563;
+  white-space: nowrap;
+}
+
+.breadcrumb-button:hover:not(:disabled) {
+  background-color: #f1f5f9;
+  color: #1e2b3b;
+}
+
+.breadcrumb-button:disabled {
+  color: #1e293b;
+  cursor: default;
+}
+
+.breadcrumb-button .item-icon {
+  margin-right: 0.35rem;
+}
+
+.breadcrumb-button:disabled .item-icon {
+  color: #1e293b;
+}
+
+.breadcrumb-separator {
+  margin: 0 0.35rem;
+  color: #9ca3af;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.tree-item {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  margin-bottom: 0.25rem;
+}
+
+.tree-item:hover {
+  background-color: #f1f5f9;
+}
+
+.tree-item.active {
+  background-color: #e2e8f0;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.tree-item.active .item-text {
+  color: #1e293b;
+}
+
+.tree-item.active .item-icon {
+  color: #1e293b !important;
+}
+
+.item-icon {
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.item-text {
+  color: #334155;
+}
+
+.badge {
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+.badge-green {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.badge-blue {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.tree-empty {
+  text-align: center;
+  color: #64748b;
+  padding: 1rem;
+}
+
+.nav-loading,
+.nav-empty,
+.nav-error {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+.nav-error {
+  color: #dc2626;
+}
+
+/* Modo oscuro – overrides para legibilidad en el árbol */
+.quadern-layout[data-theme='dark'] .nav-tree {
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+}
+.quadern-layout[data-theme='dark'] .tree-content { color: var(--color-text); }
+.quadern-layout[data-theme='dark'] .tree-item { color: var(--color-text); }
+.quadern-layout[data-theme='dark'] .tree-item:hover { background-color: var(--color-surface-dark); }
+.quadern-layout[data-theme='dark'] .tree-item .item-text { color: var(--color-text); }
+.quadern-layout[data-theme='dark'] .tree-item .item-icon { color: var(--color-text-muted); }
+.quadern-layout[data-theme='dark'] .tree-item.active {
+  background-color: var(--color-surface-dark); /* similar al hover en fosc */
+  color: var(--color-text);
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+}
+.quadern-layout[data-theme='dark'] .tree-item.active .item-text { color: var(--color-text); }
+.quadern-layout[data-theme='dark'] .tree-item.active .item-icon { color: #e6edf3 !important; }
+.quadern-layout[data-theme='dark'] .breadcrumb-button { color: var(--color-text); }
+.quadern-layout[data-theme='dark'] .breadcrumb-button:hover:not(:disabled) { background-color: var(--color-surface-dark); color: var(--color-text); }
+.quadern-layout[data-theme='dark'] .breadcrumb-button:disabled { color: var(--color-text); }
+.quadern-layout[data-theme='dark'] .breadcrumb-separator { color: var(--color-text-muted); }
+.quadern-layout[data-theme='dark'] .badge { border: 1px solid rgba(255,255,255,0.12); }
+.quadern-layout[data-theme='dark'] .badge-blue { background-color: #3a3a3a; color: #e6edf3; }
+.quadern-layout[data-theme='dark'] .badge-green { background-color: #3a3a3a; color: #e6edf3; }

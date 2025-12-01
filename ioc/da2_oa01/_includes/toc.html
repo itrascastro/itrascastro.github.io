@@ -1,0 +1,25 @@
+{% assign headers = content | split: '<h' %}
+{% for header in headers %}
+    {% if forloop.first %}{% continue %}{% endif %}
+    
+    {% assign header_level = header | slice: 0, 1 %}
+    {% if header_level contains '2' %}
+        {% assign header_text = header | split: '>' %}
+        {% assign header_content = header | split: '>' | first %}
+        
+        {% if header_content contains 'id="' %}
+            {% assign id_parts = header_content | split: 'id="' %}
+            {% assign header_id = id_parts[1] | split: '"' | first %}
+        {% else %}
+            {% assign header_title = header_text[1] | split: '<' | first | strip %}
+            {% assign header_id = header_title | slugify %}
+        {% endif %}
+        
+        {% assign header_title = header_text[1] | split: '<' | first | strip %}
+        
+        <div class="nav-item">
+            <a href="#{{ header_id }}" class="nav-link" data-section="{{ header_id }}">{{ header_title }}</a>
+        </div>
+    {% endif %}
+{% endfor %}
+

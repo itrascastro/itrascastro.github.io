@@ -1,0 +1,18 @@
+<!-- Component: Objectius del bloc/unitat -->
+{% assign llista = include.objectius %}
+{% if include.llista %}
+  {% assign llista = include.llista | split: '|' %}
+{% endif %}
+{% if llista and llista.size > 0 %}
+<div class="objectius-box">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-bullseye" aria-hidden="true"></i> Objectius</div>
+  <div class="component-content">
+    <ul>
+      {% for obj in llista %}
+        <li>{{ obj }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <!-- IMPORTANT: també es pot usar via front matter: page.objectius (array) -->
+</div>
+{% endif %}

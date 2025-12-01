@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'ca' }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }} - IOC</title>
+    <meta name="description" content="{{ page.excerpt | default: 'Material educatiu' | strip_html | normalize_whitespace | truncate: 160 | escape }} - {{ site.organization }}">
+    {% if page.unitat %}<meta name="page-unitat" content="{{ page.unitat }}">{% endif %}
+    {% if page.bloc %}<meta name="page-bloc" content="{{ page.bloc }}">{% endif %}
+    
+    <!-- SEO Tags -->
+    {% seo %}
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="{{ '/assets/css/quadern-rich-editor.css' | relative_url }}">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
+    
+    <!-- RSS Feed -->
+    {% feed_meta %}
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="{{ '/assets/css/code-block.css' | relative_url }}">
+    <script src="{{ '/assets/js/code-block.js' | relative_url }}"></script>
+
+</head>
+
+<body class="{{ page.layout }}-layout">
+    <!-- Skip to content for accessibility -->
+    {% include skip-link.html %}
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="{{ '/' | relative_url }}" class="logo-link" aria-label="Inici">
+                <img src="{{ '/assets/images/logo_IOC_light.jpg' | relative_url }}" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="{{ '/assets/images/logo_IOC_dark.png' | relative_url }}" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="{{ '/' | relative_url }}" class="title-link">
+                <h1>{{ site.cicle_modul }} - {{ site.title }}</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="{{ '/' | relative_url }}" class="nav-dropdown-item {% if page.url == '/' %}current{% endif %}">Índex del Curs</a>
+            {% for unitat in site.curs.unitats %}
+                {% for bloc in unitat.blocs %}
+                    <a href="{{ bloc.url | relative_url }}" class="nav-dropdown-item {% if page.url == bloc.url %}current{% endif %}">
+                        Unitat {{ unitat.numero }} - Bloc {{ bloc.numero }}: {{ bloc.nom }}
+                    </a>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        {% if page.sidebar %}
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    {% include toc.html %}
+                </div>
+            </div>
+        </aside>
+        {% endif %}
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            {% if page.breadcrumb != false %}
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="{{ '/' | relative_url }}" class="horizontal-nav-item">Inici</a>
+                    
+                    {% if page.unitat %}
+                        {% assign current_unitat = null %}
+                        {% for unitat in site.curs.unitats %}
+                            {% if unitat.numero == page.unitat %}
+                                {% assign current_unitat = unitat %}
+                                {% break %}
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% if current_unitat %}
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="{{ '/unitat-' | append: page.unitat | append: '/' | relative_url }}" class="horizontal-nav-item">
+                                Unitat {{ current_unitat.numero }}: {{ current_unitat.nom }}
+                            </a>
+                        {% endif %}
+                        
+                        {% if page.bloc and current_unitat %}
+                            {% assign current_bloc = null %}
+                            {% for bloc in current_unitat.blocs %}
+                                {% if bloc.numero == page.bloc %}
+                                    {% assign current_bloc = bloc %}
+                                    {% break %}
+                                {% endif %}
+                            {% endfor %}
+                            
+                            {% if current_bloc %}
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc {{ page.unitat }}.{{ current_bloc.numero }}: {{ current_bloc.nom }}
+                                </span>
+                            {% endif %}
+                        {% endif %}
+                    {% else %}
+                        {% if page.title and page.title != site.title %}
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <span class="horizontal-nav-item current">
+                                {{ page.title }}
+                            </span>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </nav>
+            {% endif %}
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    {{ content }}
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            {% if page.layout == 'bloc' %}
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    {% comment %} Trobar el bloc actual i els seus veïns {% endcomment %}
+                    {% assign current_unitat = null %}
+                    {% assign current_bloc = null %}
+                    {% assign prev_bloc = null %}
+                    {% assign next_bloc = null %}
+                    
+                    {% comment %} Primer trobar la unitat actual {% endcomment %}
+                    {% for unitat in site.curs.unitats %}
+                        {% if unitat.numero == page.unitat %}
+                            {% assign current_unitat = unitat %}
+                            {% break %}
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% comment %} Dins de la unitat actual, trobar el bloc actual i els adjacents {% endcomment %}
+                    {% if current_unitat %}
+                        {% for bloc in current_unitat.blocs %}
+                            {% if bloc.numero == page.bloc %}
+                                {% assign current_bloc = bloc %}
+                                {% assign current_index = forloop.index %}
+                                
+                                {% comment %} Bloc anterior {% endcomment %}
+                                {% if current_index > 1 %}
+                                    {% assign prev_index = current_index | minus: 1 %}
+                                    {% for prev_bloc_item in current_unitat.blocs %}
+                                        {% if forloop.index == prev_index %}
+                                            {% assign prev_bloc = prev_bloc_item %}
+                                            {% break %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                                
+                                {% comment %} Bloc següent {% endcomment %}
+                                {% assign next_index = current_index | plus: 1 %}
+                                {% for next_bloc_item in current_unitat.blocs %}
+                                    {% if forloop.index == next_index %}
+                                        {% assign next_bloc = next_bloc_item %}
+                                        {% break %}
+                                    {% endif %}
+                                {% endfor %}
+                                
+                                {% break %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <div class="nav-link-wrapper">
+                        {% if prev_bloc %}
+                        <a href="{{ prev_bloc.url | relative_url }}" class="nav-button" aria-label="Bloc anterior: {{ prev_bloc.nom }}">← Anterior</a>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        {% if next_bloc %}
+                        <a href="{{ next_bloc.url | relative_url }}" class="nav-button" aria-label="Bloc següent: {{ next_bloc.nom }}">Següent →</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+            {% endif %}
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió {{ site.version }}
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura">
+                {%- assign total_units = site.curs.unitats | size -%}
+                {%- assign unit_pos = 0 -%}
+                {%- if page.unitat -%}
+                  {%- assign unit_pos = page.unitat -%}
+                {%- endif -%}
+
+                <!-- Progrés per unitats (posició de la unitat actual) -->
+                {%- assign unit_pct = 0 -%}
+                {%- if total_units and total_units > 0 -%}
+                  {%- assign unit_pct = unit_pos | times: 100 | divided_by: total_units -%}
+                {%- endif -%}
+                <div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="{{ unit_pos }}" data-total="{{ total_units }}">({{ unit_pos }}/{{ total_units }})</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: {{ unit_pct }}%"></div></div>
+                </div>
+
+                {%- if page.unitat and page.bloc -%}
+                  {%- assign current_unit = null -%}
+                  {%- for u in site.curs.unitats -%}
+                    {%- if u.numero == page.unitat -%}{%- assign current_unit = u -%}{%- break -%}{%- endif -%}
+                  {%- endfor -%}
+                  {%- if current_unit -%}
+                    {%- assign total_unit = current_unit.blocs | size -%}
+                    {%- assign pos_block = 0 -%}
+                    {%- for b in current_unit.blocs -%}
+                      {%- assign pos_block = forloop.index -%}
+                      {%- if b.numero == page.bloc -%}{%- break -%}{%- endif -%}
+                    {%- endfor -%}
+                    <!-- Progrés per blocs dins de la unitat -->
+                    {%- assign block_pct = 0 -%}
+                    {%- if total_unit and total_unit > 0 -%}
+                      {%- assign block_pct = pos_block | times: 100 | divided_by: total_unit -%}
+                    {%- endif -%}
+                    <div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="{{ pos_block }}" data-total="{{ total_unit }}">({{ pos_block }}/{{ total_unit }})</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: {{ block_pct }}%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc -->
+                    {%- capture raw_content -%}{{ content }}{%- endcapture -%}
+                    {%- assign sec_split = raw_content | split: '<h2' -%}
+                    {%- assign total_sec = sec_split | size | minus: 1 -%}
+                    {%- assign sec_pct = 0 -%}
+                    {%- if total_sec and total_sec > 0 -%}
+                      {%- assign sec_pct = 1 | times: 100 | divided_by: total_sec -%}
+                    {%- endif -%}
+                    <div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="{{ total_sec }}">(1/{{ total_sec }})</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: {{ sec_pct }}%"></div></div>
+                    </div>
+                  {%- endif -%}
+                {%- endif -%}
+            </div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="{{ '/quadern.html' | relative_url }}" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts del lloc -->
+    <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="{{ '/assets/js/quadern-app/constants.js' | relative_url }}" defer></script>
+    <script src="{{ '/assets/js/quadern-app/utils.js' | relative_url }}" defer></script>
+    <script src="{{ '/assets/js/quadern-app/store.js' | relative_url }}" defer></script>
+    <script src="{{ '/assets/js/quadern-app/panel.js' | relative_url }}" defer></script>
+    <script src="{{ '/assets/js/index-notes.js' | relative_url }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="{{ '/assets/js/quadern-app/rich-editor.js' | relative_url }}" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

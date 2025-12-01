@@ -1,0 +1,27 @@
+<!-- Component: Llista de recursos -->
+{% comment %}
+Ús recomanat:
+{% include recursos.html items="Doc oficial|https://angular.io|external||Guia IOC|/docs/guia/" %}
+Cada element separat per "||"; dins de cada element, camps separats per "|":
+  titol|url|external(opt)
+{% endcomment %}
+
+{% assign entries = include.items | split: '||' %}
+<div class="resources-box">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-collection" aria-hidden="true"></i> Recursos</div>
+  <div class="component-content">
+    <ul class="resource-list">
+      {% for e in entries %}
+        {% assign parts = e | split: '|' %}
+        {% assign titol = parts[0] | strip %}
+        {% assign url = parts[1] | strip %}
+        {% assign ext = parts[2] | strip %}
+        {% if titol and url %}
+        <li class="resource-item">
+          <a href="{{ url }}" class="resource-link"{% if ext == 'external' %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ titol }}</a>
+        </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>

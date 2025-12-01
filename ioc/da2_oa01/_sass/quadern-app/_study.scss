@@ -1,0 +1,425 @@
+/* =============================
+   VISTA D'ESTUDI
+   ============================= */
+
+.study-container {
+  position: relative;
+  height: calc(100vh - var(--quadern-header-height) - var(--quadern-footer-height) - 60px);
+  padding: 20px;
+}
+
+.study-content {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.study-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface-dark);
+}
+
+.study-header h2 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.study-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.study-body {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  line-height: 1.7;
+  font-size: var(--study-font-size, 1rem);
+}
+
+/* STUDY CONTENT */
+.study-course {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.study-course-header {
+  text-align: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--color-border);
+  position: relative;
+}
+
+.study-course-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--quadern-accent);
+  margin: 0 0 10px 0;
+}
+
+.course-meta {
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.study-course-header .study-tools { position: absolute; right: 0; bottom: 12px; display: flex; gap: 8px; }
+.study-course-header .icon-btn { width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--color-border); border-radius: 8px; background: var(--color-surface); color: var(--color-text); }
+.study-course-header .icon-btn:hover { background: var(--color-border); }
+
+/* JERARQUIA D'ESTUDI */
+.study-units {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.study-unit {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.study-unit-header {
+  background: var(--quadern-accent);
+  color: white;
+  padding: 14px 18px;
+  display: flex; align-items: center; gap: 10px;
+  .caret { opacity: 0.9; transform: rotate(0deg); transition: transform .2s ease; }
+  h2 { margin: 0; font-size: 1.4rem; font-weight: 700; }
+}
+
+.study-unit-content {
+  padding: 24px;
+}
+
+.study-block {
+  margin-bottom: 30px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.study-block-header {
+  margin-bottom: 12px;
+  padding: 8px 4px;
+  border-bottom: 1px solid var(--color-border);
+  display: flex; align-items: center; gap: 8px; cursor: pointer;
+  .caret { color: var(--color-text-muted); transform: rotate(0deg); transition: transform .2s ease; }
+  h3 { margin: 0; font-size: 1.1rem; font-weight: 600; color: var(--color-text); }
+}
+
+.study-block-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.study-section {
+  margin-bottom: 20px;
+}
+
+.study-section-header {
+  margin-bottom: 12px;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 8px;
+  .caret { color: var(--color-text-muted); transform: rotate(0deg); transition: transform .2s ease; }
+  .title-wrap { display: flex; align-items: center; gap: 8px; }
+  .title-wrap .count { display: inline-flex; min-width: 22px; height: 22px; align-items: center; justify-content: center; padding: 0 6px; font-size: .8rem; border-radius: 999px; background: var(--color-surface-dark); color: var(--color-text-muted); }
+  h4 { margin: 0; font-size: 1.05rem; font-weight: 600; color: var(--quadern-accent); }
+}
+
+.section-meta {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.study-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.study-unit.collapsed .study-unit-content,
+.study-block.collapsed .study-block-content,
+.study-section.collapsed .study-notes { display: none; }
+
+/* Document-style headings for Estudi when rendering a single document */
+.study-doc { max-width: none; width: 100%; margin: 0; }
+.study-doc .doc-h1 { 
+  font-size: 1.6rem; 
+  font-weight: 700; 
+  color: var(--quadern-accent); 
+  margin: 8px 0 4px;
+  background: rgba(59, 130, 246, 0.08);
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+/* Mode fosc: títol principal de document en neutre (sense blau) */
+.quadern-layout[data-theme='dark'] .study-doc .doc-h1 {
+  color: var(--color-text);
+  background: var(--color-surface-dark);
+}
+
+.study-doc .doc-h2 { 
+  font-size: 1.25rem; 
+  font-weight: 600; 
+  color: var(--color-text); 
+  margin: 6px 0 4px;
+  background: var(--color-surface-dark);
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.study-doc .doc-h3 { 
+  font-size: 1.05rem; 
+  font-weight: 600; 
+  color: var(--color-text-muted); 
+  margin: 4px 0 2px;
+  padding: 4px 8px;
+  background: rgba(148, 163, 184, 0.06);
+  border-radius: 4px;
+  font-style: italic;
+}
+.study-doc .doc-note { margin: 4px 0 8px; }
+.study-doc .doc-note pre { border: 1px solid var(--color-border); border-radius: 8px; padding: 10px 12px; background: var(--code-bg); }
+.study-doc .doc-note { position: relative; padding-left: 34px; }
+.study-doc .study-reorder { position: absolute; left: 6px; top: 0; display: inline-flex; flex-direction: column; gap: 4px; opacity: 0; pointer-events: none; transition: opacity .15s ease; }
+.study-doc .doc-note:hover .study-reorder { opacity: 1; pointer-events: auto; }
+.study-doc .study-reorder .reorder-btn { width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; border: none; background: transparent; color: var(--color-text-muted); border-radius: 6px; cursor: pointer; }
+.study-doc .study-reorder .reorder-btn:hover { color: var(--color-text); background: var(--color-surface-dark); }
+.study-doc .study-reorder .reorder-btn i { font-size: 1rem; line-height: 1; }
+.study-doc .doc-note .doc-note-header { display: flex; align-items: center; gap: 8px; margin: 4px 0 8px; }
+.study-doc .doc-note .doc-note-number { font-weight: 600; color: var(--color-text-muted); margin-right: 6px; }
+.study-doc .doc-note .doc-note-title { font-weight: 600; font-size: 1.05rem; color: var(--color-text); }
+.study-doc .doc-note .doc-note-actions { margin-left: auto; display: inline-flex; gap: 6px; opacity: 0; pointer-events: none; transition: opacity .15s ease; }
+.study-doc .doc-note:hover .doc-note-actions { opacity: 1; pointer-events: auto; }
+.study-doc .doc-note .doc-note-actions .icon-btn { width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; border-radius: 6px; border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text-muted); cursor: pointer; }
+.study-doc .doc-note .doc-note-actions .icon-btn:hover { color: var(--color-text); background: var(--color-surface-dark); }
+.study-doc .doc-note ul, .study-doc .doc-note ol { margin: 12px 0 12px 24px; padding-left: 24px; }
+.study-doc .doc-note ul { list-style: disc outside; }
+.study-doc .doc-note ol { list-style: decimal outside; }
+.study-doc .doc-note li { margin: 4px 0; }
+.study-doc .doc-note ul ul { list-style: circle; }
+.study-doc .doc-note ul ul ul { list-style: square; }
+/* Quill indent classes when rendering read-only HTML */
+.study-doc .doc-note li.ql-indent-1 { margin-left: 2em; }
+.study-doc .doc-note li.ql-indent-2 { margin-left: 4em; }
+.study-doc .doc-note li.ql-indent-3 { margin-left: 6em; }
+.study-doc .doc-note li.ql-indent-4 { margin-left: 8em; }
+.study-doc .doc-note li.ql-indent-5 { margin-left: 10em; }
+
+/* ================================================================
+   LAYOUT CONTENT-ITEM (import del fitxer de layout)
+   ================================================================ */
+@import "study-layout";
+
+.study-unit.collapsed .caret,
+.study-block.collapsed .caret,
+.study-section.collapsed .caret { transform: rotate(-90deg); }
+
+.study-note {
+  background: var(--color-surface);
+  border-left: 3px solid var(--quadern-accent);
+  border-radius: 10px;
+  padding: 16px;
+  transition: background 0.2s ease;
+  
+  &:hover {
+    background: var(--color-surface-dark);
+  }
+}
+
+.study-note-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.study-note-number {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  background: var(--quadern-accent);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.study-note-meta {
+  flex: 1;
+}
+
+.study-note-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 8px 0;
+}
+
+.study-note-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.study-date {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.study-tag {
+  background: rgba(52, 152, 219, 0.1);
+  color: var(--quadern-accent);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.study-note-content {
+  color: var(--color-text);
+  font-size: 1rem;
+  line-height: 1.7;
+  
+  p {
+    margin-bottom: 16px;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    margin: 20px 0 12px 0;
+    color: var(--color-text);
+  }
+  
+  ul, ol {
+    margin: 12px 0 12px 20px;
+  }
+  
+  blockquote {
+    border-left: 4px solid var(--quadern-accent);
+    padding-left: 16px;
+    margin: 16px 0;
+    background: rgba(52, 152, 219, 0.05);
+    padding: 16px;
+    border-radius: 8px;
+  }
+  
+  code {
+    background: var(--color-surface-dark);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: var(--font-family-mono);
+    font-size: 0.9em;
+  }
+  
+  pre {
+    background: var(--color-surface-dark);
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+  }
+}
+
+.study-unit {
+  margin-bottom: 50px;
+}
+
+.study-unit h1 {
+  font-size: 2rem;
+  color: var(--quadern-accent);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid var(--quadern-accent);
+}
+
+/* Mode fosc: títol de unitat en neutre (sense accent blau) */
+.quadern-layout[data-theme='dark'] .study-unit h1 {
+  color: var(--color-text);
+  border-bottom-color: var(--color-border);
+}
+
+.study-block {
+  margin-bottom: 40px;
+}
+
+.study-block h2 {
+  font-size: 1.5rem;
+  color: var(--color-text);
+  margin: 30px 0 20px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.study-section {
+  margin-bottom: 30px;
+}
+
+.study-section h3 {
+  font-size: 1.2rem;
+  color: var(--color-text);
+  margin: 25px 0 15px 0;
+  font-weight: 600;
+}
+
+.study-note {
+  background: var(--color-background);
+  padding: 20px;
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--quadern-accent);
+  margin-bottom: 15px;
+  box-shadow: var(--shadow-light);
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: var(--quadern-accent);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-medium);
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--quadern-accent-hover);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-heavy);
+}

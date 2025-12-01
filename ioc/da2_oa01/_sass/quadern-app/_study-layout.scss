@@ -1,0 +1,173 @@
+/* ================================================================
+   LAYOUT CONTENT-ITEM (basat en el boceto layout-idea-improved.html)
+   ================================================================ */
+
+.content-item {
+  display: flex;
+  align-items: flex-start; /* Alinear a l'inici per contingut multi-línia */
+  padding: 4px 0; /* Padding reduït per menys separació */
+  width: 100%;
+}
+
+/* Sense bordres inferiors */
+
+/* Div de contingut ocupa tot l'espai disponible */
+.content-item > div:last-child {
+  flex: 1; /* Ocupa tot l'espai restant després dels controls */
+  width: 100%; /* Assegura amplada completa */
+  min-width: 0; /* Permet que flex funcioni correctament */
+  margin-right: 24px; /* Marge més ampli per no tocar la barra de scroll */
+}
+
+/* Espaiador per Unitats/Blocs/Seccions per alinear amb les notes */
+.controls-spacer { 
+  width: 1.5rem; /* 24px - Coincidir amb note-controls */
+  flex-shrink: 0; 
+}
+
+/* Contenidor de botons per a cada nota */
+.note-controls {
+  width: 1.5rem; /* 24px - Ampliat lleugerament per 4 botons */
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column; /* Botons un a sota de l'altre */
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.25rem; /* 4px gap */
+  opacity: 0; /* Ocult per defecte */
+  transition: opacity 0.2s ease-in-out;
+  padding-top: 2rem; /* Posicionar botons sota el títol de la nota */
+}
+
+/* Es mostra al passar el ratolí per sobre de la fila de la nota */
+.content-item:hover .note-controls { 
+  opacity: 1; 
+}
+
+/* Botons de moure */
+.move-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af; /* gray-400 */
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.move-btn:hover:not(:disabled) { 
+  color: #3b82f6; /* blue-500 */
+}
+
+.move-btn:disabled { 
+  color: #e5e7eb; /* gray-200 */
+  cursor: not-allowed; 
+}
+
+/* Contingut de la nota (el text en si) */
+.note-content { 
+  color: #6b7280; /* gray-500 */
+  font-size: 0.875rem; /* text-sm */
+  margin-top: 0.25rem; /* 4px */
+  line-height: 1.5; 
+}
+
+/* CSS per contingut de notes (recuperat del darrer commit) */
+.content-item pre { 
+  border: 1px solid var(--color-border); 
+  border-radius: 8px; 
+  padding: 10px 12px; 
+  background: var(--code-bg);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+  margin: 16px 0; /* Mateix margin que els paràgrafs */
+}
+
+/* Llistes formateades igual que abans */
+.content-item ul, .content-item ol { 
+  margin: 12px 0 12px 24px; 
+  padding-left: 24px; 
+}
+
+.content-item ul { 
+  list-style: disc outside; 
+}
+
+.content-item ol { 
+  list-style: decimal outside; 
+}
+
+.content-item li { 
+  margin: 4px 0; 
+}
+
+.content-item ul ul { 
+  list-style: circle; 
+}
+
+.content-item ul ul ul { 
+  list-style: square; 
+}
+
+/* Quill indent classes */
+.content-item li.ql-indent-1 { margin-left: 2em; }
+.content-item li.ql-indent-2 { margin-left: 4em; }
+.content-item li.ql-indent-3 { margin-left: 6em; }
+.content-item li.ql-indent-4 { margin-left: 8em; }
+.content-item li.ql-indent-5 { margin-left: 10em; }
+
+/* Altres elements de contingut */
+.content-item p { 
+  margin-bottom: 16px; 
+}
+
+.content-item h1, .content-item h2, .content-item h3, 
+.content-item h4, .content-item h5, .content-item h6 {
+  margin: 20px 0 12px 0;
+  color: var(--color-text);
+}
+
+.content-item blockquote {
+  border-left: 4px solid var(--quadern-accent);
+  padding-left: 16px;
+  margin: 16px 0;
+  background: rgba(52, 152, 219, 0.05);
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.content-item code {
+  background: var(--color-surface-dark);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: var(--font-family-mono);
+  font-size: 0.9em;
+}
+
+.content-item .doc-note-header { 
+  margin: 4px 0 8px; 
+  width: 100%;
+}
+
+.content-item .doc-note-number { 
+  font-weight: 600; 
+  color: var(--color-text-muted); 
+  margin-right: 6px; 
+}
+
+.content-item .doc-note-title { 
+  font-weight: 600; 
+  font-size: 1.05rem; 
+  color: var(--color-text);
+  background: rgba(148, 163, 184, 0.05);
+  padding: 4px 8px;
+  border-radius: 4px;
+  flex: 1;
+}
+
+/* CSS de doc-note-actions eliminat - ara tots els botons estan a note-controls */

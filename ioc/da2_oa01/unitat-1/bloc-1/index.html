@@ -1,1131 +1,13 @@
-<!DOCTYPE html>
-<html lang="ca">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
-    <title>Bloc 1: Conceptes fonamentals i instal·lació | DA2_OA01 - Programació Avançada (Angular) - IOC</title>
-    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
-    <meta name="page-unitat" content="1">
-    <meta name="page-bloc" content="1">
-    
-    <!-- SEO Tags -->
-    <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Bloc 1: Conceptes fonamentals i instal·lació | DA2_OA01 - Programació Avançada (Angular)</title>
-<meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="Bloc 1: Conceptes fonamentals i instal·lació" />
-<meta property="og:locale" content="ca_ES" />
-<meta name="description" content="Frameworks de costat client, requisits del sistema i configuració de Node.js" />
-<meta property="og:description" content="Frameworks de costat client, requisits del sistema i configuració de Node.js" />
-<link rel="canonical" href="http://localhost:4006/ioc/da2_OA01/unitat-1/bloc-1/" />
-<meta property="og:url" content="http://localhost:4006/ioc/da2_OA01/unitat-1/bloc-1/" />
-<meta property="og:site_name" content="DA2_OA01 - Programació Avançada (Angular)" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Bloc 1: Conceptes fonamentals i instal·lació" />
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Frameworks de costat client, requisits del sistema i configuració de Node.js","headline":"Bloc 1: Conceptes fonamentals i instal·lació","url":"http://localhost:4006/ioc/da2_OA01/unitat-1/bloc-1/"}</script>
-<!-- End Jekyll SEO tag -->
+---
+layout: bloc
+title: "Bloc 1: Conceptes fonamentals i instal·lació"
+description: "Frameworks de costat client, requisits del sistema i configuració de Node.js"
+keywords: "Angular, frameworks, Node.js, npm, requisits"
+unitat: 1
+bloc: 1
+bloc_numero: 1
+---
 
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="/ioc/da2_OA01/assets/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="canonical" href="http://localhost:4006/ioc/da2_OA01/unitat-1/bloc-1/">
-    <!-- Rich editor styles (for embedded notes panel) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
-    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
-    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
-    <link rel="stylesheet" href="/ioc/da2_OA01/assets/css/quadern-rich-editor.css">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/ioc/da2_OA01/assets/images/favicon.ico">
-    
-    <!-- RSS Feed -->
-    <link type="application/atom+xml" rel="alternate" href="http://localhost:4006/ioc/da2_OA01/feed.xml" title="DA2_OA01 - Programació Avançada (Angular)" />
-
-    <!-- Syntax Highlighting (Prism) -->
-    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
-
-    <!-- Code Block Component -->
-    <link rel="stylesheet" href="/ioc/da2_OA01/assets/css/code-block.css">
-    <script src="/ioc/da2_OA01/assets/js/code-block.js"></script>
-
-</head>
-
-<body class="bloc-layout">
-    <!-- Skip to content for accessibility -->
-    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
-
-
-    
-    <!-- Header fix -->
-    <header class="header" role="banner" id="top">
-        <div class="header-brand">
-            <a href="/ioc/da2_OA01/" class="logo-link" aria-label="Inici">
-                <img src="/ioc/da2_OA01/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
-                <img src="/ioc/da2_OA01/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
-            </a>
-            <a href="/ioc/da2_OA01/" class="title-link">
-                <h1>DA2_OA01 - DA2_OA01 - Programació Avançada (Angular)</h1>
-            </a>
-        </div>
-        <div class="header-actions">
-            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
-            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
-                <i class="bi bi-list" aria-hidden="true"></i>
-                <span class="nav-panel-label">Navegació</span>
-            </button>
-        </div>
-    </header>
-
-    <div class="offcanvas-backdrop" hidden></div>
-    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
-        <div class="offcanvas-header">
-            <h2 class="offcanvas-title">Navegació</h2>
-            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
-                <i class="bi bi-x-lg" aria-hidden="true"></i>
-            </button>
-        </div>
-        <div class="offcanvas-body">
-            <a href="/ioc/da2_OA01/" class="nav-dropdown-item ">Índex del Curs</a>
-            
-                
-                    <a href="/ioc/da2_OA01/unitat-1/bloc-1/" class="nav-dropdown-item current">
-                        Unitat 1 - Bloc 1: Conceptes fonamentals i instal·lació
-                    </a>
-                
-                    <a href="/ioc/da2_OA01/unitat-1/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 1 - Bloc 2: Entorn de desenvolupament integrat
-                    </a>
-                
-                    <a href="/ioc/da2_OA01/unitat-1/bloc-3/" class="nav-dropdown-item ">
-                        Unitat 1 - Bloc 3: Creació del projecte base
-                    </a>
-                
-                    <a href="/ioc/da2_OA01/unitat-1/bloc-4/" class="nav-dropdown-item ">
-                        Unitat 1 - Bloc 4: Cas d'ús: Preparació de l'entorn
-                    </a>
-                
-            
-                
-                    <a href="/ioc/da2_OA01/unitat-2/bloc-1/" class="nav-dropdown-item ">
-                        Unitat 2 - Bloc 1: Components i comunicació bàsica
-                    </a>
-                
-                    <a href="/ioc/da2_OA01/unitat-2/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 2 - Bloc 2: Data binding i events
-                    </a>
-                
-                    <a href="/ioc/da2_OA01/unitat-2/bloc-3/" class="nav-dropdown-item ">
-                        Unitat 2 - Bloc 3: Formularis amb vinculació bidireccional
-                    </a>
-                
-                    <a href="/ioc/da2_OA01/unitat-2/bloc-4/" class="nav-dropdown-item ">
-                        Unitat 2 - Bloc 4: Cas d'ús: Catàleg d'elements
-                    </a>
-                
-            
-                
-                    <a href="/ioc/da2_OA01/unitat-3/bloc-1/" class="nav-dropdown-item ">
-                        Unitat 3 - Bloc 1: Serveis i separació de responsabilitats
-                    </a>
-                
-                    <a href="/ioc/da2_OA01/unitat-3/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 3 - Bloc 2: Gestió d'estat i comunicació entre components
-                    </a>
-                
-                    <a href="/ioc/da2_OA01/unitat-3/bloc-3/" class="nav-dropdown-item ">
-                        Unitat 3 - Bloc 3: Optimització i bones pràctiques
-                    </a>
-                
-                    <a href="/ioc/da2_OA01/unitat-3/bloc-4/" class="nav-dropdown-item ">
-                        Unitat 3 - Bloc 4: Cas d'ús: Catàleg amb API REST
-                    </a>
-                
-            
-                
-                    <a href="/ioc/da2_OA01/unitat-4/bloc-1/" class="nav-dropdown-item ">
-                        Unitat 4 - Bloc 1: Sistema de rutes i navegació
-                    </a>
-                
-                    <a href="/ioc/da2_OA01/unitat-4/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 4 - Bloc 2: Arquitectura escalable
-                    </a>
-                
-                    <a href="/ioc/da2_OA01/unitat-4/bloc-3/" class="nav-dropdown-item ">
-                        Unitat 4 - Bloc 3: Optimització de rendiment
-                    </a>
-                
-                    <a href="/ioc/da2_OA01/unitat-4/bloc-4/" class="nav-dropdown-item ">
-                        Unitat 4 - Bloc 4: Cas d'ús: Aplicació completa
-                    </a>
-                
-            
-        </div>
-    </nav>
-
-    <div class="container">
-        <!-- Sidebar Navegació -->
-        
-        <aside class="sidebar">
-            <button class="sidebar-toggle" type="button" aria-expanded="false">
-                <span>Contingut del bloc</span>
-                <i class="bi bi-chevron-down" aria-hidden="true"></i>
-            </button>
-            <div class="sidebar-scroll">
-                <!-- Contingut d'aquest Bloc -->
-                <div class="sidebar-section">
-                    <h3>Contingut del Bloc</h3>
-                    
-
-    
-    
-    
-    
-    
-        
-        
-        
-        
-        
-        
-        
-        <div class="nav-item">
-            <a href="#Unitat1_Bloc1_Seccio1" class="nav-link" data-section="Unitat1_Bloc1_Seccio1">1. Què són els marcs de treball (frameworks) de costat client</a>
-        </div>
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-        
-        
-        
-        
-        
-        
-        
-        <div class="nav-item">
-            <a href="#Unitat1_Bloc1_Seccio2" class="nav-link" data-section="Unitat1_Bloc1_Seccio2">2. Requisits del sistema i eines necessàries</a>
-        </div>
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-        
-        
-        
-        
-        
-        
-        
-        <div class="nav-item">
-            <a href="#Unitat1_Bloc1_Seccio3" class="nav-link" data-section="Unitat1_Bloc1_Seccio3">3. Instal·lació del motor d'execució i gestor de paquets</a>
-        </div>
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-
-
-                </div>
-            </div>
-        </aside>
-        
-
-        <main class="main-content" role="main" id="main-content">
-            
-            <!-- Navegació horizontal -->
-            
-            <nav class="horizontal-nav" aria-label="Navegació de ruta">
-                <div class="horizontal-nav-list">
-                    <a href="/ioc/da2_OA01/" class="horizontal-nav-item">Inici</a>
-                    
-                    
-                        
-                        
-                            
-                                
-                                
-                        
-                        
-                            <span class="horizontal-nav-separator"> &gt; </span>
-                            <a href="/ioc/da2_OA01/unitat-1/" class="horizontal-nav-item">
-                                Unitat 1: Preparació de l'entorn de desenvolupament (RA1)
-                            </a>
-                        
-                        
-                        
-                            
-                            
-                                
-                                    
-                                    
-                            
-                            
-                                <span class="horizontal-nav-separator"> &gt; </span>
-                                <span class="horizontal-nav-item current">
-                                    Bloc 1.1: Conceptes fonamentals i instal·lació
-                                </span>
-                            
-                        
-                    
-                </div>
-            </nav>
-            
-            
-            <!-- Contingut de la Pàgina -->
-            <article class="page-content">
-                <div class="content-body">
-                    
-
-<!-- Objectius del bloc (si estan definits al frontmatter) -->
-
-
-<!-- Contingut principal -->
 <!--
   ═══════════════════════════════════════════════════════════════════
   BLOC 1 - UNITAT 1
@@ -1140,115 +22,14 @@
   <h2 id="Unitat1_Bloc1_Seccio1">1. Què són els marcs de treball (frameworks) de costat client</h2>
 
   <!-- MULTIMÈDIA -->
-  <!--
-  ════════════════════════════════════════════════════════════════
-  Component: Enllaços multimèdia YouTube
-  ════════════════════════════════════════════════════════════════
-
-  Paràmetres:
-    - unitat: número de la unitat (1-4)
-    - bloc: número del bloc (1-4)
-    - seccio: número de la secció (1-3)
-
-  Exemple d'ús:
-    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
-
-  El component busca automàticament les URLs corresponents a
-  site.data.multimedia i mostra els botons de vídeo i àudio.
-  ════════════════════════════════════════════════════════════════
--->
+  {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
 
 
+  {% include objectius.html llista="Comprendre què és un marc de treball de costat client, per què s'utilitza i quines alternatives existeixen al mercat.|Diferenciar les responsabilitats del client i del servidor dins d'una arquitectura web moderna.|Identificar quan cal utilitzar un framework i quan no és necessari." %}
 
+  {% include info_box.html contingut="<strong>RA1 · Criteri 1</strong> — Identifica les eines imprescindibles i comprova que compleixen els requisits del sistema." %}
 
-
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-<div class="multimedia-resources">
-  <div class="multimedia-header">
-    <i class="bi bi-play-circle-fill"></i>
-    <span>Contingut multimèdia d'aquesta lectura</span>
-  </div>
-
-  <div class="multimedia-buttons">
-    
-    <a href="https://www.youtube.com/watch?v=lXNTsNpgZLI" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 1.1.1 · Què són els marcs de treball (frameworks) de costat client">
-      <i class="bi bi-youtube"></i>
-      <span>Veure vídeo</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-
-    
-    <a href="https://www.youtube.com/watch?v=wishB0ereto" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 1.1.1 · Què són els marcs de treball (frameworks) de costat client">
-      <i class="bi bi-mic-fill"></i>
-      <span>Escoltar àudio</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-  </div>
-
-  
-  
-</div>
-  
-
-
-
-
-  <!-- Component: Objectius del bloc/unitat -->
-
-
-
-<div class="objectius-box">
-  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-bullseye" aria-hidden="true"></i> Objectius</div>
-  <div class="component-content">
-    <ul>
-      
-        <li>Comprendre què és un marc de treball de costat client, per què s'utilitza i quines alternatives existeixen al mercat.</li>
-      
-        <li>Diferenciar les responsabilitats del client i del servidor dins d'una arquitectura web moderna.</li>
-      
-        <li>Identificar quan cal utilitzar un framework i quan no és necessari.</li>
-      
-    </ul>
-  </div>
-  <!-- IMPORTANT: també es pot usar via front matter: page.objectius (array) -->
-</div>
-
-
-
-  <!-- Component: Caixa informativa -->
-<div class="info-box" role="note">
-    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
-    <strong>RA1 · Criteri 1</strong> — Identifica les eines imprescindibles i comprova que compleixen els requisits del sistema.
-    
-</div>
-
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">1.1. Prerequisits</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_1_1 %}
   <ul>
     <li>Disposeu d'un navegador web actual (Chrome, Firefox, Safari o Edge) amb les eines de desenvolupador (<strong>DevTools</strong>) activades.</li>
     <li>Teniu accés a Internet per consultar documentació oficial quan calgui.</li>
@@ -1257,54 +38,21 @@
 
   <p><strong>Verificació ràpida:</strong> Premeu <code>F12</code> al navegador i comproveu que s'obren les DevTools.</p>
   <p><strong>Punt d'autocomprovació:</strong> Veieu pestanyes com Elements, Console, Network.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="1.1" titol="Prerequisits" contingut=section_point_1_1 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">1.2. Marc conceptual</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_1_2 %}
 
   <h4>1.2.1. Què és un framework de costat client</h4>
   <p>Un framework és una eina per fer apps web sense recarregar la pàgina. S'executa al navegador i gestiona la interfície de manera dinàmica.</p>
 
   <p><strong>Exemple mínim:</strong></p>
-  
-  <div class="code-block" data-lang="javascript" role="region" aria-label="Bloc de codi javascript">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVASCRIPT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-javascript">// Sense framework: manipular DOM manualment
-document.getElementById(&#39;llista&#39;).innerHTML = &#39;&lt;li&gt;Element 1&lt;/li&gt;&lt;li&gt;Element 2&lt;/li&gt;&#39;;
+  {% capture code_1 %}// Sense framework: manipular DOM manualment
+document.getElementById('llista').innerHTML = '<li>Element 1</li><li>Element 2</li>';
 
 // Amb framework (Angular): declaratiu
-&lt;li *ngFor=&quot;let item of items&quot;&gt;&lt;/li&gt;</code></pre>
-  </div>
-</div>
-
+<li *ngFor="let item of items">{{item}}</li>{% endcapture %}
+  {% include code-block.html lang="javascript" code=code_1 %}
 
   <h4>1.2.2. Per què necessitem frameworks</h4>
   <p><strong>Problema:</strong> Abans havíeu de manipular el DOM manualment per cada canvi. Molt codi repetitiu, difícil de mantenir.</p>
@@ -1338,48 +86,15 @@ document.getElementById(&#39;llista&#39;).innerHTML = &#39;&lt;li&gt;Element 1&l
   </ul>
 
   <p>Aquesta separació permet que backend i frontend treballin en paral·lel.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="1.2" titol="Marc conceptual" contingut=section_point_1_2 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">1.3. Model mental</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_1_3 %}
 
   <h4>1.3.1. Flux bàsic</h4>
-  
-  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Usuari clica botó → Framework detecta → Actualitza dades → Regenera vista → DOM canvia
-                     (sense recarregar pàgina completa)</code></pre>
-  </div>
-</div>
-
+  {% capture code_2 %}Usuari clica botó → Framework detecta → Actualitza dades → Regenera vista → DOM canvia
+                     (sense recarregar pàgina completa){% endcapture %}
+  {% include code-block.html lang="text" code=code_2 %}
 
   <h4>1.3.2. Conceptes clau</h4>
   <ul>
@@ -1390,25 +105,10 @@ document.getElementById(&#39;llista&#39;).innerHTML = &#39;&lt;li&gt;Element 1&l
   </ul>
 
   <p>En aquesta lectura aprendreu els fonaments teòrics: per què van néixer els frameworks, com han evolucionat, què ofereixen i quan utilitzar-los.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="1.3" titol="Model mental" contingut=section_point_1_3 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">1.4. Arquitectura web: costat servidor vs costat client</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_1_4 %}
 
   <h4>1.4.1. Objectiu</h4>
   <p>Entendre què fa el servidor i què fa el client.</p>
@@ -1439,25 +139,10 @@ document.getElementById(&#39;llista&#39;).innerHTML = &#39;&lt;li&gt;Element 1&l
 
   <h4>1.4.4. Resultat esperat</h4>
   <p>Sabeu què gestiona cada part de l'arquitectura.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="1.4" titol="Arquitectura web: costat servidor vs costat client" contingut=section_point_1_4 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">1.5. Evolució històrica: des de pàgines estàtiques fins a aplicacions de pàgina única</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_1_5 %}
 
   <h4>1.5.1. Objectiu</h4>
   <p>Entendre com hem passat de pàgines HTML estàtiques a apps web complexes.</p>
@@ -1496,25 +181,10 @@ document.getElementById(&#39;llista&#39;).innerHTML = &#39;&lt;li&gt;Element 1&l
 
   <h4>1.5.3. Resultat esperat</h4>
   <p>Compreneu per què existeixen els frameworks actuals.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="1.5" titol="Evolució històrica: des de pàgines estàtiques fins a aplicacions de pàgina única" contingut=section_point_1_5 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">1.6. Què és un marc de treball de costat client</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_1_6 %}
 
   <h4>1.6.1. Objectiu</h4>
   <p>Definir què ofereix un framework.</p>
@@ -1547,25 +217,10 @@ document.getElementById(&#39;llista&#39;).innerHTML = &#39;&lt;li&gt;Element 1&l
 
   <h4>1.6.5. Resultat esperat</h4>
   <p>Sabeu què diferencia un framework d'una llibreria simple.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="1.6" titol="Què és un marc de treball de costat client" contingut=section_point_1_6 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">1.7. Comparativa de frameworks populars</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_1_7 %}
 
   <h4>1.7.1. Objectiu</h4>
   <p>Conèixer les opcions principals del mercat.</p>
@@ -1616,25 +271,10 @@ document.getElementById(&#39;llista&#39;).innerHTML = &#39;&lt;li&gt;Element 1&l
 
   <h4>1.7.4. Resultat esperat</h4>
   <p>Coneixeu les diferències bàsiques entre frameworks populars.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="1.7" titol="Comparativa de frameworks populars" contingut=section_point_1_7 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">1.8. Avantatges dels frameworks moderns</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_1_8 %}
 
   <h4>1.8.1. Objectiu</h4>
   <p>Entendre per què els frameworks milloren la productivitat.</p>
@@ -1673,25 +313,10 @@ document.getElementById(&#39;llista&#39;).innerHTML = &#39;&lt;li&gt;Element 1&l
 
   <h4>1.8.3. Resultat esperat</h4>
   <p>Compreneu els avantatges en productivitat i mantenibilitat.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="1.8" titol="Avantatges dels frameworks moderns" contingut=section_point_1_8 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">1.9. Components clau d'un framework</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_1_9 %}
 
   <h4>1.9.1. Objectiu</h4>
   <p>Identificar les peces fonamentals.</p>
@@ -1700,122 +325,35 @@ document.getElementById(&#39;llista&#39;).innerHTML = &#39;&lt;li&gt;Element 1&l
 
   <p><strong>1. Components</strong></p>
   <p>Peces reutilitzables amb lògica pròpia.</p>
-  
-  <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TYPESCRIPT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Component({
-  selector: &#39;app-targeta&#39;,
-  template: &#39;&lt;div&gt;&lt;/div&gt;&#39;
-})</code></pre>
-  </div>
-</div>
-
+  {% capture code_3 %}@Component({
+  selector: 'app-targeta',
+  template: '<div>{{titol}}</div>'
+}){% endcapture %}
+  {% include code-block.html lang="typescript" code=code_3 %}
 
   <p><strong>2. Rutes</strong></p>
   <p>Navegació sense recarregar.</p>
-  
-  <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TYPESCRIPT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">{path: &#39;cataleg&#39;, component: CatalegComponent}</code></pre>
-  </div>
-</div>
-
+  {% capture code_4 %}{path: 'cataleg', component: CatalegComponent}{% endcapture %}
+  {% include code-block.html lang="typescript" code=code_4 %}
 
   <p><strong>3. Serveis</strong></p>
   <p>Lògica compartida entre components.</p>
-  
-  <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TYPESCRIPT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">catalogService.getElements()</code></pre>
-  </div>
-</div>
-
+  {% capture code_5 %}catalogService.getElements(){% endcapture %}
+  {% include code-block.html lang="typescript" code=code_5 %}
 
   <p><strong>4. Plantilles</strong></p>
   <p>HTML dinàmic amb sintaxi especial.</p>
-  
-  <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">HTML</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;li *ngFor=&quot;let item of items&quot;&gt;&lt;/li&gt;</code></pre>
-  </div>
-</div>
-
+  {% capture code_6 %}<li *ngFor="let item of items">{{item}}</li>{% endcapture %}
+  {% include code-block.html lang="html" code=code_6 %}
 
   <p><strong>Clau:</strong> Components (vista) + Serveis (lògica) + Rutes (navegació) = app completa.</p>
 
   <h4>1.9.3. Resultat esperat</h4>
   <p>Sabeu identificar les peces bàsiques d'una app Angular.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="1.9" titol="Components clau d'un framework" contingut=section_point_1_9 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">1.10. Casos d'ús reals: quan utilitzar frameworks</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_1_10 %}
 
   <h4>1.10.1. Objectiu</h4>
   <p>Desenvolupar criteri per decidir si cal un framework.</p>
@@ -1915,25 +453,10 @@ document.getElementById(&#39;llista&#39;).innerHTML = &#39;&lt;li&gt;Element 1&l
 
   <h4>1.10.5. Resultat esperat</h4>
   <p>Sabeu argumentar quan un framework aporta valor.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="1.10" titol="Casos d'ús reals: quan utilitzar frameworks" contingut=section_point_1_10 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">1.11. Resum i preparació per a la següent sessió</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_1_11 %}
 
   <h4>1.11.1. Objectiu</h4>
   <p>Consolidar el que s'ha après i preparar el següent pas.</p>
@@ -1964,25 +487,10 @@ document.getElementById(&#39;llista&#39;).innerHTML = &#39;&lt;li&gt;Element 1&l
 
   <h4>1.11.5. Resultat esperat</h4>
   <p>Disposeu dels fonaments per passar a la pràctica.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="1.11" titol="Resum i preparació per a la següent sessió" contingut=section_point_1_11 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">1.12. Mini exemple pràctic · Inspecció d'una aplicació web moderna</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_1_12 %}
 
   <h4>1.12.1. Objectiu</h4>
   <p>Observar amb DevTools com funciona una SPA real.</p>
@@ -1999,25 +507,10 @@ document.getElementById(&#39;llista&#39;).innerHTML = &#39;&lt;li&gt;Element 1&l
 
   <h4>1.12.3. Resultat esperat</h4>
   <p>Heu vist en directe com una SPA funciona: pàgina no es recarrega mai, només peticions de dades i actualització dinàmica.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="1.12" titol="Mini exemple pràctic · Inspecció d'una aplicació web moderna" contingut=section_point_1_12 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">1.13. Resolució de problemes</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_1_13 %}
 
   <table>
     <thead>
@@ -2050,155 +543,35 @@ document.getElementById(&#39;llista&#39;).innerHTML = &#39;&lt;li&gt;Element 1&l
       </tr>
     </tbody>
   </table>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="1.13" titol="Resolució de problemes" contingut=section_point_1_13 %}
 
+  {% capture section_point_1_14 %}
+  {% include prompt-ai.html
+     titol="Comparativa SPA vs app tradicional"
+     contingut="<strong>Rol:</strong> formador de desenvolupament web. <strong>Tasca:</strong> explica amb un exemple quotidià la diferència entre una aplicació web tradicional i una SPA. Utilitza l'analogia d'un restaurant per fer-ho comprensible. <strong>Format:</strong> màxim 100 paraules."
+  %}
+  {% include prompt-ai.html
+     titol="Avantatges d'un framework"
+     contingut="<strong>Rol:</strong> consultor tècnic. <strong>Tasca:</strong> enumera els tres avantatges principals d'utilitzar un framework en comptes de JavaScript sense estructura. Justifica cada avantatge amb un exemple d'un projecte de catàleg d'elements. <strong>Format:</strong> llista numerada."
+  %}
+  {% endcapture %}
+  {% include section-point.html numero="1.14" titol="Prompts d'IA" contingut=section_point_1_14 %}
 
-  
-  <!-- Component: Punt destacat dins d'una secció -->
+  {% capture section_point_1_15 %}
+  {% include checklist.html
+     titol="Autoavaluació · Secció 1"
+     elements="Puc explicar la diferència entre responsabilitats del client i del servidor|Conec l'evolució des de pàgines estàtiques fins a SPA|Sé què és un framework i què el diferencia d'una llibreria|Puc anomenar almenys tres frameworks i descriure'n diferències bàsiques|Comprenc els avantatges dels frameworks moderns|Identifico components clau: components, rutes, serveis, plantilles|Tinc criteri per decidir quan cal utilitzar un framework"
+  %}
+  {% endcapture %}
+  {% include section-point.html numero="1.15" titol="Autoavaluació" contingut=section_point_1_15 %}
 
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">1.14. Prompts d'IA</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
-  <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
-<div class="ai-prompt" role="note">
-  <div class="component-header ai-header" role="heading" aria-level="4">
-    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
-    <div class="ai-actions">
-      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
-        <i class="bi bi-clipboard" aria-hidden="true"></i>
-      </button>
-    </div>
-  </div>
-  <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> formador de desenvolupament web. <strong>Tasca:</strong> explica amb un exemple quotidià la diferència entre una aplicació web tradicional i una SPA. Utilitza l'analogia d'un restaurant per fer-ho comprensible. <strong>Format:</strong> màxim 100 paraules.</div>
-  </div>
-</div>
-
-  <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
-<div class="ai-prompt" role="note">
-  <div class="component-header ai-header" role="heading" aria-level="4">
-    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
-    <div class="ai-actions">
-      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
-        <i class="bi bi-clipboard" aria-hidden="true"></i>
-      </button>
-    </div>
-  </div>
-  <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> consultor tècnic. <strong>Tasca:</strong> enumera els tres avantatges principals d'utilitzar un framework en comptes de JavaScript sense estructura. Justifica cada avantatge amb un exemple d'un projecte de catàleg d'elements. <strong>Format:</strong> llista numerada.</div>
-  </div>
-</div>
-
-  
-  </div>
-</div>
-
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">1.15. Autoavaluació</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
-  <!-- Component: Checklist (sense contenidor extern) -->
-
-<div class="checklist-list" role="group" aria-label="Autoavaluació · Secció 1">
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Puc explicar la diferència entre responsabilitats del client i del servidor</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Conec l'evolució des de pàgines estàtiques fins a SPA</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Sé què és un framework i què el diferencia d'una llibreria</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Puc anomenar almenys tres frameworks i descriure'n diferències bàsiques</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Comprenc els avantatges dels frameworks moderns</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Identifico components clau: components, rutes, serveis, plantilles</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Tinc criteri per decidir quan cal utilitzar un framework</div>
-  </div>
-  
-  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
-</div>
-
-  
-  </div>
-</div>
-
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">1.16. Síntesi</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_1_16 %}
   <p>Heu après els fonaments teòrics dels frameworks de costat client: per què van néixer, com han evolucionat i què ofereixen. Compreneu l'arquitectura client/servidor, coneixeu les opcions principals (Angular, React, Vue, Svelte) i sabeu quan és adequat utilitzar un framework. Aquest coneixement conceptual és la base per a les properes seccions, on passareu a la instal·lació i configuració de l'entorn.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="1.16" titol="Síntesi" contingut=section_point_1_16 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">1.17. Repàs de conceptes</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_1_17 %}
   <ul>
     <li><strong>Arquitectura client/servidor:</strong> separació de responsabilitats entre presentació (client) i lògica (servidor).</li>
     <li><strong>SPA (Single Page Application):</strong> app que carrega codi un cop i gestiona navegació dinàmicament.</li>
@@ -2208,10 +581,8 @@ document.getElementById(&#39;llista&#39;).innerHTML = &#39;&lt;li&gt;Element 1&l
     <li><strong>Hot reload:</strong> actualitza interfície automàticament en guardar canvis.</li>
     <li><strong>API:</strong> punt d'accés que el servidor exposa per obtenir/enviar dades.</li>
   </ul>
-  
-  </div>
-</div>
-
+  {% endcapture %}
+  {% include section-point.html numero="1.17" titol="Repàs de conceptes" contingut=section_point_1_17 %}
 
 </div>
 
@@ -2219,115 +590,14 @@ document.getElementById(&#39;llista&#39;).innerHTML = &#39;&lt;li&gt;Element 1&l
   <h2 id="Unitat1_Bloc1_Seccio2">2. Requisits del sistema i eines necessàries</h2>
 
   <!-- MULTIMÈDIA -->
-  <!--
-  ════════════════════════════════════════════════════════════════
-  Component: Enllaços multimèdia YouTube
-  ════════════════════════════════════════════════════════════════
-
-  Paràmetres:
-    - unitat: número de la unitat (1-4)
-    - bloc: número del bloc (1-4)
-    - seccio: número de la secció (1-3)
-
-  Exemple d'ús:
-    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
-
-  El component busca automàticament les URLs corresponents a
-  site.data.multimedia i mostra els botons de vídeo i àudio.
-  ════════════════════════════════════════════════════════════════
--->
+  {% include multimedia-youtube.html unitat=1 bloc=1 seccio=2 %}
 
 
+  {% include objectius.html llista="Identificar tots els requisits de maquinari i programari necessaris per començar a desenvolupar aplicacions de costat client.|Comprendre la funció de cada eina de l'ecosistema de desenvolupament modern.|Elaborar un checklist per verificar que el propi sistema compleix els requisits abans d'instal·lar res." %}
 
+  {% include info_box.html contingut="<strong>RA1 · Criteri 1</strong> — Identifica les eines imprescindibles i comprova que compleixen els requisits del sistema." %}
 
-
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-<div class="multimedia-resources">
-  <div class="multimedia-header">
-    <i class="bi bi-play-circle-fill"></i>
-    <span>Contingut multimèdia d'aquesta lectura</span>
-  </div>
-
-  <div class="multimedia-buttons">
-    
-    <a href="https://www.youtube.com/watch?v=1p5WIMKX7O8" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 1.1.2 · Requisits del sistema i eines necessàries">
-      <i class="bi bi-youtube"></i>
-      <span>Veure vídeo</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-
-    
-    <a href="https://www.youtube.com/watch?v=TltpYnvrtsA" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 1.1.2 · Requisits del sistema i eines necessàries">
-      <i class="bi bi-mic-fill"></i>
-      <span>Escoltar àudio</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-  </div>
-
-  
-  
-</div>
-  
-
-
-
-
-  <!-- Component: Objectius del bloc/unitat -->
-
-
-
-<div class="objectius-box">
-  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-bullseye" aria-hidden="true"></i> Objectius</div>
-  <div class="component-content">
-    <ul>
-      
-        <li>Identificar tots els requisits de maquinari i programari necessaris per començar a desenvolupar aplicacions de costat client.</li>
-      
-        <li>Comprendre la funció de cada eina de l'ecosistema de desenvolupament modern.</li>
-      
-        <li>Elaborar un checklist per verificar que el propi sistema compleix els requisits abans d'instal·lar res.</li>
-      
-    </ul>
-  </div>
-  <!-- IMPORTANT: també es pot usar via front matter: page.objectius (array) -->
-</div>
-
-
-
-  <!-- Component: Caixa informativa -->
-<div class="info-box" role="note">
-    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
-    <strong>RA1 · Criteri 1</strong> — Identifica les eines imprescindibles i comprova que compleixen els requisits del sistema.
-    
-</div>
-
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">2.1. Prerequisits</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_2_1 %}
   <ul>
     <li>Heu completat la Secció 1 i compreneu què és un framework de costat client i per què s'utilitza.</li>
     <li>Disposeu d'accés a Internet per consultar versions actuals de programari.</li>
@@ -2336,25 +606,10 @@ document.getElementById(&#39;llista&#39;).innerHTML = &#39;&lt;li&gt;Element 1&l
 
   <p><strong>Verificació ràpida:</strong> Podeu obrir una terminal al vostre sistema (PowerShell, Terminal o bash).</p>
   <p><strong>Punt d'autocomprovació:</strong> Sabeu on trobar la terminal i executar comandes bàsiques.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="2.1" titol="Prerequisits" contingut=section_point_2_1 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">2.2. Marc conceptual</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_2_2 %}
 
   <h4>2.2.1. Què necessitem per desenvolupar</h4>
   <p>Abans d'instal·lar, cal entendre l'ecosistema complet. Desenvolupar amb Angular requereix 7 capes d'eines que treballen juntes.</p>
@@ -2374,73 +629,19 @@ document.getElementById(&#39;llista&#39;).innerHTML = &#39;&lt;li&gt;Element 1&l
   <p>Cada eina resol un problema específic:</p>
 
   <p><strong>Node.js:</strong> Executa el servidor de desenvolupament i compila el codi.</p>
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Node.js permet executar comandes com:
-ng serve  # Llença servidor local</code></pre>
-  </div>
-</div>
-
+  {% capture code_7 %}# Node.js permet executar comandes com:
+ng serve  # Llença servidor local{% endcapture %}
+  {% include code-block.html lang="bash" code=code_7 %}
 
   <p><strong>npm:</strong> Gestiona dependències automàticament.</p>
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Instal·la 1.000+ paquets en segons
-npm install</code></pre>
-  </div>
-</div>
-
+  {% capture code_8 %}# Instal·la 1.000+ paquets en segons
+npm install{% endcapture %}
+  {% include code-block.html lang="bash" code=code_8 %}
 
   <p><strong>Angular CLI:</strong> Genera codi amb convencions.</p>
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Crea component amb HTML, CSS, TypeScript i test
-ng generate component targeta</code></pre>
-  </div>
-</div>
-
+  {% capture code_9 %}# Crea component amb HTML, CSS, TypeScript i test
+ng generate component targeta{% endcapture %}
+  {% include code-block.html lang="bash" code=code_9 %}
 
   <p><strong>VS Code:</strong> Autocompletat i detecció d'errors en temps real.</p>
   <p><strong>Git:</strong> Permet desfer canvis i treballar en equip sense perdre feina.</p>
@@ -2455,82 +656,31 @@ ng generate component targeta</code></pre>
   </ul>
 
   <h4>2.2.5. Exemple de flux diari</h4>
-  
-  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">1. Obrir VS Code → 2. Editar codi → 3. Guardar (Git commit)
+  {% capture code_10 %}1. Obrir VS Code → 2. Editar codi → 3. Guardar (Git commit)
 ↓
 4. ng serve → 5. Provar al navegador → 6. Depurar DevTools
 ↓
-7. Repetir cicle</code></pre>
-  </div>
-</div>
-
+7. Repetir cicle{% endcapture %}
+  {% include code-block.html lang="text" code=code_10 %}
 
   <p>Aquesta secció detalla els <strong>requisits</strong> de cada eina. La <strong>instal·lació</strong> es farà a la Secció 3.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="2.2" titol="Marc conceptual" contingut=section_point_2_2 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">2.3. Model mental</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_2_3 %}
 
   <h4>2.3.1. Flux de dependències</h4>
-  
-  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Sistema Operatiu
+  {% capture code_11 %}Sistema Operatiu
     ↓ (necessari per tot)
 Node.js + npm
-    ↓ (s&#39;instal·la amb npm)
+    ↓ (s'instal·la amb npm)
 Angular CLI
     ↓ (crea projectes)
 Projecte Angular
     ↔ VS Code (editar)
     ↔ Git (versionar)
-    ↔ Navegador (provar)</code></pre>
-  </div>
-</div>
-
+    ↔ Navegador (provar){% endcapture %}
+  {% include code-block.html lang="text" code=code_11 %}
 
   <h4>2.3.2. Conceptes clau</h4>
   <ul>
@@ -2544,61 +694,28 @@ Projecte Angular
   <p>1r Node.js → 2n npm (ve amb Node.js) → 3r Angular CLI → 4t VS Code, Git, extensions</p>
 
   <p>En aquesta secció aprendreu a <strong>identificar</strong> requisits i <strong>comprendre</strong> cada eina abans de tocar res al sistema.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="2.3" titol="Model mental" contingut=section_point_2_3 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">2.4. Visió general de l'ecosistema de desenvolupament modern</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_2_4 %}
 
   <h4>2.4.1. Objectiu</h4>
   <p>Veure totes les peces de l'entorn de desenvolupament.</p>
 
   <h4>2.4.2. Diagrama de l'ecosistema</h4>
-  
-  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Sistema Operatiu (Windows / macOS / Linux)
+  {% capture code_12 %}Sistema Operatiu (Windows / macOS / Linux)
     ↓
-Node.js (motor d&#39;execució JavaScript)
+Node.js (motor d'execució JavaScript)
     ↓
 npm (gestor de paquets)
     ↓
-Angular CLI (eina de línia d&#39;ordres)
+Angular CLI (eina de línia d'ordres)
     ↓
-Projecte Angular (codi de l&#39;aplicació)
+Projecte Angular (codi de l'aplicació)
     ←→ Visual Studio Code (editor)
     ←→ Git (control de versions)
-    ←→ Navegador amb DevTools (proves i depuració)</code></pre>
-  </div>
-</div>
-
+    ←→ Navegador amb DevTools (proves i depuració){% endcapture %}
+  {% include code-block.html lang="text" code=code_12 %}
 
   <h4>2.4.3. Flux de treball diari</h4>
   <ol>
@@ -2625,25 +742,10 @@ Projecte Angular (codi de l&#39;aplicació)
 
   <h4>2.4.5. Resultat esperat</h4>
   <p>Compreneu com encaixen totes les peces de l'ecosistema.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="2.4" titol="Visió general de l'ecosistema de desenvolupament modern" contingut=section_point_2_4 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">2.5. Requisits de maquinari: RAM, processador, espai en disc</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_2_5 %}
 
   <h4>2.5.1. Objectiu</h4>
   <p>Saber si el vostre equip té prou recursos.</p>
@@ -2687,72 +789,18 @@ Projecte Angular (codi de l&#39;aplicació)
   <h4>2.5.4. Com comprovar l'equip</h4>
 
   <p><strong>Windows:</strong></p>
-  
-  <div class="code-block" data-lang="powershell" role="region" aria-label="Bloc de codi powershell">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">POWERSHELL</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-powershell">systeminfo | findstr /C:&quot;Processor&quot; /C:&quot;Total Physical Memory&quot;</code></pre>
-  </div>
-</div>
-
+  {% capture code_13 %}systeminfo | findstr /C:"Processor" /C:"Total Physical Memory"{% endcapture %}
+  {% include code-block.html lang="powershell" code=code_13 %}
 
   <p><strong>macOS:</strong></p>
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">sysctl -n machdep.cpu.brand_string
-sysctl hw.memsize</code></pre>
-  </div>
-</div>
-
+  {% capture code_14 %}sysctl -n machdep.cpu.brand_string
+sysctl hw.memsize{% endcapture %}
+  {% include code-block.html lang="bash" code=code_14 %}
 
   <p><strong>Linux:</strong></p>
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">lscpu | grep &quot;Model name&quot;
-free -h</code></pre>
-  </div>
-</div>
-
+  {% capture code_15 %}lscpu | grep "Model name"
+free -h{% endcapture %}
+  {% include code-block.html lang="bash" code=code_15 %}
 
   <h4>2.5.5. Conseqüències de no complir mínims</h4>
   <ul>
@@ -2765,25 +813,10 @@ free -h</code></pre>
 
   <h4>2.5.6. Resultat esperat</h4>
   <p>Sabeu els requisits i podeu mesurar el vostre equip.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="2.5" titol="Requisits de maquinari: RAM, processador, espai en disc" contingut=section_point_2_5 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">2.6. Sistemes operatius compatibles: Windows, macOS, Linux</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_2_6 %}
 
   <h4>2.6.1. Objectiu</h4>
   <p>Comprendre particularitats de cada sistema.</p>
@@ -2833,25 +866,10 @@ free -h</code></pre>
 
   <h4>2.6.5. Resultat esperat</h4>
   <p>Coneixeu les particularitats del vostre sistema operatiu.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="2.6" titol="Sistemes operatius compatibles: Windows, macOS, Linux" contingut=section_point_2_6 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">2.7. Node.js: què és i per què és necessari</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_2_7 %}
 
   <h4>2.7.1. Objectiu</h4>
   <p>Entendre per què necessitem Node.js si l'app s'executa al navegador.</p>
@@ -2880,51 +898,18 @@ free -h</code></pre>
   <p><strong>Recomanació:</strong> Usar sempre LTS per projectes professionals.</p>
 
   <h4>2.7.6. Com comprovar Node.js</h4>
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">node --version
-# Exemple: v20.10.0</code></pre>
-  </div>
-</div>
-
+  {% capture code_16 %}node --version
+# Exemple: v20.10.0{% endcapture %}
+  {% include code-block.html lang="bash" code=code_16 %}
 
   <p><strong>Clau:</strong> Node.js executa les eines de desenvolupament, no l'app final al navegador.</p>
 
   <h4>2.7.7. Resultat esperat</h4>
   <p>Compreneu per què Node.js és imprescindible.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="2.7" titol="Node.js: què és i per què és necessari" contingut=section_point_2_7 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">2.8. Gestor de paquets npm: automatitzar instal·lació de llibreries</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_2_8 %}
 
   <h4>2.8.1. Objectiu</h4>
   <p>Entendre com npm gestiona dependències.</p>
@@ -2939,85 +924,31 @@ free -h</code></pre>
   <h4>2.8.4. Conceptes clau</h4>
 
   <p><strong>package.json:</strong> Fitxer amb la llista de dependències.</p>
-  
-  <div class="code-block" data-lang="json" role="region" aria-label="Bloc de codi json">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JSON</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-json">{
-  &quot;dependencies&quot;: {
-    &quot;@angular/core&quot;: &quot;^18.0.0&quot;,
-    &quot;rxjs&quot;: &quot;^7.8.0&quot;
+  {% capture code_17 %}{
+  "dependencies": {
+    "@angular/core": "^18.0.0",
+    "rxjs": "^7.8.0"
   }
-}</code></pre>
-  </div>
-</div>
-
+}{% endcapture %}
+  {% include code-block.html lang="json" code=code_17 %}
 
   <p><strong>node_modules:</strong> Carpeta amb totes les llibreries instal·lades (300-500 MB).</p>
 
   <p><strong>npm scripts:</strong> Comandes personalitzades.</p>
-  
-  <div class="code-block" data-lang="json" role="region" aria-label="Bloc de codi json">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JSON</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-json">{
-  &quot;scripts&quot;: {
-    &quot;start&quot;: &quot;ng serve&quot;,
-    &quot;build&quot;: &quot;ng build&quot;
+  {% capture code_18 %}{
+  "scripts": {
+    "start": "ng serve",
+    "build": "ng build"
   }
-}</code></pre>
-  </div>
-</div>
-
+}{% endcapture %}
+  {% include code-block.html lang="json" code=code_18 %}
 
   <h4>2.8.5. Comandes bàsiques</h4>
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">npm install          # Instal·la tot
+  {% capture code_19 %}npm install          # Instal·la tot
 npm install lodash   # Afegeix llibreria
 npm update          # Actualitza dependències
-npm list            # Llista instal·lades</code></pre>
-  </div>
-</div>
-
+npm list            # Llista instal·lades{% endcapture %}
+  {% include code-block.html lang="bash" code=code_19 %}
 
   <h4>2.8.6. Versions de npm</h4>
   <p>Ve amb Node.js. Node.js 20.x inclou npm 10.x.</p>
@@ -3026,25 +957,10 @@ npm list            # Llista instal·lades</code></pre>
 
   <h4>2.8.7. Resultat esperat</h4>
   <p>Sabeu què és npm i per què és essencial.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="2.8" titol="Gestor de paquets npm: automatitzar instal·lació de llibreries" contingut=section_point_2_8 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">2.9. Control de versions Git: guardar historial de canvis</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_2_9 %}
 
   <h4>2.9.1. Objectiu</h4>
   <p>Comprendre per què Git és imprescindible.</p>
@@ -3065,30 +981,12 @@ npm list            # Llista instal·lades</code></pre>
   </ul>
 
   <h4>2.9.5. Comandes essencials</h4>
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git init            # Crear repo
+  {% capture code_20 %}git init            # Crear repo
 git add .           # Preparar canvis
-git commit -m &quot;Missatge&quot;  # Guardar versió
+git commit -m "Missatge"  # Guardar versió
 git status          # Veure estat
-git log             # Historial</code></pre>
-  </div>
-</div>
-
+git log             # Historial{% endcapture %}
+  {% include code-block.html lang="bash" code=code_20 %}
 
   <h4>2.9.6. Per què és obligatori</h4>
   <ul>
@@ -3102,25 +1000,10 @@ git log             # Historial</code></pre>
 
   <h4>2.9.7. Resultat esperat</h4>
   <p>Compreneu la importància de Git per treballar professionalment.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="2.9" titol="Control de versions Git: guardar historial de canvis" contingut=section_point_2_9 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">2.10. CLI del framework: automatitzar tasques repetitives</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_2_10 %}
 
   <h4>2.10.1. Objectiu</h4>
   <p>Entendre què automatitza Angular CLI.</p>
@@ -3166,33 +1049,15 @@ git log             # Historial</code></pre>
   </table>
 
   <h4>2.10.5. Exemples</h4>
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Crear projecte
+  {% capture code_21 %}# Crear projecte
 ng new cataleg-elements
 
 # Crear component
 ng generate component targeta
 
 # Llençar servidor
-ng serve --port 4300</code></pre>
-  </div>
-</div>
-
+ng serve --port 4300{% endcapture %}
+  {% include code-block.html lang="bash" code=code_21 %}
 
   <h4>2.10.6. Avantatges</h4>
   <ul>
@@ -3203,27 +1068,9 @@ ng serve --port 4300</code></pre>
   </ul>
 
   <h4>2.10.7. Com comprovar CLI</h4>
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng version
-# Mostra: Angular CLI: 18.0.3</code></pre>
-  </div>
-</div>
-
+  {% capture code_22 %}ng version
+# Mostra: Angular CLI: 18.0.3{% endcapture %}
+  {% include code-block.html lang="bash" code=code_22 %}
 
   <p><strong>Important:</strong> Requereix Node.js + npm instal·lats primer.</p>
 
@@ -3231,25 +1078,10 @@ ng serve --port 4300</code></pre>
 
   <h4>2.10.8. Resultat esperat</h4>
   <p>Compreneu que CLI és essencial per treballar eficientment.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="2.10" titol="CLI del framework: automatitzar tasques repetitives" contingut=section_point_2_10 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">2.11. Taula resum d'eines amb versions recomanades</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_2_11 %}
 
   <h4>2.11.1. Objectiu</h4>
   <p>Referència ràpida de totes les eines.</p>
@@ -3326,48 +1158,17 @@ ng serve --port 4300</code></pre>
 
   <h4>2.11.5. Resultat esperat</h4>
   <p>Teniu la llista clara de totes les eines necessàries.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="2.11" titol="Taula resum d'eines amb versions recomanades" contingut=section_point_2_11 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">2.12. Preparació: checklist per verificar el propi sistema</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_2_12 %}
 
   <h4>2.12.1. Objectiu</h4>
   <p>Crear un document personal per comprovar que esteu preparats.</p>
 
   <h4>2.12.2. Checklist de requisits</h4>
 
-  
-  <div class="code-block" data-lang="markdown" role="region" aria-label="Bloc de codi markdown">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">MARKDOWN</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-markdown"># Checklist de requisits del sistema
+  {% capture code_23 %}# Checklist de requisits del sistema
 
 ## Maquinari
 - [ ] CPU: _____ nuclis, _____ GHz (mínim 2)
@@ -3380,7 +1181,7 @@ ng serve --port 4300</code></pre>
 - [ ] Terminal: PowerShell / zsh / bash
 - [ ] Permisos: Administrador / sudo
 
-## Eines actuals (si n&#39;hi ha)
+## Eines actuals (si n'hi ha)
 - [ ] Node.js: _____ (`node --version`)
 - [ ] npm: _____ (`npm --version`)
 - [ ] Angular CLI: _____ (`ng version`)
@@ -3393,10 +1194,8 @@ ng serve --port 4300</code></pre>
 
 ## Observacions
 - Notes sobre el meu sistema:
-- Dubtes per resoldre:</code></pre>
-  </div>
-</div>
-
+- Dubtes per resoldre:{% endcapture %}
+  {% include code-block.html lang="markdown" code=code_23 %}
 
   <h4>2.12.3. Com usar aquest checklist</h4>
   <ol>
@@ -3409,25 +1208,10 @@ ng serve --port 4300</code></pre>
 
   <h4>2.12.4. Resultat esperat</h4>
   <p>Teniu un checklist preparat per a la instal·lació.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="2.12" titol="Preparació: checklist per verificar el propi sistema" contingut=section_point_2_12 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">2.13. Mini exemple pràctic · Comprovar versions actuals</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_2_13 %}
 
   <h4>2.13.1. Objectiu</h4>
   <p>Veure quines eines ja teniu instal·lades abans d'instal·lar res.</p>
@@ -3438,30 +1222,12 @@ ng serve --port 4300</code></pre>
     <li>Executeu aquestes comandes:</li>
   </ol>
 
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">node --version
+  {% capture code_24 %}node --version
 npm --version
 ng version
 code --version
-git --version</code></pre>
-  </div>
-</div>
-
+git --version{% endcapture %}
+  {% include code-block.html lang="bash" code=code_24 %}
 
   <ol start="3">
     <li>Si retorna error "command not found", aquella eina <strong>no està instal·lada</strong></li>
@@ -3470,25 +1236,10 @@ git --version</code></pre>
 
   <h4>2.13.3. Resultat esperat</h4>
   <p>Sabeu exactament quines eines teniu i quines us falten.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="2.13" titol="Mini exemple pràctic · Comprovar versions actuals" contingut=section_point_2_13 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">2.14. Resolució de problemes</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_2_14 %}
 
   <table>
     <thead>
@@ -3521,170 +1272,39 @@ git --version</code></pre>
       </tr>
     </tbody>
   </table>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="2.14" titol="Resolució de problemes" contingut=section_point_2_14 %}
 
+  {% capture section_point_2_15 %}
+  {% include prompt-ai.html
+     titol="Per què necessitem Node.js?"
+     contingut="<strong>Rol:</strong> formador tècnic. <strong>Tasca:</strong> explica amb màxim 100 paraules per què necessitem Node.js si desenvolupem apps que s'executaran al navegador. <strong>Format:</strong> paràgraf curt."
+  %}
+  {% include prompt-ai.html
+     titol="npm vs yarn vs pnpm"
+     contingut="<strong>Rol:</strong> cap d'equip. <strong>Tasca:</strong> crea taula comparativa de npm vs yarn vs pnpm amb 4 característiques (velocitat, espai, compatibilitat, comunitat). <strong>Format:</strong> taula Markdown."
+  %}
+  {% include prompt-ai.html
+     titol="Checklist de preparació"
+     contingut="<strong>Rol:</strong> consultor TIC. <strong>Tasca:</strong> genera checklist de 10 punts per verificar que un ordinador està preparat per Angular. Inclou maquinari, programari i connectivitat. <strong>Format:</strong> llista amb caselles."
+  %}
+  {% endcapture %}
+  {% include section-point.html numero="2.15" titol="Prompts d'IA" contingut=section_point_2_15 %}
 
-  
-  <!-- Component: Punt destacat dins d'una secció -->
+  {% capture section_point_2_16 %}
+  {% include checklist.html
+     titol="Autoavaluació · Secció 2"
+     elements="Conec requisits de maquinari i sé si els compleixo|Puc explicar per què necessitem Node.js|Entenc què és npm i com gestiona dependències|Comprenc la importància de Git|Sé què automatitza Angular CLI|Tinc llista clara d'eines amb versions recomanades|He omplert el checklist de requisits"
+  %}
+  {% endcapture %}
+  {% include section-point.html numero="2.16" titol="Autoavaluació" contingut=section_point_2_16 %}
 
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">2.15. Prompts d'IA</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
-  <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
-<div class="ai-prompt" role="note">
-  <div class="component-header ai-header" role="heading" aria-level="4">
-    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
-    <div class="ai-actions">
-      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
-        <i class="bi bi-clipboard" aria-hidden="true"></i>
-      </button>
-    </div>
-  </div>
-  <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> formador tècnic. <strong>Tasca:</strong> explica amb màxim 100 paraules per què necessitem Node.js si desenvolupem apps que s'executaran al navegador. <strong>Format:</strong> paràgraf curt.</div>
-  </div>
-</div>
-
-  <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
-<div class="ai-prompt" role="note">
-  <div class="component-header ai-header" role="heading" aria-level="4">
-    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
-    <div class="ai-actions">
-      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
-        <i class="bi bi-clipboard" aria-hidden="true"></i>
-      </button>
-    </div>
-  </div>
-  <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> cap d'equip. <strong>Tasca:</strong> crea taula comparativa de npm vs yarn vs pnpm amb 4 característiques (velocitat, espai, compatibilitat, comunitat). <strong>Format:</strong> taula Markdown.</div>
-  </div>
-</div>
-
-  <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
-<div class="ai-prompt" role="note">
-  <div class="component-header ai-header" role="heading" aria-level="4">
-    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
-    <div class="ai-actions">
-      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
-        <i class="bi bi-clipboard" aria-hidden="true"></i>
-      </button>
-    </div>
-  </div>
-  <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> consultor TIC. <strong>Tasca:</strong> genera checklist de 10 punts per verificar que un ordinador està preparat per Angular. Inclou maquinari, programari i connectivitat. <strong>Format:</strong> llista amb caselles.</div>
-  </div>
-</div>
-
-  
-  </div>
-</div>
-
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">2.16. Autoavaluació</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
-  <!-- Component: Checklist (sense contenidor extern) -->
-
-<div class="checklist-list" role="group" aria-label="Autoavaluació · Secció 2">
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Conec requisits de maquinari i sé si els compleixo</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Puc explicar per què necessitem Node.js</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Entenc què és npm i com gestiona dependències</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Comprenc la importància de Git</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Sé què automatitza Angular CLI</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Tinc llista clara d'eines amb versions recomanades</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">He omplert el checklist de requisits</div>
-  </div>
-  
-  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
-</div>
-
-  
-  </div>
-</div>
-
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">2.17. Síntesi</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_2_17 %}
   <p>Heu identificat tots els requisits de maquinari i programari per desenvolupar amb Angular. Compreneu la funció de cada eina (Node.js, npm, Git, CLI, VS Code) i teniu un checklist preparat. Ara esteu preparats per la Secció 3, on instal·lareu i configurareu totes aquestes eines pas a pas.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="2.17" titol="Síntesi" contingut=section_point_2_17 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">2.18. Repàs de conceptes</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_2_18 %}
   <ul>
     <li><strong>Node.js:</strong> motor JavaScript que executa codi fora del navegador; necessari per CLI i npm.</li>
     <li><strong>npm:</strong> gestor de paquets que automatitza instal·lació de llibreries.</li>
@@ -3694,10 +1314,8 @@ git --version</code></pre>
     <li><strong>DevTools:</strong> eines de desenvolupador integrades als navegadors per depurar.</li>
     <li><strong>PATH:</strong> variable del sistema que indica on buscar executables.</li>
   </ul>
-  
-  </div>
-</div>
-
+  {% endcapture %}
+  {% include section-point.html numero="2.18" titol="Repàs de conceptes" contingut=section_point_2_18 %}
 
 </div>
 
@@ -3705,115 +1323,14 @@ git --version</code></pre>
   <h2 id="Unitat1_Bloc1_Seccio3">3. Instal·lació del motor d'execució i gestor de paquets</h2>
 
   <!-- MULTIMÈDIA -->
-  <!--
-  ════════════════════════════════════════════════════════════════
-  Component: Enllaços multimèdia YouTube
-  ════════════════════════════════════════════════════════════════
-
-  Paràmetres:
-    - unitat: número de la unitat (1-4)
-    - bloc: número del bloc (1-4)
-    - seccio: número de la secció (1-3)
-
-  Exemple d'ús:
-    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
-
-  El component busca automàticament les URLs corresponents a
-  site.data.multimedia i mostra els botons de vídeo i àudio.
-  ════════════════════════════════════════════════════════════════
--->
+  {% include multimedia-youtube.html unitat=1 bloc=1 seccio=3 %}
 
 
+  {% include objectius.html llista="Instal·lar el motor d'execució JavaScript (Node.js) i el gestor de paquets (npm) al sistema operatiu disponible.|Verificar que la instal·lació funciona correctament amb comandes de terminal i interpretar les sortides.|Utilitzar les comandes bàsiques de npm per inicialitzar projectes i instal·lar paquets de prova." %}
 
+  {% include info_box.html contingut="<strong>RA1 · Criteri 2</strong> — Instal·la i configura l'entorn de desenvolupament amb les eines i dependències necessàries.<br><strong>RA1 · Criteri 5</strong> — Verifica el funcionament global amb proves o exemples senzills." %}
 
-
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-<div class="multimedia-resources">
-  <div class="multimedia-header">
-    <i class="bi bi-play-circle-fill"></i>
-    <span>Contingut multimèdia d'aquesta lectura</span>
-  </div>
-
-  <div class="multimedia-buttons">
-    
-    <a href="https://www.youtube.com/watch?v=gz-QeFZaK9c" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 1.1.3 · Instal·lació del motor d'execució i gestor de paquets">
-      <i class="bi bi-youtube"></i>
-      <span>Veure vídeo</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-
-    
-    <a href="https://www.youtube.com/watch?v=tI4f_Io2UoM" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 1.1.3 · Instal·lació del motor d'execució i gestor de paquets">
-      <i class="bi bi-mic-fill"></i>
-      <span>Escoltar àudio</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-  </div>
-
-  
-  
-</div>
-  
-
-
-
-
-  <!-- Component: Objectius del bloc/unitat -->
-
-
-
-<div class="objectius-box">
-  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-bullseye" aria-hidden="true"></i> Objectius</div>
-  <div class="component-content">
-    <ul>
-      
-        <li>Instal·lar el motor d'execució JavaScript (Node.js) i el gestor de paquets (npm) al sistema operatiu disponible.</li>
-      
-        <li>Verificar que la instal·lació funciona correctament amb comandes de terminal i interpretar les sortides.</li>
-      
-        <li>Utilitzar les comandes bàsiques de npm per inicialitzar projectes i instal·lar paquets de prova.</li>
-      
-    </ul>
-  </div>
-  <!-- IMPORTANT: també es pot usar via front matter: page.objectius (array) -->
-</div>
-
-
-
-  <!-- Component: Caixa informativa -->
-<div class="info-box" role="note">
-    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
-    <strong>RA1 · Criteri 2</strong> — Instal·la i configura l'entorn de desenvolupament amb les eines i dependències necessàries.<br><strong>RA1 · Criteri 5</strong> — Verifica el funcionament global amb proves o exemples senzills.
-    
-</div>
-
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">3.1. Prerequisits</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_3_1 %}
   <ul>
     <li>Heu completat les seccions 1 i 2 i compreneu què és Node.js, npm i per què són necessaris.</li>
     <li>Disposeu de permisos per instal·lar programari al vostre sistema (administrador a Windows, <code>sudo</code> a macOS/Linux).</li>
@@ -3823,25 +1340,10 @@ git --version</code></pre>
 
   <p><strong>Verificació ràpida:</strong> Executeu <code>systeminfo</code> (Windows) o <code>sw_vers</code> (macOS) o <code>cat /etc/os-release</code> (Linux) per confirmar la versió del sistema operatiu.</p>
   <p><strong>Punt d'autocomprovació:</strong> Podeu obrir la terminal (PowerShell, Terminal o bash) i executar comandes bàsiques.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="3.1" titol="Prerequisits" contingut=section_point_3_1 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">3.2. Marc conceptual</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_3_2 %}
 
   <h4>3.2.1. Què instal·larem</h4>
   <p>Node.js és el motor que executa JavaScript fora del navegador. Quan instal·leu Node.js, automàticament s'instal·la <strong>npm</strong>, el gestor de paquets.</p>
@@ -3852,28 +1354,10 @@ git --version</code></pre>
   <p><strong>1. PATH del sistema:</strong></p>
   <p>Node.js s'ha d'afegir al PATH perquè pugueu executar <code>node</code> i <code>npm</code> des de qualsevol carpeta.</p>
 
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Si PATH està correcte, això funciona des de qualsevol lloc:
+  {% capture code_25 %}# Si PATH està correcte, això funciona des de qualsevol lloc:
 node --version
-npm --version</code></pre>
-  </div>
-</div>
-
+npm --version{% endcapture %}
+  {% include code-block.html lang="bash" code=code_25 %}
 
   <p><strong>2. Versions LTS vs Current:</strong></p>
   <ul>
@@ -3887,30 +1371,12 @@ npm --version</code></pre>
   <p>Instal·lació requereix administrador, però després treballeu com a usuari normal.</p>
 
   <h4>3.2.3. Flux d'instal·lació</h4>
-  
-  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Descarregar instal·lador → Executar amb permisos → Afegir al PATH
+  {% capture code_26 %}Descarregar instal·lador → Executar amb permisos → Afegir al PATH
     ↓
 Tancar terminal antiga → Obrir terminal nova → Verificar versions
     ↓
-Provar amb projecte test → Instal·lar paquet → Comprovar funcionament</code></pre>
-  </div>
-</div>
-
+Provar amb projecte test → Instal·lar paquet → Comprovar funcionament{% endcapture %}
+  {% include code-block.html lang="text" code=code_26 %}
 
   <h4>3.2.4. Diferències per sistema operatiu</h4>
 
@@ -3936,93 +1402,42 @@ Provar amb projecte test → Instal·lar paquet → Comprovar funcionament</code
   </ul>
 
   <h4>3.2.5. Exemple de verificació completa</h4>
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># 1. Comprovar versions
+  {% capture code_27 %}# 1. Comprovar versions
 node --version    # Hauria de retornar v20.x.x o v22.x.x
 npm --version     # Hauria de retornar 10.x.x
 
 # 2. Provar REPL
 node
-&gt; 2 + 2
+> 2 + 2
 4
-&gt; .exit
+> .exit
 
 # 3. Crear projecte mínim
 mkdir test-node
 cd test-node
 npm init -y
-echo &quot;console.log(&#39;Funciona!&#39;);&quot; &gt; index.js
+echo "console.log('Funciona!');" > index.js
 node index.js
-# Hauria de mostrar: Funciona!</code></pre>
-  </div>
-</div>
-
+# Hauria de mostrar: Funciona!{% endcapture %}
+  {% include code-block.html lang="bash" code=code_27 %}
 
   <p>Aquesta secció us guiarà pas a pas per <strong>Windows, macOS i Linux</strong>, verificant cada pas.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="3.2" titol="Marc conceptual" contingut=section_point_3_2 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">3.3. Model mental</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_3_3 %}
 
   <h4>3.3.1. Flux de dependències</h4>
-  
-  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Instal·lador Node.js
+  {% capture code_28 %}Instal·lador Node.js
     ↓ (inclou automàticament)
 Node.js + npm instal·lats
-    ↓ (s&#39;afegeix a)
+    ↓ (s'afegeix a)
 PATH del sistema
     ↓ (permet executar)
 Comandes node i npm
     ↓ (des de qualsevol carpeta)
-Terminal</code></pre>
-  </div>
-</div>
-
+Terminal{% endcapture %}
+  {% include code-block.html lang="text" code=code_28 %}
 
   <h4>3.3.2. Conceptes clau</h4>
   <ul>
@@ -4052,25 +1467,10 @@ Terminal</code></pre>
   </ul>
 
   <p>En aquesta secció fareu la instal·lació real i verificareu que tot funciona.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="3.3" titol="Model mental" contingut=section_point_3_3 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">3.4. Preparació: verificar sistema operatiu i requisits previs</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_3_4 %}
 
   <h4>3.4.1. Objectiu</h4>
   <p>Assegurar que el sistema està preparat abans de començar.</p>
@@ -4078,127 +1478,37 @@ Terminal</code></pre>
   <h4>3.4.2. Pas 1: Identificar el sistema operatiu</h4>
 
   <p><strong>Windows:</strong></p>
-  
-  <div class="code-block" data-lang="powershell" role="region" aria-label="Bloc de codi powershell">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">POWERSHELL</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-powershell">systeminfo | findstr /B /C:&quot;OS Name&quot; /C:&quot;OS Version&quot;</code></pre>
-  </div>
-</div>
-
+  {% capture code_29 %}systeminfo | findstr /B /C:"OS Name" /C:"OS Version"{% endcapture %}
+  {% include code-block.html lang="powershell" code=code_29 %}
   <p>Necessiteu: <strong>Windows 10/11</strong></p>
 
   <p><strong>macOS:</strong></p>
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">sw_vers</code></pre>
-  </div>
-</div>
-
+  {% capture code_30 %}sw_vers{% endcapture %}
+  {% include code-block.html lang="bash" code=code_30 %}
   <p>Necessiteu: <strong>macOS 11+</strong></p>
 
   <p><strong>Linux:</strong></p>
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">cat /etc/os-release</code></pre>
-  </div>
-</div>
-
+  {% capture code_31 %}cat /etc/os-release{% endcapture %}
+  {% include code-block.html lang="bash" code=code_31 %}
   <p>Recomanat: <strong>Ubuntu 20.04+, Fedora 35+, Debian 11+</strong></p>
 
   <h4>3.4.3. Pas 2: Comprovar si Node.js ja està instal·lat</h4>
 
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">node --version
-npm --version</code></pre>
-  </div>
-</div>
-
+  {% capture code_32 %}node --version
+npm --version{% endcapture %}
+  {% include code-block.html lang="bash" code=code_32 %}
 
   <p><strong>Si retorna versions:</strong> Anoteu-les. Si &lt;18.x, actualitzeu.</p>
   <p><strong>Si retorna error:</strong> Perfecte, continueu amb la instal·lació.</p>
 
   <h4>3.4.4. Pas 3: Verificar espai disponible</h4>
 
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Windows
+  {% capture code_33 %}# Windows
 Get-PSDrive C | Select-Object Used,Free
 
 # macOS/Linux
-df -h /</code></pre>
-  </div>
-</div>
-
+df -h /{% endcapture %}
+  {% include code-block.html lang="bash" code=code_33 %}
 
   <p>Necessiteu: <strong>Mínim 500 MB lliures</strong></p>
 
@@ -4206,25 +1516,10 @@ df -h /</code></pre>
 
   <h4>3.4.5. Resultat esperat</h4>
   <p>Sabeu quin SO teniu, si Node.js ja està instal·lat i teniu espai suficient.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="3.4" titol="Preparació: verificar sistema operatiu i requisits previs" contingut=section_point_3_4 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">3.5. Descàrrega de Node.js: lloc oficial, selecció de versió LTS</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_3_5 %}
 
   <h4>3.5.1. Objectiu</h4>
   <p>Obtenir l'instal·lador oficial adequat.</p>
@@ -4268,30 +1563,12 @@ df -h /</code></pre>
 
   <h4>3.5.6. Pas 5: Verificar integritat (opcional)</h4>
 
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Windows
+  {% capture code_34 %}# Windows
 Get-FileHash .\node-v20.x.x-x64.msi -Algorithm SHA256
 
 # macOS/Linux
-shasum -a 256 node-v20.x.x.pkg</code></pre>
-  </div>
-</div>
-
+shasum -a 256 node-v20.x.x.pkg{% endcapture %}
+  {% include code-block.html lang="bash" code=code_34 %}
 
   <p>Compareu amb el hash del lloc oficial.</p>
 
@@ -4299,25 +1576,10 @@ shasum -a 256 node-v20.x.x.pkg</code></pre>
 
   <h4>3.5.7. Resultat esperat</h4>
   <p>Teniu l'instal·lador oficial LTS descarregat i verificat.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="3.5" titol="Descàrrega de Node.js: lloc oficial, selecció de versió LTS" contingut=section_point_3_5 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">3.6. Instal·lació pas a pas per a Windows</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_3_6 %}
 
   <h4>3.6.1. Objectiu</h4>
   <p>Instal·lar Node.js i npm a Windows.</p>
@@ -4374,30 +1636,12 @@ shasum -a 256 node-v20.x.x.pkg</code></pre>
 
   <p><strong>Tancar</strong> PowerShell vells i obrir <strong>nou PowerShell:</strong></p>
 
-  
-  <div class="code-block" data-lang="powershell" role="region" aria-label="Bloc de codi powershell">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">POWERSHELL</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-powershell">node --version
+  {% capture code_35 %}node --version
 # Hauria de retornar: v20.x.x
 
 npm --version
-# Hauria de retornar: 10.x.x</code></pre>
-  </div>
-</div>
-
+# Hauria de retornar: 10.x.x{% endcapture %}
+  {% include code-block.html lang="powershell" code=code_35 %}
 
   <p><strong>Si funciona:</strong> <i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> Instal·lació correcta</p>
   <p><strong>Si retorna error:</strong> Verificar PATH o reiniciar ordinador</p>
@@ -4406,25 +1650,10 @@ npm --version
 
   <h4>3.6.4. Resultat esperat</h4>
   <p>Node.js i npm funcionen a Windows amb comandes verificades.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="3.6" titol="Instal·lació pas a pas per a Windows" contingut=section_point_3_6 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">3.7. Instal·lació pas a pas per a macOS</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_3_7 %}
 
   <h4>3.7.1. Objectiu</h4>
   <p>Instal·lar Node.js i npm a macOS.</p>
@@ -4441,86 +1670,35 @@ npm --version
 
   <p><strong>Verificació:</strong></p>
   <p>Obrir Terminal nou:</p>
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">node --version
-npm --version</code></pre>
-  </div>
-</div>
-
+  {% capture code_36 %}node --version
+npm --version{% endcapture %}
+  {% include code-block.html lang="bash" code=code_36 %}
 
   <h4>3.7.3. Opció 2: Homebrew (Recomanat per usuaris experiència)</h4>
 
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Instal·lar Homebrew (si no el teniu)
-/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;
+  {% capture code_37 %}# Instal·lar Homebrew (si no el teniu)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Instal·lar Node.js
 brew install node@20
 
 # Afegir al PATH (si cal)
-echo &#39;export PATH=&quot;/opt/homebrew/opt/node@20/bin:$PATH&quot;&#39; &gt;&gt; ~/.zshrc
+echo 'export PATH="/opt/homebrew/opt/node@20/bin:$PATH"' >> ~/.zshrc
 source ~/.zshrc
 
 # Verificar
 node --version
-npm --version</code></pre>
-  </div>
-</div>
-
+npm --version{% endcapture %}
+  {% include code-block.html lang="bash" code=code_37 %}
 
   <p><strong>Clau:</strong> Homebrew simplifica actualitzacions futures amb <code>brew upgrade node</code>.</p>
 
   <h4>3.7.4. Resultat esperat</h4>
   <p>Node.js i npm funcionen a macOS amb comandes verificades.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="3.7" titol="Instal·lació pas a pas per a macOS" contingut=section_point_3_7 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">3.8. Instal·lació pas a pas per a Linux</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_3_8 %}
 
   <h4>3.8.1. Objectiu</h4>
   <p>Instal·lar Node.js i npm a Linux.</p>
@@ -4528,23 +1706,7 @@ npm --version</code></pre>
   <h4>3.8.2. Opció 1: Gestor de paquets de la distribució</h4>
 
   <p><strong>Ubuntu/Debian:</strong></p>
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Actualitzar repositoris
+  {% capture code_38 %}# Actualitzar repositoris
 sudo apt update
 
 # Instal·lar Node.js 20.x
@@ -4553,54 +1715,18 @@ sudo apt install -y nodejs
 
 # Verificar
 node --version
-npm --version</code></pre>
-  </div>
-</div>
-
+npm --version{% endcapture %}
+  {% include code-block.html lang="bash" code=code_38 %}
 
   <p><strong>Fedora:</strong></p>
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">sudo dnf install nodejs
+  {% capture code_39 %}sudo dnf install nodejs
 node --version
-npm --version</code></pre>
-  </div>
-</div>
-
+npm --version{% endcapture %}
+  {% include code-block.html lang="bash" code=code_39 %}
 
   <h4>3.8.3. Opció 2: nvm (Node Version Manager) - Recomanat</h4>
 
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Instal·lar nvm
+  {% capture code_40 %}# Instal·lar nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 
 # Recarregar configuració
@@ -4612,10 +1738,8 @@ nvm use 20
 
 # Verificar
 node --version
-npm --version</code></pre>
-  </div>
-</div>
-
+npm --version{% endcapture %}
+  {% include code-block.html lang="bash" code=code_40 %}
 
   <p><strong>Avantatge nvm:</strong> Canviar fàcilment entre versions (<code>nvm use 18</code>, <code>nvm use 20</code>).</p>
 
@@ -4623,166 +1747,61 @@ npm --version</code></pre>
 
   <h4>3.8.4. Resultat esperat</h4>
   <p>Node.js i npm funcionen a Linux amb comandes verificades.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="3.8" titol="Instal·lació pas a pas per a Linux" contingut=section_point_3_8 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">3.9. Verificació completa de la instal·lació</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_3_9 %}
 
   <h4>3.9.1. Objectiu</h4>
   <p>Comprovar que Node.js i npm funcionen correctament.</p>
 
   <h4>3.9.2. Test 1: Versions</h4>
 
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">node --version
+  {% capture code_41 %}node --version
 # Exemple: v20.10.0
 
 npm --version
-# Exemple: 10.2.3</code></pre>
-  </div>
-</div>
-
+# Exemple: 10.2.3{% endcapture %}
+  {% include code-block.html lang="bash" code=code_41 %}
 
   <p><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> Hauria de retornar versions, no errors.</p>
 
   <h4>3.9.3. Test 2: REPL (Read-Eval-Print Loop)</h4>
 
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">node
-&gt; 2 + 2
+  {% capture code_42 %}node
+> 2 + 2
 4
-&gt; console.log(&#39;Funciona!&#39;)
+> console.log('Funciona!')
 Funciona!
 undefined
-&gt; .exit</code></pre>
-  </div>
-</div>
-
+> .exit{% endcapture %}
+  {% include code-block.html lang="bash" code=code_42 %}
 
   <p><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> Hauria d'executar JavaScript interactivament.</p>
 
   <h4>3.9.4. Test 3: Executar fitxer JavaScript</h4>
 
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Crear fitxer
-echo &quot;console.log(&#39;Node.js funciona!&#39;);&quot; &gt; test.js
+  {% capture code_43 %}# Crear fitxer
+echo "console.log('Node.js funciona!');" > test.js
 
 # Executar
 node test.js
 
 # Hauria de mostrar:
-Node.js funciona!</code></pre>
-  </div>
-</div>
-
+Node.js funciona!{% endcapture %}
+  {% include code-block.html lang="bash" code=code_43 %}
 
   <h4>3.9.5. Test 4: npm help</h4>
 
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">npm --help</code></pre>
-  </div>
-</div>
-
+  {% capture code_44 %}npm --help{% endcapture %}
+  {% include code-block.html lang="bash" code=code_44 %}
 
   <p><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> Hauria de mostrar llista de comandes npm.</p>
 
   <h4>3.9.6. Test 5: npm config</h4>
 
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">npm config list</code></pre>
-  </div>
-</div>
-
+  {% capture code_45 %}npm config list{% endcapture %}
+  {% include code-block.html lang="bash" code=code_45 %}
 
   <p><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> Hauria de mostrar configuració npm (registry, prefix, etc.).</p>
 
@@ -4790,48 +1809,17 @@ Node.js funciona!</code></pre>
 
   <h4>3.9.7. Resultat esperat</h4>
   <p>Totes les verificacions passen sense errors.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="3.9" titol="Verificació completa de la instal·lació" contingut=section_point_3_9 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">3.10. Comandes bàsiques de npm: init, install, scripts</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_3_10 %}
 
   <h4>3.10.1. Objectiu</h4>
   <p>Aprendre operacions essencials de npm.</p>
 
   <h4>3.10.2. Comanda 1: npm init (Crear projecte)</h4>
 
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Crear carpeta
+  {% capture code_46 %}# Crear carpeta
 mkdir primer-projecte
 cd primer-projecte
 
@@ -4839,147 +1827,58 @@ cd primer-projecte
 npm init
 
 # O mode ràpid (accepta tot per defecte)
-npm init -y</code></pre>
-  </div>
-</div>
-
+npm init -y{% endcapture %}
+  {% include code-block.html lang="bash" code=code_46 %}
 
   <p><strong>Resultat:</strong> Crea <code>package.json</code> amb metadades del projecte.</p>
 
   <h4>3.10.3. Comanda 2: npm install (Instal·lar paquets)</h4>
 
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Instal·lar paquet
+  {% capture code_47 %}# Instal·lar paquet
 npm install lodash
 
 # Instal·lar múltiples paquets
 npm install chalk axios
 
 # Instal·lar com a dev dependency
-npm install --save-dev jest</code></pre>
-  </div>
-</div>
-
+npm install --save-dev jest{% endcapture %}
+  {% include code-block.html lang="bash" code=code_47 %}
 
   <p><strong>Resultat:</strong> Crea <code>node_modules/</code> i afegeix dependències a <code>package.json</code>.</p>
 
   <h4>3.10.4. Comanda 3: Scripts personalitzats</h4>
 
   <p>Editar <code>package.json</code>:</p>
-  
-  <div class="code-block" data-lang="json" role="region" aria-label="Bloc de codi json">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JSON</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-json">{
-  &quot;scripts&quot;: {
-    &quot;start&quot;: &quot;node index.js&quot;,
-    &quot;test&quot;: &quot;echo &#39;Tests aquí&#39;&quot;
+  {% capture code_48 %}{
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo 'Tests aquí'"
   }
-}</code></pre>
-  </div>
-</div>
-
+}{% endcapture %}
+  {% include code-block.html lang="json" code=code_48 %}
 
   <p>Executar:</p>
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">npm start
+  {% capture code_49 %}npm start
 npm test
-npm run nomscript</code></pre>
-  </div>
-</div>
-
+npm run nomscript{% endcapture %}
+  {% include code-block.html lang="bash" code=code_49 %}
 
   <h4>3.10.5. Comandes addicionals útils</h4>
 
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">npm list              # Llista paquets instal·lats
+  {% capture code_50 %}npm list              # Llista paquets instal·lats
 npm outdated         # Paquets desactualitzats
 npm update           # Actualitzar paquets
-npm uninstall lodash # Desinstal·lar paquet</code></pre>
-  </div>
-</div>
-
+npm uninstall lodash # Desinstal·lar paquet{% endcapture %}
+  {% include code-block.html lang="bash" code=code_50 %}
 
   <p><strong>Clau:</strong> npm automatitza gestió de dependències i execució de scripts.</p>
 
   <h4>3.10.6. Resultat esperat</h4>
   <p>Sabeu crear projectes, instal·lar paquets i executar scripts.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="3.10" titol="Comandes bàsiques de npm: init, install, scripts" contingut=section_point_3_10 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">3.11. Resolució de problemes comuns</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_3_11 %}
 
   <h4>3.11.1. Objectiu</h4>
   <p>Diagnosticar i resoldre errors típics.</p>
@@ -4989,66 +1888,30 @@ npm uninstall lodash # Desinstal·lar paquet</code></pre>
   <p><strong>Causa:</strong> PATH no actualitzat o Node.js no instal·lat.</p>
 
   <p><strong>Solució:</strong></p>
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># 1. Tancar i reobrir terminal
+  {% capture code_51 %}# 1. Tancar i reobrir terminal
 # 2. Verificar PATH
 echo $PATH  # macOS/Linux
 $env:PATH   # Windows
 
 # 3. Si no hi és, afegir manualment
-# Windows: Editar variables d&#39;entorn del sistema
+# Windows: Editar variables d'entorn del sistema
 # macOS/Linux: Afegir a ~/.bashrc o ~/.zshrc
-export PATH=&quot;/usr/local/bin:$PATH&quot;</code></pre>
-  </div>
-</div>
-
+export PATH="/usr/local/bin:$PATH"{% endcapture %}
+  {% include code-block.html lang="bash" code=code_51 %}
 
   <h4>3.11.3. Problema 2: "npm ERR! code EACCES"</h4>
 
   <p><strong>Causa:</strong> Permisos insuficients.</p>
 
   <p><strong>Solució Linux/macOS:</strong></p>
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Configurar prefix npm
+  {% capture code_52 %}# Configurar prefix npm
 mkdir ~/.npm-global
-npm config set prefix &#39;~/.npm-global&#39;
+npm config set prefix '~/.npm-global'
 
 # Afegir al PATH
-echo &#39;export PATH=~/.npm-global/bin:$PATH&#39; &gt;&gt; ~/.bashrc
-source ~/.bashrc</code></pre>
-  </div>
-</div>
-
+echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc{% endcapture %}
+  {% include code-block.html lang="bash" code=code_52 %}
 
   <p><strong>Solució Windows:</strong></p>
   <p>Executar PowerShell com administrador per instal·lacions globals.</p>
@@ -5058,28 +1921,10 @@ source ~/.bashrc</code></pre>
   <p><strong>Causa:</strong> Caché corrupta.</p>
 
   <p><strong>Solució:</strong></p>
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">npm cache clean --force
+  {% capture code_53 %}npm cache clean --force
 npm cache verify
-npm install</code></pre>
-  </div>
-</div>
-
+npm install{% endcapture %}
+  {% include code-block.html lang="bash" code=code_53 %}
 
   <h4>3.11.5. Problema 4: <code>npm WARN deprecated</code></h4>
 
@@ -5097,78 +1942,29 @@ npm install</code></pre>
   <p><strong>Causa:</strong> Problemes xarxa o proxy.</p>
 
   <p><strong>Solució:</strong></p>
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Verificar connexió
+  {% capture code_54 %}# Verificar connexió
 npm ping
 
 # Configurar proxy (si escau)
 npm config set proxy http://proxy.example.com:8080
-npm config set https-proxy http://proxy.example.com:8080</code></pre>
-  </div>
-</div>
-
+npm config set https-proxy http://proxy.example.com:8080{% endcapture %}
+  {% include code-block.html lang="bash" code=code_54 %}
 
   <p><strong>Clau:</strong> La majoria de problemes es resolen reiniciant terminal o netejant caché.</p>
 
   <h4>3.11.7. Resultat esperat</h4>
   <p>Sabeu diagnosticar i resoldre errors comuns de Node.js i npm.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="3.11" titol="Resolució de problemes comuns" contingut=section_point_3_11 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">3.12. Prova final: crear carpeta de test i inicialitzar npm</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_3_12 %}
 
   <h4>3.12.1. Objectiu</h4>
   <p>Fer una prova completa del flux de treball.</p>
 
   <h4>3.12.2. Flux complet</h4>
 
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># 1. Crear carpeta
+  {% capture code_55 %}# 1. Crear carpeta
 mkdir ~/Desktop/prova-npm
 cd ~/Desktop/prova-npm
 
@@ -5176,10 +1972,10 @@ cd ~/Desktop/prova-npm
 npm init -y
 
 # 3. Crear fitxer JavaScript
-echo &quot;console.log(&#39;Node.js i npm funcionen!&#39;);&quot; &gt; index.js
+echo "console.log('Node.js i npm funcionen!');" > index.js
 
 # 4. Afegir script
-npm pkg set scripts.start=&quot;node index.js&quot;
+npm pkg set scripts.start="node index.js"
 
 # 5. Executar
 npm start
@@ -5189,8 +1985,8 @@ npm start
 npm install chalk
 
 # 7. Usar paquet (editar index.js manualment)
-# const chalk = require(&#39;chalk&#39;);
-# console.log(chalk.green(&#39;Tot funciona!&#39;));
+# const chalk = require('chalk');
+# console.log(chalk.green('Tot funciona!'));
 
 # 8. Executar de nou
 npm start
@@ -5199,95 +1995,45 @@ npm start
 # 9. Netejar (opcional)
 cd ..
 rm -rf prova-npm  # macOS/Linux
-# Remove-Item -Recurse -Force prova-npm  # Windows</code></pre>
-  </div>
-</div>
-
+# Remove-Item -Recurse -Force prova-npm  # Windows{% endcapture %}
+  {% include code-block.html lang="bash" code=code_55 %}
 
   <p><strong>Clau:</strong> Prova completa confirma que Node.js, npm i paquets funcionen.</p>
 
   <h4>3.12.3. Resultat esperat</h4>
   <p>Heu creat projecte, instal·lat paquet i executat script amb èxit.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="3.12" titol="Prova final: crear carpeta de test i inicialitzar npm" contingut=section_point_3_12 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">3.13. Mini exemple pràctic · Verificació completa de l'entorn</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_3_13 %}
 
   <h4>3.13.1. Objectiu</h4>
   <p>Confirmar tot en menys de 5 minuts.</p>
 
   <h4>3.13.2. Passos</h4>
 
-  
-  <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Versions
+  {% capture code_56 %}# Versions
 node --version
 npm --version
 
 # REPL ràpid
-node -e &quot;console.log(&#39;OK&#39;)&quot;
+node -e "console.log('OK')"
 
 # Projecte mínim
 cd ~/Desktop
 mkdir test-node
 cd test-node
 npm init -y
-echo &quot;console.log(&#39;Test complet!&#39;);&quot; &gt; index.js
-node index.js</code></pre>
-  </div>
-</div>
-
+echo "console.log('Test complet!');" > index.js
+node index.js{% endcapture %}
+  {% include code-block.html lang="bash" code=code_56 %}
 
   <h4>3.13.3. Resultat esperat</h4>
   <p>Totes les comandes funcionen sense errors.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="3.13" titol="Mini exemple pràctic · Verificació completa de l'entorn" contingut=section_point_3_13 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">3.14. Resolució de problemes</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_3_14 %}
 
   <table>
     <thead>
@@ -5325,170 +2071,39 @@ node index.js</code></pre>
       </tr>
     </tbody>
   </table>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="3.14" titol="Resolució de problemes" contingut=section_point_3_14 %}
 
+  {% capture section_point_3_15 %}
+  {% include prompt-ai.html
+     titol="Versionat de Node.js"
+     contingut="<strong>Rol:</strong> instructor tècnic. <strong>Tasca:</strong> explica amb màxim 80 paraules què significa <code>v20.10.0</code> de <code>node --version</code>. Inclou què representa cada número. <strong>Format:</strong> paràgraf breu."
+  %}
+  {% include prompt-ai.html
+     titol="Verificació d'instal·lació"
+     contingut="<strong>Rol:</strong> tècnic de suport. <strong>Tasca:</strong> crea guia de 5 passos per verificar que Node.js està ben instal·lat. Cada pas amb comanda i resultat esperat. <strong>Format:</strong> llista numerada."
+  %}
+  {% include prompt-ai.html
+     titol="Solucions a 'node no reconegut'"
+     contingut="<strong>Rol:</strong> formador. <strong>Tasca:</strong> proposa 3 solucions per \"node no es reconeix com a comanda\" a Windows. Ordena per probabilitat d'èxit. <strong>Format:</strong> llista numerada."
+  %}
+  {% endcapture %}
+  {% include section-point.html numero="3.15" titol="Prompts d'IA" contingut=section_point_3_15 %}
 
-  
-  <!-- Component: Punt destacat dins d'una secció -->
+  {% capture section_point_3_16 %}
+  {% include checklist.html
+     titol="Autoavaluació · Secció 3"
+     elements="He instal·lat Node.js LTS al meu sistema|He verificat que node --version i npm --version funcionen|He inicialitzat un projecte amb npm init -y|He instal·lat un paquet amb npm install|He executat un script amb npm start|Comprenc com resoldre problemes de PATH i permisos|He netejat la carpeta de test"
+  %}
+  {% endcapture %}
+  {% include section-point.html numero="3.16" titol="Autoavaluació" contingut=section_point_3_16 %}
 
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">3.15. Prompts d'IA</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
-  <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
-<div class="ai-prompt" role="note">
-  <div class="component-header ai-header" role="heading" aria-level="4">
-    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
-    <div class="ai-actions">
-      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
-        <i class="bi bi-clipboard" aria-hidden="true"></i>
-      </button>
-    </div>
-  </div>
-  <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> instructor tècnic. <strong>Tasca:</strong> explica amb màxim 80 paraules què significa <code>v20.10.0</code> de <code>node --version</code>. Inclou què representa cada número. <strong>Format:</strong> paràgraf breu.</div>
-  </div>
-</div>
-
-  <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
-<div class="ai-prompt" role="note">
-  <div class="component-header ai-header" role="heading" aria-level="4">
-    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
-    <div class="ai-actions">
-      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
-        <i class="bi bi-clipboard" aria-hidden="true"></i>
-      </button>
-    </div>
-  </div>
-  <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> tècnic de suport. <strong>Tasca:</strong> crea guia de 5 passos per verificar que Node.js està ben instal·lat. Cada pas amb comanda i resultat esperat. <strong>Format:</strong> llista numerada.</div>
-  </div>
-</div>
-
-  <!-- Component: Prompt per IA amb caixa de text i botó de còpia -->
-<div class="ai-prompt" role="note">
-  <div class="component-header ai-header" role="heading" aria-level="4">
-    <i class="bi bi-robot" aria-hidden="true"></i> Prompt per IA
-    <div class="ai-actions">
-      <button type="button" class="copy-btn" title="Copiar prompt" aria-label="Copiar prompt">
-        <i class="bi bi-clipboard" aria-hidden="true"></i>
-      </button>
-    </div>
-  </div>
-  <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> formador. <strong>Tasca:</strong> proposa 3 solucions per "node no es reconeix com a comanda" a Windows. Ordena per probabilitat d'èxit. <strong>Format:</strong> llista numerada.</div>
-  </div>
-</div>
-
-  
-  </div>
-</div>
-
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">3.16. Autoavaluació</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
-  <!-- Component: Checklist (sense contenidor extern) -->
-
-<div class="checklist-list" role="group" aria-label="Autoavaluació · Secció 3">
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">He instal·lat Node.js LTS al meu sistema</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">He verificat que node --version i npm --version funcionen</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">He inicialitzat un projecte amb npm init -y</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">He instal·lat un paquet amb npm install</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">He executat un script amb npm start</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Comprenc com resoldre problemes de PATH i permisos</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">He netejat la carpeta de test</div>
-  </div>
-  
-  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
-</div>
-
-  
-  </div>
-</div>
-
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">3.17. Síntesi</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_3_17 %}
   <p>Heu instal·lat amb èxit Node.js i npm, verificat el funcionament i après operacions bàsiques del gestor de paquets. Ara disposeu de la base per instal·lar eines de desenvolupament i crear projectes. A les properes unitats instal·lareu VS Code, Git i Angular CLI.</p>
-  
-  </div>
-</div>
+  {% endcapture %}
+  {% include section-point.html numero="3.17" titol="Síntesi" contingut=section_point_3_17 %}
 
-
-  
-  <!-- Component: Punt destacat dins d'una secció -->
-
-
-<div class="section-point" >
-  <div class="component-header section-point-header" role="heading" aria-level="4">
-    <i class="bi bi-journal-text" aria-hidden="true"></i>
-    <div class="section-point-meta">
-      <div class="section-point-title">3.18. Repàs de conceptes</div>
-      
-    </div>
-  </div>
-  <div class="section-point-body component-content">
-    
+  {% capture section_point_3_18 %}
   <ul>
     <li><strong>Node.js:</strong> motor JavaScript basat en V8 per executar codi fora del navegador.</li>
     <li><strong>npm:</strong> gestor de paquets que s'instal·la automàticament amb Node.js.</li>
@@ -5500,168 +2115,7 @@ node index.js</code></pre>
     <li><strong>npm install:</strong> descarregar i instal·lar paquets.</li>
     <li><strong>npm run:</strong> executar scripts de <code>package.json</code>.</li>
   </ul>
-  
-  </div>
-</div>
-
+  {% endcapture %}
+  {% include section-point.html numero="3.18" titol="Repàs de conceptes" contingut=section_point_3_18 %}
 
 </div>
-
-
-<!-- Exercicis proposats (si estan definits) -->
-
-
-<!-- Recursos addicionals -->
-
-
-<!-- Glossari del bloc -->
-
-
-
-<!-- Schema.org structured data per SEO -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LearningResource",
-  "name": "Bloc 1: Conceptes fonamentals i instal·lació",
-  "description": "Frameworks de costat client, requisits del sistema i configuració de Node.js",
-  "author": {
-    "@type": "Organization",
-    "name": "Institut Obert de Catalunya"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "Institut Obert de Catalunya"
-  },
-  "educationalLevel": "Intermediate",
-  "learningResourceType": "Course Module",
-  "inLanguage": "ca",
-  
-  
-  "isPartOf": {
-    "@type": "Course",
-    "name": "DA2_OA01 - Programació Avançada (Angular) — IOC",
-    "description": "Materials del mòdul DA2_OA01 - Programació Avançada amb Angular"
-  }
-}
-</script>
-
-                </div>
-            </article>
-            
-            <!-- Navegació entre pàgines -->
-            
-            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
-                <div class="nav-links-container">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                        
-                            
-                            
-                    
-                    
-                    
-                        
-                            
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                    
-                                
-                                    
-                                        
-                                        
-                                
-                                
-                    
-                    
-                    <div class="nav-link-wrapper">
-                        
-                    </div>
-                    
-                    <div class="nav-link-wrapper">
-                        
-                        <a href="/ioc/da2_OA01/unitat-1/bloc-2/" class="nav-button" aria-label="Bloc següent: Entorn de desenvolupament integrat">Següent →</a>
-                        
-                    </div>
-                </div>
-            </nav>
-            
-        </main>
-    </div>
-
-    <!-- Footer fix -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-info">
-                Versió v1.0
-            </div>
-            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
-                    <span class="progress-label">Unitat</span>
-                    <span class="progress-text" data-pos="1" data-total="4">(1/4)</span>
-                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 25%"></div></div>
-                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
-                        <span class="progress-label">Bloc</span>
-                        <span class="progress-text" data-pos="1" data-total="4">(1/4)</span>
-                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 25%"></div></div>
-                    </div>
-
-                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
-                        <span class="progress-label">Secció</span>
-                        <span class="progress-text" data-pos="1" data-total="3">(1/3)</span>
-                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 33%"></div></div>
-                    </div></div>
-            <div class="footer-actions" aria-label="Accions ràpides">
-                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
-                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
-                </button>
-                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
-                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
-                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
-                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
-                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
-                  <i class="bi bi-bookmark" aria-hidden="true"></i>
-                </a>
-                <a href="/ioc/da2_OA01/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
-                  <i class="bi bi-journal-text" aria-hidden="true"></i>
-                </a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts del lloc -->
-    <script src="/ioc/da2_OA01/assets/js/site.js" defer></script>
-    <!-- Quadern Notes v2 (nou sistema) -->
-    <script src="/ioc/da2_OA01/assets/js/quadern-app/constants.js" defer></script>
-    <script src="/ioc/da2_OA01/assets/js/quadern-app/utils.js" defer></script>
-    <script src="/ioc/da2_OA01/assets/js/quadern-app/store.js" defer></script>
-    <script src="/ioc/da2_OA01/assets/js/quadern-app/panel.js" defer></script>
-    <script src="/ioc/da2_OA01/assets/js/index-notes.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
-    <script src="/ioc/da2_OA01/assets/js/quadern-app/rich-editor.js" defer></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function(){
-        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
-          try { window.Quadern.bootstrapNotes(); } catch(e) {}
-        }
-        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
-          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
-        }
-      });
-    </script>
-</body>
-</html>

@@ -1,0 +1,12 @@
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="{{ include.src | relative_url }}" alt="{{ include.alt | default: '' }}" class="figure-img"/>
+      {% if include.caption %}
+      <figcaption class="figure-caption">{{ include.caption }}</figcaption>
+      {% endif %}
+    </figure>
+  </div>
+</div>

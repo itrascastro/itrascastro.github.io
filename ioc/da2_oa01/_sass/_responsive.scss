@@ -1,0 +1,404 @@
+// Responsive design i adaptacions mòbils
+
+// Layout responsive
+@include mobile-up {
+  .page-layout {
+    padding: var(--spacing-4) var(--spacing-3);
+    gap: var(--spacing-4);
+  }
+  
+  .sidebar-content {
+    padding: var(--spacing-3);
+  }
+}
+
+@include tablet-up {
+  .page-layout {
+    padding: var(--spacing-6) var(--spacing-4);
+    gap: var(--spacing-5);
+  }
+  
+  .main-content {
+    padding: 0 var(--spacing-2);
+  }
+}
+
+@include desktop-up {
+  .page-layout {
+    padding: var(--spacing-6);
+    gap: var(--spacing-6);
+  }
+}
+
+// Header responsive
+@media (max-width: 767px) {
+  .site-header {
+    position: relative;
+  }
+  
+  .header-container {
+    flex-wrap: wrap;
+    position: relative;
+  }
+  
+  .header-brand {
+    .site-description {
+      display: block;
+    }
+  }
+  
+  .nav-links {
+    width: 100%;
+    order: 3;
+    
+    &:not(.active) {
+      display: none;
+    }
+    
+    &.active {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: var(--bg-color);
+      border-bottom: var(--border-width) solid var(--border-color);
+      box-shadow: var(--shadow-md);
+      z-index: var(--z-dropdown);
+    }
+  }
+}
+
+// Sidebars responsive
+@media (max-width: 1200px) {
+  .page-layout {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .sidebar-left,
+  .sidebar-right {
+    position: static;
+    max-height: none;
+    width: 100%;
+  }
+  
+  .sidebar-left {
+    order: 1;
+    margin-bottom: var(--spacing-4);
+  }
+  
+  .main-content {
+    order: 2;
+  }
+  
+  .sidebar-right {
+    order: 3;
+    margin-top: var(--spacing-4);
+  }
+  
+  // Comprimir TOC en mòbil
+  .table-of-contents {
+    .toc-nav {
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    
+    .reading-progress {
+      display: none;
+    }
+  }
+  
+  // Comprimir índex del curs
+  .course-navigation {
+    .unit-section {
+      margin-bottom: var(--spacing-4);
+    }
+    
+    .blocks-list {
+      max-height: 150px;
+      overflow-y: auto;
+    }
+  }
+  
+  .course-shortcuts {
+    display: none;
+  }
+}
+
+// Components educatius responsive
+@media (max-width: 640px) {
+  // Metadades de bloc
+  .bloc-metadata {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-2);
+  }
+  
+  .bloc-info {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  // Objectius
+  .objective-item {
+    gap: var(--spacing-2);
+  }
+  
+  .objective-icon {
+    font-size: var(--font-size-base);
+  }
+  
+  // Blocs de codi
+  .code-header {
+    flex-direction: column;
+    gap: var(--spacing-2);
+    text-align: center;
+  }
+  
+  .code-filename {
+    text-align: center;
+  }
+  
+  .code-block {
+    pre {
+      padding: var(--spacing-3);
+      font-size: var(--font-size-xs);
+    }
+  }
+  
+  // Error-solució
+  .error-header,
+  .solution-header {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-1);
+  }
+  
+  .prevention-header {
+    justify-content: center;
+  }
+  
+  // Prompts IA
+  .ai-prompt-header {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-1);
+  }
+  
+  .ai-tools-list {
+    justify-content: center;
+  }
+  
+  // Suggeriments
+  .suggestion-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--spacing-2);
+  }
+  
+  .tech-tags {
+    justify-content: center;
+  }
+}
+
+// Navegació responsive
+@media (max-width: 640px) {
+  .nav-links-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .nav-link {
+    text-align: center;
+    
+    &.nav-link-prev,
+    &.nav-link-next {
+      .nav-direction {
+        text-align: center;
+      }
+    }
+  }
+  
+  .breadcrumb-list {
+    font-size: var(--font-size-xs);
+  }
+  
+  .breadcrumb-item {
+    &:not(:last-child)::after {
+      margin-left: var(--spacing-1);
+      margin-right: var(--spacing-1);
+    }
+  }
+}
+
+// TOC i índex responsive
+@media (max-width: 1200px) {
+  .shortcuts-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .shortcuts-list {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .shortcut-text {
+    display: none;
+  }
+  
+  .shortcut-icon {
+    font-size: var(--font-size-lg);
+  }
+}
+
+// Taules responsive
+@media (max-width: 768px) {
+  table {
+    font-size: var(--font-size-sm);
+    
+    th, td {
+      padding: var(--spacing-2) var(--spacing-3);
+    }
+  }
+  
+  // Scroll horitzontal per taules grans
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+// Imatges responsive
+@media (max-width: 640px) {
+  figure {
+    margin: var(--spacing-4) -var(--spacing-4);
+    
+    img {
+      width: calc(100% + 2 * var(--spacing-4));
+      border-radius: 0;
+    }
+    
+    figcaption {
+      padding: 0 var(--spacing-4);
+    }
+  }
+}
+
+// Footer responsive
+@media (max-width: 640px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-2);
+  }
+  
+  .footer-links {
+    gap: var(--spacing-3);
+  }
+}
+
+// Utilitats responsive
+.d-none {
+  display: none !important;
+}
+
+@include mobile-up {
+  .d-sm-block { display: block !important; }
+  .d-sm-none { display: none !important; }
+}
+
+@include tablet-up {
+  .d-md-block { display: block !important; }
+  .d-md-none { display: none !important; }
+  .d-md-flex { display: flex !important; }
+}
+
+@include desktop-up {
+  .d-lg-block { display: block !important; }
+  .d-lg-none { display: none !important; }
+  .d-lg-flex { display: flex !important; }
+}
+
+@include large-up {
+  .d-xl-block { display: block !important; }
+  .d-xl-none { display: none !important; }
+  .d-xl-flex { display: flex !important; }
+}
+
+// Text responsive
+@media (max-width: 640px) {
+  .text-sm-center { text-align: center !important; }
+  .text-sm-left { text-align: left !important; }
+  .text-sm-right { text-align: right !important; }
+}
+
+// Spacing responsive
+@media (max-width: 640px) {
+  .mt-sm-0 { margin-top: 0 !important; }
+  .mb-sm-0 { margin-bottom: 0 !important; }
+  .p-sm-2 { padding: var(--spacing-2) !important; }
+  .p-sm-3 { padding: var(--spacing-3) !important; }
+}
+
+// Print responsive
+@include print-only {
+  .page-layout {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .sidebar-left,
+  .sidebar-right {
+    display: none !important;
+  }
+  
+  .main-content {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .site-header,
+  .site-footer,
+  .breadcrumb,
+  .page-navigation {
+    display: none !important;
+  }
+  
+  // Simplificar components per impressió
+  .bloc-metadata,
+  .learning-objectives,
+  .definition-box,
+  .code-block-wrapper,
+  .error-solution-block,
+  .ai-prompt-block,
+  .suggestion-block {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    page-break-inside: avoid;
+  }
+  
+  .code-header {
+    background: #f5f5f5 !important;
+    color: #000 !important;
+  }
+  
+  .code-block {
+    background: #f9f9f9 !important;
+  }
+}
+
+// Reducir moviment per usuaris amb preferències d'accessibilitat
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

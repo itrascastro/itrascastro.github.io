@@ -1,0 +1,18 @@
+<div class="code-block" data-lang="{{ include.lang | default: 'text' }}"{% if include.highlight %} data-highlight="{{ include.highlight }}"{% endif %} role="region" aria-label="Bloc de codi {{ include.lang | default: 'text' }}">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">{{ include.lang | upcase | default: 'TEXT' }}</span>
+      {% if include.filename %}<span class="code-filename">{{ include.filename }}</span>{% endif %}
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-{{ include.lang | default: 'text' }}">{{ include.code | strip | escape }}</code></pre>
+  </div>
+</div>
