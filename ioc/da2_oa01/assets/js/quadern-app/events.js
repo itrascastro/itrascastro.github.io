@@ -329,8 +329,15 @@
     },
 
     _toggleTheme() {
-      document.body.classList.toggle('dark-theme');
-      localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+      const isDark = document.body.classList.toggle('dark-theme');
+      try {
+        const st = window.Quadern?.Store?.load?.();
+        if (st) {
+          st.user = st.user || {};
+          st.user.theme = isDark ? 'dark' : 'light';
+          window.Quadern.Store.save(st);
+        }
+      } catch(e){}
     },
 
     _saveCurrentNote() {

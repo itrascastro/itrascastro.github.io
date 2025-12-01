@@ -230,7 +230,12 @@ function initializeThemeToggle() {
   if (!themeToggle) return;
 
   // Carregar tema guardat
-  const savedTheme = localStorage.getItem('theme') || 'light';
+  let savedTheme = 'light';
+  try {
+    const st = window.Quadern?.Store?.load?.();
+    savedTheme = st?.user?.theme || 'light';
+  } catch(e){}
+  try { localStorage.removeItem('theme'); } catch(e){}
   body.setAttribute('data-theme', savedTheme);
   themeToggle.textContent = savedTheme === 'dark' ? 'Mode Clar' : 'Mode Fosc';
   setPrismTheme(savedTheme);
@@ -239,7 +244,10 @@ function initializeThemeToggle() {
     const currentTheme = body.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     body.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
+    try {
+      const st = window.Quadern?.Store?.load?.();
+      if (st) { st.user = st.user || {}; st.user.theme = newTheme; window.Quadern.Store.save(st); }
+    } catch(e){}
     themeToggle.textContent = newTheme === 'dark' ? 'Mode Clar' : 'Mode Fosc';
     setPrismTheme(newTheme);
   });
@@ -441,22 +449,25 @@ function initializeBookmark(){
   if (!btn) return;
 
   const STORE_KEY = 'quadern_bookmark';
+  const baseurl = document.body.getAttribute('data-baseurl')||'';
+  const title = (window.siteConfig && window.siteConfig.title) ? window.siteConfig.title : '';
+  const STORE_KEY_NEW = `quadern-app:${(location.origin||'local')}${baseurl}${title ? ':'+title : ''}`;
   function loadStore(){ try { return window.Quadern?.Store?.load?.() || null; } catch{return null;} }
   function saveStore(state){ try { if (window.Quadern?.Store?.save) window.Quadern.Store.save(state); } catch{} }
   function getBookmark(){
     const state = loadStore();
     if (state?.ui?.bookmark) return state.ui.bookmark;
-    try { return JSON.parse(localStorage.getItem(STORE_KEY) || 'null'); } catch { return null; }
+    try { return JSON.parse(localStorage.getItem(STORE_KEY_NEW) || localStorage.getItem(STORE_KEY) || 'null'); } catch { return null; }
   }
   function setBookmark(bm){
     const state = loadStore();
     if (state) { state.ui = state.ui || {}; state.ui.bookmark = bm; saveStore(state); }
-    try { localStorage.setItem(STORE_KEY, JSON.stringify(bm)); } catch{}
+    try { localStorage.setItem(STORE_KEY_NEW, JSON.stringify(bm)); localStorage.removeItem(STORE_KEY); } catch{}
   }
   function clearBookmark(){
     const state = loadStore();
     if (state && state.ui) { delete state.ui.bookmark; saveStore(state); }
-    try { localStorage.removeItem(STORE_KEY); } catch{}
+    try { localStorage.removeItem(STORE_KEY_NEW); localStorage.removeItem(STORE_KEY); } catch{}
   }
   function cleanHeaderText(h2){
     try{ const c=h2.cloneNode(true); c.querySelectorAll('.qnp-add, .add-note-btn, .qnp-badge, button, .btn, .badge').forEach(n=>n.remove()); return (c.textContent||'').trim(); }catch{ return (h2.textContent||'').trim(); }

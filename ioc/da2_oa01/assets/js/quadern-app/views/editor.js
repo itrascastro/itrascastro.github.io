@@ -421,7 +421,7 @@
         bloc: 1,   // Per defecte
         pageUrl: '/nova-nota',
         sectionId: 'nova',
-        sectionTitle: 'Nova Secció'
+        sectionTitle: ''
       };
 
       this.currentNote = newNote;

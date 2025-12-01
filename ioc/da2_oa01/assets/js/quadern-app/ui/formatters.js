@@ -183,16 +183,30 @@
 
     _groupNotesByLocation(notes) {
       const grouped = {};
+      const CS = (window.Quadern?.Discovery?.getCourseStructure) ? window.Quadern.Discovery.getCourseStructure() : null;
+      const baseurl = document.body.getAttribute('data-baseurl') || '';
+      const getUnit = (u)=> CS ? CS[`unitat-${u}`] : null;
+      const getBlock = (u,b)=> {
+        const uu = getUnit(u); return uu && uu.blocs ? uu.blocs[`bloc-${b}`] : null;
+      };
+      const getSection = (u,b,s)=> {
+        const bb = getBlock(u,b); return bb && bb.seccions ? bb.seccions[s] : null;
+      };
       
       notes.forEach(note => {
         let location = 'Sense ubicació';
-        
+        const uConf = getUnit(note.unitat);
+        const bConf = getBlock(note.unitat, note.bloc);
+        const sConf = getSection(note.unitat, note.bloc, note.sectionId);
+        const unitLabel = uConf ? `${note.unitat}. ${uConf.nom||'Unitat'}` : (note.unitat ? `Unitat ${note.unitat}` : 'Unitat ?');
+        const blockLabel = bConf ? `${note.unitat||'?'}·${note.bloc||'?'} ${bConf.nom||'Bloc'}` : (note.bloc ? `Bloc ${note.bloc}` : '');
+        const sectionLabel = sConf ? sConf.title : (note.sectionId || '');
         if (note.unitat && note.bloc) {
-          location = `Unitat ${note.unitat} - Bloc ${note.bloc}`;
+          location = `${unitLabel}${blockLabel ? ' — ' + blockLabel : ''}${sectionLabel ? ' — ' + sectionLabel : ''}`;
         } else if (note.unitat) {
-          location = `Unitat ${note.unitat}`;
-        } else if (note.sectionTitle) {
-          location = note.sectionTitle;
+          location = unitLabel;
+        } else if (note.sectionId) {
+          location = note.sectionId;
         }
         
         if (!grouped[location]) {

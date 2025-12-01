@@ -170,7 +170,21 @@
     // Theme
     (function initTheme(){
       const followApp = container.hasAttribute('data-no-theme');
-      const set = function(mode){ container.setAttribute('data-theme', mode); try{ localStorage.setItem('notes_theme', mode); }catch(e){}
+      const readStoreTheme = () => {
+        try {
+          const st = window.Quadern?.Store?.load?.();
+          return st?.user?.theme || null;
+        } catch(e){ return null; }
+      };
+      const setStoreTheme = (mode) => {
+        try {
+          const st = window.Quadern?.Store?.load?.();
+          if (st) { st.user = st.user || {}; st.user.theme = mode; window.Quadern.Store.save(st); }
+        } catch(e){}
+      };
+      const set = function(mode){
+        container.setAttribute('data-theme', mode);
+        setStoreTheme(mode);
         const hlLight = document.getElementById('hljs-light'); const hlDark = document.getElementById('hljs-dark'); if (hlLight && hlDark){ hlDark.disabled = mode !== 'dark'; hlLight.disabled = mode === 'dark'; }
       };
       if (followApp){
@@ -185,8 +199,8 @@
           obs.observe(document.body, { attributes:true, attributeFilter:['data-theme','class'] });
         }catch(e){}
       } else {
-        const saved = (function(){ try { return localStorage.getItem('notes_theme'); } catch(e){ return null; } })();
-        set(saved || 'light');
+        const saved = readStoreTheme() || 'light';
+        set(saved);
       }
     })();
 
@@ -202,7 +216,10 @@
     if (themeSel) {
       const setTheme = function(mode){
         container.setAttribute('data-theme', mode);
-        try{ localStorage.setItem('notes_theme', mode); }catch(e){}
+        try {
+          const st = window.Quadern?.Store?.load?.();
+          if (st) { st.user = st.user || {}; st.user.theme = mode; window.Quadern.Store.save(st); }
+        } catch(e){}
         const hlLight = document.getElementById('hljs-light');
         const hlDark = document.getElementById('hljs-dark');
         if (hlLight && hlDark){ hlDark.disabled = mode !== 'dark'; hlLight.disabled = mode === 'dark'; }

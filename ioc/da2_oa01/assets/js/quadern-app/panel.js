@@ -3,6 +3,7 @@
   function Panel(){ this.root = null; this.state = null; }
   Panel.prototype.init = function(){
     this.state = S.load();
+    this.scrubSectionTitles();
     this.ensurePanel();
     this.updateTitle();
     this.installHeads();
@@ -140,11 +141,11 @@
   Panel.prototype.sectionContext = function(){
     const unitat = Number(document.querySelector('meta[name="page-unitat"]')?.getAttribute('content')) || undefined;
     const bloc = Number(document.querySelector('meta[name="page-bloc"]')?.getAttribute('content')) || undefined;
-    const base = document.body.getAttribute('data-baseurl')||''; const pageUrl = base + (location.pathname||'');
+    const base = document.body.getAttribute('data-baseurl')||'';
+    const path = location.pathname || '';
+    const pageUrl = path.startsWith(base) ? path : (base + path);
     const sectionId = this.root.querySelector('#qnp-section')?.value || '';
-    const h2 = document.getElementById(sectionId);
-    const sectionTitle = h2 ? cleanHeaderText(h2) : '';
-    return { unitat, bloc, pageUrl, sectionId, sectionTitle };
+    return { unitat, bloc, pageUrl, sectionId, sectionTitle: '' };
   };
   Panel.prototype.updateTitle = function(){
     if (!this.root) return;
@@ -259,6 +260,8 @@
         n.noteTitle = title;
         n.tags = tags;
         n.content = content;
+        // No persistir cap text de la secció
+        delete n.sectionTitle;
         n.updatedAt = U.nowISO();
         S.save(this.state);
         this.refreshList();
@@ -285,6 +288,7 @@
         createdAt: U.nowISO(),
         updatedAt: U.nowISO()
       }, ctx);
+      n.sectionTitle = '';
       S.upsertNote(this.state, n);
       S.save(this.state);
       this.refreshList();
@@ -309,16 +313,26 @@
         // Evitar duplicats dins la mateixa secció
         const ctxUpd = { pageUrl: n.pageUrl, sectionId: n.sectionId };
         if (this._hasDuplicateTitleInSection(title, ctxUpd, n.id)) return;
-        n.noteTitle = title; n.tags = tags; n.content = contentHTML; n.updatedAt = U.nowISO();
+        n.noteTitle = title; n.tags = tags; n.content = contentHTML; n.updatedAt = U.nowISO(); delete n.sectionTitle;
         S.save(this.state); this.refreshList(); this.updateHeadCounts();
       }
     } else {
       const ctx = this.sectionContext(); if (!ctx.sectionId) return;
       if (this._hasDuplicateTitleInSection(title, ctx, null)) return;
       const n = Object.assign({ id:'', noteTitle:title, tags:tags, content:contentHTML, createdAt:U.nowISO(), updatedAt:U.nowISO() }, ctx);
+      n.sectionTitle = '';
       const created = S.upsertNote(this.state, n); this.currentId = created.id; S.save(this.state);
       this.refreshList(); this.updateHeadCounts();
     }
+  };
+  // Eliminar qualsevol títol de secció que s'hagi desat prèviament
+  Panel.prototype.scrubSectionTitles = function(){
+    const notes = this.state?.notes?.byId || {};
+    let changed = false;
+    Object.values(notes).forEach(n=>{
+      if (n && n.sectionTitle) { delete n.sectionTitle; changed = true; }
+    });
+    if (changed) { try { S.save(this.state); } catch(e){} }
   };
   Panel.prototype.confirmDelete = function(noteId){
     const note = this.state.notes.byId[noteId];

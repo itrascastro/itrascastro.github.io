@@ -62,7 +62,7 @@
     <script src="/ioc/da2_oa01/assets/js/code-block.js"></script>
 </head>
 
-<body class="default-mod-layout">
+<body class="default-mod-layout" data-baseurl="/ioc/da2_oa01">
     <a class="skip-link" href="#main-content">Salta al contingut principal</a>
 
     <div class="site-shell">
@@ -293,6 +293,15 @@
         </footer>
     </div>
 
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/da2_oa01",
+        title: "DA2_OA01 - Programació Avançada (Angular)",
+        version: "v1.0",
+        cicle_modul: "DA2_OA01"
+      };
+    </script>
     <!-- Scripts -->
     <script src="/ioc/da2_oa01/assets/js/site.js" defer></script>
     <script src="/ioc/da2_oa01/assets/js/quadern-app/constants.js" defer></script>

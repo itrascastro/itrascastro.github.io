@@ -19,7 +19,10 @@
     init(app) {
       this.app = app;
       console.log('📊 Dashboard: Inicialitzant vista dashboard...');
-      try { this._studyMode = localStorage.getItem('notes_study_mode') === '1'; } catch{}
+      try {
+        const st = window.Quadern?.Store?.load?.();
+        this._studyMode = st?.user?.mode === 'study';
+      } catch{}
       this._bindEvents();
       console.log('✅ Dashboard: Vista inicialitzada');
     },
@@ -198,13 +201,19 @@
     },
     toggleStudyMode(){
       this._studyMode = !this._studyMode;
-      try { localStorage.setItem('notes_study_mode', this._studyMode ? '1' : '0'); } catch{}
+      try {
+        const st = window.Quadern?.Store?.load?.();
+        if (st) { st.user = st.user || {}; st.user.mode = this._studyMode ? 'study' : 'dashboard'; window.Quadern.Store.save(st); }
+      } catch{}
       try { const btn = document.querySelector('#dashboard-view [data-action="open-study"]'); if (btn) btn.classList.toggle('active', this._studyMode); } catch{}
       this.loadData();
     },
     setStudyMode(on){
       this._studyMode = !!on;
-      try{ localStorage.setItem('notes_study_mode', this._studyMode ? '1' : '0'); }catch{}
+      try{
+        const st = window.Quadern?.Store?.load?.();
+        if (st) { st.user = st.user || {}; st.user.mode = this._studyMode ? 'study' : 'dashboard'; window.Quadern.Store.save(st); }
+      }catch{}
       try { const btn = document.querySelector('#dashboard-view [data-action="open-study"]'); if (btn) btn.classList.toggle('active', this._studyMode); } catch{}
       this.loadData();
     },
@@ -213,18 +222,28 @@
       if (!container) return;
       const org = {};
       const filtered = notes.filter(n=> n.content && String(n.content).trim());
+      const CS = (window.Quadern?.Discovery?.getCourseStructure) ? window.Quadern.Discovery.getCourseStructure() : null;
+      const getUnitConf = (uid) => CS ? CS[`unitat-${uid}`] : null;
+      const getBlockConf = (uid,bid) => {
+        const u = getUnitConf(uid); return u && u.blocs ? u.blocs[`bloc-${bid}`] : null;
+      };
+      const getSectionConf = (uid,bid,sid) => {
+        const b = getBlockConf(uid,bid); return b && b.seccions ? b.seccions[sid] : null;
+      };
+
       filtered.forEach(n=>{
         const uKey = `unitat-${n.unitat||0}`;
         const bKey = `bloc-${n.bloc||0}`;
         const sKey = String(n.sectionId||'');
         org[uKey] = org[uKey] || { id: n.unitat||0, blocs:{} };
         org[uKey].blocs[bKey] = org[uKey].blocs[bKey] || { id: n.bloc||0, seccions:{} };
-        const title = n.sectionTitle || sKey || 'Secció';
+        // Nom de secció des del config; si no, id o placeholder
+        const confSec = getSectionConf(n.unitat, n.bloc, sKey);
+        const title = confSec?.title || sKey || 'Secció';
         const sec = org[uKey].blocs[bKey].seccions[sKey] || { title, notes:[] };
         sec.title = title; sec.notes.push(n);
         org[uKey].blocs[bKey].seccions[sKey] = sec;
       });
-      const CS = (window.Quadern?.Discovery?.getCourseStructure) ? window.Quadern.Discovery.getCourseStructure() : null;
       const unitKeys = Object.keys(org).sort((a,b)=>{
         if (CS) {
           const ao = CS[a]?.order ?? 9999; const bo = CS[b]?.order ?? 9999;
@@ -235,11 +254,13 @@
       let html = '<div class="study-doc">';
       unitKeys.forEach(uk=>{
         const u = org[uk];
+        const uConf = getUnitConf(u.id);
+        const unitLabel = uConf ? `${u.id}. ${uConf.nom||'Unitat'}` : `Unitat ${u.id||'?'}`;
         html += `
           <div class="content-item">
             <div class="controls-spacer"></div>
             <div>
-              <h2 class="doc-h1">Unitat ${u.id||'?'} </h2>
+              <h2 class="doc-h1">${this._escapeHtml(unitLabel)}</h2>
             </div>
           </div>`;
         const bks = Object.keys(u.blocs).sort((a,b)=>{
@@ -252,11 +273,13 @@
         });
         bks.forEach(bk=>{
           const b = u.blocs[bk];
+          const bConf = getBlockConf(u.id, b.id);
+          const blockLabel = bConf ? `${u.id||'?'}.${b.id||'?'} ${bConf.nom||'Bloc'}` : `${u.id||'?'}.${b.id||'?'} Bloc ${b.id||'?'}`;
           html += `
             <div class="content-item">
               <div class="controls-spacer"></div>
               <div>
-                <h3 class="doc-h2">${u.id||'?'}.${b.id||'?'} Bloc ${b.id||'?'}</h3>
+                <h3 class="doc-h2">${this._escapeHtml(blockLabel)}</h3>
               </div>
             </div>`;
           const sects = Object.entries(b.seccions);
@@ -290,7 +313,9 @@
             return String(aEnt[1].title||'').localeCompare(String(bEnt[1].title||''));
           });
           sects.forEach(([sk, s])=>{
-            const clean = this._cleanSectionTitle ? this._cleanSectionTitle(String(s.title||'')) : (s.title||'');
+            const confSec = getSectionConf(u.id, b.id, sk);
+            const name = confSec?.title || s.title || '';
+            const clean = this._cleanSectionTitle ? this._cleanSectionTitle(String(name||'')) : (name||'');
             // Numeració basada en l'ordre definit al config (no en la posició filtrada)
             let dispIndex = 1;
             const ord = getSectionOrder(u.id, b.id, sk, s.title);
@@ -909,11 +934,8 @@
 
     handleQuickAction(action) {
       switch(action) {
-        case 'export-notes':
-          this._exportNotes();
-          break;
-        case 'import-notes':
-          this._importNotes();
+        case 'backup':
+          this._goBackup();
           break;
         case 'study-view':
           this.toggleStudyMode?.();
@@ -924,17 +946,8 @@
     },
 
 
-    _exportNotes() {
-      // Exportació directa de JSON per backup
-      if (this.app && this.app.modules && this.app.modules.formatters) {
-        this.app.modules.formatters._exportJSON();
-      } else {
-        console.warn('Dashboard: Mòdul formatters no disponible per exportació');
-      }
-    },
-
-    _importNotes() {
-      // Per ara navegar a la vista per veure informació de backup
+    _goBackup() {
+      // Navegar a la vista de backup (export/import)
       if (this.app && this.app.switchView) {
         this.app.switchView('import-export');
       }

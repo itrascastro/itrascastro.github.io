@@ -10,6 +10,7 @@
     app: null,
     courseStructure: null,
     sectionsCache: new Map(),
+    _baseurl: null,
 
     // =============================
     // INICIALITZACIÓ
@@ -18,6 +19,11 @@
     init(app) {
       this.app = app;
       console.log('🔍 Discovery: Inicialitzant sistema de descobriment...');
+      try {
+        this._baseurl = (window.siteConfig && window.siteConfig.baseurl) || document.body.getAttribute('data-baseurl') || '';
+      } catch(e){
+        this._baseurl = '';
+      }
       console.log('✅ Discovery: Sistema inicialitzat');
     },
 
@@ -96,7 +102,7 @@
                 structure[unitKey].blocs[blockKey].seccions[seccio.id] = {
                   id: seccio.id,
                   title: seccio.titol,
-                  pageUrl: bloc.url,
+                  pageUrl: `${this._baseurl || ''}${bloc.url || ''}`,
                   notes: [],
                   order: index
                 };

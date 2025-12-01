@@ -2,6 +2,15 @@
   const { STORE_KEY, SCHEMA_VERSION } = window.Quadern.Constants || {};
   const U = window.Quadern.Utils;
 
+  const LEGACY_KEY = (function(){
+    try {
+      const base = document.body.getAttribute('data-baseurl') || '';
+      return `quadern-app:${(location.origin || 'local')}${base}`;
+    } catch {
+      return null;
+    }
+  })();
+
   function initialState(){
     return {
       schemaVersion: SCHEMA_VERSION || 1,
@@ -15,8 +24,75 @@
     };
   }
   function load(){
-    try { const raw = localStorage.getItem(STORE_KEY); if (!raw) return initialState(); const data = JSON.parse(raw); return data && typeof data==='object' ? data : initialState(); }
+    try {
+      let raw = localStorage.getItem(STORE_KEY);
+      let legacyData = null;
+
+      // Llegir possible clau antiga
+      if (LEGACY_KEY) {
+        const legacyRaw = localStorage.getItem(LEGACY_KEY);
+        if (legacyRaw) {
+          try { legacyData = JSON.parse(legacyRaw); } catch(e){}
+        }
+      }
+
+      // Si no hi ha clau nova, però sí antiga, migrar
+      if (!raw && legacyData) {
+        try { localStorage.setItem(STORE_KEY, JSON.stringify(legacyData)); raw = JSON.stringify(legacyData); } catch(e){}
+      }
+
+      if (!raw) return initialState();
+      let data = JSON.parse(raw);
+
+      // Si la clau nova està buida (sense notes) però la clau antiga té dades, migrar-les
+      const newNotesCount = (data && data.notes && data.notes.byId) ? Object.keys(data.notes.byId).length : 0;
+      const legacyNotesCount = (legacyData && legacyData.notes && legacyData.notes.byId) ? Object.keys(legacyData.notes.byId).length : 0;
+      if (legacyData && legacyNotesCount > 0 && newNotesCount === 0) {
+        try {
+          localStorage.setItem(STORE_KEY, JSON.stringify(legacyData));
+          data = legacyData;
+        } catch(e){}
+      }
+
+      data = migrateLegacyPreferences(data);
+
+      return data && typeof data==='object' ? data : initialState();
+    }
     catch { return initialState(); }
+  }
+  // Migració de preferències/altres claus externes cap al Store únic
+  function migrateLegacyPreferences(state){
+    if (!state || typeof state !== 'object') return initialState();
+    try {
+      // Theme (antigues 'theme', 'notes_theme', STORE_KEY:theme)
+      const themeKeys = ['theme','notes_theme', `${STORE_KEY}:theme`];
+      for (const k of themeKeys){
+        const t = localStorage.getItem(k);
+        if (t === 'dark' || t === 'light') {
+          state.user = state.user || {};
+          state.user.theme = t;
+        }
+        try { localStorage.removeItem(k); } catch(e){}
+      }
+      // Mode d'estudi
+      const sm = localStorage.getItem('notes_study_mode');
+      if (sm !== null) {
+        state.user = state.user || {};
+        state.user.mode = sm === '1' ? 'study' : 'dashboard';
+      }
+      try { localStorage.removeItem('notes_study_mode'); } catch(e){}
+      // Bookmark
+      const bmRaw = localStorage.getItem('quadern_bookmark');
+      if (bmRaw) {
+        try {
+          const bm = JSON.parse(bmRaw);
+          state.ui = state.ui || {};
+          state.ui.bookmark = bm;
+        } catch(e){}
+      }
+      try { localStorage.removeItem('quadern_bookmark'); } catch(e){}
+    } catch(e){}
+    return state;
   }
   function save(state){
     try {
