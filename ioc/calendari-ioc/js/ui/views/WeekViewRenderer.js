@@ -55,7 +55,7 @@ class WeekViewRenderer extends CalendarRenderer {
         
         // Calcular número de setmana si tenim calendari
         if (calendar) {
-            weekData.weekNumber = dateHelper.getCalendarWeekNumber(weekStart, calendar.startDate);
+            weekData.weekNumber = dateHelper.getCalendarWeekNumber(weekStart, calendar);
         }
         
         // Generar dades per cada dia de la setmana

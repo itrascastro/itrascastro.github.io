@@ -39,7 +39,7 @@ class CalendarRenderer {
         
         // Marcar només si està dins del calendari actiu i dins del rang de dates
         if (calendar && !isOutOfMonth && dateValidationService.isDateInCalendarRange(dateStr, calendar)) {
-            dayData.weekNumber = dateHelper.getCalendarWeekNumber(date, calendar.startDate);
+            dayData.weekNumber = dateHelper.getCalendarWeekNumber(date, calendar);
             dayData.events = calendar.events.filter(e => e.date === dateStr);
         }
         

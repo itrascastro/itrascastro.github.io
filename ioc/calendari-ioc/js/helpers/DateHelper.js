@@ -75,7 +75,11 @@ class DateHelper {
     }
     
     // Calcular número de setmana del calendari
-    getCalendarWeekNumber(date, calendarStartDateStr) {
+    // Setmana 1 = setmana d'obertura d'aules; setmanes prèvies = setmana 0
+    getCalendarWeekNumber(date, calendarOrStartDate) {
+        const calendarStartDateStr = typeof calendarOrStartDate === 'string'
+            ? calendarOrStartDate
+            : calendarOrStartDate?.startDate;
         const calendarStartDate = this.parseUTC(calendarStartDateStr);
         const targetDate = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
         
@@ -90,7 +94,9 @@ class DateHelper {
             return new Date(d.setUTCDate(diff));
         };
         
-        const startOfWeek1 = getMonday(new Date(calendarStartDate.getTime()));
+        const classesStartDateStr = this.getClassesStartDate(calendarOrStartDate) || calendarStartDateStr;
+        const classesStartDate = this.parseUTC(classesStartDateStr);
+        const startOfWeek1 = getMonday(new Date(classesStartDate.getTime()));
         const targetWeekMonday = getMonday(new Date(targetDate.getTime()));
         
         startOfWeek1.setUTCHours(0, 0, 0, 0);
@@ -98,11 +104,30 @@ class DateHelper {
         
         const diff = targetWeekMonday.getTime() - startOfWeek1.getTime();
         const diffWeeks = Math.floor(diff / (1000 * 60 * 60 * 24 * 7));
-        
+
+        if (diffWeeks < 0) {
+            return 0;
+        }
+
         const weekNumber = diffWeeks + 1;
-        
-        // Solo devolver números de semana positivos
         return weekNumber > 0 ? weekNumber : null;
+    }
+
+    getClassesStartDate(calendar) {
+        if (!calendar || !Array.isArray(calendar.events)) return null;
+        const startEvent = calendar.events.find(e =>
+            e.isSystemEvent &&
+            typeof e.title === 'string' &&
+            this.normalizeText(e.title).includes("obertura d'aules de moduls i credits")
+        );
+        return startEvent ? startEvent.date : null;
+    }
+
+    normalizeText(text) {
+        return (text || '')
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '');
     }
 }
 
