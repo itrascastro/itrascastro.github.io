@@ -108,7 +108,8 @@ class DateValidationService {
             throw new CalendariIOCException('504', 'DateValidationService.validateReplicationDate');
         }
         
-        if (calendar.type !== 'Altre' && !this.isWeekday(dateStr)) {
+        const calendarType = typeHelper.normalizeCalendarType(calendar.type);
+        if (calendarType !== 'ALTRE' && !this.isWeekday(dateStr)) {
             throw new CalendariIOCException('505', 'DateValidationService.validateReplicationDate');
         }
         

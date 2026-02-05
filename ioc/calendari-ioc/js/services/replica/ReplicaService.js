@@ -48,10 +48,11 @@ class ReplicaService {
         
         // Determinar data de fi segons tipus de calendari
         let dataFiAvaluacions;
-        if (calendar.type === 'Altre') {
+        const calendarType = typeHelper.normalizeCalendarType(calendar.type);
+        if (calendarType === 'ALTRE') {
             // Per calendaris "Altre": usar endDate directament
             dataFiAvaluacions = calendar.endDate;
-            console.log(`[Espai Útil] Calendari tipus "Altre": usant endDate directament: ${dataFiAvaluacions}`);
+            console.log(`[Espai Útil] Calendari tipus "ALTRE": usant endDate directament: ${dataFiAvaluacions}`);
         } else {
             // Per calendaris d'estudi: usar findPAF1 (serà implementat a EstudiReplicaService)
             dataFiAvaluacions = this.findPAF1 ? this.findPAF1(calendar) : calendar.endDate;
@@ -76,8 +77,8 @@ class ReplicaService {
             
             // Determinar si el dia és vàlid segons tipus de calendari
             let isValidDay;
-            if (calendar.type === 'Altre') {
-                // Per calendaris "Altre": tots els dies excepte els ocupats pel sistema
+            if (calendarType === 'ALTRE') {
+                // Per calendaris "ALTRE": tots els dies excepte els ocupats pel sistema
                 isValidDay = !occupiedBySystem.has(dateStr);
             } else {
                 // Per calendaris d'estudi: només dies laborals que no estan ocupats pel sistema

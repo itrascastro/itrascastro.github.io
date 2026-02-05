@@ -119,7 +119,8 @@ class IcsExporter {
      * Intenta deduir el nom de mòdul a partir de l'ID/nom i el codi de semestre.
      */
     getPrefixedTitle(title, calendar) {
-        if (!calendar || calendar.type === 'Altre') return title;
+        const calendarType = typeHelper.normalizeCalendarType(calendar?.type);
+        if (calendarType === 'ALTRE') return title;
         // Base per prefix: preferim name, després id
         const base = (calendar.name || calendar.id || '').toString();
         let moduleName = base;

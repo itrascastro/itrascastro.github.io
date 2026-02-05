@@ -23,7 +23,7 @@ class GenericReplicaService extends ReplicaService {
     
     // Funció principal de replicació optimitzada per calendaris "Altre"
     replicate(sourceCalendar, targetCalendar, respectWeekdays = true) {
-        console.log(`[GENERIC_REPLICA_SERVICE] Iniciant replicació per calendaris tipus "Altre"...`);
+        console.log(`[GENERIC_REPLICA_SERVICE] Iniciant replicació per calendaris tipus "ALTRE"...`);
         
         try {
             // Filtrar esdeveniments del professor
@@ -76,13 +76,18 @@ class GenericReplicaService extends ReplicaService {
             }
             
             // Decidir estratègia segons comparació d'espais
-            if (espaiUtilDesti.length >= espaiUtilOrigen.length) {
-                console.log(`[GENERIC_REPLICA_SERVICE] Espai destí igual o superior: aplicant còpia directa 1:1`);
-                return this.executeDirectMapping(professorEvents, espaiUtilOrigen, espaiUtilDesti, sourceCalendar, categoryMap, targetCalendar, respectWeekdays);
-            } else {
-                console.log(`[GENERIC_REPLICA_SERVICE] Espai destí menor: aplicant compressió per grups`);
-                return this.executeCompressionReplication(professorEvents, espaiUtilOrigen, espaiUtilDesti, sourceCalendar, categoryMap, targetCalendar);
+            if (espaiUtilDesti.length > espaiUtilOrigen.length) {
+                console.log(`[GENERIC_REPLICA_SERVICE] Espai destí major: aplicant expansió per grups`);
+                return this.executeExpansionReplication(professorEvents, espaiUtilOrigen, espaiUtilDesti, sourceCalendar, categoryMap, targetCalendar, respectWeekdays);
             }
+            
+            if (espaiUtilDesti.length === espaiUtilOrigen.length) {
+                console.log(`[GENERIC_REPLICA_SERVICE] Espai destí igual: aplicant còpia directa 1:1`);
+                return this.executeDirectMapping(professorEvents, espaiUtilOrigen, espaiUtilDesti, sourceCalendar, categoryMap, targetCalendar, respectWeekdays);
+            }
+            
+            console.log(`[GENERIC_REPLICA_SERVICE] Espai destí menor: aplicant compressió per grups`);
+            return this.executeCompressionReplication(professorEvents, espaiUtilOrigen, espaiUtilDesti, sourceCalendar, categoryMap, targetCalendar, respectWeekdays);
             
         } catch (error) {
             console.error(`[GENERIC_REPLICA_SERVICE] Error durant la replicació:`, error);
@@ -99,12 +104,15 @@ class GenericReplicaService extends ReplicaService {
         const eventsByDay = replicaHelper.groupEventsByDay(professorEvents);
         
         // Sempre usar mapeo directe independentment de la mida del destí
-        console.log(`[GENERIC_REPLICA_SERVICE] Mapeo directe: ${respectWeekdays ? 'respectant dies setmana' : 'per ordre cronològic'}`);
-        return this.mapDirectly(eventsByDay, espaiOrigen, espaiDesti, sourceCalendar, categoryMap, targetCalendar, respectWeekdays);
+        const isSameTimeline = espaiOrigen.length === espaiDesti.length &&
+            espaiOrigen.every((date, index) => date === espaiDesti[index]);
+        const useWeekdays = respectWeekdays && !isSameTimeline;
+        console.log(`[GENERIC_REPLICA_SERVICE] Mapeo directe: ${useWeekdays ? 'respectant dies setmana' : 'per ordre cronològic'}`);
+        return this.mapDirectly(eventsByDay, espaiOrigen, espaiDesti, sourceCalendar, categoryMap, targetCalendar, useWeekdays);
     }
     
     // Estratègia per espai destí menor (compressió)
-    executeCompressionReplication(professorEvents, espaiOrigen, espaiDesti, sourceCalendar, categoryMap, targetCalendar) {
+    executeCompressionReplication(professorEvents, espaiOrigen, espaiDesti, sourceCalendar, categoryMap, targetCalendar, respectWeekdays) {
         console.log(`[GENERIC_REPLICA_SERVICE] Executant compressió per grups...`);
         
         // Agrupar esdeveniments per dia
@@ -115,12 +123,23 @@ class GenericReplicaService extends ReplicaService {
         console.log(`[GENERIC_REPLICA_SERVICE] Factor de compressió: ${factorCompressio.toFixed(3)}`);
         
         // Mapear grups comprimits
-        return this.compressGroups(eventsByDay, espaiOrigen, espaiDesti, factorCompressio, sourceCalendar, categoryMap, targetCalendar);
+        return this.compressGroups(eventsByDay, espaiOrigen, espaiDesti, factorCompressio, sourceCalendar, categoryMap, targetCalendar, respectWeekdays);
+    }
+    
+    // Estratègia per espai destí major (expansió)
+    executeExpansionReplication(professorEvents, espaiOrigen, espaiDesti, sourceCalendar, categoryMap, targetCalendar, respectWeekdays) {
+        console.log(`[GENERIC_REPLICA_SERVICE] Executant expansió per grups...`);
+        
+        // Agrupar esdeveniments per dia
+        const eventsByDay = replicaHelper.groupEventsByDay(professorEvents);
+        
+        return this.expandGroups(eventsByDay, espaiOrigen, espaiDesti, sourceCalendar, categoryMap, targetCalendar, respectWeekdays);
     }
     
     // Còpia directa dia a dia amb opció de respectar dies de la setmana
     mapDirectly(eventsByDay, espaiOrigen, espaiDesti, sourceCalendar, categoryMap, targetCalendar, respectWeekdays = true) {
         const placedEvents = [];
+        const unplacedEvents = [];
         
         if (respectWeekdays) {
             return this.mapWithWeekdayRespect(eventsByDay, espaiOrigen, espaiDesti, sourceCalendar, categoryMap, targetCalendar);
@@ -132,11 +151,53 @@ class GenericReplicaService extends ReplicaService {
             
             if (indexOrigen === -1) {
                 console.log(`[GENERIC_REPLICA_SERVICE] Dia ${originalDate} no està en espai útil d'origen`);
+                dayEvents.forEach(event => {
+                    const originalCategory = event.getCategory();
+                    const targetCategory = categoryMap.get(originalCategory?.id);
+                    
+                    const unplacedEvent = new CalendariIOC_Event({
+                        id: event.id,
+                        title: event.title,
+                        date: event.date,
+                        description: event.description || '',
+                        isSystemEvent: event.isSystemEvent || false,
+                        category: targetCategory || originalCategory
+                    });
+                    
+                    unplacedEvents.push({
+                        event: unplacedEvent,
+                        sourceCalendar,
+                        reason: "Dia no està en espai útil d'origen"
+                    });
+                });
                 continue;
             }
             
             // Mateixa posició en destí
             const newDate = espaiDesti[indexOrigen];
+            if (!newDate) {
+                console.log(`[GENERIC_REPLICA_SERVICE] Sense data destí per grup ${originalDate}`);
+                dayEvents.forEach(event => {
+                    const originalCategory = event.getCategory();
+                    const targetCategory = categoryMap.get(originalCategory?.id);
+                    
+                    const unplacedEvent = new CalendariIOC_Event({
+                        id: event.id,
+                        title: event.title,
+                        date: event.date,
+                        description: event.description || '',
+                        isSystemEvent: event.isSystemEvent || false,
+                        category: targetCategory || originalCategory
+                    });
+                    
+                    unplacedEvents.push({
+                        event: unplacedEvent,
+                        sourceCalendar,
+                        reason: "Sense data destí disponible"
+                    });
+                });
+                continue;
+            }
             
             console.log(`[GENERIC_REPLICA_SERVICE] Grup ${originalDate} (${dayEvents.length} events) → ${newDate} (ordre cronològic)`);
             
@@ -167,17 +228,18 @@ class GenericReplicaService extends ReplicaService {
             });
         }
         
-        console.log(`[GENERIC_REPLICA_SERVICE] Còpia per ordre cronològic completada: ${placedEvents.length} esdeveniments, 0 no ubicats`);
+        console.log(`[GENERIC_REPLICA_SERVICE] Còpia per ordre cronològic completada: ${placedEvents.length} esdeveniments, ${unplacedEvents.length} no ubicats`);
         
         return { 
             placed: placedEvents, 
-            unplaced: [] // Sempre 0 per còpia directa
+            unplaced: unplacedEvents
         };
     }
     
     // Mapeo respectant dies de la setmana amb algoritme de distàncies
     mapWithWeekdayRespect(eventsByDay, espaiOrigen, espaiDesti, sourceCalendar, categoryMap, targetCalendar) {
         const placedEvents = [];
+        const unplacedEvents = [];
         const allEvents = [];
         
         // Recollir tots els esdeveniments amb les seves dates originals
@@ -203,8 +265,7 @@ class GenericReplicaService extends ReplicaService {
         });
         
         if (firstTargetIndex === -1) {
-            // Fallback a mapeo per índex si no troba coincidència
-            console.log(`[GENERIC_REPLICA_SERVICE] No es troba dia coincident per ${firstEventDate}, usant mapeo per índex`);
+            console.log(`[GENERIC_REPLICA_SERVICE] No es troba dia coincident per ${firstEventDate}; fent fallback a mapeo cronològic`);
             return this.mapDirectly(eventsByDay, espaiOrigen, espaiDesti, sourceCalendar, categoryMap, targetCalendar, false);
         }
         
@@ -252,20 +313,39 @@ class GenericReplicaService extends ReplicaService {
                 console.log(`[GENERIC_REPLICA_SERVICE] "${event.title}": ${originalDate} → ${targetDateStr} (distància: ${daysDiff} dies)`);
             } else {
                 console.log(`[GENERIC_REPLICA_SERVICE] Data ${targetDateStr} fora de l'espai útil per esdeveniment "${event.title}"`);
+                const originalCategory = event.getCategory();
+                const targetCategory = categoryMap.get(originalCategory?.id);
+                
+                const unplacedEvent = new CalendariIOC_Event({
+                    id: event.id,
+                    title: event.title,
+                    date: event.date,
+                    description: event.description || '',
+                    isSystemEvent: event.isSystemEvent || false,
+                    category: targetCategory || originalCategory
+                });
+                
+                unplacedEvents.push({
+                    event: unplacedEvent,
+                    sourceCalendar,
+                    reason: "Data calculada fora de l'espai útil de destí"
+                });
             }
         });
         
-        console.log(`[GENERIC_REPLICA_SERVICE] Mapeo respectant dies setmana completat: ${placedEvents.length} esdeveniments ubicats`);
+        console.log(`[GENERIC_REPLICA_SERVICE] Mapeo respectant dies setmana completat: ${placedEvents.length} esdeveniments ubicats, ${unplacedEvents.length} no ubicats`);
         
         return { 
             placed: placedEvents, 
-            unplaced: [] // Per ara no gestionem esdeveniments que no cabent
+            unplaced: unplacedEvents
         };
     }
     
     // Expansió de grups (espai destí major)
-    expandGroups(eventsByDay, espaiOrigen, espaiDesti, sourceCalendar, categoryMap, targetCalendar) {
+    expandGroups(eventsByDay, espaiOrigen, espaiDesti, sourceCalendar, categoryMap, targetCalendar, respectWeekdays) {
         const placedEvents = [];
+        const unplacedEvents = [];
+        const usedDates = new Set();
         const factorExpansio = espaiDesti.length / espaiOrigen.length;
         
         console.log(`[GENERIC_REPLICA_SERVICE] Factor d'expansió: ${factorExpansio.toFixed(3)}`);
@@ -275,13 +355,64 @@ class GenericReplicaService extends ReplicaService {
             
             if (indexOrigen === -1) {
                 console.log(`[GENERIC_REPLICA_SERVICE] Dia ${originalDate} no està en espai útil d'origen`);
+                dayEvents.forEach(event => {
+                    const originalCategory = event.getCategory();
+                    const targetCategory = categoryMap.get(originalCategory?.id);
+                    
+                    const unplacedEvent = new CalendariIOC_Event({
+                        id: event.id,
+                        title: event.title,
+                        date: event.date,
+                        description: event.description || '',
+                        isSystemEvent: event.isSystemEvent || false,
+                        category: targetCategory || originalCategory
+                    });
+                    
+                    unplacedEvents.push({
+                        event: unplacedEvent,
+                        sourceCalendar,
+                        reason: "Dia no està en espai útil d'origen"
+                    });
+                });
                 continue;
             }
             
             // Calcular posició expandida
             const indexExpandit = Math.round(indexOrigen * factorExpansio);
-            const indexFinal = Math.min(indexExpandit, espaiDesti.length - 1);
+            let indexFinal = Math.min(indexExpandit, espaiDesti.length - 1);
+            
+            if (respectWeekdays) {
+                const originalWeekday = new Date(originalDate).getDay();
+                indexFinal = this.findNearestWeekdaySlot(espaiDesti, indexFinal, originalWeekday, usedDates);
+                
+                if (indexFinal === -1) {
+                    dayEvents.forEach(event => {
+                        const originalCategory = event.getCategory();
+                        const targetCategory = categoryMap.get(originalCategory?.id);
+                        
+                        const unplacedEvent = new CalendariIOC_Event({
+                            id: event.id,
+                            title: event.title,
+                            date: event.date,
+                            description: event.description || '',
+                            isSystemEvent: event.isSystemEvent || false,
+                            category: targetCategory || originalCategory
+                        });
+                        
+                        unplacedEvents.push({
+                            event: unplacedEvent,
+                            sourceCalendar,
+                            reason: "Sense dia de setmana compatible en expansió"
+                        });
+                    });
+                    continue;
+                }
+            }
+            
             const newDate = espaiDesti[indexFinal];
+            if (respectWeekdays) {
+                usedDates.add(newDate);
+            }
             
             console.log(`[GENERIC_REPLICA_SERVICE] Grup ${originalDate} (${dayEvents.length} events) → ${newDate} (expansió)`);
             
@@ -312,16 +443,16 @@ class GenericReplicaService extends ReplicaService {
             });
         }
         
-        console.log(`[GENERIC_REPLICA_SERVICE] Expansió completada: ${placedEvents.length} esdeveniments, 0 no ubicats`);
+        console.log(`[GENERIC_REPLICA_SERVICE] Expansió completada: ${placedEvents.length} esdeveniments, ${unplacedEvents.length} no ubicats`);
         
         return { 
             placed: placedEvents, 
-            unplaced: [] // Sempre 0 per expansió
+            unplaced: unplacedEvents
         };
     }
     
     // Compressió de grups (espai destí menor)
-    compressGroups(eventsByDay, espaiOrigen, espaiDesti, factorCompressio, sourceCalendar, categoryMap, targetCalendar) {
+    compressGroups(eventsByDay, espaiOrigen, espaiDesti, factorCompressio, sourceCalendar, categoryMap, targetCalendar, respectWeekdays) {
         const placedEvents = [];
         const unplacedEvents = [];
         const usedDates = new Set(); // Per evitar col·lisions de dates
@@ -357,33 +488,62 @@ class GenericReplicaService extends ReplicaService {
             const indexComprimit = Math.round(indexOrigen * factorCompressio);
             let indexFinal = Math.min(indexComprimit, espaiDesti.length - 1);
             
-            // Buscar data lliure si ja està ocupada
-            while (usedDates.has(espaiDesti[indexFinal]) && indexFinal < espaiDesti.length - 1) {
-                indexFinal++;
-            }
-            
-            if (indexFinal >= espaiDesti.length) {
-                console.log(`[GENERIC_REPLICA_SERVICE] No hi ha espai per grup ${originalDate}`);
-                dayEvents.forEach(event => {
-                    const originalCategory = event.getCategory();
-                    const targetCategory = categoryMap.get(originalCategory?.id);
-                    
-                    const unplacedEvent = new CalendariIOC_Event({
-                        id: event.id,
-                        title: event.title,
-                        date: event.date,
-                        description: event.description || '',
-                        isSystemEvent: event.isSystemEvent || false,
-                        category: targetCategory || originalCategory // Mantenir referència categoria
+            if (respectWeekdays) {
+                const originalWeekday = new Date(originalDate).getDay();
+                indexFinal = this.findNearestWeekdaySlot(espaiDesti, indexFinal, originalWeekday, usedDates);
+                
+                if (indexFinal === -1) {
+                    console.log(`[GENERIC_REPLICA_SERVICE] No hi ha espai compatible per grup ${originalDate}`);
+                    dayEvents.forEach(event => {
+                        const originalCategory = event.getCategory();
+                        const targetCategory = categoryMap.get(originalCategory?.id);
+                        
+                        const unplacedEvent = new CalendariIOC_Event({
+                            id: event.id,
+                            title: event.title,
+                            date: event.date,
+                            description: event.description || '',
+                            isSystemEvent: event.isSystemEvent || false,
+                            category: targetCategory || originalCategory // Mantenir referència categoria
+                        });
+                        
+                        unplacedEvents.push({
+                            event: unplacedEvent,
+                            sourceCalendar,
+                            reason: "Sense dia de setmana compatible en compressió"
+                        });
                     });
-                    
-                    unplacedEvents.push({
-                        event: unplacedEvent,
-                        sourceCalendar,
-                        reason: "Sense espai disponible en compressió"
+                    continue;
+                }
+            } else {
+                // Buscar data lliure si ja està ocupada
+                while (usedDates.has(espaiDesti[indexFinal]) && indexFinal < espaiDesti.length - 1) {
+                    indexFinal++;
+                }
+                
+                if (indexFinal >= espaiDesti.length) {
+                    console.log(`[GENERIC_REPLICA_SERVICE] No hi ha espai per grup ${originalDate}`);
+                    dayEvents.forEach(event => {
+                        const originalCategory = event.getCategory();
+                        const targetCategory = categoryMap.get(originalCategory?.id);
+                        
+                        const unplacedEvent = new CalendariIOC_Event({
+                            id: event.id,
+                            title: event.title,
+                            date: event.date,
+                            description: event.description || '',
+                            isSystemEvent: event.isSystemEvent || false,
+                            category: targetCategory || originalCategory // Mantenir referència categoria
+                        });
+                        
+                        unplacedEvents.push({
+                            event: unplacedEvent,
+                            sourceCalendar,
+                            reason: "Sense espai disponible en compressió"
+                        });
                     });
-                });
-                continue;
+                    continue;
+                }
             }
             
             const newDate = espaiDesti[indexFinal];
@@ -421,5 +581,37 @@ class GenericReplicaService extends ReplicaService {
         console.log(`[GENERIC_REPLICA_SERVICE] Compressió completada: ${placedEvents.length} ubicats, ${unplacedEvents.length} no ubicats`);
         
         return { placed: placedEvents, unplaced: unplacedEvents };
+    }
+    
+    // Cerca radial de data lliure amb el mateix dia de la setmana
+    findNearestWeekdaySlot(espaiDesti, indexIdeal, weekday, usedDates) {
+        if (!espaiDesti.length) return -1;
+        
+        let index = indexIdeal;
+        if (index >= espaiDesti.length) index = espaiDesti.length - 1;
+        if (index < 0) index = 0;
+        
+        const isValid = (idx) => {
+            const dateStr = espaiDesti[idx];
+            if (!dateStr) return false;
+            if (usedDates.has(dateStr)) return false;
+            return new Date(dateStr).getDay() === weekday;
+        };
+        
+        if (isValid(index)) return index;
+        
+        let radius = 1;
+        while (true) {
+            const back = index - radius;
+            const forward = index + radius;
+            
+            if (back >= 0 && isValid(back)) return back;
+            if (forward < espaiDesti.length && isValid(forward)) return forward;
+            
+            if (back < 0 && forward >= espaiDesti.length) return -1;
+            
+            radius++;
+            if (radius > espaiDesti.length) return -1;
+        }
     }
 }

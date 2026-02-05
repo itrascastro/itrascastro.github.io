@@ -27,8 +27,15 @@ class EstudiReplicaService extends ReplicaService {
         
         try {
             // Filtrar esdeveniments del professor
+            const sourceClassesStart = this.getClassesStartDate(sourceCalendar);
             const professorEvents = sourceCalendar.events
                 .filter(event => !event.isSystemEvent)
+                // Replicar a partir d'obertura d'aules; només permetre enunciats abans
+                .filter(event => {
+                    if (!sourceClassesStart) return true;
+                    if (this.isCoordinationEnunciat(event)) return true;
+                    return event.date >= sourceClassesStart;
+                })
                 .sort((a, b) => new Date(a.date) - new Date(b.date));
             
             console.log(`[ESTUDI_REPLICA_SERVICE] Events del professor a replicar: ${professorEvents.length}`);
@@ -88,7 +95,7 @@ class EstudiReplicaService extends ReplicaService {
             
             // Fallback: usar compressió (lògica actual)
             console.log(`[ESTUDI_REPLICA_SERVICE] Aplicant compressió proporcional`);
-            return this.executeCompressionMapping(professorEvents, espaiUtilOrigen, espaiUtilDesti, sourceCalendar, categoryMap, targetCalendar);
+            return this.executeCompressionMapping(professorEvents, espaiUtilOrigen, espaiUtilDesti, sourceCalendar, categoryMap, targetCalendar, respectWeekdays);
         } catch (error) {
             console.error(`[ESTUDI_REPLICA_SERVICE] Error durant la replicació:`, error);
             console.error(`[ESTUDI_REPLICA_SERVICE] Stack trace:`, error.stack);
@@ -97,7 +104,7 @@ class EstudiReplicaService extends ReplicaService {
     }
     
     // Mètode de compressió amb agrupació preservada (SEMPRE agrupar esdeveniments del mateix dia)
-    executeCompressionMapping(professorEvents, espaiUtilOrigen, espaiUtilDesti, sourceCalendar, categoryMap, targetCalendar) {
+    executeCompressionMapping(professorEvents, espaiUtilOrigen, espaiUtilDesti, sourceCalendar, categoryMap, targetCalendar, respectWeekdays) {
         console.log(`[ESTUDI_REPLICA_SERVICE] Executant compressió amb agrupació preservada...`);
         
         // SEMPRE agrupar esdeveniments per dia primer
@@ -109,6 +116,8 @@ class EstudiReplicaService extends ReplicaService {
         
         // Mapa d'ocupació del destí
         const ocupacioEspaiDesti = new Map(espaiUtilDesti.map(date => [date, 'LLIURE']));
+        const targetClassesStart = this.getClassesStartDate(targetCalendar) || targetCalendar.startDate;
+        const forcedAssignments = this.buildForcedAssignments(professorEvents, eventsByDay, espaiUtilDesti, targetCalendar, targetClassesStart);
         
         const placedEvents = [];
         const unplacedEvents = [];
@@ -146,11 +155,65 @@ class EstudiReplicaService extends ReplicaService {
                 continue;
             }
             
+            // Assignació forçada per preservar patrons del primer EAC
+            if (forcedAssignments.has(originalDate)) {
+                let forcedDate = forcedAssignments.get(originalDate);
+                if (!this.isCoordinationEnunciatGroup(dayEvents) && targetClassesStart && forcedDate < targetClassesStart) {
+                    const adjusted = this.findFirstAvailableOnOrAfter(ocupacioEspaiDesti, targetClassesStart);
+                    if (adjusted) {
+                        forcedDate = adjusted;
+                    }
+                }
+                const forcedIsInSpace = ocupacioEspaiDesti.has(forcedDate);
+                const forcedAvailable = forcedIsInSpace ? ocupacioEspaiDesti.get(forcedDate) === 'LLIURE' : true;
+
+                if (forcedAvailable) {
+                    if (forcedIsInSpace) {
+                        ocupacioEspaiDesti.set(forcedDate, 'OCUPAT');
+                    }
+
+                    console.log(`[ESTUDI_REPLICA_SERVICE] Grup ${originalDate} → ${forcedDate}: assignació forçada`);
+
+                    dayEvents.forEach(event => {
+                        const originalCategory = event.getCategory();
+                        const targetCategory = categoryMap.get(originalCategory?.id);
+
+                        const replicatedEvent = new CalendariIOC_Event({
+                            id: idHelper.generateNextEventId(targetCalendar.id),
+                            title: event.title,
+                            date: forcedDate,
+                            description: event.description || '',
+                            isSystemEvent: event.isSystemEvent || false,
+                            category: targetCategory,
+                            isReplicated: true,
+                            replicatedFrom: event.date
+                        });
+
+                        placedEvents.push({
+                            event: replicatedEvent,
+                            newDate: forcedDate,
+                            sourceCalendar: sourceCalendar,
+                            originalDate: event.date,
+                            confidence: 99
+                        });
+                    });
+                    continue;
+                }
+            }
+
             // Calcular posició ideal en espai destí per al grup
             const indexIdeal = Math.round(indexOrigen * factorProporcio);
             
-            // Buscar slot lliure per a tot el grup
-            const indexFinal = this.findNearestFreeSlot(ocupacioEspaiDesti, indexIdeal);
+            // Buscar slot lliure per a tot el grup, prioritzant mateix dia setmana
+            let indexFinal = -1;
+            if (respectWeekdays) {
+                const weekday = new Date(originalDate).getDay();
+                indexFinal = this.findNearestFreeWeekdaySlot(ocupacioEspaiDesti, indexIdeal, weekday);
+            }
+            
+            if (indexFinal === -1) {
+                indexFinal = this.findNearestFreeSlot(ocupacioEspaiDesti, indexIdeal);
+            }
             
             if (indexFinal === -1) {
                 console.log(`[ESTUDI_REPLICA_SERVICE] No es troba slot lliure per grup ${originalDate}`);
@@ -179,7 +242,13 @@ class EstudiReplicaService extends ReplicaService {
             }
             
             // Marcar slot com ocupat per a tot el grup
-            const newDate = espaiUtilDesti[indexFinal];
+            let newDate = espaiUtilDesti[indexFinal];
+            if (!this.isCoordinationEnunciatGroup(dayEvents) && targetClassesStart && newDate < targetClassesStart) {
+                const adjusted = this.findFirstAvailableOnOrAfter(ocupacioEspaiDesti, targetClassesStart);
+                if (adjusted) {
+                    newDate = adjusted;
+                }
+            }
             ocupacioEspaiDesti.set(newDate, 'OCUPAT');
             
             console.log(`[ESTUDI_REPLICA_SERVICE] Grup ${originalDate} → ${newDate}: ${dayEvents.length} esdeveniments mantinguts junts`);
@@ -215,6 +284,105 @@ class EstudiReplicaService extends ReplicaService {
         console.log(`[ESTUDI_REPLICA_SERVICE] Compressió amb agrupació: ${placedEvents.length} ubicats, ${unplacedEvents.length} no ubicats`);
         
         return { placed: placedEvents, unplaced: unplacedEvents };
+    }
+
+    // === REGLA ESPECIAL: PRIMER EAC ===
+
+    buildForcedAssignments(professorEvents, eventsByDay, espaiUtilDesti, targetCalendar, targetClassesStart) {
+        const forced = new Map();
+
+        const classesStartDate = targetClassesStart || this.getClassesStartDate(targetCalendar);
+        if (!classesStartDate) {
+            return forced;
+        }
+
+        const firstEnunciat = this.findFirstEventDate(professorEvents, /enunciat.*coordinaci/i);
+        const firstPublicacio = this.findFirstEventDate(professorEvents, /publicaci\\w*\\s+EAC/i);
+
+        if (firstPublicacio) {
+            forced.set(firstPublicacio, classesStartDate);
+        }
+
+        if (firstEnunciat) {
+            if (firstEnunciat === firstPublicacio) {
+                console.log('[ESTUDI_REPLICA_SERVICE] Enunciat i publicació comparteixen data; prioritzant publicació');
+                return forced;
+            }
+
+            const previousAvailable = this.findPreviousAvailableDate(espaiUtilDesti, classesStartDate);
+            if (previousAvailable && previousAvailable !== classesStartDate) {
+                forced.set(firstEnunciat, previousAvailable);
+            }
+        }
+
+        return forced;
+    }
+
+    findFirstEventDate(events, pattern) {
+        for (const event of events) {
+            const title = this.normalizeText(event.title || '');
+            if (pattern.test(title)) {
+                return event.date;
+            }
+        }
+        return null;
+    }
+
+    getClassesStartDate(calendar) {
+        const startEvent = calendar.events.find(e =>
+            e.isSystemEvent &&
+            typeof e.title === 'string' &&
+            e.title.toLowerCase().includes("obertura d'aules de mòduls i crèdits")
+        );
+        if (!startEvent) return null;
+        return startEvent.date;
+    }
+
+    isCoordinationEnunciat(event) {
+        const title = this.normalizeText(event?.title || '');
+        return title.includes('enunciat') && title.includes('coordinaci');
+    }
+
+    isCoordinationEnunciatGroup(dayEvents) {
+        if (!Array.isArray(dayEvents) || dayEvents.length === 0) return false;
+        return dayEvents.every(event => this.isCoordinationEnunciat(event));
+    }
+
+    normalizeText(text) {
+        return (text || '')
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '');
+    }
+
+    findFirstAvailableOnOrAfter(ocupacioMap, startDateStr) {
+        if (!startDateStr) return null;
+        for (const dateStr of ocupacioMap.keys()) {
+            if (dateStr >= startDateStr && ocupacioMap.get(dateStr) === 'LLIURE') {
+                return dateStr;
+            }
+        }
+        return null;
+    }
+
+    findFirstAvailableOnOrAfterInList(espaiDesti, startDateStr, usedTargetDates) {
+        if (!startDateStr) return null;
+        for (const dateStr of espaiDesti) {
+            if (dateStr >= startDateStr && !usedTargetDates.has(dateStr)) {
+                return dateStr;
+            }
+        }
+        return null;
+    }
+
+    findPreviousAvailableDate(espaiDesti, targetDateStr) {
+        if (!espaiDesti.length || !targetDateStr) return null;
+        for (let i = espaiDesti.length - 1; i >= 0; i--) {
+            if (espaiDesti[i] < targetDateStr) {
+                return espaiDesti[i];
+            }
+        }
+        return null;
     }
     
     // Anàlisi de l'espai útil per calendaris d'estudi (CÒPIA EXACTA de la lògica original)
@@ -313,6 +481,71 @@ class EstudiReplicaService extends ReplicaService {
         console.log(`[PAF Detection] PAF1 no definit per calendari tipus "${calendar.type}". Usant final de calendari: ${calendar.endDate}`);
         return calendar.endDate;
     }
+
+    // Cerca radial de slots lliures amb el mateix dia de la setmana
+    findNearestFreeWeekdaySlot(ocupacioMap, indexIdeal, weekday) {
+        const dates = Array.from(ocupacioMap.keys());
+        
+        if (indexIdeal >= dates.length) indexIdeal = dates.length - 1;
+        if (indexIdeal < 0) indexIdeal = 0;
+        
+        const isValid = (idx) => {
+            const dateStr = dates[idx];
+            if (ocupacioMap.get(dateStr) !== 'LLIURE') return false;
+            return new Date(dateStr).getDay() === weekday;
+        };
+        
+        if (isValid(indexIdeal)) {
+            return indexIdeal;
+        }
+        
+        let radiCerca = 1;
+        while (true) {
+            const indexEnrere = indexIdeal - radiCerca;
+            const indexEndavant = indexIdeal + radiCerca;
+            
+            if (indexEnrere >= 0 && isValid(indexEnrere)) {
+                return indexEnrere;
+            }
+            
+            if (indexEndavant < dates.length && isValid(indexEndavant)) {
+                return indexEndavant;
+            }
+            
+            if (indexEnrere < 0 && indexEndavant >= dates.length) {
+                return -1;
+            }
+            
+            radiCerca++;
+            if (radiCerca > dates.length) {
+                return -1;
+            }
+        }
+    }
+    
+    // Cerca la data disponible mes propera (anterior o següent)
+    findNearestAvailableDate(espaiDesti, targetDateStr, usedTargetDates) {
+        if (!espaiDesti.length) return null;
+        
+        const target = new Date(targetDateStr);
+        let bestDate = null;
+        let bestDiff = Infinity;
+        
+        for (const dateStr of espaiDesti) {
+            if (usedTargetDates.has(dateStr)) continue;
+            const candidate = new Date(dateStr);
+            const diff = Math.abs(candidate - target);
+            
+            if (diff < bestDiff) {
+                bestDiff = diff;
+                bestDate = dateStr;
+            } else if (diff === bestDiff && bestDate && candidate < new Date(bestDate)) {
+                bestDate = dateStr;
+            }
+        }
+        
+        return bestDate;
+    }
     
     // === NOUS MÈTODES PER MAPEO DIRECTE ===
     
@@ -359,6 +592,8 @@ class EstudiReplicaService extends ReplicaService {
     // Mapeo directe per ordre cronològic
     mapDirectly(eventsByDay, espaiOrigen, espaiDesti, sourceCalendar, categoryMap, targetCalendar) {
         const placedEvents = [];
+        const ocupacioEspaiDesti = new Map(espaiDesti.map(date => [date, 'LLIURE']));
+        const targetClassesStart = this.getClassesStartDate(targetCalendar) || targetCalendar.startDate;
         
         for (const [originalDate, dayEvents] of eventsByDay) {
             const indexOrigen = espaiOrigen.indexOf(originalDate);
@@ -369,7 +604,14 @@ class EstudiReplicaService extends ReplicaService {
             }
             
             // Mateixa posició en destí
-            const newDate = espaiDesti[indexOrigen];
+            let newDate = espaiDesti[indexOrigen];
+            if (!this.isCoordinationEnunciatGroup(dayEvents) && targetClassesStart && newDate < targetClassesStart) {
+                const adjusted = this.findFirstAvailableOnOrAfter(ocupacioEspaiDesti, targetClassesStart);
+                if (adjusted) {
+                    newDate = adjusted;
+                }
+            }
+            ocupacioEspaiDesti.set(newDate, 'OCUPAT');
             
             console.log(`[ESTUDI_REPLICA_SERVICE] Grup ${originalDate} (${dayEvents.length} events) → ${newDate} (ordre cronològic)`);
             
@@ -414,6 +656,7 @@ class EstudiReplicaService extends ReplicaService {
         const placedEvents = [];
         const unplacedEvents = [];
         const usedTargetDates = new Set(); // Per evitar col·lisions
+        const targetClassesStart = this.getClassesStartDate(targetCalendar) || targetCalendar.startDate;
         
         // Ordenar grups de dies per data
         const sortedDayGroups = Array.from(eventsByDay.entries())
@@ -431,12 +674,18 @@ class EstudiReplicaService extends ReplicaService {
             return new Date(date).getDay() === firstOriginalDay;
         });
         
+        let baseTargetDate;
         if (firstTargetIndex === -1) {
-            console.log(`[ESTUDI_REPLICA_SERVICE] No es troba dia coincident per ${firstOriginalDate} (dia ${firstOriginalDay}), usant mapeo per índex`);
-            return this.mapDirectly(eventsByDay, espaiOrigen, espaiDesti, sourceCalendar, categoryMap, targetCalendar);
+            const fallbackDateStr = this.findNearestAvailableDate(espaiDesti, firstOriginalDate, usedTargetDates);
+            if (!fallbackDateStr) {
+                console.log(`[ESTUDI_REPLICA_SERVICE] Sense dates disponibles per iniciar mapeo de ${firstOriginalDate}`);
+                return { placed: [], unplaced: [] };
+            }
+            console.log(`[ESTUDI_REPLICA_SERVICE] No es troba dia coincident per ${firstOriginalDate} (dia ${firstOriginalDay}), usant data propera ${fallbackDateStr}`);
+            baseTargetDate = new Date(fallbackDateStr);
+        } else {
+            baseTargetDate = new Date(espaiDesti[firstTargetIndex]);
         }
-        
-        const baseTargetDate = new Date(espaiDesti[firstTargetIndex]);
         const baseOriginalDate = new Date(firstOriginalDate);
         
         console.log(`[ESTUDI_REPLICA_SERVICE] Base de mapeo: ${firstOriginalDate} (${this.getDayName(firstOriginalDay)}) → ${espaiDesti[firstTargetIndex]} (respectant dies setmana)`);
@@ -478,14 +727,22 @@ class EstudiReplicaService extends ReplicaService {
             const targetDateStr = targetDateObj.toISOString().split('T')[0];
             
             // Verificar que la data destí està dins de l'espai útil i no està ocupada
-            if (espaiDesti.includes(targetDateStr) && !usedTargetDates.has(targetDateStr)) {
+            let effectiveTarget = targetDateStr;
+            if (!this.isCoordinationEnunciatGroup(dayEvents) && targetClassesStart && effectiveTarget < targetClassesStart) {
+                const adjusted = this.findFirstAvailableOnOrAfterInList(espaiDesti, targetClassesStart, usedTargetDates);
+                if (adjusted) {
+                    effectiveTarget = adjusted;
+                }
+            }
+
+            if (espaiDesti.includes(effectiveTarget) && !usedTargetDates.has(effectiveTarget)) {
                 // Marcar data com ocupada
-                usedTargetDates.add(targetDateStr);
+                usedTargetDates.add(effectiveTarget);
                 
                 const originalDay = new Date(originalDate).getDay();
-                const targetDay = new Date(targetDateStr).getDay();
+                const targetDay = new Date(effectiveTarget).getDay();
                 
-                console.log(`[ESTUDI_REPLICA_SERVICE] Grup ${originalDate} (${this.getDayName(originalDay)}, ${dayEvents.length} events) → ${targetDateStr} (${this.getDayName(targetDay)})`);
+                console.log(`[ESTUDI_REPLICA_SERVICE] Grup ${originalDate} (${this.getDayName(originalDay)}, ${dayEvents.length} events) → ${effectiveTarget} (${this.getDayName(targetDay)})`);
                 
                 // Replicar tot el grup al mateix dia destí
                 dayEvents.forEach(event => {
@@ -495,7 +752,7 @@ class EstudiReplicaService extends ReplicaService {
                     const replicatedEvent = new CalendariIOC_Event({
                         id: idHelper.generateNextEventId(targetCalendar.id),
                         title: event.title,
-                        date: targetDateStr,
+                        date: effectiveTarget,
                         description: event.description || '',
                         isSystemEvent: event.isSystemEvent || false,
                         category: targetCategory,
@@ -505,39 +762,77 @@ class EstudiReplicaService extends ReplicaService {
                     
                     placedEvents.push({
                         event: replicatedEvent,
-                        newDate: targetDateStr,
+                        newDate: effectiveTarget,
                         sourceCalendar: sourceCalendar,
                         originalDate: originalDate,
                         confidence: 95
                     });
                 });
             } else {
-                const reason = !espaiDesti.includes(targetDateStr) 
-                    ? "Data calculada fora de l'espai útil de destí" 
-                    : "Data destí ja ocupada per altre grup";
-                
-                console.log(`[ESTUDI_REPLICA_SERVICE] Grup ${originalDate} no es pot ubicar: ${reason}`);
-                
-                // Tot el grup va a no ubicats
-                dayEvents.forEach(event => {
-                    const originalCategory = event.getCategory();
-                    const targetCategory = categoryMap.get(originalCategory?.id);
+                let fallbackDateStr = null;
+                if (!this.isCoordinationEnunciatGroup(dayEvents) && targetClassesStart) {
+                    fallbackDateStr = this.findFirstAvailableOnOrAfterInList(espaiDesti, targetClassesStart, usedTargetDates);
+                } else {
+                    fallbackDateStr = this.findNearestAvailableDate(espaiDesti, effectiveTarget, usedTargetDates);
+                }
+                if (fallbackDateStr) {
+                    usedTargetDates.add(fallbackDateStr);
+                    const originalDay = new Date(originalDate).getDay();
+                    const targetDay = new Date(fallbackDateStr).getDay();
                     
-                    const unplacedEvent = new CalendariIOC_Event({
-                        id: event.id,
-                        title: event.title,
-                        date: event.date,
-                        description: event.description || '',
-                        isSystemEvent: event.isSystemEvent || false,
-                        category: targetCategory || originalCategory
-                    });
+                    console.log(`[ESTUDI_REPLICA_SERVICE] Grup ${originalDate} (${this.getDayName(originalDay)}) → ${fallbackDateStr} (${this.getDayName(targetDay)}) [fallback proper]`);
                     
-                    unplacedEvents.push({ 
-                        event: unplacedEvent,
-                        sourceCalendar,
-                        reason: reason
+                    dayEvents.forEach(event => {
+                        const originalCategory = event.getCategory();
+                        const targetCategory = categoryMap.get(originalCategory?.id);
+                        
+                        const replicatedEvent = new CalendariIOC_Event({
+                            id: idHelper.generateNextEventId(targetCalendar.id),
+                            title: event.title,
+                            date: fallbackDateStr,
+                            description: event.description || '',
+                            isSystemEvent: event.isSystemEvent || false,
+                            category: targetCategory,
+                            isReplicated: true,
+                            replicatedFrom: originalDate
+                        });
+                        
+                        placedEvents.push({
+                            event: replicatedEvent,
+                            newDate: fallbackDateStr,
+                            sourceCalendar: sourceCalendar,
+                            originalDate: originalDate,
+                            confidence: 80
+                        });
                     });
-                });
+                } else {
+                    const reason = !espaiDesti.includes(targetDateStr) 
+                        ? "Data calculada fora de l'espai útil de destí" 
+                        : "Data destí ja ocupada per altre grup";
+                    
+                    console.log(`[ESTUDI_REPLICA_SERVICE] Grup ${originalDate} no es pot ubicar: ${reason}`);
+                    
+                    // Tot el grup va a no ubicats
+                    dayEvents.forEach(event => {
+                        const originalCategory = event.getCategory();
+                        const targetCategory = categoryMap.get(originalCategory?.id);
+                        
+                        const unplacedEvent = new CalendariIOC_Event({
+                            id: event.id,
+                            title: event.title,
+                            date: event.date,
+                            description: event.description || '',
+                            isSystemEvent: event.isSystemEvent || false,
+                            category: targetCategory || originalCategory
+                        });
+                        
+                        unplacedEvents.push({ 
+                            event: unplacedEvent,
+                            sourceCalendar,
+                            reason: reason
+                        });
+                    });
+                }
             }
         }
         

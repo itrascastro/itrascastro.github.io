@@ -34,14 +34,14 @@ class ReplicaServiceFactory {
         }
         
         // Determinar tipus de replicació necessària
-        const sourceType = sourceCalendar.type || 'Altre';
-        const targetType = targetCalendar.type || 'Altre';
+        const sourceType = typeHelper.normalizeCalendarType(sourceCalendar.type);
+        const targetType = typeHelper.normalizeCalendarType(targetCalendar.type);
         
         console.log(`[REPLICA_FACTORY] Seleccionant servei per: ${sourceType} → ${targetType}`);
         
         // Si qualsevol dels calendaris és "Altre", usar GenericReplicaService
-        if (sourceType === 'Altre' || targetType === 'Altre') {
-            console.log(`[REPLICA_FACTORY] Calendari "Altre" detectat: usant GenericReplicaService`);
+        if (sourceType === 'ALTRE' || targetType === 'ALTRE') {
+            console.log(`[REPLICA_FACTORY] Calendari "ALTRE" detectat: usant GenericReplicaService`);
             return new GenericReplicaService();
         } 
         
@@ -57,10 +57,10 @@ class ReplicaServiceFactory {
      * @returns {Object} Informació sobre el servei seleccionat
      */
     static getServiceInfo(sourceCalendar, targetCalendar) {
-        const sourceType = sourceCalendar?.type || 'Altre';
-        const targetType = targetCalendar?.type || 'Altre';
+        const sourceType = typeHelper.normalizeCalendarType(sourceCalendar?.type);
+        const targetType = typeHelper.normalizeCalendarType(targetCalendar?.type);
         
-        if (sourceType === 'Altre' || targetType === 'Altre') {
+        if (sourceType === 'ALTRE' || targetType === 'ALTRE') {
             return {
                 serviceType: 'GenericReplicaService',
                 description: 'Servei optimitzat per calendaris genèrics amb preservació d\'agrupacions',
@@ -110,18 +110,18 @@ class ReplicaServiceFactory {
         }
         
         // Recomanacions segons tipus
-        const sourceType = sourceCalendar?.type || 'Altre';
-        const targetType = targetCalendar?.type || 'Altre';
+        const sourceType = typeHelper.normalizeCalendarType(sourceCalendar?.type);
+        const targetType = typeHelper.normalizeCalendarType(targetCalendar?.type);
         
-        if (sourceType === 'Altre' && targetType !== 'Altre') {
+        if (sourceType === 'ALTRE' && targetType !== 'ALTRE') {
             validation.recommendations.push('Replicació d\'Altre a estudi pot generar esdeveniments no ubicats en caps de setmana');
         }
         
-        if (sourceType !== 'Altre' && targetType === 'Altre') {
+        if (sourceType !== 'ALTRE' && targetType === 'ALTRE') {
             validation.recommendations.push('Replicació d\'estudi a Altre permetrà més flexibilitat d\'ubicació');
         }
         
-        if (sourceType === 'Altre' && targetType === 'Altre') {
+        if (sourceType === 'ALTRE' && targetType === 'ALTRE') {
             validation.recommendations.push('Replicació òptima: ambdós calendaris són tipus Altre');
         }
         
