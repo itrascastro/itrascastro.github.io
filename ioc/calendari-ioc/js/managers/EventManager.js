@@ -297,6 +297,35 @@ class EventManager {
         modalRenderer.closeModal('eventModal');
         uiHelper.showMessage('Esdeveniment desat correctament', 'success');
     }
+
+    // Crear esdeveniment a partir de dades copiades
+    pasteCopiedEvent(dateStr) {
+        const calendar = appStateManager.getCurrentCalendar();
+        const copied = appStateManager.copiedEvent;
+        if (!calendar || !copied) return;
+
+        const { title, description, categoryId } = copied;
+        this.validateEventData(title, dateStr, categoryId, calendar);
+        this.ensureCategoryExists(calendar, categoryId);
+
+        const category = calendar.findCategoryById(categoryId);
+        if (!category) {
+            throw new CalendariIOCException('603', 'EventManager.pasteCopiedEvent', false);
+        }
+
+        this.createNewEvent(calendar, {
+            title,
+            date: dateStr,
+            category,
+            description,
+            isSystemEvent: false
+        });
+
+        storageManager.saveToStorage();
+        viewManager.renderCurrentView();
+        panelsRenderer.renderCategories();
+        uiHelper.showMessage('Esdeveniment enganxat', 'success');
+    }
     
     // === CATEGORIES DISPONIBLES ===
     

@@ -127,7 +127,7 @@ class DayViewRenderer extends CalendarRenderer {
             const draggableAttr = isUserEvent ? 'draggable="true"' : '';
             
             return `
-                <div class="${eventClasses.join(' ')}" ${openModalAction} ${draggableAttr}>
+                <div class="${eventClasses.join(' ')}" data-event-id="${event.id}" ${openModalAction} ${draggableAttr}>
                     <div class="event-color-bar" style="background-color: ${color};"></div>
                     <div class="event-details">
                         <div class="event-title">${event.title}</div>

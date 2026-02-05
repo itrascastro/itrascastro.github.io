@@ -65,7 +65,7 @@ class CalendarRenderer {
             const draggableAttr = isUserEvent ? 'draggable="true"' : '';
             const contrastStyle = colorContrastHelper.getContrastStyle(color);
             
-            return `<div class="${eventClasses.join(' ')}" style="${contrastStyle}" ${openModalAction} ${draggableAttr} title="${event.title}">${truncatedTitle}</div>`;
+            return `<div class="${eventClasses.join(' ')}" style="${contrastStyle}" data-event-id="${event.id}" ${openModalAction} ${draggableAttr} title="${event.title}">${truncatedTitle}</div>`;
         }
     }
     

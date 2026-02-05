@@ -60,6 +60,7 @@ class AppStateManager {
         // Variables de selección
         this.selectedCalendarId = null;
         this.selectedCategoryId = null;
+        this.copiedEvent = null;
         
         // Variables de edició temporal
         this._editingEventId = null;
@@ -127,6 +128,7 @@ class AppStateManager {
         this.selectedCalendarId = null;
         this.selectedCategoryId = null;
         this._editingEventId = null;
+        this.copiedEvent = null;
     }
 
     // === GETTERS I SETTERS PER A ACCÉS DIRECTE A PROPIETATS ===

@@ -18,6 +18,7 @@ class Bootstrap {
     constructor() {
         try {
             this.initializeAsync();
+            this._lastContextMenuAt = 0;
         } catch (error) {
             if (!(error instanceof CalendariIOCException)) {
                 error = new CalendariIOCException('1401', 'Bootstrap.constructor');
@@ -57,6 +58,9 @@ class Bootstrap {
         // Event listeners globals per accions
         document.addEventListener('click', (e) => this.handleAction(e));
         document.addEventListener('dblclick', (e) => this.handleAction(e));
+        document.addEventListener('contextmenu', (e) => this.handleContextMenu(e));
+        document.addEventListener('click', (e) => this.handleGlobalClick(e));
+        window.addEventListener('scroll', () => this.hideEventContextMenu(), true);
         
         // Event listener específic per camp de nova categoria
         const newCategoryInput = document.getElementById('new-category-name');
@@ -82,8 +86,15 @@ class Bootstrap {
     // === GESTOR D'ACCIONS CENTRALITZAT ===
     async handleAction(e) {
         try {
+            if (e.type === 'click' && (e.button === 2 || e.ctrlKey)) {
+                return;
+            }
+            if (e.type === 'click' && Date.now() - this._lastContextMenuAt < 600) {
+                return;
+            }
             const target = e.target.closest('[data-action]');
             if (!target) return;
+            if (target.classList.contains('disabled')) return;
             e.preventDefault();
             const action = target.dataset.action;
             
@@ -124,6 +135,8 @@ class Bootstrap {
                 case 'replicate-calendar-auto': replicaManager.openReplicationModal(appStateManager.getSelectedCalendarId(), 'auto'); break;
                 case 'replicate-calendar-manual': replicaManager.openReplicationModal(appStateManager.getSelectedCalendarId(), 'manual'); break;
                 case 'execute-replication': replicaManager.executeReplication(); break;
+                case 'copy-event': this.copyEventFromContextMenu(); break;
+                case 'paste-event': this.pasteEventFromContextMenu(); break;
                 case 'change-view': viewManager.changeView(target.dataset.view); break;
                 case 'day-click': viewManager.changeToDateView(target.dataset.date); break;
                 case 'week-click': viewManager.changeToWeekView(target.dataset.date); break;
@@ -144,6 +157,113 @@ class Bootstrap {
         appStateManager.appState.compactZoom = z;
         document.body.style.setProperty('--compact-zoom', z);
         storageManager.saveToStorage();
+    }
+
+    // === MENÚ CONTEXTUAL EVENTS ===
+    handleContextMenu(e) {
+        const menu = document.getElementById('eventContextMenu');
+        if (!menu) return;
+
+        const eventEl = e.target.closest('[data-event-id], [data-action="open-event-modal"]');
+        const eventId = eventEl?.dataset?.eventId;
+        if (eventId) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            this.showEventContextMenu(menu, {
+                mode: 'copy',
+                eventId,
+                x: e.clientX,
+                y: e.clientY
+            });
+            return;
+        }
+
+        const dayCell = e.target.closest('.day-cell, .compact-day-cell, [data-date]');
+        if (dayCell?.dataset?.date) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            this.showEventContextMenu(menu, {
+                mode: 'paste',
+                date: dayCell.dataset.date,
+                x: e.clientX,
+                y: e.clientY
+            });
+            return;
+        }
+
+        this.hideEventContextMenu();
+    }
+
+    showEventContextMenu(menu, { mode, eventId, date, x, y }) {
+        const copyBtn = menu.querySelector('[data-action="copy-event"]');
+        const pasteBtn = menu.querySelector('[data-action="paste-event"]');
+
+        menu.dataset.eventId = eventId || '';
+        menu.dataset.date = date || '';
+
+        if (copyBtn) {
+            copyBtn.classList.toggle('disabled', mode !== 'copy');
+        }
+        if (pasteBtn) {
+            const canPaste = !!appStateManager.copiedEvent;
+            pasteBtn.classList.toggle('disabled', mode !== 'paste' || !canPaste);
+        }
+
+        menu.style.left = `${x}px`;
+        menu.style.top = `${y}px`;
+        menu.classList.add('show');
+        this._lastContextMenuAt = Date.now();
+    }
+
+    handleGlobalClick(e) {
+        if (e.button === 2) return;
+        if (Date.now() - this._lastContextMenuAt < 600) return;
+        this.hideEventContextMenu();
+    }
+
+    hideEventContextMenu() {
+        const menu = document.getElementById('eventContextMenu');
+        if (menu) {
+            menu.classList.remove('show');
+        }
+    }
+
+    copyEventFromContextMenu() {
+        const menu = document.getElementById('eventContextMenu');
+        const eventId = menu?.dataset?.eventId;
+        if (!eventId) return;
+
+        const event = appStateManager.findEventById(eventId);
+        if (!event || event.isSystemEvent) {
+            uiHelper.showMessage('Només es poden copiar events d\'usuari', 'warning');
+            return;
+        }
+
+        const categoryId = event.getCategory()?.id || null;
+        appStateManager.copiedEvent = {
+            title: event.title,
+            description: event.description || '',
+            categoryId
+        };
+
+        this.hideEventContextMenu();
+        uiHelper.showMessage('Event copiat', 'success');
+    }
+
+    pasteEventFromContextMenu() {
+        const menu = document.getElementById('eventContextMenu');
+        const dateStr = menu?.dataset?.date;
+        if (!dateStr) return;
+
+        if (!appStateManager.copiedEvent) {
+            uiHelper.showMessage('No hi ha cap event copiat', 'warning');
+            return;
+        }
+
+        eventManager.pasteCopiedEvent(dateStr);
+        this.hideEventContextMenu();
     }
 
 }

@@ -360,6 +360,44 @@
     opacity: 0.6; 
 }
 
+/* === MENÚ CONTEXTUAL EVENTS === */
+.event-context-menu {
+    position: fixed;
+    z-index: 2000;
+    min-width: 140px;
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    padding: 6px 0;
+    display: none;
+}
+
+.event-context-menu.show {
+    display: block;
+}
+
+.event-context-item {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 8px 14px;
+    color: var(--main-text-color);
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.event-context-item:hover {
+    background-color: var(--bg-color);
+}
+
+.event-context-item.disabled {
+    color: var(--secondary-text-color);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
 .actions-dropdown-item.disabled:hover { 
     background-color: transparent; 
 }
