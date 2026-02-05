@@ -27,16 +27,7 @@ class EstudiReplicaService extends ReplicaService {
         
         try {
             // Filtrar esdeveniments del professor
-            const sourceClassesStart = this.getClassesStartDate(sourceCalendar);
-            const professorEvents = sourceCalendar.events
-                .filter(event => !event.isSystemEvent)
-                // Replicar a partir d'obertura d'aules; només permetre enunciats abans
-                .filter(event => {
-                    if (!sourceClassesStart) return true;
-                    if (this.isCoordinationEnunciat(event)) return true;
-                    return event.date >= sourceClassesStart;
-                })
-                .sort((a, b) => new Date(a.date) - new Date(b.date));
+            const professorEvents = this.getReplicableProfessorEvents(sourceCalendar);
             
             console.log(`[ESTUDI_REPLICA_SERVICE] Events del professor a replicar: ${professorEvents.length}`);
             
@@ -101,6 +92,19 @@ class EstudiReplicaService extends ReplicaService {
             console.error(`[ESTUDI_REPLICA_SERVICE] Stack trace:`, error.stack);
             throw new CalendariIOCException('207', 'EstudiReplicaService.replicate');
         }
+    }
+
+    getReplicableProfessorEvents(sourceCalendar) {
+        const sourceClassesStart = this.getClassesStartDate(sourceCalendar);
+        return sourceCalendar.events
+            .filter(event => !event.isSystemEvent)
+            // Replicar a partir d'obertura d'aules; només permetre enunciats abans
+            .filter(event => {
+                if (!sourceClassesStart) return true;
+                if (this.isCoordinationEnunciat(event)) return true;
+                return event.date >= sourceClassesStart;
+            })
+            .sort((a, b) => new Date(a.date) - new Date(b.date));
     }
     
     // Mètode de compressió amb agrupació preservada (SEMPRE agrupar esdeveniments del mateix dia)

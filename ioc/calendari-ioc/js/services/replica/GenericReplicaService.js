@@ -20,6 +20,12 @@
 
 // CLASSE DE SERVEI DE REPLICACIÓ PER CALENDARIS GENÈRICS: Optimitzat per calendaris "Altre"
 class GenericReplicaService extends ReplicaService {
+
+    getReplicableProfessorEvents(sourceCalendar) {
+        return sourceCalendar.events
+            .filter(event => !event.isSystemEvent)
+            .sort((a, b) => new Date(a.date) - new Date(b.date));
+    }
     
     // Funció principal de replicació optimitzada per calendaris "Altre"
     replicate(sourceCalendar, targetCalendar, respectWeekdays = true) {
@@ -27,9 +33,7 @@ class GenericReplicaService extends ReplicaService {
         
         try {
             // Filtrar esdeveniments del professor
-            const professorEvents = sourceCalendar.events
-                .filter(event => !event.isSystemEvent)
-                .sort((a, b) => new Date(a.date) - new Date(b.date));
+            const professorEvents = this.getReplicableProfessorEvents(sourceCalendar);
             
             console.log(`[GENERIC_REPLICA_SERVICE] Events del professor a replicar: ${professorEvents.length}`);
             

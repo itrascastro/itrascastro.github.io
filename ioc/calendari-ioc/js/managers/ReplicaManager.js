@@ -23,12 +23,13 @@ class ReplicaManager {
     constructor() {
         this.currentSourceCalendarId = null;
         this._targetCalendarChangeHandler = null;
+        this.currentReplicationMode = 'auto';
     }
     
     // === GESTIÓ DE REPLICACIÓ ===
     
     // Obrir modal de replicació
-    openReplicationModal(sourceCalendarId) {
+    openReplicationModal(sourceCalendarId, mode = 'auto') {
         const sourceCalendar = appStateManager.calendars[sourceCalendarId];
         if (!sourceCalendar) {
             throw new CalendariIOCException('701', 'ReplicaManager.openReplicationModal');
@@ -46,9 +47,18 @@ class ReplicaManager {
 
         // Desar ID del calendari origen per usar en executeReplication
         this.currentSourceCalendarId = sourceCalendarId;
+        this.currentReplicationMode = mode;
 
         // Poblar modal estàtic amb contingut dinàmic
         document.getElementById('sourceCalendarName').textContent = sourceCalendar.name;
+        const modalTitle = document.getElementById('replicationModalTitle');
+        if (modalTitle) {
+            modalTitle.textContent = mode === 'manual' ? 'Replicar Calendari (Manual)' : 'Replicar Calendari (Auto)';
+        }
+        const executeBtn = document.getElementById('executeReplicationBtn');
+        if (executeBtn) {
+            executeBtn.textContent = mode === 'manual' ? 'Preparar' : 'Replicar';
+        }
         
         // Poblar select de calendaris destí
         this.populateTargetCalendarSelect(availableTargets);
@@ -168,6 +178,9 @@ class ReplicaManager {
     
     // Executar replicació
     executeReplication() {
+        if (this.currentReplicationMode === 'manual') {
+            return this.executeManualReplication();
+        }
         const sourceCalendarId = this.currentSourceCalendarId;
         const targetCalendarId = document.getElementById('targetCalendarSelect').value;
         // Opció temporalment desactivada per calendaris d'estudi; activada per ALTRE
@@ -263,6 +276,105 @@ class ReplicaManager {
                 throw error;
             } else {
                 throw new CalendariIOCException('705', 'ReplicaManager.executeReplication');
+            }
+        }
+    }
+
+    executeManualReplication() {
+        const sourceCalendarId = this.currentSourceCalendarId;
+        const targetCalendarId = document.getElementById('targetCalendarSelect').value;
+
+        if (!sourceCalendarId) {
+            throw new CalendariIOCException('702', 'ReplicaManager.executeManualReplication');
+        }
+
+        if (!targetCalendarId) {
+            throw new CalendariIOCException('703', 'ReplicaManager.executeManualReplication', false);
+        }
+
+        const sourceCalendar = appStateManager.calendars[sourceCalendarId];
+        const targetCalendar = appStateManager.calendars[targetCalendarId];
+
+        if (!sourceCalendar || !targetCalendar) {
+            throw new CalendariIOCException('704', 'ReplicaManager.executeManualReplication');
+        }
+
+        try {
+            console.log(`[Replicació Manual] Preparant events: ${sourceCalendar.name} → ${targetCalendar.name}`);
+
+            const replicaService = ReplicaServiceFactory.getService(sourceCalendar, targetCalendar);
+            const professorEvents = typeof replicaService.getReplicableProfessorEvents === 'function'
+                ? replicaService.getReplicableProfessorEvents(sourceCalendar)
+                : sourceCalendar.events
+                    .filter(event => !event.isSystemEvent)
+                    .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+            if (professorEvents.length === 0) {
+                uiHelper.showMessage('No hi ha events per preparar', 'warning');
+                return;
+            }
+
+            const categoryMap = replicaService.replicateRequiredCategories(professorEvents);
+            const unplacedEvents = professorEvents
+                .slice()
+                .sort((a, b) => {
+                    const diff = new Date(a.date) - new Date(b.date);
+                    if (diff !== 0) return diff;
+                    return (a.title || '').localeCompare(b.title || '');
+                })
+                .map(event => {
+                    const originalCategory = event.getCategory();
+                    const targetCategory = categoryMap.get(originalCategory?.id);
+
+                    const manualEvent = new CalendariIOC_Event({
+                        id: event.id,
+                        title: event.title,
+                        date: event.date,
+                        description: event.description || '',
+                        isSystemEvent: event.isSystemEvent || false,
+                        category: targetCategory || originalCategory
+                    });
+
+                    return {
+                        event: manualEvent,
+                        sourceCalendar,
+                        reason: 'Replicació manual'
+                    };
+                });
+
+            appStateManager.unplacedEvents = unplacedEvents;
+
+            // Canviar al calendari destí amb gestió de persistència de navegació
+            appStateManager.currentCalendarId = targetCalendarId;
+            let targetDate;
+
+            if (appStateManager.lastVisitedMonths[targetCalendarId]) {
+                targetDate = dateHelper.parseUTC(appStateManager.lastVisitedMonths[targetCalendarId]);
+                const calendarStart = dateHelper.parseUTC(targetCalendar.startDate);
+                const calendarEnd = dateHelper.parseUTC(targetCalendar.endDate);
+
+                if (targetDate < calendarStart || targetDate > calendarEnd) {
+                    targetDate = dateHelper.createUTC(calendarStart.getUTCFullYear(), calendarStart.getUTCMonth(), 1);
+                }
+            } else {
+                const calendarStart = dateHelper.parseUTC(targetCalendar.startDate);
+                targetDate = dateHelper.createUTC(calendarStart.getUTCFullYear(), calendarStart.getUTCMonth(), 1);
+            }
+
+            appStateManager.currentDate = targetDate;
+
+            storageManager.saveToStorage();
+            modalRenderer.closeModal('replicationModal');
+            this.currentSourceCalendarId = null;
+            this.currentReplicationMode = 'auto';
+
+            uiHelper.showMessage(`Replicació manual preparada: ${unplacedEvents.length} events pendents`, 'success');
+            calendarManager.updateUI();
+        } catch (error) {
+            if (error instanceof CalendariIOCException) {
+                throw error;
+            } else {
+                throw new CalendariIOCException('705', 'ReplicaManager.executeManualReplication');
             }
         }
     }

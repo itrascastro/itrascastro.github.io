@@ -121,7 +121,8 @@ class Bootstrap {
                 case 'delete-calendar': calendarManager.deleteCalendar(appStateManager.getSelectedCalendarId()); break;
                 case 'edit-calendar': modalRenderer.openCalendarEditModal(appStateManager.getSelectedCalendarId()); break;
                 case 'save-calendar-edits': calendarManager.saveCalendarEdits(); break;
-                case 'replicate-calendar': replicaManager.openReplicationModal(appStateManager.getSelectedCalendarId()); break;
+                case 'replicate-calendar-auto': replicaManager.openReplicationModal(appStateManager.getSelectedCalendarId(), 'auto'); break;
+                case 'replicate-calendar-manual': replicaManager.openReplicationModal(appStateManager.getSelectedCalendarId(), 'manual'); break;
                 case 'execute-replication': replicaManager.executeReplication(); break;
                 case 'change-view': viewManager.changeView(target.dataset.view); break;
                 case 'day-click': viewManager.changeToDateView(target.dataset.date); break;
