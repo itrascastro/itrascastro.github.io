@@ -136,6 +136,8 @@ class Bootstrap {
                 case 'replicate-calendar-manual': replicaManager.openReplicationModal(appStateManager.getSelectedCalendarId(), 'manual'); break;
                 case 'execute-replication': replicaManager.executeReplication(); break;
                 case 'copy-event': this.copyEventFromContextMenu(); break;
+                case 'edit-event': this.editEventFromContextMenu(); break;
+                case 'delete-event-context': this.deleteEventFromContextMenu(); break;
                 case 'paste-event': this.pasteEventFromContextMenu(); break;
                 case 'change-view': viewManager.changeView(target.dataset.view); break;
                 case 'day-click': viewManager.changeToDateView(target.dataset.date); break;
@@ -198,16 +200,30 @@ class Bootstrap {
 
     showEventContextMenu(menu, { mode, eventId, date, x, y }) {
         const copyBtn = menu.querySelector('[data-action="copy-event"]');
+        const editBtn = menu.querySelector('[data-action="edit-event"]');
+        const deleteBtn = menu.querySelector('[data-action="delete-event-context"]');
         const pasteBtn = menu.querySelector('[data-action="paste-event"]');
+        const event = eventId ? appStateManager.findEventById(eventId) : null;
+        const isUserEvent = !!event && !event.isSystemEvent;
 
         menu.dataset.eventId = eventId || '';
         menu.dataset.date = date || '';
 
         if (copyBtn) {
-            copyBtn.classList.toggle('disabled', mode !== 'copy');
+            copyBtn.classList.toggle('hidden', mode !== 'copy');
+            copyBtn.classList.toggle('disabled', mode !== 'copy' || !isUserEvent);
+        }
+        if (editBtn) {
+            editBtn.classList.toggle('hidden', mode !== 'copy');
+            editBtn.classList.toggle('disabled', mode !== 'copy' || !isUserEvent);
+        }
+        if (deleteBtn) {
+            deleteBtn.classList.toggle('hidden', mode !== 'copy');
+            deleteBtn.classList.toggle('disabled', mode !== 'copy' || !isUserEvent);
         }
         if (pasteBtn) {
             const canPaste = !!appStateManager.copiedEvent;
+            pasteBtn.classList.toggle('hidden', mode !== 'paste');
             pasteBtn.classList.toggle('disabled', mode !== 'paste' || !canPaste);
         }
 
@@ -250,6 +266,37 @@ class Bootstrap {
 
         this.hideEventContextMenu();
         uiHelper.showMessage('Event copiat', 'success');
+    }
+
+    editEventFromContextMenu() {
+        const menu = document.getElementById('eventContextMenu');
+        const eventId = menu?.dataset?.eventId;
+        if (!eventId) return;
+
+        const event = appStateManager.findEventById(eventId);
+        if (!event || event.isSystemEvent) {
+            uiHelper.showMessage('Només es poden editar events d\'usuari', 'warning');
+            return;
+        }
+
+        this.hideEventContextMenu();
+        modalRenderer.openEventModal(event);
+    }
+
+    deleteEventFromContextMenu() {
+        const menu = document.getElementById('eventContextMenu');
+        const eventId = menu?.dataset?.eventId;
+        if (!eventId) return;
+
+        const event = appStateManager.findEventById(eventId);
+        if (!event || event.isSystemEvent) {
+            uiHelper.showMessage('Només es poden eliminar events d\'usuari', 'warning');
+            return;
+        }
+
+        appStateManager.editingEventId = event.id;
+        this.hideEventContextMenu();
+        eventManager.deleteEvent();
     }
 
     pasteEventFromContextMenu() {

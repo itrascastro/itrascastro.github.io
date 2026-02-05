@@ -392,10 +392,23 @@
     background-color: var(--bg-color);
 }
 
+.event-context-item.danger {
+    color: var(--danger-color);
+}
+
+.event-context-item.danger:hover {
+    background-color: var(--danger-color);
+    color: white;
+}
+
 .event-context-item.disabled {
     color: var(--secondary-text-color);
     cursor: not-allowed;
     opacity: 0.6;
+}
+
+.event-context-item.hidden {
+    display: none;
 }
 
 .actions-dropdown-item.disabled:hover { 
