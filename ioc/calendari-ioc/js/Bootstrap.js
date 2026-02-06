@@ -124,6 +124,10 @@ class Bootstrap {
             if (target.classList.contains('disabled')) return;
             e.preventDefault();
             const action = target.dataset.action;
+
+            if (action === 'day-click' && document.body.classList.contains('compact-popup-mode')) {
+                if (e.type === 'click') return;
+            }
             
             switch (action) {
                 case 'toggle-theme': themeHelper.toggleTheme(); break;
