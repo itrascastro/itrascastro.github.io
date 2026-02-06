@@ -50,6 +50,7 @@ class Bootstrap {
         themeHelper.loadSavedTheme();
         appStateManager.getCurrentCalendar();
         calendarManager.updateUI();
+        this._applyStartupParams();
     }
 
     _initializeEventListeners() {
@@ -61,6 +62,7 @@ class Bootstrap {
         document.addEventListener('contextmenu', (e) => this.handleContextMenu(e));
         document.addEventListener('click', (e) => this.handleGlobalClick(e));
         window.addEventListener('scroll', () => this.hideEventContextMenu(), true);
+        window.addEventListener('storage', (e) => this.handleStorageSync(e));
         
         // Event listener específic per camp de nova categoria
         const newCategoryInput = document.getElementById('new-category-name');
@@ -81,6 +83,31 @@ class Bootstrap {
         console.log(`[Bootstrap] Aplicació inicialitzada correctament`);
         console.log(`[Bootstrap] • Discovery: ${studyTypesCount} tipus d'estudi disponibles`);
         console.log(`[Bootstrap] • Categories: ${categoriesCount} plantilles carregades`);
+    }
+
+    handleStorageSync(e) {
+        if (!e || e.key !== storageManager.STORAGE_KEY) return;
+        try {
+            storageManager.loadFromStorage();
+            calendarManager.updateUI();
+        } catch (error) {
+            console.warn('[Bootstrap] Error sincronitzant storage:', error);
+        }
+    }
+
+    _applyStartupParams() {
+        const params = new URLSearchParams(window.location.search);
+        const view = params.get('view');
+        const popup = params.get('popup');
+
+        if (popup === '1') {
+            document.documentElement.classList.add('compact-popup-mode');
+            document.body.classList.add('compact-popup-mode');
+        }
+
+        if (view && viewManager.isViewAvailable(view)) {
+            viewManager.changeView(view);
+        }
     }
 
     // === GESTOR D'ACCIONS CENTRALITZAT ===
@@ -138,6 +165,7 @@ class Bootstrap {
                 case 'copy-event': this.copyEventFromContextMenu(); break;
                 case 'edit-event': this.editEventFromContextMenu(); break;
                 case 'delete-event-context': this.deleteEventFromContextMenu(); break;
+                case 'create-event-context': this.createEventFromContextMenu(); break;
                 case 'paste-event': this.pasteEventFromContextMenu(); break;
                 case 'change-view': viewManager.changeView(target.dataset.view); break;
                 case 'day-click': viewManager.changeToDateView(target.dataset.date); break;
@@ -187,7 +215,7 @@ class Bootstrap {
             e.stopPropagation();
             e.stopImmediatePropagation();
             this.showEventContextMenu(menu, {
-                mode: 'paste',
+                mode: 'date',
                 date: dayCell.dataset.date,
                 x: e.clientX,
                 y: e.clientY
@@ -202,9 +230,12 @@ class Bootstrap {
         const copyBtn = menu.querySelector('[data-action="copy-event"]');
         const editBtn = menu.querySelector('[data-action="edit-event"]');
         const deleteBtn = menu.querySelector('[data-action="delete-event-context"]');
+        const createBtn = menu.querySelector('[data-action="create-event-context"]');
         const pasteBtn = menu.querySelector('[data-action="paste-event"]');
         const event = eventId ? appStateManager.findEventById(eventId) : null;
         const isUserEvent = !!event && !event.isSystemEvent;
+        const calendar = appStateManager.getCurrentCalendar();
+        const canCreate = !!date && dateValidationService.isDateInCalendarRange(date, calendar);
 
         menu.dataset.eventId = eventId || '';
         menu.dataset.date = date || '';
@@ -221,10 +252,14 @@ class Bootstrap {
             deleteBtn.classList.toggle('hidden', mode !== 'copy');
             deleteBtn.classList.toggle('disabled', mode !== 'copy' || !isUserEvent);
         }
+        if (createBtn) {
+            createBtn.classList.toggle('hidden', mode !== 'date');
+            createBtn.classList.toggle('disabled', mode !== 'date' || !canCreate);
+        }
         if (pasteBtn) {
             const canPaste = !!appStateManager.copiedEvent;
-            pasteBtn.classList.toggle('hidden', mode !== 'paste');
-            pasteBtn.classList.toggle('disabled', mode !== 'paste' || !canPaste);
+            pasteBtn.classList.toggle('hidden', mode !== 'date');
+            pasteBtn.classList.toggle('disabled', mode !== 'date' || !canPaste);
         }
 
         menu.style.left = `${x}px`;
@@ -297,6 +332,21 @@ class Bootstrap {
         appStateManager.editingEventId = event.id;
         this.hideEventContextMenu();
         eventManager.deleteEvent();
+    }
+
+    createEventFromContextMenu() {
+        const menu = document.getElementById('eventContextMenu');
+        const dateStr = menu?.dataset?.date;
+        if (!dateStr) return;
+
+        const calendar = appStateManager.getCurrentCalendar();
+        if (!dateValidationService.isDateInCalendarRange(dateStr, calendar)) {
+            uiHelper.showMessage('La data no està dins del calendari', 'warning');
+            return;
+        }
+
+        this.hideEventContextMenu();
+        modalRenderer.openEventModal(null, dateStr);
     }
 
     pasteEventFromContextMenu() {

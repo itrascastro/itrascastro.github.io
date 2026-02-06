@@ -29,3 +29,34 @@
     padding: 20px; 
     box-sizing: border-box; 
 }
+
+/* === MODE POPUP COMPACTE === */
+body.compact-popup-mode .app-container,
+html.compact-popup-mode .app-container {
+    grid-template-columns: 1fr;
+    grid-template-areas: "header" "main";
+    gap: 12px;
+    padding: 12px;
+}
+
+body.compact-popup-mode .sidebar,
+html.compact-popup-mode .sidebar {
+    display: none;
+}
+
+body.compact-popup-mode .main-header,
+body.compact-popup-mode .calendar-header,
+html.compact-popup-mode .main-header,
+html.compact-popup-mode .calendar-header {
+    display: none;
+}
+
+body.compact-popup-mode .calendar-container,
+html.compact-popup-mode .calendar-container {
+    height: calc(100vh - 24px);
+}
+
+body.compact-popup-mode .compact-fullscreen-btn,
+html.compact-popup-mode .compact-fullscreen-btn {
+    display: none;
+}

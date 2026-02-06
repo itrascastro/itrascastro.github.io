@@ -30,6 +30,40 @@ una aplicació web per gestionar calendaris acadèmics.
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/calendar.css">
     <link rel="stylesheet" href="css/themes.css">
+    <script>
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('popup') === '1') {
+                document.documentElement.classList.add('compact-popup-mode');
+                const style = document.createElement('style');
+                style.textContent = `
+                    html.compact-popup-mode body { overflow: hidden !important; }
+                    html.compact-popup-mode .app-container { 
+                        grid-template-columns: 1fr !important; 
+                        grid-template-areas: "main" !important; 
+                        gap: 0 !important; 
+                        padding: 0 !important; 
+                        height: 100vh !important;
+                    }
+                    html.compact-popup-mode .sidebar,
+                    html.compact-popup-mode .main-header,
+                    html.compact-popup-mode .calendar-header { display: none !important; }
+                    html.compact-popup-mode .calendar-container { 
+                        height: 100vh !important; 
+                        padding: 8px !important; 
+                        box-sizing: border-box !important;
+                    }
+                    html.compact-popup-mode .compact-zoom-slider { display: none !important; }
+                    html.compact-popup-mode .calendar-grid-wrapper { overflow-x: hidden !important; }
+                    html.compact-popup-mode ::-webkit-scrollbar-corner { background: transparent !important; }
+                `;
+                document.head.appendChild(style);
+                window.addEventListener('DOMContentLoaded', () => {
+                    document.body.classList.add('compact-popup-mode');
+                });
+            }
+        })();
+    </script>
 </head>
 <body class="light-mode">
     <div class="app-container">
@@ -240,6 +274,7 @@ una aplicació web per gestionar calendaris acadèmics.
         <button class="event-context-item" data-action="copy-event">Copiar</button>
         <button class="event-context-item" data-action="edit-event">Editar</button>
         <button class="event-context-item danger" data-action="delete-event-context">Eliminar</button>
+        <button class="event-context-item" data-action="create-event-context">Crear</button>
         <button class="event-context-item" data-action="paste-event">Pegar</button>
     </div>
 

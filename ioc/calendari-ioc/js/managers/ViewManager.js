@@ -303,111 +303,15 @@ class ViewManager {
     }
 
     openCompactFullscreen() {
-        const calendar = appStateManager.getCurrentCalendar();
-        if (!calendar) return;
-
         const popupFeatures = 'width=1200,height=800,resizable=yes,scrollbars=yes';
-        const popup = window.open('', '_blank', popupFeatures);
+        const url = new URL(window.location.href);
+        url.searchParams.set('view', 'compact');
+        url.searchParams.set('popup', '1');
+        const popup = window.open(url.toString(), '_blank', popupFeatures);
 
         if (!popup) {
             uiHelper.showMessage('El navegador ha bloquejat la finestra emergent. Permet emergents per veure la vista compacta.', 'warning');
-            return;
         }
-
-        const compactHTML = this.renderers.compact.render(calendar, appStateManager.currentDate, 'DOM');
-        const themeClass = document.body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
-        const cssLinks = [
-            'css/variables.css',
-            'css/base.css',
-            'css/layout.css',
-            'css/components.css',
-            'css/calendar.css',
-            'css/themes.css'
-        ].map(href => `<link rel="stylesheet" href="${href}">`).join('\n                ');
-
-        popup.document.open();
-        popup.document.write(`<!DOCTYPE html>
-<html lang="ca">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>${calendar.name} · Vista compacta</title>
-        ${cssLinks}
-        <style>
-            body { margin: 0; background: var(--bg-color); }
-            .compact-popup-shell { display: flex; flex-direction: column; height: 100vh; }
-            .compact-popup-header { display: flex; align-items: center; gap: 12px; padding: 16px 20px 12px; border-bottom: 1px solid var(--border-color); }
-            .compact-popup-title { flex: 1; font-size: 1.1em; font-weight: 600; color: var(--main-text-color); margin: 0; }
-            .compact-popup-actions { display: inline-flex; align-items: center; gap: 12px; }
-            .compact-popup-actions input[type="range"] { width: 160px; height: 14px; -webkit-appearance: none; background: transparent; }
-            .compact-popup-actions input[type="range"]::-webkit-slider-runnable-track { height: 4px; background: var(--border-color); border-radius: 4px; }
-            .compact-popup-actions input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: var(--accent-color); margin-top: -4px; border: none; }
-            .compact-popup-actions input[type="range"]::-moz-range-track { height: 4px; background: var(--border-color); border-radius: 4px; }
-            .compact-popup-actions input[type="range"]::-moz-range-progress { height: 4px; background: var(--accent-color); border-radius: 4px; }
-            .compact-popup-actions input[type="range"]::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--accent-color); border: none; }
-            .compact-popup-close { background: none; border: 1px solid var(--border-color); border-radius: 6px; padding: 4px 10px; font-size: 0.85em; cursor: pointer; color: var(--main-text-color); }
-            .compact-popup-close:hover { background: var(--bg-color); }
-            .compact-popup-body { flex: 1; padding: 16px; overflow: auto; display: flex; align-items: flex-start; }
-            .compact-popup-canvas { position: relative; width: 100%; min-width: 360px; }
-            .compact-popup-content { transform-origin: top left; display: inline-block; }
-        </style>
-    </head>
-    <body class="${themeClass}">
-        <div class="compact-popup-shell">
-            <header class="compact-popup-header">
-                <h1 class="compact-popup-title">${calendar.name} · Vista compacta</h1>
-                <div class="compact-popup-actions">
-                    <label for="compactPopupZoom" class="visually-hidden">Zoom</label>
-                    <input id="compactPopupZoom" type="range" min="60" max="180" step="5" value="100" aria-label="Zoom vista compacta">
-                    <button id="compactPopupClose" class="compact-popup-close" type="button">Tancar</button>
-                </div>
-            </header>
-            <main class="compact-popup-body">
-                <div class="compact-popup-canvas">
-                    <div class="compact-popup-content">${compactHTML}</div>
-                </div>
-            </main>
-        </div>
-        <script>
-            (function(){
-                const zoomInput = document.getElementById('compactPopupZoom');
-                const canvas = document.querySelector('.compact-popup-canvas');
-                const content = document.querySelector('.compact-popup-content');
-                const closeBtn = document.getElementById('compactPopupClose');
-
-                const applyZoom = (rawValue) => {
-                    const safe = Number.isFinite(rawValue) ? rawValue : 100;
-                    const zoom = Math.max(0.6, Math.min(1.8, safe / 100));
-                    const baseWidth = content.scrollWidth;
-                    const baseHeight = content.scrollHeight;
-                    const scaledWidth = Math.max(360, baseWidth * zoom);
-                    const scaledHeight = Math.max(240, baseHeight * zoom);
-                    content.style.transform = 'scale(' + zoom + ',' + zoom + ')';
-                    canvas.style.width = scaledWidth + 'px';
-                    canvas.style.height = scaledHeight + 'px';
-                };
-
-                zoomInput.addEventListener('input', function(){
-                    const value = parseInt(this.value, 10);
-                    applyZoom(Number.isNaN(value) ? 100 : value);
-                });
-
-                window.addEventListener('resize', function(){
-                    const value = parseInt(zoomInput.value, 10);
-                    applyZoom(Number.isNaN(value) ? 100 : value);
-                });
-
-                closeBtn.addEventListener('click', function(){
-                    window.close();
-                });
-
-                const initialValue = parseInt(zoomInput.value, 10);
-                applyZoom(Number.isNaN(initialValue) ? 100 : initialValue);
-            })();
-        </script>
-    </body>
-</html>`);
-        popup.document.close();
     }
     
     // Renderitzar vista mensual
