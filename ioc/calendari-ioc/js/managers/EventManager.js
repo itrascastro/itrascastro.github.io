@@ -65,9 +65,18 @@ class EventManager {
         const calendar = appStateManager.getCurrentCalendar();
         if (!calendar || !appStateManager.editingEventId) return;
 
+        const event = calendar.findEventById(appStateManager.editingEventId);
+        if (!event) return;
+
+        const isSystemEvent = !!event.isSystemEvent;
+        const confirmMessage = isSystemEvent
+            ? "Aquest esdeveniment és de sistema. Estàs segur que el vols eliminar?\\n\\nAquesta acció no es pot desfer."
+            : "Estàs segur que vols eliminar aquest event?";
+        const confirmTitle = isSystemEvent ? 'Eliminar event de sistema' : 'Eliminar event';
+
         uiHelper.showConfirmModal(
-            "Estàs segur que vols eliminar aquest event?",
-            'Eliminar event',
+            confirmMessage,
+            confirmTitle,
             () => {
                 // FASE 3: Usar mètode controlat de la classe Calendar
                 calendar.removeEvent(appStateManager.editingEventId);

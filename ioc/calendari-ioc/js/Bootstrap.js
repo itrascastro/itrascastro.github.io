@@ -238,6 +238,7 @@ class Bootstrap {
         const pasteBtn = menu.querySelector('[data-action="paste-event"]');
         const event = eventId ? appStateManager.findEventById(eventId) : null;
         const isUserEvent = !!event && !event.isSystemEvent;
+        const canDelete = !!event;
         const calendar = appStateManager.getCurrentCalendar();
         const canCreate = !!date && dateValidationService.isDateInCalendarRange(date, calendar);
 
@@ -254,7 +255,7 @@ class Bootstrap {
         }
         if (deleteBtn) {
             deleteBtn.classList.toggle('hidden', mode !== 'copy');
-            deleteBtn.classList.toggle('disabled', mode !== 'copy' || !isUserEvent);
+            deleteBtn.classList.toggle('disabled', mode !== 'copy' || !canDelete);
         }
         if (createBtn) {
             createBtn.classList.toggle('hidden', mode !== 'date');
@@ -328,11 +329,7 @@ class Bootstrap {
         if (!eventId) return;
 
         const event = appStateManager.findEventById(eventId);
-        if (!event || event.isSystemEvent) {
-            uiHelper.showMessage('Només es poden eliminar events d\'usuari', 'warning');
-            return;
-        }
-
+        if (!event) return;
         appStateManager.editingEventId = event.id;
         this.hideEventContextMenu();
         eventManager.deleteEvent();
