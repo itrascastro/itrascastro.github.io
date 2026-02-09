@@ -259,24 +259,54 @@ class ModalRenderer {
         const modal = document.getElementById('eventModal');
         const title = document.getElementById('eventModalTitle');
         const deleteBtn = document.getElementById('deleteEventBtn');
+        const saveBtn = document.getElementById('saveEventBtn');
+        const titleInput = document.getElementById('eventTitle');
+        const dateInput = document.getElementById('eventDate');
+        const categorySelect = document.getElementById('eventCategory');
+        const descriptionInput = document.getElementById('eventDescription');
         
-        eventManager.populateCategorySelect();
-
-        if (event && !event.isSystemEvent) {
+        if (event) {
+            const isSystemEvent = !!event.isSystemEvent;
             appStateManager.editingEventId = event.id;
-            title.textContent = 'Editar Esdeveniment';
-            document.getElementById('eventTitle').value = event.title;
-            document.getElementById('eventDate').value = event.date;
-            document.getElementById('eventCategory').value = event.getCategory()?.id || '';
-            document.getElementById('eventDescription').value = event.description || '';
+            title.textContent = isSystemEvent ? 'Esdeveniment de Sistema' : 'Editar Esdeveniment';
+            titleInput.value = event.title;
+            dateInput.value = event.date;
+            descriptionInput.value = event.description || '';
+
+            if (isSystemEvent) {
+                categorySelect.innerHTML = '';
+                const systemOption = document.createElement('option');
+                const categoryName = event.getCategory()?.name || 'Sense categoria';
+                systemOption.value = event.getCategory()?.id || '';
+                systemOption.textContent = categoryName;
+                systemOption.selected = true;
+                categorySelect.appendChild(systemOption);
+            } else {
+                eventManager.populateCategorySelect();
+                categorySelect.value = event.getCategory()?.id || '';
+            }
+
+            titleInput.disabled = isSystemEvent;
+            dateInput.disabled = isSystemEvent;
+            categorySelect.disabled = isSystemEvent;
+            descriptionInput.disabled = isSystemEvent;
+            saveBtn.disabled = isSystemEvent;
+            saveBtn.style.display = isSystemEvent ? 'none' : '';
             deleteBtn.style.display = 'inline-block';
         } else {
             appStateManager.editingEventId = null;
             title.textContent = 'Nou Esdeveniment';
-            document.getElementById('eventTitle').value = '';
-            document.getElementById('eventDate').value = date;
-            document.getElementById('eventCategory').value = '';
-            document.getElementById('eventDescription').value = '';
+            eventManager.populateCategorySelect();
+            titleInput.value = '';
+            dateInput.value = date;
+            categorySelect.value = '';
+            descriptionInput.value = '';
+            titleInput.disabled = false;
+            dateInput.disabled = false;
+            categorySelect.disabled = false;
+            descriptionInput.disabled = false;
+            saveBtn.disabled = false;
+            saveBtn.style.display = '';
             deleteBtn.style.display = 'none';
         }
 

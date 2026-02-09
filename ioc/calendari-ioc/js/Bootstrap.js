@@ -119,7 +119,9 @@ class Bootstrap {
             if (e.type === 'click' && Date.now() - this._lastContextMenuAt < 600) {
                 return;
             }
-            const target = e.target.closest('[data-action]');
+            const rawTarget = e.target;
+            const elementTarget = rawTarget && rawTarget.nodeType === Node.TEXT_NODE ? rawTarget.parentElement : rawTarget;
+            const target = elementTarget?.closest('[data-action]');
             if (!target) return;
             if (target.classList.contains('disabled')) return;
             e.preventDefault();
@@ -127,6 +129,9 @@ class Bootstrap {
 
             if (action === 'day-click' && document.body.classList.contains('compact-popup-mode')) {
                 if (e.type === 'click') return;
+            }
+            if (action === 'day-click' && (e.target.closest('.event, .compact-event, .event-list-item'))) {
+                return;
             }
             
             switch (action) {
@@ -198,7 +203,9 @@ class Bootstrap {
         const menu = document.getElementById('eventContextMenu');
         if (!menu) return;
 
-        const eventEl = e.target.closest('[data-event-id], [data-action="open-event-modal"]');
+        const rawTarget = e.target;
+        const elementTarget = rawTarget && rawTarget.nodeType === Node.TEXT_NODE ? rawTarget.parentElement : rawTarget;
+        const eventEl = elementTarget?.closest('[data-event-id], [data-action="open-event-modal"]');
         const eventId = eventEl?.dataset?.eventId;
         if (eventId) {
             e.preventDefault();
@@ -213,7 +220,7 @@ class Bootstrap {
             return;
         }
 
-        const dayCell = e.target.closest('.day-cell, .compact-day-cell, [data-date]');
+        const dayCell = elementTarget?.closest('.day-cell, .compact-day-cell, [data-date]');
         if (dayCell?.dataset?.date) {
             e.preventDefault();
             e.stopPropagation();

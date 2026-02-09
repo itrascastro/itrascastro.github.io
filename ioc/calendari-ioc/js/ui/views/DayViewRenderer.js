@@ -123,7 +123,7 @@ class DayViewRenderer extends CalendarRenderer {
         } else {
             // Per a DOM - amb interactivitat
             const eventClasses = ['event-list-item', isUserEvent ? 'is-user-event' : 'is-system-event'];
-            const openModalAction = isUserEvent ? `data-action="open-event-modal" data-event-id="${event.id}"` : '';
+            const openModalAction = `data-action="open-event-modal" data-event-id="${event.id}"`;
             const draggableAttr = isUserEvent ? 'draggable="true"' : '';
             
             return `
