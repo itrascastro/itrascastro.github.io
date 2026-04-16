@@ -52,8 +52,9 @@
         .forum-content-hidden { display: none; }
         .forum-content-visible { display: block; border-top: 1px solid #e0e0e0; padding-top: 10px; margin-top: 10px; }
         .dark-mode .forum-content-visible { border-top-color: #777; }
-        .dark-mode .ajax-notification-wrapper img.icon, .dark-mode .mail-notification img.icon { filter: invert(1) brightness(0.8); }
+        .dark-mode .ajax-notification-wrapper img.icon { filter: invert(1) brightness(0.8); }
         .mail-notification { margin-left: 8px; display: inline-flex; align-items: flex-end; gap: 0px; }
+        .mail-notification .icon { width: 16px; height: 16px; flex: 0 0 auto; color: currentColor; }
         .mail-count { font-size: 0.9em; color: inherit; font-weight: normal; margin-left: 3px; line-height: 1; position: relative; top: 2px; }
         .content-updating { opacity: 0.5; transition: opacity 0.3s ease; }
         .content-updated { opacity: 1; transition: opacity 0.3s ease; }
@@ -107,7 +108,7 @@
 <h2>Docent</h2>
 <ul>
 <li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=836" target="_blank">[FC] Departament d'Informàtica i comunicacions</a></div></li>
-<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=5626" target="_blank">[CI] Intranet</a><div class="ajax-notification-wrapper content-updated"><div class="local-course-overview-container" data-loaded="true" id="local-course-overview-container-5626"> <span class="local-course-overview-item"> <a href="https://ioc.xtec.cat/campus/mod/assign/index.php?id=5626" target="_blank"> <img alt="Tasques pendents" class="icon" src="https://ioc.xtec.cat/campus/mod/assign/pix/monologo.svg" title="Tasques pendents"/> <span>1</span> </a> </span> <div id="local-course-overview-forum-5626" style="display:none;"> </div> </div> </div></div></li>
+<li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=5626" target="_blank">[CI] Intranet</a><div class="ajax-notification-wrapper content-updated"><div class="local-course-overview-container" data-loaded="true" id="local-course-overview-container-5626"> <span class="local-course-overview-item" id="local-course-overview-item-5626" onclick="toggleVisibility(5626)"> <img alt="Missatges no llegits" class="icon" src="https://ioc.xtec.cat/campus/mod/forum/pix/monologo.svg" title="Missatges no llegits"/> <span class="local-course-overview-item-forum">1</span> </span> <span class="local-course-overview-item"> <a href="https://ioc.xtec.cat/campus/mod/assign/index.php?id=5626" target="_blank"> <img alt="Tasques pendents" class="icon" src="https://ioc.xtec.cat/campus/mod/assign/pix/monologo.svg" title="Tasques pendents"/> <span>1</span> </a> </span> <div id="local-course-overview-forum-5626" style="display:none;"> <ul><li><strong>1</strong> no llegit a <a href="https://ioc.xtec.cat/campus/mod/forum/view.php?id=1506583" target="_blank">Publicar notícies o canvis Web</a></li></ul> </div> </div> </div></div></li>
 <li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=841" target="_blank">[FC] PRF Sala del professorat d'FP</a></div></li>
 </ul>
 <h2>Aplicacions</h2>
@@ -181,7 +182,7 @@
 </div>
 
 <script>
-        // === VERSIÓ ESTÁTICA GENERADA EL 16/04/2026 13:29:50 ===
+        // === VERSIÓ ESTÁTICA GENERADA EL 16/04/2026 13:32:00 ===
         
         const moodleStatusEl = document.getElementById('moodle-status');
         const refreshButton = document.getElementById('refresh-moodle');
@@ -189,7 +190,7 @@
         
         function disableAjaxFeatures() {
             if (refreshButton) { refreshButton.style.display = 'none'; }
-            if (moodleStatusEl) { moodleStatusEl.textContent = 'Versió estàtica - Última actualització: 16/04/2026 13:29'; }
+            if (moodleStatusEl) { moodleStatusEl.textContent = 'Versió estàtica - Última actualització: 16/04/2026 13:32'; }
             if (countdownEl) { countdownEl.style.display = 'none'; }
         }
         
