@@ -53,8 +53,8 @@
         .forum-content-visible { display: block; border-top: 1px solid #e0e0e0; padding-top: 10px; margin-top: 10px; }
         .dark-mode .forum-content-visible { border-top-color: #777; }
         .dark-mode .ajax-notification-wrapper img.icon { filter: invert(1) brightness(0.8); }
-        .mail-notification { margin-left: 8px; display: inline-flex; align-items: flex-end; gap: 0px; }
-        .mail-notification .icon { width: 18px; height: 18px; flex: 0 0 auto; color: currentColor; }
+        .mail-notification { margin-left: 8px; display: inline-flex; align-items: center; gap: 0px; }
+        .mail-notification .icon { width: 24px; height: 24px; flex: 0 0 auto; color: currentColor; }
         .mail-count { font-size: 0.9em; color: inherit; font-weight: normal; margin-left: 3px; line-height: 1; position: relative; top: 2px; }
         .content-updating { opacity: 0.5; transition: opacity 0.3s ease; }
         .content-updated { opacity: 1; transition: opacity 0.3s ease; }
@@ -184,7 +184,7 @@
 </div>
 
 <script>
-        // === VERSIÓ ESTÁTICA GENERADA EL 16/04/2026 13:46:03 ===
+        // === VERSIÓ ESTÁTICA GENERADA EL 16/04/2026 13:48:59 ===
         
         const moodleStatusEl = document.getElementById('moodle-status');
         const refreshButton = document.getElementById('refresh-moodle');
@@ -192,7 +192,7 @@
         
         function disableAjaxFeatures() {
             if (refreshButton) { refreshButton.style.display = 'none'; }
-            if (moodleStatusEl) { moodleStatusEl.textContent = 'Versió estàtica - Última actualització: 16/04/2026 13:46'; }
+            if (moodleStatusEl) { moodleStatusEl.textContent = 'Versió estàtica - Última actualització: 16/04/2026 13:48'; }
             if (countdownEl) { countdownEl.style.display = 'none'; }
         }
         
