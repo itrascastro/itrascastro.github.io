@@ -2,7 +2,7 @@
 layout: post
 title:  "Baratos.net - A Privacy-First Tool for Finding Online Deals"
 description: "Baratos.net helps you browse, filter, and compare online deals without turning the product into a user-data machine"
-date:   2026-05-03 12:00:00 +0200
+date:   2026-05-03 10:00:00 +0200
 tags: [ baratos.net, deals, privacy, automation, web ]
 comments: true
 author: itrascastro
