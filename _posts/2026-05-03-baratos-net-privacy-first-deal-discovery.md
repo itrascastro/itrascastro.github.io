@@ -48,11 +48,14 @@ Baratos.net is not built around harvesting user data, building personal profiles
 
 In practical terms, the philosophy is this:
 
+- no registration is required
+- no email address is requested
+- browsing is meant to stay fully anonymous
 - the site should be useful without asking you for personal data
 - the value should come from showing and filtering offers well
 - the product should not depend on knowing who you are
 
-That matters to me. Too many websites in this space are really data collection products with a deals layer on top. I want Baratos.net to stay closer to the opposite idea: a straightforward utility that helps you find interesting offers and get out.
+That matters to me. Too many websites in this space are really data collection products with a deals layer on top. I want Baratos.net to stay closer to the opposite idea: a straightforward utility that helps you find interesting offers and get out, without turning the visit into a registration funnel or a profiling exercise.
 
 ## What the Project Does
 

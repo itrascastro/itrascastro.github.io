@@ -15,3 +15,5 @@ Vocational Education Teacher at [Institut Obert de Catalunya (IOC)](https://ioc.
 [Symfony](http://symfony.com) and [Zend Framework](http://framework.zend.com/) instructor at [alfa9](http://www.alfa9.com).
 
 Creator of [xenframework](https://github.com/xenframework), a PHP MVC Framework for learning purposes.
+
+Creator of [baratos.net](https://baratos.net), a privacy-first platform for finding, filtering and comparing online deals with no registration, no email and fully anonymous browsing.
