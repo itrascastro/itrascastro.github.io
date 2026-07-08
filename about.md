@@ -16,4 +16,6 @@ Vocational Education Teacher at [Institut Obert de Catalunya (IOC)](https://ioc.
 
 Creator of [xenframework](https://github.com/xenframework), a PHP MVC Framework for learning purposes.
 
+Creator of [TDownloader](https://tdownloader.org), a cross-platform desktop app that turns Telegram channels into a searchable catalog for batch-downloading files to your disk, and doubles as a personal cloud (TCloud) with folders, tags and notes.
+
 Creator of [baratos.net](https://baratos.net), a privacy-first platform for finding, filtering and comparing online deals with no registration, no email and fully anonymous browsing.
