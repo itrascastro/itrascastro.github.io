@@ -1,45 +1,33 @@
 ---
 layout: post
-title:  "TDownloader: Turning Telegram Into a Drive You Actually Control"
-description: "A desktop app that pulls files out of Telegram channels into a searchable catalog on your disk, and turns Telegram itself into an organized personal cloud."
+title:  "TDownloader: Download and Organize Your Telegram Files"
+description: "A cross-platform desktop app that indexes Telegram channels into a searchable catalog you can download from, and uses Telegram itself as an organized cloud with folders, tags and notes."
 date:   2026-07-08 10:00:00 +0200
-tags: [ tdownloader.org, telegram, tcloud, downloads, desktop, privacy ]
+tags: [ tdownloader.org, telegram, tcloud, downloads, desktop ]
 comments: true
 author: itrascastro
 ---
 
-Somewhere in my Telegram there are channels holding years of material I actually care about: documents, images, media, things I meant to keep. And for the longest time all of it was effectively stuck there. Telegram is a wonderful place to *receive* files and a miserable place to *manage* them. You cannot search a channel the way you search a folder, you cannot select forty files and pull them down in one move, and you certainly cannot lay everything out and calmly decide what is worth keeping.
+[TDownloader](https://tdownloader.org) is a desktop application for Linux, Windows and macOS that does two jobs with Telegram: it gets your files out onto your disk, and it lets you use Telegram itself as an organized store you fully control. Here is what it actually does.
 
-[TDownloader](https://tdownloader.org) grew out of that frustration. It is a small desktop app for Linux, Windows and macOS with a single obsession: treat Telegram the way I always wished it worked, like a drive I can browse, search, download from, and organize.
+## Browse a channel like a folder, not a feed
 
-## A channel becomes a catalog
+Point TDownloader at a Telegram channel and it indexes the whole thing into a catalog: every file with its name, type and size, all in a single view. From there you search by name, filter by file type, and tick the exact set you want. A channel with thousands of items stops being an infinite scroll and turns into something you can query in seconds. When the channel gets new content, the catalog keeps up with it.
 
-The first thing TDownloader does with a channel is turn it into a catalog. Instead of scrolling forever and hoping to recognize that file you saw three months ago, the whole channel is laid out in front of you: names, types, sizes. You search it. You filter it down to just the kind of file you are after. You tick exactly what you want.
+## Download in batches, at full speed
 
-That single shift, from an endless feed into something you can query, is most of the value for me. The moment a channel becomes searchable and filterable, deciding what to keep stops feeling like archaeology.
+Selected files go into download projects. You choose a destination folder, and TDownloader works through the queue at your connection's top speed, showing progress for each file as it lands. You can line up a large batch, start it, and step away. It does not need you to tap once per attachment or keep the window in focus, and it does not lose its place if you close it and come back.
 
-## Downloading, done properly
+## TCloud: an organized cloud that lives on Telegram
 
-Choosing files is only half the job. The other half is getting them onto disk without standing guard over the process.
+TCloud is the second half of the app. It gives a Telegram channel the structure of a cloud drive: folders, tags, notes and saved links, plus file upload. Drag a folder onto it and the whole directory tree is recreated inside. Everything you put there stays in Telegram, so there is no separate storage to trust, and TDownloader keeps the layout synchronized between your computers, so your organization looks the same on every machine you use. When you want a whole space back on disk, you download it in one operation and get the lot as a single archive.
 
-So downloads are organized as projects. You gather the files you want, point them at a folder, and let the app work through the queue at your connection's full speed while progress updates in real time. No saving one attachment at a time, no losing your place halfway through, no wondering whether the batch ever finished. You set it going and it delivers.
+## No backend of its own
 
-## TCloud: Telegram as a drive you control
+TDownloader has no server behind it. It runs on your machine and connects to Telegram directly, the same way the official client does: no account to register with me, nothing sitting in the middle, and no report of your activity going anywhere. What you download and how you organize it lives on your disk and only there.
 
-At some point it clicked that the same machinery that pulls files *out* of Telegram could also make Telegram a genuinely good place to *keep* things, if only it had some structure on top. That idea became TCloud, and it is the part of the project I never planned and now use the most.
+## Getting it
 
-TCloud lets you take a Telegram channel and run it like an organized personal cloud. You can drop files into it, and dragging in a whole folder recreates its entire tree on the other side. You can write notes, save links, and arrange everything with folders and tags. The content itself never leaves Telegram, so there is no copy sitting on some server of mine, yet TDownloader keeps the structure in sync across your machines, so the same tidy layout follows you from your laptop to your desktop. And when you want a whole space back on your disk, you can pull it down in one go.
+The app ships as a single self-contained executable on all three platforms, with nothing to install around it, and it updates itself in the background. If your Telegram is full of files you would rather have downloaded properly and kept in order, that is exactly the job it was built for:
 
-It turned a chat app into something closer to a filing cabinet I actually control.
-
-## None of it leaves your machine
-
-Underneath everything sits a line I did not want to cross: TDownloader runs on your own computer and talks to Telegram directly, exactly the way the official client does. There is no account to sign up for, no service of mine standing between you and your files, and nothing about what you download or store ever gets reported back to me. Your files, your catalog, the way you organized it: all of it stays on your disk.
-
-This is not a privacy sticker slapped on at the end. It is the reason the app is built the way it is. A tool whose whole job is to look after your files has no business quietly collecting them too.
-
-## Where it is now
-
-TDownloader is something I built for my own everyday use, sharpened until it genuinely felt good, and then left open for anyone with the same itch: too much worth keeping locked inside Telegram, and no sane way to get it out and hold on to it in order.
-
-If that sounds like a problem you recognize, it lives here: [https://tdownloader.org](https://tdownloader.org).
+[https://tdownloader.org](https://tdownloader.org)
