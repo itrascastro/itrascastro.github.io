@@ -98,6 +98,10 @@
 
     $('btn-corregeix').addEventListener('click', corregeix);
     $('btn-altre').addEventListener('click', function () { nouExercici(conceptePreferit); });
+    $('conceptes').addEventListener('change', function () {
+      conceptePreferit = $('conceptes').value || null;
+      nouExercici(conceptePreferit);
+    });
     $('btn-solucio').addEventListener('click', mostraSolucio);
     $('btn-reinicia').addEventListener('click', function () {
       marcador = { encerts: 0, fallades: 0 }; pintaMarcador();
@@ -1755,28 +1759,29 @@
 
   /* --- Exercicis ---------------------------------------------------------------- */
 
+  /* Que es vol practicar. Era una llista de catorze botons que s'enduia mitja
+     columna; ara es un desplegable al costat del titol, que es on va un filtre
+     del que hi ha a sota, i deixa l'espai per a la correccio, que es el que
+     ensenya alguna cosa. */
   function pintaConceptes() {
-    var zona = $('conceptes');
-    zona.innerHTML = '';
+    var tria = $('conceptes');
+    tria.innerHTML = '';
 
-    afegeixConcepte(zona, null, 'Barreja de tot', 'totes les unitats');
+    afegeixConcepte(tria, null, 'Barreja de tot', 'totes les unitats');
     Exercicis.CONCEPTES.forEach(function (c) {
-      afegeixConcepte(zona, c.id, c.nom, c.unitats);
+      afegeixConcepte(tria, c.id, c.nom, c.unitats);
     });
+    tria.value = conceptePreferit || '';
   }
 
-  function afegeixConcepte(zona, id, nom, unitats) {
-    var b = document.createElement('button');
-    b.type = 'button';
-    b.dataset.concepte = id || '';
-    b.innerHTML = '<span class="nom">' + nom + '</span><span class="u">' + unitats + '</span>';
-    if ((conceptePreferit || '') === (id || '')) b.className = 'actiu';
-    b.addEventListener('click', function () {
-      conceptePreferit = id;
-      pintaConceptes();
-      nouExercici(id);
-    });
-    zona.appendChild(b);
+  function afegeixConcepte(tria, id, nom, unitats) {
+    var o = document.createElement('option');
+    o.value = id || '';
+    /* Nomes el nom: les unitats ja surten a l'etiqueta de l'exercici i aqui
+       nomes servirien per no deixar llegir el nom sencer. */
+    o.textContent = nom;
+    o.title = 'Unitats ' + unitats;
+    tria.appendChild(o);
   }
 
   function nouExercici(concepte) {

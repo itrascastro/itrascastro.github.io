@@ -118,8 +118,16 @@
   <!-- Columna dreta: l'exercici i la correccio                          -->
   <!-- ---------------------------------------------------------------- -->
   <aside>
-    <section class="bloc" style="margin-bottom:1.1rem">
-      <h2>Exercici</h2>
+    <!-- L'exercici es queda quiet a dalt; la correccio, que es el que creix,
+         s'endu tota l'alçada que sobra i es desplaça per dins. -->
+    <section class="bloc bloc-exercici">
+      <h2>
+        Exercici
+        <label class="tria-concepte">
+          <span>Practica</span>
+          <select id="conceptes" aria-label="Què vols practicar"></select>
+        </label>
+      </h2>
       <div class="cos">
         <div class="etiquetes" id="etiquetes"></div>
         <p class="enunciat" id="enunciat"></p>
@@ -127,28 +135,21 @@
           <summary>Pista</summary>
           <div class="dins" id="pista"></div>
         </details>
-        <div class="botons">
-          <button class="boto principal" id="btn-corregeix" type="button">Corregeix</button>
-          <button class="boto" id="btn-altre" type="button">Un altre</button>
-          <button class="boto" id="btn-solucio" type="button">Ensenya-me-la</button>
-        </div>
+      </div>
+      <div class="botons">
+        <button class="boto principal" id="btn-corregeix" type="button">Corregeix</button>
+        <button class="boto" id="btn-altre" type="button">Un altre</button>
+        <button class="boto" id="btn-solucio" type="button">Ensenya-me-la</button>
       </div>
     </section>
 
-    <section class="bloc" style="margin-bottom:1.1rem">
+    <section class="bloc bloc-correccio">
       <h2>Correcció</h2>
       <div class="cos" id="correccio">
-        <p style="color:var(--muted);margin:0;font-size:.9rem">
+        <p class="buit-correccio">
           Construïu la consulta i premeu <b>Corregeix</b>. Si falla, us dirà què heu
           fet, per què està malament i com hauria de quedar.
         </p>
-      </div>
-    </section>
-
-    <section class="bloc">
-      <h2>Què vols practicar</h2>
-      <div class="cos">
-        <div class="conceptes" id="conceptes"></div>
       </div>
     </section>
   </aside>

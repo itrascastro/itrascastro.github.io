@@ -544,20 +544,6 @@ details.pista .dins { padding: 0 .8rem .7rem; font-size: .9rem; }
 .avis dd { margin: 0; font-size: .9rem; }
 .avis dd.solucio { color: var(--ok); }
 
-/* --- Menu de conceptes -------------------------------------------------------- */
-
-.conceptes { display: grid; gap: .4rem; }
-.conceptes button {
-  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .5rem;
-  width: 100%; text-align: left;
-  border: 1px solid var(--line); background: var(--card);
-  border-radius: var(--radius-s); padding: .6rem .8rem;
-}
-.conceptes button:hover { border-color: var(--blue-mid); }
-.conceptes button.actiu { background: var(--blue-soft); border-color: var(--blue-mid); }
-.conceptes .nom { font-weight: 650; color: var(--ink); font-size: .9rem; }
-.conceptes .u { font-size: .72rem; color: var(--muted); font-family: var(--mono); }
-
 /* Catalag de valors dins d'una correccio */
 .cataleg { display: block; margin-top: .3rem; line-height: 2; }
 .cataleg .quants { color: var(--muted); font-size: .78rem; margin-right: .45rem; }
@@ -730,3 +716,47 @@ table.resultat th.num, table.resultat td.num {
   #pestanya-taules, #pestanya-sql { overflow: auto; }
   #pestanya-taules:not([hidden]), #pestanya-sql:not([hidden]) { flex: 1 1 auto; min-height: 0; }
 }
+
+/* --- La columna de la dreta ------------------------------------------------
+   Dues caixes: l'exercici es queda quiet a dalt i la correccio s'endu tot el
+   que sobra. La correccio es el que creix -pot portar tres o quatre avisos amb
+   el seu perque i el seu com s'ha de fer- i es la que ha de tenir espai.
+   ---------------------------------------------------------------------- */
+
+@media (min-width: 1151px) {
+  .taulell > aside { gap: 1.1rem; overflow: hidden; }
+  /* L'exercici ocupa el que necessita i no s'encongeix: un enunciat tallat per
+     la meitat es pitjor que un enunciat que es desplaça. Nomes quan es fa
+     massa alt -enunciat llarg amb la pista oberta- topa amb el limit i llavors
+     si que es desplaça per dins. */
+  .bloc-exercici { flex: 0 0 auto; display: flex; flex-direction: column; min-height: 0; max-height: 55%; }
+  .bloc-exercici .cos { overflow-y: auto; min-height: 0; flex: 1 1 auto; }
+  .bloc-correccio { flex: 1 1 auto; display: flex; flex-direction: column; min-height: 12rem; }
+  .bloc-correccio .cos { overflow-y: auto; min-height: 0; flex: 1 1 auto; }
+}
+@media (max-width: 1150px) {
+  .taulell > aside { gap: 1.1rem; }
+}
+
+/* El titol de la caixa porta el filtre a la dreta */
+.bloc > h2 { display: flex; align-items: center; gap: .6rem; }
+.tria-concepte { margin-left: auto; display: flex; align-items: center; gap: .4rem; text-transform: none; letter-spacing: 0; }
+.tria-concepte > span { font-size: .72rem; font-weight: 600; color: var(--muted); letter-spacing: .04em; }
+.tria-concepte select {
+  font: inherit; font-size: .78rem; font-weight: 600; letter-spacing: 0;
+  text-transform: none; color: var(--ink);
+  max-width: 14rem;
+  padding: .2rem .4rem;
+  border: 1px solid var(--line); border-radius: var(--radius-s);
+  background: var(--card);
+}
+.tria-concepte select:hover { border-color: var(--blue-mid); }
+
+/* Els botons de l'exercici no es desplacen amb l'enunciat: son sempre a la vista */
+.bloc-exercici .botons {
+  flex: 0 0 auto; margin: 0;
+  padding: .8rem 1.1rem;
+  border-top: 1px solid var(--line);
+  background: var(--panel);
+}
+.buit-correccio { color: var(--muted); margin: 0; font-size: .9rem; }
