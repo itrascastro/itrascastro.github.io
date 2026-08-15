@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ca" data-unit="09" data-root="../..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>09 · Tipus de pressupost, llocs ocupats i reservats - Click &amp; Decide</title>
+<meta name="description" content="El camp TIPR_TIPUS_PRESSUP amb els seus cinc valors, i com filtrar camps de text buits enfront de camps de data nuls.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="prev" href="../08/">
+<link rel="next" href="../10/">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../../index.html">Click &amp; Decide <em>· Guia d'aprenentatge</em></a>
+    <nav>
+      <span class="position">Unitat 09 / 18</span>
+      <span data-unit-picker></span>
+      <a class="step-link" href="../../index.html">Índex</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+
+  <header class="unit-head">
+    <p class="eyebrow">Part II · Unitat 09</p>
+    <h1>Tipus de pressupost, llocs ocupats i reservats</h1>
+    <p class="lede">
+      Dues preguntes que semblen senzilles i no ho són: quins llocs tenen diners
+      assignats i quins tenen algú a dins. La primera necessita un camp que
+      <strong>només conté codis, sense cap descripció al costat</strong>. La segona
+      és la primera aplicació real del problema dels camps de text buits, que arrossega
+      des de la unitat 4.
+    </p>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2>En aquesta unitat</h2>
+      <ol>
+        <li><a href="#pressupost">El tipus de pressupost</a></li>
+        <li><a href="#descobrir">Descobrir codis sense descripció</a></li>
+        <li><a href="#combinacions">Les combinacions que importen</a></li>
+        <li><a href="#buit">Text buit i data nul·la</a></li>
+        <li><a href="#ocupats">Els llocs ocupats</a></li>
+        <li><a href="#reservats">Els llocs reservats</a></li>
+        <li><a href="#vacants">Vacants realment ocupables</a></li>
+        <li><a href="#errors">Errors freqüents</a></li>
+        <li><a href="#exercicis">Exercicis</a></li>
+        <li><a href="#comprovacio">Llista de comprovació</a></li>
+      </ol>
+      <dl class="sidebar-aside">
+        <dt>Objectiu</dt>
+        <dd>Saber quins llocs estan pressupostats, ocupats o reservats.</dd>
+        <dt>Taula</dt>
+        <dd><span class="tag lloc">WAIV9080_LLOC</span></dd>
+        <dt>Camp clau</dt>
+        <dd><code>TIPR_TIPUS_PRESSUP</code></dd>
+        <dt>Consulta model</dt>
+        <dd>La número 2 de la unitat 00: 27 vacants ocupables.</dd>
+      </dl>
+    </aside>
+
+    <main class="content">
+
+      <section id="pressupost">
+        <h2><span class="num">Apartat 1</span>El tipus de pressupost</h2>
+        <p>
+          El camp <code>TIPR_TIPUS_PRESSUP</code> indica l'estat pressupostari del
+          lloc. Té una particularitat que el fa incòmode:
+        </p>
+        <div class="note warn">
+          <span class="label">Un camp sense descripció</span>
+          <p>
+            A diferència de la majoria, aquest camp <strong>només conté codis</strong>
+            i no té una columna equivalent amb la descripció. Sense consultar el manual
+            de dades administratives, una <code>Z</code> no vol dir absolutament res.
+          </p>
+        </div>
+
+        <p>
+          El camp creua dues coses alhora: si el lloc <strong>té diners</strong> i si
+          <strong>té algú a dins</strong>. Per això té cinc valors i no quatre:
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Valors de TIPR_TIPUS_PRESSUP</caption>
+            <thead>
+              <tr><th class="code">Valor</th><th>Pressupostat</th><th>Ocupat</th><th>Significat</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code">Z</td><td>Sí</td><td>Sí</td>
+                <td>Lloc pressupostat i ocupat. El cas normal d'un lloc en funcionament.</td>
+              </tr>
+              <tr>
+                <td class="code">X</td><td>Sí</td><td>No</td>
+                <td>Lloc pressupostat i vacant. <strong>Hi ha diners i no hi ha ningú</strong>: és la vacant que es pot cobrir.</td>
+              </tr>
+              <tr>
+                <td class="code">V</td><td>Sí</td><td>No</td>
+                <td>Lloc pressupostat, vacant i <strong>que no es pot ocupar</strong>.</td>
+              </tr>
+              <tr>
+                <td class="code">O</td><td>No</td><td>Sí</td>
+                <td>Lloc ocupat però sense pressupost associat. Passa en incorporacions urgents, quan la persona entra abans que es formalitzi la dotació.</td>
+              </tr>
+              <tr>
+                <td class="code">-</td><td>No</td><td>No</td>
+                <td>Plaça sense pressupost i vacant. Ni diners ni persona.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note bad">
+          <span class="label">El valor que fa equivocar tothom</span>
+          <p>
+            <code>X</code> i <code>V</code> són <strong>totes dues</strong> vacants
+            pressupostades. La diferència és que les <code>V</code>
+            <strong>no es poden ocupar</strong>. Qui demana "les vacants amb diners"
+            i filtra per les dues, o filtra només per "pressupostat i vacant" sense
+            mirar el codi, entrega una llista de places que no es poden cobrir.
+          </p>
+        </div>
+
+        <figure>
+          <img src="img/tipus_pressupost_lloc.png" alt="Els codis del camp de tipus de pressupost del lloc i el seu significat combinant dotació econòmica i ocupació.">
+          <figcaption>
+            El camp creua dues dimensions: si hi ha dotació i si hi ha ocupant.
+          </figcaption>
+        </figure>
+              <p>
+          El cas de la <code>O</code> val la pena entendre'l perquè explica per
+          què existeix: és el lloc <b>ocupat sense pressupost</b>, i es dona en
+          <b>incorporacions d'urgència</b>. Cal un reforç o una substitució de
+          seguida, la persona entra, i la dotació pressupostària encara no està
+          formalitzada. Si compteu llocs amb diners assignats i hi incloeu les
+          <code>O</code>, comptareu places que encara no en tenen.
+        </p>
+</section>
+
+      <section id="descobrir">
+        <h2><span class="num">Apartat 2</span>Descobrir codis sense descripció</h2>
+        <p>
+          Quan us trobeu un camp com aquest i no teniu el manual a mà, hi ha una
+          tècnica per veure <strong>quins valors existeixen realment</strong> a les
+          vostres dades.
+        </p>
+        <div class="path">
+          Seleccioneu només aquell camp <span class="sep">&rarr;</span>
+          <span class="ui">Propietats de la consulta</span>
+          <span class="sep">&rarr;</span>
+          <span class="ui">Registres únics</span> a <strong>Sí</strong>
+        </div>
+        <p>
+          En comptes de milers de files repetides, obteniu una llista curta amb cada
+          valor una sola vegada. És la manera més ràpida de saber què hi ha en un camp
+          desconegut, i és el contingut sencer de la unitat 11.
+        </p>
+        <div class="note">
+          <span class="label">Compte amb una cosa</span>
+          <p>
+            Això us diu quins codis <strong>hi ha a les vostres dades</strong>, no
+            quins codis <strong>existeixen</strong>. Si el vostre departament no té cap
+            lloc <code>V</code>, no en veureu cap, i podríeu concloure que no existeix.
+            La llista completa sempre és al PDF de la taula.
+          </p>
+        </div>
+              <figure>
+          <img src="img/codis_pressupost_real.png" alt="Resultat d'una consulta de registres únics sobre TIPR_TIPUS_PRESSUP: cinc files amb un valor en blanc, un guionet, una O, una X i una Z.">
+          <figcaption>
+            El resultat de la consulta amb <b>Registres únics</b> sobre el camp
+            de tipus de pressupost. Cinc valors, i val la pena mirar-los bé: el
+            primer és <b>en blanc</b>, i la <code>V</code> que documenta el
+            manual <b>no hi surt</b>. Per això es fa aquesta consulta abans de
+            filtrar: el que hi ha al vostre àmbit no és el que diu el manual,
+            sinó això.
+            <span class="font">Videotutorial 9 de l'EAPC, minut 0:53.</span>
+          </figcaption>
+        </figure>
+
+</section>
+
+      <section id="combinacions">
+        <h2><span class="num">Apartat 3</span>Les combinacions que importen</h2>
+        <p>
+          Aquest camp gairebé sempre es combina amb l'estat de plantilla de la unitat
+          8. Aquestes són les preguntes reals i el seu criteri:
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption>De la pregunta al criteri</caption>
+            <thead>
+              <tr><th>Pregunta</th><th>Criteri</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Quantes places tenim dotades i cobertes</td>
+                <td><code>TIPR = 'Z'</code></td>
+              </tr>
+              <tr>
+                <td>Quantes vacants podem cobrir ara</td>
+                <td><code>TIPR = 'X'</code> i estat de plantilla vigent</td>
+              </tr>
+              <tr>
+                <td>Quantes places tenim sense dotar</td>
+                <td><code>TIPR Llista ('O', '-')</code></td>
+              </tr>
+              <tr>
+                <td>Quanta gent treballa sense dotació formalitzada</td>
+                <td><code>TIPR = 'O'</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="buit">
+        <h2><span class="num">Apartat 4</span>Text buit i data nul·la</h2>
+        <p>
+          Arribem al punt que hem anunciat a les unitats 4 i 6. Ara toca aplicar-lo, i
+          val la pena tenir-lo molt clar perquè reapareixerà a les unitats 13, 14 i 18.
+        </p>
+
+        <div class="versus">
+          <div class="no">
+            <h4>Camp de text</h4>
+            <p>
+              Click &amp; Decide <strong>omple els camps de text amb espais</strong>
+              fins a la seva longitud màxima. Un NIF "buit" no està buit: conté nou
+              espais.
+            </p>
+            <div class="criteri is-bad">ACT_NIFPER <span class="op">És nul</span>
+<span class="bad">-- 0 registres, sempre</span></div>
+            <p>Cal comparar-lo amb un espai en blanc.</p>
+          </div>
+          <div class="si">
+            <h4>Camp de data</h4>
+            <p>
+              Una data no es pot farcir d'espais. Quan no n'hi ha, el camp
+              <strong>és nul de veritat</strong>.
+            </p>
+            <div class="criteri is-good">DATA_FI <span class="op">És nul</span>
+<span class="good">-- funciona</span></div>
+            <p>Aquí <span class="ui">És nul</span> és l'operador correcte.</p>
+          </div>
+        </div>
+
+
+        <figure>
+          <img src="img/cap_operadors_camp_text.png" alt="Desplegable Operadors obert sobre el camp de text ACT_NIFPER, amb Es nul i No es nul a la llista.">
+          <figcaption>
+            El desplegable sobre un camp <code>Char</code>. Hi surten <span class="ui">És nul</span> i <span class="ui">No és nul</span> igualment: el programa no us avisa de res.
+          </figcaption>
+        </figure>
+
+        <figure>
+          <img src="img/text_blanc_data_nul.png" alt="Diferència entre un camp de text buit, que conté espais, i un camp de data nul, que no conté res.">
+          <figcaption>
+            La distinció que explica la meitat de les consultes que tornen zero
+            registres.
+          </figcaption>
+        </figure>
+
+        <div class="note ok">
+          <span class="label">La regla en una línia</span>
+          <p>
+            <strong>Text buit s'omple d'espais; data buida és nul·la.</strong> Si el
+            camp és de text, compareu amb un espai. Si és de data, feu servir
+            <span class="ui">És nul</span>.
+          </p>
+        </div>
+
+        <h3>Per què hi cau tanta gent</h3>
+        <figure>
+          <img src="img/cap_operador_inclou.png" alt="Desplegable Operadors amb l'opcio Inclou remarcada, situada dues linies per sota de Es nul.">
+          <figcaption>
+            I aquí hi ha la casualitat cruel: <span class="ui">Inclou</span>, que és l'operador correcte, i <span class="ui">És nul</span>, que és el que falla, són gairebé veïns a la llista.
+          </figcaption>
+        </figure>
+
+        <div class="note bad">
+          <span class="label">El programa no us avisa</span>
+          <p>
+            La llista d'operadors <strong>és la mateixa per a tots els tipus de
+            camp</strong>. Sobre un camp <code>Char</code>, Click &amp; Decide us
+            ofereix <span class="ui">És nul</span> amb la mateixa naturalitat que
+            qualsevol altre operador: no el desactiva, no el marca i no diu res.
+            Simplement, en executar, torna zero registres.
+          </p>
+          <p>
+            Per això aquesta unitat és la que més temps estalvia de tot el curs. No hi
+            ha cap senyal a la interfície que us protegeixi d'aquest error: l'única
+            defensa és saber de quin tipus és el camp.
+          </p>
+        </div>
+              <div class="note">
+          <span class="label">Per què no serveix Inclou un espai</span>
+          <p>
+            És temptador buscar la buidor amb <span class="ui">Inclou</span> un
+            espai, i és una trampa. <code>ACT_NIFPER</code> té <b>deu</b>
+            caràcters i un NIF en fa <b>nou</b>: tots els valors, els plens
+            també, porten un espai de farciment al final. Amb
+            <span class="ui">Inclou</span> un espai us sortirien <b>tots</b> els
+            registres de la taula.
+          </p>
+          <p>
+            Amb <span class="ui">Igual</span> no passa, perquè el valor que
+            escriviu també es farceix fins a la llargada del camp: un espai
+            passa a ser deu espais, i això només casa amb els que estan buits
+            del tot. <span class="ui">Inclou</span> un espai només funciona quan
+            els valors omplen el camp sencer, que és el cas menys freqüent.
+          </p>
+        </div>
+</section>
+
+      <section id="ocupats">
+        <h2><span class="num">Apartat 5</span>Els llocs ocupats</h2>
+        <p>
+          Una de les consultes més demanades: quins llocs de la plantilla tenen algú
+          treballant-hi ara mateix. El camp és <code>ACT_NIFPER</code>, el NIF de
+          l'ocupant actual, i la lògica és directa:
+        </p>
+        <ul>
+          <li>si el camp <strong>està en blanc</strong>, no hi ha NIF, i el lloc està buit;</li>
+          <li>si el camp <strong>té un NIF escrit</strong>, el lloc està ocupat.</li>
+        </ul>
+
+        <ol class="steps">
+          <li>
+            <h3>Obriu els criteris del camp</h3>
+            <p>Clic a la casella de la lupa a la línia d'<code>ACT_NIFPER</code>.</p>
+          </li>
+          <li>
+            <h3>Trieu l'operador Diferent</h3>
+            <p>Perquè volem els que <em>no</em> estan en blanc.</p>
+          </li>
+          <li>
+            <h3>Premeu una vegada la barra espaiadora</h3>
+            <p>
+              A la caixa de valor, <strong>un sol espai</strong>. No escriviu res més.
+              És l'única part que costa de creure la primera vegada.
+            </p>
+          </li>
+          <li>
+            <h3>Accepteu i executeu</h3>
+            <p>
+              El criteri diu: mostra'm els registres on aquest camp contingui algun
+              text que no sigui un simple espai en blanc.
+            </p>
+          </li>
+        </ol>
+
+        <div class="criteri is-good">ACT_NIFPER <span class="op">Diferent</span> ' '
+
+<span class="cm">-- llocs amb ocupant actual</span></div>
+
+
+        <div class="note ok">
+          <span class="label">La diferència està en una tecla</span>
+          <p>
+            Amb la caixa buida, el criteri és <code>&lt;&gt; ''</code>: diferent de
+            <em>res</em>. En prémer una vegada la barra espaiadora passa a ser
+            <code>&lt;&gt; ' '</code>: diferent d'<em>un espai</em>. La primera versió
+            no serveix; la segona és la que torna els llocs ocupats. A la pantalla
+            l'única diferència visible és un espai entre les cometes, i és tot el que
+            hi ha entre una consulta correcta i una que no ho és.
+          </p>
+        </div>
+
+        <figure>
+          <img src="img/cap_diferent_blanc.png" alt="Finestra Criteris amb el camp ACT_NIFPER, l'operador diferent i la caixa de valor buida. Al panell Camps el criteri es llegeix amb dues cometes.">
+          <figcaption>
+            El moment just abans de prémer la barra espaiadora: el criteri encara diu <code>&lt;&gt; ''</code>, amb el valor buit.
+          </figcaption>
+        </figure>
+
+        <figure>
+          <img src="img/llocs_ocupats.png" alt="Criteri per obtenir els llocs ocupats: camp del NIF de l'ocupant actual diferent d'un espai en blanc.">
+          <figcaption>
+            El criteri dels llocs ocupats, amb l'espai a la caixa de valor.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="reservats">
+        <h2><span class="num">Apartat 6</span>Els llocs reservats</h2>
+        <p>
+          Exactament la mateixa lògica, canviant de camp. Per saber quins llocs estan
+          reservats per a algú, per exemple per a persones en excedència amb reserva,
+          s'aplica el criteri sobre <code>RES_NIFPER</code>.
+        </p>
+        <div class="criteri is-good">RES_NIFPER <span class="op">Diferent</span> ' '
+
+<span class="cm">-- llocs amb reserva</span></div>
+        <figure>
+          <img src="img/llocs_reservats.png" alt="Aplicació del mateix criteri al camp del NIF de la persona amb reserva del lloc.">
+          <figcaption>
+            La mateixa tècnica sobre el camp de reserva.
+          </figcaption>
+        </figure>
+        <p>
+          I el contrari, els llocs <strong>sense</strong> reserva, és el que ja vau
+          resoldre a l'exercici EX-06-3: comparar amb l'espai en comptes de negar-lo.
+          A la unitat 18 hi ha el matís que falta per als casos on els valors normals
+          ja contenen espais.
+        </p>
+      </section>
+
+      <section id="vacants">
+        <h2><span class="num">Apartat 7</span>Vacants realment ocupables</h2>
+        <p>
+          Ara podem construir la consulta model 2 de la unitat 00, que és el cas real
+          que junta tot el que hem vist en dues unitats.
+        </p>
+        <div class="recepta lloc">
+          <h3>Llocs vigents i vacants ocupables</h3>
+          <dl>
+            <div><dt>Per a què serveix</dt><dd>Detectar llocs actuals que poden necessitar cobertura.</dd></div>
+            <div><dt>Taula</dt><dd><span class="tag lloc">WAIV9080_LLOC</span></dd></div>
+            <div><dt>Criteri</dt><dd><div class="criteri">LLOC_ESTAT_PLANTILLA <span class="op">=</span> 'R'
+<span class="op">AND</span> TIPR_TIPUS_PRESSUP <span class="op">=</span> 'X'</div></dd></div>
+            <div><dt>Per què cada peça</dt><dd>
+              <code>R</code> deixa només places de la RLT, i descarta històriques,
+              previstes i provisionals. <code>X</code> deixa només les vacants
+              <strong>amb dotació i ocupables</strong>, i descarta les <code>V</code>,
+              que tenen diners però no es poden cobrir.
+            </dd></div>
+          </dl>
+          <p class="recepta-out"><b>27</b> llocs <span>resultat de control</span></p>
+        </div>
+        <div class="note">
+          <span class="label">Fixeu-vos en el que no hi ha</span>
+          <p>
+            No cal filtrar <code>ACT_NIFPER</code> per veure que estan buits: el codi
+            <code>X</code> <strong>ja vol dir vacant</strong>. Posar-hi les dues coses
+            no és incorrecte, però és redundant. Entendre els codis estalvia criteris.
+          </p>
+        </div>
+      </section>
+
+      <section id="errors">
+        <h2><span class="num">Apartat 8</span>Errors freqüents</h2>
+        <div class="versus">
+          <div class="no">
+            <h4>El que passa</h4>
+            <p><strong>Filtro per NIF nul i no surt res.</strong></p>
+            <p><strong>La llista de vacants inclou places que no es poden cobrir.</strong></p>
+            <p><strong>Tinc llocs ocupats sense pressupost. És un error de dades?</strong></p>
+            <p><strong>No sé què vol dir aquest codi.</strong></p>
+          </div>
+          <div class="si">
+            <h4>El que passa de veritat</h4>
+            <p>És un camp de text: està ple d'espais, no és nul. Compareu amb un espai.</p>
+            <p>Heu inclòs les <code>V</code>. Només les <code>X</code> són ocupables.</p>
+            <p>No. És el codi <code>O</code>, i passa en incorporacions urgents anteriors a la dotació.</p>
+            <p>Aquest camp no té descripció. PDF de la taula, o consulta de registres únics per veure què hi ha.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="exercicis">
+        <h2><span class="num">Apartat 9</span>Exercicis</h2>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-09-1</span>
+            <h3>Vacants ocupables</h3>
+            <span class="mena">Reprodueix</span>
+          </header>
+          <div class="cos">
+            <p>
+              Construïu la consulta model 2: llocs de la RLT, pressupostats i vacants
+              ocupables. Mostreu el codi de lloc, la unitat orgànica i el tipus de
+              pressupost.
+            </p>
+            <details>
+              <summary>Comprovació</summary>
+              <div class="dins">
+                <div class="criteri">LLOC_ESTAT_PLANTILLA <span class="op">=</span> 'R'
+<span class="op">AND</span> TIPR_TIPUS_PRESSUP <span class="op">=</span> 'X'</div>
+                <p class="resposta"><b>27</b> llocs</p>
+                <p>
+                  Comproveu que a la columna de tipus de pressupost del resultat només
+                  hi ha <code>X</code>. Si hi apareix cap <code>V</code>, el criteri
+                  està mal escrit.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-09-2</span>
+            <h3>Les dues maneres de comptar vacants</h3>
+            <span class="mena">Trenca</span>
+          </header>
+          <div class="cos">
+            <p>Feu tres consultes sobre els llocs vigents i compareu-ne les xifres:</p>
+            <ol>
+              <li><code>TIPR = 'X'</code></li>
+              <li><code>TIPR Llista ('X','V')</code></li>
+              <li><code>ACT_NIFPER</code> igual a un espai, és a dir, llocs sense ocupant</li>
+            </ol>
+            <details>
+              <summary>Què hauria d'haver passat</summary>
+              <div class="dins">
+                <p>
+                  <strong>1 &lt; 2 &lt; 3.</strong> Les tres responen preguntes
+                  diferents i totes tres són correctes segons què us hagin demanat:
+                </p>
+                <ul>
+                  <li><strong>1.</strong> Vacants amb diners i ocupables. És la que voleu per planificar cobertures.</li>
+                  <li><strong>2.</strong> Totes les vacants pressupostades, incloses les que no es poden ocupar. Serveix per a un informe econòmic.</li>
+                  <li><strong>3.</strong> Tots els llocs buits, tinguin dotació o no. Hi entren també les places sense pressupost.</li>
+                </ul>
+                <p>
+                  Aquesta és, en petit, la lliçó de tot el curs: la mateixa paraula,
+                  "vacants", té tres respostes numèriques diferents.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-09-3</span>
+            <h3>Cobertura real d'una unitat</h3>
+            <span class="mena">Resol</span>
+          </header>
+          <div class="cos">
+            <p>
+              Us demanen, per a la vostra unitat, quants llocs vigents estan
+              <strong>ocupats però no reservats per ningú</strong>. És a dir, llocs
+              amb ocupant estable, sense cap persona amb dret a tornar-hi.
+            </p>
+            <details>
+              <summary>Pista</summary>
+              <div class="dins">
+                <p>
+                  Són tres condicions unides per AND, i dues d'elles són sobre camps de
+                  text: una busca contingut i l'altra busca buidor.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>Solució</summary>
+              <div class="dins">
+                <div class="criteri is-good">LLOC_ESTAT_PLANTILLA <span class="op">No en la llista</span> ('A','H','S')
+<span class="op">AND</span> ACT_NIFPER <span class="op">Diferent</span> ' '
+<span class="op">AND</span> RES_NIFPER <span class="op">Inclou</span> ' '</div>
+                <p>
+                  Fixeu-vos en l'asimetria: per buscar <strong>contingut</strong> es fa
+                  servir <span class="ui">Diferent</span> d'un espai, i per buscar
+                  <strong>buidor</strong>, <span class="ui">Inclou</span> un espai.
+                </p>
+                <p>
+                  Aquesta segona part té una excepció important que veurem a la unitat
+                  18: si els valors normals del camp ja contenen espais entre paraules,
+                  com els noms de població, <span class="ui">Inclou</span> els
+                  seleccionaria tots, i llavors cal <span class="ui">Igual</span> a un
+                  espai. Amb un camp de NIF no hi ha aquest problema.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="comprovacio">
+        <h2><span class="num">Apartat 10</span>Llista de comprovació</h2>
+        <ul class="checklist">
+          <li>Enumerar els cinc valors de <code>TIPR_TIPUS_PRESSUP</code> i què creuen.</li>
+          <li>Explicar la diferència entre <code>X</code> i <code>V</code> i per què importa.</li>
+          <li>Justificar per què <code>O</code> no és un error de dades.</li>
+          <li>Descobrir els codis d'un camp sense descripció amb registres únics.</li>
+          <li>Saber que això mostra els codis presents, no tots els possibles.</li>
+          <li>Explicar per què un camp de text buit no és nul.</li>
+          <li>Obtenir els llocs ocupats amb el criteri de l'espai en blanc.</li>
+          <li>Aplicar la mateixa tècnica als llocs reservats.</li>
+          <li>Distingir buscar contingut de buscar buidor en un camp de text.</li>
+          <li>Construir la consulta de vacants realment ocupables.</li>
+          <li>Explicar per què "vacants" pot tenir tres xifres diferents.</li>
+        </ul>
+        <div class="note">
+          <span class="label">A la unitat següent</span>
+          <p>
+            Fins ara totes les consultes tornen el detall, una fila per registre. La
+            unitat 10 comença la Part III i ensenya a resumir: comptar, agrupar i
+            calcular mitjanes, màxims i mínims. Allà apareixen els tres comptadors que
+            el material sovint confon.
+          </p>
+        </div>
+      </section>
+
+      <nav class="unit-nav">
+        <a class="prev" href="../08/">
+          <span class="dir">Unitat 08</span>
+          <span class="ttl">La taula de llocs i l'estat de plantilla</span>
+        </a>
+        <a class="next" href="../10/">
+          <span class="dir">Unitat 10</span>
+          <span class="ttl">Agrupacions, recomptes i agregats</span>
+        </a>
+      </nav>
+
+      <footer class="site-foot">
+        <span>Guia elaborada per <strong>Ismael Trascastro</strong></span>
+        <span class="dret">Sobre material de l'Escola d'Administració Pública de Catalunya</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<script src="../../assets/tutorial.js?v=3"></script>
+</body>
+</html>

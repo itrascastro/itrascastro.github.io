@@ -1,0 +1,992 @@
+/* ---------------------------------------------------------------------------
+   Click & Decide — Guia d'aprenentatge
+
+   La paleta i les formes surten directament de les infografies del curs:
+   blau corporatiu per a PERSONA, verd per a LLOC, violeta per a INCIDÈNCIA i
+   taronja per a PUNTERH. Targetes blanques, cantonades arrodonides i etiquetes
+   en majúscula, igual que als esquemes.
+   --------------------------------------------------------------------------- */
+
+:root {
+  /* Neutres, presos dels fons de les infografies */
+  --bg:         #f4f7fb;
+  --card:       #ffffff;
+  --panel:      #f8fafd;
+  --line:       #dde5f1;
+  --line-soft:  #e9eff8;
+
+  /* Tipografia */
+  --ink:        #16224d;
+  --text:       #2c3852;
+  --muted:      #6b7891;
+
+  /* Blau corporatiu */
+  --navy:       #12276b;
+  --blue:       #003eaa;
+  --blue-mid:   #1f5fbf;
+  --blue-soft:  #eaf1fc;
+
+  /* Colors d'entitat: sempre la mateixa taula, sempre el mateix color */
+  --persona:      #1f5fbf;
+  --persona-soft: #eaf1fc;
+  --lloc:         #1a7a38;
+  --lloc-soft:    #e8f5ec;
+  --incidencia:   #592193;
+  --incidencia-soft: #f1eafa;
+  --punterh:      #d9660f;
+  --punterh-soft: #fdf0e4;
+
+  /* Semàntics */
+  --ok:         #1a7a38;
+  --ok-soft:    #e8f5ec;
+  --warn:       #b45309;
+  --warn-soft:  #fdf3e3;
+  --bad:        #c0392b;
+  --bad-soft:   #fdecea;
+
+  --sans: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  --radius:   14px;
+  --radius-s: 9px;
+  --shadow:   0 1px 2px rgba(18, 39, 107, .05), 0 6px 20px rgba(18, 39, 107, .05);
+  /* Es limita la caixa, mai el text: aixi el text omple sempre el seu
+     contenidor. Nomes hi ha dos amples a tot el curs, i comparteixen
+     marge esquerre: la prosa es llegeix estreta, les dades volen aire. */
+  --prosa:    42rem;
+  --ample:    56rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 3px; }
+
+strong { font-weight: 650; color: var(--ink); }
+
+/* --- Capçalera ----------------------------------------------------------- */
+
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(244, 247, 251, .93);
+  backdrop-filter: saturate(180%) blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.masthead-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: .8rem 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+.wordmark {
+  font-size: .98rem;
+  font-weight: 750;
+  letter-spacing: -.01em;
+  color: var(--navy);
+  white-space: nowrap;
+}
+.wordmark:hover { text-decoration: none; }
+.wordmark em { font-style: normal; font-weight: 500; color: var(--muted); }
+.masthead nav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.masthead nav a { color: var(--muted); }
+.masthead nav a:hover { color: var(--blue); text-decoration: none; }
+.masthead .position { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.masthead .step-link {
+  color: var(--blue);
+  background: var(--blue-soft);
+  border-radius: 999px;
+  padding: .34rem .8rem;
+}
+
+.unit-picker { position: relative; }
+.unit-picker > summary {
+  list-style: none;
+  cursor: pointer;
+  white-space: nowrap;
+  color: var(--muted);
+}
+.unit-picker > summary::-webkit-details-marker { display: none; }
+.unit-picker > summary::after { content: " \25BE"; }
+.unit-picker[open] > summary, .unit-picker > summary:hover { color: var(--blue); }
+.unit-picker-panel {
+  position: absolute;
+  top: calc(100% + .9rem);
+  right: 0;
+  width: min(28rem, calc(100vw - 2.5rem));
+  max-height: min(32rem, calc(100vh - 8rem));
+  overflow-y: auto;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 14px 40px rgba(18, 39, 107, .14);
+  padding: .45rem;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.unit-picker-panel ol { list-style: none; margin: 0; padding: 0; }
+.unit-picker-panel a {
+  display: grid;
+  grid-template-columns: 2.3rem minmax(0, 1fr);
+  gap: .4rem;
+  padding: .5rem .7rem;
+  border-radius: var(--radius-s);
+  font-size: .87rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text);
+}
+.unit-picker-panel a:hover { background: var(--panel); color: var(--blue); text-decoration: none; }
+.unit-picker-panel a[aria-current="page"] { background: var(--blue-soft); color: var(--blue); font-weight: 650; }
+.unit-picker-panel .n { color: var(--muted); font-variant-numeric: tabular-nums; font-weight: 650; }
+.unit-picker-panel a[aria-current="page"] .n { color: var(--blue); }
+
+/* --- Estructura ---------------------------------------------------------- */
+
+.page { max-width: 1100px; margin: 0 auto; padding: 0 1.75rem 5rem; }
+.layout { display: grid; grid-template-columns: 15.5rem minmax(0, 1fr); gap: 2.75rem; align-items: start; }
+
+/* --- Portada d'unitat ---------------------------------------------------- */
+
+.unit-head { padding: 3rem 0 2.25rem; }
+.eyebrow {
+  display: inline-block;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--blue);
+  background: var(--blue-soft);
+  border-radius: 999px;
+  padding: .34rem .85rem;
+  margin: 0 0 1.1rem;
+}
+.unit-head h1 {
+  font-size: clamp(1.95rem, 4.2vw, 2.75rem);
+  line-height: 1.14;
+  font-weight: 800;
+  letter-spacing: -.022em;
+  color: var(--navy);
+  margin: 0 0 1rem;
+  max-width: 30ch;
+}
+.lede { font-size: 1.1rem; line-height: 1.6; color: var(--text); max-width: var(--prosa); margin: 0; }
+
+/* --- Barra lateral ------------------------------------------------------- */
+
+.sidebar { position: sticky; top: 5.5rem; }
+.sidebar h2 {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 .7rem;
+  padding-left: .75rem;
+}
+.sidebar ol { list-style: none; margin: 0; padding: 0; counter-reset: toc; }
+.sidebar li { counter-increment: toc; }
+.sidebar li a {
+  display: block;
+  padding: .42rem .75rem .42rem 2.4rem;
+  position: relative;
+  font-size: .87rem;
+  line-height: 1.4;
+  color: var(--text);
+  border-radius: var(--radius-s);
+}
+.sidebar li a::before {
+  content: counter(toc, decimal-leading-zero);
+  position: absolute;
+  left: .75rem;
+  font-size: .74rem;
+  font-weight: 700;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.sidebar li a:hover { background: var(--panel); text-decoration: none; }
+.sidebar li a.is-current { background: var(--blue-soft); color: var(--blue); font-weight: 650; }
+.sidebar li a.is-current::before { color: var(--blue); }
+
+.sidebar-aside {
+  margin: 1.5rem 0 0;
+  padding: 1rem 1.1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: .82rem;
+}
+.sidebar-aside dt {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: .85rem;
+}
+.sidebar-aside dt:first-child { margin-top: 0; }
+.sidebar-aside dd { margin: .12rem 0 0; color: var(--text); line-height: 1.5; }
+
+/* --- Seccions ------------------------------------------------------------ */
+
+.content { min-width: 0; }
+.content > section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.9rem 2.1rem;
+  margin-bottom: 1.5rem;
+  scroll-margin-top: 5.5rem;
+}
+.content h2 {
+  font-size: 1.42rem;
+  font-weight: 750;
+  line-height: 1.25;
+  letter-spacing: -.017em;
+  color: var(--navy);
+  margin: 0 0 1.2rem;
+}
+.content h2 .num {
+  display: block;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: .4rem;
+}
+.content h3 {
+  font-size: 1.06rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 1.9rem 0 .6rem;
+  letter-spacing: -.008em;
+}
+.content h4 {
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 1.6rem 0 .5rem;
+}
+.content > section > :first-child { margin-top: 0; }
+.content p { margin: 0 0 1rem; }
+.content ul, .content ol { margin: 0 0 1.1rem; padding-left: 1.3rem; }
+.content li { margin: .38rem 0; }
+.content li::marker { color: var(--blue-mid); }
+.content > section > :last-child { margin-bottom: 0; }
+
+/* --- Codis, camps i rutes ------------------------------------------------ */
+
+code {
+  font-family: var(--mono);
+  font-size: .855em;
+  font-weight: 550;
+  color: var(--blue);
+  background: var(--blue-soft);
+  border-radius: 5px;
+  padding: .1em .38em;
+  white-space: nowrap;
+}
+.ui {
+  font-weight: 650;
+  color: var(--blue);
+  white-space: nowrap;
+}
+kbd {
+  font-family: var(--sans);
+  font-size: .76em;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  padding: .12em .42em;
+  white-space: nowrap;
+}
+
+.path {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem;
+  background: var(--panel);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-s);
+  padding: .7rem .9rem;
+  margin: 0 0 1.2rem;
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.path .sep { color: var(--blue-mid); font-weight: 700; }
+.path code { background: var(--card); }
+
+/* --- Blocs de criteri i SQL ---------------------------------------------- */
+
+.criteri {
+  font-family: var(--mono);
+  font-size: .82rem;
+  line-height: 1.8;
+  color: var(--ink);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+  padding: .95rem 1.15rem;
+  margin: 0 0 1.2rem;
+  overflow-x: auto;
+  white-space: pre;
+}
+.criteri .op   { color: var(--blue); font-weight: 700; }
+.criteri .bad  { color: var(--bad); font-weight: 700; }
+.criteri .good { color: var(--ok); font-weight: 700; }
+.criteri .cm   { color: var(--muted); }
+.criteri.is-bad  { border-color: #f0cac4; background: var(--bad-soft); }
+.criteri.is-good { border-color: #c4e2ce; background: var(--ok-soft); }
+
+/* --- Notes --------------------------------------------------------------- */
+
+.note {
+  margin: 1.4rem 0;
+  padding: .9rem 1.15rem 1rem;
+  background: var(--blue-soft);
+  border: 1px solid #cbdcf6;
+  border-radius: var(--radius-s);
+}
+.note > :last-child { margin-bottom: 0; }
+.note p { max-width: none; }
+.note .label {
+  display: block;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: .35rem;
+}
+.note.warn { background: var(--warn-soft); border-color: #f0d9b0; }
+.note.warn .label { color: var(--warn); }
+.note.bad  { background: var(--bad-soft); border-color: #f0cac4; }
+.note.bad .label { color: var(--bad); }
+.note.ok   { background: var(--ok-soft); border-color: #c4e2ce; }
+.note.ok .label { color: var(--ok); }
+
+/* --- Passos -------------------------------------------------------------- */
+
+.steps { list-style: none; counter-reset: step; padding: 0; margin: 0 0 1.3rem; }
+.steps > li {
+  counter-increment: step;
+  position: relative;
+  padding: 0 0 0 2.9rem;
+  margin: 0 0 1.3rem;
+}
+.steps > li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: -.1rem;
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  font-size: .84rem;
+  font-weight: 750;
+  color: #fff;
+  background: var(--blue);
+  border-radius: 50%;
+}
+.steps > li > :last-child { margin-bottom: 0; }
+.steps h3 { margin: .1rem 0 .35rem; font-size: 1rem; }
+
+/* --- Taules -------------------------------------------------------------- */
+
+.table-wrap {
+  overflow-x: auto;
+  margin: 0 0 1.3rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+  background: var(--card);
+}
+table { border-collapse: collapse; width: 100%; min-width: 30rem; font-size: .9rem; }
+caption {
+  caption-side: top;
+  text-align: left;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: .8rem 1rem .2rem;
+}
+th, td { text-align: left; vertical-align: top; padding: .6rem 1rem; border-bottom: 1px solid var(--line-soft); }
+thead th {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr:hover { background: var(--panel); }
+td.code, th.code {
+  font-family: var(--mono);
+  font-size: .86em;
+  font-weight: 700;
+  color: var(--blue);
+  white-space: nowrap;
+  width: 1%;
+}
+
+/* --- Figures ------------------------------------------------------------- */
+
+figure { margin: 1.6rem 0; padding: 0; }
+figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+  background: #fff;
+}
+figcaption { font-size: .82rem; line-height: 1.5; color: var(--muted); margin-top: .65rem; }
+figure img.is-zoomable { cursor: zoom-in; transition: border-color .12s ease; }
+figure img.is-zoomable:hover { border-color: var(--blue-mid); }
+figure img.is-zoomable:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+/* --- Fitxes -------------------------------------------------------------- */
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .9rem; margin: 1.3rem 0; }
+.cards > div {
+  background: var(--panel);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-s);
+  padding: 1rem 1.15rem;
+}
+.cards h3 { margin: 0 0 .35rem; font-size: .98rem; }
+.cards p { margin: 0; font-size: .9rem; max-width: none; }
+.cards p + p { margin-top: .5rem; }
+
+/* --- Fitxa tècnica d'una taula ------------------------------------------- */
+
+.factsheet {
+  margin: 1.3rem 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+  overflow: hidden;
+}
+.factsheet div {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: .62rem 1rem;
+  border-bottom: 1px solid var(--line-soft);
+}
+.factsheet div:last-child { border-bottom: 0; }
+.factsheet div:nth-child(odd) { background: var(--panel); }
+.factsheet dt {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: .18rem;
+}
+.factsheet dd { margin: 0; font-size: .92rem; }
+
+/* --- Recepta de consulta -------------------------------------------------
+   Reprodueix les fitxes de l'esquema «Consultes freqüents»: per a què
+   serveix, quines taules, quin criteri i quin resultat s'ha d'esperar.
+   --------------------------------------------------------------------- */
+
+.recepta {
+  margin: 1.5rem 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+  overflow: hidden;
+  background: var(--card);
+}
+.recepta > h3 {
+  margin: 0;
+  padding: .9rem 1.15rem .2rem;
+  font-size: 1.05rem;
+  color: var(--navy);
+}
+.recepta dl { margin: 0; padding: .6rem 1.15rem 1rem; }
+.recepta dl > div {
+  display: grid;
+  grid-template-columns: 9.5rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: .5rem 0;
+  border-top: 1px solid var(--line-soft);
+}
+.recepta dl > div:first-child { border-top: 0; }
+.recepta dt {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: .2rem;
+}
+.recepta dd { margin: 0; font-size: .92rem; }
+.recepta dd > :last-child { margin-bottom: 0; }
+.recepta .criteri { margin: 0; font-size: .8rem; max-width: none; }
+.recepta-out {
+  display: flex;
+  align-items: baseline;
+  gap: .55rem;
+  background: var(--blue);
+  color: #fff;
+  padding: .7rem 1.15rem;
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.recepta-out b { font-size: 1.5rem; font-weight: 800; letter-spacing: -.02em; text-transform: none; }
+.recepta-out span { margin-left: auto; opacity: .8; text-transform: none; letter-spacing: 0; font-weight: 500; }
+
+/* El color de cada taula viu al títol i a la barra de resultat, no en cap vora. */
+.recepta.persona    > h3 { color: var(--persona); }
+.recepta.persona .recepta-out { background: var(--persona); }
+.recepta.lloc       > h3 { color: var(--lloc); }
+.recepta.lloc .recepta-out { background: var(--lloc); }
+.recepta.incidencia > h3 { color: var(--incidencia); }
+.recepta.incidencia .recepta-out { background: var(--incidencia); }
+.recepta.punterh    > h3 { color: var(--punterh); }
+.recepta.punterh .recepta-out { background: var(--punterh); }
+
+/* --- Etiqueta de taula --------------------------------------------------- */
+
+.tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: .76rem;
+  font-weight: 700;
+  border-radius: 5px;
+  padding: .15em .45em;
+  white-space: nowrap;
+}
+.tag.persona    { color: var(--persona);    background: var(--persona-soft); }
+.tag.lloc       { color: var(--lloc);       background: var(--lloc-soft); }
+.tag.incidencia { color: var(--incidencia); background: var(--incidencia-soft); }
+.tag.punterh    { color: var(--punterh);    background: var(--punterh-soft); }
+
+/* --- Comparació correcte / incorrecte ------------------------------------ */
+
+.versus { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: .9rem; margin: 1.3rem 0; }
+.versus > div { border-radius: var(--radius-s); padding: .95rem 1.1rem; border: 1px solid; }
+.versus .no { background: var(--bad-soft); border-color: #f3c9c3; }
+.versus .si { background: var(--ok-soft);  border-color: #bfe3cb; }
+.versus h4 { margin: 0 0 .5rem; letter-spacing: .1em; }
+.versus .no h4 { color: var(--bad); }
+.versus .si h4 { color: var(--ok); }
+.versus p { margin: 0 0 .5rem; max-width: none; font-size: .9rem; }
+.versus > div > :last-child { margin-bottom: 0; }
+.versus .criteri { margin: 0 0 .5rem; max-width: none; background: rgba(255,255,255,.7); }
+
+/* --- Exercicis -----------------------------------------------------------
+   Cada exercici porta un codi que el simulador també reconeix, de manera que
+   les dues peces es poden fer servir per separat.
+   --------------------------------------------------------------------- */
+
+.exercici {
+  margin: 1.2rem 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+  background: var(--card);
+  overflow: hidden;
+}
+.exercici > header {
+  display: flex;
+  align-items: baseline;
+  gap: .7rem;
+  flex-wrap: wrap;
+  padding: .85rem 1.15rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line-soft);
+}
+.exercici .codi {
+  font-family: var(--mono);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: var(--blue);
+  background: var(--blue-soft);
+  border-radius: 5px;
+  padding: .16em .45em;
+}
+.exercici h3 { margin: 0; font-size: 1rem; flex: 1 1 12rem; }
+.exercici .obre-simulador {
+  margin-left: auto;
+  font-size: .78rem;
+  font-weight: 650;
+  color: var(--blue);
+  background: var(--blue-soft);
+  border-radius: 999px;
+  padding: .3rem .75rem;
+  white-space: nowrap;
+}
+.exercici .obre-simulador:hover { background: var(--blue); color: #fff; text-decoration: none; }
+.exercici .obre-simulador::after { content: " \2192"; }
+
+.exercici .mena {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.exercici .cos { padding: 1rem 1.15rem; }
+.exercici .cos > :last-child { margin-bottom: 0; }
+.exercici .cos p { max-width: none; }
+.exercici .cos ol, .exercici .cos ul { max-width: none; }
+
+.exercici details {
+  margin-top: .7rem;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-s);
+  background: var(--panel);
+}
+.exercici details + details { margin-top: .5rem; }
+.exercici summary {
+  cursor: pointer;
+  list-style: none;
+  padding: .55rem .9rem;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.exercici summary::-webkit-details-marker { display: none; }
+.exercici summary::before { content: "+ "; font-weight: 800; color: var(--blue); }
+.exercici details[open] summary::before { content: "\2212 "; }
+.exercici summary:hover { color: var(--blue); }
+.exercici details[open] summary { border-bottom: 1px solid var(--line-soft); }
+.exercici details .dins { padding: .8rem .9rem; font-size: .92rem; }
+.exercici details .dins > :last-child { margin-bottom: 0; }
+.exercici details .criteri { max-width: none; margin-bottom: .7rem; }
+
+.resposta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .45rem;
+  background: var(--ok-soft);
+  border: 1px solid #c4e2ce;
+  border-radius: var(--radius-s);
+  padding: .45rem .8rem;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--ok);
+}
+.resposta b { font-size: 1.25rem; font-weight: 800; }
+
+/* --- Llista de comprovació ----------------------------------------------- */
+
+.checklist { list-style: none; padding: 0; margin: 0 0 1rem; }
+.checklist li { position: relative; padding-left: 1.85rem; margin: .5rem 0; }
+.checklist li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .42em;
+  width: .95rem;
+  height: .95rem;
+  border: 2px solid var(--blue-mid);
+  border-radius: 4px;
+}
+
+/* --- Navegació entre unitats --------------------------------------------- */
+
+.unit-nav { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; margin-top: 1.5rem; }
+.unit-nav a {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  box-shadow: var(--shadow);
+}
+.unit-nav a:hover { border-color: var(--blue-mid); text-decoration: none; }
+.unit-nav .dir {
+  display: block;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: .25rem;
+}
+.unit-nav .ttl { display: block; color: var(--ink); font-weight: 600; font-size: .95rem; line-height: 1.35; }
+.unit-nav .next { text-align: right; }
+
+/* --- Portada -------------------------------------------------------------
+   Sense barra lateral, els blocs de prosa necessiten un limit propi o les
+   linies arriben als 115 caracters.
+   --------------------------------------------------------------------- */
+
+.part > .note,
+.part > p { max-width: var(--prosa); }
+.part > .table-wrap,
+.part > .cards { max-width: var(--ample); }
+
+.cover { padding: 3.5rem 0 2.5rem; }
+.cover h1 {
+  font-size: clamp(2.2rem, 5.5vw, 3.5rem);
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -.028em;
+  color: var(--navy);
+  margin: 0 0 1.2rem;
+  max-width: 20ch;
+}
+.cover .byline {
+  margin: -.5rem 0 1.3rem;
+  font-size: .95rem;
+  color: var(--muted);
+}
+.cover .byline strong { color: var(--navy); font-weight: 700; }
+.cover .lede { font-size: 1.2rem; max-width: var(--ample); }
+.cover-meta { display: flex; flex-wrap: wrap; gap: .9rem; margin-top: 2rem; }
+.cover-meta div {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+  padding: .8rem 1.1rem;
+  font-size: .8rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+.cover-meta strong { display: block; font-size: 1.5rem; font-weight: 800; color: var(--navy); line-height: 1.2; }
+
+.part { margin: 0 0 2rem; }
+.part > h2 {
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin: 0 0 .3rem;
+}
+.part > p.part-desc { color: var(--muted); font-size: .95rem; margin: 0 0 1rem; max-width: var(--prosa); }
+
+.toc-units { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; max-width: var(--ample); }
+.toc-units a {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: .6rem;
+  align-items: start;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+  padding: .95rem 1.15rem;
+  color: var(--text);
+}
+.toc-units a:hover { border-color: var(--blue-mid); text-decoration: none; }
+.toc-units .n {
+  font-size: .95rem;
+  font-weight: 800;
+  color: var(--blue);
+  background: var(--blue-soft);
+  border-radius: 6px;
+  text-align: center;
+  padding: .1rem 0;
+  font-variant-numeric: tabular-nums;
+}
+.toc-units .t { font-size: 1rem; font-weight: 700; color: var(--navy); line-height: 1.35; }
+.toc-units .d { display: block; font-size: .88rem; color: var(--muted); margin-top: .2rem; }
+
+.site-foot {
+  margin-top: 2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .5rem 1.4rem;
+  font-size: .82rem;
+  color: var(--muted);
+}
+.site-foot strong { color: var(--ink); font-weight: 650; }
+.site-foot .dret { margin-left: auto; }
+
+@media (max-width: 620px) {
+  .site-foot .dret { margin-left: 0; }
+}
+
+.colophon {
+  max-width: var(--prosa);
+  margin-top: 2.5rem;
+  padding: 1.4rem 1.6rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: .88rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.colophon p { margin: 0 0 .7rem; }
+.colophon p:last-child { margin-bottom: 0; }
+
+/* --- Tornada a dalt ------------------------------------------------------ */
+
+.to-top {
+  position: fixed;
+  right: 1.6rem;
+  bottom: 1.6rem;
+  z-index: 30;
+  width: 2.85rem;
+  height: 2.85rem;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: var(--blue);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(18, 39, 107, .08), 0 10px 24px rgba(18, 39, 107, .1);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(.5rem);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+}
+.to-top.is-visible { opacity: 1; visibility: visible; transform: none; }
+.to-top:hover { color: #fff; background: var(--blue); border-color: var(--blue); }
+.to-top:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+.to-top svg { width: 1.25rem; height: 1.25rem; display: block; }
+body.has-lightbox .to-top { visibility: hidden; opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .to-top { transition: none; }
+}
+@media (max-width: 620px) {
+  .to-top { right: .9rem; bottom: .9rem; width: 2.6rem; height: 2.6rem; }
+}
+
+/* --- Visor d'imatges ----------------------------------------------------- */
+
+body.has-lightbox { overflow: hidden; }
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(11, 22, 55, .94);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3.5rem 4.5rem;
+}
+.lightbox[hidden] { display: none; }
+.lb-stage { margin: 0; max-width: 100%; max-height: 100%; display: flex; flex-direction: column; align-items: center; gap: .9rem; }
+.lb-stage img {
+  max-width: 100%;
+  max-height: calc(100vh - 8.5rem);
+  width: auto; height: auto;
+  border: 0;
+  border-radius: var(--radius-s);
+  background: #fff;
+  cursor: zoom-in;
+  object-fit: contain;
+}
+.lb-stage figcaption { margin: 0; color: rgba(255,255,255,.75); text-align: center; max-width: 62ch; font-size: .84rem; }
+.lightbox.is-zoomed { display: block; overflow: auto; padding: 1.5rem; }
+.lightbox.is-zoomed .lb-stage { display: block; max-width: none; max-height: none; }
+.lightbox.is-zoomed .lb-stage img { max-width: none; max-height: none; cursor: zoom-out; }
+.lightbox.is-zoomed .lb-stage figcaption,
+.lightbox.is-zoomed .lb-step { display: none; }
+
+.lb-close, .lb-step {
+  position: fixed;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.28);
+  color: #fff;
+  border-radius: var(--radius-s);
+  font-family: var(--sans);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  line-height: 1;
+}
+.lb-close:hover, .lb-step:hover { background: rgba(255,255,255,.22); }
+.lb-close:focus-visible, .lb-step:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.lb-close { top: 1.25rem; right: 1.25rem; width: 2.4rem; height: 2.4rem; font-size: 1.45rem; }
+.lb-step { top: 50%; transform: translateY(-50%); width: 2.6rem; height: 3.6rem; font-size: 1.7rem; }
+.lb-step[hidden] { display: none; }
+.lb-prev { left: 1.25rem; }
+.lb-next { right: 1.25rem; }
+
+/* --- Responsiu ----------------------------------------------------------- */
+
+@media (max-width: 1000px) {
+  .layout { grid-template-columns: 1fr; gap: 1.5rem; }
+  .sidebar { position: static; }
+  .sidebar ol { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .1rem; }
+}
+@media (max-width: 620px) {
+  body { font-size: 16px; }
+  .page, .masthead-inner { padding-left: 1.05rem; padding-right: 1.05rem; }
+  .content > section { padding: 1.35rem 1.15rem; }
+  .masthead nav { gap: .85rem; font-size: .7rem; }
+  .masthead .position { display: none; }
+  .unit-nav { grid-template-columns: 1fr; }
+  .unit-nav .next { text-align: left; }
+  .factsheet div, .recepta dl > div { grid-template-columns: 1fr; gap: .15rem; }
+  .lightbox { padding: 3.5rem .9rem; }
+  .lb-step { width: 2.1rem; height: 2.9rem; font-size: 1.35rem; }
+  .lb-prev { left: .35rem; }
+  .lb-next { right: .35rem; }
+}
+
+/* --- Impressió ----------------------------------------------------------- */
+
+@media print {
+  .masthead, .sidebar, .unit-nav, .lightbox, .to-top { display: none; }
+  body { background: #fff; font-size: 10.5pt; }
+  .layout { display: block; }
+  .content > section { box-shadow: none; border: 0; padding: 0; margin-bottom: 1.6rem; }
+  h2, h3 { break-after: avoid; }
+  figure, table, .note, .recepta { break-inside: avoid; }
+  a { color: inherit; }
+}
+
+/* Procedencia d'una figura treta d'un videotutorial */
+figcaption .font { display: block; margin-top: .35rem; color: var(--muted); font-size: .82rem; }

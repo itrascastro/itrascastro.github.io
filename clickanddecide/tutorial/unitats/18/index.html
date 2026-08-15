@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ca" data-unit="18" data-root="../..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>18 · Síntesi, errors freqüents i bones pràctiques - Click &amp; Decide</title>
+<meta name="description" content="Els quatre errors que fan perdre mes temps: la seleccio massiva, els camps de text buits, els apostrofs i el format d'exportacio.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="prev" href="../17/">
+<link rel="next" href="../../index.html">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../../index.html">Click &amp; Decide <em>· Guia d'aprenentatge</em></a>
+    <nav>
+      <span class="position">Unitat 18 / 18</span>
+      <span data-unit-picker></span>
+      <a class="step-link" href="../../index.html">Índex</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+
+  <header class="unit-head">
+    <p class="eyebrow">Part IV · Unitat 18</p>
+    <h1>Síntesi, errors freqüents i bones pràctiques</h1>
+    <p class="lede">
+      L'última unitat no ensenya res nou: recull els quatre errors que fan perdre més
+      temps a qui ja sap fer consultes. Tres d'ells els heu vist venir al llarg del
+      curs, i el quart és el que fa que una consulta correcta doni un resultat
+      inservible en obrir-lo a l'Excel.
+    </p>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2>En aquesta unitat</h2>
+      <ol>
+        <li><a href="#metodologia">Abans de començar</a></li>
+        <li><a href="#contrasenya">La contrasenya i el bloqueig</a></li>
+        <li><a href="#seleccio">Error 1: la selecció massiva</a></li>
+        <li><a href="#buits">Error 2: els camps de text buits</a></li>
+        <li><a href="#matis">El matís que ho complica</a></li>
+        <li><a href="#apostrofs">Error 3: els apòstrofs</a></li>
+        <li><a href="#excel">Error 4: el format d'exportació</a></li>
+        <li><a href="#mapa">El mapa del curs</a></li>
+        <li><a href="#exercicis">Exercicis</a></li>
+        <li><a href="#comprovacio">Llista de comprovació final</a></li>
+      </ol>
+      <dl class="sidebar-aside">
+        <dt>Objectiu</dt>
+        <dd>Reconèixer els símptomes i saber on mirar.</dd>
+        <dt>Els quatre errors</dt>
+        <dd>Selecció massiva, camps buits, apòstrofs i format d'Excel.</dd>
+        <dt>Recorda</dt>
+        <dd>Cap dels quatre dóna missatge d'error.</dd>
+      </dl>
+    </aside>
+
+    <main class="content">
+
+      <section id="metodologia">
+        <h2><span class="num">Apartat 1</span>Abans de començar</h2>
+        <p>
+          El material oficial tanca el curs amb un recordatori de mètode que val més
+          que qualsevol truc:
+        </p>
+        <div class="cards">
+          <div>
+            <h3>Tingueu clar l'objectiu</h3>
+            <p>Abans de tocar el programa, sapigueu què heu de respondre exactament. La meitat dels errors del curs són d'encàrrec mal entès, no de consulta mal feta.</p>
+          </div>
+          <div>
+            <h3>Penseu si cal creuar taules</h3>
+            <p>És possible que la resposta necessiti dades de dues taules. Es poden relacionar a Click &amp; Decide, o exportar-les i creuar-les a l'Excel o a l'Access.</p>
+          </div>
+          <div>
+            <h3>Consulteu la documentació</h3>
+            <p>Els PDF de la intranet expliquen els camps de cada taula i els seus codis. És on són les respostes que aquest curs no pot donar.</p>
+          </div>
+          <div>
+            <h3>Recordeu l'abast del perfil</h3>
+            <p>El que veieu depèn del perfil que us van donar. Si un company veu coses que vosaltres no, no és cap error.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contrasenya">
+        <h2><span class="num">Apartat 2</span>La contrasenya i el bloqueig</h2>
+        <div class="note warn">
+          <span class="label">Val la pena repetir-ho</span>
+          <p>
+            Les credencials de Click &amp; Decide són <strong>les mateixes que les del
+            GIP</strong>. Si les introduïu malament diverses vegades,
+            <strong>l'usuari queda bloquejat</strong> i haureu de contactar amb el
+            servei d'atenció perquè el desbloquegin. I mentrestant tampoc podreu entrar
+            al GIP.
+          </p>
+        </div>
+        <p>
+          És la unitat 2, i és l'únic error d'aquest curs que us pot aturar la feina
+          durant hores sense que en depengui de vosaltres.
+        </p>
+      </section>
+
+      <section id="seleccio">
+        <h2><span class="num">Apartat 3</span>Error 1: la selecció massiva</h2>
+        <p>
+          <strong>Símptoma:</strong> obriu una consulta i apareixen tots els camps de
+          la taula seleccionats de cop. La graella és il·legible i la consulta va
+          lentíssima.
+        </p>
+        <p>
+          <strong>Causa:</strong> heu fet <strong>doble clic sobre el nom de la
+          taula</strong> a la llista de camps, en comptes de sobre un camp.
+        </p>
+        <div class="note ok">
+          <span class="label">Solució, en un sol gest</span>
+          <p>
+            Clic dret sobre el nom de la taula i
+            <span class="ui">Desselecciona-ho tot</span>. No cal desfer-ho camp per
+            camp.
+          </p>
+        </div>
+        <figure>
+          <img src="img/cap_desselecciona_tot.png" alt="Menú del clic dret sobre el nom de la taula WAIV9080_LLOC, amb les opcions Afegeix fórmula, Selecciona-ho tot, Desselecciona-ho tot i Propietats. Desselecciona-ho tot està remarcada.">
+          <figcaption>
+            El menú del clic dret sobre el <strong>nom de la taula</strong>. Al costat
+            hi ha <span class="ui">Selecciona-ho tot</span>, que és el que havíeu
+            provocat sense voler.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="buits">
+        <h2><span class="num">Apartat 4</span>Error 2: els camps de text buits</h2>
+        <p>
+          <strong>Símptoma:</strong> la consulta torna zero registres i esteu segurs
+          que hauria de tornar-ne.
+        </p>
+        <p>
+          <strong>El cas del material oficial:</strong> voleu els llocs ocupats,
+          pressupostats i <strong>no reservats</strong>. Per assegurar que no estan
+          reservats, busqueu que el camp <code>RES_NIFPER</code> estigui buit, i li
+          poseu l'operador <span class="ui">És nul</span>.
+        </p>
+        <div class="criteri is-bad">RES_NIFPER <span class="op">És nul</span>
+<span class="bad">-- 0 registres</span></div>
+        <div class="note bad">
+          <span class="label">Per què falla</span>
+          <p>
+            Perquè <code>RES_NIFPER</code> és un camp de <strong>tipus text</strong>, i
+            per als camps de text Click &amp; Decide <strong>deixa espais, no els deixa
+            en blanc</strong>. Tècnicament no són nuls, i per això la condició no la
+            compleix ningú.
+          </p>
+        </div>
+        <div class="note ok">
+          <span class="label">Solució</span>
+          <p>
+            Torneu als criteris i demaneu que el camp <strong>contingui</strong>
+            (operador <span class="ui">Inclou</span>) <strong>un espai</strong>.
+          </p>
+        </div>
+        <div class="criteri is-good">RES_NIFPER <span class="op">Inclou</span> ' '
+<span class="good">-- ara si</span></div>
+        <p>
+          És la unitat 9 sencera, i ara ja sabeu per què: ve del farciment amb espais
+          dels camps <code>Char</code> que vam veure a la unitat 4.
+        </p>
+      </section>
+
+      <section id="matis">
+        <h2><span class="num">Apartat 5</span>El matís que ho complica</h2>
+        <p>
+          Aquí hi ha una excepció que el material remarca i que és fàcil de passar per
+          alt.
+        </p>
+        <div class="note warn">
+          <span class="label">Compte amb els valors que contenen espais</span>
+          <p>
+            <span class="ui">Inclou</span> un espai funciona en camps com un NIF, on els
+            valors normals <strong>no tenen espais</strong>. Però en camps com un
+            <strong>cognom</strong> o una <strong>població</strong>, els valors normals
+            en tenen: cognoms compostos, poblacions de més d'una paraula.
+          </p>
+          <p>
+            En aquests camps, <span class="ui">Inclou</span> un espai us seleccionaria
+            <em>també</em> tots els valors plens. Cal fer servir
+            <span class="ui">Igual</span> a un espai.
+          </p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <caption>Com buscar un camp buit, segons el camp</caption>
+            <thead>
+              <tr><th>Tipus de camp</th><th>Operador</th><th>Per què</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Data</td>
+                <td><span class="ui">És nul</span></td>
+                <td>Una data buida sí que és nul·la.</td>
+              </tr>
+              <tr>
+                <td>Text sense espais als valors, com un NIF</td>
+                <td><span class="ui">Inclou</span> un espai</td>
+                <td>Cap valor real conté espais, així que només agafa els buits.</td>
+              </tr>
+              <tr>
+                <td>Text amb espais als valors, com un cognom o una població</td>
+                <td><span class="ui">Igual</span> a un espai</td>
+                <td>Amb <span class="ui">Inclou</span> agafaríeu també els plens.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">
+          <span class="label">La pregunta que ho decideix</span>
+          <p>
+            Abans de triar l'operador, penseu: <em>els valors normals d'aquest camp
+            poden contenir un espai?</em> Si la resposta és sí, aneu amb
+            <span class="ui">Igual</span>.
+          </p>
+        </div>
+      </section>
+
+      <section id="apostrofs">
+        <h2><span class="num">Apartat 6</span>Error 3: els apòstrofs</h2>
+        <p>
+          <strong>Símptoma:</strong> filtreu per una població i no surt ningú, tot i
+          que sabeu que n'hi ha.
+        </p>
+        <p>
+          <strong>El cas:</strong> voleu les persones que viuen a
+          <em>l'Hospitalet de Llobregat</em>. Aneu al camp de localitat, obriu els
+          criteris, i en comptes d'escriure el valor el <strong>trieu del desplegable
+          de valors</strong> amb la fletxeta de la pestanya
+          <span class="ui">Valor</span>.
+        </p>
+        <div class="note bad">
+          <span class="label">Què passa</span>
+          <p>
+            En seleccionar-lo, Click &amp; Decide <strong>treu l'apòstrof</strong>. Al
+            criteri hi queda <code>lHospitalet de Llobregat</code>, que no existeix, i
+            la consulta torna zero registres.
+          </p>
+        </div>
+        <div class="versus">
+          <div class="no">
+            <h4>El que hi posa el programa</h4>
+            <div class="criteri is-bad">ADRE_LOCALITAT = 'lHospitalet de Llobregat'
+<span class="bad">-- 0 registres</span></div>
+          </div>
+          <div class="si">
+            <h4>El que hi heu de posar</h4>
+            <div class="criteri is-good">ADRE_LOCALITAT = 'l'Hospitalet de Llobregat'
+<span class="good">-- afegint l'apostrof a ma</span></div>
+          </div>
+        </div>
+        <figure>
+          <img src="img/problema_apostrofs.png" alt="El problema dels apòstrofs: el programa elimina l'apòstrof en triar el valor del desplegable i la consulta torna zero registres.">
+          <figcaption>
+            Un apòstrof que desapareix i una consulta que sembla correcta.
+          </figcaption>
+        </figure>
+        <div class="note ok">
+          <span class="label">La solució de fons</span>
+          <p>
+            Aquest cas és, precisament, l'exemple del problema de
+            <strong>filtrar per descripció en comptes de per codi</strong>. Amb el camp
+            <code>ADRE_CODI_INE</code> no hi hauria hagut cap apòstrof ni cap problema.
+          </p>
+          <p>
+            El mateix passa amb categories, especialitats i qualsevol altre camp de
+            text lliure. És la regla d'or de la unitat 6, i aquí es veu per què.
+          </p>
+        </div>
+      </section>
+
+      <section id="excel">
+        <h2><span class="num">Apartat 7</span>Error 4: el format d'exportació</h2>
+        <p>
+          <strong>Símptoma:</strong> la consulta és correcta, l'exportació sembla
+          correcta, i a l'Excel els creuaments no funcionen. Els valors es veuen
+          idèntics.
+        </p>
+        <div class="versus">
+          <div class="no">
+            <h4>Excel, format .xls</h4>
+            <p>
+              Exporta la informació <strong>tal qual</strong>, amb els espais que
+              queden <strong>a la dreta</strong> dels valors.
+            </p>
+          </div>
+          <div class="si">
+            <h4>Excel 2007, format .xlsx</h4>
+            <p>
+              Exporta <strong>només els valors</strong> i elimina aquells espais.
+              Per regla general, és la millor opció.
+            </p>
+          </div>
+        </div>
+        <p>
+          Els dos formats són correctes i cap dels dos dóna error. La diferència només
+          apareix quan intenteu creuar les dades amb una altra taula i no lliga res.
+        </p>
+        <figure>
+          <img src="img/exportacio_correcta_dades.png" alt="Diferència entre exportar a Excel i a Excel 2007 pel que fa als espais a la dreta dels valors.">
+          <figcaption>
+            La mateixa consulta, dos formats, i una diferència invisible a la pantalla.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="mapa">
+        <h2><span class="num">Apartat 8</span>El mapa del curs</h2>
+        <p>
+          Aquests quatre errors tenen una cosa en comú i val la pena dir-la explícitament:
+        </p>
+        <div class="note bad">
+          <span class="label">Cap dels quatre dóna cap missatge d'error</span>
+          <p>
+            Dos tornen zero registres, un torna dades inflades i l'altre torna dades
+            que semblen bones fins que les creueu. El programa no us avisarà mai. La
+            defensa és saber què esperar i comprovar-ho.
+          </p>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Diagnòstic ràpid</caption>
+            <thead>
+              <tr><th>Símptoma</th><th>Sospiteu de</th><th>Unitat</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Zero registres i els valors semblen bons</td><td>AND entre condicions incompatibles</td><td>6 i 7</td></tr>
+              <tr><td>Zero registres en buscar un camp buit</td><td><span class="ui">És nul</span> sobre un camp de text</td><td>9 i 18</td></tr>
+              <tr><td>Zero registres filtrant per una població</td><td>L'apòstrof desaparegut</td><td>18</td></tr>
+              <tr><td>Surten més registres dels que hi hauria d'haver</td><td>Un OR sense parèntesi</td><td>7</td></tr>
+              <tr><td>Surt gent d'altres departaments</td><td>El mateix OR sense parèntesi</td><td>7</td></tr>
+              <tr><td>El recompte no quadra amb el nombre de persones</td><td>Taula de registres múltiples</td><td>10, 12 i 14</td></tr>
+              <tr><td>La columna de recompte està plena d'uns</td><td>Un camp de detall a la consulta</td><td>10</td></tr>
+              <tr><td>Files repetides de la mateixa persona i lloc</td><td>Falta la segona lògica de dates</td><td>14</td></tr>
+              <tr><td>Tinc més llocs que persones</td><td>No heu filtrat l'estat de plantilla</td><td>8</td></tr>
+              <tr><td>El paràmetre no pregunta res</td><td>Definit però no assignat</td><td>16</td></tr>
+              <tr><td>El paràmetre de data falla</td><td>El <code>IGNORE</code> no esborrat</td><td>17</td></tr>
+              <tr><td>Els creuaments a l'Excel no lliguen</td><td>Exportat amb el format antic</td><td>15 i 18</td></tr>
+              <tr><td>Els meus números no quadren amb els d'un company</td><td>Criteris diferents, no dades diferents</td><td>8 i 13</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <figure>
+          <img src="img/punts_clau_click_decide.png" alt="Resum dels punts clau de Click &amp; Decide treballats al llarg del curs.">
+          <figcaption>
+            Els punts clau del curs, en un sol esquema.
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="img/errors_frequents_i_solucions.png" alt="Els errors més freqüents i la seva solució.">
+          <figcaption>
+            Els errors i les seves solucions.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="exercicis">
+        <h2><span class="num">Apartat 9</span>Exercicis</h2>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-18-1</span>
+            <h3>Provoca els quatre errors</h3>
+            <span class="mena">Trenca</span>
+          </header>
+          <div class="cos">
+            <p>Feu-los tots quatre a propòsit, un darrere l'altre, i observeu el símptoma:</p>
+            <ol>
+              <li>Doble clic sobre el nom de la taula.</li>
+              <li><span class="ui">És nul</span> sobre un camp de NIF.</li>
+              <li>Trieu una població amb apòstrof del desplegable de valors.</li>
+              <li>Exporteu a <span class="ui">Excel</span> i mireu la llargada d'una cel·la de text.</li>
+            </ol>
+            <details>
+              <summary>Què hauria d'haver passat</summary>
+              <div class="dins">
+                <ol>
+                  <li>Tots els camps seleccionats. Es desfà amb <span class="ui">Desselecciona-ho tot</span>.</li>
+                  <li>Zero registres. Es resol amb <span class="ui">Inclou</span> un espai.</li>
+                  <li>Zero registres i l'apòstrof desaparegut del criteri. S'escriu a mà.</li>
+                  <li>La llargada és la del camp, no la del text. Es resol amb <span class="ui">Excel 2007</span>.</li>
+                </ol>
+                <p>
+                  Fer-los una vegada a propòsit val més que llegir-los deu vegades: el
+                  dia que passin de debò, reconeixereu el símptoma.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-18-2</span>
+            <h3>El camp de població</h3>
+            <span class="mena">Resol</span>
+          </header>
+          <div class="cos">
+            <p>
+              Us demanen les persones que <strong>no tenen la localitat
+              informada</strong> a l'adreça.
+            </p>
+            <p>
+              Un company us diu que faceu <span class="ui">Inclou</span> un espai, com
+              amb el NIF. Per què no serveix, i què heu de fer?
+            </p>
+            <details>
+              <summary>Solució</summary>
+              <div class="dins">
+                <p>
+                  <strong>No serveix</strong> perquè les localitats normals contenen
+                  espais: <em>Sant Cugat del Vallès</em>, <em>Vilanova i la Geltrú</em>.
+                  Amb <span class="ui">Inclou</span> un espai us sortirien totes
+                  aquestes també.
+                </p>
+                <div class="criteri is-good">ADRE_LOCALITAT <span class="op">Igual</span> ' '</div>
+                <p>
+                  <strong>La comprovació:</strong> mireu la columna de localitat al
+                  resultat. Ha de sortir buida a totes les files. Si hi apareix cap nom
+                  de població, heu fet servir <span class="ui">Inclou</span>.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-18-3</span>
+            <h3>Diagnostica sense veure la consulta</h3>
+            <span class="mena">Resol</span>
+          </header>
+          <div class="cos">
+            <p>Un company us descriu quatre situacions. Digueu on ha de mirar:</p>
+            <ol>
+              <li>"He demanat els alts càrrecs del meu departament i em surt gent d'altres departaments."</li>
+              <li>"Tinc 340 baixes però només som 190 persones."</li>
+              <li>"La consulta de vacants em dóna places que no es poden cobrir."</li>
+              <li>"El meu informe diu 27 llocs i el de Funció Pública en diu 41."</li>
+            </ol>
+            <details>
+              <summary>Solució</summary>
+              <div class="dins">
+                <p>
+                  <strong>1.</strong> Un OR sense parèntesi. Els filtres d'àmbit no
+                  s'apliquen a la branca de l'OR. Unitat 7, i es comprova al panell
+                  <span class="ui">Camps</span>.
+                </p>
+                <p>
+                  <strong>2.</strong> Cap error: és una taula de registres múltiples i
+                  està comptant files, no persones. Li cal
+                  <span class="ui">Distinct Agregats</span>. Unitats 10 i 13.
+                </p>
+                <p>
+                  <strong>3.</strong> Ha inclòs el codi <code>V</code>, que és
+                  pressupostat i vacant però <strong>no ocupable</strong>. Unitat 9.
+                </p>
+                <p>
+                  <strong>4.</strong> Probablement cap dels dos s'equivoca: un fa servir
+                  el criteri de RLT i l'altre el criteri ampli. Unitat 8. Abans de
+                  comparar xifres, compareu criteris.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="comprovacio">
+        <h2><span class="num">Apartat 10</span>Llista de comprovació final</h2>
+        <p>
+          Aquesta no és de la unitat: és de tot el curs. Considereu-vos autònoms quan
+          pugueu fer tot això sense consultar res.
+        </p>
+        <ul class="checklist">
+          <li>Triar la taula correcta responent les tres preguntes de la unitat 00.</li>
+          <li>Crear un projecte i una consulta, i desar-los amb noms que s'entenguin.</li>
+          <li>Trobar qualsevol camp fent clic a la capçalera de la columna.</li>
+          <li>Saber de quin tipus és un camp abans de filtrar-lo.</li>
+          <li>Filtrar sempre pel camp de codi.</li>
+          <li>Triar l'operador adequat entre els vint disponibles.</li>
+          <li>Detectar quan un encàrrec necessita un parèntesi, llegint-lo.</li>
+          <li>Comprovar l'agrupació al panell <span class="ui">Camps</span> abans d'entregar res.</li>
+          <li>Distingir comptar files de comptar persones.</li>
+          <li>Construir la lògica de solapament per a un període.</li>
+          <li>Aplicar-la dues vegades quan cal reconstruir el passat.</li>
+          <li>Descobrir la codificació d'un camp desconegut.</li>
+          <li>Exportar amb el format que no deixa espais.</li>
+          <li>Convertir una consulta repetitiva en una consulta amb paràmetres.</li>
+          <li>Reconèixer els quatre errors d'aquesta unitat pel seu símptoma.</li>
+          <li>Dir sempre <strong>amb quin criteri</strong> s'ha calculat una xifra.</li>
+        </ul>
+
+        <div class="note ok">
+          <span class="label">L'última idea</span>
+          <p>
+            Si hi ha una cosa que val la pena endur-se d'aquest curs, és que
+            <strong>la mateixa pregunta admet respostes diferents i totes correctes</strong>.
+            "Quantes vacants tenim", "quantes baixes hi ha hagut", "quants llocs
+            tenim": totes tres tenen dues o tres xifres possibles segons el criteri.
+          </p>
+          <p>
+            Qui domina l'eina no és qui recorda on és cada botó, sinó qui sap
+            <strong>quina de les respostes li estan demanant</strong> i ho escriu al
+            costat del número.
+          </p>
+        </div>
+
+        <div class="note">
+          <span class="label">I ara</span>
+          <p>
+            Queda practicar. Els exercicis de cada unitat porten codi
+            <code>EX-</code> i es poden reproduir al simulador sobre dades generades,
+            comparant el vostre resultat amb el de control.
+          </p>
+        </div>
+      </section>
+
+      <nav class="unit-nav">
+        <a class="prev" href="../17/">
+          <span class="dir">Unitat 17</span>
+          <span class="ttl">Paràmetres de data</span>
+        </a>
+        <a class="next" href="../../index.html">
+          <span class="dir">Final del curs</span>
+          <span class="ttl">Tornar a l'índex</span>
+        </a>
+      </nav>
+
+      <footer class="site-foot">
+        <span>Guia elaborada per <strong>Ismael Trascastro</strong></span>
+        <span class="dret">Sobre material de l'Escola d'Administració Pública de Catalunya</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<script src="../../assets/tutorial.js?v=3"></script>
+</body>
+</html>

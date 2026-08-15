@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="ca" data-unit="07" data-root="../..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>07 · La taula de persones i la lògica AND / OR - Click &amp; Decide</title>
+<meta name="description" content="WAIV9010_PERSONA a fons: IND_ACTIU, els camps d'ubicació, el concepte de punter, i com agrupar criteris amb parentesis fent servir Combina.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="prev" href="../06/">
+<link rel="next" href="../08/">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../../index.html">Click &amp; Decide <em>· Guia d'aprenentatge</em></a>
+    <nav>
+      <span class="position">Unitat 07 / 18</span>
+      <span data-unit-picker></span>
+      <a class="step-link" href="../../index.html">Índex</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+
+  <header class="unit-head">
+    <p class="eyebrow">Part II · Unitat 07</p>
+    <h1>La taula de persones i la lògica AND / OR</h1>
+    <p class="lede">
+      Dues coses en una unitat. Primer, recórrer <span class="tag persona">WAIV9010_PERSONA</span>
+      camp per camp, perquè és la taula que més fareu servir. I després, el salt
+      lògic més important del curs: quan els criteris deixen de ser una llista de
+      condicions obligatòries i cal dir <em>o</em>, i posar parèntesis on toca.
+    </p>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2>En aquesta unitat</h2>
+      <ol>
+        <li><a href="#taula">La taula a fons</a></li>
+        <li><a href="#actiu">IND_ACTIU: qui hi surt</a></li>
+        <li><a href="#ubicacio">Els camps d'ubicació</a></li>
+        <li><a href="#families">La resta de famílies</a></li>
+        <li><a href="#punter">Què és un punter</a></li>
+        <li><a href="#and">Tot és AND per defecte</a></li>
+        <li><a href="#cas">El cas: alts càrrecs o subdireccions</a></li>
+        <li><a href="#or">Primer intent: canviar AND per OR</a></li>
+        <li><a href="#combina">Segon intent: Combina</a></li>
+        <li><a href="#verificar">Verificar-ho al SQL</a></li>
+        <li><a href="#not">L'operador NOT</a></li>
+        <li><a href="#errors">Errors freqüents</a></li>
+        <li><a href="#exercicis">Exercicis</a></li>
+        <li><a href="#comprovacio">Llista de comprovació</a></li>
+      </ol>
+      <dl class="sidebar-aside">
+        <dt>Objectiu</dt>
+        <dd>Conèixer la taula de persones i construir criteris amb OR i parèntesis.</dd>
+        <dt>Taula</dt>
+        <dd><span class="tag persona">WAIV9010_PERSONA</span></dd>
+        <dt>Botó clau</dt>
+        <dd><span class="ui">Combina</span>, amb <kbd>Ctrl</kbd> per seleccionar files.</dd>
+        <dt>Consulta model</dt>
+        <dd>La número 5 de la unitat 00: 17 correcte, 46 mal agrupat.</dd>
+      </dl>
+    </aside>
+
+    <main class="content">
+
+      <section id="taula">
+        <h2><span class="num">Apartat 1</span>La taula a fons</h2>
+        <p>
+          És la taula central de les dades administratives de personal. Conté
+          informació de tots els professionals i la seva clau única és el
+          <strong>NIF</strong>.
+        </p>
+        <dl class="factsheet">
+          <div><dt>Qui hi surt</dt><dd>Els treballadors actius avui, els que ho han estat algun dia del mes en curs, i els inactius que encara tenen nòmina associada, per exemple per endarreriments.</dd></div>
+          <div><dt>Clau</dt><dd><code>PERS_NIF</code>. Una fila per persona.</dd></div>
+          <div><dt>Vigència</dt><dd>Dades actuals, vigents el dia anterior.</dd></div>
+          <div><dt>Càrrega</dt><dd>Diària, durant la nit.</dd></div>
+          <div><dt>Abast</dt><dd>Totes les persones, les del departament o les de la unitat orgànica, segons el perfil.</dd></div>
+        </dl>
+        <figure>
+          <img src="img/taula_waiv9010_persona.png" alt="Visió general de la taula WAIV9010_PERSONA: contingut, vigència, tipus de registre i blocs d'informació.">
+          <figcaption>
+            Visió general de la taula. És de registre únic, cosa que la fa segura per
+            comptar persones.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="actiu">
+        <h2><span class="num">Apartat 2</span>IND_ACTIU: qui hi surt</h2>
+        <p>
+          Ja el vam presentar a la unitat 4. Ara toca l'ús pràctic, perquè és el
+          primer criteri de gairebé qualsevol consulta sobre persones.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption>Els tres valors i què impliquen</caption>
+            <thead>
+              <tr><th class="code">Valor</th><th>Qui és</th><th>Definició tècnica</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code">A</td>
+                <td>Personal en actiu a data d'avui.</td>
+                <td>Data fi d'ocupació nul·la, o posterior o igual a la data actual.</td>
+              </tr>
+              <tr>
+                <td class="code">M</td>
+                <td>No ocupa lloc avui, però sí algun dia del mes en curs.</td>
+                <td>Data fi d'ocupació posterior o igual al dia 1 del mes actual.</td>
+              </tr>
+              <tr>
+                <td class="code">N</td>
+                <td>No ocupa lloc en tot el mes, però té nòmina associada.</td>
+                <td>No té punter, o data fi anterior al dia 1 del mes actual.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Les dues consultes que necessitareu sempre</h3>
+        <div class="versus">
+          <div class="si">
+            <h4>Plantilla d'avui</h4>
+            <div class="criteri">IND_ACTIU <span class="op">=</span> 'A'</div>
+            <p>Per a preguntes del tipus "quanta gent tenim". És la consulta model 1 de la unitat 00.</p>
+          </div>
+          <div class="si">
+            <h4>Activitat del mes</h4>
+            <div class="criteri">IND_ACTIU <span class="op">Llista</span> ('A', 'M')</div>
+            <p>Per a nòmina o estadístiques mensuals: tothom que ha treballat algun dia del mes.</p>
+          </div>
+        </div>
+        <div class="note">
+          <span class="label">Per què Llista i no dos criteris</span>
+          <p>
+            Perquè, com vam veure a l'exercici EX-06-2, dos criteris <code>=</code>
+            sobre el mateix camp s'uneixen amb AND i tornen zero. Aquí és on aquella
+            lliçó comença a rendir.
+          </p>
+        </div>
+      </section>
+
+      <section id="ubicacio">
+        <h2><span class="num">Apartat 3</span>Els camps d'ubicació</h2>
+        <p>
+          Els camps amb prefix <code>UBIC</code> situen la persona dins de
+          l'organització. Tres d'ells tenen codificació pròpia que cal conèixer.
+        </p>
+
+        <h4>Ubicació tipus ENS</h4>
+        <div class="table-wrap">
+          <table>
+            <caption>Tipus d'ens</caption>
+            <thead><tr><th class="code">Codi</th><th>Què inclou</th></tr></thead>
+            <tbody>
+              <tr><td class="code">1</td><td>Departaments, organismes autònoms, Agència Tributària i Servei Català de la Salut.</td></tr>
+              <tr><td class="code">2</td><td>Empreses públiques que fan servir el registre de personal de la Generalitat, i personal becari.</td></tr>
+              <tr><td class="code">3</td><td>Programes no retribuïts pel capítol 1.</td></tr>
+              <tr><td class="code">6</td><td>Personal estatutari de l'Institut Català de la Salut.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Especificació tipus ENS</h4>
+        <p>
+          Concreta la naturalesa de l'ens: <code>DP</code> per a departament,
+          <code>OA</code> per a organisme autònom, i uns quants més. La llista
+          completa de codis és al manual de dades administratives de la intranet.
+        </p>
+
+        <h4>Denominació del departament</h4>
+        <p>
+          Codi de dues lletres: <code>AG</code> per a Agricultura, <code>CU</code> per
+          a Cultura, i així la resta.
+        </p>
+
+        <div class="note ok">
+          <span class="label">Normalment no cal filtrar per aquí</span>
+          <p>
+            Si el vostre perfil és d'un departament concret, el sistema
+            <strong>ja limita les dades al vostre àmbit</strong>. Afegir un criteri de
+            departament no canvia res i, si us equivoqueu de codi, us deixa la consulta
+            a zero. Recordeu la unitat 2: el filtre del perfil s'aplica sol.
+          </p>
+        </div>
+
+        <figure>
+          <img src="img/camps_clau_persones.png" alt="Famílies de camps de la taula de persones amb les seves codificacions: UBIC, PERS, ADRE, PLRC, PLSA, PLPT i nòmina.">
+          <figcaption>
+            El mapa complet de famílies i codificacions. Val la pena tenir-lo obert
+            mentre es construeixen les primeres consultes.
+          </figcaption>
+        </figure>
+              <p>
+          Dues advertències que fa el vídeo oficial i que estalvien maldecaps.
+          La primera: <b>l'accés als tipus d'ENS el marquen els permisos</b> de
+          les taules WAI, de manera que potser no els podreu veure tots i no és
+          cap error de la consulta. La segona: la codificació dels departaments
+          <b>canvia quan el Govern reorganitza l'estructura organitzativa</b>, ajuntant
+          departaments o creant-ne de nous. Una consulta que fa un any donava el
+          resultat bo pot donar-ne un altre avui pel mateix criteri.
+        </p>
+        <div class="note">
+          <span class="label">Els codis, tal com els documenta el manual</span>
+          <p>
+            El vídeo explica què vol dir cada tipus d'ens amb exemples; el
+            manual de taules els anomena pel seu nom:
+            <b>1</b> públic, <b>2</b> paràpúblic, <b>3</b> sectors específics i
+            <b>6</b> institucions sanitàries. Són les dues cares de la mateixa
+            classificació.
+          </p>
+          <p>
+            I una cosa que convé saber abans de filtrar per
+            <code>UBIC_ESPECIFTIPENS</code>: <b>els seus codis depenen del tipus
+            d'ens</b>. Amb tipus 1 trobareu <code>DP</code> departament,
+            <code>OA</code> organisme autònom, <code>EG</code> entitat gestora o
+            <code>SC</code> Servei Català de la Salut; amb tipus 2,
+            <code>PT</code> patronat, <code>CO</code> consorci,
+            <code>SM</code> societat mercantil o <code>UN</code> universitat; i
+            amb tipus 3, els codis de capítol pressupostari. El mateix valor no
+            vol dir el mateix segons el tipus d'ens que tingueu al costat.
+          </p>
+        </div>
+</section>
+
+      <section id="families">
+        <h2><span class="num">Apartat 4</span>La resta de famílies</h2>
+        <div class="table-wrap">
+          <table>
+            <caption>Què busqueu i on ho trobareu</caption>
+            <thead>
+              <tr><th class="code">Prefix</th><th>Conté</th><th>Exemples d'ús</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code">PERS</td>
+                <td>Sexe, edat, fills, nacionalitat, data d'ingrés, adreça habitual.</td>
+                <td>Piràmide d'edats, estudis d'igualtat, antiguitat.</td>
+              </tr>
+              <tr>
+                <td class="code">PLRC</td>
+                <td>Tipus de vincle (funcionari, laboral, alt càrrec), cos, escala, categoria, grup, especialitat.</td>
+                <td>Distribució per vincle o per grup, la consulta més habitual de totes.</td>
+              </tr>
+              <tr>
+                <td class="code">PLSA</td>
+                <td>Situació administrativa i les seves dates.</td>
+                <td>Si filtreu per personal actiu, normalment serà servei actiu o serveis especials.</td>
+              </tr>
+              <tr>
+                <td class="code">PLPT</td>
+                <td>El punter: com ocupa el lloc (comissió de serveis, interinitat, definitiu), trienis.</td>
+                <td>Formes d'ocupació, provisionalitat.</td>
+              </tr>
+              <tr>
+                <td class="code">ADRE</td>
+                <td>Adreça habitual, codi postal, municipi, província.</td>
+                <td>Distribució territorial. Compte amb els apòstrofs dels topònims.</td>
+              </tr>
+              <tr>
+                <td>Nòmina</td>
+                <td>Grup de cotització, entitat bancària, afiliació a Seguretat Social o MUFACE.</td>
+                <td>Només si el vostre perfil hi arriba.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+              <p>
+          Encara n'hi ha tres famílies més que apareixen si baixeu prou:
+          <b>PLPA</b>, amb el departament i la unitat orgànica del punter
+          anterior; <b>PLNO</b>, amb les dades de nòmina (tipus de cotització,
+          Seguretat Social o MUFACE, grup de cotització, entitat bancària); i
+          <b>PLGR</b>, amb el grau consolidat i les dates i autoritats de la
+          resolució.
+        </p>
+        <p>
+          Una nota per si la trobeu a la llista de taules: el manual documenta
+          també <code>WAIV9020_VINSITADH</code>, amb els vincles i les
+          situacions administratives. Cap dels videotutorials no l'ensenya, de
+          manera que aquesta guia no hi entra; si us hi topeu, sabreu què és i
+          on buscar-ne la descripció.
+        </p>
+</section>
+
+      <section id="punter">
+        <h2><span class="num">Apartat 5</span>Què és un punter</h2>
+        <p>
+          És un terme que apareix per tot el material i que gairebé mai s'explica. Val
+          la pena aturar-s'hi, perquè sense entendre'l les unitats 9 i 14 no tenen
+          sentit.
+        </p>
+        <div class="note">
+          <span class="label">Definició</span>
+          <p>
+            Un <strong>punter</strong> és la <strong>relació entre una persona i un
+            lloc de treball</strong> durant un període. No és la persona ni el lloc:
+            és el vincle entre tots dos, amb una data d'inici i, si s'ha acabat, una
+            data de fi.
+          </p>
+        </div>
+        <p>Aquesta idea explica tres coses que ja heu vist o veureu:</p>
+        <ul>
+          <li>
+            Per què <code>IND_ACTIU = 'N'</code> es defineix com "no té punter": no hi
+            ha cap lloc associat a aquella persona.
+          </li>
+          <li>
+            Per què la taula de llocs pot dir qui ocupa un lloc <em>ara</em>: guarda el
+            punter vigent. Unitats 8 i 9.
+          </li>
+          <li>
+            Per què la taula d'històrics es diu <code>PUNTERH</code>: és la taula de
+            <em>tots</em> els punters, també els tancats. Unitat 14.
+          </li>
+        </ul>
+              <p>
+          El camp <code>LLOC_CODI</code> de la taula de persones és el que la
+          lliga amb la taula de llocs: hi guarda el <b>codi del lloc que la
+          persona ocupa ara</b>, i és el mateix codi que fa de clau a
+          <code>WAIV9080_LLOC</code>. Enllaçant els dos camps s'obtenen les
+          característiques del lloc de cada persona. I al revés, la taula de
+          llocs porta <code>ACT_NIFPER</code>, que enllaça amb
+          <code>PERS_NIF</code>. Són les dues cares del mateix vincle, i
+          convé saber quina us convé segons què hi vulgueu posar al costat.
+        </p>
+</section>
+
+      <section id="and">
+        <h2><span class="num">Apartat 6</span>Tot és AND per defecte</h2>
+        <p>
+          Cada vegada que afegiu un criteri nou, queda lligat a l'anterior amb
+          l'operador <strong>AND</strong>. Això no es tria: és el comportament per
+          defecte i cal saber-ho.
+        </p>
+        <div class="versus">
+          <div class="si">
+            <h4>AND</h4>
+            <div class="criteri">PLRC_VINCLE_CODI = 'F'
+<span class="op">AND</span> PERS_EDAT &lt; 25</div>
+            <p>Les dues condicions són obligatòries: personal funcionari <strong>que a més</strong> té menys de 25 anys.</p>
+          </div>
+          <div class="si">
+            <h4>OR</h4>
+            <div class="criteri">PLRC_VINCLE_CODI = 'F'
+<span class="op">OR</span> PERS_EDAT &lt; 25</div>
+            <p>N'hi ha prou que se'n compleixi una: tot el personal funcionari, <strong>més</strong> qualsevol persona menor de 25 anys encara que no ho sigui.</p>
+          </div>
+        </div>
+        <div class="path">
+          Per canviar-ho: feu <strong>clic a sobre de la paraula AND</strong> que uneix
+          els dos criteris i es converteix en OR
+        </div>
+      </section>
+
+      <section id="cas">
+        <h2><span class="num">Apartat 7</span>El cas: alts càrrecs o subdireccions</h2>
+        <p>
+          Aquest és l'exemple que fa servir el material oficial i val la pena seguir-lo
+          sencer, perquè els dos errors que apareixen són els dos errors que fareu
+          vosaltres.
+        </p>
+        <div class="note">
+          <span class="label">L'encàrrec</span>
+          <p>
+            Un llistat dels <strong>alts càrrecs</strong> i del <strong>personal de
+            subdirecció</strong> d'un departament concret, en actiu.
+          </p>
+        </div>
+        <p>Es tradueix en sis criteris, que al panell <span class="ui">Camps</span> es llegeixen així:</p>
+        <div class="criteri">IND_ACTIU <span class="op">IN</span>('A','M')        <span class="cm">-- en actiu durant el mes</span>
+<span class="op">and</span> UBIC_TIPUS_ENS = '1'       <span class="cm">-- departaments i organismes</span>
+<span class="op">and</span> UBIC_ESPECIFTIPENS = 'DP' <span class="cm">-- nomes departament</span>
+<span class="op">and</span> UBIC_DEPARTAM_CODI = 'AG' <span class="cm">-- el departament concret</span>
+<span class="op">and</span> PLRC_VINCLE_CODI = 'A'     <span class="cm">-- alt carrec</span>
+<span class="op">and</span> LLOC_PREFIXTR_CODI = 'SG' <span class="cm">-- subdireccio general</span></div>
+
+        <div class="note">
+          <span class="label">Dues coses que s'hi veuen</span>
+          <p>
+            L'operador <span class="ui">Llista</span> es representa com
+            <code>IN('A','M')</code>, igual que a l'SQL. I el camp del prefix de
+            tractament, tot i ser informació <em>del lloc</em>, es diu
+            <code>LLOC_PREFIXTR_CODI</code> i <strong>viu dins de la taula de
+            persones</strong>: no cal enllaçar cap altra taula per a aquesta consulta.
+          </p>
+        </div>
+
+        <div class="note bad">
+          <span class="label">Resultat: zero registres</span>
+          <p>
+            Amb tot unit per AND, el sistema busca una persona que sigui alt càrrec
+            <strong>i alhora</strong> subdirectora. És impossible, i per això no torna
+            res. Exactament el mateix zero de l'exercici EX-06-2.
+          </p>
+        </div>
+      </section>
+
+      <section id="or">
+        <h2><span class="num">Apartat 8</span>Primer intent: canviar AND per OR</h2>
+        <p>
+          La correcció evident és fer clic sobre l'AND que uneix els criteris 3 i 4 per
+          convertir-lo en OR. I sembla que funciona: ja tornen registres. Però el
+          resultat és fals, i d'una manera silenciosa.
+        </p>
+
+        <figure>
+          <img src="img/cap_or_sense_parentesi.png" alt="Panell Camps amb cinc criteris units per and i el sise penjant d'un or, sense cap parentesi.">
+          <figcaption>
+            Els criteris en canviar l'últim <strong>and</strong> per <strong>or</strong>. No hi ha cap parèntesi, i el programa ho llegeix com dos blocs.
+          </figcaption>
+        </figure>
+
+        <div class="criteri is-bad">(  IND_ACTIU <span class="op">and</span> TIPUS_ENS <span class="op">and</span> ESPECIFTIPENS <span class="op">and</span> DEPARTAM <span class="op">and</span> VINCLE='A'  )
+<span class="bad">or</span>
+(  LLOC_PREFIXTR_CODI = 'SG'  )
+
+<span class="cm">-- alts carrecs del meu departament, en actiu</span>
+<span class="bad">-- MES tots els subdirectors de tot l'ambit de dades</span></div>
+        <p>
+          El problema és la <strong>precedència</strong>. En posar un OR al final, el
+          programa agrupa <strong>els cinc primers criteris</strong> amb AND i separa
+          l'últim de la resta. Els filtres d'activitat i d'ubicació
+          <strong>deixen d'aplicar-se</strong> als subdirectors.
+        </p>
+        <div class="note warn">
+          <span class="label">Per què és perillós</span>
+          <p>
+            Perquè la consulta <strong>torna dades</strong>. No hi ha cap missatge
+            d'error. Si no coneixeu la mida esperada del resultat, aquest informe surt
+            per la porta amb gent d'altres departaments a dins.
+          </p>
+        </div>
+      </section>
+
+      <section id="combina">
+        <h2><span class="num">Apartat 9</span>Segon intent: Combina</h2>
+        <p>
+          El que necessiteu és un parèntesi: que els filtres de departament i activitat
+          s'apliquin als dos col·lectius alhora. El botó que ho fa és
+          <span class="ui">Combina</span>.
+        </p>
+        <ol class="steps">
+          <li>
+            <h3>Seleccioneu la primera fila</h3>
+            <p>Feu clic a la fila del criteri del vincle, el de l'alt càrrec.</p>
+          </li>
+          <li>
+            <h3>Manteniu premuda la tecla Control</h3>
+            <p>Sense deixar-la anar, feu clic a la fila del prefix de tractament.</p>
+          </li>
+          <li>
+            <h3>Premeu Combina</h3>
+            <p>
+              Fins ara el botó <span class="ui">Combina</span> estava apagat. Amb
+              les dues files seleccionades <strong>s'activa</strong>: premeu-lo i els
+              dos criteris queden tancats entre parèntesis.
+            </p>
+          </li>
+          <li>
+            <h3>Comproveu el connector de dins</h3>
+            <p>
+              Dins del parèntesi hi ha d'haver <strong>OR</strong>. Si hi ha quedat
+              AND, feu-hi clic per canviar-lo.
+            </p>
+          </li>
+        </ol>
+
+
+        <figure>
+          <img src="img/cap_combina_parentesi.png" alt="El mateix panell Camps despres de premer Combina: els dos darrers criteris queden entre parentesis en linies propies, units per or.">
+          <figcaption>
+            Els mateixos criteris després de <span class="ui">Combina</span>. El parèntesi ocupa línies pròpies i abraça exactament els dos criteris seleccionats.
+          </figcaption>
+        </figure>
+
+        <div class="criteri is-good">IND_ACTIU <span class="op">and</span> TIPUS_ENS <span class="op">and</span> ESPECIFTIPENS <span class="op">and</span> DEPARTAM
+<span class="op">and</span>
+<span class="good">(</span>
+    PLRC_VINCLE_CODI = 'A'
+  <span class="op">or</span>
+    LLOC_PREFIXTR_CODI = 'SG'
+<span class="good">)</span>
+
+<span class="cm">-- del meu departament, en actiu,</span>
+<span class="good">-- i que siguin alts carrecs o subdirectors</span></div>
+
+        <div class="note ok">
+          <span class="label">Com comprovar-ho sense sortir de la finestra</span>
+          <p>
+            Al panell <span class="ui">Camps</span> els connectors
+            <strong>and</strong> i <strong>or</strong> surten en vermell i els
+            parèntesis ocupen línia pròpia. Es llegeix com un esquema: si el parèntesi
+            no abraça les línies que voleu, es veu a l'instant.
+          </p>
+        </div>
+
+        <figure>
+          <img src="img/and_or_combina.png" alt="Esquema de l'ús dels operadors AND i OR i del botó Combina per agrupar criteris entre parèntesis.">
+          <figcaption>
+            El mateix, en esquema. El botó contrari,
+            <span class="ui">No combinis</span>, desfà l'agrupació.
+          </figcaption>
+        </figure>
+
+        <div class="note ok">
+          <span class="label">La regla per recordar-ho</span>
+          <p>
+            Sempre que en una frase hi hagi un <strong>"o"</strong> enmig de condicions
+            obligatòries, aquell "o" va entre parèntesis. "Del meu departament, actius,
+            i que siguin <em>això o allò</em>": el que va després del "siguin" és el
+            que s'ha de combinar.
+          </p>
+        </div>
+              <figure>
+          <img src="img/parentesi_real.png" alt="Panell Camps del Click &amp; Decide amb quatre criteris units per and i, a sota, un parèntesi que conté el criteri de vincle i el de prefix de tractament units per or.">
+          <figcaption>
+            El panell <b>Camps</b> un cop fet <b>Combina</b>. Els quatre primers
+            criteris van encadenats amb <b>and</b>; els dos últims han quedat
+            dins del parèntesi amb l'<b>or</b>, i per això els d'ubicació i
+            d'activitat també se'ls apliquen.
+            <span class="font">Videotutorial 7 de l'EAPC, minut 11:08.</span>
+          </figcaption>
+        </figure>
+
+</section>
+
+      <section id="verificar">
+        <h2><span class="num">Apartat 10</span>Verificar-ho al SQL</h2>
+        <p>
+          Aquí és on la pestanya <span class="ui">SQL</span> de la unitat 4 deixa de
+          ser una curiositat. És l'única manera de veure <strong>on han quedat
+          realment els parèntesis</strong> sense fiar-vos de la vista de criteris.
+        </p>
+        <div class="criteri"><span class="op">WHERE</span> UBIC_ENS = 1
+  <span class="op">AND</span> IND_ACTIU <span class="op">IN</span> ('A','M')
+  <span class="op">AND</span> (PLRC_VINCLE_CODI = 'A' <span class="op">OR</span> LLOC_PREFIX = 'SG')</div>
+        <p>
+          Si el parèntesi no hi és, o abraça els criteris equivocats, ho veureu aquí
+          abans d'enviar l'informe a ningú. Feu-ho sempre que una consulta tingui un
+          OR.
+        </p>
+      </section>
+
+      <section id="not">
+        <h2><span class="num">Apartat 11</span>L'operador NOT</h2>
+        <p>
+          El tercer botó del marge dret nega una condició o una combinació sencera de
+          condicions.
+        </p>
+        <div class="criteri"><span class="op">NOT</span> (PLRC_VINCLE_CODI = 'A' <span class="op">OR</span> LLOC_PREFIX = 'SG')
+
+<span class="cm">-- tothom excepte alts carrecs i subdireccions</span></div>
+        <div class="note">
+          <span class="label">Quan fer-lo servir i quan no</span>
+          <p>
+            Per a un sol camp amb pocs valors sol ser més clar l'operador
+            <span class="ui">No en la llista</span>, que veurem a la unitat 8. NOT és
+            útil quan el que voleu negar és <strong>tot un bloc combinat</strong>, com
+            l'exemple de dalt.
+          </p>
+        </div>
+      </section>
+
+      <section id="errors">
+        <h2><span class="num">Apartat 12</span>Errors freqüents</h2>
+        <div class="versus">
+          <div class="no">
+            <h4>El que passa</h4>
+            <p><strong>Zero registres i els valors són correctes.</strong></p>
+            <p><strong>Surten més registres dels que hi hauria d'haver.</strong></p>
+            <p><strong>Surt gent d'altres departaments.</strong></p>
+            <p><strong>He filtrat pel meu departament i ara no surt ningú.</strong></p>
+          </div>
+          <div class="si">
+            <h4>El que passa de veritat</h4>
+            <p>Dues condicions incompatibles unides per AND. Us cal OR o <span class="ui">Llista</span>.</p>
+            <p>Hi ha un OR sense parèntesi. Mireu el SQL.</p>
+            <p>El mateix: el filtre d'àmbit no s'aplica a la branca de l'OR. Feu servir <span class="ui">Combina</span>.</p>
+            <p>El perfil ja filtrava sol, i el codi que hi heu posat no és el vostre. Traieu el criteri.</p>
+          </div>
+        </div>
+        <figure>
+          <img src="img/consultes_frequents_personal_ambit.png" alt="Consultes freqüents sobre el personal d'un àmbit amb la taula de persones.">
+          <figcaption>
+            Consultes habituals sobre el personal d'un àmbit.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="exercicis">
+        <h2><span class="num">Apartat 13</span>Exercicis</h2>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-07-1</span>
+            <h3>Actius del mes</h3>
+            <span class="mena">Reprodueix</span>
+          </header>
+          <div class="cos">
+            <p>
+              Obteniu dues xifres sobre <span class="tag persona">PERSONA</span> i
+              expliqueu per què són diferents:
+            </p>
+            <ol>
+              <li>Persones en actiu a data d'avui.</li>
+              <li>Persones que han estat en actiu algun dia del mes.</li>
+            </ol>
+            <details>
+              <summary>Comprovació</summary>
+              <div class="dins">
+                <div class="criteri">IND_ACTIU <span class="op">=</span> 'A'            <span class="cm">-- plantilla d'avui</span>
+IND_ACTIU <span class="op">Llista</span> ('A','M')  <span class="cm">-- activitat del mes</span></div>
+                <p>
+                  La segona ha de ser més gran o igual que la primera, mai més petita:
+                  el conjunt <code>A</code> està inclòs dins de <code>A</code> més
+                  <code>M</code>. Si us surt més petita, teniu un altre criteri posat.
+                </p>
+                <p class="resposta"><b>152</b> en actiu avui</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-07-2</span>
+            <h3>La trampa dels parèntesis</h3>
+            <span class="mena">Trenca</span>
+          </header>
+          <div class="cos">
+            <p>
+              És la consulta model 5 de la unitat 00. Volem el personal
+              <strong>en actiu</strong>, del servei territorial de
+              <strong>Barcelona Comarques</strong>, amb especialitat <strong>INF o MAT</strong>.
+            </p>
+            <p>Feu-la dues vegades:</p>
+            <ol>
+              <li>
+                <strong>Mal agrupada:</strong> poseu els quatre criteris i canvieu a OR
+                només l'últim AND, sense combinar res.
+              </li>
+              <li>
+                <strong>Ben agrupada:</strong> seleccioneu les dues files
+                d'especialitat amb <kbd>Ctrl</kbd>, premeu
+                <span class="ui">Combina</span> i deixeu OR a dins.
+              </li>
+            </ol>
+            <p>Anoteu les dues xifres i mireu el SQL de cadascuna.</p>
+            <details>
+              <summary>Comprovació</summary>
+              <div class="dins">
+                <div class="criteri is-bad">IND_ACTIU='A' AND SERVEI='Barcelona Comarques' AND ESPEC='INF' <span class="bad">OR</span> ESPEC='MAT'</div>
+                <p class="resposta"><b>46</b> registres, incorrecte</p>
+                <div class="criteri is-good">IND_ACTIU='A' AND SERVEI='Barcelona Comarques' <span class="good">AND (</span>ESPEC='INF' OR ESPEC='MAT'<span class="good">)</span></div>
+                <p class="resposta"><b>17</b> registres, correcte</p>
+                <p>
+                  Els 29 de diferència són gent amb especialitat MAT que
+                  <strong>no és d'aquell servei territorial o no està en actiu</strong>, i que s'ha
+                  colat perquè a la seva branca no se li aplicaven els altres dos
+                  filtres.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-07-3</span>
+            <h3>Tradueix l'encàrrec</h3>
+            <span class="mena">Resol</span>
+          </header>
+          <div class="cos">
+            <p>
+              Us arriba aquest encàrrec per correu, tal qual:
+            </p>
+            <p>
+              <em>"Necessito la gent en actiu del nostre àmbit que sigui personal
+              funcionari o interí, i que tingui menys de 30 anys."</em>
+            </p>
+            <p>
+              Escriviu els criteris i digueu quins han d'anar dins d'un parèntesi
+              abans de tocar el programa.
+            </p>
+            <details>
+              <summary>Pista</summary>
+              <div class="dins">
+                <p>
+                  Busqueu el "o" de la frase. Tot el que uneix va entre parèntesis. I
+                  fixeu-vos que hi ha una condició que no cal escriure.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>Solució</summary>
+              <div class="dins">
+                <div class="criteri is-good">IND_ACTIU = 'A'
+<span class="op">AND</span> PERS_EDAT &lt; 30
+<span class="op">AND</span> <span class="good">(</span>PLRC_VINCLE_CODI = 'F' <span class="op">OR</span> PLRC_VINCLE_CODI = 'I'<span class="good">)</span></div>
+                <p>
+                  <strong>El "del nostre àmbit" no s'escriu.</strong> El perfil ja el
+                  filtra sol. Si l'afegiu i us equivoqueu de codi, us quedeu sense
+                  resultats.
+                </p>
+                <p>
+                  El parèntesi també es podria evitar fent servir
+                  <span class="ui">Llista</span> amb els valors <code>F</code> i
+                  <code>I</code>, que en aquest cas és més curt i més segur. Els
+                  parèntesis són imprescindibles quan l'OR uneix <strong>camps
+                  diferents</strong>, com al cas dels alts càrrecs.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="comprovacio">
+        <h2><span class="num">Apartat 14</span>Llista de comprovació</h2>
+        <ul class="checklist">
+          <li>Dir quina és la clau de la taula de persones i qui hi surt.</li>
+          <li>Explicar els tres valors de <code>IND_ACTIU</code> i quan es fa servir cadascun.</li>
+          <li>Construir la consulta de plantilla d'avui i la d'activitat del mes.</li>
+          <li>Interpretar els codis d'ubicació tipus ENS.</li>
+          <li>Justificar per què no cal filtrar pel propi departament.</li>
+          <li>Saber a quina família és cada tipus d'informació.</li>
+          <li>Explicar què és un punter i per què importa a les unitats 9 i 14.</li>
+          <li>Saber que tots els criteris s'uneixen amb AND per defecte i com canviar-ho.</li>
+          <li>Detectar quan una consulta necessita un parèntesi llegint l'encàrrec.</li>
+          <li>Fer servir <kbd>Ctrl</kbd> i <span class="ui">Combina</span> per agrupar criteris.</li>
+          <li>Comprovar l'agrupació a la pestanya SQL.</li>
+          <li>Explicar per què una consulta mal agrupada és més perillosa que una que torna zero.</li>
+        </ul>
+        <div class="note">
+          <span class="label">A la unitat següent</span>
+          <p>
+            Canviem de taula. <span class="tag lloc">WAIV9080_LLOC</span> mira
+            l'organització des dels llocs de treball i no des de les persones, i porta
+            el camp que decideix quins llocs són vigents de veritat.
+          </p>
+        </div>
+      </section>
+
+      <nav class="unit-nav">
+        <a class="prev" href="../06/">
+          <span class="dir">Unitat 06</span>
+          <span class="ttl">Criteris de selecció i operadors</span>
+        </a>
+        <a class="next" href="../08/">
+          <span class="dir">Unitat 08</span>
+          <span class="ttl">La taula de llocs i l'estat de plantilla</span>
+        </a>
+      </nav>
+
+      <footer class="site-foot">
+        <span>Guia elaborada per <strong>Ismael Trascastro</strong></span>
+        <span class="dret">Sobre material de l'Escola d'Administració Pública de Catalunya</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<script src="../../assets/tutorial.js?v=3"></script>
+</body>
+</html>

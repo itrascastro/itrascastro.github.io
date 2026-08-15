@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ca" data-unit="15" data-root="../..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>15 · Exportació de la informació - Click &amp; Decide</title>
+<meta name="description" content="Per que no s'ha de copiar i enganxar, l'arbre de formats de sortida, la diferencia entre Excel i Excel 2007, i com acumular fulls en un mateix llibre.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="prev" href="../14/">
+<link rel="next" href="../16/">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../../index.html">Click &amp; Decide <em>· Guia d'aprenentatge</em></a>
+    <nav>
+      <span class="position">Unitat 15 / 18</span>
+      <span data-unit-picker></span>
+      <a class="step-link" href="../../index.html">Índex</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+
+  <header class="unit-head">
+    <p class="eyebrow">Part IV · Unitat 15</p>
+    <h1>Exportació de la informació</h1>
+    <p class="lede">
+      La consulta ja dóna el que voleu; ara cal treure-ho del programa. Sembla la
+      part trivial i té tres decisions que condicionen tota la feina posterior:
+      <strong>no copiar i enganxar</strong>, triar entre
+      <span class="ui">Excel</span> i <span class="ui">Excel 2007</span> sabent què
+      canvia, i entendre el desplegable que permet acumular diverses consultes en un
+      mateix llibre.
+    </p>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2>En aquesta unitat</h2>
+      <ol>
+        <li><a href="#copiar">L'error de copiar i enganxar</a></li>
+        <li><a href="#boto">El botó Exporta dades</a></li>
+        <li><a href="#formats">L'arbre de formats</a></li>
+        <li><a href="#excel">Excel o Excel 2007</a></li>
+        <li><a href="#csv">Quan cal CSV</a></li>
+        <li><a href="#destinacio">La finestra Destinació</a></li>
+        <li><a href="#acumular">Acumular fulls en un llibre</a></li>
+        <li><a href="#errors">Errors freqüents</a></li>
+        <li><a href="#exercicis">Exercicis</a></li>
+        <li><a href="#comprovacio">Llista de comprovació</a></li>
+      </ol>
+      <dl class="sidebar-aside">
+        <dt>Objectiu</dt>
+        <dd>Treure les dades amb l'estructura intacta i al format adequat.</dd>
+        <dt>On es fa</dt>
+        <dd>Botó <span class="ui">Exporta dades</span>, o menú <span class="ui">Fitxer</span> &rarr; <span class="ui">Exporta</span>.</dd>
+        <dt>Regla d'or</dt>
+        <dd>El fitxer de destinació ha d'estar tancat.</dd>
+      </dl>
+    </aside>
+
+    <main class="content">
+
+      <section id="copiar">
+        <h2><span class="num">Apartat 1</span>L'error de copiar i enganxar</h2>
+        <p>
+          Amb el resultat a la graella, el primer impuls és seleccionar-lo, copiar-lo i
+          enganxar-lo a l'Excel. És l'error més comú de la unitat.
+        </p>
+        <div class="note bad">
+          <span class="label">No ho feu</span>
+          <p>
+            Si copieu i enganxeu, <strong>les dades no es traspassen amb l'estructura
+            correcta</strong>: les columnes es desconfiguren. No és una qüestió
+            estètica; és que el resultat no serveix per treballar-hi.
+          </p>
+        </div>
+        <p>
+          El programa té una eina d'exportació pròpia i és l'única manera correcta de
+          fer-ho.
+        </p>
+        <figure>
+          <img src="img/exportacio_correcta.png" alt="Comparació entre copiar i enganxar, que desconfigura les columnes, i exportar amb l'eina del programa.">
+          <figcaption>
+            El mateix resultat, tret de dues maneres diferents.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="boto">
+        <h2><span class="num">Apartat 2</span>El botó Exporta dades</h2>
+        <div class="path">
+          Botó <span class="ui">Exporta dades</span> de la barra d'eines
+          <span class="sep">&rarr;</span>
+          o menú <span class="ui">Fitxer</span> <span class="sep">&rarr;</span>
+          <span class="ui">Exporta</span>
+        </div>
+        <p>
+          En prémer-lo s'obre la finestra
+          <span class="ui">Selecció del format de sortida</span>, amb totes les
+          opcions que ofereix el programa.
+        </p>
+      </section>
+
+      <section id="formats">
+        <h2><span class="num">Apartat 3</span>L'arbre de formats</h2>
+        <p>
+          Els formats no són una llista plana: estan <strong>agrupats per
+          famílies</strong>, i n'hi ha bastants més dels que es fan servir.
+        </p>
+        <figure>
+          <img src="img/cap_formats_exportacio.png" alt="Finestra Selecció del format de sortida amb l'arbre de formats: RTF, Excel amb Excel i Excel 2007, Porta-retalls amb Clipboard, i Arxiu Ascii amb Atom, XML i Csv.">
+          <figcaption>
+            L'arbre de formats. Els que necessitareu són dins de
+            <span class="ui">Excel</span> i de <span class="ui">Arxiu Ascii</span>.
+          </figcaption>
+        </figure>
+        <div class="table-wrap">
+          <table>
+            <caption>Famílies de format</caption>
+            <thead><tr><th>Família</th><th>Conté</th><th>Quan</th></tr></thead>
+            <tbody>
+              <tr><td><span class="ui">Excel</span></td><td><span class="ui">Excel</span> i <span class="ui">Excel 2007</span></td><td>El cas habitual. Apartat següent.</td></tr>
+              <tr><td><span class="ui">Arxiu Ascii</span></td><td><span class="ui">Csv</span>, <span class="ui">XML</span>, <span class="ui">Atom</span> i altres</td><td>Volums grans, o per carregar en una altra eina.</td></tr>
+              <tr><td><span class="ui">Porta-retalls</span></td><td><span class="ui">Clipboard</span></td><td>Enganxar en una altra aplicació, però amb l'estructura ben feta.</td></tr>
+              <tr><td><span class="ui">RTF</span></td><td>Document de text amb format</td><td>Poc habitual.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">
+          <span class="label">Sobre el porta-retalls</span>
+          <p>
+            Fixeu-vos que <span class="ui">Clipboard</span> és una opció
+            d'exportació. Si el que voleu és enganxar en una altra aplicació, aquest és
+            el camí correcte: passa per l'exportador i manté l'estructura. No té res a
+            veure amb seleccionar la graella i copiar-la.
+          </p>
+        </div>
+      </section>
+
+      <section id="excel">
+        <h2><span class="num">Apartat 4</span>Excel o Excel 2007</h2>
+        <p>La diferència evident és el format del fitxer:</p>
+        <div class="versus">
+          <div class="si">
+            <h4>Excel</h4>
+            <p>Genera un fitxer <code>.xls</code>, el format antic.</p>
+          </div>
+          <div class="si">
+            <h4>Excel 2007</h4>
+            <p>Genera un fitxer <code>.xlsx</code>, el format modern.</p>
+          </div>
+        </div>
+        <p>
+          Però n'hi ha una segona, que no és evident i que decideix quina heu de triar:
+        </p>
+        <div class="note ok">
+          <span class="label">Què fa cadascun amb els espais</span>
+          <p>
+            Recordeu la unitat 4: els camps <code>Char</code> van
+            <strong>farcits d'espais</strong> fins a la seva longitud.
+          </p>
+          <ul>
+            <li>
+              <strong>Excel</strong> exporta el valor <em>tal qual</em>, amb els espais
+              de farciment inclosos.
+            </li>
+            <li>
+              <strong>Excel 2007</strong> els <strong>elimina</strong> i exporta els
+              valors nets.
+            </li>
+          </ul>
+          <p>
+            Per això, en general, <strong>Excel 2007 és la millor opció</strong>.
+          </p>
+        </div>
+        <div class="note warn">
+          <span class="label">Per què això importa tant</span>
+          <p>
+            Perquè els espais sobrants trenquen els creuaments. Un
+            <em>BUSCARV</em> entre dues taules no troba <code>Cultura</code> si en una
+            hi diu <code>Cultura</code> i a l'altra <code>Cultura</code> seguit de
+            tretze espais. I com que a la pantalla es veuen igual, es perden hores
+            buscant l'error en un altre lloc.
+          </p>
+        </div>
+      </section>
+
+      <section id="csv">
+        <h2><span class="num">Apartat 5</span>Quan cal CSV</h2>
+        <p>
+          El CSV no és una preferència estètica: és <strong>obligatori</strong> quan el
+          volum de registres és molt elevat i no cabria als fulls d'un Excel.
+        </p>
+        <div class="cards">
+          <div>
+            <h3>Volums normals</h3>
+            <p>Excel 2007. Es pot obrir directament i treballar-hi.</p>
+          </div>
+          <div>
+            <h3>Volums molt grans</h3>
+            <p>CSV. És un fitxer de text i no té el límit de files del full de càlcul.</p>
+          </div>
+        </div>
+        <p>
+          El tractament d'un CSV és de tipus text, i això vol dir que després l'haureu
+          d'obrir amb una eina que el sàpiga llegir bé, indicant el separador i la
+          codificació.
+        </p>
+        <figure>
+          <img src="img/formats_exportacio.png" alt="Els formats d'exportació més utilitzats i quan convé cadascun.">
+          <figcaption>
+            Els tres formats que cobreixen gairebé tots els casos.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="destinacio">
+        <h2><span class="num">Apartat 6</span>La finestra Destinació</h2>
+        <p>
+          Un cop triat el format i acceptat, apareix una finestra de desament normal on
+          poseu nom i carpeta. Després n'apareix una segona, i és la important.
+        </p>
+        <figure>
+          <img src="img/cap_destinacio_excel.png" alt="Finestra Destinació amb els camps Fitxer, Full, Cel·la i el desplegable Acció amb el valor Substitueix.">
+          <figcaption>
+            La finestra <span class="ui">Destinació</span>. Els tres primers camps són
+            evidents; el quart és el que gairebé ningú mira.
+          </figcaption>
+        </figure>
+        <div class="table-wrap">
+          <table>
+            <caption>Els quatre camps</caption>
+            <thead><tr><th>Camp</th><th>Per defecte</th><th>Què fa</th></tr></thead>
+            <tbody>
+              <tr><td><span class="ui">Fitxer</span></td><td>El que heu triat</td><td>On es desarà.</td></tr>
+              <tr><td><span class="ui">Full</span></td><td><code>Sheet 1</code></td><td>El nom de la pestanya dins de l'Excel. Val la pena canviar-lo.</td></tr>
+              <tr><td><span class="ui">Cel·la</span></td><td><code>A1</code></td><td>On començaran les dades.</td></tr>
+              <tr><td><span class="ui">Acció</span></td><td><code>Substitueix</code></td><td>Què fer si el fitxer ja existeix. És la clau de l'apartat següent.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note ok">
+          <span class="label">Poseu nom al full</span>
+          <p>
+            Deixar-lo com a <code>Sheet 1</code> costa poc ara i molt d'aquí a tres
+            mesos, quan tingueu quatre llibres oberts i cap pestanya digui què conté.
+            És el mateix criteri que el nom de les consultes de la unitat 4.
+          </p>
+        </div>
+      </section>
+
+      <section id="acumular">
+        <h2><span class="num">Apartat 7</span>Acumular fulls en un llibre</h2>
+        <p>
+          Aquesta és la tècnica que fa que la unitat valgui la pena. Podeu anar
+          afegint diferents consultes <strong>al mateix fitxer d'Excel</strong>, cada
+          una en una pestanya.
+        </p>
+        <ol class="steps">
+          <li>
+            <h3>Exporteu la primera consulta</h3>
+            <p>
+              Poseu-hi nom de fitxer, per exemple <code>Persones</code>, i nom de full,
+              per exemple <code>Persones</code>.
+            </p>
+          </li>
+          <li>
+            <h3>Canvieu el criteri de la consulta</h3>
+            <p>Per exemple, per obtenir les dades d'una altra unitat directiva.</p>
+          </li>
+          <li>
+            <h3>Torneu a exportar al mateix fitxer</h3>
+            <p>
+              A <span class="ui">Exporta dades</span>, trieu el mateix fitxer
+              <code>Persones</code> que ja existeix.
+            </p>
+          </li>
+          <li>
+            <h3>Poseu un nom de full diferent</h3>
+            <p>
+              A la finestra <span class="ui">Destinació</span>, al camp
+              <span class="ui">Full</span>, escriviu un nom nou. Si hi deixeu el
+              mateix, el programa n'hi afegirà un de propi.
+            </p>
+          </li>
+        </ol>
+        <div class="note bad">
+          <span class="label">La regla d'or, i és literal</span>
+          <p>
+            Perquè això funcioni i no doni error, <strong>el fitxer d'Excel de
+            destinació ha d'estar tancat</strong>. No podeu exportar a un fitxer que
+            teniu obert a la pantalla.
+          </p>
+        </div>
+        <figure>
+          <img src="img/afegir_dades_mateix_excel.png" alt="Procés d'acumular diverses consultes en pestanyes diferents d'un mateix fitxer d'Excel.">
+          <figcaption>
+            Dues consultes, dues pestanyes, un sol llibre.
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="img/cap_excel_resultat.png" alt="El fitxer d'Excel obert amb les dades exportades i la pestanya anomenada Persones a la part inferior.">
+          <figcaption>
+            El resultat: les columnes ben tabulades i la pestanya amb el nom que li
+            vau donar.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="errors">
+        <h2><span class="num">Apartat 8</span>Errors freqüents</h2>
+        <div class="versus">
+          <div class="no">
+            <h4>El que passa</h4>
+            <p><strong>Les columnes surten desquadrades.</strong></p>
+            <p><strong>Dóna error en exportar.</strong></p>
+            <p><strong>El BUSCARV no troba res, i els valors es veuen iguals.</strong></p>
+            <p><strong>M'ha esborrat el full anterior.</strong></p>
+            <p><strong>No hi caben totes les files.</strong></p>
+          </div>
+          <div class="si">
+            <h4>El que passa de veritat</h4>
+            <p>Heu copiat i enganxat. Feu servir <span class="ui">Exporta dades</span>.</p>
+            <p>Teniu el fitxer de destinació obert. Tanqueu-lo.</p>
+            <p>Espais de farciment. Exporteu amb <span class="ui">Excel 2007</span>.</p>
+            <p>Heu repetit el nom del full, o l'<span class="ui">Acció</span> era substituir.</p>
+            <p>Massa registres per a un full de càlcul. Exporteu a CSV.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="exercicis">
+        <h2><span class="num">Apartat 9</span>Exercicis</h2>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-15-1</span>
+            <h3>La primera exportació</h3>
+            <span class="mena">Reprodueix</span>
+          </header>
+          <div class="cos">
+            <p>
+              Amb la consulta <code>Persones</code> executada, exporteu-la a
+              <span class="ui">Excel 2007</span> amb el nom de fitxer
+              <code>Persones</code> i el full anomenat <code>Persones</code>.
+            </p>
+            <p>Obriu el fitxer i comproveu tres coses.</p>
+            <details>
+              <summary>Comprovació</summary>
+              <div class="dins">
+                <ol>
+                  <li>Les capçaleres són a la fila 1 i cada camp té la seva columna.</li>
+                  <li>La pestanya de baix es diu <code>Persones</code> i no <code>Sheet 1</code>.</li>
+                  <li>El nombre de files és el nombre de registres de la consulta, més una de capçalera.</li>
+                </ol>
+                <p>
+                  Aquesta tercera comprovació és la que detecta que us heu deixat un
+                  filtre o que heu exportat una consulta antiga.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-15-2</span>
+            <h3>Els espais invisibles</h3>
+            <span class="mena">Trenca</span>
+          </header>
+          <div class="cos">
+            <p>Exporteu la mateixa consulta dues vegades, amb els dos formats:</p>
+            <ol>
+              <li>Un cop amb <span class="ui">Excel</span>.</li>
+              <li>Un cop amb <span class="ui">Excel 2007</span>.</li>
+            </ol>
+            <p>
+              A cada fitxer, poseu-vos en una cel·la de text i mireu la fórmula
+              <code>=LLARG(A2)</code>, que compta caràcters.
+            </p>
+            <details>
+              <summary>Què hauria d'haver passat</summary>
+              <div class="dins">
+                <p>
+                  Al fitxer <strong>.xls</strong>, la llargada coincidirà amb la
+                  <strong>longitud del camp</strong> que vau veure a la unitat 4, no amb
+                  la del text visible. Un nom de quatre lletres en un camp de divuit us
+                  dirà 18.
+                </p>
+                <p>
+                  Al fitxer <strong>.xlsx</strong>, us dirà 4.
+                </p>
+                <p>
+                  Els dos fitxers es veuen idèntics a la pantalla. Aquesta és la
+                  diferència que fa fallar els creuaments, i és invisible fins que no la
+                  busqueu expressament.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-15-3</span>
+            <h3>Un informe amb quatre pestanyes</h3>
+            <span class="mena">Resol</span>
+          </header>
+          <div class="cos">
+            <p>
+              Us demanen un únic fitxer d'Excel amb quatre pestanyes, una per cada
+              vincle: funcionaris, interins, laborals i eventuals.
+            </p>
+            <p>Expliqueu el procediment i digueu on us podeu equivocar.</p>
+            <details>
+              <summary>Solució</summary>
+              <div class="dins">
+                <p><strong>Procediment</strong>, repetit quatre vegades:</p>
+                <ol>
+                  <li>Canvieu el criteri <code>PLRC_VINCLE_CODI</code> al codi que toqui.</li>
+                  <li>Executeu i comproveu el nombre de registres.</li>
+                  <li><span class="ui">Exporta dades</span> &rarr; <span class="ui">Excel 2007</span>.</li>
+                  <li>El <strong>mateix fitxer</strong> les quatre vegades.</li>
+                  <li>Un <strong>nom de full diferent</strong> cada vegada: Funcionaris, Interins, Laborals, Eventuals.</li>
+                </ol>
+                <p><strong>On us podeu equivocar:</strong></p>
+                <ul>
+                  <li>Tenir l'Excel obert mentre exporteu. Error segur.</li>
+                  <li>Repetir el nom del full: us el renombrarà ell.</li>
+                  <li>Oblidar-vos d'executar després de canviar el criteri: exportaríeu el resultat anterior. Aquest és el silenciós.</li>
+                </ul>
+                <p>
+                  <strong>La millora:</strong> si aquest informe us el demanen cada mes,
+                  no repetiu quatre vegades el canvi de criteri. Feu-ne una consulta amb
+                  paràmetre, que és exactament la unitat següent.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="comprovacio">
+        <h2><span class="num">Apartat 10</span>Llista de comprovació</h2>
+        <ul class="checklist">
+          <li>Explicar per què no s'ha de copiar i enganxar.</li>
+          <li>Trobar el botó <span class="ui">Exporta dades</span> i la seva opció de menú.</li>
+          <li>Situar els formats dins de l'arbre de famílies.</li>
+          <li>Dir la diferència entre <span class="ui">Excel</span> i <span class="ui">Excel 2007</span>, la del format i la dels espais.</li>
+          <li>Justificar per què els espais de farciment trenquen els creuaments.</li>
+          <li>Saber quan és obligatori el CSV.</li>
+          <li>Omplir els quatre camps de la finestra <span class="ui">Destinació</span>.</li>
+          <li>Posar nom al full en comptes de deixar-hi <code>Sheet 1</code>.</li>
+          <li>Acumular diverses consultes en pestanyes d'un mateix llibre.</li>
+          <li>Recordar que el fitxer de destinació ha d'estar tancat.</li>
+        </ul>
+        <div class="note">
+          <span class="label">A la unitat següent</span>
+          <p>
+            Si heu arribat a l'exercici EX-15-3 pensant que repetir quatre vegades la
+            mateixa feina és absurd, teniu raó. La unitat 16 hi posa remei: consultes
+            que pregunten en comptes de consultes que s'editen.
+          </p>
+        </div>
+      </section>
+
+      <nav class="unit-nav">
+        <a class="prev" href="../14/">
+          <span class="dir">Unitat 14</span>
+          <span class="ttl">Històric persona-lloc: WAIV9030 i WAIV9031</span>
+        </a>
+        <a class="next" href="../16/">
+          <span class="dir">Unitat 16</span>
+          <span class="ttl">Paràmetres de text i numèrics</span>
+        </a>
+      </nav>
+
+      <footer class="site-foot">
+        <span>Guia elaborada per <strong>Ismael Trascastro</strong></span>
+        <span class="dret">Sobre material de l'Escola d'Administració Pública de Catalunya</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<script src="../../assets/tutorial.js?v=3"></script>
+</body>
+</html>

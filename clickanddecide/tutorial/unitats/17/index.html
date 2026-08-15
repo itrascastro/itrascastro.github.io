@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ca" data-unit="17" data-root="../..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>17 · Paràmetres de data - Click &amp; Decide</title>
+<meta name="description" content="Informes recurrents amb calendari interactiu, les propietats propies dels parametres de data i l'error del IGNORE.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="prev" href="../16/">
+<link rel="next" href="../18/">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../../index.html">Click &amp; Decide <em>· Guia d'aprenentatge</em></a>
+    <nav>
+      <span class="position">Unitat 17 / 18</span>
+      <span data-unit-picker></span>
+      <a class="step-link" href="../../index.html">Índex</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+
+  <header class="unit-head">
+    <p class="eyebrow">Part IV · Unitat 17</p>
+    <h1>Paràmetres de data</h1>
+    <p class="lede">
+      Una unitat curta amb una trampa. Els paràmetres de data funcionen com els de
+      text, però tenen <strong>propietats diferents</strong> i una regla que va
+      exactament al revés: el <code>IGNORE</code> que a la unitat 16 s'havia de
+      deixar, aquí <strong>s'ha de treure</strong>. És l'error que fa fallar tots els
+      paràmetres de data la primera vegada.
+    </p>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2>En aquesta unitat</h2>
+      <ol>
+        <li><a href="#cas">El cas d'ús</a></li>
+        <li><a href="#dos">Fan falta dos paràmetres</a></li>
+        <li><a href="#propietats">Les propietats són unes altres</a></li>
+        <li><a href="#ignore">L'error del IGNORE</a></li>
+        <li><a href="#multivalor">Multivalor a No</a></li>
+        <li><a href="#assignar">Assignar-los amb Entre</a></li>
+        <li><a href="#executar">El calendari</a></li>
+        <li><a href="#errors">Errors freqüents</a></li>
+        <li><a href="#exercicis">Exercicis</a></li>
+        <li><a href="#comprovacio">Llista de comprovació</a></li>
+      </ol>
+      <dl class="sidebar-aside">
+        <dt>Objectiu</dt>
+        <dd>Fer una consulta recurrent que demani el període en executar-se.</dd>
+        <dt>Diferència clau</dt>
+        <dd>El valor per defecte s'ha de deixar <strong>buit</strong>.</dd>
+        <dt>Ve de</dt>
+        <dd>Unitat 16: els dos passos són els mateixos.</dd>
+      </dl>
+    </aside>
+
+    <main class="content">
+
+      <section id="cas">
+        <h2><span class="num">Apartat 1</span>El cas d'ús</h2>
+        <p>
+          Necessiteu cada mes el llistat de treballadors que acaben contracte durant
+          aquell mes. Sense paràmetres, cada mes toca obrir la consulta, entrar als
+          criteris i canviar <code>01/01</code> i <code>31/01</code> per
+          <code>01/02</code> i <code>28/02</code>. Dotze vegades l'any, i cada vegada
+          amb el risc d'equivocar-se en una data.
+        </p>
+        <p>
+          Amb paràmetres de data, en executar la consulta apareix un
+          <strong>calendari</strong> i es tria el període. L'estructura no es toca mai.
+        </p>
+        <figure>
+          <img src="img/parametres_data_visio_general.png" alt="Visió general del funcionament d'un paràmetre de data, del cas d'ús al calendari.">
+          <figcaption>
+            El cicle: definir dos paràmetres, assignar-los al criteri i triar les dates
+            en executar.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="dos">
+        <h2><span class="num">Apartat 2</span>Fan falta dos paràmetres</h2>
+        <p>
+          Un període té dos extrems, i cada extrem és un paràmetre. Els noms del
+          material oficial són:
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption>Els dos paràmetres</caption>
+            <thead><tr><th class="code">Nom</th><th>Títol que veurà l'usuari</th></tr></thead>
+            <tbody>
+              <tr><td class="code">inici_periode</td><td>Quin és el primer dia del període?</td></tr>
+              <tr><td class="code">fi_periode</td><td>Quin és l'últim dia del període?</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">
+          <span class="label">Recordeu la restricció del nom</span>
+          <p>
+            Sense espais, ni accents, ni apòstrofs, ni dièresis. Per això
+            <code>inici_periode</code> i no <em>inici període</em>.
+          </p>
+        </div>
+        <p>
+          El procediment és el mateix de la unitat 16: finestra
+          <span class="ui">Criteris</span>, botó
+          <span class="ui">Paràmetres...</span>, i es creen un darrere l'altre.
+        </p>
+      </section>
+
+      <section id="propietats">
+        <h2><span class="num">Apartat 3</span>Les propietats són unes altres</h2>
+        <p>
+          En triar <span class="ui">Tipus: Data</span>, la llista de propietats
+          <strong>canvia</strong>. Desapareixen quatre i n'apareix una de nova. Val la
+          pena veure-ho comparat, perquè si espereu trobar les de la unitat 16 pensareu
+          que el programa falla.
+        </p>
+        <div class="versus">
+          <div class="si">
+            <h4>Paràmetre de text</h4>
+            <div class="criteri">Nom
+Tipus
+Estat
+Metode d'actualitzacio
+Titol
+Obligatori
+<span class="cm">Editable</span>
+Valor per defecte
+<span class="cm">Consulta</span>
+<span class="cm">Seleccio</span>
+<span class="cm">Oculta la primera columna</span></div>
+          </div>
+          <div class="si">
+            <h4>Paràmetre de data</h4>
+            <div class="criteri">Nom
+Tipus
+Estat
+Metode d'actualitzacio
+Titol
+Obligatori
+Valor per defecte
+<span class="good">Multivalor</span></div>
+          </div>
+        </div>
+        <p>Aquests són els valors que ha de tenir cadascun:</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Configuració d'un paràmetre de data</caption>
+            <thead><tr><th>Propietat</th><th>Valor</th><th>Per què</th></tr></thead>
+            <tbody>
+              <tr><td><span class="ui">Nom</span></td><td><code>inici_periode</code></td><td>Sense espais ni accents.</td></tr>
+              <tr><td><span class="ui">Tipus</span></td><td><span class="ui">Data</span></td><td>És el que fa aparèixer el calendari.</td></tr>
+              <tr><td><span class="ui">Estat</span></td><td><span class="ui">Activat</span></td><td>Com sempre.</td></tr>
+              <tr><td><span class="ui">Mètode d'actualització</span></td><td><span class="ui">Pregunta</span></td><td><strong>No</strong> <span class="ui">Pregunta/Consulta</span>: les dates es trien d'un calendari, no d'una taula.</td></tr>
+              <tr><td><span class="ui">Títol</span></td><td>La pregunta</td><td>El que llegirà qui executi la consulta.</td></tr>
+              <tr><td><span class="ui">Obligatori</span></td><td><code>Sí</code></td><td>Un període sense data no té sentit.</td></tr>
+              <tr><td><span class="ui">Valor per defecte</span></td><td><strong>Buit</strong></td><td>L'apartat següent.</td></tr>
+              <tr><td><span class="ui">Multivalor</span></td><td><code>No</code></td><td>L'apartat 5.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">
+          <span class="label">Per què Pregunta i no Pregunta/Consulta</span>
+          <p>
+            A la unitat 16 el mètode bo era <span class="ui">Pregunta/Consulta</span>,
+            perquè els valors sortien d'una consulta auxiliar. Aquí no cal cap consulta
+            auxiliar: les dates es trien d'un <strong>calendari estàndard</strong> que
+            ja porta el programa.
+          </p>
+        </div>
+      </section>
+
+      <section id="ignore">
+        <h2><span class="num">Apartat 4</span>L'error del IGNORE</h2>
+        <div class="note bad">
+          <span class="label">Això és tota la unitat</span>
+          <p>
+            Al camp <span class="ui">Valor per defecte</span> hi surt la paraula
+            <code>IGNORE</code> per defecte. <strong>S'ha d'esborrar</strong> i deixar
+            la casella completament buida. Si no ho feu,
+            <strong>el paràmetre de data donarà error i no funcionarà</strong>.
+          </p>
+        </div>
+        <div class="versus">
+          <div class="si">
+            <h4>Unitat 16, paràmetre de text</h4>
+            <div class="criteri is-good">Valor per defecte: IGNORE
+<span class="good">-- s'hi deixa</span></div>
+            <p>Vol dir "si no es tria res, no apliquis el criteri".</p>
+          </div>
+          <div class="no">
+            <h4>Unitat 17, paràmetre de data</h4>
+            <div class="criteri is-bad">Valor per defecte: IGNORE
+<span class="bad">-- s'ha de treure</span></div>
+            <p>Amb el IGNORE posat, el paràmetre falla.</p>
+          </div>
+        </div>
+        <p>
+          És l'única cosa del curs que es fa al revés segons el tipus, i per això es
+          repeteix tant. Si un paràmetre de data no us funciona, mireu aquesta casella
+          abans que res.
+        </p>
+        <figure>
+          <img src="img/cap_valor_defecte_ignore.png" alt="Parametre de tipus Data anomenat inici_periode amb el valor per defecte IGNORE encara posat i Multivalor a Si.">
+          <figcaption>
+            El paràmetre acabat de definir: el <code>IGNORE</code> hi és, i <span class="ui">Multivalor</span> està a <code>Sí</code>. Així <strong>no funcionarà</strong>.
+          </figcaption>
+        </figure>
+
+        <figure>
+          <img src="img/definir_parametres_data.png" alt="Definició dels dos paràmetres de data amb les seves propietats.">
+          <figcaption>
+            Els dos paràmetres definits, amb el valor per defecte ja buit.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="multivalor">
+        <h2><span class="num">Apartat 5</span>Multivalor a No</h2>
+        <p>
+          És la propietat que només tenen els paràmetres de data, i la raó és
+          senzilla: <strong>una data és única</strong>. No té sentit que el primer dia
+          del període siguin tres dies alhora.
+        </p>
+        <figure>
+          <img src="img/cap_valor_defecte_buit.png" alt="El mateix parametre de data amb el valor per defecte completament buit i Multivalor a No.">
+          <figcaption>
+            El mateix paràmetre ja corregit: <span class="ui">Valor per defecte</span> buit i <span class="ui">Multivalor</span> a <code>No</code>. Són els dos únics canvis, i sense ells falla.
+          </figcaption>
+        </figure>
+
+        <div class="note">
+          <span class="label">La comparació amb la unitat 16</span>
+          <p>
+            Allà volíeu <span class="ui">Selecció: Ampliada</span> precisament per poder
+            triar diversos valors: interins <em>i</em> laborals. Aquí voleu el contrari,
+            i per això <span class="ui">Multivalor</span> va a <code>No</code>.
+          </p>
+        </div>
+        <div class="note ok">
+          <span class="label">Els botons de la finestra</span>
+          <p>
+            Ja que en creeu dos de seguits, aprofiteu la barra d'icones: es poden
+            <strong>copiar i enganxar paràmetres</strong>. Feu el primer sencer,
+            copieu-lo, i al segon només canvieu el nom i el títol. Estalvia repetir
+            vuit propietats i evita oblidar-se de buidar el <code>IGNORE</code> a la
+            segona.
+          </p>
+        </div>
+      </section>
+
+      <section id="assignar">
+        <h2><span class="num">Apartat 6</span>Assignar-los amb Entre</h2>
+        <p>
+          Tornem a la finestra de criteris. El camp de data que voleu filtrar, per
+          exemple la data de fi del punter, ha de portar l'operador
+          <span class="ui">Entre</span>, que necessita <strong>dos valors</strong>. Un
+          per a cada paràmetre.
+        </p>
+        <ol class="steps">
+          <li>
+            <h3>Trieu el camp i l'operador</h3>
+            <p>
+              El camp de data, i l'operador <span class="ui">Entre</span>. Apareixen
+              dues caixes de valor apilades.
+            </p>
+          </li>
+          <li>
+            <h3>Primer valor: el paràmetre d'inici</h3>
+            <p>
+              A la primera caixa, pestanya <span class="ui">Expressió</span>, botó dels
+              tres punts, <span class="ui">Paràmetres</span>, doble clic sobre
+              <code>inici_periode</code>, <span class="ui">D'acord</span>.
+            </p>
+          </li>
+          <li>
+            <h3>Segon valor: el paràmetre de fi</h3>
+            <p>
+              El mateix a la segona caixa, però amb <code>fi_periode</code>.
+            </p>
+          </li>
+        </ol>
+        <div class="criteri is-good">PLPT_DATA_FI <span class="op">Entre</span> [ inici_periode ] <span class="op">i</span> [ fi_periode ]</div>
+        <div class="note">
+          <span class="label">Com queda escrit per dins</span>
+          <p>
+            Al panell <span class="ui">Camps</span>, un criteri de dates amb valors
+            fixos es llegeix així:
+          </p>
+          <div class="criteri">PLPT_DATA_FI <span class="op">BETWEEN</span> {d '2022-05-01'} <span class="op">AND</span> {d '2022-05-31'}</div>
+          <p>
+            Les caixes mostren les dates com <code>01/05/2022</code>, però internament
+            són en format ISO. És normal i no cal tocar-ho.
+          </p>
+        </div>
+        <figure>
+          <img src="img/cap_criteri_entre_dates.png" alt="Finestra Criteris amb l'operador Entre, dues caixes de data amb 01/05/2022 i 31/05/2022, i el panell Camps mostrant la sintaxi BETWEEN amb les dates en format ISO.">
+          <figcaption>
+            L'operador <span class="ui">Entre</span> amb les seves dues caixes. A baix es veu com queda escrit per dins, amb les dates en format ISO.
+          </figcaption>
+        </figure>
+
+        <figure>
+          <img src="img/vincular_parametres_criteris.png" alt="Vinculació dels dos paràmetres de data a les dues caixes de valor de l'operador Entre.">
+          <figcaption>
+            Cada paràmetre a la seva caixa, per la pestanya
+            <span class="ui">Expressió</span>.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="executar">
+        <h2><span class="num">Apartat 7</span>El calendari</h2>
+        <p>
+          En prémer executar apareix la finestra emergent amb les dues preguntes que
+          heu escrit als títols. A la dreta de cadascuna hi ha una
+          <strong>icona de calendari</strong>.
+        </p>
+        <ul>
+          <li>En fer-hi clic es desplega un calendari interactiu.</li>
+          <li>Es pot navegar per anys i mesos i triar el dia exacte.</li>
+          <li>Un cop triades les dues dates, <span class="ui">OK</span> i la consulta s'executa.</li>
+        </ul>
+        <div class="note ok">
+          <span class="label">Què heu guanyat</span>
+          <p>
+            El mes que ve només caldrà obrir la consulta, executar-la i triar les dates
+            noves al calendari. <strong>No cal tocar l'estructura mai més</strong>, i
+            la pot executar qualsevol persona del servei sense saber què és un criteri.
+          </p>
+        </div>
+        <figure>
+          <img src="img/executar_seleccionar_periode.png" alt="La finestra emergent amb les dues preguntes i el calendari interactiu desplegat.">
+          <figcaption>
+            La consulta preguntant el període en el moment d'executar-se.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="errors">
+        <h2><span class="num">Apartat 8</span>Errors freqüents</h2>
+        <div class="versus">
+          <div class="no">
+            <h4>El que passa</h4>
+            <p><strong>El paràmetre de data dóna error.</strong></p>
+            <p><strong>No surt el calendari, em demana escriure la data.</strong></p>
+            <p><strong>Només em demana una data.</strong></p>
+            <p><strong>Executo i no em pregunta res.</strong></p>
+            <p><strong>Em deixa continuar sense triar dates i surt tot.</strong></p>
+          </div>
+          <div class="si">
+            <h4>El que passa de veritat</h4>
+            <p>No heu esborrat el <code>IGNORE</code>. És el primer que s'ha de mirar.</p>
+            <p>El tipus no és <span class="ui">Data</span>. Reviseu-lo.</p>
+            <p>Heu creat un sol paràmetre, o n'heu assignat només un a l'operador <span class="ui">Entre</span>.</p>
+            <p>Els heu definit però no assignat. Mateix error número u que a la unitat 16.</p>
+            <p><span class="ui">Obligatori</span> està a <code>No</code>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="exercicis">
+        <h2><span class="num">Apartat 9</span>Exercicis</h2>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-17-1</span>
+            <h3>L'informe mensual</h3>
+            <span class="mena">Reprodueix</span>
+          </header>
+          <div class="cos">
+            <p>
+              Munteu la consulta de treballadors amb data de fi de contracte dins d'un
+              període, amb els dos paràmetres de data.
+            </p>
+            <p>Executeu-la dues vegades amb períodes diferents.</p>
+            <details>
+              <summary>Comprovació</summary>
+              <div class="dins">
+                <p>
+                  Han de sortir <strong>dues preguntes</strong>, cadascuna amb la seva
+                  icona de calendari. I el nombre de registres ha de
+                  <strong>canviar</strong> entre les dues execucions.
+                </p>
+                <p>
+                  Si només surt una pregunta, us falta assignar un dels dos paràmetres a
+                  la seva caixa de valor.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-17-2</span>
+            <h3>Torna a posar el IGNORE</h3>
+            <span class="mena">Trenca</span>
+          </header>
+          <div class="cos">
+            <p>
+              Amb la consulta funcionant, editeu el paràmetre
+              <code>inici_periode</code> i escriviu <code>IGNORE</code> al valor per
+              defecte. Executeu.
+            </p>
+            <p>Després torneu a buidar-lo i compareu.</p>
+            <details>
+              <summary>Què hauria d'haver passat</summary>
+              <div class="dins">
+                <p>
+                  Amb el <code>IGNORE</code> posat, el paràmetre de data
+                  <strong>falla</strong>. Amb la casella buida, funciona.
+                </p>
+                <p>
+                  Val la pena provocar-ho una vegada a propòsit: el dia que us passi de
+                  debò, en una consulta amb sis criteris i dos paràmetres, reconeixereu
+                  el símptoma en comptes de revisar-ho tot.
+                </p>
+                <p>
+                  I fixeu-vos en la simetria amb la unitat 16: allà, treure el
+                  <code>IGNORE</code> feia que "no triar res" deixés de voler dir
+                  "totes". Aquí, posar-lo trenca el paràmetre. La mateixa casella, dos
+                  comportaments oposats segons el tipus.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-17-3</span>
+            <h3>Les incidències d'un mes qualsevol</h3>
+            <span class="mena">Resol</span>
+          </header>
+          <div class="cos">
+            <p>
+              Recupereu la consulta d'incidències <strong>vigents</strong> en un
+              període de la unitat 13, que tenia les dates escrites a mà.
+            </p>
+            <p>
+              Convertiu-la en una consulta amb paràmetres, de manera que qualsevol
+              persona pugui demanar-li un mes concret. Digueu quants paràmetres calen i
+              on va cadascun.
+            </p>
+            <details>
+              <summary>Pista</summary>
+              <div class="dins">
+                <p>
+                  Rellegiu el criteri de la unitat 13. Les dues dates del període hi
+                  apareixen, però <strong>no juntes en un Entre</strong>: una està a la
+                  condició de la data d'inici i l'altra a la de la data de fi.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>Solució</summary>
+              <div class="dins">
+                <p><strong>Dos paràmetres</strong>, els mateixos de sempre:</p>
+                <div class="criteri is-good">inici_periode   <span class="cm">-- primer dia del mes</span>
+fi_periode      <span class="cm">-- ultim dia del mes</span></div>
+                <p><strong>I van creuats</strong>, que és el que fa pensar aquest exercici:</p>
+                <div class="criteri is-good">DATA_INICI <span class="op">&lt;=</span> [ <span class="good">fi_periode</span> ]
+<span class="op">AND</span> (
+      DATA_FI <span class="op">&gt;=</span> [ <span class="good">inici_periode</span> ]
+   <span class="op">or</span>
+      DATA_FI <span class="op">És nul</span>
+)</div>
+                <p>
+                  La data d'inici de la incidència es compara amb el
+                  <strong>final</strong> del període, i la data de fi amb el
+                  <strong>principi</strong>. És la regla del solapament de la unitat 13,
+                  ara amb paràmetres.
+                </p>
+                <p>
+                  <strong>Aquí no hi ha cap operador <span class="ui">Entre</span></strong>:
+                  cada paràmetre va a un criteri diferent, amb <code>&lt;=</code> i
+                  <code>&gt;=</code>. Un paràmetre es pot fer servir a qualsevol criteri,
+                  no només dins d'un rang.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="comprovacio">
+        <h2><span class="num">Apartat 10</span>Llista de comprovació</h2>
+        <ul class="checklist">
+          <li>Explicar què guanya un informe recurrent amb paràmetres de data.</li>
+          <li>Saber que calen dos paràmetres, un per extrem del període.</li>
+          <li>Dir quines propietats desapareixen i quina apareix respecte d'un paràmetre de text.</li>
+          <li>Triar <span class="ui">Pregunta</span> i saber per què no <span class="ui">Pregunta/Consulta</span>.</li>
+          <li>Esborrar el <code>IGNORE</code> del valor per defecte.</li>
+          <li>Explicar per què <span class="ui">Multivalor</span> va a <code>No</code>.</li>
+          <li>Copiar i enganxar un paràmetre per crear el segon.</li>
+          <li>Assignar els dos paràmetres a les dues caixes de l'operador <span class="ui">Entre</span>.</li>
+          <li>Fer servir paràmetres de data en criteris separats, sense <span class="ui">Entre</span>.</li>
+          <li>Diagnosticar un paràmetre de data que falla.</li>
+        </ul>
+        <div class="note">
+          <span class="label">A la unitat següent</span>
+          <p>
+            L'última. És el repàs dels errors que fan perdre més temps, i tres d'ells
+            ja els heu vist venir: el doble clic que ho selecciona tot, els camps de
+            text buits i els apòstrofs.
+          </p>
+        </div>
+      </section>
+
+      <nav class="unit-nav">
+        <a class="prev" href="../16/">
+          <span class="dir">Unitat 16</span>
+          <span class="ttl">Paràmetres de text i numèrics</span>
+        </a>
+        <a class="next" href="../18/">
+          <span class="dir">Unitat 18</span>
+          <span class="ttl">Síntesi, errors freqüents i bones pràctiques</span>
+        </a>
+      </nav>
+
+      <footer class="site-foot">
+        <span>Guia elaborada per <strong>Ismael Trascastro</strong></span>
+        <span class="dret">Sobre material de l'Escola d'Administració Pública de Catalunya</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<script src="../../assets/tutorial.js?v=3"></script>
+</body>
+</html>

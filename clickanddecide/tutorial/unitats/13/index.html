@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ca" data-unit="13" data-root="../..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>13 · Incidències: WAIV9060 i WAIV9061 - Click &amp; Decide</title>
+<meta name="description" content="Dos universos amb els mateixos camps, els codis d'incidencia i la logica per saber que era vigent en un periode.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="prev" href="../12/">
+<link rel="next" href="../14/">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../../index.html">Click &amp; Decide <em>· Guia d'aprenentatge</em></a>
+    <nav>
+      <span class="position">Unitat 13 / 18</span>
+      <span data-unit-picker></span>
+      <a class="step-link" href="../../index.html">Índex</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+
+  <header class="unit-head">
+    <p class="eyebrow">Part III · Unitat 13</p>
+    <h1>Incidències: WAIV9060 i WAIV9061</h1>
+    <p class="lede">
+      Baixes, permisos, llicències i reduccions de jornada. Dues taules amb
+      <strong>exactament els mateixos camps</strong> i poblacions diferents, i una
+      pregunta que sembla trivial i no ho és: <em>quantes incidències hi havia el
+      setembre?</em> Hi ha tres maneres de contestar-la i només una és la que us
+      demanaven.
+    </p>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2>En aquesta unitat</h2>
+      <ol>
+        <li><a href="#taules">Les dues taules</a></li>
+        <li><a href="#contingut">Què hi ha a dins</a></li>
+        <li><a href="#codis">Els codis d'incidència</a></li>
+        <li><a href="#tres-preguntes">Tres preguntes sobre dates</a></li>
+        <li><a href="#iniciades">Iniciades en un període</a></li>
+        <li><a href="#finalitzades">Finalitzades en un període</a></li>
+        <li><a href="#vigents">Vigents en un període</a></li>
+        <li><a href="#construir">Construir-ho al programa</a></li>
+        <li><a href="#errors">Errors freqüents</a></li>
+        <li><a href="#exercicis">Exercicis</a></li>
+        <li><a href="#comprovacio">Llista de comprovació</a></li>
+      </ol>
+      <dl class="sidebar-aside">
+        <dt>Objectiu</dt>
+        <dd>Filtrar incidències per període amb la lògica correcta.</dd>
+        <dt>Taules</dt>
+        <dd><span class="tag incidencia">WAIV9060_INCIDENCI</span> i <code>WAIV9061_INCPERDEP</code></dd>
+        <dt>Botó clau</dt>
+        <dd><span class="ui">Nou</span>, per posar dues condicions al mateix camp.</dd>
+        <dt>Consulta model</dt>
+        <dd>La número 3 de la unitat 00: 73 incidències vigents al setembre.</dd>
+      </dl>
+    </aside>
+
+    <main class="content">
+
+      <section id="taules">
+        <h2><span class="num">Apartat 1</span>Les dues taules</h2>
+        <p>
+          Totes dues contenen incidències vigents i les finalitzades durant l'any
+          actual i l'anterior. Totes dues tenen <strong>els mateixos camps</strong>.
+          El que canvia és l'<strong>univers</strong>: quines files hi ha a dins.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <caption>La diferència, que és l'única</caption>
+            <thead>
+              <tr><th class="code">Taula</th><th>Conté</th><th>Feu-la servir per estudiar</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code">WAIV9060</td>
+                <td>Les incidències <strong>iniciades en llocs del vostre àmbit</strong>, independentment d'on estigui adscrita la persona ara.</td>
+                <td>Els <strong>llocs</strong>: què passa a la vostra plantilla.</td>
+              </tr>
+              <tr>
+                <td class="code">WAIV9061</td>
+                <td>Les incidències de les <strong>persones que ara ocupen un lloc al vostre àmbit</strong>, independentment d'on es va iniciar la incidència.</td>
+                <td>Les <strong>persones</strong>: què els ha passat, fos on fos.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note ok">
+          <span class="label">La regla per no confondre-les</span>
+          <p>
+            És la mateixa de la unitat 00: la que acaba en <strong>0</strong> segueix el
+            <strong>lloc</strong>, la que acaba en <strong>1</strong> segueix la
+            <strong>persona</strong>. I funciona igual per a la parella 9030 i 9031 de
+            la unitat següent.
+          </p>
+        </div>
+
+        <div class="note warn">
+          <span class="label">Per què importa tant</span>
+          <p>
+            Com que els camps són idèntics, <strong>una consulta feta sobre la taula
+            equivocada s'executa perfectament</strong> i torna dades versemblants.
+            No hi ha cap senyal d'error. L'única manera de detectar-ho és haver triat
+            la taula conscientment.
+          </p>
+        </div>
+
+        <figure>
+          <img src="img/waiv9060_vs_waiv9061.png" alt="Comparació entre les taules WAIV9060 i WAIV9061: mateixos camps, universos de dades diferents.">
+          <figcaption>
+            Mateixa estructura, poblacions diferents.
+          </figcaption>
+        </figure>
+              <p>
+          Aquesta taula es lliga amb la de persones pel camp
+          <code>PERS_NIF</code>, que hi surt a totes dues. Les incidències no
+          porten ni el departament ni la unitat orgànica de qui les té: si les
+          voleu al costat, cal enllaçar amb <code>WAIV9010_PERSONA</code> pel
+          NIF. I compte amb el sentit del recompte: una persona pot tenir
+          diverses incidències, de manera que comptar files no és comptar gent.
+        </p>
+</section>
+
+      <section id="contingut">
+        <h2><span class="num">Apartat 2</span>Què hi ha a dins</h2>
+        <dl class="factsheet">
+          <div><dt>Contingut</dt><dd>Incapacitats temporals, absències, permisos, llicències i reduccions de jornada, vigents i les finalitzades l'any actual o l'anterior.</dd></div>
+          <div><dt>Clau</dt><dd>Cap. Registres múltiples: el NIF es repeteix tantes vegades com incidències hagi tingut la persona.</dd></div>
+          <div><dt>Vigència</dt><dd>Dades actuals i històriques.</dd></div>
+          <div><dt>Càrrega</dt><dd>Diària.</dd></div>
+        </dl>
+
+        <h3>Les dues ubicacions</h3>
+        <p>
+          Aquesta taula porta <strong>dos jocs de camps d'ubicació</strong>, i confondre'ls
+          canvia el resultat:
+        </p>
+        <div class="cards">
+          <div>
+            <h3><code>UBIA</code></h3>
+            <p>Ubicació <strong>actual</strong> de la persona, o l'última si ja no està en actiu.</p>
+          </div>
+          <div>
+            <h3><code>UBIH</code></h3>
+            <p>Ubicació <strong>històrica</strong>: on treballava exactament en el moment en què es va produir la incidència.</p>
+          </div>
+        </div>
+        <div class="note">
+          <span class="label">Quan cal cadascuna</span>
+          <p>
+            Per a un estudi d'absentisme per unitat, la bona és
+            <code>UBIH</code>: voleu saber on va passar. Si feu servir
+            <code>UBIA</code>, atribuireu la baixa a la unitat on la persona treballa
+            avui, que pot no tenir res a veure.
+          </p>
+        </div>
+
+        <p>La taula porta també dades personals, de relació contractual, del lloc que ocupava la persona en aquell moment, i d'afectació a la nòmina.</p>
+              <p>
+          A banda de les dates i el tipus, la taula porta dades personals de qui
+          té la incidència: l'<b>edat</b>, el <b>sexe</b> i les dades de la seva
+          relació contractual. I, segons quin sigui el tipus, s'omplen uns camps
+          o uns altres: en una maternitat o una paternitat hi consta la
+          <b>data de naixement del fill</b>, i en una adopció el moment en què
+          es va produir. Per això la taula sembla plena de camps buits: no ho
+          està, és que cada tipus n'informa els seus.
+        </p>
+</section>
+
+      <section id="codis">
+        <h2><span class="num">Apartat 3</span>Els codis d'incidència</h2>
+        <p>
+          La codificació completa és al GIP, però aquests set són els que cal recordar:
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption>Tipus d'incidència</caption>
+            <thead><tr><th class="code">Codi</th><th>Què és</th></tr></thead>
+            <tbody>
+              <tr><td class="code">AB</td><td>Absència</td></tr>
+              <tr><td class="code">IT</td><td>Incapacitat temporal</td></tr>
+              <tr><td class="code">LL</td><td>Llicència</td></tr>
+              <tr><td class="code">MJ</td><td>Maternitat biològica</td></tr>
+              <tr><td class="code">PE</td><td>Permís</td></tr>
+              <tr><td class="code">PT</td><td>Paternitat</td></tr>
+              <tr><td class="code">RJ</td><td>Reducció de jornada</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>L'especificació</h3>
+        <p>
+          Un segon camp concreta el subtipus. Dins d'una incapacitat temporal
+          (<code>IT</code>), l'especificació pot ser <code>MC</code> de malaltia comuna
+          o <code>AL</code> d'accident laboral, que són les més freqüents.
+        </p>
+        <p>
+          Segons el tipus, hi haurà camps informats o no: en una maternitat hi trobareu
+          la data de naixement o el moment de l'adopció; en una incapacitat, no.
+        </p>
+        <figure>
+          <img src="img/camps_codis_dates_incidencies.png" alt="Camps, codis i dates de les taules d'incidències.">
+          <figcaption>
+            Els camps de la incidència, amb els tipus i les dates.
+          </figcaption>
+        </figure>
+              <figure>
+          <img src="img/camps_incidencia_real.png" alt="Llista de camps de la taula d'incidències: INCI_DATA_INICI, INCI_DATA_FI, INCI_TIPUS_CODI i DESC, INCI_ESPECIFI_CODI i DESC, i la resta.">
+          <figcaption>
+            Els camps de la incidència, amb els noms exactes:
+            <code>INCI_DATA_INICI</code>, <code>INCI_DATA_FI</code>, el tipus
+            partit en <code>INCI_TIPUS_CODI</code> i <code>_DESC</code>, i el
+            subtipus en <code>INCI_ESPECIFI_CODI</code> i <code>_DESC</code>.
+            Fixeu-vos en la pestanya de dalt: la consulta es diu
+            <b>Incidències 9060 9061</b>, perquè les dues taules tenen els
+            mateixos camps i el que canvia és l'univers.
+            <span class="font">Videotutorial 13 de l'EAPC, minut 3:00.</span>
+          </figcaption>
+        </figure>
+
+        <p>
+          Els noms exactes: el tipus va partit en
+          <code>INCI_TIPUS_CODI</code> i <code>INCI_TIPUS_DESC</code>, i el
+          subtipus en <code>INCI_ESPECIFI_CODI</code> i
+          <code>INCI_ESPECIFI_DESC</code>. Filtreu sempre pels de codi. I les
+          dues ubicacions són <code>UBIA_UN_ORGAN_NOM</code>, la d'ara, i
+          <code>UBIH_UN_ORGAN_NOM</code>, la del moment de la incidència: si
+          algú ha canviat de destinació, no són la mateixa, i triar-ne una o
+          l'altra canvia el recompte per unitat.
+        </p>
+
+</section>
+
+      <section id="tres-preguntes">
+        <h2><span class="num">Apartat 4</span>Tres preguntes sobre dates</h2>
+        <p>
+          Aquí arriba el nucli de la unitat. "Les incidències del setembre" pot voler
+          dir tres coses diferents, i cadascuna dóna una xifra diferent.
+        </p>
+        <div class="cards">
+          <div>
+            <h3>Iniciades</h3>
+            <p>Les que <strong>van començar</strong> dins del període. Deixa fora les que venien d'abans i encara duraven.</p>
+          </div>
+          <div>
+            <h3>Finalitzades</h3>
+            <p>Les que <strong>van acabar</strong> dins del període, encara que comencessin l'any anterior.</p>
+          </div>
+          <div>
+            <h3>Vigents</h3>
+            <p>Les que <strong>van tocar</strong> el període, tant se val quan van començar o acabar. És la que costa de construir.</p>
+          </div>
+        </div>
+        <div class="note warn">
+          <span class="label">Pregunteu-ho abans de fer la consulta</span>
+          <p>
+            Quan algú demana "les baixes del setembre", normalment vol dir
+            <strong>vigents</strong>, però gairebé mai ho diu. Les tres respostes són
+            correctes i les tres són diferents. Val la pena confirmar-ho abans, i
+            escriure al costat de la xifra quina heu calculat.
+          </p>
+        </div>
+        <figure>
+          <img src="img/consultes_inici_fi_vigencia.png" alt="Les tres consultes possibles sobre dates: incidències iniciades, finalitzades i vigents en un període.">
+          <figcaption>
+            Les tres preguntes sobre la línia del temps.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="iniciades">
+        <h2><span class="num">Apartat 5</span>Iniciades en un període</h2>
+        <p>La més senzilla. Un sol camp i l'operador <span class="ui">Entre</span>.</p>
+        <div class="criteri is-good">INCI_TIPUS <span class="op">=</span> 'MJ'
+<span class="op">AND</span> DATA_INICI <span class="op">Entre</span> 01/01/2024 <span class="op">i</span> 31/12/2024
+
+<span class="cm">-- maternitats iniciades durant l'any</span></div>
+        <div class="note">
+          <span class="label">Comproveu-ho a la graella</span>
+          <p>
+            Seleccioneu les dues dates per veure-les al resultat. Totes les dates
+            d'inici han de caure dins del període. És la manera més ràpida de validar
+            que el criteri s'ha aplicat.
+          </p>
+        </div>
+      </section>
+
+      <section id="finalitzades">
+        <h2><span class="num">Apartat 6</span>Finalitzades en un període</h2>
+        <p>
+          Exactament igual, canviant de camp. Traieu el criteri anterior i poseu-lo
+          sobre la data de fi.
+        </p>
+        <div class="criteri is-good">INCI_TIPUS <span class="op">=</span> 'MJ'
+<span class="op">AND</span> DATA_FI <span class="op">Entre</span> 01/01/2024 <span class="op">i</span> 31/12/2024
+
+<span class="cm">-- maternitats acabades durant l'any</span></div>
+        <p>
+          El nombre de registres <strong>serà diferent</strong> del de la consulta
+          anterior. En mirar el resultat veureu incidències que van començar l'any
+          anterior: és correcte, perquè el que heu demanat és quan van acabar.
+        </p>
+      </section>
+
+      <section id="vigents">
+        <h2><span class="num">Apartat 7</span>Vigents en un període</h2>
+        <p>
+          Aquesta és la difícil, i val la pena entendre-la abans de construir-la.
+          Una incidència és vigent en un període si <strong>es solapa</strong> amb ell,
+          encara que comencés abans o acabi després.
+        </p>
+
+        <div class="note ok">
+          <span class="label">La regla del solapament</span>
+          <p>
+            Dos períodes se solapen si <strong>cadascun comença abans que l'altre
+            acabi</strong>. Traduït a la nostra consulta, amb el període d'estudi del
+            <code>01/09</code> al <code>30/09</code>:
+          </p>
+          <ul>
+            <li>la <strong>data d'inici</strong> de la incidència ha de ser <strong>anterior o igual</strong> al darrer dia del període;</li>
+            <li>la <strong>data de fi</strong> ha de ser <strong>posterior o igual</strong> al primer dia del període;</li>
+            <li><strong>o bé</strong> la data de fi ha de ser <strong>nul·la</strong>, perquè la incidència encara està oberta.</li>
+          </ul>
+        </div>
+
+        <div class="criteri is-good">DATA_INICI <span class="op">&lt;=</span> 30/09
+<span class="op">AND</span> <span class="good">(</span>
+      DATA_FI <span class="op">&gt;=</span> 01/09
+   <span class="op">or</span>
+      DATA_FI <span class="op">És nul</span>
+<span class="good">)</span></div>
+
+        <div class="note bad">
+          <span class="label">El parèntesi no és opcional</span>
+          <p>
+            Sense combinar les dues condicions de data de fi, el programa les uneix amb
+            AND i us demana que la data de fi sigui posterior al dia 1
+            <em>i alhora</em> nul·la, cosa impossible. És la mateixa trampa de la unitat
+            7, amb un ingredient nou: aquí les dues condicions són
+            <strong>sobre el mateix camp</strong>.
+          </p>
+        </div>
+
+        <div class="note ok">
+          <span class="label">Per què la data de fi nul·la</span>
+          <p>
+            Perquè una incidència oberta no té data de fi. I recordeu la unitat 9:
+            <span class="ui">És nul</span> <strong>sí que funciona aquí</strong>,
+            perquè és un camp de <strong>data</strong>. Aquest és el cas en què
+            l'operador serveix de veritat.
+          </p>
+        </div>
+        <figure>
+          <img src="img/construccio_incidencies_vigents.png" alt="Construcció pas a pas del criteri d'incidències vigents en un període.">
+          <figcaption>
+            La lògica del solapament portada a la finestra de criteris.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="construir">
+        <h2><span class="num">Apartat 8</span>Construir-ho al programa</h2>
+        <p>
+          Necessiteu <strong>dues condicions sobre el mateix camp</strong>, i això
+          demana el botó que vam veure a la unitat 6 i que fins ara no havíem fet
+          servir.
+        </p>
+        <ol class="steps">
+          <li>
+            <h3>La data d'inici</h3>
+            <p>
+              Criteri sobre <code>DATA_INICI</code> amb l'operador
+              <code>&lt;=</code> i el darrer dia del període.
+            </p>
+          </li>
+          <li>
+            <h3>La primera condició de la data de fi</h3>
+            <p>
+              Criteri sobre <code>DATA_FI</code> amb <code>&gt;=</code> i el primer dia
+              del període.
+            </p>
+          </li>
+          <li>
+            <h3>Dupliqueu el camp amb Nou</h3>
+            <p>
+              Situeu-vos sobre el criteri de la data de fi i premeu
+              <span class="ui">Nou</span>. Es duplica la línia perquè hi pugueu posar
+              una segona condició.
+            </p>
+          </li>
+          <li>
+            <h3>Poseu-hi És nul</h3>
+            <p>A la línia nova, canvieu l'operador a <span class="ui">És nul</span>.</p>
+          </li>
+          <li>
+            <h3>Combineu-les i canvieu a OR</h3>
+            <p>
+              Amb <kbd>Ctrl</kbd>, seleccioneu les <strong>dues línies de data de
+              fi</strong>. Premeu <span class="ui">Combina</span> i canvieu el
+              connector de dins a <strong>or</strong>.
+            </p>
+          </li>
+          <li>
+            <h3>Executeu i comproveu</h3>
+            <p>
+              Al panell <span class="ui">Camps</span> el parèntesi ha d'abraçar
+              <strong>només</strong> les dues línies de data de fi, i la data d'inici
+              ha de quedar-ne fora.
+            </p>
+          </li>
+        </ol>
+        <div class="note">
+          <span class="label">Com es llegeix el resultat</span>
+          <p>
+            Al panell de criteris veureu les dates escrites en format intern, del tipus
+            <code>BETWEEN {d '2024-09-01'} AND {d '2024-09-30'}</code>. Les caixes de
+            valor les mostren com <code>01/09/2024</code>, però per dins són ISO. No us
+            alarmeu: és correcte.
+          </p>
+        </div>
+              <p>
+          Aquí hi ha el gest concret que costa de descobrir sol. Per posar
+          <b>dos criteris sobre el mateix camp</b> de data, no cal buscar-lo dos
+          cops a la llista: situeu-vos sobre el criteri que ja teniu i premeu el
+          botó <span class="ui">Nou</span>, que el <b>duplica</b> tal com està. Al segon hi
+          canvieu l'operador a <span class="ui">És nul</span>. Després, amb la
+          tecla <b>Control</b> premuda, seleccioneu els dos criteris, els <b>combinem</b> amb <span class="ui">Combina</span> i canvieu el
+          connector a <b>or</b>. Sense el parèntesi, l'<b>and</b> dels altres
+          criteris no s'aplicaria a la segona condició.
+        </p>
+</section>
+
+      <section id="errors">
+        <h2><span class="num">Apartat 9</span>Errors freqüents</h2>
+        <div class="versus">
+          <div class="no">
+            <h4>El que passa</h4>
+            <p><strong>La consulta de vigents torna zero.</strong></p>
+            <p><strong>Em falten les baixes que segueixen obertes.</strong></p>
+            <p><strong>Els números no quadren amb els de l'any passat.</strong></p>
+            <p><strong>L'absentisme surt atribuït a la unitat equivocada.</strong></p>
+            <p><strong>73 incidències, però la meva cap en comptava 48.</strong></p>
+          </div>
+          <div class="si">
+            <h4>El que passa de veritat</h4>
+            <p>No heu combinat les dues condicions de data de fi. Estan unides per AND i és impossible complir-les.</p>
+            <p>Us falta la condició <span class="ui">És nul</span> a la data de fi.</p>
+            <p>Compareu <em>iniciades</em> amb <em>vigents</em>. Són preguntes diferents.</p>
+            <p>Heu filtrat per <code>UBIA</code> en comptes de <code>UBIH</code>.</p>
+            <p>Ella comptava persones i vosaltres files. Unitats 10 i 12.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="exercicis">
+        <h2><span class="num">Apartat 10</span>Exercicis</h2>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-13-1</span>
+            <h3>Les tres xifres del setembre</h3>
+            <span class="mena">Reprodueix</span>
+          </header>
+          <div class="cos">
+            <p>
+              Sobre <span class="tag incidencia">WAIV9060</span>, calculeu les tres
+              xifres per al mes de setembre:
+            </p>
+            <ol>
+              <li>Incidències <strong>iniciades</strong> al setembre.</li>
+              <li>Incidències <strong>finalitzades</strong> al setembre.</li>
+              <li>Incidències <strong>vigents</strong> al setembre.</li>
+            </ol>
+            <details>
+              <summary>Comprovació</summary>
+              <div class="dins">
+                <div class="criteri">DATA_INICI <span class="op">&lt;=</span> 30/09
+<span class="op">AND</span> (DATA_FI <span class="op">&gt;=</span> 01/09 <span class="op">or</span> DATA_FI <span class="op">És nul</span>)</div>
+                <p class="resposta"><b>73</b> incidències vigents</p>
+                <p>
+                  És la consulta model 3 de la unitat 00. La xifra de vigents ha de ser
+                  <strong>la més gran de les tres</strong>: inclou les que van començar
+                  abans i les que van acabar després. Si no és així, reviseu el
+                  parèntesi.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-13-2</span>
+            <h3>Treu el parèntesi</h3>
+            <span class="mena">Trenca</span>
+          </header>
+          <div class="cos">
+            <p>
+              Amb la consulta de vigents muntada, premeu
+              <span class="ui">No combinis</span> per desfer el parèntesi i executeu.
+            </p>
+            <ol>
+              <li>Quants registres surten?</li>
+              <li>Per què?</li>
+              <li>I si en comptes de treure el parèntesi, canvieu l'<strong>or</strong> de dins per un <strong>and</strong>?</li>
+            </ol>
+            <details>
+              <summary>Què hauria d'haver passat</summary>
+              <div class="dins">
+                <p>
+                  <strong>1 i 2.</strong> Sense parèntesi, el programa agrupa els dos
+                  primers criteris amb AND i deixa el <span class="ui">És nul</span>
+                  penjant de l'OR. Resultat: totes les incidències obertes de la taula,
+                  siguin del setembre o no. La xifra <strong>puja</strong> i és falsa.
+                </p>
+                <p>
+                  <strong>3.</strong> Amb AND a dins del parèntesi, demaneu una data de
+                  fi que sigui posterior al dia 1 <em>i</em> nul·la alhora. Zero
+                  registres.
+                </p>
+                <p>
+                  Els dos errors són el mateix de la unitat 7 vistos des de dos angles:
+                  un infla i l'altre buida. El perillós és el primer.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-13-3</span>
+            <h3>L'encàrrec ambigu</h3>
+            <span class="mena">Resol</span>
+          </header>
+          <div class="cos">
+            <p>Us arriba aquest correu:</p>
+            <p>
+              <em>"Per al comitè de seguretat i salut necessito les incapacitats
+              temporals per accident laboral que hi va haver al nostre servei el
+              trimestre passat, i quanta gent diferent hi ha implicada."</em>
+            </p>
+            <p>
+              Digueu quina taula trieu, quins criteris poseu i quin comptador feu
+              servir. Assenyaleu també què hi ha d'ambigu a l'encàrrec.
+            </p>
+            <details>
+              <summary>Solució</summary>
+              <div class="dins">
+                <p><strong>Taula:</strong> depèn, i s'ha de preguntar.</p>
+                <ul>
+                  <li>Si l'estudi és sobre <em>el servei</em> com a lloc de treball: <code>WAIV9060</code>.</li>
+                  <li>Si és sobre <em>la gent</em> que hi ha ara: <code>WAIV9061</code>.</li>
+                  <li>Per a un comitè de seguretat i salut, normalment interessa on va passar: <code>WAIV9060</code>, i amb <code>UBIH</code>.</li>
+                </ul>
+                <p><strong>Criteris:</strong></p>
+                <div class="criteri is-good">INCI_TIPUS = 'IT'
+<span class="op">AND</span> especificacio = 'AL'
+<span class="op">AND</span> DATA_INICI &lt;= [darrer dia del trimestre]
+<span class="op">AND</span> <span class="good">(</span>DATA_FI &gt;= [primer dia] <span class="op">or</span> DATA_FI és nul<span class="good">)</span></div>
+                <p><strong>Comptadors:</strong> dos, i cal donar-los tots dos.</p>
+                <ul>
+                  <li>Recompte de registres: quants processos hi ha hagut.</li>
+                  <li><span class="ui">Distinct Agregats</span> sobre el NIF: quanta gent diferent.</li>
+                </ul>
+                <p>
+                  <strong>L'ambigüitat:</strong> "que hi va haver el trimestre passat"
+                  no diu si són iniciades o vigents. Per a prevenció de riscos la bona
+                  és <strong>vigents</strong>, perquè una baixa llarga que ve d'abans
+                  també és un accident que afecta el servei. Digueu-ho explícitament al
+                  costat de la xifra.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="comprovacio">
+        <h2><span class="num">Apartat 11</span>Llista de comprovació</h2>
+        <ul class="checklist">
+          <li>Explicar què separa <code>WAIV9060</code> de <code>WAIV9061</code>.</li>
+          <li>Aplicar la regla del 0 i l'1 per triar entre elles.</li>
+          <li>Explicar per què una consulta sobre la taula equivocada no dóna cap error.</li>
+          <li>Distingir <code>UBIA</code> d'<code>UBIH</code> i saber quan cal cadascuna.</li>
+          <li>Recordar els set codis d'incidència.</li>
+          <li>Enunciar les tres preguntes possibles sobre un període.</li>
+          <li>Construir la consulta d'iniciades i la de finalitzades.</li>
+          <li>Explicar la regla del solapament amb les seves tres condicions.</li>
+          <li>Fer servir el botó <span class="ui">Nou</span> per posar dues condicions al mateix camp.</li>
+          <li>Combinar les dues condicions de data de fi i canviar-hi el connector a or.</li>
+          <li>Justificar per què aquí <span class="ui">És nul</span> sí que funciona.</li>
+          <li>Comprovar al panell <span class="ui">Camps</span> que el parèntesi abraça el que toca.</li>
+        </ul>
+        <div class="note">
+          <span class="label">A la unitat següent</span>
+          <p>
+            La mateixa lògica de dates, però aplicada dues vegades a la mateixa
+            consulta. La unitat 14 és la més exigent del curs i és l'única manera de
+            saber com era un lloc de treball en una data del passat.
+          </p>
+        </div>
+      </section>
+
+      <nav class="unit-nav">
+        <a class="prev" href="../12/">
+          <span class="dir">Unitat 12</span>
+          <span class="ttl">Titulacions: les taules de registres múltiples</span>
+        </a>
+        <a class="next" href="../14/">
+          <span class="dir">Unitat 14</span>
+          <span class="ttl">Històric persona-lloc: WAIV9030 i WAIV9031</span>
+        </a>
+      </nav>
+
+      <footer class="site-foot">
+        <span>Guia elaborada per <strong>Ismael Trascastro</strong></span>
+        <span class="dret">Sobre material de l'Escola d'Administració Pública de Catalunya</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<script src="../../assets/tutorial.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ca" data-unit="" data-root=".">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Click &amp; Decide · Guia d'aprenentatge</title>
+<meta name="description" content="Curs pràctic de Click &amp; Decide (C&amp;D) per a l'explotació de dades administratives de personal a partir de les taules de la WAI.">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="next" href="unitats/01/">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="index.html">Click &amp; Decide <em>· Guia d'aprenentatge</em></a>
+    <nav>
+      <span class="position">19 unitats</span>
+      <span data-unit-picker></span>
+      <a class="step-link" href="unitats/00/">Comença &rsaquo;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+
+  <header class="cover">
+    <p class="eyebrow">Explotació de dades administratives de personal</p>
+    <h1>Click &amp; Decide, de zero a consultes útils</h1>
+    <p class="byline">Guia elaborada per <strong>Ismael Trascastro</strong></p>
+    <p class="lede">
+      Una unitat de fonaments i divuit unitats de pràctica per aprendre a extreure
+      informació de les taules de la WAI amb Click &amp; Decide Builder: des del model
+      de dades fins a construir consultes amb paràmetres, lògica de vigència i
+      exportacions netes. Cada unitat acaba amb una llista de comprovació, i les
+      consultes model es poden reproduir al simulador per verificar el resultat.
+    </p>
+    <div class="cover-meta">
+      <div><strong>19</strong> unitats</div>
+      <div><strong>4</strong> taules principals</div>
+      <div><strong>6</strong> consultes model</div>
+      <div><strong>0</strong> requisits previs</div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="part">
+      <h2>Fonaments</h2>
+      <p class="part-desc">
+        La unitat que decideix si tota la resta té sentit. Quatre taules, com es
+        relacionen i les tres preguntes que cal fer-se davant de qualsevol taula.
+      </p>
+      <ol class="toc-units">
+        <li><a href="unitats/00/">
+          <span class="n">00</span>
+          <span><span class="t">El model de dades: les quatre taules que ho expliquen tot</span>
+          <span class="d">PERSONA, LLOC, INCIDÈNCIA i PUNTERH. Claus, cardinalitat, vigència i univers de dades. Inclou les sis consultes model amb el resultat que heu d'obtenir.</span></span>
+        </a></li>
+      </ol>
+    </section>
+
+    <section class="part">
+      <h2>Part I</h2>
+      <p class="part-desc">
+        L'entorn de treball: com s'hi entra, què és un projecte i com es construeix
+        i s'executa la primera consulta.
+      </p>
+      <ol class="toc-units">
+        <li><a href="unitats/01/">
+          <span class="n">01</span>
+          <span><span class="t">Accés a l'aplicació Builder</span>
+          <span class="d">Localitzar el programa a Windows, crear un projecte, desar-lo i recuperar-lo. El fitxer <code>.wfv</code> i el seu cicle de vida.</span></span>
+        </a></li>
+        <li><a href="unitats/02/">
+          <span class="n">02</span>
+          <span><span class="t">Entrada a l'aplicació web i perfils d'usuari</span>
+          <span class="d">El portal <code>cisip.intranet.gencat.cat</code>, les credencials de host, què determina el perfil i on són els manuals de cada taula.</span></span>
+        </a></li>
+        <li><a href="unitats/03/">
+          <span class="n">03</span>
+          <span><span class="t">Projectes i objectes: consultes, informes i cubs</span>
+          <span class="d">Els tres objectes d'un projecte i la regla que els ordena: sense consulta no hi ha ni informe ni cub.</span></span>
+        </a></li>
+        <li><a href="unitats/04/">
+          <span class="n">04</span>
+          <span><span class="t">Creació bàsica d'una consulta</span>
+          <span class="d">Origen de dades, selecció de taula i de camps, nomenclatura per prefixos, capçaleres, execució i desament.</span></span>
+        </a></li>
+        <li><a href="unitats/05/">
+          <span class="n">05</span>
+          <span><span class="t">Ordenació dels resultats</span>
+          <span class="d">Ordre ascendent, descendent i sense ordre; prioritat entre camps i la finestra Ordenació per revisar-ho tot.</span></span>
+        </a></li>
+      </ol>
+    </section>
+
+    <section class="part">
+      <h2>Part II</h2>
+      <p class="part-desc">
+        Filtrar. Els operadors, la lògica booleana i les dues taules de registre únic
+        que concentren la major part de les consultes del dia a dia.
+      </p>
+      <ol class="toc-units" start="6">
+        <li><a href="unitats/06/">
+          <span class="n">06</span>
+          <span><span class="t">Criteris de selecció i operadors</span>
+          <span class="d">La finestra Criteris: operadors disponibles, per què s'ha de filtrar per codi i no per descripció, i com modificar o suprimir un criteri.</span></span>
+        </a></li>
+        <li><a href="unitats/07/">
+          <span class="n">07</span>
+          <span><span class="t">La taula de persones i la lògica AND / OR</span>
+          <span class="d">WAIV9010_PERSONA, el camp <code>IND_ACTIU</code>, les famílies de camps i l'ús de Combina per posar parèntesis on calen.</span></span>
+        </a></li>
+        <li><a href="unitats/08/">
+          <span class="n">08</span>
+          <span><span class="t">La taula de llocs i l'estat de plantilla</span>
+          <span class="d">WAIV9080_LLOC, els ocupants ACT / ANT / RES / SUBS i el filtre que deixa només els llocs vigents.</span></span>
+        </a></li>
+        <li><a href="unitats/09/">
+          <span class="n">09</span>
+          <span><span class="t">Tipus de pressupost, llocs ocupats i reservats</span>
+          <span class="d">El camp <code>TIPR_TIPUS_PRESSUP</code> i la diferència, decisiva, entre un camp de text buit i un camp de data nul.</span></span>
+        </a></li>
+      </ol>
+    </section>
+
+    <section class="part">
+      <h2>Part III</h2>
+      <p class="part-desc">
+        Resumir i entendre la forma de les dades: recomptes, valors distints i les
+        taules on una mateixa persona ocupa diverses files.
+      </p>
+      <ol class="toc-units" start="10">
+        <li><a href="unitats/10/">
+          <span class="n">10</span>
+          <span><span class="t">Agrupacions, recomptes i agregats</span>
+          <span class="d">Els tres comptadors del programa, les funcions de resum sobre camps numèrics i de data, i l'error d'agrupar amb un camp de detall.</span></span>
+        </a></li>
+        <li><a href="unitats/11/">
+          <span class="n">11</span>
+          <span><span class="t">Consultes de registres únics</span>
+          <span class="d">La propietat que elimina els duplicats i que serveix per descobrir quins codis existeixen realment en un camp.</span></span>
+        </a></li>
+        <li><a href="unitats/12/">
+          <span class="n">12</span>
+          <span><span class="t">Titulacions: les taules de registres múltiples</span>
+          <span class="d">WAIV9040_TITULACIO. Què canvia quan el NIF deixa de ser clau única i com es compta en les dues direccions.</span></span>
+        </a></li>
+        <li><a href="unitats/13/">
+          <span class="n">13</span>
+          <span><span class="t">Incidències: WAIV9060 i WAIV9061</span>
+          <span class="d">Dos universos de dades amb els mateixos camps, la codificació d'incidències i la lògica per saber què era vigent en un període.</span></span>
+        </a></li>
+        <li><a href="unitats/14/">
+          <span class="n">14</span>
+          <span><span class="t">Històric persona-lloc: WAIV9030 i WAIV9031</span>
+          <span class="d">Reconstruir qui ocupava quin lloc en una data passada, i per què cal aplicar la lògica de dates dues vegades.</span></span>
+        </a></li>
+      </ol>
+    </section>
+
+    <section class="part">
+      <h2>Part IV</h2>
+      <p class="part-desc">
+        Treure la informació del programa, fer que les consultes preguntin en comptes
+        de reescriure-les, i tancar el curs amb els errors que fan perdre més temps.
+      </p>
+      <ol class="toc-units" start="15">
+        <li><a href="unitats/15/">
+          <span class="n">15</span>
+          <span><span class="t">Exportació de la informació</span>
+          <span class="d">Per què no s'ha de copiar i enganxar, quin format triar i com acumular diverses consultes en un mateix llibre d'Excel.</span></span>
+        </a></li>
+        <li><a href="unitats/16/">
+          <span class="n">16</span>
+          <span><span class="t">Paràmetres de text i numèrics</span>
+          <span class="d">Convertir una consulta fixa en una consulta que pregunta, amb un desplegable alimentat per una altra consulta.</span></span>
+        </a></li>
+        <li><a href="unitats/17/">
+          <span class="n">17</span>
+          <span><span class="t">Paràmetres de data</span>
+          <span class="d">Informes recurrents amb un calendari interactiu. Inclou l'error que fa fallar tots els paràmetres de data.</span></span>
+        </a></li>
+        <li><a href="unitats/18/">
+          <span class="n">18</span>
+          <span><span class="t">Síntesi, errors freqüents i bones pràctiques</span>
+          <span class="d">Els quatre motius habituals pels quals una consulta torna zero registres, i el mapa complet del que s'ha après.</span></span>
+        </a></li>
+      </ol>
+    </section>
+
+    <section class="part">
+      <h2>Com utilitzar la guia</h2>
+      <div class="cards">
+        <div>
+          <h3>Navegació</h3>
+          <p>Les fletxes <kbd>&larr;</kbd> i <kbd>&rarr;</kbd> del teclat porten a la unitat anterior i a la següent. El desplegable <span class="ui">Unitats</span> de la capçalera permet saltar a qualsevol punt.</p>
+        </div>
+        <div>
+          <h3>Esquemes</h3>
+          <p>Totes les figures s'obren a mida completa amb un clic. Un segon clic les amplia a mida real i <kbd>Esc</kbd> tanca el visor.</p>
+        </div>
+        <div>
+          <h3>Ordre de lectura</h3>
+          <p>Les unitats són acumulatives: la 7 dóna per sabuda la 6. Si ja treballeu amb el programa, les unitats 9, 13, 14 i 18 són les que concentren els casos difícils.</p>
+        </div>
+        <div>
+          <h3>Convencions</h3>
+          <p>Els noms de camp i els codis van en <code>versaleta monoespaiada</code>; els botons i les opcions del programa, en <span class="ui">blau</span>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="part">
+      <h2>Les taules amb què treballarem</h2>
+      <p>
+        Pràcticament tota la informació rellevant de la base de dades del GIP s'aboca
+        periòdicament al centre d'anàlisi d'informació, les anomenades <strong>taules
+        de la WAI</strong>. Aquestes taules es classifiquen per dos eixos que
+        condicionen com s'han de consultar.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <caption>Classificació de les taules d'ús més habitual</caption>
+          <thead>
+            <tr><th>Vigència</th><th>Tipus de registre</th><th>Taules</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Dades vigents al GIP</td>
+              <td>Registres únics</td>
+              <td><code>WAIV9010_PERSONA</code>, <code>WAIV9080_LLOC</code>, <code>WAIV9160_RLT</code>, <code>WAIV9200_COSPERSON</code></td>
+            </tr>
+            <tr>
+              <td>Dades vigents al GIP</td>
+              <td>Registres múltiples</td>
+              <td><code>WAIV9040_TITULACIO</code>, <code>WAIV9190_CURSPERS</code>, <code>WAIV9090_LINCURR</code>, <code>WAIV9210_COSCONCEP</code></td>
+            </tr>
+            <tr>
+              <td>Dades històriques</td>
+              <td>Registres múltiples</td>
+              <td><code>WAIV9020_VINSITADH</code>, <code>WAIV9030_PUNTERH</code>, <code>WAIV9060_INCIDENCI</code>, <code>WAIV9240_D_HEXPLUS</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        <span class="label">Idea que travessa tot el curs</span>
+        <p>
+          Abans d'escriure cap criteri, cal respondre dues preguntes sobre la taula:
+          <strong>quina és la seva clau</strong> -si es repeteix o no per a un mateix NIF-
+          i <strong>a quina data es refereixen les dades</strong>. Gairebé tots els
+          resultats sorprenents surten d'haver-les contestat malament.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="colophon">
+    <p>
+      <strong>Guia elaborada per Ismael Trascastro.</strong> Estructura del curs,
+      redacció, esquemes i exercicis. El simulador que l'acompanya, pensat per
+      practicar-hi els conceptes, és també obra seva i es pot fer servir de manera
+      independent.
+    </p>
+    <p>
+      Guia elaborada a partir del material públic de l'Escola d'Administració Pública
+      de Catalunya: la <em>Guia bàsica per a l'ús de Click &amp; Decide (C&amp;D) per al
+      tractament de dades administratives de personal</em> (unitats 1, 2 i 3), la sèrie
+      de vídeos del canal <em>eapccat</em> i el <em>Manual bàsic de Click &amp; Decide
+      Builder aplicat a la base de dades del GIP-SIP</em> d'Assumpta Aguiló Munárriz.
+    </p>
+    <p>
+      Els continguts originals de l'EAPC es difonen sota llicència Creative Commons
+      BY-NC-SA. Aquesta guia és material d'estudi i no substitueix la documentació
+      oficial de cada taula, que s'ha de consultar sempre a la intranet corporativa.
+    </p>
+  </footer>
+
+</div>
+
+<script src="assets/tutorial.js?v=3"></script>
+</body>
+</html>

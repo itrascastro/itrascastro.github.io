@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="ca" data-unit="00" data-root="../..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>00 · El model de dades: les quatre taules que ho expliquen tot - Click &amp; Decide</title>
+<meta name="description" content="PERSONA, LLOC, INCIDÈNCIA i PUNTERH: claus, cardinalitat, vigència i les sis consultes que estructuren tot el curs.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="prev" href="../../index.html">
+<link rel="next" href="../01/">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../../index.html">Click &amp; Decide <em>· Guia d'aprenentatge</em></a>
+    <nav>
+      <span class="position">Unitat 00 / 18</span>
+      <span data-unit-picker></span>
+      <a class="step-link" href="../../index.html">Índex</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+
+  <header class="unit-head">
+    <p class="eyebrow">Fonaments · Unitat 00</p>
+    <h1>El model de dades: les quatre taules que ho expliquen tot</h1>
+    <p class="lede">
+      Aquesta és la unitat més important del curs i la que no s'ha de saltar mai.
+      Click &amp; Decide és només una finestra: el que decideix si una consulta és
+      correcta o absurda és <strong>l'estructura de les taules</strong>. Quatre
+      taules, tres preguntes sobre cadascuna i sis consultes model. Amb això,
+      la resta del curs deixa de ser memorització.
+    </p>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2>En aquesta unitat</h2>
+      <ol>
+        <li><a href="#per-que">Per què comencem aquí</a></li>
+        <li><a href="#diagrama">El diagrama de les quatre taules</a></li>
+        <li><a href="#tres-preguntes">Les tres preguntes</a></li>
+        <li><a href="#clau">Pregunta 1: quina és la clau</a></li>
+        <li><a href="#vigencia">Pregunta 2: a quina data</a></li>
+        <li><a href="#abast">Pregunta 3: quin és l'univers</a></li>
+        <li><a href="#relacions">Com es relacionen entre elles</a></li>
+        <li><a href="#sis-consultes">Les sis consultes model</a></li>
+        <li><a href="#triar">Com triar la taula correcta</a></li>
+        <li><a href="#exercicis">Exercicis</a></li>
+        <li><a href="#comprovacio">Llista de comprovació</a></li>
+      </ol>
+      <dl class="sidebar-aside">
+        <dt>Objectiu</dt>
+        <dd>Saber triar la taula correcta abans d'obrir el programa.</dd>
+        <dt>Les quatre taules</dt>
+        <dd>
+          <span class="tag persona">WAIV9010_PERSONA</span><br>
+          <span class="tag lloc">WAIV9080_LLOC</span><br>
+          <span class="tag incidencia">WAIV9060_INCIDENCI</span><br>
+          <span class="tag punterh">WAIV9030_PUNTERH</span>
+        </dd>
+        <dt>Es treballa al</dt>
+        <dd>Simulador, amb les sis consultes model.</dd>
+      </dl>
+    </aside>
+
+    <main class="content">
+
+      <section id="per-que">
+        <h2><span class="num">Apartat 1</span>Per què comencem aquí</h2>
+        <p>
+          Gairebé tots els errors de Click &amp; Decide tenen el mateix origen, i no
+          és el programa. Són consultes tècnicament ben construïdes fetes
+          <strong>sobre la taula equivocada</strong> o sobre una taula la forma de la
+          qual l'usuari no havia entès.
+        </p>
+        <div class="versus">
+          <div class="no">
+            <h4>Símptomes típics</h4>
+            <p>"M'han sortit 73 incidències però resulta que són 48 persones."</p>
+            <p>"La consulta em torna la mateixa persona sis vegades."</p>
+            <p>"He filtrat llocs vacants i n'hi ha que no es poden ocupar."</p>
+          </div>
+          <div class="si">
+            <h4>Cap d'ells és un error del programa</h4>
+            <p>Els tres surten de no haver respost, abans de començar, si la taula té una fila per clau o diverses, i a quin moment del temps es refereix.</p>
+          </div>
+        </div>
+        <p>
+          Per això aquesta unitat va abans que cap botó. Quan la tingueu clara, les
+          unitats 7 a 14 deixaran de ser catorze casos particulars i passaran a ser
+          la mateixa idea aplicada quatre vegades.
+        </p>
+      </section>
+
+      <section id="diagrama">
+        <h2><span class="num">Apartat 2</span>El diagrama de les quatre taules</h2>
+        <p>
+          Aquest és el mapa complet. Val la pena obrir-lo a pantalla completa i
+          tenir-lo a mà durant tot el curs: hi ha les quatre taules, les seves claus
+          primàries, les claus foranes que les uneixen i, a sota de cada capsa, la
+          informació decisiva: <strong>un registre per persona</strong>,
+          <strong>un registre per lloc</strong> o <strong>registres múltiples</strong>.
+        </p>
+        <figure>
+          <img src="img/taules_principals.png" alt="Diagrama entitat-relació de les quatre taules principals: WAIV9010_PERSONA i WAIV9080_LLOC com a taules de registre únic, i WAIV9060_INCIDENCI i WAIV9030_PUNTERH com a taules de registres múltiples, amb les claus primàries i foranes que les relacionen.">
+          <figcaption>
+            Les quatre taules, les seves claus i la cardinalitat. Feu clic per veure'l
+            en gran; un segon clic l'amplia a mida real.
+          </figcaption>
+        </figure>
+        <div class="note">
+          <span class="label">Sobre aquest model</span>
+          <p>
+            És una versió <strong>simplificada</strong> pensada per aprendre i per
+            treballar-hi al simulador: manté els noms i el comportament de les taules
+            reals de la WAI, però redueix el nombre de camps i n'afegeix alguns amb
+            prefix <code>SIM_</code> que no existeixen a la WAI real. L'estructura
+            -claus, cardinalitat i lògica de vigència- sí que és la de veritat, i és
+            l'única cosa que cal aprendre aquí.
+          </p>
+        </div>
+      </section>
+
+      <section id="tres-preguntes">
+        <h2><span class="num">Apartat 3</span>Les tres preguntes</h2>
+        <p>
+          Davant de qualsevol taula de la WAI -les quatre d'aquest curs i les que no
+          hi surten- hi ha tres preguntes que s'han de contestar <em>abans</em> de
+          seleccionar cap camp. Són l'esquelet de tot el curs.
+        </p>
+        <div class="cards">
+          <div>
+            <h3>1. Quina és la clau?</h3>
+            <p>Determina si una fila és una persona, un lloc... o una cosa més petita. Si t'equivoques aquí, tots els recomptes seran falsos.</p>
+          </div>
+          <div>
+            <h3>2. A quina data es refereix?</h3>
+            <p>Determina si estàs mirant una foto d'avui o una pel·lícula. Si t'equivoques aquí, buscaràs història en una taula que no en té.</p>
+          </div>
+          <div>
+            <h3>3. Quin és el seu univers?</h3>
+            <p>Determina quines files hi ha i quines no. Dues taules amb els mateixos camps poden contenir poblacions diferents.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="clau">
+        <h2><span class="num">Apartat 4</span>Pregunta 1: quina és la clau</h2>
+        <p>
+          Una taula de <strong>registres únics</strong> conté una sola fila per a cada
+          valor de la seva clau principal. Una taula de <strong>registres
+          múltiples</strong> en pot contenir més d'una.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Les quatre taules segons la seva clau</caption>
+            <thead>
+              <tr><th>Taula</th><th>Clau principal</th><th>Tipus</th><th>Una fila és...</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="tag persona">WAIV9010_PERSONA</span></td>
+                <td class="code">PERS_NIF</td>
+                <td>Registres únics</td>
+                <td>una persona</td>
+              </tr>
+              <tr>
+                <td><span class="tag lloc">WAIV9080_LLOC</span></td>
+                <td class="code">LLOC_CODI</td>
+                <td>Registres únics</td>
+                <td>un lloc de treball</td>
+              </tr>
+              <tr>
+                <td><span class="tag incidencia">WAIV9060_INCIDENCI</span></td>
+                <td class="code">-</td>
+                <td>Registres múltiples</td>
+                <td><strong>una incidència</strong>, no una persona</td>
+              </tr>
+              <tr>
+                <td><span class="tag punterh">WAIV9030_PUNTERH</span></td>
+                <td class="code">-</td>
+                <td>Registres múltiples</td>
+                <td><strong>una ocupació</strong>, no una persona ni un lloc</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          La conseqüència pràctica és brutal i és la font de l'error més freqüent de
+          tot el curs. Si compteu files en una taula de registres múltiples,
+          <strong>no esteu comptant persones</strong>:
+        </p>
+
+        <div class="versus">
+          <div class="no">
+            <h4>Compto files</h4>
+            <p>Sobre <span class="tag incidencia">INCIDÈNCIA</span>, un recompte de registres dóna:</p>
+            <div class="criteri">73 registres</div>
+            <p>Són <strong>73 incidències</strong>. Una persona amb tres baixes hi apareix tres vegades.</p>
+          </div>
+          <div class="si">
+            <h4>Compto persones diferents</h4>
+            <p>Amb un recompte de valors distints del NIF:</p>
+            <div class="criteri">48 persones</div>
+            <p>Aquest és el número que voldríeu si la pregunta era "quanta gent ha estat de baixa".</p>
+          </div>
+        </div>
+        <p>
+          <strong>73 i 48 són tots dos correctes.</strong> Responen preguntes
+          diferents. Saber quina de les dues esteu contestant és, literalment, la
+          diferència entre un informe bo i un informe fals. A la unitat 10 veurem els
+          tres comptadors que ho resolen i a la unitat 12 el cas complet.
+        </p>
+      </section>
+
+      <section id="vigencia">
+        <h2><span class="num">Apartat 5</span>Pregunta 2: a quina data</h2>
+        <p>
+          El segon eix classifica les taules segons <strong>la vigència de les dades
+          que contenen</strong>.
+        </p>
+
+        <div class="cards">
+          <div>
+            <h3>Taules de dades actuals</h3>
+            <p>
+              Contenen la informació vigent al GIP. Són una <strong>fotografia</strong>:
+              expliquen com són les coses ara, i no com eren l'any passat.
+              <span class="tag persona">PERSONA</span> i
+              <span class="tag lloc">LLOC</span> són d'aquest tipus.
+            </p>
+          </div>
+          <div>
+            <h3>Taules de dades històriques</h3>
+            <p>
+              Contenen l'evolució del bloc de dades. Són una <strong>pel·lícula</strong>.
+              Generalment inclouen també les dades vigents, perquè el present també
+              forma part de la història.
+              <span class="tag incidencia">INCIDÈNCIA</span> i
+              <span class="tag punterh">PUNTERH</span> ho són.
+            </p>
+          </div>
+        </div>
+
+        <div class="note warn">
+          <span class="label">"A data d'avui" vol dir ahir</span>
+          <p>
+            El procés de càrrega de les taules diàries es fa <strong>durant la
+            nit</strong>. Per tant, qualsevol canvi que es faci al GIP un dia concret
+            <strong>no apareixerà a Click &amp; Decide fins l'endemà</strong>. Quan la
+            documentació diu "dades a data d'avui", realment vol dir "dades vigents el
+            dia anterior". Si esteu quadrant xifres amb algú que mira el GIP en
+            directe, aquesta és la causa de la discrepància.
+          </p>
+        </div>
+
+        <p>La freqüència de càrrega no és igual per a totes les taules:</p>
+        <div class="table-wrap">
+          <table>
+            <caption>Freqüència d'actualització</caption>
+            <thead>
+              <tr><th>Taula</th><th>Càrrega</th><th>Conseqüència</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="tag persona">PERSONA</span></td><td>Diària</td><td>Reflecteix el dia anterior.</td></tr>
+              <tr><td><span class="tag lloc">LLOC</span></td><td>Diària</td><td>Reflecteix el dia anterior. No guarda com era el lloc en el passat.</td></tr>
+              <tr><td><span class="tag incidencia">INCIDÈNCIA</span></td><td>Diària</td><td>Vigents i finalitzades l'any actual i l'anterior.</td></tr>
+              <tr><td><span class="tag punterh">PUNTERH</span></td><td>Setmanal</td><td>Una alta d'aquesta setmana pot no ser-hi encara.</td></tr>
+              <tr><td><code>WAIV9040_TITULACIO</code></td><td>Setmanal</td><td>Un títol registrat dilluns pot no aparèixer fins la setmana següent.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="abast">
+        <h2><span class="num">Apartat 6</span>Pregunta 3: quin és l'univers</h2>
+        <p>
+          Aquesta és la més subtil de les tres, i explica per què la WAI té parelles de
+          taules bessones. <span class="tag incidencia">WAIV9060</span> i
+          <code>WAIV9061</code> tenen <strong>exactament els mateixos camps</strong>.
+          <span class="tag punterh">WAIV9030</span> i <code>WAIV9031</code>, també.
+          El que canvia és <em>quines files hi ha a dins</em>.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Les dues parelles bessones</caption>
+            <thead>
+              <tr><th>Taula</th><th>L'univers és...</th><th>Feu-la servir per estudiar...</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code">WAIV9060</td>
+                <td>incidències iniciades en <strong>llocs</strong> del vostre àmbit</td>
+                <td>els llocs: què passa a la vostra plantilla</td>
+              </tr>
+              <tr>
+                <td class="code">WAIV9061</td>
+                <td>incidències de les <strong>persones</strong> que avui són al vostre àmbit</td>
+                <td>les persones: què els ha passat, fos on fos</td>
+              </tr>
+              <tr>
+                <td class="code">WAIV9030</td>
+                <td>tots els punters dels <strong>llocs</strong> del vostre àmbit</td>
+                <td>l'evolució històrica dels vostres llocs</td>
+              </tr>
+              <tr>
+                <td class="code">WAIV9031</td>
+                <td>tots els punters de les <strong>persones</strong> del vostre àmbit</td>
+                <td>la trajectòria de la vostra gent, encara que passés per altres departaments</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note">
+          <span class="label">La regla que les distingeix</span>
+          <p>
+            Les acabades en <strong>0</strong> segueixen el <strong>lloc</strong>.
+            Les acabades en <strong>1</strong> segueixen la <strong>persona</strong>.
+            Si l'estudi és "els meus llocs", feu servir 9060 i 9030. Si és "la meva
+            gent", 9061 i 9031.
+          </p>
+        </div>
+
+        <p>
+          A sobre d'aquest univers hi actua encara un segon filtre, el del vostre
+          <strong>perfil d'usuari</strong>, que ja vam veure a la unitat 2 i que
+          s'aplica sol, sense que hàgiu de posar cap criteri.
+        </p>
+              <figure>
+          <img src="img/taules_model_tot_real.png" alt="Panell d'orígens disponibles amb MODEL_TOT triat i la llista de taules WAI que conté.">
+          <figcaption>
+            Les taules que hi ha de debò dins de <code>MODEL_TOT</code>. Val la
+            pena fixar-s'hi: van <b>per parelles</b>. Al costat de
+            <code>WAIV9030_PUNTERH</code> hi ha
+            <code>WAIV9031_PUNPERDEP</code>, al de
+            <code>WAIV9060_INCIDENCI</code> hi ha
+            <code>WAIV9061_INCPERDEP</code>, i el mateix amb els expedients i
+            els llocs. La segona de cada parella té els <b>mateixos camps</b> i
+            un <b>univers diferent</b>: la gent que ara és al vostre àmbit, en
+            comptes del que s'hi va originar.
+            <span class="font">Videotutorial 4 de l'EAPC, minut 1:31.</span>
+          </figcaption>
+        </figure>
+
+        <p>
+          Aquesta guia treballa amb quatre d'aquestes taules i n'anomena unes
+          quantes més. La resta existeixen i les podeu obrir: si un dia us cal
+          una cosa que no surt a les quatre de sempre, la llista de
+          <span class="ui">Orígens disponibles</span> és el primer lloc on
+          mirar, i la descripció de cada taula és al manual que hi ha penjat al
+          web (unitat 2).
+        </p>
+
+</section>
+
+      <section id="relacions">
+        <h2><span class="num">Apartat 7</span>Com es relacionen entre elles</h2>
+        <p>
+          Al diagrama de l'apartat 2 hi ha les fletxes que uneixen les taules. Val la
+          pena llegir-les una per una, perquè cadascuna respon a una pregunta diferent.
+        </p>
+
+        <ol class="steps">
+          <li>
+            <h3>De LLOC cap a PERSONA: qui l'ocupa ara</h3>
+            <p>
+              La taula de llocs porta el NIF de l'ocupant actual. És una relació
+              <strong>d'ara mateix</strong>: serveix per saber si un lloc està ocupat
+              o vacant, però no diu res de qui el va ocupar abans. Ho treballarem a
+              les unitats 8 i 9.
+            </p>
+          </li>
+          <li>
+            <h3>De PERSONA cap a LLOC: on treballa ara</h3>
+            <p>
+              La taula de persones porta el codi del lloc que ocupa. És la mateixa
+              relació vista des de l'altre costat. Els camps que la sostenen són els
+              del <strong>punter</strong>, la relació persona-lloc.
+            </p>
+          </li>
+          <li>
+            <h3>De PERSONA cap a INCIDÈNCIA: una a moltes</h3>
+            <p>
+              Una persona pot tenir moltes incidències. Per això la fletxa va marcada
+              amb <strong>1 &rarr; N</strong> i per això la taula és de registres
+              múltiples. Unitat 13.
+            </p>
+          </li>
+          <li>
+            <h3>De PERSONA i LLOC cap a PUNTERH: la història</h3>
+            <p>
+              PUNTERH és l'única taula que guarda el <strong>passat</strong> de la
+              relació entre persones i llocs. Cada fila és un tram: aquesta persona va
+              ocupar aquest lloc entre aquestes dues dates. És la taula clau per
+              estudiar rotació i històric. Unitat 14.
+            </p>
+          </li>
+        </ol>
+
+        <div class="note warn">
+          <span class="label">La trampa de PUNTERH</span>
+          <p>
+            PUNTERH no genera una fila per ocupació, sinó una fila per
+            <strong>cada versió del lloc durant aquella ocupació</strong>. Si mentre
+            una persona ocupa un lloc li canvien el nivell o la localitat, apareixerà
+            una fila nova. Comptar files de PUNTERH i pensar que compteu ocupacions és
+            un error clàssic; a la unitat 14 hi ha la solució.
+          </p>
+        </div>
+      </section>
+
+      <section id="sis-consultes">
+        <h2><span class="num">Apartat 8</span>Les sis consultes model</h2>
+        <p>
+          Aquest segon esquema és el pont entre la teoria i la pràctica. Conté sis
+          consultes que cobreixen tot el que ensenya el curs, amb el criteri exacte i
+          el <strong>resultat que heu d'obtenir</strong>. Són les mateixes que podreu
+          reproduir al simulador: si el vostre número no coincideix, la consulta té un
+          error i sabreu que l'heu de revisar.
+        </p>
+
+        <figure>
+          <img src="img/consultes_frequents.png" alt="Sis consultes freqüents construïdes sobre el diagrama, amb la taula implicada, el criteri lògic, la idea clau i el resultat típic de cadascuna.">
+          <figcaption>
+            Les sis consultes model amb el seu resultat de control. Feu clic per
+            veure-les en gran.
+          </figcaption>
+        </figure>
+
+        <p>Aquestes són, i cadascuna té la seva unitat al curs:</p>
+
+        <div class="recepta persona">
+          <h3>1. Persones actives</h3>
+          <dl>
+            <div><dt>Per a què serveix</dt><dd>Saber quantes persones estan en actiu.</dd></div>
+            <div><dt>Taula</dt><dd><span class="tag persona">WAIV9010_PERSONA</span></dd></div>
+            <div><dt>Criteri</dt><dd><div class="criteri">IND_ACTIU <span class="op">=</span> 'A'</div></dd></div>
+            <div><dt>Idea clau</dt><dd>Com que PERSONA és de registre únic, cada fila és una persona: comptar files aquí <em>sí</em> que compta gent.</dd></div>
+            <div><dt>On s'explica</dt><dd>Unitat 7</dd></div>
+          </dl>
+          <p class="recepta-out"><b>152</b> persones <span>resultat de control</span></p>
+        </div>
+
+        <div class="recepta lloc">
+          <h3>2. Llocs vigents i vacants ocupables</h3>
+          <dl>
+            <div><dt>Per a què serveix</dt><dd>Detectar llocs actuals que poden necessitar cobertura.</dd></div>
+            <div><dt>Taula</dt><dd><span class="tag lloc">WAIV9080_LLOC</span></dd></div>
+            <div><dt>Criteri</dt><dd><div class="criteri">LLOC_ESTAT_PLANTILLA <span class="op">=</span> 'R'
+<span class="op">AND</span> TIPR_TIPUS_PRESSUP <span class="op">=</span> 'X'</div></dd></div>
+            <div><dt>Idea clau</dt><dd>No tots els llocs són vigents i no totes les vacants signifiquen el mateix: n'hi ha de pressupostades que <em>no es poden ocupar</em>.</dd></div>
+            <div><dt>On s'explica</dt><dd>Unitats 8 i 9</dd></div>
+          </dl>
+          <p class="recepta-out"><b>27</b> llocs <span>resultat de control</span></p>
+        </div>
+
+        <div class="recepta incidencia">
+          <h3>3. Incidències vigents en un període</h3>
+          <dl>
+            <div><dt>Per a què serveix</dt><dd>Trobar incidències que se solapen amb un mes concret.</dd></div>
+            <div><dt>Taula</dt><dd><span class="tag incidencia">WAIV9060_INCIDENCI</span></dd></div>
+            <div><dt>Criteri</dt><dd><div class="criteri">DATA_INICI <span class="op">&lt;=</span> 30/09
+<span class="op">AND</span> (DATA_FI <span class="op">&gt;=</span> 01/09 <span class="op">OR</span> DATA_FI és nul)</div></dd></div>
+            <div><dt>Idea clau</dt><dd>Una incidència compta si toca <em>qualsevol</em> dia del període, encara que comencés abans o acabi després.</dd></div>
+            <div><dt>On s'explica</dt><dd>Unitat 13</dd></div>
+          </dl>
+          <p class="recepta-out"><b>73</b> incidències <span>resultat de control</span></p>
+        </div>
+
+        <div class="recepta incidencia">
+          <h3>4. 73 incidències no són 48 persones</h3>
+          <dl>
+            <div><dt>Per a què serveix</dt><dd>Distingir registres de persones diferents.</dd></div>
+            <div><dt>Taula</dt><dd><span class="tag incidencia">WAIV9060_INCIDENCI</span></dd></div>
+            <div><dt>Criteri</dt><dd><div class="criteri">compte de registres  <span class="cm">→ 73</span>
+compte distint de PERS_NIF  <span class="cm">→ 48</span></div></dd></div>
+            <div><dt>Idea clau</dt><dd>INCIDÈNCIA és de registres múltiples: una persona hi pot aparèixer diverses vegades.</dd></div>
+            <div><dt>On s'explica</dt><dd>Unitats 10 i 12</dd></div>
+          </dl>
+          <p class="recepta-out"><b>73</b> registres <span>enfront de 48 persones</span></p>
+        </div>
+
+        <div class="recepta persona">
+          <h3>5. La trampa AND / OR</h3>
+          <dl>
+            <div><dt>Per a què serveix</dt><dd>Filtrar només persones actives d'un àmbit amb una de dues especialitats.</dd></div>
+            <div><dt>Taula</dt><dd><span class="tag persona">WAIV9010_PERSONA</span></dd></div>
+            <div><dt>Criteri</dt><dd><div class="criteri is-good">IND_ACTIU = 'A' <span class="op">AND</span> SIM_SERVEI_TERRITORIAL = 'Barcelona Comarques'
+<span class="good">AND (</span>ESPEC = 'INF' <span class="op">OR</span> ESPEC = 'MAT'<span class="good">)</span></div></dd></div>
+            <div><dt>Idea clau</dt><dd>Els parèntesis canvien completament el resultat: <strong>17</strong> ben agrupat, <strong>46</strong> mal agrupat.</dd></div>
+            <div><dt>On s'explica</dt><dd>Unitat 7</dd></div>
+          </dl>
+          <p class="recepta-out"><b>17</b> correcte <span>46 si s'agrupa malament</span></p>
+        </div>
+
+        <div class="recepta punterh">
+          <h3>6. Rotació històrica del lloc</h3>
+          <dl>
+            <div><dt>Per a què serveix</dt><dd>Detectar llocs que han tingut diversos ocupants.</dd></div>
+            <div><dt>Taula</dt><dd><span class="tag punterh">WAIV9030_PUNTERH</span></dd></div>
+            <div><dt>Criteri</dt><dd><div class="criteri">agrupar per LLOC_CODI
+comptar PERS_NIF diferents <span class="op">&gt;=</span> 3</div></dd></div>
+            <div><dt>Idea clau</dt><dd>PUNTERH és l'única taula que permet estudiar història i rotació.</dd></div>
+            <div><dt>On s'explica</dt><dd>Unitat 14</dd></div>
+          </dl>
+          <p class="recepta-out"><b>24</b> llocs <span>amb alta rotació</span></p>
+        </div>
+      </section>
+
+      <section id="triar">
+        <h2><span class="num">Apartat 9</span>Com triar la taula correcta</h2>
+        <p>
+          Aquest és el resum operatiu de tota la unitat. Davant d'un encàrrec,
+          llegiu-lo de dalt a baix i pareu a la primera línia que encaixi.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <caption>De la pregunta a la taula</caption>
+            <thead>
+              <tr><th>Si la pregunta és sobre...</th><th>Taula</th><th>Perquè</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>persones, avui</td>
+                <td><span class="tag persona">PERSONA</span></td>
+                <td>una fila per NIF, dades del dia anterior</td>
+              </tr>
+              <tr>
+                <td>llocs de treball, avui</td>
+                <td><span class="tag lloc">LLOC</span></td>
+                <td>una fila per codi de lloc, sense història</td>
+              </tr>
+              <tr>
+                <td>baixes, permisos o reduccions</td>
+                <td><span class="tag incidencia">INCIDÈNCIA</span></td>
+                <td>una fila per incidència, amb dates d'inici i fi</td>
+              </tr>
+              <tr>
+                <td>què va passar abans, o rotació</td>
+                <td><span class="tag punterh">PUNTERH</span></td>
+                <td>l'única amb l'històric persona-lloc</td>
+              </tr>
+              <tr>
+                <td>titulacions, cursos, currículum</td>
+                <td><code>WAIV9040</code>, <code>WAIV9190</code>, <code>WAIV9090</code></td>
+                <td>registres múltiples: un NIF hi surt tantes vegades com títols té</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note ok">
+          <span class="label">El reflex que heu d'automatitzar</span>
+          <p>
+            Abans de tocar el ratolí, digueu en veu alta: "aquesta taula té
+            <em>una fila per...</em>, es refereix a <em>aquesta data</em>, i conté
+            <em>aquest univers</em>". Si no sabeu completar les tres frases, obriu
+            primer el PDF de la taula a la intranet. Costa dos minuts i estalvia
+            informes equivocats.
+          </p>
+        </div>
+      </section>
+
+      <section id="exercicis">
+        <h2><span class="num">Apartat 10</span>Exercicis</h2>
+        <p>
+          Aquests tres es resolen amb paper i llapis: no cal ni el programa ni el
+          simulador. Si els encerteu, la resta del curs us costarà la meitat.
+          Proveu de contestar abans d'obrir la solució.
+        </p>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-00-1</span>
+            <h3>Tria la taula</h3>
+            <span class="mena">Conceptual</span>
+          </header>
+          <div class="cos">
+            <p>Per a cada encàrrec, digueu quina de les quatre taules faríeu servir:</p>
+            <ol>
+              <li>Quantes persones hi ha en actiu avui al meu departament.</li>
+              <li>Quins llocs de la meva unitat estan vacants.</li>
+              <li>Quanta gent va estar de baixa el setembre passat.</li>
+              <li>Quants ocupants diferents ha tingut el lloc 12345 des del 2020.</li>
+              <li>Quins llocs han canviat de nivell mentre estaven ocupats.</li>
+            </ol>
+            <details>
+              <summary>Solució</summary>
+              <div class="dins">
+                <ol>
+                  <li><span class="tag persona">PERSONA</span> - pregunta sobre persones, avui.</li>
+                  <li><span class="tag lloc">LLOC</span> - pregunta sobre llocs, avui.</li>
+                  <li><span class="tag incidencia">INCIDÈNCIA</span> - baixes amb dates d'inici i fi.</li>
+                  <li><span class="tag punterh">PUNTERH</span> - història i rotació.</li>
+                  <li><span class="tag punterh">PUNTERH</span> - és l'única que guarda les versions del lloc. LLOC us diria com és ara, no com era.</li>
+                </ol>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-00-2</span>
+            <h3>Quin número donaries</h3>
+            <span class="mena">Conceptual</span>
+          </header>
+          <div class="cos">
+            <p>
+              La vostra cap us demana: <strong>"quanta gent ha estat de baixa aquest
+              setembre?"</strong>. Feu la consulta sobre
+              <span class="tag incidencia">INCIDÈNCIA</span> i la graella diu 73
+              registres. Un recompte de NIF distints en dóna 48.
+            </p>
+            <p>Quin número li doneu, i què li heu d'explicar?</p>
+            <details>
+              <summary>Solució</summary>
+              <div class="dins">
+                <p>
+                  <strong>48.</strong> Ha preguntat per <em>gent</em>, i INCIDÈNCIA és
+                  de registres múltiples: qui ha tingut dues baixes hi surt dues
+                  vegades.
+                </p>
+                <p>
+                  Ara bé, els 73 també serveixen i val la pena dir-los-hi: són el
+                  nombre de processos, útil per mesurar càrrega de gestió. La resposta
+                  professional és "48 persones en 73 incidències".
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-00-3</span>
+            <h3>9060 o 9061</h3>
+            <span class="mena">Conceptual</span>
+          </header>
+          <div class="cos">
+            <p>Dos encàrrecs. Quina taula per a cadascun i per què?</p>
+            <ol>
+              <li>
+                Volem saber quins <strong>llocs</strong> del nostre departament han
+                tingut més absentisme aquest any, per reforçar-los.
+              </li>
+              <li>
+                Recursos Humans vol el <strong>historial d'incidències</strong> de les
+                persones que avui treballen a la nostra unitat, per a un estudi de
+                salut laboral.
+              </li>
+            </ol>
+            <details>
+              <summary>Solució</summary>
+              <div class="dins">
+                <p>
+                  <strong>1: WAIV9060.</strong> L'estudi és sobre els llocs. Volem les
+                  incidències iniciades als nostres llocs, encara que la persona
+                  després hagi marxat a un altre departament.
+                </p>
+                <p>
+                  <strong>2: WAIV9061.</strong> L'estudi és sobre les persones. Volem
+                  tot el seu historial, inclòs el que van generar mentre treballaven en
+                  un altre lloc.
+                </p>
+                <p>
+                  Si us les heu intercanviat, rellegiu la regla: les acabades en
+                  <strong>0</strong> segueixen el lloc, les acabades en
+                  <strong>1</strong> segueixen la persona.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="note">
+          <span class="label">Al simulador</span>
+          <p>
+            Els exercicis amb codi <code>EX-</code> tenen el mateix identificador al
+            simulador, on es poden executar sobre dades reals i comprovar el resultat.
+            El simulador funciona pel seu compte: no cal seguir aquest curs per
+            fer-lo servir, ni cal el simulador per entendre aquesta unitat.
+          </p>
+        </div>
+      </section>
+
+      <section id="comprovacio">
+        <h2><span class="num">Apartat 11</span>Llista de comprovació</h2>
+        <ul class="checklist">
+          <li>Anomenar les quatre taules principals i el color amb què les identifiquem.</li>
+          <li>Dir la clau principal de PERSONA i de LLOC.</li>
+          <li>Explicar per què INCIDÈNCIA i PUNTERH no tenen una clau simple.</li>
+          <li>Explicar per què 73 incidències poden ser 48 persones.</li>
+          <li>Distingir taula de dades actuals i taula de dades històriques.</li>
+          <li>Justificar per què "a data d'avui" vol dir realment ahir.</li>
+          <li>Triar entre 9060 i 9061, i entre 9030 i 9031, davant d'un encàrrec.</li>
+          <li>Dir quina és l'única taula que serveix per estudiar rotació.</li>
+          <li>Reproduir de memòria la taula "de la pregunta a la taula".</li>
+        </ul>
+        <div class="note">
+          <span class="label">A la unitat següent</span>
+          <p>
+            Amb el model al cap, ja podem obrir el programa. La unitat 1 és la més
+            senzilla de tot el curs: localitzar Builder i crear el projecte on
+            desarem la feina.
+          </p>
+        </div>
+      </section>
+
+      <nav class="unit-nav">
+        <a class="prev" href="../../index.html">
+          <span class="dir">Anterior</span>
+          <span class="ttl">Índex de la guia</span>
+        </a>
+        <a class="next" href="../01/">
+          <span class="dir">Unitat 01</span>
+          <span class="ttl">Accés a l'aplicació Builder</span>
+        </a>
+      </nav>
+
+      <footer class="site-foot">
+        <span>Guia elaborada per <strong>Ismael Trascastro</strong></span>
+        <span class="dret">Sobre material de l'Escola d'Administració Pública de Catalunya</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<script src="../../assets/tutorial.js?v=3"></script>
+</body>
+</html>

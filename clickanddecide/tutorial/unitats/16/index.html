@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ca" data-unit="16" data-root="../..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>16 · Paràmetres de text i numèrics - Click &amp; Decide</title>
+<meta name="description" content="La finestra Parametres de la consulta propietat a propietat, els set metodes d'actualitzacio i com assignar el parametre a un criteri.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="prev" href="../15/">
+<link rel="next" href="../17/">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../../index.html">Click &amp; Decide <em>· Guia d'aprenentatge</em></a>
+    <nav>
+      <span class="position">Unitat 16 / 18</span>
+      <span data-unit-picker></span>
+      <a class="step-link" href="../../index.html">Índex</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+
+  <header class="unit-head">
+    <p class="eyebrow">Part IV · Unitat 16</p>
+    <h1>Paràmetres de text i numèrics</h1>
+    <p class="lede">
+      Fins ara, canviar un filtre volia dir obrir la consulta i editar-la. Un paràmetre
+      converteix una consulta fixa en una consulta que <strong>pregunta</strong>: en
+      executar-la surt una finestra amb un desplegable, i qui la fa servir tria sense
+      tocar-ne l'estructura. És la diferència entre una consulta que serveix a una
+      persona i una que pot fer servir tot un servei.
+    </p>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2>En aquesta unitat</h2>
+      <ol>
+        <li><a href="#per-que">Per què un paràmetre</a></li>
+        <li><a href="#previa">El requisit previ</a></li>
+        <li><a href="#finestra">La finestra de paràmetres</a></li>
+        <li><a href="#nom">Nom i tipus</a></li>
+        <li><a href="#metode">El mètode d'actualització</a></li>
+        <li><a href="#propietats">La resta de propietats</a></li>
+        <li><a href="#seleccio">Els quatre tipus de selecció</a></li>
+        <li><a href="#assignar">Assignar-lo al criteri</a></li>
+        <li><a href="#executar">Executar-la</a></li>
+        <li><a href="#errors">Errors freqüents</a></li>
+        <li><a href="#exercicis">Exercicis</a></li>
+        <li><a href="#comprovacio">Llista de comprovació</a></li>
+      </ol>
+      <dl class="sidebar-aside">
+        <dt>Objectiu</dt>
+        <dd>Crear un paràmetre amb desplegable i assignar-lo a un criteri.</dd>
+        <dt>Dos passos</dt>
+        <dd>Definir el paràmetre i assignar-lo al criteri. Cap dels dos serveix sol.</dd>
+        <dt>On es fa</dt>
+        <dd>Botó <span class="ui">Paràmetres...</span>, a baix de la finestra Criteris.</dd>
+        <dt>Ve de</dt>
+        <dd>Unitat 11: el desplegable s'alimenta d'una consulta de registres únics.</dd>
+      </dl>
+    </aside>
+
+    <main class="content">
+
+      <section id="per-que">
+        <h2><span class="num">Apartat 1</span>Per què un paràmetre</h2>
+        <p>
+          Penseu en la consulta de la unitat 6: personal amb vincle
+          <code>I</code>. Cada vegada que algú vol veure els laborals temporals cal
+          entrar a la consulta, obrir els criteris, canviar la <code>I</code> per una
+          <code>M</code> i executar. Ho ha de fer algú que sàpiga on és tot això, i
+          cada canvi és una ocasió de trencar la consulta.
+        </p>
+        <p>
+          Amb un paràmetre, la consulta <strong>pregunta el valor en el moment
+          d'executar-la</strong>. Qui la fa servir tria d'una llista i no toca res.
+        </p>
+        <div class="note">
+          <span class="label">Els dos passos</span>
+          <p>
+            Crear un paràmetre són sempre <strong>dues coses</strong>, i és molt
+            habitual fer-ne només una i pensar que està trencat:
+          </p>
+          <ol>
+            <li><strong>Definir el paràmetre</strong>: com es diu, què pregunta i d'on treu les opcions.</li>
+            <li><strong>Assignar-lo a un criteri</strong>: dir a quin camp s'aplica.</li>
+          </ol>
+          <p>
+            Un paràmetre definit i no assignat no fa absolutament res. No dóna cap
+            error: simplement la consulta s'executa com sempre.
+          </p>
+        </div>
+      </section>
+
+      <section id="previa">
+        <h2><span class="num">Apartat 2</span>El requisit previ</h2>
+        <p>
+          Perquè el paràmetre ofereixi un <strong>desplegable amb els valors
+          reals</strong>, abans cal tenir una consulta que els llisti. I aquesta
+          consulta ja sabeu fer-la: és exactament la de la unitat 11.
+        </p>
+        <div class="path">
+          Consulta nova <span class="sep">&rarr;</span>
+          només el camp de tipus de lloc <span class="sep">&rarr;</span>
+          <span class="ui">Registres únics</span> = <strong>Sí</strong>
+          <span class="sep">&rarr;</span>
+          deseu-la com a <code>TIPUS_LLOC</code>
+        </div>
+        <p>
+          Al material oficial aquesta consulta auxiliar es diu <code>TIPUS_LLOC</code>
+          i conté els codis i descripcions dels tipus de lloc. Feu-la primer: sense
+          ella, el paràmetre no té d'on treure les opcions.
+        </p>
+      </section>
+
+      <section id="finestra">
+        <h2><span class="num">Apartat 3</span>La finestra de paràmetres</h2>
+        <p>
+          Els paràmetres no tenen menú propi: viuen dins de la finestra
+          <span class="ui">Criteris</span>, al botó
+          <span class="ui">Paràmetres...</span> de la part inferior.
+        </p>
+
+        <figure>
+          <img src="img/cap_boto_parametres.png" alt="Finestra Criteris amb el boto Parametres remarcat a la fila inferior, al costat de D'acord, Cancel.la, Nou i Suprimeix.">
+          <figcaption>
+            El botó <span class="ui">Paràmetres...</span>, l'últim de la fila de baix de la finestra <span class="ui">Criteris</span>.
+          </figcaption>
+        </figure>
+
+        <p>
+          S'obre la finestra <span class="ui">Paràmetres de la consulta</span>, dividida
+          en dues zones: a dalt la <strong>llista de paràmetres</strong> amb una barra
+          d'icones, i a baix les <strong>propietats</strong> del que tingueu
+          seleccionat.
+        </p>
+
+
+        <figure>
+          <img src="img/cap_parametres_buit.png" alt="Finestra Parametres de la consulta acabada d'obrir, amb la llista buida, la barra d'icones i nomes la propietat Nom.">
+          <figcaption>
+            Acabada d'obrir. Fins que no doneu nom al paràmetre, la resta de propietats no apareixen.
+          </figcaption>
+        </figure>
+
+        <div class="note">
+          <span class="label">La barra d'icones</span>
+          <p>
+            Serveix per crear i esborrar paràmetres, moure'ls amunt i avall, i
+            <strong>retallar, copiar i enganxar</strong>. Aquestes tres últimes són més
+            útils del que sembla: permeten
+            <strong>reaprofitar paràmetres ja creats en altres consultes</strong> en
+            comptes de tornar-los a definir des de zero.
+          </p>
+        </div>
+      </section>
+
+      <section id="nom">
+        <h2><span class="num">Apartat 4</span>Nom i tipus</h2>
+
+        <h3>Nom</h3>
+        <p>
+          És el primer que demana. Ha de ser identificatiu, i té una restricció que cal
+          respectar:
+        </p>
+        <div class="note bad">
+          <span class="label">Restricció del nom</span>
+          <p>
+            El nom <strong>no pot incloure espais, ni paraules amb accents, apòstrofs o
+            dièresis</strong>. Feu servir majúscules i guions baixos:
+            <code>TIPUS_LLOC</code>, <code>inici_periode</code>.
+          </p>
+        </div>
+
+        <h3>Tipus</h3>
+        <p>
+          Determina quina mena de valor esperarà. Per defecte surt
+          <strong>Desconegut</strong>, que cal canviar.
+        </p>
+        <figure>
+          <img src="img/cap_tipus_parametre.png" alt="Desplegable Tipus obert amb sis opcions: Alfanumeric, Numeric, Data, Hora, Data/Hora i Desconegut.">
+          <figcaption>
+            Els sis tipus. Per defecte hi surt <span class="ui">Desconegut</span>, que cal canviar.
+          </figcaption>
+        </figure>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Tipus de paràmetre</caption>
+            <thead><tr><th>Tipus</th><th>Quan</th></tr></thead>
+            <tbody>
+              <tr><td><span class="ui">Alfanumèric</span></td><td>Quan hi ha lletres, o lletres i números. És el cas dels codis.</td></tr>
+              <tr><td><span class="ui">Numèric</span></td><td>Quan només hi ha nombres.</td></tr>
+              <tr><td><span class="ui">Data</span></td><td>Per a dates. És tota la unitat 17.</td></tr>
+              <tr><td><span class="ui">Hora</span></td><td>Per a hores.</td></tr>
+              <tr><td><span class="ui">Data/Hora</span></td><td>Per a les dues coses alhora.</td></tr>
+              <tr><td><span class="ui">Desconegut</span></td><td>El valor per defecte. Canvieu-lo.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Estat</h3>
+        <p>
+          Es deixa a <span class="ui">Activat</span>. Si esteu creant el paràmetre, és
+          perquè voleu que funcioni.
+        </p>
+      </section>
+
+      <section id="metode">
+        <h2><span class="num">Apartat 5</span>El mètode d'actualització</h2>
+        <p>
+          És la propietat que decideix <strong>d'on surten els valors</strong>, i per
+          tant la més important de totes.
+        </p>
+
+        <figure>
+          <img src="img/cap_metode_actualitzacio.png" alt="Desplegable Metode d'actualitzacio obert amb set opcions: No definit, Valor(s), Pregunta, Pregunta/Llista, Pregunta/Consulta, Formula i Consulta.">
+          <figcaption>
+            Els set mètodes. El que fareu servir gairebé sempre és <span class="ui">Pregunta/Consulta</span>.
+          </figcaption>
+        </figure>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Mètodes d'actualització</caption>
+            <thead>
+              <tr><th>Mètode</th><th>Què fa</th><th>Ús</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="ui">No definit</span></td>
+                <td>El valor per defecte en crear-lo.</td>
+                <td>Cal canviar-lo.</td>
+              </tr>
+              <tr>
+                <td><span class="ui">Valor(s)</span></td>
+                <td>El paràmetre té valors fixos.</td>
+                <td>No té sentit: si feu un paràmetre és precisament per poder triar.</td>
+              </tr>
+              <tr>
+                <td><span class="ui">Pregunta</span></td>
+                <td>Pregunta i l'usuari <strong>escriu</strong> el valor, o diversos separats per punt i coma.</td>
+                <td>Útil si ja sabeu els valors i no cal desplegable.</td>
+              </tr>
+              <tr>
+                <td><span class="ui">Pregunta/Llista</span></td>
+                <td>Presenta una llista de valors definits en un fitxer de text amb extensió <code>.lst</code>.</td>
+                <td>Poc habitual: obliga a mantenir un fitxer a part.</td>
+              </tr>
+              <tr>
+                <td><span class="ui">Pregunta/Consulta</span></td>
+                <td>Presenta els valors que torna <strong>una altra consulta</strong> ja creada.</td>
+                <td><strong>El més utilitzat.</strong> És el que farem servir.</td>
+              </tr>
+              <tr>
+                <td><span class="ui">Fórmula</span></td>
+                <td>El valor surt d'una fórmula.</td>
+                <td>Avançat.</td>
+              </tr>
+              <tr>
+                <td><span class="ui">Consulta</span></td>
+                <td>El valor surt d'una consulta, però sense preguntar res.</td>
+                <td>Avançat.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note ok">
+          <span class="label">Per què Pregunta/Consulta</span>
+          <p>
+            Perquè els valors surten de la base de dades i
+            <strong>s'actualitzen sols</strong>. Si demà apareix un tipus de lloc nou,
+            el desplegable el mostrarà sense que ningú toqui res. Amb
+            <span class="ui">Pregunta/Llista</span> caldria editar el fitxer, i amb
+            <span class="ui">Pregunta</span> l'usuari s'ha de saber els codis de
+            memòria.
+          </p>
+        </div>
+      </section>
+
+      <section id="propietats">
+        <h2><span class="num">Apartat 6</span>La resta de propietats</h2>
+        <p>
+          En triar el mètode apareixen la resta. Aquesta és la finestra completa amb
+          l'exemple ja omplert:
+        </p>
+
+        <figure>
+          <img src="img/cap_parametre_complet.png" alt="Finestra Parametres amb el parametre TIPUS_LLOC definit i les seves onze propietats visibles.">
+          <figcaption>
+            Les onze propietats d'un paràmetre alfanumèric, amb l'exemple ja omplert.
+          </figcaption>
+        </figure>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Propietats i què s'hi posa</caption>
+            <thead>
+              <tr><th>Propietat</th><th>Valor</th><th>Per què</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="ui">Títol</span></td>
+                <td><em>Quin tipus de lloc vols?</em></td>
+                <td>És <strong>la pregunta que veurà l'usuari</strong>. Escriviu-la com una pregunta de veritat, no com un nom de camp.</td>
+              </tr>
+              <tr>
+                <td><span class="ui">Obligatori</span></td>
+                <td><code>No</code></td>
+                <td>Així, si no es tria res, la consulta torna <strong>totes</strong> les opcions en comptes de fallar.</td>
+              </tr>
+              <tr>
+                <td><span class="ui">Editable</span></td>
+                <td><code>No</code></td>
+                <td>Impedeix que s'escrigui un valor a mà, que és per on entren les errades.</td>
+              </tr>
+              <tr>
+                <td><span class="ui">Valor per defecte</span></td>
+                <td><code>IGNORE</code></td>
+                <td>Ja hi surt. Vol dir "si no es tria res, no apliquis aquest criteri".</td>
+              </tr>
+              <tr>
+                <td><span class="ui">Consulta</span></td>
+                <td><code>TIPUS_LLOC</code></td>
+                <td>La consulta auxiliar de l'apartat 2, d'on surten les opcions.</td>
+              </tr>
+              <tr>
+                <td><span class="ui">Selecció</span></td>
+                <td><span class="ui">Ampliada</span></td>
+                <td>Vegeu l'apartat següent.</td>
+              </tr>
+              <tr>
+                <td><span class="ui">Oculta la primera columna de la llista</span></td>
+                <td><code>No</code></td>
+                <td>Serveix per amagar la columna del codi si només voleu que es vegi la descripció.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <figure>
+          <img src="img/cap_titol_parametre.png" alt="Finestra Parametres amb les onze propietats i la fila del Titol remarcada, encara buida.">
+          <figcaption>
+            La propietat <span class="ui">Títol</span> és la pregunta que veurà qui executi la consulta. Val la pena escriure-la com una pregunta de veritat.
+          </figcaption>
+        </figure>
+
+        <div class="note">
+          <span class="label">Obligatori i IGNORE treballen junts</span>
+          <p>
+            Amb <span class="ui">Obligatori</span> a <code>No</code> i
+            <span class="ui">Valor per defecte</span> a <code>IGNORE</code>, qui executi
+            la consulta pot no triar res i obtenir-ho tot. És el comportament que voleu
+            en la majoria de casos: el paràmetre acota si es fa servir, i no molesta si
+            no.
+          </p>
+        </div>
+      </section>
+
+      <section id="seleccio">
+        <h2><span class="num">Apartat 7</span>Els quatre tipus de selecció</h2>
+        <p>
+          Determina quantes opcions pot triar l'usuari al desplegable.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption>Opcions de selecció</caption>
+            <thead><tr><th>Opció</th><th>Permet triar</th></tr></thead>
+            <tbody>
+              <tr><td><span class="ui">Tots</span></td><td>Tots els valors alhora.</td></tr>
+              <tr><td><span class="ui">Simple</span></td><td>Només un valor.</td></tr>
+              <tr><td><span class="ui">Múltiple</span></td><td>Un bloc de valors, però han d'anar seguits.</td></tr>
+              <tr><td><span class="ui">Ampliada</span></td><td>Els que vulgueu, encara que estiguin saltejats, amb <kbd>Ctrl</kbd>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note ok">
+          <span class="label">Trieu sempre Ampliada</span>
+          <p>
+            Perquè <strong>inclou les altres</strong>: amb Ampliada es pot triar un sol
+            valor, com a <span class="ui">Simple</span>, o un bloc seguit, com a
+            <span class="ui">Múltiple</span>, i a més valors alterns. No hi ha cap motiu
+            per limitar-ho.
+          </p>
+        </div>
+      </section>
+
+      <section id="assignar">
+        <h2><span class="num">Apartat 8</span>Assignar-lo al criteri</h2>
+        <p>
+          Aquí és on molta gent es queda. El paràmetre existeix, però encara no està
+          connectat a cap camp. Premeu <span class="ui">D'acord</span> per tornar a la
+          finestra de criteris.
+        </p>
+        <ol class="steps">
+          <li>
+            <h3>Trieu el camp i l'operador</h3>
+            <p>
+              Al desplegable <span class="ui">Columnes</span>, el camp sobre el qual
+              s'aplicarà: <code>LLOC_TIPUS_CODI</code>. L'operador,
+              <code>=</code>.
+            </p>
+          </li>
+          <li>
+            <h3>Canvieu de pestanya</h3>
+            <p>
+              En comptes d'escriure a <span class="ui">Valor</span>, aneu a la pestanya
+              <span class="ui">Expressió</span>. Aquesta és la pestanya que vam
+              anunciar a la unitat 6 i que fins ara no havíem fet servir.
+            </p>
+          </li>
+          <li>
+            <h3>Obriu el generador</h3>
+            <p>
+              Feu clic al botó dels <strong>tres punts</strong>. S'obre una finestra amb
+              tres opcions: <span class="ui">Camps</span>,
+              <span class="ui">Funcions</span> i <span class="ui">Paràmetres</span>.
+            </p>
+          </li>
+          <li>
+            <h3>Trieu el paràmetre</h3>
+            <p>
+              Entreu a <span class="ui">Paràmetres</span>, feu
+              <strong>doble clic</strong> sobre <code>TIPUS_LLOC</code> i veureu que
+              passa a la caixa de <span class="ui">Fórmula</span> de baix.
+              <span class="ui">D'acord</span>.
+            </p>
+          </li>
+        </ol>
+        <div class="criteri is-good">LLOC_TIPUS_CODI <span class="op">=</span> [ TIPUS_LLOC ]
+
+<span class="cm">-- el tipus de lloc ha de ser igual al valor</span>
+<span class="cm">-- que l'usuari trii al parametre</span></div>
+        <figure>
+          <img src="img/assignar_parametre_criteri.png" alt="Esquema de l'assignació d'un paràmetre a un criteri a través de la pestanya Expressió.">
+          <figcaption>
+            El recorregut de l'assignació: pestanya <span class="ui">Expressió</span>,
+            tres punts, <span class="ui">Paràmetres</span>, doble clic.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="executar">
+        <h2><span class="num">Apartat 9</span>Executar-la</h2>
+        <p>
+          En prémer executar, la consulta <strong>ja no mostra les dades
+          directament</strong>. Primer surt una finestra amb la pregunta que vau
+          escriure al títol i la llista de valors.
+        </p>
+        <ul>
+          <li>Es tria un valor, o diversos amb <kbd>Ctrl</kbd> si són saltejats.</li>
+          <li>Es prem el <strong>vistiplau</strong> i després <span class="ui">OK</span>.</li>
+          <li>La consulta s'executa amb la selecció feta.</li>
+        </ul>
+        <figure>
+          <img src="img/consultes_parametritzades.png" alt="Visió general del funcionament d'una consulta parametritzada, de la definició a l'execució.">
+          <figcaption>
+            El cicle complet: definir, assignar i executar.
+          </figcaption>
+        </figure>
+        <div class="note ok">
+          <span class="label">Què heu guanyat</span>
+          <p>
+            La consulta ja no és vostra: la pot fer servir qualsevol persona del servei
+            sense saber què és un criteri, sense obrir la definició i sense risc de
+            trencar-la. I si demà hi ha un tipus de lloc nou, el desplegable el mostrarà
+            sol.
+          </p>
+        </div>
+      </section>
+
+      <section id="errors">
+        <h2><span class="num">Apartat 10</span>Errors freqüents</h2>
+        <div class="versus">
+          <div class="no">
+            <h4>El que passa</h4>
+            <p><strong>Executo i no em pregunta res.</strong></p>
+            <p><strong>El desplegable surt buit.</strong></p>
+            <p><strong>No em deixa posar el nom.</strong></p>
+            <p><strong>Només puc triar valors seguits.</strong></p>
+            <p><strong>Si no trio res, no surt cap registre.</strong></p>
+          </div>
+          <div class="si">
+            <h4>El que passa de veritat</h4>
+            <p>El paràmetre està definit però <strong>no assignat</strong> a cap criteri. És l'error número u.</p>
+            <p>La consulta auxiliar no existeix, està buida, o no l'heu indicada a la propietat <span class="ui">Consulta</span>.</p>
+            <p>Hi heu posat espais, accents, apòstrofs o dièresis.</p>
+            <p>Teniu <span class="ui">Selecció</span> a <span class="ui">Múltiple</span>. Poseu-la a <span class="ui">Ampliada</span>.</p>
+            <p><span class="ui">Obligatori</span> està a <code>Sí</code>, o heu esborrat el <code>IGNORE</code>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="exercicis">
+        <h2><span class="num">Apartat 11</span>Exercicis</h2>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-16-1</span>
+            <h3>La consulta que pregunta</h3>
+            <span class="mena">Reprodueix</span>
+          </header>
+          <div class="cos">
+            <p>Feu-ho sencer, en aquest ordre:</p>
+            <ol>
+              <li>
+                Creeu la consulta auxiliar de registres únics amb els codis i
+                descripcions de tipus de lloc, i deseu-la com a <code>TIPUS_LLOC</code>.
+              </li>
+              <li>
+                A la consulta principal sobre <span class="tag lloc">LLOC</span>, definiu
+                un paràmetre alfanumèric amb mètode
+                <span class="ui">Pregunta/Consulta</span>, títol
+                <em>Quin tipus de lloc vols?</em>, no obligatori, no editable, valor per
+                defecte <code>IGNORE</code>, consulta <code>TIPUS_LLOC</code> i selecció
+                <span class="ui">Ampliada</span>.
+              </li>
+              <li>Assigneu-lo al criteri sobre el camp de tipus de lloc.</li>
+              <li>Executeu i trieu un valor.</li>
+            </ol>
+            <details>
+              <summary>Comprovació</summary>
+              <div class="dins">
+                <p>
+                  Ha de sortir la finestra amb la pregunta i la llista de tipus. Si no
+                  surt, teniu el paràmetre definit però no assignat: torneu a l'apartat
+                  8.
+                </p>
+                <p>
+                  Executeu-la dues vegades triant valors diferents i comproveu que el
+                  nombre de registres canvia. Aquesta és la prova que el paràmetre està
+                  connectat de veritat.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-16-2</span>
+            <h3>Trenca les tres propietats</h3>
+            <span class="mena">Trenca</span>
+          </header>
+          <div class="cos">
+            <p>Amb el paràmetre ja funcionant, feu aquests tres canvis, un per un, i executeu després de cadascun:</p>
+            <ol>
+              <li>Poseu <span class="ui">Selecció</span> a <span class="ui">Simple</span>.</li>
+              <li>Poseu <span class="ui">Obligatori</span> a <code>Sí</code> i no trieu res.</li>
+              <li>Esborreu el <code>IGNORE</code> del valor per defecte i no trieu res.</li>
+            </ol>
+            <details>
+              <summary>Què hauria d'haver passat</summary>
+              <div class="dins">
+                <p>
+                  <strong>1.</strong> Ja no podeu triar més d'un valor. Amb
+                  <span class="ui">Múltiple</span> podríeu, però només seguits. Per això
+                  la recomanació és sempre <span class="ui">Ampliada</span>.
+                </p>
+                <p>
+                  <strong>2.</strong> No us deixa continuar sense triar. De vegades és el
+                  que voleu, però normalment no.
+                </p>
+                <p>
+                  <strong>3.</strong> Sense <code>IGNORE</code>, no triar res deixa de
+                  voler dir "totes" i la consulta no torna el que esperàveu. Recordeu
+                  aquest comportament: a la unitat 17 el <code>IGNORE</code> s'ha
+                  d'esborrar a propòsit, i és l'única vegada.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-16-3</span>
+            <h3>Una consulta per a tot el servei</h3>
+            <span class="mena">Resol</span>
+          </header>
+          <div class="cos">
+            <p>
+              Al vostre servei tothom demana el mateix llistat de persones, però cadascú
+              per un vincle diferent. Us cansa fer-lo i que us el tornin a demanar.
+            </p>
+            <p>
+              Munteu una consulta que qualsevol pugui executar triant el vincle, sense
+              tocar-ne l'estructura. Digueu quines dues consultes necessiteu i què va a
+              cada propietat.
+            </p>
+            <details>
+              <summary>Solució</summary>
+              <div class="dins">
+                <p><strong>Consulta auxiliar</strong>, per alimentar el desplegable:</p>
+                <div class="criteri is-good">Camps: PLRC_VINCLE_CODI + PLRC_VINCLE_DESC
+Registres unics = Si
+Nom: VINCLES</div>
+                <p><strong>Paràmetre</strong> a la consulta principal:</p>
+                <div class="criteri is-good">Nom: VINCLE              Tipus: Alfanumeric
+Metode: Pregunta/Consulta  Titol: Quin vincle vols?
+Obligatori: No             Editable: No
+Valor per defecte: IGNORE  Consulta: VINCLES
+Seleccio: Ampliada</div>
+                <p><strong>Assignació</strong>, a la pestanya Expressió:</p>
+                <div class="criteri is-good">PLRC_VINCLE_CODI <span class="op">=</span> [ VINCLE ]</div>
+                <p>
+                  Amb la descripció també a la consulta auxiliar, el desplegable mostra
+                  <em>F - Funcionari</em> en comptes de només <code>F</code>, i qui
+                  l'executi no ha de saber cap codi. Si volguéssiu amagar el codi i que
+                  només es veiés la descripció, és per a això que serveix
+                  <span class="ui">Oculta la primera columna de la llista</span>.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="comprovacio">
+        <h2><span class="num">Apartat 12</span>Llista de comprovació</h2>
+        <ul class="checklist">
+          <li>Explicar què guanya una consulta en tenir un paràmetre.</li>
+          <li>Enunciar els dos passos i saber què passa si només se'n fa un.</li>
+          <li>Crear la consulta auxiliar de registres únics que alimenta el desplegable.</li>
+          <li>Trobar el botó <span class="ui">Paràmetres...</span> dins de la finestra de criteris.</li>
+          <li>Respectar la restricció del nom.</li>
+          <li>Triar el tipus adequat entre els sis disponibles.</li>
+          <li>Explicar els set mètodes d'actualització i per què <span class="ui">Pregunta/Consulta</span> és el bo.</li>
+          <li>Omplir títol, obligatori, editable, valor per defecte i consulta.</li>
+          <li>Explicar com treballen junts <span class="ui">Obligatori</span> i <code>IGNORE</code>.</li>
+          <li>Justificar per què <span class="ui">Selecció</span> sempre va a <span class="ui">Ampliada</span>.</li>
+          <li>Assignar el paràmetre a un criteri per la pestanya <span class="ui">Expressió</span>.</li>
+          <li>Diagnosticar una consulta que no pregunta res.</li>
+          <li>Reaprofitar un paràmetre d'una altra consulta amb copiar i enganxar.</li>
+        </ul>
+        <div class="note">
+          <span class="label">A la unitat següent</span>
+          <p>
+            Els paràmetres de data funcionen gairebé igual, però tenen una diferència
+            que els fa fallar a tothom la primera vegada. És una unitat curta i val la
+            pena llegir-la sencera abans de crear-ne cap.
+          </p>
+        </div>
+      </section>
+
+      <nav class="unit-nav">
+        <a class="prev" href="../15/">
+          <span class="dir">Unitat 15</span>
+          <span class="ttl">Exportació de la informació</span>
+        </a>
+        <a class="next" href="../17/">
+          <span class="dir">Unitat 17</span>
+          <span class="ttl">Paràmetres de data</span>
+        </a>
+      </nav>
+
+      <footer class="site-foot">
+        <span>Guia elaborada per <strong>Ismael Trascastro</strong></span>
+        <span class="dret">Sobre material de l'Escola d'Administració Pública de Catalunya</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<script src="../../assets/tutorial.js?v=3"></script>
+</body>
+</html>

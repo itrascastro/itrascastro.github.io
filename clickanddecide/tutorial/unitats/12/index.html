@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ca" data-unit="12" data-root="../..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>12 · Titulacions: les taules de registres múltiples - Click &amp; Decide</title>
+<meta name="description" content="WAIV9040_TITULACIO: que canvia quan el NIF deixa de ser clau unica, els codis de titulacio i els recomptes en les dues direccions.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="prev" href="../11/">
+<link rel="next" href="../13/">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../../index.html">Click &amp; Decide <em>· Guia d'aprenentatge</em></a>
+    <nav>
+      <span class="position">Unitat 12 / 18</span>
+      <span data-unit-picker></span>
+      <a class="step-link" href="../../index.html">Índex</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+
+  <header class="unit-head">
+    <p class="eyebrow">Part III · Unitat 12</p>
+    <h1>Titulacions: les taules de registres múltiples</h1>
+    <p class="lede">
+      Fins ara totes les taules tenien una clau: un NIF, una fila; un codi de lloc,
+      una fila. A partir d'aquí això s'acaba. A
+      <span class="tag persona">WAIV9040_TITULACIO</span> una persona amb tres títols
+      ocupa tres files, i cada recompte que hi feu ha de dir <strong>què</strong>
+      compta. És la unitat on el 73 contra 48 de la unitat 00 deixa de ser un exemple
+      i passa a ser la vostra feina diària.
+    </p>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2>En aquesta unitat</h2>
+      <ol>
+        <li><a href="#taula">Què conté la taula</a></li>
+        <li><a href="#multiples">Què vol dir registres múltiples</a></li>
+        <li><a href="#camps">Els camps i els codis</a></li>
+        <li><a href="#filtrar">Filtrar per titulació o per nivell</a></li>
+        <li><a href="#dues-direccions">Comptar en les dues direccions</a></li>
+        <li><a href="#germanes">Les taules germanes</a></li>
+        <li><a href="#errors">Errors freqüents</a></li>
+        <li><a href="#exercicis">Exercicis</a></li>
+        <li><a href="#comprovacio">Llista de comprovació</a></li>
+      </ol>
+      <dl class="sidebar-aside">
+        <dt>Objectiu</dt>
+        <dd>Treballar amb una taula on el NIF es repeteix, i comptar-hi bé.</dd>
+        <dt>Taula</dt>
+        <dd><code>WAIV9040_TITULACIO</code></dd>
+        <dt>Clau</dt>
+        <dd>Cap. Registres múltiples.</dd>
+        <dt>Càrrega</dt>
+        <dd>Setmanal, no diària.</dd>
+      </dl>
+    </aside>
+
+    <main class="content">
+
+      <section id="taula">
+        <h2><span class="num">Apartat 1</span>Què conté la taula</h2>
+        <dl class="factsheet">
+          <div><dt>Contingut</dt><dd>Totes les titulacions reglades que consten informades al GIP: primària, secundària, universitàries -grau, llicenciatura, diplomatura i doctorat-, titulacions d'idiomes reglades i certificats ACTIC de competències digitals.</dd></div>
+          <div><dt>De qui</dt><dd>De tot el personal del vostre àmbit, <strong>tant actiu com inactiu</strong>.</dd></div>
+          <div><dt>Clau</dt><dd>No en té. És de registres múltiples.</dd></div>
+          <div><dt>Vigència</dt><dd>Dades actuals.</dd></div>
+          <div><dt>Càrrega</dt><dd><strong>Setmanal</strong>, a diferència de les taules de persones i llocs.</dd></div>
+          <div><dt>Ubicació</dt><dd>La de la persona ara mateix o, si és inactiva, la darrera que va tenir.</dd></div>
+        </dl>
+        <div class="note warn">
+          <span class="label">La càrrega setmanal té conseqüències</span>
+          <p>
+            Un títol que s'informi al GIP dilluns <strong>pot no aparèixer fins la
+            setmana següent</strong>. Si algú us diu que ha registrat una titulació i
+            no la trobeu, abans de buscar-hi cap error mireu quin dia és. Recordeu els
+            dos darrers camps de qualsevol taula: la data i hora de càrrega.
+          </p>
+        </div>
+        <figure>
+          <img src="img/waiv9040_visio_general.png" alt="Visió general de la taula WAIV9040_TITULACIO amb el seu contingut, vigència i tipus de registre.">
+          <figcaption>
+            Els blocs d'informació de la taula de titulacions.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="multiples">
+        <h2><span class="num">Apartat 2</span>Què vol dir registres múltiples</h2>
+        <p>
+          Aquesta taula <strong>no té cap camp únic per a cada registre</strong>. La
+          taula de persones tenia el NIF, la de llocs tenia el codi de lloc. Aquí no hi
+          ha res equivalent.
+        </p>
+        <p>
+          Cada NIF es repeteix <strong>tantes vegades com titulacions tingui la
+          persona</strong> informades al GIP.
+        </p>
+
+        <div class="versus">
+          <div class="no">
+            <h4>El que veieu</h4>
+            <div class="criteri">39...12P  ALSINA, MARTA   Llicenciatura Dret
+39...12P  ALSINA, MARTA   Catala C1
+39...12P  ALSINA, MARTA   ACTIC mitja
+46...88K  BOSCH, JORDI    Grau Economia
+
+<span class="cm">4 files</span></div>
+          </div>
+          <div class="si">
+            <h4>El que hi ha</h4>
+            <p><strong>2 persones</strong> i <strong>4 titulacions</strong>.</p>
+            <p>
+              Les dues xifres són correctes i responen preguntes diferents. Si algú us
+              demana "quanta gent titulada tenim" i doneu 4, us heu equivocat.
+            </p>
+          </div>
+        </div>
+
+        <div class="note">
+          <span class="label">La pregunta que ho resol</span>
+          <p>
+            Abans de comptar res en una taula d'aquestes, contesteu:
+            <strong>una fila, què és?</strong> Aquí una fila és
+            <em>una titulació d'una persona</em>. No és una persona. Tot el que
+            compteu amb un comptador de files, per tant, són titulacions.
+          </p>
+        </div>
+              <p>
+          Al costat del codi i la descripció, la taula porta el <b>centre
+          d'obtenció</b> de la titulació, la data en què es va obtenir i, quan
+          hi consta, la durada. Són els camps que permeten respondre preguntes
+          que no van de qui té què, sinó d'on i quan: quanta gent ha obtingut
+          una titulació a partir d'una data, o quantes en venen d'un centre
+          concret.
+        </p>
+        <p>
+          Els noms exactes dels camps són <code>TITL_CODI_TITULACI</code> i
+          <code>TITL_DESC_TITULACI</code>, el centre partit en dos
+          (<code>TITL_CENTRE_OBTE_C</code> i <code>TITL_CENTRE_OBTE_D</code>),
+          <code>TITL_DATA_OBTENCIO</code>, la durada també partida en dos
+          (<code>TITL_DURADA_QUAN</code> amb la xifra i
+          <code>TITL_DURADA_UNIT</code> amb la unitat), <code>TITL_NIVELL</code>
+          i el grup, <code>TITL_AGRUP_C</code> i <code>TITL_AGRUP_D</code>.
+          Fixeu-vos que la durada són dos camps: la xifra sola no vol dir res
+          si no sabeu si són anys o mesos.
+        </p>
+</section>
+
+      <section id="camps">
+        <h2><span class="num">Apartat 3</span>Els camps i els codis</h2>
+        <div class="table-wrap">
+          <table>
+            <caption>Camps principals</caption>
+            <thead>
+              <tr><th class="code">Camp</th><th>Conté</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="code">PERS_NIF</td><td>El NIF de la persona. Es repeteix.</td></tr>
+              <tr><td class="code">TITL_CODI_TITULACI</td><td>El codi de la titulació.</td></tr>
+              <tr><td class="code">TITL_DESC_TITULACI</td><td>La descripció en text.</td></tr>
+              <tr><td class="code">TITL_NIVELL</td><td>El nivell. És el camp més útil per filtrar.</td></tr>
+              <tr><td>Centre</td><td>On es va obtenir.</td></tr>
+              <tr><td>Data d'obtenció</td><td>Quan.</td></tr>
+              <tr><td>Durada</td><td>Si consta.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>La codificació té dues formes</h3>
+        <p>
+          El codi de titulació barreja dos sistemes, i convé saber-ho perquè afecta com
+          hi filtreu:
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption>Prefixos del codi de titulació</caption>
+            <thead><tr><th class="code">Comença per</th><th>Què és</th></tr></thead>
+            <tbody>
+              <tr><td class="code">CAT</td><td>Titulacions de català.</td></tr>
+              <tr><td class="code">ACTIC</td><td>Certificats de competències digitals.</td></tr>
+              <tr><td class="code">BAT</td><td>Batxillerat.</td></tr>
+              <tr><td>Números</td><td>La resta de titulacions.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note ok">
+          <span class="label">On és útil "Comença per"</span>
+          <p>
+            Aquí teniu el cas real de l'operador
+            <span class="ui">Comença per</span> de la unitat 6: filtrar per
+            <code>CAT</code> us dóna <strong>totes</strong> les titulacions de català
+            d'un cop, sense haver d'enumerar cada nivell.
+          </p>
+        </div>
+
+        <h3>Els nivells</h3>
+        <p>
+          <code>TITL_NIVELL</code> agrupa les titulacions per rang acadèmic, i és el
+          que fareu servir per a les consultes àmplies:
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption>Nivells de titulació</caption>
+            <thead><tr><th class="code">Nivell</th><th>Correspon a</th></tr></thead>
+            <tbody>
+              <tr><td class="code">A1</td><td>Llicenciatures.</td></tr>
+              <tr><td class="code">A2</td><td>Enginyeries tècniques.</td></tr>
+              <tr><td>La resta</td><td>Consulteu el manual de dades administratives per a la llista completa, o feu una consulta de registres únics sobre el camp.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <figure>
+          <img src="img/camps_i_codis_titulacions.png" alt="Camps i codificacions de la taula de titulacions, amb els prefixos de codi i els nivells.">
+          <figcaption>
+            Els camps de la família <code>TITL</code> i les seves codificacions.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="filtrar">
+        <h2><span class="num">Apartat 4</span>Filtrar per titulació o per nivell</h2>
+        <p>Les dues consultes bàsiques, i la diferència entre elles és l'amplada:</p>
+        <div class="versus">
+          <div class="si">
+            <h4>Una titulació concreta</h4>
+            <div class="criteri">TITL_CODI_TITULACI <span class="op">=</span> [codi de Dret]</div>
+            <p>Qui té la llicenciatura en Dret. Filtreu <strong>pel codi</strong>, com sempre.</p>
+          </div>
+          <div class="si">
+            <h4>Un nivell sencer</h4>
+            <div class="criteri">TITL_NIVELL <span class="op">=</span> 'A1'</div>
+            <p>Qui té qualsevol llicenciatura. Molt més útil per a estudis de plantilla.</p>
+          </div>
+        </div>
+        <p>
+          En executar la segona, el llistat es queda només amb les titulacions
+          universitàries de grau superior. Fixeu-vos que el que s'ha reduït són
+          <strong>files</strong>, i que una persona amb dues llicenciatures hi surt
+          igualment dues vegades.
+        </p>
+      </section>
+
+      <section id="dues-direccions">
+        <h2><span class="num">Apartat 5</span>Comptar en les dues direccions</h2>
+        <p>
+          Aquí és on aquesta taula es fa interessant. Amb els mateixos dos camps es
+          poden respondre dues preguntes oposades, i l'única diferència és
+          <strong>quin camp agrupa i quin es compta</strong>.
+        </p>
+
+        <div class="recepta persona">
+          <h3>Quantes titulacions té cada persona</h3>
+          <dl>
+            <div><dt>Camps</dt><dd><code>PERS_NIF</code> i <code>TITL_DESC_TITULACI</code></dd></div>
+            <div><dt>Agregat</dt><dd>Clic dret sobre <strong>la titulació</strong> &rarr; <span class="ui">Agregats</span> &rarr; <span class="ui">Compte</span></dd></div>
+            <div><dt>Agrupa per</dt><dd>El NIF, que és el camp que queda.</dd></div>
+            <div><dt>Resultat</dt><dd>Una fila per persona amb el nombre de títols que té.</dd></div>
+            <div><dt>Per a què</dt><dd>Detectar qui té més d'una titulació d'un mateix nivell.</dd></div>
+          </dl>
+        </div>
+
+        <div class="recepta lloc">
+          <h3>Quantes persones tenen cada titulació</h3>
+          <dl>
+            <div><dt>Camps</dt><dd><code>TITL_CODI_TITULACI</code>, <code>TITL_DESC_TITULACI</code> i <code>PERS_NIF</code></dd></div>
+            <div><dt>Agregat</dt><dd>Clic dret sobre <strong>el NIF</strong> &rarr; <span class="ui">Agregats</span> &rarr; <span class="ui">Compte</span></dd></div>
+            <div><dt>Agrupa per</dt><dd>El codi i la descripció de la titulació.</dd></div>
+            <div><dt>Resultat</dt><dd>Una fila per titulació amb quanta gent la té.</dd></div>
+            <div><dt>Per a què</dt><dd>Saber de què teniu excedent i de què no. Del material oficial: criminologia, 1 persona; enginyeria agrònoma, 12.</dd></div>
+          </dl>
+        </div>
+
+        <div class="note ok">
+          <span class="label">La regla, en una frase</span>
+          <p>
+            <strong>El camp que compteu desapareix; els que queden agrupen.</strong>
+            Si compteu la titulació, agrupeu per persona. Si compteu el NIF, agrupeu per
+            titulació. És la mateixa mecànica de la unitat 10 aplicada a una taula on el
+            NIF es repeteix.
+           El contrast del vídeo és bo per veure per a què serveix: de llicenciats en criminologia n'hi surt <b>un</b>, i d'enginyers <b>agrònoms</b>, dotze.</p>
+        </div>
+
+        <div class="note warn">
+          <span class="label">Compte amb el comptador que trieu</span>
+          <p>
+            A la segona consulta compteu NIF dins d'un grup de titulació. Si una persona
+            tingués la mateixa titulació registrada dues vegades, un
+            <span class="ui">Agregats</span> &rarr; <span class="ui">Compte</span> la
+            comptaria dos cops. Per estar segurs que compteu
+            <strong>persones diferents</strong>, l'opció és
+            <span class="ui">Distinct Agregats</span>.
+          </p>
+        </div>
+
+        <figure>
+          <img src="img/agrupacions_recomptes_titulacions.png" alt="Els dos recomptes possibles sobre la taula de titulacions: per persona i per titulació.">
+          <figcaption>
+            Les dues direccions del recompte, amb els mateixos camps.
+          </figcaption>
+        </figure>
+      
+
+        <figure>
+          <img src="img/recompte_titulacions_real.png" alt="Resultat del recompte de persones per titulació: codi, descripció i la columna Count_PERS_NIF.">
+          <figcaption>
+            El recompte de persones per titulació. La columna que crea el
+            programa es diu <code>Count_PERS_NIF</code>, i és on es veu la
+            diferència que explica la unitat: hi ha titulacions amb una sola
+            persona i d'altres amb dotze.
+            <span class="font">Videotutorial 12 de l'EAPC, minut 4:43.</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="germanes">
+        <h2><span class="num">Apartat 6</span>Les taules germanes</h2>
+        <p>
+          Hi ha més taules que es comporten exactament igual: registres múltiples,
+          un NIF que es repeteix i la mateixa mecànica de recompte.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption>Altres taules de formació</caption>
+            <thead><tr><th class="code">Taula</th><th>Conté</th></tr></thead>
+            <tbody>
+              <tr><td class="code">WAIV9190_CURSPERS</td><td>Els cursos formatius que té informats una persona.</td></tr>
+              <tr><td class="code">WAIV9090_LINCURR</td><td>Línies de currículum: formació i cursos que consten al GIP.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">
+          <span class="label">Sobre el nom d'aquestes taules</span>
+          <p>
+            El vídeo del curs anomena la primera <code>9010_CURSPERS</code> i la guia
+            de l'EAPC la llista com a <code>WAIV9190_CURSPERS</code>. Davant del dubte,
+            el nom bo és el que veieu a l'arbre de taules del vostre origen de dades.
+          </p>
+        </div>
+        <p>
+          Tot el que heu après aquí s'hi aplica igual. Si domineu aquesta unitat,
+          domineu les tres taules.
+        </p>
+        <figure>
+          <img src="img/consultes_habituals_titulacions.png" alt="Consultes habituals sobre la taula de titulacions.">
+          <figcaption>
+            Les consultes que es demanen més sovint sobre titulacions.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="errors">
+        <h2><span class="num">Apartat 7</span>Errors freqüents</h2>
+        <div class="versus">
+          <div class="no">
+            <h4>El que passa</h4>
+            <p><strong>Em surten més titulats que treballadors.</strong></p>
+            <p><strong>He registrat un títol i no surt.</strong></p>
+            <p><strong>Volia una llista de persones i em surt gent repetida.</strong></p>
+            <p><strong>La suma dels nivells no dóna el total de plantilla.</strong></p>
+          </div>
+          <div class="si">
+            <h4>El que passa de veritat</h4>
+            <p>Esteu comptant files, i cada fila és una titulació. Compteu NIF distints.</p>
+            <p>La càrrega és setmanal. Espereu i comproveu la data de càrrega.</p>
+            <p>És el comportament normal de la taula. Si voleu una persona per fila, activeu <span class="ui">Registres únics</span> amb només els camps de persona.</p>
+            <p>Ni ha de donar-lo: hi ha gent amb diverses titulacions i gent amb cap.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="exercicis">
+        <h2><span class="num">Apartat 8</span>Exercicis</h2>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-12-1</span>
+            <h3>Els titulats de nivell A1</h3>
+            <span class="mena">Reprodueix</span>
+          </header>
+          <div class="cos">
+            <p>
+              Sobre <code>WAIV9040_TITULACIO</code>, filtreu les titulacions de nivell
+              <code>A1</code>. Mostreu NIF, codi i descripció de la titulació.
+            </p>
+            <p>Anoteu el nombre de registres.</p>
+            <details>
+              <summary>Comprovació</summary>
+              <div class="dins">
+                <div class="criteri">TITL_NIVELL <span class="op">=</span> 'A1'</div>
+                <p>
+                  Aquest número <strong>no és</strong> el nombre de persones
+                  llicenciades: és el nombre de llicenciatures. Reteniu-lo, que a
+                  l'exercici següent el compararem.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-12-2</span>
+            <h3>Titulacions o persones</h3>
+            <span class="mena">Trenca</span>
+          </header>
+          <div class="cos">
+            <p>Amb el mateix filtre, obteniu ara aquestes tres xifres:</p>
+            <ol>
+              <li>Un recompte de registres.</li>
+              <li>Un recompte de NIF distints.</li>
+              <li>El recompte per persona: quantes titulacions A1 té cadascú.</li>
+            </ol>
+            <details>
+              <summary>Què hauria d'haver passat</summary>
+              <div class="dins">
+                <p>
+                  <strong>1 i 2 no coincideixen.</strong> La diferència és exactament el
+                  nombre de persones que tenen més d'una llicenciatura.
+                </p>
+                <p>
+                  <strong>3</strong> ho explica: gairebé tothom té un <code>1</code> a
+                  la columna de recompte, i les poques files amb <code>2</code> són les
+                  que fan que les dues primeres xifres no quadrin.
+                </p>
+                <p>
+                  Aquesta és la comprovació que hauríeu de fer sempre en una taula de
+                  registres múltiples abans de donar cap xifra: <em>compto files o
+                  compto gent?</em>
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-12-3</span>
+            <h3>De què anem sobrats</h3>
+            <span class="mena">Resol</span>
+          </header>
+          <div class="cos">
+            <p>
+              Us demanen, per a un pla de formació, quines titulacions de nivell
+              <code>A1</code> són les més freqüents al vostre àmbit i quanta gent té
+              cadascuna.
+            </p>
+            <p>
+              Digueu quins camps seleccioneu, sobre quin feu l'agregat i com ordeneu el
+              resultat.
+            </p>
+            <details>
+              <summary>Solució</summary>
+              <div class="dins">
+                <div class="criteri is-good">Criteri: TITL_NIVELL = 'A1'
+
+Camps:  TITL_CODI_TITULACI
+        TITL_DESC_TITULACI
+        PERS_NIF   <span class="cm">-- clic dret: Distinct Agregats &gt; Compte</span>
+
+Ordre:  pel recompte, descendent</div>
+                <p>
+                  <strong>L'agregat va sobre el NIF</strong>, perquè el que voleu
+                  comptar són persones. Els dos camps de titulació queden i, per tant,
+                  són els que agrupen.
+                </p>
+                <p>
+                  <strong>Distinct</strong> per assegurar que compteu persones
+                  diferents i no registres.
+                </p>
+                <p>
+                  I l'ordenació descendent sobre el recompte posa a dalt el que us han
+                  demanat: les més freqüents. És la unitat 5 treballant per vosaltres.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="comprovacio">
+        <h2><span class="num">Apartat 9</span>Llista de comprovació</h2>
+        <ul class="checklist">
+          <li>Dir què conté la taula de titulacions i de quin personal.</li>
+          <li>Explicar per què no té clau i què implica.</li>
+          <li>Respondre "una fila, què és?" abans de comptar res.</li>
+          <li>Recordar que la càrrega és setmanal i què significa.</li>
+          <li>Identificar els prefixos <code>CAT</code>, <code>ACTIC</code> i <code>BAT</code>.</li>
+          <li>Fer servir <span class="ui">Comença per</span> per agafar una família sencera de titulacions.</li>
+          <li>Filtrar per nivell amb <code>TITL_NIVELL</code>.</li>
+          <li>Muntar el recompte de titulacions per persona.</li>
+          <li>Muntar el recompte de persones per titulació.</li>
+          <li>Explicar la regla: el camp que es compta desapareix i els que queden agrupen.</li>
+          <li>Saber quan cal <span class="ui">Distinct Agregats</span> en comptes d'<span class="ui">Agregats</span>.</li>
+          <li>Aplicar-ho tot a les taules de cursos i currículum.</li>
+        </ul>
+        <div class="note">
+          <span class="label">A la unitat següent</span>
+          <p>
+            Continuem amb registres múltiples, però afegint-hi el temps. Les taules
+            d'incidències porten data d'inici i data de fi, i això obre la pregunta més
+            difícil del curs: què vol dir exactament que una cosa estava vigent en un
+            període.
+          </p>
+        </div>
+      </section>
+
+      <nav class="unit-nav">
+        <a class="prev" href="../11/">
+          <span class="dir">Unitat 11</span>
+          <span class="ttl">Consultes de registres únics</span>
+        </a>
+        <a class="next" href="../13/">
+          <span class="dir">Unitat 13</span>
+          <span class="ttl">Incidències: WAIV9060 i WAIV9061</span>
+        </a>
+      </nav>
+
+      <footer class="site-foot">
+        <span>Guia elaborada per <strong>Ismael Trascastro</strong></span>
+        <span class="dret">Sobre material de l'Escola d'Administració Pública de Catalunya</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<script src="../../assets/tutorial.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ca" data-unit="08" data-root="../..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>08 · La taula de llocs i l'estat de plantilla - Click &amp; Decide</title>
+<meta name="description" content="WAIV9080_LLOC: contingut, ocupants ACT, ANT, RES i SUBS, els nou codis de LLOC_ESTAT_PLANTILLA i com obtenir nomes els llocs vigents.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="prev" href="../07/">
+<link rel="next" href="../09/">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../../index.html">Click &amp; Decide <em>· Guia d'aprenentatge</em></a>
+    <nav>
+      <span class="position">Unitat 08 / 18</span>
+      <span data-unit-picker></span>
+      <a class="step-link" href="../../index.html">Índex</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+
+  <header class="unit-head">
+    <p class="eyebrow">Part II · Unitat 08</p>
+    <h1>La taula de llocs i l'estat de plantilla</h1>
+    <p class="lede">
+      Canviem de punt de vista: <span class="tag lloc">WAIV9080_LLOC</span> mira
+      l'organització des dels llocs de treball i no des de les persones. Té una fila
+      per lloc i un camp, <code>LLOC_ESTAT_PLANTILLA</code>, que decideix si aquell
+      lloc existeix de veritat avui. Sense filtrar-lo, qualsevol recompte de plantilla
+      surt inflat amb places històriques i places que encara no existeixen.
+    </p>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2>En aquesta unitat</h2>
+      <ol>
+        <li><a href="#taula">Què conté la taula</a></li>
+        <li><a href="#sense-historic">El que no hi trobareu</a></li>
+        <li><a href="#informacio">La informació del lloc</a></li>
+        <li><a href="#ocupants">Els quatre ocupants</a></li>
+        <li><a href="#estat">LLOC_ESTAT_PLANTILLA</a></li>
+        <li><a href="#vigents">Obtenir els llocs vigents</a></li>
+        <li><a href="#rlt">Vigents o de la RLT</a></li>
+        <li><a href="#errors">Errors freqüents</a></li>
+        <li><a href="#exercicis">Exercicis</a></li>
+        <li><a href="#comprovacio">Llista de comprovació</a></li>
+      </ol>
+      <dl class="sidebar-aside">
+        <dt>Objectiu</dt>
+        <dd>Obtenir un llistat de llocs que sigui realment la plantilla d'avui.</dd>
+        <dt>Taula</dt>
+        <dd><span class="tag lloc">WAIV9080_LLOC</span></dd>
+        <dt>Clau</dt>
+        <dd><code>LLOC_CODI</code>. Una fila per lloc.</dd>
+        <dt>Camp decisiu</dt>
+        <dd><code>LLOC_ESTAT_PLANTILLA</code></dd>
+      </dl>
+    </aside>
+
+    <main class="content">
+
+      <section id="taula">
+        <h2><span class="num">Apartat 1</span>Què conté la taula</h2>
+        <p>
+          Serveix per obtenir informació sobre els llocs de treball d'un departament,
+          organisme o unitat orgànica. És, com la de persones, una taula de registre
+          únic: <strong>una fila per lloc</strong>.
+        </p>
+        <dl class="factsheet">
+          <div><dt>Contingut</dt><dd>Llocs vigents, històrics i previstos a data actual. Inclou tota mena de llocs: relacionats, no relacionats, provisionals i altres.</dd></div>
+          <div><dt>Clau</dt><dd><code>LLOC_CODI</code>, identificador únic de cada lloc.</dd></div>
+          <div><dt>Vigència</dt><dd>Dades actuals, vigents el dia anterior.</dd></div>
+          <div><dt>Càrrega</dt><dd>Diària.</dd></div>
+          <div><dt>Dades</dt><dd>Del lloc mateix, de l'ocupant actual, de l'anterior, de la reserva, de l'oferta i del pressupost.</dd></div>
+          <div><dt>Abast</dt><dd>Tots els llocs, els del departament o els de la unitat orgànica, segons el perfil.</dd></div>
+        </dl>
+        <figure>
+          <img src="img/waiv9080_visio_general.png" alt="Visió general de la taula WAIV9080_LLOC amb els blocs d'informació que conté.">
+          <figcaption>
+            Els blocs d'informació de la taula de llocs.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="sense-historic">
+        <h2><span class="num">Apartat 2</span>El que no hi trobareu</h2>
+        <div class="note warn">
+          <span class="label">Aquesta taula no té memòria</span>
+          <p>
+            Mostra les dades <strong>a data actual</strong> i
+            <strong>no guarda cap historial</strong> de com era un lloc en el passat.
+            Si el lloc 12345 tenia nivell 22 l'any passat i ara en té 24, aquí només
+            hi veureu el 24. El 22 ha desaparegut.
+          </p>
+        </div>
+        <p>
+          És la conseqüència directa de la segona pregunta de la unitat 00: aquesta és
+          una taula de <strong>fotografia</strong>, no de pel·lícula. Per a qualsevol
+          pregunta que comenci amb "abans", "fins quan" o "quants n'hi ha hagut", la
+          taula és <span class="tag punterh">WAIV9030_PUNTERH</span> i la unitat és la
+          14.
+        </p>
+      </section>
+
+      <section id="informacio">
+        <h2><span class="num">Apartat 3</span>La informació del lloc</h2>
+        <div class="table-wrap">
+          <table>
+            <caption>Blocs d'informació i camps destacats</caption>
+            <thead>
+              <tr><th>Bloc</th><th>Conté</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ubicació</td>
+                <td>Departament i unitat orgànica a què està adscrit el lloc.</td>
+              </tr>
+              <tr>
+                <td>Característiques</td>
+                <td>
+                  Tipus de lloc: <code>F</code> funcionari, <code>L</code> laboral,
+                  <code>E</code> càrrec eventual. Prefix de tractament: <code>SG</code>
+                  subdirecció general, <code>SV</code> cap de servei, <code>SE</code>
+                  secretaria general. Tipologia bàsica: <code>C</code> càrrec o
+                  comandament, <code>S</code> singular, <code>B</code> base.
+                </td>
+              </tr>
+              <tr>
+                <td>Requisits</td>
+                <td>Nivell, jornada, forma de provisió, grup, cos, categoria i especialitat necessaris per ocupar-lo.</td>
+              </tr>
+              <tr>
+                <td>Organigrama</td>
+                <td>Quin és el lloc jeràrquicament superior. Permet reconstruir l'estructura.</td>
+              </tr>
+              <tr>
+                <td>Economia</td>
+                <td>Informació pressupostària del lloc, a les famílies <code>PRES</code> i <code>TIPR</code>. És l'objecte de la unitat 9.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">
+          <span class="label">El prefix de tractament</span>
+          <p>
+            És el camp que a la unitat 7 vam fer servir per identificar les
+            subdireccions amb el valor <code>SG</code>. Fixeu-vos que és informació
+            <em>del lloc</em>, no de la persona: per això aquell cas barrejava un camp
+            de vincle amb un de prefix, i per això calia el parèntesi.
+          </p>
+        </div>
+              <p>
+          Els noms exactes dels camps de persona del lloc són
+          <code>ACT_NIFPER</code> per a l'ocupant actual,
+          <code>ANT_NIFPER</code> per a l'anterior, <code>RES_NIFPER</code> per a
+          qui el té reservat i <code>SUBS_NIFPER</code> per al substitut. I
+          l'estat de plantilla són dos camps, no un: <code>LLOC_ESTAT_PLANT_C</code>
+          amb el codi i <code>LLOC_ESTAT_PLANT_D</code> amb la descripció.
+          Filtreu sempre pel primer.
+        </p>
+</section>
+
+      <section id="ocupants">
+        <h2><span class="num">Apartat 4</span>Els quatre ocupants</h2>
+        <p>
+          La taula també porta informació de les persones vinculades al lloc, i ho fa
+          amb quatre prefixos diferents. Confondre'ls és una font d'errors silenciosos.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption>Prefixos de persona a la taula de llocs</caption>
+            <thead>
+              <tr><th class="code">Prefix</th><th>Qui és</th><th>Quan té valor</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code">ACT</td>
+                <td>La persona que ocupa actualment el lloc, la titular.</td>
+                <td>Si el lloc està ocupat. Molts d'aquests camps són redundants amb la taula de persones.</td>
+              </tr>
+              <tr>
+                <td class="code">ANT</td>
+                <td>L'ocupant anterior.</td>
+                <td>Si el lloc ha tingut algun ocupant abans.</td>
+              </tr>
+              <tr>
+                <td class="code">RES</td>
+                <td>La persona que té el lloc reservat.</td>
+                <td>Per exemple en excedència amb reserva de lloc.</td>
+              </tr>
+              <tr>
+                <td class="code">SUBS</td>
+                <td>La persona substituta.</td>
+                <td>Si el lloc té titular (<code>ACT</code>) però, per una incidència, l'ocupa temporalment una altra persona.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note warn">
+          <span class="label">Un lloc pot tenir dues persones a la vegada</span>
+          <p>
+            Un lloc amb titular de baixa i substitut té valor a <code>ACT</code>
+            <strong>i</strong> a <code>SUBS</code>. Si compteu llocs ocupats mirant
+            només un dels dos camps, el número no quadrarà amb el de persones. No és
+            un error de la taula: són dues preguntes diferents.
+          </p>
+        </div>
+        <figure>
+          <img src="img/persones_vinculades_lloc.png" alt="Els prefixos ACT, ANT, RES i SUBS que identifiquen les persones vinculades a un lloc de treball.">
+          <figcaption>
+            Les quatre maneres en què una persona pot estar vinculada a un lloc.
+          </figcaption>
+        </figure>
+              <p>
+          Dues classificacions més del lloc que convé no confondre amb l'estat de
+          plantilla. La <b>tipologia bàsica</b> diu de quina mena de lloc es
+          tracta: <b>C</b> de càrrec o comandament, <b>S</b> de lloc singular i
+          <b>B</b> de lloc base. I un altre camp diu si el lloc <b>s'ofereix o no
+          en convocatòries</b> de selecció o de provisió, que és el que
+          distingeix una plaça que sortirà a concurs d'una que no.
+        </p>
+</section>
+
+      <section id="estat">
+        <h2><span class="num">Apartat 5</span>LLOC_ESTAT_PLANTILLA</h2>
+        <p>
+          Aquest és el camp fonamental de la taula. Indica la situació administrativa
+          del lloc, i sense filtrar-lo qualsevol llistat barreja places que existeixen
+          amb places que ja no existeixen i amb places que encara no existeixen.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Els nou valors de LLOC_ESTAT_PLANTILLA</caption>
+            <thead>
+              <tr><th class="code">Valor</th><th>Descripció</th><th>Observacions</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="code">A</td><td>Previst estructural</td><td>Llocs de l'aplicació de pressupost. Previstos, encara no vigents.</td></tr>
+              <tr><td class="code">B</td><td>No relacionable</td><td>Plaça no relacionable.</td></tr>
+              <tr><td class="code">G</td><td>Programa temporal</td><td>Programes amb temporalitat.</td></tr>
+              <tr><td class="code">H</td><td>Històrica</td><td>Plaça no existent però que va existir.</td></tr>
+              <tr><td class="code">N</td><td>No catalogada ni relacionada</td><td>Plaça no publicada al DOGC. Hi entren, per exemple, els alts càrrecs.</td></tr>
+              <tr><td class="code">P</td><td>Catalogada</td><td>Plaça de catàleg publicada al DOGC.</td></tr>
+              <tr><td class="code">R</td><td>Relacionada</td><td>Plaça de la RLT publicada al DOGC.</td></tr>
+              <tr><td class="code">S</td><td>Previstos no estructurals</td><td>Com les <code>A</code>, però de caràcter no estructural.</td></tr>
+              <tr><td class="code">X</td><td>Provisionals no RLT</td><td>Places provisionals: períodes de prova, reforços, substitucions.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note">
+          <span class="label">Sobre aquesta llista</span>
+          <p>
+            Són els nou valors que recull la guia de l'EAPC. Trobareu materials que
+            en citen menys, o amb descripcions una mica diferents. Davant de qualsevol
+            dubte, el que mana és el <strong>PDF de la taula a la intranet</strong>,
+            que és on la codificació està documentada i actualitzada.
+          </p>
+        </div>
+
+        <figure>
+          <img src="img/estat_plantilla_codis.png" alt="Codis del camp LLOC_ESTAT_PLANTILLA amb la seva descripció i significat.">
+          <figcaption>
+            Els codis d'estat de plantilla. Els tres primers grups són els que decideixen
+            si un lloc compta o no.
+          </figcaption>
+        </figure>
+
+        <h3>Com llegir-los</h3>
+        <div class="cards">
+          <div>
+            <h3>Ja no existeixen</h3>
+            <p><code>H</code>. Van existir i s'han eliminat. No poden formar part de cap llistat de plantilla actual.</p>
+          </div>
+          <div>
+            <h3>Encara no existeixen</h3>
+            <p><code>A</code> i <code>S</code>. Estan previstos al pressupost però no són vigents. Comptar-los és comptar futurs.</p>
+          </div>
+          <div>
+            <h3>Existeixen ara</h3>
+            <p><code>R</code>, <code>P</code>, <code>N</code>, <code>X</code>, <code>G</code>, <code>B</code>. Amb matisos, són els llocs reals d'avui.</p>
+          </div>
+        </div>
+              <p>
+          Abans de filtrar per l'estat de plantilla, val la pena veure <b>quins
+          codis hi ha de debò al vostre àmbit</b>: no tots els que documenta el
+          manual apareixen a totes les unitats. Es fa amb una consulta d'aquest
+          camp sol i la propietat <b>Registres únics</b> a Sí, que és la de la
+          unitat 11. Amb això sabreu si al vostre àmbit hi ha <code>P</code> o
+          <code>G</code>, o si només hi trobareu <code>R</code> i
+          <code>X</code>.
+        </p>
+        <figure>
+          <img src="img/codis_estat_real.png" alt="Resultat d'una consulta de registres únics sobre el codi i la descripció de l'estat de plantilla: set files, de la A a la X.">
+          <figcaption>
+            La consulta de <b>registres únics</b> sobre el codi i la descripció
+            de l'estat de plantilla. Set valors: hi són l'<code>A</code>, la
+            <code>B</code>, la <code>H</code>, la <code>N</code>, la
+            <code>R</code>, la <code>S</code> i la <code>X</code>, i no hi surten
+            ni la <code>P</code> ni la <code>G</code> que documenta el manual.
+            Aquesta és la llista que val per a la vostra consulta.
+            <span class="font">Videotutorial 8 de l'EAPC, minut 4:03.</span>
+          </figcaption>
+        </figure>
+
+</section>
+
+      <section id="vigents">
+        <h2><span class="num">Apartat 6</span>Obtenir els llocs vigents</h2>
+        <p>
+          Per fer un llistat real de llocs actuals cal deixar fora els històrics i els
+          previstos. Podríeu enumerar amb <span class="ui">Llista</span> els sis codis
+          que sí que voleu, però és més curt i més segur fer el contrari:
+        </p>
+        <div class="path">
+          Criteri sobre <code>LLOC_ESTAT_PLANT_C</code>
+          <span class="sep">&rarr;</span> operador
+          <span class="ui">No en la llista</span>
+        </div>
+        <ol class="steps">
+          <li>
+            <h3>Obriu la finestra de criteris del camp</h3>
+            <p>Clic a la casella de la lupa a la línia de l'estat de plantilla.</p>
+          </li>
+          <li>
+            <h3>Trieu l'operador d'exclusió</h3>
+            <p>
+              En comptes d'<span class="ui">Igual</span> o
+              <span class="ui">Llista</span>, seleccioneu
+              <span class="ui">No en la llista</span>.
+            </p>
+          </li>
+          <li>
+            <h3>Introduïu els valors a excloure</h3>
+            <p>
+              Escriviu <code>A</code> i premeu <kbd>Retorn</kbd>. Després
+              <code>H</code> i <kbd>Retorn</kbd>. Després <code>S</code> i
+              <kbd>Retorn</kbd>.
+            </p>
+          </li>
+          <li>
+            <h3>Accepteu i executeu</h3>
+            <p>La consulta torna tots els llocs excepte els d'aquells tres codis.</p>
+          </li>
+        </ol>
+
+        <div class="criteri is-good">LLOC_ESTAT_PLANT_C <span class="op">No en la llista</span> ('A', 'H', 'S')
+
+<span class="cm">-- fora els historics i els previstos</span></div>
+
+
+        <div class="note">
+          <span class="label">Dos detalls d'aquesta pantalla</span>
+          <p>
+            L'operador <span class="ui">No en la llista</span> es representa com
+            <code>NOT IN</code>, de la mateixa manera que <span class="ui">Llista</span>
+            es representa com <code>IN</code>. I al panell de propietats de la dreta
+            s'hi veu que <strong>l'àlies de l'origen de dades és
+            <code>MODEL_TOT</code></strong>: "Model tot" és el nom que es mostra i
+            <code>MODEL_TOT</code> el nom tècnic.
+          </p>
+        </div>
+
+        <figure>
+          <img src="img/obtenir_llocs_vigents.png" alt="Construcció del criteri No en la llista per excloure els estats de plantilla A, H i S i obtenir els llocs vigents.">
+          <figcaption>
+            El criteri d'exclusió pas a pas.
+          </figcaption>
+        </figure>
+
+        <div class="note ok">
+          <span class="label">Per què excloure i no enumerar</span>
+          <p>
+            Perquè si demà s'afegeix un codi nou a la codificació, la consulta
+            d'exclusió <strong>continuarà sent correcta</strong> i l'enumeració es
+            deixarà els llocs nous fora sense avisar. Excloure el que no voleu és més
+            robust que enumerar el que voleu, sempre que la llista d'exclusions sigui
+            curta i estable.
+          </p>
+        </div>
+      </section>
+
+      <section id="rlt">
+        <h2><span class="num">Apartat 7</span>Vigents o de la RLT</h2>
+        <p>
+          Hi ha dues maneres legítimes de respondre "quins llocs tenim", i donen xifres
+          diferents. Convé triar-la conscientment i, sobretot, dir quina heu fet servir
+          quan lliureu l'informe.
+        </p>
+        <div class="versus">
+          <div class="si">
+            <h4>Criteri ampli: tot el que és vigent</h4>
+            <div class="criteri">LLOC_ESTAT_PLANTILLA <span class="op">No en la llista</span> ('A','H','S')</div>
+            <p>
+              Inclou llocs de RLT, catalogats, no catalogats, provisionals i de
+              programes temporals. És la <strong>realitat operativa</strong>: tot el
+              que hi ha avui.
+            </p>
+          </div>
+          <div class="si">
+            <h4>Criteri estricte: només la RLT</h4>
+            <div class="criteri">LLOC_ESTAT_PLANTILLA <span class="op">=</span> 'R'</div>
+            <p>
+              Només places de la Relació de Llocs de Treball publicades al DOGC. És la
+              <strong>plantilla formal</strong>, i és el criteri que la guia de l'EAPC
+              recomana amb caràcter general per analitzar aquesta taula.
+            </p>
+          </div>
+        </div>
+        <div class="note warn">
+          <span class="label">La diferència no és petita</span>
+          <p>
+            Entre les dues xifres hi ha els provisionals, els no catalogats i els
+            programes temporals. Si dues persones fan el mateix informe amb criteris
+            diferents, els números no quadraran i ningú sabrà per què. Escriviu sempre
+            el criteri emprat al costat de la xifra.
+          </p>
+        </div>
+      </section>
+
+      <section id="errors">
+        <h2><span class="num">Apartat 8</span>Errors freqüents</h2>
+        <div class="versus">
+          <div class="no">
+            <h4>El que passa</h4>
+            <p><strong>Tinc més llocs que persones, molts més.</strong></p>
+            <p><strong>Surten llocs que ja no existeixen.</strong></p>
+            <p><strong>El meu número no quadra amb el de Funció Pública.</strong></p>
+            <p><strong>Busco com era aquest lloc fa dos anys i no hi ha manera.</strong></p>
+          </div>
+          <div class="si">
+            <h4>El que passa de veritat</h4>
+            <p>No heu filtrat l'estat de plantilla: hi teniu històrics i previstos.</p>
+            <p>Us falta excloure la <code>H</code>.</p>
+            <p>Un dels dos fa servir el criteri ampli i l'altre el de la RLT. Compareu criteris abans que xifres.</p>
+            <p>Aquesta taula no guarda històric. Necessiteu <span class="tag punterh">PUNTERH</span>, unitat 14.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="exercicis">
+        <h2><span class="num">Apartat 9</span>Exercicis</h2>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-08-1</span>
+            <h3>Els llocs vigents</h3>
+            <span class="mena">Reprodueix</span>
+          </header>
+          <div class="cos">
+            <p>
+              Sobre <span class="tag lloc">WAIV9080_LLOC</span>, obteniu el llistat de
+              llocs vigents amb el criteri ampli. Mostreu el codi de lloc, l'estat de
+              plantilla i la unitat orgànica.
+            </p>
+            <p>Anoteu el nombre de registres abans i després del criteri.</p>
+            <details>
+              <summary>Comprovació</summary>
+              <div class="dins">
+                <div class="criteri">LLOC_ESTAT_PLANTILLA <span class="op">No en la llista</span> ('A','H','S')</div>
+                <p class="resposta"><b>190</b> llocs vigents</p>
+                <p>
+                  Comproveu que a la columna d'estat de plantilla del resultat
+                  <strong>no hi apareix</strong> cap <code>A</code>, <code>H</code> ni
+                  <code>S</code>. És la manera més ràpida de validar un criteri
+                  d'exclusió: mirar la columna filtrada.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-08-2</span>
+            <h3>Ampli contra estricte</h3>
+            <span class="mena">Trenca</span>
+          </header>
+          <div class="cos">
+            <p>
+              Repetiu la consulta canviant el criteri per
+              <code>LLOC_ESTAT_PLANTILLA = 'R'</code> i compareu.
+            </p>
+            <ol>
+              <li>Quants llocs perdeu?</li>
+              <li>Quins estats de plantilla eren?</li>
+              <li>Quina de les dues xifres donaríeu si us demanen "la plantilla del departament"?</li>
+            </ol>
+            <details>
+              <summary>Què hauria d'haver passat</summary>
+              <div class="dins">
+                <p>
+                  <strong>1 i 2.</strong> Els que perdeu són els <code>P</code>,
+                  <code>N</code>, <code>X</code>, <code>G</code> i <code>B</code>:
+                  catalogats, no catalogats, provisionals, de programa temporal i no
+                  relacionables. Els alts càrrecs, que són <code>N</code>, desapareixen
+                  del llistat.
+                </p>
+                <p>
+                  <strong>3.</strong> Depèn de qui pregunta, i aquesta és la resposta
+                  professional. Per a un informe formal de RLT, la <code>R</code>. Per
+                  saber quanta gent hi cap de veritat, el criteri ampli. El que no es
+                  pot fer és donar una xifra sense dir quin criteri heu fet servir.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-08-3</span>
+            <h3>El lloc amb dues persones</h3>
+            <span class="mena">Resol</span>
+          </header>
+          <div class="cos">
+            <p>
+              Us demanen quants llocs vigents tenen <strong>titular i substitut
+              alhora</strong>, que és el senyal d'una incidència llarga coberta.
+            </p>
+            <p>Quins camps fareu servir i com els filtrareu?</p>
+            <details>
+              <summary>Pista</summary>
+              <div class="dins">
+                <p>
+                  Necessiteu dos camps de NIF amb contingut a la vegada. I recordeu de
+                  la unitat 6 com es busca un camp de text que <em>sí</em> que té
+                  valor.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>Solució</summary>
+              <div class="dins">
+                <div class="criteri is-good">LLOC_ESTAT_PLANTILLA <span class="op">No en la llista</span> ('A','H','S')
+<span class="op">AND</span> ACT_NIFPER <span class="op">Diferent</span> ' '
+<span class="op">AND</span> SUBS_NIFPER <span class="op">Diferent</span> ' '</div>
+                <p>
+                  Tots tres criteris van amb <strong>AND</strong>, i aquí sí que és el
+                  que volem: han de complir-se les tres condicions alhora. No cal cap
+                  parèntesi perquè no hi ha cap "o".
+                </p>
+                <p>
+                  Els camps de NIF són de <strong>text</strong>, així que la manera de
+                  buscar-los amb contingut és <span class="ui">Diferent</span> d'un
+                  espai, no <span class="ui">No és nul</span>. A la unitat 9 hi ha el
+                  desenvolupament complet d'aquesta idea.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+              <p>
+          Hi ha una quarta família que sovint es passa per alt: la dels camps que
+          comencen per <b>RES_</b>, amb les dades de la persona que <b>té el lloc
+          reservat</b>. Un lloc pot estar ocupat per algú diferent de qui el té
+          reservat, i llavors surten informats alhora l'ocupant a <b>ACT_</b> i
+          el reservista a <b>RES_</b>. Confondre'ls fa comptar dues vegades la
+          mateixa plaça.
+        </p>
+</section>
+
+      <section id="comprovacio">
+        <h2><span class="num">Apartat 10</span>Llista de comprovació</h2>
+        <ul class="checklist">
+          <li>Dir quina és la clau de la taula de llocs i què representa una fila.</li>
+          <li>Explicar per què aquesta taula no serveix per a preguntes sobre el passat.</li>
+          <li>Situar on són les característiques, els requisits i l'organigrama del lloc.</li>
+          <li>Distingir els prefixos <code>ACT</code>, <code>ANT</code>, <code>RES</code> i <code>SUBS</code>.</li>
+          <li>Explicar per què un lloc pot tenir dues persones vinculades alhora.</li>
+          <li>Enumerar els estats de plantilla i agrupar-los en ja no existeixen, encara no existeixen i existeixen.</li>
+          <li>Construir el criteri <span class="ui">No en la llista</span> per obtenir els llocs vigents.</li>
+          <li>Justificar per què excloure és més robust que enumerar.</li>
+          <li>Diferenciar el criteri ampli del criteri de RLT i saber quan es fa servir cadascun.</li>
+          <li>Validar un criteri d'exclusió mirant la columna filtrada del resultat.</li>
+        </ul>
+        <div class="note">
+          <span class="label">A la unitat següent</span>
+          <p>
+            Continuem amb la mateixa taula per respondre les dues preguntes que la
+            gent li fa més sovint: quins llocs estan pressupostats i quins estan
+            realment ocupats. La segona amaga el problema dels camps de text buits que
+            ja hem anunciat dues vegades.
+          </p>
+        </div>
+      </section>
+
+      <nav class="unit-nav">
+        <a class="prev" href="../07/">
+          <span class="dir">Unitat 07</span>
+          <span class="ttl">La taula de persones i la lògica AND / OR</span>
+        </a>
+        <a class="next" href="../09/">
+          <span class="dir">Unitat 09</span>
+          <span class="ttl">Tipus de pressupost, llocs ocupats i reservats</span>
+        </a>
+      </nav>
+
+      <footer class="site-foot">
+        <span>Guia elaborada per <strong>Ismael Trascastro</strong></span>
+        <span class="dret">Sobre material de l'Escola d'Administració Pública de Catalunya</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<script src="../../assets/tutorial.js?v=3"></script>
+</body>
+</html>

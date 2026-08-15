@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ca" data-unit="11" data-root="../..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>11 · Consultes de registres únics - Click &amp; Decide</title>
+<meta name="description" content="La propietat Registres unics, com s'activa des de Propietats de la consulta i com serveix per descobrir quins codis existeixen en un camp.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="prev" href="../10/">
+<link rel="next" href="../12/">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../../index.html">Click &amp; Decide <em>· Guia d'aprenentatge</em></a>
+    <nav>
+      <span class="position">Unitat 11 / 18</span>
+      <span data-unit-picker></span>
+      <a class="step-link" href="../../index.html">Índex</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+
+  <header class="unit-head">
+    <p class="eyebrow">Part III · Unitat 11</p>
+    <h1>Consultes de registres únics</h1>
+    <p class="lede">
+      Una unitat curta amb una utilitat desproporcionada. És una sola propietat que
+      es canvia de <span class="ui">No</span> a <span class="ui">Sí</span>, i és
+      l'eina que hem promès dues vegades: la manera de descobrir
+      <strong>quins codis existeixen realment</strong> en un camp que no té columna de
+      descripció.
+    </p>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2>En aquesta unitat</h2>
+      <ol>
+        <li><a href="#problema">El problema dels valors repetits</a></li>
+        <li><a href="#exemple">L'exemple: categories i especialitats</a></li>
+        <li><a href="#activar">Activar la propietat</a></li>
+        <li><a href="#altres">Les altres tres propietats</a></li>
+        <li><a href="#agrupar">No és el mateix que agrupar</a></li>
+        <li><a href="#usos">Per a què serveix de veritat</a></li>
+        <li><a href="#errors">Errors freqüents</a></li>
+        <li><a href="#exercicis">Exercicis</a></li>
+        <li><a href="#comprovacio">Llista de comprovació</a></li>
+      </ol>
+      <dl class="sidebar-aside">
+        <dt>Objectiu</dt>
+        <dd>Eliminar duplicats i descobrir la codificació d'un camp desconegut.</dd>
+        <dt>On es fa</dt>
+        <dd>Botó <span class="ui">Propietats de la consulta</span>, el de la maneta.</dd>
+        <dt>Equival a</dt>
+        <dd>Un <code>SELECT DISTINCT</code> de l'SQL.</dd>
+        <dt>Es fa servir a</dt>
+        <dd>Les unitats 8, 9 i 16.</dd>
+      </dl>
+    </aside>
+
+    <main class="content">
+
+      <section id="problema">
+        <h2><span class="num">Apartat 1</span>El problema dels valors repetits</h2>
+        <p>
+          Els registres únics són una propietat que permet
+          <strong>veure només una vegada els valors que surten repetits</strong> dins
+          d'una taula.
+        </p>
+        <p>
+          El problema apareix sempre que voleu un <em>catàleg</em> i no un
+          <em>llistat</em>. Si demaneu la categoria de cada persona, obtindreu tantes
+          files com persones; si el que voleu és saber quines categories existeixen,
+          aquell resultat no us serveix de res.
+        </p>
+        <div class="versus">
+          <div class="no">
+            <h4>Sense registres únics</h4>
+            <div class="criteri">Administratiu    Generalista
+Administratiu    Generalista
+Administratiu    Generalista
+Tecnic superior  Juridic
+Administratiu    Generalista
+<span class="cm">... una fila per persona</span></div>
+          </div>
+          <div class="si">
+            <h4>Amb registres únics</h4>
+            <div class="criteri">Administratiu    Generalista
+Tecnic superior  Juridic
+<span class="cm">... una fila per combinacio</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="exemple">
+        <h2><span class="num">Apartat 2</span>L'exemple: categories i especialitats</h2>
+        <p>
+          És el cas del material oficial i val la pena reproduir-lo, perquè el resultat
+          intermedi ensenya tant com el final.
+        </p>
+        <ol class="steps">
+          <li>
+            <h3>Consulta nova sobre la taula de persones</h3>
+            <p>
+              Origen de dades <code>MODEL_TOT</code>, i doble clic sobre
+              <span class="tag persona">WAIV9010_PERSONA</span>.
+            </p>
+          </li>
+          <li>
+            <h3>Seleccioneu els quatre camps</h3>
+            <p>
+              La categoria i l'especialitat viuen en un grup de quatre camps, amb la
+              parella de codi i descripció que ja coneixeu:
+            </p>
+            <div class="criteri">PLRC_COS_CATEGOR_C    <span class="cm">-- codi de categoria</span>
+PLRC_COS_CATEGOR_D    <span class="cm">-- descripcio de categoria</span>
+PLRC_ESPECCOSCAT_C    <span class="cm">-- codi d'especialitat</span>
+PLRC_ESPECCOSCAT_D    <span class="cm">-- descripcio d'especialitat</span></div>
+          </li>
+          <li>
+            <h3>Executeu i mireu el comptador</h3>
+            <p>
+              Surten tantes files com persones. La categoria d'administratiu apareix
+              desenes de vegades, perquè hi ha desenes de persones que la tenen.
+            </p>
+            <p>
+              El nombre de registres de la cantonada inferior dreta
+              <strong>coincideix amb el nombre de persones de la taula</strong>, perquè
+              no hi heu aplicat cap filtre ni cap agrupació.
+            </p>
+          </li>
+        </ol>
+              <p>
+          L'exemple del vídeo comença com qualsevol altre: origen de dades
+          <code>MODEL_TOT</code>, doble clic a la taula de persones i, dels
+          camps, els quatre de categoria i especialitat. En executar-lo, el
+          comptador dona el mateix nombre que persones té la taula, perquè no
+          s'hi ha aplicat cap filtre ni cap agrupació.
+        </p>
+</section>
+
+      <section id="activar">
+        <h2><span class="num">Apartat 3</span>Activar la propietat</h2>
+        <div class="path">
+          Botó <span class="ui">Propietats de la consulta</span>, el de la
+          <strong>maneta</strong> <span class="sep">&rarr;</span>
+          panell de la dreta <span class="sep">&rarr;</span>
+          <span class="ui">Registres únics</span> de <strong>No</strong> a
+          <strong>Sí</strong> <span class="sep">&rarr;</span>
+          <span class="ui">Executar</span>
+        </div>
+
+
+        <figure>
+          <img src="img/cap_propietats_consulta.png" alt="Panell Propietats de la consulta amb la pestanya General i les quatre propietats: Registres unics, Primers registres, Percentatge i Nombre de linies a l'area de dades.">
+          <figcaption>
+            El panell de propietats de la consulta. <span class="ui">Registres únics</span> és la primera i per defecte està a <span class="ui">No</span>.
+          </figcaption>
+        </figure>
+
+        <p>
+          En tornar a executar, el nombre de registres <strong>baixa
+          dràsticament</strong> i cada combinació de categoria i especialitat apareix
+          una sola vegada.
+        </p>
+
+        <div class="note warn">
+          <span class="label">Tres panells que es diuen igual</span>
+          <p>
+            El panell de la dreta canvia de contingut segons què tingueu seleccionat, i
+            això despista. Fixeu-vos sempre en el títol:
+          </p>
+          <ul>
+            <li><strong>Propietats del camp seleccionat</strong>: format, decimals, capçalera. Unitat 4.</li>
+            <li><strong>Propietats de la taula</strong>: àlies de l'origen, nom de la taula.</li>
+            <li><strong>Propietats de la consulta</strong>: és aquest, i és l'únic que porta <span class="ui">Registres únics</span>.</li>
+          </ul>
+        </div>
+              <p>
+          En prémer el botó de la maneta, el panell surt a la <b>banda dreta</b>
+          de la pantalla, no en cap finestra. En canviar <b>Registres únics</b>
+          de No a Sí i tornar a executar, el nombre de registres
+          <b>disminueix</b> molt: els valors ja no surten repetits, sinó que
+          cada combinació apareix una sola vegada. El programa els ha
+          <b>agrupat</b> sense que li ho demanessiu.
+        </p>
+
+        <figure>
+          <img src="img/registres_unics_real.png" alt="Resultat amb registres únics: les columnes de codi i descripció de categoria i especialitat, cada combinació una sola vegada.">
+          <figcaption>
+            El resultat amb <b>Registres únics</b> a Sí. Cada combinació de
+            categoria i especialitat surt una vegada, encara que la tinguin
+            desenes de persones. Fixeu-vos que la parella de codi i descripció
+            hi va sempre junta: són camps diferents i tots dos compten a l'hora
+            de decidir què és repetit.
+            <span class="font">Videotutorial 11 de l'EAPC, minut 3:10.</span>
+          </figcaption>
+        </figure>
+</section>
+
+      <section id="altres">
+        <h2><span class="num">Apartat 4</span>Les altres tres propietats</h2>
+        <p>
+          Ja que sou al panell, val la pena saber què hi ha. Són quatre propietats i la
+          segona és molt útil i gairebé desconeguda.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption>Propietats de la consulta</caption>
+            <thead>
+              <tr><th>Propietat</th><th>Per defecte</th><th>Per a què serveix</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="ui">Registres únics</span></td>
+                <td><code>No</code></td>
+                <td>Elimina els duplicats. És el contingut d'aquesta unitat.</td>
+              </tr>
+              <tr>
+                <td><span class="ui">Primers registres</span></td>
+                <td><code>*</code></td>
+                <td>Limita el resultat als primers N registres. L'asterisc vol dir tots.</td>
+              </tr>
+              <tr>
+                <td><span class="ui">Percentatge</span></td>
+                <td><code>No</code></td>
+                <td>Fa que el límit anterior s'interpreti com un percentatge en comptes d'un nombre de files.</td>
+              </tr>
+              <tr>
+                <td><span class="ui">Nombre de línies a l'àrea de dades</span></td>
+                <td>buit</td>
+                <td>Quantes línies mostra la graella de resultats. És visual, no afecta les dades.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note ok">
+          <span class="label">Primers registres, per provar sense esperar</span>
+          <p>
+            Quan munteu una consulta pesada sobre una taula gran, poseu
+            <span class="ui">Primers registres</span> a <code>50</code> mentre
+            l'ajusteu. Comprovareu que les columnes i els criteris són els que voleu
+            sense esperar tot el volum, i quan estigui bé, torneu a posar-hi
+            l'asterisc.
+          </p>
+          <p>
+            Recordeu treure'l abans de donar cap xifra per bona: amb el límit posat, el
+            comptador de registres no és el total real.
+          </p>
+        </div>
+              <figure>
+          <img src="img/propietats_consulta_real.png" alt="Panell Propietats de la consulta amb Registres únics, Primers registres, Percentatge i Nombre de línies a l'àrea de dades.">
+          <figcaption>
+            Les quatre propietats de la consulta, al panell de la dreta. Fixeu-vos en el títol: <b>Propietats de la consulta</b>. Si hi digués "del camp seleccionat" o "de la taula", seria un altre panell i no hi hauria <b>Registres únics</b>.
+            <span class="font">Videotutorial 5 de l'EAPC, minut 4:10.</span>
+          </figcaption>
+        </figure>
+
+</section>
+
+      <section id="agrupar">
+        <h2><span class="num">Apartat 5</span>No és el mateix que agrupar</h2>
+        <p>
+          Ve just després de la unitat 10 i convé no barrejar-les, perquè totes dues
+          redueixen el nombre de files.
+        </p>
+        <div class="cards">
+          <div>
+            <h3>Registres únics</h3>
+            <p>Elimina les files repetides. Us diu <strong>quins valors hi ha</strong>. No compta res.</p>
+            <p>Equival a un <code>SELECT DISTINCT</code>.</p>
+          </div>
+          <div>
+            <h3>Agregats</h3>
+            <p>Agrupa i calcula. Us diu <strong>quants n'hi ha de cadascun</strong>, o la mitjana, o el màxim.</p>
+            <p>Equival a un <code>GROUP BY</code>.</p>
+          </div>
+        </div>
+        <p>
+          La pregunta que us diu quina necessiteu és senzilla: <em>voleu un catàleg o
+          voleu un recompte?</em> Si la resposta ha de ser una llista de valors,
+          registres únics. Si ha de ser un número, agregats.
+        </p>
+      </section>
+
+      <section id="usos">
+        <h2><span class="num">Apartat 6</span>Per a què serveix de veritat</h2>
+        <p>
+          Més enllà de netejar un llistat, aquesta propietat té tres usos que apareixen
+          per tot el curs.
+        </p>
+        <ol class="steps">
+          <li>
+            <h3>Descobrir la codificació d'un camp</h3>
+            <p>
+              És l'ús més valuós. Davant d'un camp que només conté codis i no té
+              descripció, com <code>TIPR_TIPUS_PRESSUP</code> de la unitat 9, una
+              consulta de registres únics sobre aquell camp us dóna la llista de valors
+              que hi ha realment.
+            </p>
+            <div class="note">
+              <span class="label">Amb un matís que ja coneixeu</span>
+              <p>
+                Us diu quins codis <strong>hi ha a les vostres dades</strong>, no quins
+                <strong>existeixen</strong>. Si al vostre àmbit no hi ha cap lloc amb
+                el codi <code>V</code>, no en veureu cap. La llista completa és sempre
+                al PDF de la taula.
+              </p>
+            </div>
+          </li>
+          <li>
+            <h3>Comprovar la qualitat de les dades</h3>
+            <p>
+              Si en un camp que hauria de tenir cinc valors possibles n'apareixen vuit,
+              teniu dades brutes. Es veu d'un cop d'ull.
+            </p>
+          </li>
+          <li>
+            <h3>Alimentar un paràmetre</h3>
+            <p>
+              A la unitat 16 crearem consultes que pregunten a l'usuari amb un
+              desplegable. Aquell desplegable s'alimenta d'una
+              <strong>consulta auxiliar de registres únics</strong>, exactament com la
+              d'aquesta unitat. És el requisit previ de tota la unitat 16.
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <section id="errors">
+        <h2><span class="num">Apartat 7</span>Errors freqüents</h2>
+        <div class="versus">
+          <div class="no">
+            <h4>El que passa</h4>
+            <p><strong>Activo registres únics i no canvia res.</strong></p>
+            <p><strong>Segueixen sortint valors repetits.</strong></p>
+            <p><strong>No trobo la propietat al panell.</strong></p>
+            <p><strong>El total no quadra amb el que vaig comptar ahir.</strong></p>
+          </div>
+          <div class="si">
+            <h4>El que passa de veritat</h4>
+            <p>No heu tornat a executar.</p>
+            <p>Teniu seleccionat algun camp identificador, com el NIF: si cada fila porta un valor únic, no hi ha res per unificar.</p>
+            <p>El panell mostra les propietats del camp o de la taula. Feu clic on no hi hagi cap camp seleccionat i torneu a obrir-lo.</p>
+            <p>Teniu <span class="ui">Primers registres</span> amb un límit posat d'una prova anterior.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="exercicis">
+        <h2><span class="num">Apartat 8</span>Exercicis</h2>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-11-1</span>
+            <h3>El catàleg de categories</h3>
+            <span class="mena">Reprodueix</span>
+          </header>
+          <div class="cos">
+            <p>
+              Sobre <span class="tag persona">PERSONA</span>, seleccioneu els quatre
+              camps de categoria i especialitat, executeu i anoteu el nombre de
+              registres. Activeu <span class="ui">Registres únics</span>, torneu a
+              executar i anoteu-lo altra vegada.
+            </p>
+            <details>
+              <summary>Comprovació</summary>
+              <div class="dins">
+                <p>
+                  La primera xifra ha de coincidir amb el
+                  <strong>nombre total de persones</strong> de la taula, perquè no hi
+                  ha cap filtre. La segona ha de ser molt més petita: són les
+                  combinacions diferents de categoria i especialitat que hi ha al
+                  vostre àmbit.
+                </p>
+                <p>
+                  Si la segona xifra és igual que la primera, reviseu que no tingueu
+                  seleccionat cap camp identificador.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-11-2</span>
+            <h3>Afegeix el NIF i mira què passa</h3>
+            <span class="mena">Trenca</span>
+          </header>
+          <div class="cos">
+            <p>
+              Amb <span class="ui">Registres únics</span> encara actiu, afegiu el camp
+              <code>PERS_NIF</code> a la consulta i torneu a executar.
+            </p>
+            <ol>
+              <li>Quantes files surten ara?</li>
+              <li>Per què la propietat ha deixat de fer efecte?</li>
+            </ol>
+            <details>
+              <summary>Què hauria d'haver passat</summary>
+              <div class="dins">
+                <p>
+                  Tornen totes les files, tantes com persones. La propietat no ha
+                  deixat de funcionar: continua eliminant <strong>files
+                  repetides</strong>, però en afegir el NIF ja no n'hi ha cap de
+                  repetida, perquè el NIF és diferent per a cada persona.
+                </p>
+                <p>
+                  És la mateixa lliçó que la regla dels camps de detall de la unitat
+                  10, vista des d'un altre angle: <strong>un camp identificador destrueix
+                  qualsevol resum</strong>, sigui una agrupació o una eliminació de
+                  duplicats.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-11-3</span>
+            <h3>Descobreix un camp desconegut</h3>
+            <span class="mena">Resol</span>
+          </header>
+          <div class="cos">
+            <p>
+              Us passen un encàrrec sobre <span class="tag lloc">LLOC</span> que
+              menciona el camp <code>TIPR_TIPUS_PRESSUP</code>. No teniu el manual a mà
+              i el camp no té descripció.
+            </p>
+            <p>
+              Esbrineu quins valors conté al vostre àmbit i quants llocs hi ha de
+              cadascun, sense sortir de Click &amp; Decide.
+            </p>
+            <details>
+              <summary>Solució</summary>
+              <div class="dins">
+                <p><strong>Quins valors hi ha</strong>, amb registres únics:</p>
+                <div class="criteri is-good">Camp: TIPR_TIPUS_PRESSUP
+Propietats de la consulta <span class="op">&rarr;</span> Registres unics = Si</div>
+                <p><strong>Quants n'hi ha de cadascun</strong>, amb un agregat de la unitat 10:</p>
+                <div class="criteri is-good">Camps: TIPR_TIPUS_PRESSUP + LLOC_CODI
+Clic dret sobre LLOC_CODI <span class="op">&rarr;</span> Agregats <span class="op">&rarr;</span> Compte</div>
+                <p>
+                  Les dues consultes es complementen: la primera us diu
+                  <em>què</em> hi ha i la segona <em>quant</em> n'hi ha. Amb la segona
+                  ja no cal la propietat de registres únics, perquè l'agrupació
+                  l'implica.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="comprovacio">
+        <h2><span class="num">Apartat 9</span>Llista de comprovació</h2>
+        <ul class="checklist">
+          <li>Explicar què fa la propietat de registres únics.</li>
+          <li>Localitzar el botó <span class="ui">Propietats de la consulta</span> a la barra d'eines.</li>
+          <li>Distingir els tres panells de propietats pel seu títol.</li>
+          <li>Activar la propietat i comprovar el canvi al comptador de registres.</li>
+          <li>Enumerar les altres tres propietats de la consulta.</li>
+          <li>Fer servir <span class="ui">Primers registres</span> per provar una consulta pesada, i recordar treure'l.</li>
+          <li>Explicar la diferència entre registres únics i agregats.</li>
+          <li>Descobrir la codificació d'un camp que no té descripció.</li>
+          <li>Saber que això mostra els codis presents, no tots els possibles.</li>
+          <li>Explicar per què un camp identificador anul·la l'efecte de la propietat.</li>
+        </ul>
+        <div class="note">
+          <span class="label">A la unitat següent</span>
+          <p>
+            Fins ara totes les taules tenien una fila per persona o per lloc. La unitat
+            12 comença el bloc de les taules on això deixa de ser cert i on un mateix
+            NIF ocupa diverses files.
+          </p>
+        </div>
+      </section>
+
+      <nav class="unit-nav">
+        <a class="prev" href="../10/">
+          <span class="dir">Unitat 10</span>
+          <span class="ttl">Agrupacions, recomptes i agregats</span>
+        </a>
+        <a class="next" href="../12/">
+          <span class="dir">Unitat 12</span>
+          <span class="ttl">Titulacions: les taules de registres múltiples</span>
+        </a>
+      </nav>
+
+      <footer class="site-foot">
+        <span>Guia elaborada per <strong>Ismael Trascastro</strong></span>
+        <span class="dret">Sobre material de l'Escola d'Administració Pública de Catalunya</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<script src="../../assets/tutorial.js?v=3"></script>
+</body>
+</html>

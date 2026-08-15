@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ca" data-unit="05" data-root="../..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>05 · Ordenació dels resultats - Click &amp; Decide</title>
+<meta name="description" content="Ordre ascendent i descendent, prioritat entre camps i la finestra Ordenació per revisar i reorganitzar els criteris d'ordre.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="prev" href="../04/">
+<link rel="next" href="../06/">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../../index.html">Click &amp; Decide <em>· Guia d'aprenentatge</em></a>
+    <nav>
+      <span class="position">Unitat 05 / 18</span>
+      <span data-unit-picker></span>
+      <a class="step-link" href="../../index.html">Índex</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+
+  <header class="unit-head">
+    <p class="eyebrow">Part I · Unitat 05</p>
+    <h1>Ordenació dels resultats</h1>
+    <p class="lede">
+      Una unitat curta i mecànica, però amb una trampa: l'ordre no es tria a la
+      graella de resultats, sinó a la llista de camps, i s'aplica per acumulació.
+      Qui no coneix la finestra <span class="ui">Ordenació</span> acaba amb consultes
+      que s'ordenen per criteris que va posar fa mesos i ja no recorda.
+    </p>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2>En aquesta unitat</h2>
+      <ol>
+        <li><a href="#defecte">L'ordre per defecte</a></li>
+        <li><a href="#localitzar">Localitzar el camp</a></li>
+        <li><a href="#tres-clics">Els tres estats del camp</a></li>
+        <li><a href="#prioritat">Ordenar per diversos camps</a></li>
+        <li><a href="#finestra">La finestra Ordenació</a></li>
+        <li><a href="#ocult">Ordenar sense mostrar</a></li>
+        <li><a href="#errors">Errors freqüents</a></li>
+        <li><a href="#exercicis">Exercicis</a></li>
+        <li><a href="#comprovacio">Llista de comprovació</a></li>
+      </ol>
+      <dl class="sidebar-aside">
+        <dt>Objectiu</dt>
+        <dd>Controlar l'ordre dels resultats i saber revisar el que ja hi ha aplicat.</dd>
+        <dt>On es fa</dt>
+        <dd>Columna de les tres línies vermelles, a la llista de camps.</dd>
+        <dt>Recordeu</dt>
+        <dd>Cap canvi es veu fins que no es torna a executar.</dd>
+      </dl>
+    </aside>
+
+    <main class="content">
+
+      <section id="defecte">
+        <h2><span class="num">Apartat 1</span>L'ordre per defecte</h2>
+        <p>
+          Quan executeu una consulta sense haver dit res sobre l'ordre, els registres
+          surten ordenats <strong>pel primer camp que vau afegir</strong>. No és
+          aleatori, però tampoc és una decisió vostra: és una conseqüència de l'ordre
+          en què vau anar fent clic a les ulleres.
+        </p>
+        <p>
+          Sovint voleu una altra cosa. Per exemple, agrupar primer per tipus de vincle
+          i, dins de cada vincle, tenir les persones per ordre alfabètic.
+        </p>
+        <figure>
+          <img src="img/guia_ordenar_resultats.png" alt="Guia general de l'ordenació de resultats a Click &amp; Decide: on es fa, quins estats hi ha i com es revisa.">
+          <figcaption>
+            El circuit complet de l'ordenació, de la columna de les línies vermelles a
+            la finestra de revisió.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="localitzar">
+        <h2><span class="num">Apartat 2</span>Localitzar el camp</h2>
+        <p>
+          L'ordenació no s'aplica des de la graella de resultats, sinó des de la
+          <strong>llista de camps</strong>, al panell superior esquerre. En una taula
+          de la WAI aquesta llista és llarguíssima, i buscar-hi a mà és el primer
+          obstacle.
+        </p>
+        <div class="note ok">
+          <span class="label">El truc que estalvia més temps de tot el curs</span>
+          <p>
+            Feu clic a la <strong>capçalera de la columna</strong> a la graella de
+            resultats de sota. El programa busca i marca automàticament aquell camp a
+            la llista de dalt. És el mateix truc que farem servir a la unitat 6 per
+            als criteris, i val la pena convertir-lo en costum des d'ara.
+          </p>
+        </div>
+              <p>
+          El camí curt: si el camp ja és a la graella de resultats, feu
+          <b>clic a sobre del seu títol</b> i el programa el localitza tot sol a
+          la llista de camps. En una taula amb centenars de camps, és la
+          diferència entre trobar-lo de seguida i buscar-lo a mà.
+        </p>
+</section>
+
+      <section id="tres-clics">
+        <h2><span class="num">Apartat 3</span>Els tres estats del camp</h2>
+        <p>
+          Un cop localitzat el camp, es fa clic a la casella corresponent a la columna
+          de les <strong>tres ratlles vermelles verticals</strong>. Cada clic canvia
+          l'estat, i el cicle és de tres:
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Cicle de clics sobre la casella d'ordenació</caption>
+            <thead>
+              <tr><th>Clics</th><th>Estat</th><th>Resultat</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code">1</td>
+                <td>Ascendent</td>
+                <td>De la A a la Z, del 0 al 9, de la data més antiga a la més recent.</td>
+              </tr>
+              <tr>
+                <td class="code">2</td>
+                <td>Descendent</td>
+                <td>De la Z a la A, del 9 al 0, de la data més recent a la més antiga.</td>
+              </tr>
+              <tr>
+                <td class="code">3</td>
+                <td>Sense ordre</td>
+                <td>La icona desapareix i el camp deixa d'intervenir en l'ordenació.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <figure>
+          <img src="img/estats_ordenacio_camp.png" alt="Els tres estats de la casella d'ordenació d'un camp: ascendent amb un clic, descendent amb dos i sense ordre amb tres.">
+          <figcaption>
+            Un clic, dos clics, tres clics. Si us passeu, torneu a començar el cicle.
+          </figcaption>
+        </figure>
+
+        <div class="note warn">
+          <span class="label">No s'aplica sol</span>
+          <p>
+            Els canvis d'ordre <strong>no es veuen en temps real</strong>. Sempre cal
+            prémer <span class="ui">Executar</span> per veure el resultat reordenat.
+            Si canvieu l'ordre i la graella us surt igual, gairebé segur que no heu
+            tornat a executar.
+          </p>
+        </div>
+      </section>
+
+      <section id="prioritat">
+        <h2><span class="num">Apartat 4</span>Ordenar per diversos camps</h2>
+        <p>
+          Es poden establir diversos nivells d'ordenació. I aquí hi ha la regla que cal
+          entendre:
+        </p>
+        <div class="note">
+          <span class="label">Com es decideix la prioritat</span>
+          <p>
+            La prioritat depèn de <strong>l'ordre en què establiu els criteris</strong>,
+            no de la posició de les columnes ni de l'ordre de la llista de camps. El
+            primer camp que marqueu mana sobre el segon.
+          </p>
+        </div>
+
+        <h3>Exemple: vincle i després nom</h3>
+        <p>
+          Volem agrupar per codi de vincle laboral i, dins de cada vincle, ordenar les
+          persones alfabèticament.
+        </p>
+        <ol class="steps">
+          <li>
+            <h3>Primer, el camp que ha de manar</h3>
+            <p>
+              Busqueu <code>PLRC_VINCLE_CODI</code> i feu-hi <strong>un clic</strong>:
+              ascendent.
+            </p>
+          </li>
+          <li>
+            <h3>Després, el camp subordinat</h3>
+            <p>
+              Busqueu <code>PERS_COGNOMS_NOM</code> i feu-hi <strong>un clic</strong>:
+              ascendent.
+            </p>
+          </li>
+          <li>
+            <h3>Executeu</h3>
+            <p>
+              El sistema agrupa primer pels codis de vincle i, allà on coincideixen,
+              ordena els noms alfabèticament.
+            </p>
+          </li>
+        </ol>
+
+        <figure>
+          <img src="img/ordenacio_dos_camps.png" alt="Resultat d'ordenar per dos camps: primer pel codi de vincle i, dins de cada vincle, pels cognoms i el nom.">
+          <figcaption>
+            Dos nivells d'ordenació. Si els haguéssiu marcat a l'inrevés, tindríeu la
+            llista alfabètica sencera amb els vincles barrejats.
+          </figcaption>
+        </figure>
+              <p>
+          Compte amb els <b>valors en blanc</b>: en ordre ascendent surten
+          <b>primers</b>, abans que les A. Si ordeneu per un camp que molts
+          registres no tenen informat, el principi del llistat seran files
+          buides, i això no vol dir que la consulta estigui malament.
+        </p>
+</section>
+
+      <section id="finestra">
+        <h2><span class="num">Apartat 5</span>La finestra Ordenació</h2>
+        <p>
+          Aquest apartat és el que separa qui fa servir el programa de qui el domina.
+          Quan obriu una consulta que vau desar fa mesos, no teniu manera de recordar
+          quins ordres té aplicats: les icones estan repartides per una llista de
+          centenars de camps.
+        </p>
+        <div class="path">
+          Clic a la <strong>capçalera</strong> de la columna de les tres ratlles
+          vermelles
+        </div>
+        <p>
+          S'obre la finestra <span class="ui">Ordenació</span>, que mostra
+          <strong>la llista de tots els camps que tenen ordre aplicat</strong>, en
+          ordre de prioritat. D'un cop d'ull sabeu com s'ordena la consulta.
+        </p>
+
+        <figure>
+          <img src="img/cap_finestra_ordenacio.png" alt="Finestra Ordenacio amb dos camps ordenats, la columna de tipus i els botons de suprimir i de pujar i baixar prioritat.">
+          <figcaption>
+            La finestra <span class="ui">Ordenació</span> amb dos camps aplicats. A dalt, la <strong>X</strong> per suprimir i les <strong>fletxes</strong> per canviar la prioritat.
+          </figcaption>
+        </figure>
+
+        <figure>
+          <img src="img/finestra_ordenacio.png" alt="Finestra Ordenació amb la llista de camps que tenen ordre aplicat i els botons per canviar-ne la prioritat, el sentit o eliminar-los.">
+          <figcaption>
+            La finestra de revisió. És l'única vista global de l'ordenació d'una
+            consulta.
+          </figcaption>
+        </figure>
+
+        <p>Des d'aquí podeu fer tres coses:</p>
+        <div class="cards">
+          <div>
+            <h3>Canviar la prioritat</h3>
+            <p>Seleccioneu un camp i feu servir les fletxes de la finestra per pujar-lo o baixar-lo dins de la jerarquia. Així podeu decidir que el nom mani sobre el vincle sense desfer res.</p>
+          </div>
+          <div>
+            <h3>Canviar el sentit</h3>
+            <p>Fent clic sobre la icona s'alterna entre ascendent i descendent, sense haver de tornar a la llista de camps.</p>
+          </div>
+          <div>
+            <h3>Eliminar un criteri</h3>
+            <p>Seleccioneu el camp i premeu el botó de suprimir objecte. Més segur que buscar-lo a la llista i fer-hi tres clics.</p>
+          </div>
+        </div>
+
+        <div class="note warn">
+          <span class="label">Dos passos, no un</span>
+          <p>
+            En prémer <span class="ui">D'acord</span> la finestra es tanca i els canvis
+            queden guardats, però la graella encara mostra el resultat anterior. Cal
+            <strong>tornar a executar</strong> perquè es vegin.
+          </p>
+        </div>
+              <figure>
+          <img src="img/finestra_ordenacio_real.png" alt="Finestra Ordenació del Click &amp; Decide amb dos camps a la llista i els botons per suprimir i per pujar i baixar.">
+          <figcaption>
+            La finestra <b>Ordenació</b>. Els camps hi surten en l'ordre en què s'apliquen, amb el <b>Nom</b>, el <b>Tipus</b> i la <b>Descripció</b>, i cadascun duu al davant les barretes que diuen en quin sentit ordena. Les fletxes canvien quin mana; la creu vermella treu l'ordenació del camp seleccionat.
+            <span class="font">Videotutorial 5 de l'EAPC, minut 4:10.</span>
+          </figcaption>
+        </figure>
+
+</section>
+
+      <section id="ocult">
+        <h2><span class="num">Apartat 6</span>Ordenar sense mostrar</h2>
+        <p>
+          Un camp pot intervenir en l'ordenació sense aparèixer a la graella. És el
+          <strong>camp ocult</strong> que vam veure a la unitat 4.
+        </p>
+        <div class="path">
+          Clic dret sobre el camp <span class="sep">&rarr;</span>
+          <span class="ui">Camp ocult</span>
+        </div>
+        <p>
+          El cas típic: ordenar pel <strong>codi</strong> del departament, que és el
+          que dóna l'ordre correcte, i mostrar-ne només la
+          <strong>descripció</strong>, que és el que la gent entén. Sense camps ocults
+          hauríeu d'ensenyar les dues columnes.
+        </p>
+      </section>
+
+      <section id="errors">
+        <h2><span class="num">Apartat 7</span>Errors freqüents</h2>
+        <div class="versus">
+          <div class="no">
+            <h4>El que passa</h4>
+            <p><strong>Canvio l'ordre i no passa res.</strong></p>
+            <p><strong>La llista surt alfabètica però els vincles estan barrejats.</strong></p>
+            <p><strong>Ordena per una cosa que jo no he demanat.</strong></p>
+            <p><strong>Volia treure l'ordre i ara està del revés.</strong></p>
+          </div>
+          <div class="si">
+            <h4>El que passa de veritat</h4>
+            <p>No heu tornat a executar. Passa a totes les unitats.</p>
+            <p>Heu marcat el nom abans que el vincle. Reordeneu la prioritat des de la finestra <span class="ui">Ordenació</span>.</p>
+            <p>És l'ordre per defecte pel primer camp afegit, o un criteri antic. Obriu la finestra <span class="ui">Ordenació</span> i mireu-ho.</p>
+            <p>Us heu quedat al segon clic, que és descendent. Un clic més i desapareix.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="exercicis">
+        <h2><span class="num">Apartat 8</span>Exercicis</h2>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-05-1</span>
+            <h3>Dos nivells d'ordre</h3>
+            <span class="mena">Reprodueix</span>
+          </header>
+          <div class="cos">
+            <p>
+              Partiu de la consulta <code>Persones</code> de la unitat 4. Ordeneu-la
+              perquè surti agrupada per codi de vincle i, dins de cada grup, per
+              cognoms i nom, tots dos ascendents.
+            </p>
+            <p>Anoteu quin és el primer registre de la graella.</p>
+            <details>
+              <summary>Pista</summary>
+              <div class="dins">
+                <p>
+                  L'ordre en què feu els clics <em>és</em> la prioritat. Si voleu que
+                  mani el vincle, marqueu-lo primer. I recordeu que per trobar el camp
+                  només cal fer clic a la capçalera de la columna a la graella.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>Comprovació</summary>
+              <div class="dins">
+                <p>
+                  Obriu la finestra <span class="ui">Ordenació</span> fent clic a la
+                  capçalera de la columna vermella. Hi han de sortir exactament dos
+                  camps, i el vincle ha d'estar per damunt del nom. Si hi surt algun
+                  camp més, teniu un ordre antic posat sense voler.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-05-2</span>
+            <h3>Inverteix la prioritat</h3>
+            <span class="mena">Trenca</span>
+          </header>
+          <div class="cos">
+            <p>
+              Sense tocar la llista de camps, feu que ara mani el nom sobre el vincle.
+              Executeu i compareu les dues graelles.
+            </p>
+            <ol>
+              <li>Quantes files té cada versió?</li>
+              <li>Per què no serveix la segona per fer un recompte per vincle?</li>
+            </ol>
+            <details>
+              <summary>Què hauria d'haver passat</summary>
+              <div class="dins">
+                <p>
+                  <strong>1.</strong> Les mateixes files. L'ordenació no filtra res:
+                  no canvia mai el nombre de registres. Si us canvia, heu tocat un
+                  criteri sense voler.
+                </p>
+                <p>
+                  <strong>2.</strong> Perquè amb el nom manant, els vincles queden
+                  escampats per tota la llista i ja no es poden comptar visualment per
+                  blocs. Aquesta és la diferència entre ordenar i agrupar, i és la
+                  porta a la unitat 10.
+                </p>
+                <p>
+                  Es fa des de la finestra <span class="ui">Ordenació</span> amb les
+                  fletxes, sense desfer cap clic.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-05-3</span>
+            <h3>La consulta heretada</h3>
+            <span class="mena">Resol</span>
+          </header>
+          <div class="cos">
+            <p>
+              Un company us passa una consulta que surt ordenada de manera estranya i
+              no recorda què hi va tocar. Us demana que la deixeu ordenada
+              <strong>només</strong> per data d'ingrés, de la més recent a la més
+              antiga.
+            </p>
+            <p>Com ho feu sense anar camp per camp per tota la llista?</p>
+            <details>
+              <summary>Solució</summary>
+              <div class="dins">
+                <ol>
+                  <li>
+                    Clic a la capçalera de la columna de les tres ratlles vermelles.
+                    S'obre <span class="ui">Ordenació</span> amb tot el que hi ha
+                    aplicat.
+                  </li>
+                  <li>
+                    Seleccioneu cada camp que hi sobri i premeu suprimir, fins que la
+                    llista quedi buida.
+                  </li>
+                  <li>
+                    Localitzeu la data d'ingrés i feu-hi <strong>dos clics</strong>:
+                    descendent, perquè volen la més recent a dalt.
+                  </li>
+                  <li>Executeu.</li>
+                </ol>
+                <p>
+                  Fer-ho des de la llista de camps voldria dir trobar cada camp
+                  afectat, i no sabeu quins són. Aquesta finestra és l'única manera de
+                  saber-ho.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="comprovacio">
+        <h2><span class="num">Apartat 9</span>Llista de comprovació</h2>
+        <ul class="checklist">
+          <li>Explicar per què una consulta surt ordenada sense haver demanat res.</li>
+          <li>Trobar un camp a la llista fent clic a la capçalera de la columna.</li>
+          <li>Aplicar ordre ascendent, descendent i treure'l, sabent quants clics calen.</li>
+          <li>Ordenar per dos camps i controlar quin dels dos mana.</li>
+          <li>Obrir la finestra <span class="ui">Ordenació</span> i llegir-hi tota l'ordenació aplicada.</li>
+          <li>Canviar la prioritat, el sentit i eliminar un criteri des d'aquella finestra.</li>
+          <li>Ordenar per un camp sense mostrar-lo.</li>
+          <li>Recordar que cal executar perquè es vegi qualsevol canvi.</li>
+        </ul>
+        <div class="note">
+          <span class="label">A la unitat següent</span>
+          <p>
+            Fins ara treballem amb tots els registres de la taula. La unitat 6 és la
+            frontissa del curs: els criteris de selecció. Allà apareix la regla d'or
+            de filtrar per codi i no per descripció, i el detall de l'operador
+            <span class="ui">És nul</span> que explicarà mitja unitat 18.
+          </p>
+        </div>
+      </section>
+
+      <nav class="unit-nav">
+        <a class="prev" href="../04/">
+          <span class="dir">Unitat 04</span>
+          <span class="ttl">Creació bàsica d'una consulta</span>
+        </a>
+        <a class="next" href="../06/">
+          <span class="dir">Unitat 06</span>
+          <span class="ttl">Criteris de selecció i operadors</span>
+        </a>
+      </nav>
+
+      <footer class="site-foot">
+        <span>Guia elaborada per <strong>Ismael Trascastro</strong></span>
+        <span class="dret">Sobre material de l'Escola d'Administració Pública de Catalunya</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<script src="../../assets/tutorial.js?v=3"></script>
+</body>
+</html>

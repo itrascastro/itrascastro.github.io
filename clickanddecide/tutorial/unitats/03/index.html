@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ca" data-unit="03" data-root="../..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>03 · Projectes i objectes: consultes, informes i cubs - Click &amp; Decide</title>
+<meta name="description" content="La interfície de Builder, què és un projecte i quins tres objectes conté: consultes, informes i cubs.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="prev" href="../02/">
+<link rel="next" href="../04/">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../../index.html">Click &amp; Decide <em>· Guia d'aprenentatge</em></a>
+    <nav>
+      <span class="position">Unitat 03 / 18</span>
+      <span data-unit-picker></span>
+      <a class="step-link" href="../../index.html">Índex</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+
+  <header class="unit-head">
+    <p class="eyebrow">Part I · Unitat 03</p>
+    <h1>Projectes i objectes: consultes, informes i cubs</h1>
+    <p class="lede">
+      Dins d'un projecte hi caben tres tipus d'objectes. No són intercanviables i no
+      estan al mateix nivell: un d'ells és la base i els altres dos se n'alimenten.
+      Entendre aquesta jerarquia estalvia l'error més comú dels primers dies -intentar
+      fer un informe abans de tenir una consulta.
+    </p>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2>En aquesta unitat</h2>
+      <ol>
+        <li><a href="#interficie">La interfície de Builder</a></li>
+        <li><a href="#projecte">Què és exactament un projecte</a></li>
+        <li><a href="#visual">Esquema general</a></li>
+        <li><a href="#objectes">Els tres objectes</a></li>
+        <li><a href="#jerarquia">La regla de dependència</a></li>
+        <li><a href="#gestionar">Gestionar objectes i projectes</a></li>
+        <li><a href="#comprovacio">Llista de comprovació</a></li>
+      </ol>
+      <dl class="sidebar-aside">
+        <dt>Objectiu</dt>
+        <dd>Saber què podeu crear dins d'un projecte i en quin ordre s'ha de fer.</dd>
+        <dt>Regla clau</dt>
+        <dd>Sense consulta prèvia desada no hi ha ni informe ni cub.</dd>
+      </dl>
+    </aside>
+
+    <main class="content">
+
+      <section id="interficie">
+        <h2><span class="num">Apartat 1</span>La interfície de Builder</h2>
+        <p>
+          En obrir el programa apareix l'àrea de treball. L'estètica recorda
+          deliberadament la d'Access, i les parts són les que espereu de qualsevol
+          aplicació d'escriptori:
+        </p>
+        <div class="cards">
+          <div>
+            <h3>Barra de títol</h3>
+            <p>A dalt de tot. Mostra el nom de l'aplicació i el <strong>nom del projecte actiu</strong>. És on comprovareu de seguida si esteu treballant al projecte que voleu.</p>
+          </div>
+          <div>
+            <h3>Barra de menús</h3>
+            <p><span class="ui">Fitxer</span>, <span class="ui">Consulta</span>, <span class="ui">Visualització</span>... Conté totes les opcions de treball, moltes de les quals tenen una icona equivalent.</p>
+          </div>
+          <div>
+            <h3>Barra d'eines</h3>
+            <p>Els accessos ràpids. Al llarg del curs en farem servir sis o set constantment: crear, desar, executar, criteris, propietats i exportar.</p>
+          </div>
+          <div>
+            <h3>Àrea de treball</h3>
+            <p>L'espai central on es configuren els projectes i els objectes, organitzat en pestanyes.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="projecte">
+        <h2><span class="num">Apartat 2</span>Què és exactament un projecte</h2>
+        <p>
+          Ja el vam definir a la unitat 1; ara podem ser més precisos. Projecte és el
+          nom que reben els fitxers que genera el programa, de la mateixa manera que al
+          Word se'n diuen documents i a l'Excel, llibres. L'extensió és
+          <code>.wfv</code>, i el fitxer és equiparable -per estructura i disseny- a
+          una base de dades d'Access.
+        </p>
+        <p>
+          Les consultes, els informes i els cubs són com <strong>documents sense
+          extensió pròpia</strong> que viuen dins d'aquest fitxer. No els trobareu com
+          a fitxers separats al disc: existeixen només dins del projecte que els conté.
+        </p>
+
+        <h3>Tres maneres de crear-ne un</h3>
+        <div class="path">
+          Menú <span class="ui">Fitxer</span> <span class="sep">&rarr;</span>
+          <span class="ui">Crea</span> <span class="sep">&rarr;</span>
+          <span class="ui">Projecte</span>
+        </div>
+        <ul>
+          <li>des del menú, tal com mostra la ruta anterior;</li>
+          <li>amb la <strong>icona de full en blanc</strong> de la barra d'eines;</li>
+          <li>o, si el projecte ja existeix, obrint-lo directament amb doble clic al fitxer.</li>
+        </ul>
+
+        <div class="note warn">
+          <span class="label">El projecte per defecte es diu "Model tot"</span>
+          <p>
+            En obrir el programa <strong>sempre es carrega el projecte
+            "Model tot"</strong>. Això no vol dir que hi hàgiu de crear els vostres
+            objectes: la bona pràctica és crear-ne un de propi amb el nom que vulgueu
+            i desar-lo a la ruta que us convingui.
+          </p>
+          <p>
+            Pareu atenció a una coincidència que despista molt: a la unitat 4 veureu
+            que <strong>l'origen de dades també s'anomena "Model tot"</strong>. Són
+            dues coses diferents amb el mateix nom. El projecte és el vostre fitxer;
+            l'origen de dades és l'arrel de l'arbre de taules del servidor.
+          </p>
+        </div>
+              <p>
+          Si no li'n poseu cap, els projectes es diuen <b>projecte 1</b>,
+          <b>projecte 2</b> i així successivament. Val més posar-hi un nom que
+          digui alguna cosa: el projecte es guarda i es reobre durant mesos, i
+          "projecte 3" no us dirà res d'aquí a mig any.
+        </p>
+</section>
+
+      <section id="visual">
+        <h2><span class="num">Apartat 3</span>Esquema general</h2>
+        <figure>
+          <img src="img/guia_visual_projectes_i_objectes.png" alt="Esquema visual d'un projecte de Click &amp; Decide amb els objectes que pot contenir.">
+          <figcaption>
+            El projecte com a contenidor i els tres objectes que hi poden viure.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="objectes">
+        <h2><span class="num">Apartat 4</span>Els tres objectes</h2>
+
+        <h3>Consultes</h3>
+        <p>
+          Són la base de tot. Permeten extreure informació de les taules a les quals
+          teniu accés segons el vostre perfil: seleccionar camps, ordenar-los i aplicar
+          filtres o criteris.
+        </p>
+        <p>
+          El resultat d'una consulta es mostra <strong>sempre en format de taula</strong>,
+          amb files i columnes. No hi ha gràfics, ni agrupacions visuals, ni logotips.
+          És una graella. Les unitats 4 a 14 d'aquesta guia tracten, totes, de
+          consultes.
+        </p>
+
+        <h3>Informes</h3>
+        <p>
+          Presenten la informació obtinguda en una consulta d'una manera molt més
+          visual i estructurada. Ja no és una graella: la informació es pot
+          <strong>agrupar per camps</strong>, hi podeu incloure càlculs i subtotals,
+          gràfics, logotips o imatges, i controlar el format de pàgina.
+        </p>
+        <p>
+          Un informe es divideix bàsicament en tres cossos: capçalera i peu de
+          l'informe, capçalera i peu de pàgina -tots dos opcionals- i el
+          <strong>cos de línies de detall</strong>, que és la part essencial.
+        </p>
+
+        <h3>Cubs</h3>
+        <p>
+          Permeten analitzar la informació d'una consulta amb més profunditat. El seu
+          funcionament és equivalent al de les <strong>taules dinàmiques d'Excel</strong>.
+          Dels tres objectes són, amb diferència, els que menys s'utilitzen en aquesta
+          eina.
+        </p>
+
+        <figure>
+          <img src="img/guia_rapida_projectes_i_objectes.png" alt="Guia ràpida dels objectes d'un projecte: consultes, informes i cubs, i la seva relació.">
+          <figcaption>
+            Consultes, informes i cubs: què aporta cadascun i d'on treu les dades.
+          </figcaption>
+        </figure>
+              <figure>
+          <img src="img/objectes_projecte_real.png" alt="Projecte obert al Click &amp; Decide amb la barra lateral dels tres objectes: consultes, informes i cubs.">
+          <figcaption>
+            Els tres objectes d'un projecte, a la barra lateral esquerra:
+            <b>consultes</b>, <b>informes</b> i <b>cubs</b>. Les consultes són
+            les que extreuen la informació de les taules a què arriba el vostre
+            perfil, i per això sempre són el primer pas.
+            <span class="font">Videotutorial 3 de l'EAPC, minut 3:10.</span>
+          </figcaption>
+        </figure>
+
+</section>
+
+      <section id="jerarquia">
+        <h2><span class="num">Apartat 5</span>La regla de dependència</h2>
+        <div class="note">
+          <span class="label">Regla fonamental</span>
+          <p>
+            <strong>No es poden crear informes ni cubs si abans no s'ha creat i desat
+            una consulta.</strong> La consulta és la font de dades indispensable dels
+            altres dos objectes.
+          </p>
+        </div>
+        <p>
+          La relació, però, no és de propietat: la consulta té entitat pròpia i és
+          independent de l'informe o del cub, encara que aquests se n'alimentin. Això
+          té una conseqüència útil:
+        </p>
+        <ul>
+          <li>
+            d'una <strong>mateixa consulta</strong> podeu crear-ne més d'un informe i
+            més d'un cub, cadascun amb una presentació diferent;
+          </li>
+          <li>
+            si modifiqueu la consulta -hi afegiu un camp, en canvieu un criteri-,
+            els informes que se'n deriven treballaran amb la nova definició.
+          </li>
+        </ul>
+        <div class="note warn">
+          <span class="label">Conseqüència pràctica</span>
+          <p>
+            La consulta de la qual parteix un informe ha de tenir seleccionats
+            <strong>tots els camps</strong> que després voldreu visualitzar a
+            l'informe. Un camp que no és a la consulta no existeix per a l'informe.
+          </p>
+        </div>
+      </section>
+
+      <section id="gestionar">
+        <h2><span class="num">Apartat 6</span>Gestionar objectes i projectes</h2>
+
+        <h3>Obrir una consulta existent</h3>
+        <p>
+          Dins de l'índex de consultes del projecte, seleccioneu-la i feu-hi doble clic,
+          o premeu <span class="ui">Obre</span>.
+        </p>
+
+        <h3>Documentar què fa cada consulta</h3>
+        <p>
+          A l'índex de consultes -i igualment al d'informes- podeu afegir comentaris
+          que orientin sobre la seva funció:
+        </p>
+        <div class="path">
+          Seleccioneu la consulta <span class="sep">&rarr;</span>
+          botó dret <span class="sep">&rarr;</span>
+          <span class="ui">Propietats</span> <span class="sep">&rarr;</span>
+          apartat <span class="ui">Descripció</span>
+        </div>
+        <p>
+          És un camp de text lliure i no serveix per a res tècnicament. Serveix perquè
+          d'aquí a nou mesos sapigueu si <em>Persones 3</em> era la bona.
+        </p>
+
+        <h3>Traspassar una consulta a un altre projecte</h3>
+        <p>
+          Si heu creat una consulta al projecte equivocat, o la voleu reaprofitar, no
+          cal refer-la:
+        </p>
+        <div class="path">
+          Seleccioneu-la <span class="sep">&rarr;</span>
+          botó dret <span class="sep">&rarr;</span>
+          <span class="ui">Còpia</span> o <span class="ui">Retalla</span>
+          <span class="sep">&rarr;</span>
+          obriu el projecte de destinació <span class="sep">&rarr;</span>
+          <span class="ui">Enganxa</span>
+        </div>
+        <p>
+          Funciona igual per als informes. És també la manera de compartir feina amb
+          un company: li passeu el projecte i ell hi copia el que li interessa.
+        </p>
+              <p>
+          Els objectes no es creen només des dels botons de la barra lateral.
+          Amb un projecte obert, el menú <span class="ui">Fitxer &gt; Crea</span>
+          porta un submenú amb tot el que es pot crear:
+          <b>Projecte</b> (<code>Ctrl+U</code>), <b>Consulta</b>,
+          <b>Informe</b>, <b>Cub</b> i <b>Consulta nativa SQL/MDX</b>. L'últim
+          és per a qui ja sap SQL i vol escriure la sentència directament, i no
+          és el camí d'aquesta guia: aquí es construeix la consulta amb els
+          controls i es mira l'SQL que en surt.
+        </p>
+</section>
+
+      <section id="comprovacio">
+        <h2><span class="num">Apartat 7</span>Llista de comprovació</h2>
+        <ul class="checklist">
+          <li>Identificar les quatre parts de la interfície de Builder.</li>
+          <li>Explicar què és un projecte i quina relació té amb els objectes que conté.</li>
+          <li>Crear un projecte pels tres camins possibles.</li>
+          <li>Descriure què aporta una consulta, un informe i un cub.</li>
+          <li>Enunciar la regla de dependència entre els tres objectes.</li>
+          <li>Afegir una descripció a una consulta des de les propietats.</li>
+          <li>Copiar una consulta d'un projecte a un altre.</li>
+        </ul>
+        <div class="note">
+          <span class="label">A la unitat següent</span>
+          <p>
+            Comença la part central del curs: construir la primera consulta de debò.
+            Triar l'origen de dades, seleccionar una taula, entendre com s'anomenen els
+            camps i executar-la.
+          </p>
+        </div>
+      </section>
+
+      <nav class="unit-nav">
+        <a class="prev" href="../02/">
+          <span class="dir">Unitat 02</span>
+          <span class="ttl">Entrada a l'aplicació web i perfils d'usuari</span>
+        </a>
+        <a class="next" href="../04/">
+          <span class="dir">Unitat 04</span>
+          <span class="ttl">Creació bàsica d'una consulta</span>
+        </a>
+      </nav>
+
+      <footer class="site-foot">
+        <span>Guia elaborada per <strong>Ismael Trascastro</strong></span>
+        <span class="dret">Sobre material de l'Escola d'Administració Pública de Catalunya</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<script src="../../assets/tutorial.js?v=3"></script>
+</body>
+</html>

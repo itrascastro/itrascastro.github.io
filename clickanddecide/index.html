@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Click &amp; Decide · Tutorial i simulador</title>
+<meta name="description" content="Tutorial de dinou unitats i simulador de consultes de Click &amp; Decide per a l'explotació de dades administratives de personal.">
+<style>
+  :root {
+    --navy: #10305c;
+    --blue: #1c5fa8;
+    --text: #23303f;
+    --muted: #6b7a8d;
+    --line: #dbe3ec;
+    --bg: #f6f8fb;
+    --card: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .full { max-width: 60rem; margin: 0 auto; padding: 4rem 1.5rem 3rem; }
+  .eyebrow {
+    text-transform: uppercase; letter-spacing: .12em; font-size: .74rem;
+    font-weight: 700; color: var(--muted); margin: 0 0 .8rem;
+  }
+  h1 { font-size: 2.5rem; line-height: 1.15; margin: 0 0 .6rem; color: var(--navy); letter-spacing: -.02em; }
+  .byline { margin: 0 0 1.6rem; color: var(--muted); }
+  .byline strong { color: var(--navy); }
+  .lede { font-size: 1.08rem; max-width: 46rem; margin: 0 0 2.6rem; }
+  .dues { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 1.2rem; }
+  .peca {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 1.6rem; text-decoration: none; color: inherit; display: block;
+    transition: border-color .15s, transform .15s;
+  }
+  .peca:hover { border-color: var(--blue); transform: translateY(-2px); }
+  .peca h2 { margin: 0 0 .5rem; font-size: 1.25rem; color: var(--navy); }
+  .peca p { margin: 0 0 1rem; color: var(--text); font-size: .95rem; }
+  .peca ul { margin: 0; padding-left: 1.1rem; color: var(--muted); font-size: .88rem; }
+  .peca li { margin: .15rem 0; }
+  .anar { display: inline-block; margin-top: 1.1rem; color: var(--blue); font-weight: 650; font-size: .92rem; }
+  footer {
+    border-top: 1px solid var(--line); margin-top: 3rem; padding: 1.4rem 0 0;
+    color: var(--muted); font-size: .86rem;
+  }
+  footer strong { color: var(--navy); }
+  footer a { color: var(--blue); }
+</style>
+</head>
+<body>
+
+<div class="full">
+  <p class="eyebrow">Explotació de dades administratives de personal</p>
+  <h1>Click &amp; Decide</h1>
+  <p class="byline">Tutorial i simulador elaborats per <strong>Ismael Trascastro</strong></p>
+
+  <p class="lede">
+    Dues eines d'aprenentatge fetes a partir del material públic de l'Escola
+    d'Administració Pública de Catalunya, pensades per treballar juntes: una guia
+    que explica el model de dades i la construcció de consultes, i un laboratori
+    on posar-ho en pràctica amb correcció automàtica. Totes dues funcionen amb un
+    navegador, sense servidor ni instal·lació.
+  </p>
+
+  <div class="dues">
+    <a class="peca" href="tutorial/">
+      <h2>Tutorial</h2>
+      <p>
+        Dinou unitats, de les taules de la WAI fins a les consultes amb
+        paràmetres, la lògica de vigència i l'exportació neta a full de càlcul.
+      </p>
+      <ul>
+        <li>Cada taula explicada: què és una fila, quina és la clau i com s'enllaça</li>
+        <li>Els vint operadors, el farciment amb espais i els errors que provoca</li>
+        <li>Exercicis resolts, enllaçats amb el simulador</li>
+      </ul>
+      <span class="anar">Obre el tutorial &rsaquo;</span>
+    </a>
+
+    <a class="peca" href="simulador/">
+      <h2>Simulador</h2>
+      <p>
+        Un laboratori que imita la finestra del Builder i genera exercicis sense
+        repetir-se. Corregeix dient què has fet, per què està malament i com
+        hauria de quedar.
+      </p>
+      <ul>
+        <li>Criteris, agregats, ordenació, registres únics i paràmetres</li>
+        <li>Creuaments de dues i tres taules amb els dos tipus d'enllaç</li>
+        <li>Joc de dades generat que reprodueix el farciment amb espais</li>
+      </ul>
+      <span class="anar">Obre el simulador &rsaquo;</span>
+    </a>
+  </div>
+
+  <footer>
+    <p>
+      <strong>Ismael Trascastro.</strong> Estructura, redacció, exercicis, motor
+      de consultes, corrector i interfície.
+    </p>
+    <p>
+      Elaborats a partir del material públic de l'Escola d'Administració Pública
+      de Catalunya: la <em>Guia bàsica per a l'ús de Click &amp; Decide</em>, la
+      sèrie de videotutorials del canal <em>eapccat</em> i el <em>Manual bàsic de
+      Click &amp; Decide Builder aplicat a la base de dades del GIP-SIP</em>.
+      El joc de dades del simulador és generat: no conté cap dada real de cap persona.
+    </p>
+  </footer>
+</div>
+
+</body>
+</html>

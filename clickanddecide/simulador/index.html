@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulador de Click &amp; Decide</title>
+<meta name="description" content="Laboratori per practicar consultes de Click &amp; Decide sobre dades generades, amb correccio automatica.">
+<link rel="stylesheet" href="assets/estils.css">
+</head>
+<body>
+
+<header class="capcalera">
+  <span class="marca">Simulador de Click &amp; Decide <em>· laboratori de consultes</em></span>
+  <div class="dreta">
+    <span class="marcador" id="marcador">
+      <b id="encerts">0</b> encerts · <i id="fallades">0</i> errors
+    </span>
+    <button class="boto" id="btn-reinicia" type="button">Reinicia el marcador</button>
+  </div>
+</header>
+
+<div class="taulell">
+
+  <!-- ---------------------------------------------------------------- -->
+  <!-- Columna esquerra: la consulta                                     -->
+  <!-- ---------------------------------------------------------------- -->
+  <main class="bloc">
+    <!-- La finestra del programa. Les tres pestanyes van a baix a l'esquerra,
+         com al Builder, i es diuen igual: Taules, Consulta i SQL. -->
+    <section id="vista-cd">
+      <div class="cd">
+        <!-- La barra de titol i les pestanyes de document son les del programa:
+             a l'esquerra el projecte obert, a la dreta la consulta. -->
+        <div class="cd-titol">Click and DECiDE Builder - <span id="cd-titol-nom">Consulta</span></div>
+
+        <div class="cd-menus" id="cd-menus"></div>
+
+        <div class="cd-documents">
+          <span class="doc">Exemple.wfv</span>
+          <span class="doc actiu" id="cd-doc-consulta">Consulta</span>
+        </div>
+
+        <div class="cd-barra">
+          <button type="button" id="btn-criteris" title="Criteris (la lupa de la barra d'eines)">Criteris...</button>
+          <button type="button" id="btn-ordenacio" title="Ordenació">Ordenació...</button>
+          <button type="button" id="btn-propietats">Propietats de la consulta</button>
+          <span class="separa"></span>
+          <button type="button" id="btn-executa" class="executa" title="Executa la consulta">! Executa</button>
+          <span class="separa"></span>
+          <button type="button" id="btn-neteja">Neteja</button>
+          <span class="taules-actives" id="taules-actives"></span>
+        </div>
+
+        <!-- Pestanya Taules -->
+        <div class="cd-cos" id="pestanya-taules" hidden>
+          <div class="taules-tres">
+            <div class="origens">
+              <div class="titol-panell">Orígens disponibles</div>
+              <ul id="llista-origens"></ul>
+            </div>
+            <div class="taules-disponibles">
+              <table class="resultat">
+                <thead><tr><th>Nom</th><th>Descripció</th></tr></thead>
+                <tbody id="llista-taules-disponibles"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="taules-triades" id="taules-triades"></div>
+          <div class="franja-enllacos" id="franja-enllacos"></div>
+        </div>
+
+        <!-- Pestanya Consulta -->
+        <div class="cd-cos" id="pestanya-consulta">
+          <div class="cd-graella">
+            <table class="camps">
+              <thead>
+                <tr>
+                  <th class="mini" title="Especificarem els criteris o filtres que ens interessin">&#128269;</th>
+                  <th class="mini" id="cap-ordenacio" title="Indica si estem ordenant per un camp o no. Feu-hi clic per veure per quins camps s'ordena"><span class="barres"><i></i><i></i><i></i></span></th>
+                  <th class="mini" title="Indica si el camp està seleccionat o no">&#128083;</th>
+                  <th>Nom</th>
+                  <th>Tipus</th>
+                  <th>Longitud</th>
+                  <th>Decimals</th>
+                  <th>Descripció</th>
+                </tr>
+              </thead>
+              <tbody id="llista-camps"></tbody>
+            </table>
+          </div>
+
+          <div class="cd-resultat" id="zona-resultat">
+            <p class="buit">Trieu camps amb la columna de les ulleres i premeu <b>Executa</b>.</p>
+          </div>
+        </div>
+
+        <!-- Pestanya SQL -->
+        <div class="cd-cos" id="pestanya-sql" hidden>
+          <pre class="sql" id="sql">-- La consulta apareixerà aquí a mesura que la construïu.</pre>
+        </div>
+
+        <div class="cd-pestanyes" id="pestanyes">
+          <button type="button" data-vista="taules">Taules</button>
+          <button type="button" data-vista="consulta" class="actiu">Consulta</button>
+          <button type="button" data-vista="sql">SQL</button>
+        </div>
+
+        <div class="cd-peu">
+          <span id="peu-estat">A punt</span>
+          <span id="peu-propietats">Registres únics: No</span>
+          <span class="comptador" id="comptador">Cap consulta executada</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ---------------------------------------------------------------- -->
+  <!-- Columna dreta: l'exercici i la correccio                          -->
+  <!-- ---------------------------------------------------------------- -->
+  <aside>
+    <section class="bloc" style="margin-bottom:1.1rem">
+      <h2>Exercici</h2>
+      <div class="cos">
+        <div class="etiquetes" id="etiquetes"></div>
+        <p class="enunciat" id="enunciat"></p>
+        <details class="pista">
+          <summary>Pista</summary>
+          <div class="dins" id="pista"></div>
+        </details>
+        <div class="botons">
+          <button class="boto principal" id="btn-corregeix" type="button">Corregeix</button>
+          <button class="boto" id="btn-altre" type="button">Un altre</button>
+          <button class="boto" id="btn-solucio" type="button">Ensenya-me-la</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="bloc" style="margin-bottom:1.1rem">
+      <h2>Correcció</h2>
+      <div class="cos" id="correccio">
+        <p style="color:var(--muted);margin:0;font-size:.9rem">
+          Construïu la consulta i premeu <b>Corregeix</b>. Si falla, us dirà què heu
+          fet, per què està malament i com hauria de quedar.
+        </p>
+      </div>
+    </section>
+
+    <section class="bloc">
+      <h2>Què vols practicar</h2>
+      <div class="cos">
+        <div class="conceptes" id="conceptes"></div>
+      </div>
+    </section>
+  </aside>
+</div>
+
+<footer class="peu-autoria">
+  <span>Simulador elaborat per <strong>Ismael Trascastro</strong> &middot;
+        motor, corrector, exercicis i interfície</span>
+  <span class="dret">
+    Sobre material públic de l'Escola d'Administració Pública de Catalunya &middot;
+    <a href="../tutorial/">Tutorial de Click &amp; Decide</a>
+  </span>
+</footer>
+
+<!-- Valors que existeixen en un camp -->
+<div class="vel" id="vel-valors" hidden>
+  <div class="dialeg estret" role="dialog" aria-modal="true" aria-label="Valors del camp">
+    <header id="titol-valors">Valors <button type="button" id="tanca-valors" aria-label="Tanca">&times;</button></header>
+    <div class="dins">
+      <p class="nota" id="nota-valors"></p>
+      <div id="taula-valors"></div>
+    </div>
+    <footer>
+      <button type="button" class="principal" id="valors-acord">D'acord</button>
+    </footer>
+  </div>
+</div>
+
+<!-- Ordenació -->
+<div class="vel" id="vel-ordenacio" hidden>
+  <div class="dialeg estret" role="dialog" aria-modal="true" aria-label="Ordenació">
+    <header>Ordenació <button type="button" id="tanca-ordenacio" aria-label="Tanca">&times;</button></header>
+    <div class="dins">
+      <!-- La barreta de la finestra real: la creu vermella treu l'ordre i les
+           fletxes canvien quin camp s'aplica primer. -->
+      <div class="barra-ordre">
+        <button type="button" id="ordenacio-suprimeix" title="Treu aquest ordre" class="creu">&#10005;</button>
+        <button type="button" id="ordenacio-amunt" title="Aplica'l abans">&#11014;</button>
+        <button type="button" id="ordenacio-avall" title="Aplica'l després">&#11015;</button>
+      </div>
+      <div id="llista-ordre"></div>
+      <p class="nota" id="nota-ordenacio"></p>
+    </div>
+    <footer>
+      <button type="button" class="principal" id="ordenacio-acord">D'acord</button>
+      <button type="button" id="ordenacio-cancella">Cancel·la</button>
+    </footer>
+  </div>
+</div>
+
+<!-- Propietats de la consulta -->
+<div class="vel" id="vel-propietats" hidden>
+  <div class="dialeg estret" role="dialog" aria-modal="true" aria-label="Propietats de la consulta">
+    <header>Propietats de la consulta <button type="button" id="tanca-propietats" aria-label="Tanca">&times;</button></header>
+    <div class="dins">
+      <table class="propietats">
+        <tbody>
+          <tr>
+            <th><label for="prop-unics">Registres únics</label></th>
+            <td>
+              <select id="prop-unics">
+                <option value="no">No</option>
+                <option value="si">Sí</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th><label for="prop-primers">Primers registres</label></th>
+            <td><input type="text" id="prop-primers" value="*" size="6"></td>
+          </tr>
+          <tr>
+            <th><label for="prop-percentatge">Percentatge</label></th>
+            <td>
+              <select id="prop-percentatge">
+                <option value="no">No</option>
+                <option value="si">Sí</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th><label for="prop-linies">Nombre de línies a l'àrea de dades</label></th>
+            <td><input type="text" id="prop-linies" value="" size="6"></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="nota" id="nota-propietats"></p>
+      <fieldset class="camps-panel" style="margin-top:.9rem">
+        <legend>Propietats del camp seleccionat</legend>
+        <div id="propietats-camp"></div>
+      </fieldset>
+    </div>
+    <footer>
+      <button type="button" class="principal" id="propietats-acord">D'acord</button>
+    </footer>
+  </div>
+</div>
+
+<!-- Finestra de criteris, com la del programa: un criteri es tria a dalt i
+     s'acumula al panell Camps de sota -->
+<div class="vel" id="vel-criteris" hidden>
+  <div class="dialeg" role="dialog" aria-modal="true" aria-label="Criteris">
+    <header>Criteris <button type="button" id="tanca-criteris" aria-label="Tanca">&times;</button></header>
+
+    <div class="dins">
+      <div class="criteri-editor">
+        <div class="camp-editor ample">
+          <label for="tria-columna">Columnes</label>
+          <select id="tria-columna"></select>
+        </div>
+        <div class="camp-editor">
+          <label for="tria-operador">Operadors</label>
+          <select id="tria-operador"></select>
+        </div>
+        <div class="quadre-valor">
+          <div class="pestanyes-valor">
+            <button type="button" class="actiu">Valor</button>
+            <button type="button" disabled title="Comparar amb un altre camp: no és a l'abast d'aquest laboratori">Columna</button>
+            <button type="button" disabled title="Expressions: no són a l'abast d'aquest laboratori">Expressió</button>
+            <button type="button" disabled title="Subconsultes: no són a l'abast d'aquest laboratori">Consulta</button>
+          </div>
+          <div class="caixes-valor">
+            <div id="caixes-valor"></div>
+            <button type="button" id="desplega-valors" title="Quins valors hi ha en aquest camp">&#9654;</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="zona-camps">
+        <fieldset class="camps-panel">
+          <legend>Camps</legend>
+          <div class="camps-text" id="panell-camps"></div>
+        </fieldset>
+        <div class="botons-costat">
+          <button type="button" id="criteris-not">NOT</button>
+          <button type="button" id="criteris-combina" disabled>Combina</button>
+          <button type="button" id="criteris-descombina" disabled>No combinis</button>
+        </div>
+      </div>
+      <p class="nota avis" id="avis-criteris" hidden></p>
+    </div>
+
+    <footer>
+      <button type="button" class="principal" id="criteris-acord">D'acord</button>
+      <button type="button" id="criteris-cancella">Cancel·la</button>
+      <button type="button" id="criteris-nou">Nou</button>
+      <button type="button" id="criteris-suprimeix">Suprimeix</button>
+      <div class="dreta">
+        <button type="button" id="criteris-parametres" title="Fes que aquest criteri demani el valor cada vegada que s'executi. Unitats 16 i 17">Paràmetres...</button>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<!-- Lligar un criteri a un paràmetre. Unitats 16 i 17. -->
+<div class="vel" id="vel-parametre" hidden>
+  <div class="dialeg estret" role="dialog" aria-modal="true" aria-label="Paràmetre">
+    <header>Paràmetre <button type="button" id="tanca-parametre" aria-label="Tanca">&times;</button></header>
+    <div class="dins">
+      <p class="nota">
+        En comptes d'escriure el valor ara, el criteri el pot demanar
+        <b>cada vegada que s'executa</b>. Així la mateixa consulta serveix per a
+        tots els departaments en comptes de fer-ne una per departament.
+      </p>
+      <table class="propietats">
+        <tbody>
+          <tr>
+            <th><label for="parametre-nom">Nom del paràmetre</label></th>
+            <td><input type="text" id="parametre-nom" size="14" placeholder="DEPARTAMENT"></td>
+          </tr>
+          <tr>
+            <th><label for="parametre-text">Què es preguntarà</label></th>
+            <td><input type="text" id="parametre-text" size="22" placeholder="Codi de departament:"></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="nota avis" id="avis-parametre" hidden></p>
+    </div>
+    <footer>
+      <button type="button" class="principal" id="parametre-acord">D'acord</button>
+      <button type="button" id="parametre-cancella">Cancel·la</button>
+      <div class="dreta">
+        <button type="button" id="parametre-treu">Torna a un valor fix</button>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<!-- El que surt en executar una consulta parametritzada -->
+<div class="vel" id="vel-demana" hidden>
+  <div class="dialeg estret" role="dialog" aria-modal="true" aria-label="Valors dels paràmetres">
+    <header>Paràmetres <button type="button" id="tanca-demana" aria-label="Tanca">&times;</button></header>
+    <div class="dins">
+      <div id="demana-valors"></div>
+      <p class="nota">
+        Aquests valors no es desen amb la consulta: se'n demanen de nous cada
+        vegada que l'executeu.
+      </p>
+    </div>
+    <footer>
+      <button type="button" class="principal" id="demana-acord">D'acord</button>
+      <button type="button" id="demana-cancella">Cancel·la</button>
+    </footer>
+  </div>
+</div>
+
+<script src="assets/dades.js"></script>
+<script src="assets/motor.js"></script>
+<script src="assets/diagnostic.js"></script>
+<script src="assets/exercicis.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

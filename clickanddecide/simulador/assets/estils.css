@@ -1,0 +1,732 @@
+/* ---------------------------------------------------------------------------
+   Simulador de Click & Decide
+
+   Dues capes visuals que no s'han de barrejar:
+
+     - L'entorn del laboratori: la mateixa paleta que la guia d'aprenentatge.
+     - La "Vista C&D": imita la finestra grisa i blava del programa real,
+       perque els gestos que s'hi practiquen es reconeguin despres.
+   --------------------------------------------------------------------------- */
+
+:root {
+  --bg:        #f4f7fb;
+  --card:      #ffffff;
+  --panel:     #f8fafd;
+  --line:      #dde5f1;
+  --line-soft: #e9eff8;
+
+  --ink:       #16224d;
+  --text:      #2c3852;
+  --muted:     #6b7891;
+
+  --navy:      #12276b;
+  --blue:      #003eaa;
+  --blue-mid:  #1f5fbf;
+  --blue-soft: #eaf1fc;
+
+  --ok:        #1a7a38;
+  --ok-soft:   #e8f5ec;
+  --warn:      #b45309;
+  --warn-soft: #fdf3e3;
+  --bad:       #c0392b;
+  --bad-soft:  #fdecea;
+
+  /* Cromatisme de la finestra del programa */
+  --cd-vora:   #9db4d0;
+  --cd-fons:   #eef3fa;
+  --cd-cap:    #cfdcee;
+  --cd-sel:    #2a6fc9;
+
+  --sans: "Inter", ui-sans-serif, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --radius: 12px;
+  --radius-s: 8px;
+  --shadow: 0 1px 2px rgba(18,39,107,.05), 0 6px 20px rgba(18,39,107,.06);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* La finestra no es desplaça mai sencera: la capçalera i el peu es queden
+   quiets i el que es mou es el que hi ha entremig, cada columna pel seu
+   compte. Aixi la barra de menus i el marcador son sempre a la vista. */
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+button { font: inherit; cursor: pointer; }
+code { font-family: var(--mono); font-size: .88em; color: var(--blue); background: var(--blue-soft); border-radius: 4px; padding: .08em .34em; }
+
+/* --- Capçalera ------------------------------------------------------------ */
+
+.capcalera {
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+  padding: .7rem 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  z-index: 30;
+  flex: 0 0 auto;
+}
+.marca { font-weight: 750; color: var(--navy); letter-spacing: -.01em; }
+.marca em { font-style: normal; font-weight: 500; color: var(--muted); }
+.capcalera .dreta { margin-left: auto; display: flex; align-items: center; gap: .8rem; }
+
+.marcador {
+  font-size: .8rem;
+  font-weight: 650;
+  color: var(--muted);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: .3rem .8rem;
+}
+.marcador b { color: var(--ok); }
+.marcador i { font-style: normal; color: var(--bad); }
+
+/* --- Estructura ----------------------------------------------------------- */
+
+.taulell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 26rem;
+  gap: 1.1rem;
+  padding: 1.1rem 1.4rem;
+  max-width: 1700px;
+  width: 100%;
+  margin: 0 auto;
+  align-items: stretch;
+  flex: 1 1 auto;
+  min-height: 0;
+  box-sizing: border-box;
+}
+/* Cada columna es desplaça per dins; la pagina, no. */
+.taulell > main, .taulell > aside { min-height: 0; overflow-y: auto; overflow-x: hidden; }
+.taulell > aside { display: flex; flex-direction: column; }
+
+@media (max-width: 1150px) {
+  .taulell { grid-template-columns: 1fr; }
+  /* En pantalla estreta les dues columnes van una sota l'altra i qui es
+     desplaça es el conjunt, que es l'unica manera que hi capiguen. */
+  .taulell { overflow-y: auto; }
+  .taulell > main, .taulell > aside { overflow: visible; }
+}
+
+.peu-autoria {
+  flex: 0 0 auto;
+  background: var(--card);
+  border-top: 1px solid var(--line);
+  padding: .55rem 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: .82rem;
+  color: var(--muted);
+  z-index: 30;
+}
+.peu-autoria strong { color: var(--navy); font-weight: 700; }
+.peu-autoria a { color: var(--blue); text-decoration: none; }
+.peu-autoria a:hover { text-decoration: underline; }
+.peu-autoria .dret { margin-left: auto; text-align: right; }
+@media (max-width: 800px) {
+  .peu-autoria { display: block; }
+  .peu-autoria .dret { text-align: left; margin-left: 0; }
+}
+
+.bloc {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.bloc > h2 {
+  margin: 0;
+  padding: .75rem 1.1rem;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+.bloc .cos { padding: 1.1rem; }
+
+/* --- Pestanyes ------------------------------------------------------------ */
+
+.pestanyes { display: flex; gap: .2rem; padding: .5rem .6rem 0; background: var(--panel); border-bottom: 1px solid var(--line); }
+.pestanyes button {
+  border: 1px solid transparent;
+  border-bottom: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: .84rem;
+  font-weight: 650;
+  padding: .5rem 1rem;
+  border-radius: var(--radius-s) var(--radius-s) 0 0;
+}
+.pestanyes button:hover { color: var(--blue); }
+.pestanyes button.actiu {
+  background: var(--card);
+  border-color: var(--line);
+  color: var(--navy);
+  margin-bottom: -1px;
+}
+
+/* --- Vista C&D: la finestra del programa ---------------------------------- */
+
+.cd {
+  font-family: "Segoe UI", var(--sans);
+  font-size: 13px;
+  background: var(--cd-fons);
+  border: 1px solid var(--cd-vora);
+  border-radius: 4px;
+  margin: 1.1rem;
+  overflow: hidden;
+}
+.cd-barra {
+  background: linear-gradient(#f2f6fc, #dde7f4);
+  border-bottom: 1px solid var(--cd-vora);
+  padding: .35rem .5rem;
+  display: flex;
+  gap: .35rem;
+  align-items: center;
+}
+.cd-barra button {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  padding: .25rem .5rem;
+  font-size: 12px;
+  color: #21406b;
+}
+.cd-barra button:hover:not(:disabled) { background: #ffffff; border-color: var(--cd-vora); }
+.cd-barra button:disabled { opacity: .4; cursor: default; }
+.cd-barra .separa { width: 1px; height: 18px; background: var(--cd-vora); margin: 0 .25rem; }
+.cd-barra .executa { font-weight: 700; color: var(--ok); }
+
+.cd-graella { max-height: 22rem; overflow: auto; background: #fff; }
+table.camps { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+table.camps thead th {
+  position: sticky; top: 0;
+  background: var(--cd-cap);
+  border-bottom: 1px solid var(--cd-vora);
+  font-weight: 700;
+  color: #17335c;
+  padding: .3rem .5rem;
+  text-align: left;
+  white-space: nowrap;
+}
+table.camps thead th.mini { width: 2.2rem; text-align: center; }
+table.camps td { padding: .18rem .5rem; border-bottom: 1px solid #eef2f7; white-space: nowrap; }
+table.camps td.mini { text-align: center; width: 2.2rem; }
+table.camps tr:hover td { background: #f3f8ff; }
+table.camps tr.marcada td { background: #dbeafe; }
+.nom-camp { font-family: var(--mono); font-size: 12px; }
+button.nom-camp.enllac {
+  font-family: var(--mono); font-size: 12px;
+  background: none; border: 0; padding: 0; color: #17335c;
+  text-decoration: underline; text-decoration-color: #b9cbe4;
+  text-underline-offset: 3px;
+}
+button.nom-camp.enllac:hover { color: var(--cd-sel); text-decoration-color: var(--cd-sel); }
+#taula-valors { max-height: 24rem; overflow: auto; }
+.tipus-camp { color: var(--muted); }
+
+/* Les tres columnes de control, en el seu ordre real */
+.control {
+  width: 17px; height: 17px;
+  border: 1px solid #9fb3c8;
+  background: #fff;
+  border-radius: 2px;
+  display: inline-grid;
+  place-items: center;
+  font-size: 11px;
+  line-height: 1;
+  padding: 0;
+  color: #1d3d68;
+}
+.control.lupa { width: auto; min-width: 17px; padding: 0 1px; font-family: var(--mono); letter-spacing: -.5px; }
+.control:hover { border-color: var(--cd-sel); }
+.control.on { background: #d6e6fb; border-color: var(--cd-sel); font-weight: 700; }
+.control.lupa.on { background: #fde9c7; border-color: #d9930f; }
+.control.ordre.on { background: #fbdcdc; border-color: #c0392b; }
+
+.cd-peu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: .35rem .6rem;
+  background: linear-gradient(#f2f6fc, #e4ecf6);
+  border-top: 1px solid var(--cd-vora);
+  font-size: 12px;
+  color: #21406b;
+}
+.cd-peu .comptador { margin-left: auto; font-weight: 700; }
+
+.cd-resultat { max-height: 15rem; overflow: auto; background: #fff; border-top: 1px solid var(--cd-vora); }
+table.resultat { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+table.resultat th {
+  position: sticky; top: 0;
+  background: var(--cd-cap);
+  border-bottom: 1px solid var(--cd-vora);
+  padding: .3rem .55rem;
+  text-align: left;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  white-space: nowrap;
+}
+table.resultat td { padding: .2rem .55rem; border-bottom: 1px solid #eef2f7; white-space: nowrap; }
+table.resultat tr:nth-child(even) td { background: #fafcff; }
+.buit { padding: 1.6rem; text-align: center; color: var(--muted); font-size: .9rem; }
+
+/* --- Finestra de criteris --------------------------------------------------- */
+
+.vel {
+  position: fixed; inset: 0; z-index: 50;
+  background: rgba(18,39,107,.35);
+  display: grid; place-items: center;
+  padding: 1.5rem;
+}
+.vel[hidden] { display: none; }
+.dialeg {
+  background: var(--cd-fons);
+  border: 1px solid var(--cd-vora);
+  border-radius: 5px;
+  width: min(62rem, 100%);
+  max-height: 90vh;
+  overflow: auto;
+  box-shadow: 0 20px 60px rgba(18,39,107,.3);
+  font-family: "Segoe UI", var(--sans);
+  font-size: 13px;
+}
+.dialeg > header {
+  background: linear-gradient(#f2f6fc, #dde7f4);
+  border-bottom: 1px solid var(--cd-vora);
+  padding: .45rem .7rem;
+  font-weight: 700;
+  color: #17335c;
+  display: flex; align-items: center;
+}
+.dialeg > header button { margin-left: auto; border: 0; background: transparent; font-size: 15px; color: #17335c; }
+.dialeg .dins { padding: .8rem; }
+
+
+/* Els criteris combinats es dibuixen dins dels seus parentesis */
+.grup-criteris {
+  display: grid;
+  grid-template-columns: 1rem 1fr;
+  align-items: center;
+  column-gap: .3rem;
+  background: #eef4fd;
+  border-radius: 3px;
+  padding: .35rem .5rem;
+  margin-bottom: .5rem;
+}
+.grup-criteris > * { grid-column: 2; }
+.grup-criteris > .par {
+  grid-column: 1;
+  color: var(--cd-sel);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+}
+.grup-criteris > .par:first-child { align-self: start; }
+.grup-criteris > .par:last-child { align-self: end; }
+
+.dialeg.estret { width: min(30rem, 100%); }
+table.propietats { width: 100%; border-collapse: collapse; }
+table.propietats th {
+  text-align: left; font-weight: 600; color: #17335c;
+  padding: .35rem .5rem .35rem 0; white-space: normal;
+}
+table.propietats td { padding: .35rem 0; text-align: right; }
+table.propietats td .apagat { color: #9aa8bd; font-size: 11px; }
+table.propietats select, table.propietats input {
+  font: inherit; padding: .24rem .35rem; border: 1px solid #9fb3c8;
+  border-radius: 2px; background: #fff;
+}
+
+.nota.avis { color: var(--bad); }
+.nota.avis[hidden] { display: none; }
+
+/* --- Les tres pestanyes de la finestra, a baix com al programa ----------- */
+
+.cd-cos { background: #fff; }
+.cd-pestanyes {
+  display: flex; gap: .15rem;
+  padding: .25rem .5rem 0;
+  background: linear-gradient(#eef3fa, #e2eaf5);
+  border-top: 1px solid var(--cd-vora);
+}
+.cd-pestanyes button {
+  border: 1px solid var(--cd-vora);
+  border-top: 0;
+  border-radius: 0 0 4px 4px;
+  background: #e8eef7;
+  color: #21406b;
+  font-size: 12px;
+  padding: .22rem .9rem;
+}
+.cd-pestanyes button.actiu { background: #fff; font-weight: 700; }
+
+/* Pestanya Taules: origens, taules disponibles, triades i enllacos */
+.taules-tres { display: grid; grid-template-columns: 15rem 1fr; min-height: 11rem; }
+.origens { border-right: 1px solid var(--cd-vora); }
+.titol-panell {
+  background: var(--cd-cap); color: #17335c; font-weight: 700;
+  font-size: 11.5px; padding: .25rem .5rem;
+}
+.origens ul { list-style: none; margin: 0; padding: .3rem 0; font-family: var(--mono); font-size: 11.5px; }
+.origens li { padding: .16rem .6rem; cursor: pointer; color: #21406b; }
+.origens li:hover { background: #f0f5fc; }
+.origens li.triat { background: #dbeafe; font-weight: 700; }
+.taules-disponibles { max-height: 13rem; overflow: auto; }
+.taules-disponibles tr { cursor: pointer; }
+
+.taules-triades { display: flex; gap: .6rem; padding: .5rem; background: #f7fafd; border-top: 1px solid var(--cd-vora); overflow-x: auto; }
+.taula-triada { border: 1px solid var(--cd-vora); background: #fff; border-radius: 3px; min-width: 13rem; }
+.taula-triada > header { background: var(--cd-cap); font-family: var(--mono); font-size: 11.5px; font-weight: 700; padding: .22rem .5rem; color: #17335c; }
+.taula-triada .camps-mini { max-height: 7rem; overflow: auto; font-family: var(--mono); font-size: 11px; padding: .2rem 0; }
+.taula-triada .camps-mini div { padding: .05rem .5rem; color: #2c3852; }
+
+.franja-enllacos { border-top: 1px solid var(--cd-vora); padding: .5rem; background: #fff; }
+.boto-enllac { border: 1px dashed #9fb3c8; background: #f7fafd; border-radius: 3px; padding: .3rem .8rem; font-size: 12px; color: #21406b; }
+
+/* Finestra d'ordenacio */
+.fila-ordre { display: grid; grid-template-columns: 1.7rem minmax(9rem, 1fr) 4rem 1fr 5rem; align-items: center; gap: .5rem; padding: .3rem .4rem; border-radius: 2px; cursor: pointer; }
+.fila-ordre:hover { background: #f3f8ff; }
+.fila-ordre.triada { background: #dbeafe; }
+.fila-ordre.capcalera { cursor: default; border-bottom: 1px solid var(--cd-vora); font-size: 11.5px; color: #33507d; }
+.fila-ordre.capcalera:hover { background: transparent; }
+.fila-ordre.capcalera .nom { grid-column: 2; font-family: inherit; }
+.fila-ordre .nom { font-family: var(--mono); font-size: 12px; color: #17335c; }
+.fila-ordre .tipus, .fila-ordre .descripcio, .fila-ordre .capcalera .descendent { font-size: 11.5px; color: #33507d; }
+.fila-ordre.capcalera .descendent { font-size: 11.5px; color: #33507d; }
+.fila-ordre select.descendent { font: inherit; font-size: 11.5px; padding: .1rem .2rem; border: 1px solid #9fb3c8; border-radius: 2px; background: #fff; }
+.fila-ordre .simbol { border: 1px solid transparent; background: transparent; padding: .1rem .2rem; }
+.fila-ordre .simbol:hover { border-color: #9fb3c8; background: #fff; }
+
+/* La barreta de la finestra d'ordenacio: creu vermella i fletxes, a la dreta */
+.barra-ordre { display: flex; justify-content: flex-end; gap: .2rem; padding: 0 0 .3rem; border-bottom: 1px solid var(--cd-vora); margin-bottom: .3rem; }
+.barra-ordre button { border: 1px solid transparent; background: transparent; border-radius: 2px; padding: .1rem .4rem; font-size: 13px; color: #17335c; }
+.barra-ordre button:hover { border-color: #9fb3c8; background: #fff; }
+.barra-ordre button.creu { color: #c0392b; font-weight: 700; }
+
+/* --- Taules i enllacos ------------------------------------------------------ */
+
+.taules-actives { font-family: var(--mono); font-size: 11.5px; color: #21406b; }
+
+.tria-taules { display: grid; gap: .3rem; }
+.tria-taules label { display: grid; grid-template-columns: auto auto 1fr; gap: .5rem; align-items: baseline; }
+.tria-taules b { font-family: var(--mono); font-size: 12px; color: #17335c; font-weight: 600; }
+.tria-taules span { color: var(--muted); font-size: 12px; }
+
+.fila-enllac { display: flex; flex-wrap: wrap; gap: .35rem; align-items: center; margin-bottom: .45rem; }
+.fila-enllac select { font: inherit; padding: .24rem .35rem; border: 1px solid #9fb3c8; border-radius: 2px; background: #fff; }
+.fila-enllac .fletxa { color: var(--cd-sel); font-weight: 700; }
+.fila-enllac button { border: 1px solid #9fb3c8; background: #fff; border-radius: 2px; padding: .22rem .5rem; font-size: 12px; }
+.nota { margin: .5rem 0 0; font-size: 12px; color: var(--muted); line-height: 1.55; }
+
+table.camps tr.capcalera-taula td {
+  background: #e8eff9;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #17335c;
+  padding: .3rem .5rem;
+}
+
+fieldset.camps-panel { border: 1px solid var(--cd-vora); background: #fff; border-radius: 3px; padding: .5rem .7rem; margin: .8rem 0 0; }
+fieldset.camps-panel legend { font-size: 12px; color: #17335c; padding: 0 .3rem; }
+pre.camps-text { margin: 0; font-family: var(--mono); font-size: 12px; line-height: 1.7; white-space: pre-wrap; color: #16224d; min-height: 3rem; }
+pre.camps-text .conn { color: #c0392b; font-weight: 700; }
+pre.camps-text .par { color: var(--cd-sel); font-weight: 700; }
+
+.dialeg footer { display: flex; gap: .4rem; padding: .7rem .8rem; border-top: 1px solid var(--cd-vora); }
+.dialeg footer button {
+  border: 1px solid #9fb3c8; background: linear-gradient(#fff,#eef3fa);
+  border-radius: 3px; padding: .32rem .9rem; color: #17335c;
+}
+.dialeg footer button.principal { border-color: var(--cd-sel); font-weight: 650; }
+.dialeg footer .dreta { margin-left: auto; display: flex; gap: .4rem; }
+.dialeg footer button:disabled { opacity: .45; cursor: default; }
+
+/* --- SQL -------------------------------------------------------------------- */
+
+pre.sql {
+  margin: 0;
+  padding: 1.1rem;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.7;
+  background: var(--panel);
+  color: var(--ink);
+  overflow-x: auto;
+}
+pre.sql .kw { color: var(--blue); font-weight: 700; }
+
+/* --- Exercici --------------------------------------------------------------- */
+
+.enunciat { font-size: 1rem; line-height: 1.6; color: var(--ink); }
+.enunciat b { color: var(--navy); }
+
+.etiquetes { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .7rem; }
+.etiqueta {
+  font-size: .7rem; font-weight: 700; letter-spacing: .04em;
+  border-radius: 999px; padding: .2rem .6rem;
+  background: var(--blue-soft); color: var(--blue);
+}
+.etiqueta.nivell { background: var(--panel); color: var(--muted); }
+
+.botons { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: 1rem; }
+.boto {
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  border-radius: var(--radius-s);
+  padding: .5rem 1rem;
+  font-size: .87rem;
+  font-weight: 650;
+}
+.boto:hover { border-color: var(--blue-mid); color: var(--blue); }
+.boto.principal { background: var(--blue); border-color: var(--blue); color: #fff; }
+.boto.principal:hover { background: #002f80; color: #fff; }
+
+details.pista { margin-top: .8rem; border: 1px solid var(--line); border-radius: var(--radius-s); background: var(--panel); }
+details.pista summary { cursor: pointer; list-style: none; padding: .5rem .8rem; font-size: .82rem; font-weight: 700; color: var(--muted); }
+details.pista summary::-webkit-details-marker { display: none; }
+details.pista summary::before { content: "+ "; color: var(--blue); font-weight: 800; }
+details.pista[open] summary::before { content: "\2212 "; }
+details.pista .dins { padding: 0 .8rem .7rem; font-size: .9rem; }
+
+/* --- Correccio --------------------------------------------------------------- */
+
+.veredicte {
+  display: flex; align-items: center; gap: .7rem;
+  padding: .8rem 1rem;
+  border-radius: var(--radius-s);
+  font-weight: 650;
+  margin-bottom: .9rem;
+}
+.veredicte.be { background: var(--ok-soft); color: var(--ok); border: 1px solid #c4e2ce; }
+.veredicte.mal { background: var(--bad-soft); color: var(--bad); border: 1px solid #f0cac4; }
+.veredicte .xifres { margin-left: auto; font-family: var(--mono); font-size: .85rem; font-weight: 500; }
+
+.avis { border: 1px solid var(--line); border-radius: var(--radius-s); margin-bottom: .7rem; overflow: hidden; }
+.avis > header {
+  display: flex; align-items: baseline; gap: .5rem;
+  padding: .5rem .8rem;
+  font-weight: 700; font-size: .9rem;
+}
+.avis.greu > header  { background: var(--bad-soft); color: var(--bad); }
+.avis.mitja > header { background: var(--warn-soft); color: var(--warn); }
+.avis.suau > header  { background: var(--panel); color: var(--muted); }
+.avis .unitat { margin-left: auto; font-size: .7rem; font-weight: 700; letter-spacing: .06em; opacity: .8; }
+.avis .cos { padding: .7rem .8rem; }
+.avis dl { margin: 0; display: grid; gap: .55rem; }
+.avis dt {
+  font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: .12rem;
+}
+.avis dd { margin: 0; font-size: .9rem; }
+.avis dd.solucio { color: var(--ok); }
+
+/* --- Menu de conceptes -------------------------------------------------------- */
+
+.conceptes { display: grid; gap: .4rem; }
+.conceptes button {
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .5rem;
+  width: 100%; text-align: left;
+  border: 1px solid var(--line); background: var(--card);
+  border-radius: var(--radius-s); padding: .6rem .8rem;
+}
+.conceptes button:hover { border-color: var(--blue-mid); }
+.conceptes button.actiu { background: var(--blue-soft); border-color: var(--blue-mid); }
+.conceptes .nom { font-weight: 650; color: var(--ink); font-size: .9rem; }
+.conceptes .u { font-size: .72rem; color: var(--muted); font-family: var(--mono); }
+
+/* Catalag de valors dins d'una correccio */
+.cataleg { display: block; margin-top: .3rem; line-height: 2; }
+.cataleg .quants { color: var(--muted); font-size: .78rem; margin-right: .45rem; }
+
+/* Explicacio de la solucio */
+dl.explicacio { margin: .9rem 0 0; font-size: .88rem; }
+dl.explicacio > div { display: grid; grid-template-columns: 6.5rem 1fr; gap: .6rem; padding: .3rem 0; }
+dl.explicacio dt { color: var(--muted); font-weight: 650; font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; padding-top: .12rem; }
+dl.explicacio dd { margin: 0; }
+dl.explicacio .marca-grup { color: var(--blue-mid); font-size: .8rem; }
+
+/* --- Finestra de criteris, com la del programa --------------------------- */
+
+.criteri-editor {
+  display: grid;
+  grid-template-columns: minmax(0,1.4fr) 11rem minmax(0,1.2fr);
+  gap: .6rem;
+  align-items: end;
+  margin-bottom: .8rem;
+}
+.camp-editor label, .pestanyes-valor { display: block; font-size: 11.5px; color: #17335c; margin-bottom: .2rem; }
+.camp-editor select {
+  width: 100%; font: inherit; font-family: var(--mono); font-size: 12px;
+  padding: .3rem .35rem; border: 1px solid #9fb3c8; border-radius: 2px; background: #fff;
+}
+.camp-editor select:disabled { background: #eef2f7; color: var(--muted); }
+
+.quadre-valor { border: 1px solid var(--cd-vora); border-radius: 3px; background: #fff; }
+.pestanyes-valor { display: flex; gap: .1rem; margin: 0; padding: .2rem .2rem 0; background: var(--cd-fons); border-bottom: 1px solid var(--cd-vora); }
+.pestanyes-valor button {
+  border: 1px solid transparent; border-bottom: 0; background: transparent;
+  font-size: 11.5px; padding: .2rem .55rem; border-radius: 3px 3px 0 0; color: #21406b;
+}
+.pestanyes-valor button.actiu { background: #fff; border-color: var(--cd-vora); font-weight: 650; }
+.pestanyes-valor button:disabled { color: #9aa8bd; }
+.caixes-valor { display: flex; align-items: flex-start; gap: .3rem; padding: .35rem; }
+.caixes-valor > div { flex: 1; display: grid; gap: .25rem; }
+.caixes-valor input { width: 100%; font: inherit; padding: .26rem .35rem; border: 1px solid #9fb3c8; border-radius: 2px; }
+.caixes-valor .sense-valor { color: var(--muted); font-size: 12px; padding: .3rem 0; }
+#desplega-valors { border: 1px solid #9fb3c8; background: linear-gradient(#fff,#eef3fa); border-radius: 2px; padding: .2rem .35rem; font-size: 10px; color: #17335c; }
+
+.zona-camps { display: grid; grid-template-columns: 1fr 9rem; gap: .6rem; align-items: start; }
+.botons-costat { display: grid; gap: .35rem; padding-top: 1.1rem; }
+.botons-costat button {
+  border: 1px solid #9fb3c8; background: linear-gradient(#fff,#eef3fa);
+  border-radius: 3px; padding: .3rem .5rem; font-size: 12px; color: #17335c;
+}
+.botons-costat button:disabled { opacity: .45; }
+.botons-costat button.premut { background: #d6e6fb; border-color: var(--cd-sel); font-weight: 700; }
+
+.camps-text { min-height: 9rem; max-height: 16rem; overflow: auto; padding: .3rem; }
+.linia-criteri {
+  font-family: var(--mono); font-size: 12px; color: #16224d;
+  padding: .22rem .5rem; border-radius: 2px; cursor: pointer;
+}
+.linia-criteri:hover { background: #f3f8ff; }
+.linia-criteri.triada { background: #dbeafe; }
+.linia-criteri.marcada { outline: 1px dashed var(--cd-sel); }
+.linia-criteri.dins { margin-left: 1.2rem; }
+button.conn {
+  border: 0; background: transparent; color: #c0392b; font-weight: 700;
+  font-family: var(--mono); font-size: 12px; padding: .05rem .5rem;
+}
+button.conn.dins { margin-left: .6rem; }
+
+table.camps tr.seleccionada td { background: #cfe3fb; }
+.mou-columna { display: flex; gap: .4rem; margin-top: .5rem; }
+.mou-columna button { border: 1px solid #9fb3c8; background: linear-gradient(#fff,#eef3fa); border-radius: 3px; padding: .25rem .6rem; font-size: 12px; color: #17335c; }
+.control.on.ocult { background: #eef2f7; color: var(--muted); font-weight: 400; }
+
+/* El menu del boto dret sobre un camp */
+.menu-camp {
+  position: absolute; z-index: 60; min-width: 12rem;
+  background: #fff; border: 1px solid var(--cd-vora);
+  box-shadow: 0 6px 20px rgba(18,39,107,.22); padding: .2rem 0;
+  font-family: "Segoe UI", var(--sans); font-size: 12.5px;
+}
+.menu-camp button {
+  display: block; width: 100%; text-align: left;
+  border: 0; background: transparent; padding: .28rem .8rem; color: #17335c;
+}
+.menu-camp button:hover { background: #dbeafe; }
+.menu-camp button.marcada { font-weight: 700; }
+.menu-camp .separa { height: 1px; background: var(--line); margin: .2rem 0; }
+
+/* La barra de menus de la finestra */
+/* --- Barra de titol i pestanyes de document, com al programa ------------ */
+
+.cd-titol {
+  background: linear-gradient(#cfe0f5, #b9d0ee);
+  border-bottom: 1px solid var(--cd-vora);
+  padding: .3rem .6rem;
+  font-size: 12px; font-weight: 700; color: #10305c;
+}
+.cd-documents {
+  display: flex; gap: .2rem;
+  padding: .3rem .5rem 0;
+  background: linear-gradient(#eef3fa, #dfe9f5);
+  border-bottom: 1px solid var(--cd-vora);
+}
+.cd-documents .doc {
+  font-size: 11.5px; color: #33507d;
+  padding: .2rem .7rem;
+  border: 1px solid var(--cd-vora); border-bottom: none;
+  border-radius: 3px 3px 0 0;
+  background: #e2eaf5;
+}
+.cd-documents .doc.actiu { background: #fff; font-weight: 700; color: #10305c; }
+
+.cd-menus { display: flex; gap: .1rem; padding: .15rem .4rem; background: linear-gradient(#f6f9fd,#e9f0f9); border-bottom: 1px solid var(--cd-vora); }
+.cd-menus button { border: 1px solid transparent; background: transparent; font-size: 12px; padding: .18rem .55rem; border-radius: 3px; color: #17335c; }
+.cd-menus button:hover { background: #dbeafe; border-color: var(--cd-vora); }
+.cd-menus button.fora { color: #8b9ab2; }
+.menu-camp button:disabled { color: #9aa8bd; background: transparent; }
+.avis-menu { position: fixed; left: 50%; bottom: 2rem; transform: translateX(-50%); z-index: 90; max-width: 34rem; background: #17335c; color: #fff; padding: .7rem 1rem; border-radius: 6px; font-size: .9rem; box-shadow: 0 10px 30px rgba(18,39,107,.35); }
+
+.taula-triada > header { display: flex; align-items: center; gap: .4rem; }
+.taula-triada > header .treu { margin-left: auto; border: 0; background: transparent; color: #17335c; font-size: 14px; line-height: 1; padding: 0 .2rem; }
+.taula-triada > header .treu:hover { color: var(--bad); }
+.taules-triades.rebent { outline: 2px dashed var(--cd-sel); outline-offset: -4px; }
+table.camps tr[draggable="true"] { cursor: grab; }
+
+/* Les tres barretes vermelles de la columna d'ordenacio, com la icona real */
+.barres { display: inline-flex; align-items: flex-end; gap: 1px; height: 11px; }
+.barres i { display: block; width: 3px; background: #c0392b; }
+.barres i:nth-child(1) { height: 5px; }
+.barres i:nth-child(2) { height: 8px; }
+.barres i:nth-child(3) { height: 11px; }
+.barres.baixa i:nth-child(1) { height: 11px; }
+.barres.baixa i:nth-child(3) { height: 5px; }
+
+/* La caixeta de replegar que porta cada taula al davant del nom */
+table.camps tr.capcalera-taula .replega {
+  display: inline-block; width: 11px; height: 11px; line-height: 9px;
+  text-align: center; margin-right: .4rem;
+  border: 1px solid #7f93ad; background: #fff; color: #17335c;
+  font-family: sans-serif; font-size: 10px;
+}
+
+/* La graella de resultats numera les files */
+table.resultat th.num, table.resultat td.num {
+  width: 2.6rem; text-align: right;
+  background: var(--cd-cap); color: #55708f;
+  font-family: var(--mono); font-size: 11px;
+  border-right: 1px solid var(--cd-vora);
+}
+
+/* La barra d'estat: a l'esquerra el text de l'accio, com al programa */
+.cd-peu #peu-estat { color: #33507d; min-width: 12rem; }
+
+/* Els parametres: la finestra que demana els valors en executar */
+.fila-parametre { display: flex; align-items: center; gap: .5rem; margin: 0 0 .5rem; flex-wrap: wrap; }
+.fila-parametre label { font-size: 12px; color: #17335c; min-width: 10rem; }
+.fila-parametre input { font: inherit; font-size: 12px; padding: .24rem .35rem; border: 1px solid #9fb3c8; border-radius: 2px; background: #fff; }
+.fila-parametre .quin-camp { font-family: var(--mono); font-size: 11px; color: #7386a3; }
+.sense-valor.parametritzat { color: #1d3d68; }
+
+/* --- La finestra del programa ocupa l'alçada que hi hagi -------------------
+   Sense això quedava un buit sota la finestra i la graella de resultats es
+   quedava amb quinze rems fossin quines fossin les dimensions de la pantalla.
+   -------------------------------------------------------------------- */
+@media (min-width: 1151px) {
+  .taulell > main.bloc { display: flex; flex-direction: column; }
+  #vista-cd { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; }
+  #vista-cd > .cd { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; }
+  #pestanya-consulta { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; }
+  #pestanya-consulta[hidden] { display: none; }
+  .cd-graella { flex: 0 1 auto; max-height: none; min-height: 8rem; }
+  .cd-resultat { flex: 1 1 auto; max-height: none; min-height: 6rem; }
+  #pestanya-taules, #pestanya-sql { overflow: auto; }
+  #pestanya-taules:not([hidden]), #pestanya-sql:not([hidden]) { flex: 1 1 auto; min-height: 0; }
+}

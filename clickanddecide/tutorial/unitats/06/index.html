@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="ca" data-unit="06" data-root="../..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>06 · Criteris de selecció i operadors - Click &amp; Decide</title>
+<meta name="description" content="La finestra Criteris, la taula completa d'operadors, la regla de filtrar per codi i el comportament de l'operador Es nul.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="prev" href="../05/">
+<link rel="next" href="../07/">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../../index.html">Click &amp; Decide <em>· Guia d'aprenentatge</em></a>
+    <nav>
+      <span class="position">Unitat 06 / 18</span>
+      <span data-unit-picker></span>
+      <a class="step-link" href="../../index.html">Índex</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+
+  <header class="unit-head">
+    <p class="eyebrow">Part II · Unitat 06</p>
+    <h1>Criteris de selecció i operadors</h1>
+    <p class="lede">
+      La unitat frontissa. Fins ara tota consulta tornava la taula sencera; a partir
+      d'aquí decidiu quins registres voleu. Hi ha dues coses que semblen detalls i no
+      ho són: <strong>sempre s'ha de filtrar pel camp de codi</strong>, i l'operador
+      <span class="ui">És nul</span> <strong>només funciona en camps de data</strong>.
+      Aquestes dues frases expliquen la meitat dels problemes del curs.
+    </p>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2>En aquesta unitat</h2>
+      <ol>
+        <li><a href="#objectiu">Què és un criteri</a></li>
+        <li><a href="#obrir">Obrir la finestra Criteris</a></li>
+        <li><a href="#anatomia">Anatomia de la finestra</a></li>
+        <li><a href="#operadors">La taula d'operadors</a></li>
+        <li><a href="#codi">La regla d'or: filtreu per codi</a></li>
+        <li><a href="#exemple">Exemple pas a pas</a></li>
+        <li><a href="#modificar">Modificar un criteri</a></li>
+        <li><a href="#llista">L'operador Llista</a></li>
+        <li><a href="#nou">Més d'un criteri al mateix camp</a></li>
+        <li><a href="#suprimir">Suprimir un criteri</a></li>
+        <li><a href="#nul">El parany de "És nul"</a></li>
+        <li><a href="#errors">Errors freqüents</a></li>
+        <li><a href="#exercicis">Exercicis</a></li>
+        <li><a href="#comprovacio">Llista de comprovació</a></li>
+      </ol>
+      <dl class="sidebar-aside">
+        <dt>Objectiu</dt>
+        <dd>Filtrar registres amb l'operador adequat i saber per quin camp s'ha de filtrar.</dd>
+        <dt>On es fa</dt>
+        <dd>Columna de la lupa, o botó de la lupa a la barra d'eines.</dd>
+        <dt>Regla d'or</dt>
+        <dd>Filtreu pel camp <code>_CODI</code>, mai pel <code>_DESC</code>.</dd>
+      </dl>
+    </aside>
+
+    <main class="content">
+
+      <section id="objectiu">
+        <h2><span class="num">Apartat 1</span>Què és un criteri</h2>
+        <p>
+          L'objectiu d'establir criteris de selecció és
+          <strong>extreure únicament les dades dels registres que compleixen unes
+          condicions</strong>. Rarament interessen els milers de registres d'una
+          taula sencera: es vol el personal interí, els llocs vacants o les baixes
+          d'un mes.
+        </p>
+        <div class="note">
+          <span class="label">Una llibertat que sorprèn</span>
+          <p>
+            Els camps sobre els quals establiu criteris <strong>no han de ser
+            necessàriament els que heu triat per veure</strong>. Podeu filtrar per un
+            camp que no apareix a la graella. Filtrar i mostrar són decisions
+            independents.
+          </p>
+        </div>
+      </section>
+
+      <section id="obrir">
+        <h2><span class="num">Apartat 2</span>Obrir la finestra Criteris</h2>
+        <p>Hi ha dos camins, i convé conèixer els dos perquè serveixen per a coses diferents.</p>
+        <div class="cards">
+          <div>
+            <h3>Des del camp</h3>
+            <p>Clic a la casella de la columna de la <strong>lupa</strong>, a la línia del camp que voleu filtrar. S'obre la finestra amb aquell camp ja carregat. És el camí per crear un criteri nou.</p>
+          </div>
+          <div>
+            <h3>Des de la barra d'eines</h3>
+            <p>Botó de la <strong>lupa</strong> a la barra d'eines superior. Obre la finestra amb <strong>tots els criteris ja aplicats</strong>. És el camí per revisar, modificar o suprimir.</p>
+          </div>
+        </div>
+        <p>
+          Igual que amb l'ordenació, si no trobeu el camp a la llista, feu clic a la
+          capçalera de la columna a la graella de resultats i el programa el localitza.
+        </p>
+        <figure>
+          <img src="img/aplicacio_criteris.png" alt="Aplicació d'un criteri a Click &amp; Decide: columna de la lupa, finestra Criteris i resultat filtrat.">
+          <figcaption>
+            Del camp a la finestra de criteris, i del criteri al resultat filtrat.
+          </figcaption>
+        </figure>
+              <p>
+          La finestra <b>Criteris</b> es pot <b>redimensionar</b> arrossegant la
+          <b>cantonada inferior dreta</b>. Val la pena fer-la gran des del
+          primer moment: el panell <b>Camps</b> és on es llegeix la consulta
+          sencera, i amb la finestra petita no s'hi veu res.
+        </p>
+</section>
+
+      <section id="anatomia">
+        <h2><span class="num">Apartat 3</span>Anatomia de la finestra</h2>
+        <p>
+          La finestra <span class="ui">Criteris</span> té sempre la mateixa estructura,
+          i es llegeix d'esquerra a dreta com una frase:
+        </p>
+        <div class="path">
+          <span class="ui">Columnes</span> <span class="sep">&rarr;</span>
+          <span class="ui">Operadors</span> <span class="sep">&rarr;</span>
+          <span class="ui">Valor</span>
+        </div>
+
+
+        <figure>
+          <img src="img/cap_finestra_criteris.png" alt="Finestra Criteris amb els desplegables Columnes i Operadors, les pestanyes Valor, Columna, Expressio i Consulta, el panell Camps i els botons NOT, Combina i No combinis.">
+          <figcaption>
+            Les quatre zones de la finestra: els desplegables de dalt, el panell <span class="ui">Camps</span>, els botons del marge dret i els de baix.
+          </figcaption>
+        </figure>
+
+        <div class="note">
+          <span class="label">El nom del camp surt sencer</span>
+          <p>
+            Al desplegable <span class="ui">Columnes</span> els camps apareixen
+            <strong>qualificats amb el nom de la taula</strong>, en la forma
+            <code>WAIV9010_PERSONA.PLRC_VINCLE_CODI</code>. Quan a la unitat 7 tingueu
+            criteris sobre dos camps de famílies diferents, aquest prefix és el que us
+            permetrà distingir-los d'un cop d'ull al panell
+            <span class="ui">Camps</span>.
+          </p>
+        </div>
+        <ol class="steps">
+          <li>
+            <h3>Columnes</h3>
+            <p>La llista desplegable amb els camps de la taula. Aquí es tria sobre quin camp s'estableix la condició.</p>
+          </li>
+          <li>
+            <h3>Operador</h3>
+            <p>El desplegable de comparació. La taula completa és a l'apartat següent.</p>
+          </li>
+          <li>
+            <h3>Valor</h3>
+            <p>Amb què es compara. I aquí hi ha una cosa que molta gent no descobreix mai: no cal que sigui un valor escrit a mà.</p>
+          </li>
+        </ol>
+
+        <h3>Les quatre pestanyes de comparació</h3>
+        <p>
+          Al costat de <span class="ui">Valor</span> hi ha unes pestanyes que
+          determinen <em>amb què</em> es compara el camp:
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption>Contra què es pot comparar un camp</caption>
+            <thead>
+              <tr><th>Pestanya</th><th>Compara el camp amb</th><th>Quan es fa servir</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="ui">Valor</span></td><td>Un valor o diversos que escriviu.</td><td>El cas normal.</td></tr>
+              <tr><td><span class="ui">Columna</span></td><td>Un altre camp de la taula.</td><td>Comparar dues dates entre elles, per exemple.</td></tr>
+              <tr><td><span class="ui">Expressió</span></td><td>Una fórmula o un paràmetre.</td><td>És la via dels paràmetres. Unitats 16 i 17.</td></tr>
+              <tr><td><span class="ui">Consulta</span></td><td>El resultat d'una altra consulta ja creada.</td><td>Filtrar per una llista que surt d'una altra consulta.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Els botons de la part inferior</h3>
+        <div class="table-wrap">
+          <table>
+            <caption>Botons del quadre de diàleg Criteris</caption>
+            <thead>
+              <tr><th>Botó</th><th>Què fa</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="ui">D'acord</span></td><td>Guarda els criteris establerts i torna a la consulta.</td></tr>
+              <tr><td><span class="ui">Cancel·la</span></td><td>Anul·la les modificacions fetes des de la darrera acceptació.</td></tr>
+              <tr><td><span class="ui">Nou</span></td><td>Duplica el camp per establir-hi un segon criteri.</td></tr>
+              <tr><td><span class="ui">Suprimeix</span></td><td>Elimina el criteri seleccionat.</td></tr>
+              <tr><td><span class="ui">Paràmetres</span></td><td>Obre la definició de paràmetres. Unitat 16.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Els botons del marge dret</h3>
+        <p>
+          Actuen sobre la llista de criteris ja definits, que apareix al panell
+          <span class="ui">Camps</span> de la part inferior. Aquest panell es llegeix
+          com la condició que s'aplicara de veritat, i es va omplint sol a mesura que
+          definiu criteris.
+        </p>
+        <ul>
+          <li><strong>NOT</strong>: nega la condició establerta.</li>
+          <li>
+            <strong>Combina</strong> i <strong>No combinis</strong>: fan i desfan
+            agrupacions de criteris entre dos camps o més, tancant-los entre
+            parèntesis. És la clau de la unitat 7 i encara no cal fer-los servir.
+          </li>
+        </ul>
+        <div class="note">
+          <span class="label">Per què estan apagats</span>
+          <p>
+            <span class="ui">Combina</span> i <span class="ui">No combinis</span>
+            surten desactivats fins que no teniu <strong>dos criteris o més
+            seleccionats alhora</strong>. Si els veieu grisos, no és cap error: encara
+            no hi ha res per agrupar.
+          </p>
+        </div>
+      </section>
+
+      <section id="operadors">
+        <h2><span class="num">Apartat 4</span>La taula d'operadors</h2>
+        <p>
+          Triar l'operador adequat és el que fa que el resultat sigui correcte. Els
+          operadors es divideixen en tres famílies segons el tipus de camp: de
+          <strong>text</strong>, de <strong>número o data</strong>, i el cas especial
+          de <strong>nul</strong>.
+        </p>
+
+
+        <p>
+          La llista és <strong>simètrica</strong>: gairebé tot operador té el seu
+          contrari, format afegint-hi <strong>No</strong> al davant. Val la pena
+          adonar-se'n, perquè estalvia haver de negar condicions amb el botó
+          <span class="ui">NOT</span>.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Els vint operadors, per parelles</caption>
+            <thead>
+              <tr><th class="code">Afirmatiu</th><th class="code">Contrari</th><th>Què fa</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="code">=</td><td class="code">&lt;&gt;</td><td>Igual, o diferent, del valor indicat. Només per a <strong>un únic valor</strong>.</td></tr>
+              <tr><td class="code">&gt;</td><td class="code">-</td><td>Més gran que el valor indicat.</td></tr>
+              <tr><td class="code">&gt;=</td><td class="code">-</td><td>Més gran o igual. Clau per a la lògica de vigència de les unitats 13 i 14.</td></tr>
+              <tr><td class="code">&lt;</td><td class="code">-</td><td>Més petit que el valor indicat.</td></tr>
+              <tr><td class="code">&lt;=</td><td class="code">-</td><td>Més petit o igual. També clau per a la vigència.</td></tr>
+              <tr><td class="code">És nul</td><td class="code">No és nul</td><td>El camp no té cap valor. <strong>Només funciona als camps de data.</strong> Apartat 11.</td></tr>
+              <tr><td class="code">Entre</td><td class="code">No entre</td><td>Dins, o fora, del rang entre dos valors. El més còmode per a períodes.</td></tr>
+              <tr><td class="code">Llista</td><td class="code">No en la llista</td><td>Igual a qualsevol dels valors indicats, o a cap d'ells. Apartat 8.</td></tr>
+              <tr><td class="code">Comença per</td><td class="code">No comença per</td><td>Coincidència pel principi. Útil per a codis jeràrquics.</td></tr>
+              <tr><td class="code">Acaba per</td><td class="code">No acaba per</td><td>Coincidència pel final.</td></tr>
+              <tr><td class="code">Inclou</td><td class="code">No inclou</td><td>El text apareix en qualsevol posició. És la solució al problema dels camps buits de les unitats 9 i 18.</td></tr>
+              <tr><td class="code">Com</td><td class="code">No és com</td><td>Comparació per patró.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note ok">
+          <span class="label">Els contraris estalvien feina</span>
+          <p>
+            Tenir <span class="ui">No en la llista</span> vol dir que no cal enumerar
+            tot el que voleu: podeu enumerar el que <em>no</em> voleu, que sovint són
+            tres valors en comptes de vint. A la unitat 8 és exactament així com
+            s'obtenen els llocs vigents.
+          </p>
+        </div>
+
+        <figure>
+          <img src="img/cap_operadors.png" alt="Desplegable Operadors obert amb els vint operadors, i el panell Camps amb un criteri NOT IN.">
+          <figcaption>
+            El desplegable sencer. Vint operadors en dos blocs: primer els afirmatius, després els seus contraris.
+          </figcaption>
+        </figure>
+
+        <figure>
+          <img src="img/finestra_criteris_real.png" alt="Finestra Criteris del Click &amp; Decide amb el desplegable d'operadors obert: els vint operadors, primer els sis símbols de comparació i després els de text i els seus contraris.">
+          <figcaption>
+            La finestra tal com és. A l'esquerra <b>Columnes</b>, al mig
+            <b>Operadors</b> amb la llista sencera desplegada, i a la dreta el
+            quadre del valor amb les pestanyes <b>Valor</b>, <b>Columna</b>,
+            <b>Expressió</b> i <b>Consulta</b>. A baix, el panell <b>Camps</b>
+            va acumulant els criteris. Els sis primers operadors surten com a
+            símbols, no com a paraules.
+            <span class="font">Videotutorial 6 de l'EAPC, minut 3:15.</span>
+          </figcaption>
+        </figure>
+
+        <figure>
+          <img src="img/operadors_criteri.png" alt="Esquema dels operadors de criteri agrupats per tipus: bàsics, numèrics i de data, i de text.">
+          <figcaption>
+            Els mateixos operadors agrupats per família. Compte: la llista que ofereix
+            el programa és <strong>idèntica per a tots els tipus de camp</strong>. Qui
+            us ha de dir quins tenen sentit és el tipus del camp, no la interfície.
+          </figcaption>
+        </figure>
+
+        <div class="note">
+          <span class="label">Per què importa tant l'operador</span>
+          <p>
+            L'operador <code>=</code> només serveix si busqueu <strong>un</strong>
+            valor. Si el que voleu és "interins o laborals temporals", posar-hi dos
+            criteris amb <code>=</code> units per AND no torna res, perquè ningú pot
+            ser les dues coses alhora. L'operador correcte és
+            <span class="ui">Llista</span>.
+          </p>
+        </div>
+      </section>
+
+      <section id="codi">
+        <h2><span class="num">Apartat 5</span>La regla d'or: filtreu per codi</h2>
+        <p>
+          A la unitat 4 vam veure que molts conceptes tenen dos camps: un de codi i un
+          de descripció. Ara toca la regla, i és la recomanació que més es repeteix a
+          tot el material oficial:
+        </p>
+
+        <div class="note ok">
+          <span class="label">Regla d'or</span>
+          <p>
+            El videotutorial la diu així: "sempre que vulguem aplicar filtres, ho fem
+            des dels camps que contenen la <strong>codificació</strong> i no pas des
+            dels camps que contenen la <strong>descripció</strong>". Els primers tenen
+            valors curts i tancats; els segons són text lliure.
+          </p>
+        </div>
+
+        <div class="versus">
+          <div class="no">
+            <h4>Fràgil</h4>
+            <div class="criteri">PLRC_VINCLE_DESC <span class="op">=</span> 'Interí'</div>
+            <p>Depèn de com estigui escrit exactament: accents, majúscules, espais de farciment, apòstrofs.</p>
+          </div>
+          <div class="si">
+            <h4>Robust</h4>
+            <div class="criteri">PLRC_VINCLE_CODI <span class="op">=</span> 'I'</div>
+            <p>Un sol caràcter, d'un conjunt tancat i documentat al PDF de la taula.</p>
+          </div>
+        </div>
+
+        <p>Els motius, tots quatre ja apareguts al curs:</p>
+        <ul>
+          <li>
+            <strong>Els espais de farciment.</strong> Un camp de text s'omple amb
+            espais fins a la seva longitud. Una descripció llarga és més exposada a
+            aquest problema que un codi d'un caràcter. Unitat 4.
+          </li>
+          <li>
+            <strong>Els apòstrofs.</strong> En triar del desplegable un valor com
+            <code>L'Hospitalet de Llobregat</code>, el programa de vegades
+            <strong>elimina l'apòstrof</strong> i la consulta torna zero registres.
+            Unitat 18.
+          </li>
+          <li>
+            <strong>Les majúscules.</strong> El valor s'ha d'escriure respectant
+            majúscules i minúscules.
+          </li>
+          <li>
+            <strong>Les errades d'escriptura.</strong> Escriure <code>Interi</code> per
+            <code>Interí</code> torna zero registres i no dóna cap avís.
+          </li>
+        </ul>
+
+        <div class="note warn">
+          <span class="label">I si no sé quins codis existeixen?</span>
+          <p>
+            Dues vies. La primera, el <strong>PDF de la taula</strong> a la intranet,
+            que és on estan documentats. La segona, fer una consulta de
+            <strong>registres únics</strong> sobre aquell camp per veure quins valors
+            hi ha realment: és exactament el que farem a la unitat 11, i és la manera
+            més ràpida de descobrir la codificació d'un camp que no té descripció.
+          </p>
+        </div>
+      </section>
+
+      <section id="exemple">
+        <h2><span class="num">Apartat 6</span>Exemple pas a pas</h2>
+        <p>Objectiu: obtenir només el personal interí de la taula de persones.</p>
+
+        <ol class="steps">
+          <li>
+            <h3>Localitzeu el camp</h3>
+            <p>
+              A la llista de camps, busqueu <code>PLRC_VINCLE_CODI</code>. Recordeu el
+              truc de fer clic a la capçalera de la columna a la graella.
+            </p>
+          </li>
+          <li>
+            <h3>Obriu la finestra</h3>
+            <p>Clic a la casella de la columna de la lupa, a la línia d'aquell camp.</p>
+          </li>
+          <li>
+            <h3>Deixeu l'operador a Igual</h3>
+            <p>Busquem un únic valor, així que <code>=</code> és correcte.</p>
+          </li>
+          <li>
+            <h3>Escriviu el valor</h3>
+            <p>
+              A la caixa <span class="ui">Valor</span>, escriviu <code>I</code>
+              <strong>en majúscula</strong>. Cal respectar exactament majúscules i
+              minúscules.
+            </p>
+          </li>
+          <li>
+            <h3>Accepteu i executeu</h3>
+            <p>
+              <span class="ui">D'acord</span>, i després
+              <span class="ui">Executar</span>. Mireu el nombre de registres de la
+              cantonada inferior dreta: ha d'haver baixat molt.
+            </p>
+          </li>
+        </ol>
+
+        <div class="criteri">PLRC_VINCLE_CODI <span class="op">=</span> 'I'   <span class="cm">-- personal interi</span></div>
+
+        <div class="note">
+          <span class="label">El número és la comprovació</span>
+          <p>
+            Si el nombre de registres <strong>no baixa</strong>, el criteri no s'ha
+            aplicat. Si cau a <strong>zero</strong>, el valor està mal escrit o
+            l'operador no és l'adequat. Aquestes dues lectures us estalviaran molt
+            temps a partir d'ara.
+          </p>
+        </div>
+      </section>
+
+      <section id="modificar">
+        <h2><span class="num">Apartat 7</span>Modificar un criteri</h2>
+        <p>
+          Per canviar un filtre ja posat, per exemple per buscar ara laborals temporals
+          amb codi <code>M</code>, no cal tornar a la llista de camps:
+        </p>
+        <div class="path">
+          Botó de la <strong>lupa</strong> de la barra d'eines
+          <span class="sep">&rarr;</span> seleccioneu la fila del criteri
+          <span class="sep">&rarr;</span> canvieu el valor
+          <span class="sep">&rarr;</span> <span class="ui">D'acord</span>
+          <span class="sep">&rarr;</span> <span class="ui">Executar</span>
+        </div>
+        <figure>
+          <img src="img/modificar_eliminar_criteris.png" alt="Modificació i eliminació de criteris des de la finestra Criteris oberta amb el botó de la barra d'eines.">
+          <figcaption>
+            La finestra oberta des de la barra d'eines mostra tots els criteris
+            aplicats, i és des d'on es modifiquen i s'eliminen.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="llista">
+        <h2><span class="num">Apartat 8</span>L'operador Llista</h2>
+        <p>
+          Quan voleu diversos valors del mateix camp, per exemple els interins
+          <strong>i</strong> els laborals temporals, l'operador correcte és
+          <span class="ui">Llista</span>.
+        </p>
+        <ol class="steps">
+          <li>
+            <h3>Canvieu l'operador</h3>
+            <p>De <code>=</code> a <span class="ui">Llista</span>.</p>
+          </li>
+          <li>
+            <h3>Escriviu els valors, un per línia</h3>
+            <p>
+              Escriviu <code>M</code> i premeu <kbd>Retorn</kbd>. A sota, escriviu
+              <code>I</code> i premeu <kbd>Retorn</kbd>. Han de quedar tots dos
+              llistats.
+            </p>
+          </li>
+          <li>
+            <h3>Accepteu i executeu</h3>
+            <p>
+              El resultat inclou els registres que compleixen
+              <strong>qualsevol</strong> de les condicions.
+            </p>
+          </li>
+        </ol>
+        <div class="criteri">PLRC_VINCLE_CODI <span class="op">Llista</span> ('I', 'M')
+
+<span class="cm">-- equival a: PLRC_VINCLE_CODI = 'I' OR PLRC_VINCLE_CODI = 'M'</span></div>
+        <div class="note">
+          <span class="label">L'operador contrari</span>
+          <p>
+            També existeix <span class="ui">No en la llista</span>, que exclou els
+            valors indicats en comptes d'incloure'ls. És l'operador amb què a la unitat
+            8 deixarem fora els llocs històrics i els previstos, i sovint és molt més
+            curt d'escriure que enumerar tot el que sí que voleu.
+          </p>
+        </div>
+              <p>
+          Els valors de la <b>Llista</b> s'escriuen <b>un a sota de l'altre</b>,
+          prement <b>Intro</b> després de cadascun. Si els poseu tots seguits a
+          la mateixa línia, el programa entendrà que busqueu un sol valor que
+          diu literalment això.
+        </p>
+</section>
+
+      <section id="nou">
+        <h2><span class="num">Apartat 9</span>Més d'un criteri al mateix camp</h2>
+        <p>
+          <span class="ui">Llista</span> serveix per a diversos valors iguals, però de
+          vegades cal aplicar <strong>condicions diferents</strong> sobre el mateix
+          camp. El cas típic són les dates: que una data sigui posterior a una i, alhora,
+          anterior a una altra.
+        </p>
+        <div class="path">
+          Seleccioneu el camp <span class="sep">&rarr;</span>
+          botó <span class="ui">Nou</span> <span class="sep">&rarr;</span>
+          es duplica la línia per posar-hi la segona condició
+        </div>
+        <div class="note">
+          <span class="label">On es fa servir</span>
+          <p>
+            Aquest botó és imprescindible a les unitats 13 i 14, on una mateixa data de
+            fi ha de complir dues condicions alternatives: ser posterior a una data
+            <strong>o</strong> ser nul·la. Sense <span class="ui">Nou</span> no es pot
+            construir.
+          </p>
+        </div>
+        <figure>
+          <img src="img/exemples_filtratge.png" alt="Exemples de filtratge amb diferents operadors i combinacions de criteris.">
+          <figcaption>
+            Diferents maneres de filtrar el mateix camp segons què es vulgui obtenir.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="suprimir">
+        <h2><span class="num">Apartat 10</span>Suprimir un criteri</h2>
+        <div class="path">
+          Botó de la lupa <span class="sep">&rarr;</span>
+          seleccioneu el criteri <span class="sep">&rarr;</span>
+          <span class="ui">Suprimeix</span> <span class="sep">&rarr;</span>
+          <span class="ui">D'acord</span> <span class="sep">&rarr;</span>
+          <span class="ui">Executar</span>
+        </div>
+        <p>
+          En tornar a executar, la consulta mostra altre cop tots els registres de la
+          taula sense aquell filtre. És, un cop més, el nombre de registres el que us
+          confirma que s'ha aplicat.
+        </p>
+      </section>
+
+      <section id="nul">
+        <h2><span class="num">Apartat 11</span>El parany de "És nul"</h2>
+        <p>
+          Aquest apartat és curt i és el més important de la unitat. La documentació
+          oficial ho diu en una línia que passa desapercebuda:
+        </p>
+
+        <div class="note bad">
+          <span class="label">Llegiu-ho dues vegades</span>
+          <p>
+            L'operador <span class="ui">És nul</span> comprova que no hi hagi cap valor
+            al camp, però <strong>només funciona als camps de data</strong>.
+          </p>
+        </div>
+
+        <p>El motiu ja el sabeu de la unitat 4:</p>
+        <div class="versus">
+          <div class="no">
+            <h4>Camp de text buit</h4>
+            <p>
+              No està buit de veritat: Click &amp; Decide l'ha
+              <strong>omplert d'espais</strong> fins a la seva longitud. Tècnicament
+              no és nul.
+            </p>
+            <div class="criteri is-bad">RES_NIFPER <span class="op">És nul</span>
+<span class="bad">-- torna 0 registres, sempre</span></div>
+          </div>
+          <div class="si">
+            <h4>Camp de data buit</h4>
+            <p>
+              Una data no es pot farcir d'espais. Quan no hi ha data, el camp
+              <strong>sí que és nul</strong> de veritat.
+            </p>
+            <div class="criteri is-good">DATA_FI <span class="op">És nul</span>
+<span class="good">-- funciona: incidencia encara oberta</span></div>
+          </div>
+        </div>
+
+        <p>
+          Per als camps de text buits cal filtrar per l'espai en blanc. A la unitat 9
+          en veurem la primera aplicació i a la unitat 18, el matís que la completa:
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption>Com buscar un camp sense contingut</caption>
+            <thead>
+              <tr><th>Tipus de camp</th><th>Buscar-lo buit</th><th>Buscar-lo amb contingut</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Data</td>
+                <td><span class="ui">És nul</span></td>
+                <td><span class="ui">No és nul</span></td>
+              </tr>
+              <tr>
+                <td>Text</td>
+                <td><span class="ui">Inclou</span> un espai, o <span class="ui">Igual</span> a un espai segons el cas</td>
+                <td><span class="ui">Diferent</span> d'un espai</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="errors">
+        <h2><span class="num">Apartat 12</span>Errors freqüents</h2>
+        <div class="versus">
+          <div class="no">
+            <h4>El que passa</h4>
+            <p><strong>La consulta torna zero registres.</strong></p>
+            <p><strong>He posat dos criteris i no surt res.</strong></p>
+            <p><strong>El filtre no fa efecte.</strong></p>
+            <p><strong>Filtro per població i no en troba cap.</strong></p>
+          </div>
+          <div class="si">
+            <h4>El que passa de veritat</h4>
+            <p>Valor mal escrit, majúscula equivocada, o <span class="ui">És nul</span> sobre un camp de text.</p>
+            <p>Els criteris s'uneixen amb AND per defecte i busqueu dues coses incompatibles. Us cal <span class="ui">Llista</span>, o l'OR de la unitat 7.</p>
+            <p>No heu tornat a executar.</p>
+            <p>El programa ha esborrat l'apòstrof en triar el valor del desplegable. Unitat 18.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="exercicis">
+        <h2><span class="num">Apartat 13</span>Exercicis</h2>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-06-1</span>
+            <h3>Els interins</h3>
+            <span class="mena">Reprodueix</span>
+          </header>
+          <div class="cos">
+            <p>
+              Sobre <span class="tag persona">WAIV9010_PERSONA</span>, filtreu el
+              personal amb vincle interí. Anoteu el nombre de registres abans i
+              després d'aplicar el criteri.
+            </p>
+            <details>
+              <summary>Pista</summary>
+              <div class="dins">
+                <p>
+                  Camp de codi, no de descripció. Operador <code>=</code>, perquè és un
+                  únic valor. I la <code>I</code> va en majúscula.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>Comprovació</summary>
+              <div class="dins">
+                <div class="criteri">PLRC_VINCLE_CODI <span class="op">=</span> 'I'</div>
+                <p>
+                  El que heu de comprovar no és el número exacte, sinó que
+                  <strong>baixi</strong> respecte del total. Si es queda igual, el
+                  criteri no s'ha aplicat; si cau a zero, el valor està mal escrit.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-06-2</span>
+            <h3>Dos criteris que es maten</h3>
+            <span class="mena">Trenca</span>
+          </header>
+          <div class="cos">
+            <p>
+              Voleu els interins <strong>i també</strong> els laborals temporals
+              (codi <code>M</code>). Feu-ho primer malament, a propòsit:
+            </p>
+            <ol>
+              <li>Deixeu el criteri <code>= 'I'</code>.</li>
+              <li>
+                Amb el botó <span class="ui">Nou</span>, afegiu un segon criteri sobre
+                el mateix camp: <code>= 'M'</code>.
+              </li>
+              <li>Executeu i mireu el nombre de registres.</li>
+              <li>Ara feu-ho bé amb l'operador <span class="ui">Llista</span>.</li>
+            </ol>
+            <details>
+              <summary>Què hauria d'haver passat</summary>
+              <div class="dins">
+                <div class="criteri is-bad">PLRC_VINCLE_CODI = 'I' <span class="op">AND</span> PLRC_VINCLE_CODI = 'M'
+<span class="bad">-- 0 registres</span></div>
+                <p>
+                  Zero. Els criteris s'uneixen amb <strong>AND per defecte</strong>, i
+                  cap persona pot tenir dos vincles alhora. És la mateixa trampa que a
+                  la unitat 7 provocarà el cas dels alts càrrecs.
+                </p>
+                <div class="criteri is-good">PLRC_VINCLE_CODI <span class="op">Llista</span> ('I', 'M')
+<span class="good">-- ara si</span></div>
+                <p>
+                  Recordeu aquest zero: quan una consulta torna zero i els valors són
+                  correctes, sospiteu sempre de l'AND.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-06-3</span>
+            <h3>El camp que sempre torna zero</h3>
+            <span class="mena">Resol</span>
+          </header>
+          <div class="cos">
+            <p>
+              Us demanen la llista de llocs <strong>sense ningú que els tingui
+              reservats</strong>. Sabeu que el camp de la reserva és
+              <code>SIM_RESERVA_NIF</code>, de tipus text.
+            </p>
+            <p>
+              Un company ho ha intentat amb <span class="ui">És nul</span> i li torna
+              zero registres, tot i que hi ha llocs sense reserva. Per què, i com es
+              fa?
+            </p>
+            <details>
+              <summary>Pista</summary>
+              <div class="dins">
+                <p>Rellegiu l'apartat 11 i penseu de quin tipus és el camp.</p>
+              </div>
+            </details>
+            <details>
+              <summary>Solució</summary>
+              <div class="dins">
+                <p>
+                  <strong>Per què falla.</strong> És un camp de <strong>text</strong>,
+                  i els camps de text buits estan plens d'espais de farciment, no són
+                  nuls. <span class="ui">És nul</span> només funciona en camps de data,
+                  així que la condició no la compleix mai ningú.
+                </p>
+                <p>
+                  <strong>Com es fa.</strong> Filtrant per l'espai en blanc, prement la
+                  barra espaiadora a la caixa de valor:
+                </p>
+                <div class="criteri is-good">SIM_RESERVA_NIF <span class="op">Inclou</span> ' '</div>
+                <p>
+                  I al revés, per als llocs que <em>sí</em> que tenen reserva, l'operador
+                  és <span class="ui">Diferent</span> d'un espai. Aquesta és exactament
+                  la consulta de l'apartat de llocs reservats de la unitat 9.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="comprovacio">
+        <h2><span class="num">Apartat 14</span>Llista de comprovació</h2>
+        <ul class="checklist">
+          <li>Explicar què fa un criteri i per què no cal mostrar el camp filtrat.</li>
+          <li>Obrir la finestra <span class="ui">Criteris</span> pels dos camins i saber per a què serveix cadascun.</li>
+          <li>Llegir la finestra com a columna, operador i valor.</li>
+          <li>Dir amb què es pot comparar un camp, a banda d'un valor escrit.</li>
+          <li>Triar l'operador adequat entre igual, diferent, rangs, <span class="ui">Entre</span> i <span class="ui">Llista</span>.</li>
+          <li>Justificar per què s'ha de filtrar pel camp de codi i no pel de descripció.</li>
+          <li>Aplicar, modificar i suprimir un criteri.</li>
+          <li>Fer servir <span class="ui">Llista</span> i saber que existeix <span class="ui">No en la llista</span>.</li>
+          <li>Posar dues condicions sobre el mateix camp amb el botó <span class="ui">Nou</span>.</li>
+          <li>Explicar per què <span class="ui">És nul</span> torna zero registres en un camp de text.</li>
+          <li>Dir com es busca un camp buit segons si és de text o de data.</li>
+          <li>Interpretar el nombre de registres: no baixa, o cau a zero.</li>
+        </ul>
+        <div class="note">
+          <span class="label">A la unitat següent</span>
+          <p>
+            Ja sabeu posar criteris, però tots s'uneixen amb AND. La unitat 7 recorre
+            la taula de persones a fons i resol el cas que necessita OR i parèntesis:
+            alts càrrecs <em>o</em> subdireccions, però només del vostre departament.
+          </p>
+        </div>
+      </section>
+
+      <nav class="unit-nav">
+        <a class="prev" href="../05/">
+          <span class="dir">Unitat 05</span>
+          <span class="ttl">Ordenació dels resultats</span>
+        </a>
+        <a class="next" href="../07/">
+          <span class="dir">Unitat 07</span>
+          <span class="ttl">La taula de persones i la lògica AND / OR</span>
+        </a>
+      </nav>
+
+      <footer class="site-foot">
+        <span>Guia elaborada per <strong>Ismael Trascastro</strong></span>
+        <span class="dret">Sobre material de l'Escola d'Administració Pública de Catalunya</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<script src="../../assets/tutorial.js?v=3"></script>
+</body>
+</html>

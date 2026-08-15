@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ca" data-unit="10" data-root="../..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10 · Agrupacions, recomptes i agregats - Click &amp; Decide</title>
+<meta name="description" content="Els tres tipus de comptador, les funcions d'agregat sobre camps numerics i de data, i la regla dels camps de detall.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="prev" href="../09/">
+<link rel="next" href="../11/">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../../index.html">Click &amp; Decide <em>· Guia d'aprenentatge</em></a>
+    <nav>
+      <span class="position">Unitat 10 / 18</span>
+      <span data-unit-picker></span>
+      <a class="step-link" href="../../index.html">Índex</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+
+  <header class="unit-head">
+    <p class="eyebrow">Part III · Unitat 10</p>
+    <h1>Agrupacions, recomptes i agregats</h1>
+    <p class="lede">
+      Fins ara cada consulta tornava el detall: una fila per registre. Ara aprendrem a
+      resumir. És la unitat que dóna la resposta tècnica al
+      <strong>73 contra 48</strong> de la unitat 00, perquè Click &amp; Decide té
+      <strong>tres comptadors diferents</strong> i triar-ne un o altre canvia
+      completament la xifra que entregareu.
+    </p>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2>En aquesta unitat</h2>
+      <ol>
+        <li><a href="#detall">Detall contra resum</a></li>
+        <li><a href="#comptar">Fer un recompte</a></li>
+        <li><a href="#que-fa">Què fa el programa</a></li>
+        <li><a href="#tres">Els tres comptadors</a></li>
+        <li><a href="#segona">Afegir una segona variable</a></li>
+        <li><a href="#detall-regla">La regla dels camps de detall</a></li>
+        <li><a href="#numerics">Agregats sobre números</a></li>
+        <li><a href="#dates">Agregats sobre dates</a></li>
+        <li><a href="#errors">Errors freqüents</a></li>
+        <li><a href="#exercicis">Exercicis</a></li>
+        <li><a href="#comprovacio">Llista de comprovació</a></li>
+      </ol>
+      <dl class="sidebar-aside">
+        <dt>Objectiu</dt>
+        <dd>Resumir dades i saber quin comptador respon cada pregunta.</dd>
+        <dt>On es fa</dt>
+        <dd>Clic dret sobre el camp, o menú <span class="ui">Consulta</span>.</dd>
+        <dt>Consulta model</dt>
+        <dd>La número 4 de la unitat 00: 73 registres, 48 persones.</dd>
+      </dl>
+    </aside>
+
+    <main class="content">
+
+      <section id="detall">
+        <h2><span class="num">Apartat 1</span>Detall contra resum</h2>
+        <p>
+          Per defecte, les consultes de Click &amp; Decide són <strong>de
+          detall</strong>: cada registre que compleix els criteris apareix
+          individualitzat en una fila.
+        </p>
+        <div class="versus">
+          <div class="no">
+            <h4>Consulta de detall</h4>
+            <div class="criteri">Unitat A    Marta Alsina
+Unitat A    Jordi Bosch
+Unitat A    Laia Camps
+Unitat B    Pere Duran
+<span class="cm">... 190 files</span></div>
+            <p>Serveix per treballar amb els casos un per un.</p>
+          </div>
+          <div class="si">
+            <h4>Consulta agrupada</h4>
+            <div class="criteri">Unitat A    15
+Unitat B     8
+Unitat C    23
+<span class="cm">... 12 files</span></div>
+            <p>Serveix per veure la forma del conjunt.</p>
+          </div>
+        </div>
+        <p>
+          El pas d'una cosa a l'altra es fa amb els <strong>agregats</strong>, i no
+          canvia els criteris: la població és la mateixa, el que canvia és com es
+          presenta.
+        </p>
+      </section>
+
+      <section id="comptar">
+        <h2><span class="num">Apartat 2</span>Fer un recompte</h2>
+        <p>
+          Partim d'una consulta que mostra la unitat orgànica i el nom de la persona, i
+          volem saber quanta gent hi ha a cada unitat. Hi ha dos camins:
+        </p>
+        <div class="cards">
+          <div>
+            <h3>Pel menú</h3>
+            <p><span class="ui">Consulta</span> &rarr; <span class="ui">Insereix</span> &rarr; <span class="ui">Agregats</span> &rarr; <span class="ui">Compte</span></p>
+          </div>
+          <div>
+            <h3>Pel botó dret</h3>
+            <p>Clic dret sobre la <strong>capçalera del camp</strong> que voleu comptar &rarr; <span class="ui">Agregats</span> &rarr; <span class="ui">Compte</span>. És el camí ràpid.</p>
+          </div>
+        </div>
+        <div class="note">
+          <span class="label">Quin camp s'ha de comptar</span>
+          <p>
+            L'ideal és que el camp que feu servir com a comptador sigui un
+            <strong>identificador únic</strong> de cada registre: el NIF, el codi de
+            lloc. Comptar un camp que es pot repetir o quedar buit dóna xifres que
+            costen d'explicar.
+          </p>
+        </div>
+        <figure>
+          <img src="img/agrupacions_recompte.png" alt="Creació d'un recompte amb agregats: clic dret sobre el camp i opció Compte.">
+          <figcaption>
+            El camí ràpid per crear un recompte.
+          </figcaption>
+        </figure>
+              <p>
+          Hi ha dos camins i porten al mateix lloc. Pel menú:
+          <span class="ui">Consulta &gt; Insereix &gt; Agregats</span>. O bé,
+          més curt, posant-vos <b>a sobre del camp</b> que voleu agregar i
+          prement el <b>botó dret</b> &rarr; <span class="ui">Agregats</span>.
+          El segon és el que fareu sempre un cop us hi acostumeu.
+        </p>
+        <p>
+          El menú del botó dret no porta només els agregats. Hi trobareu, per
+          aquest ordre: <span class="ui">Criteri...</span>,
+          <span class="ui">Ordena</span>, <span class="ui">Selecciona</span>,
+          <span class="ui">Agrupa</span>, <span class="ui">Agregats</span>,
+          <span class="ui">Distinct Agregats</span>,
+          <span class="ui">Compte(*)</span> i
+          <span class="ui">Propietats</span>. És el camí curt per a gairebé tot
+          el que es fa amb un camp, i val la pena obrir-lo un cop per veure'l
+          sencer.
+        </p>
+</section>
+
+      <section id="que-fa">
+        <h2><span class="num">Apartat 3</span>Què fa el programa</h2>
+        <p>
+          En aplicar l'agregat passen dues coses alhora, i convé saber-les perquè si no
+          sembla que el programa s'hagi menjat el camp:
+        </p>
+        <ol class="steps">
+          <li>
+            <h3>Desselecciona el camp original</h3>
+            <p>
+              El camp que heu comptat, per exemple el nom de la persona,
+              <strong>deixa d'estar seleccionat</strong> per veure. Té sentit: si
+              agrupem, els noms individuals ja no hi caben.
+            </p>
+          </li>
+          <li>
+            <h3>Crea un camp nou al final</h3>
+            <p>
+              Apareix una columna nova, al final de la taula, que conté el recompte.
+            </p>
+          </li>
+        </ol>
+        <p>
+          En executar, el programa <strong>agrupa per les columnes restants</strong> i
+          mostra el total a la columna del recompte. Aquesta frase és la clau de tota
+          la unitat: <em>s'agrupa per tot el que queda seleccionat</em>.
+        </p>
+        <div class="note ok">
+          <span class="label">Consell de presentació</span>
+          <p>
+            Poseu sempre la columna del recompte <strong>a la dreta de tot</strong>.
+            Es llegeix molt millor: primer les categories, després el número. Es fa
+            arrossegant el camp a la graella inferior, com vam veure a la unitat 4.
+          </p>
+        </div>
+              <p>
+          Fixeu-vos en què passa a la graella quan hi apliqueu l'agregat: el
+          camp <b>desapareix</b> de la llista de camps triats i, al seu lloc,
+          <b>se n'afegeix un de nou al final</b>, el del recompte. No és que
+          s'hagi perdut: és que aquell camp ja no es mostra, ara es compta. Si
+          després hi afegiu una altra variable, deixeu sempre el recompte
+          <b>a la dreta</b>, que és com s'entén el resultat d'un cop d'ull.
+        </p>
+        <figure>
+          <img src="img/agrupacio_real.png" alt="Resultat d'una consulta agrupada: la columna UBIC_UN_ORGAN_CODI amb el codi de la unitat i la columna Count_PERS_NOM amb el recompte de cada una.">
+          <figcaption>
+            El resultat després d'agregar. Queda el camp pel qual s'agrupa i,
+            a la dreta, la columna nova del recompte, que el programa anomena
+            <code>Count_PERS_NOM</code>: el nom de l'agregat i el del camp que
+            s'ha comptat.
+            <span class="font">Videotutorial 10 de l'EAPC, minut 1:55.</span>
+          </figcaption>
+        </figure>
+
+</section>
+
+      <section id="tres">
+        <h2><span class="num">Apartat 4</span>Els tres comptadors</h2>
+        <p>
+          Aquest apartat és el més important de la unitat i el que més sovint es passa
+          per alt. Click &amp; Decide no té un comptador: en té tres, i responen
+          preguntes diferents.
+        </p>
+
+        <p>
+          Els tres estan al <strong>mateix menú del botó dret</strong>, un a sota de
+          l'altre, i és molt fàcil agafar-ne un per un altre:
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption>Els tres tipus de comptador, tal com surten al menú</caption>
+            <thead>
+              <tr><th>Al menú</th><th>Què compta</th><th>Pregunta que respon</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="ui">Agregats</span> &rarr; <span class="ui">Compte</span></td>
+                <td>Quants <strong>registres</strong> hi ha per a cada variable d'un camp.</td>
+                <td>Quantes files hi ha de cada categoria.</td>
+              </tr>
+              <tr>
+                <td><span class="ui">Distinct Agregats</span> &rarr; <span class="ui">Compte</span></td>
+                <td>Quantes <strong>variables diferents</strong> hi ha en un camp.</td>
+                <td>Quants valors distints hi ha.</td>
+              </tr>
+              <tr>
+                <td><span class="ui">Compte(*)</span></td>
+                <td>Comptador de <strong>registres</strong>, sense submenú.</td>
+                <td>Quantes files hi ha en total.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <figure>
+          <img src="img/cap_menu_agregats.png" alt="Menu del boto dret sencer amb Criteris, Ordena, Selecciona, Agrupa, Agregats, Distinct Agregats, Compte i Propietats, i el submenu d'Agregats desplegat amb les seves nou funcions.">
+          <figcaption>
+            El menú sencer. Els tres comptadors són tres línies consecutives, i el submenú d'<span class="ui">Agregats</span> té nou funcions.
+          </figcaption>
+        </figure>
+
+        <div class="note warn">
+          <span class="label">Estan a un centímetre l'un de l'altre</span>
+          <p>
+            Al menú del botó dret, <span class="ui">Agregats</span> i
+            <span class="ui">Distinct Agregats</span> són dues línies consecutives que
+            despleguen submenús gairebé idèntics, i just a sota hi ha
+            <span class="ui">Compte(*)</span>. Trieu-lo amb calma: la diferència entre
+            el primer i el segon és la diferència entre 73 i 48.
+          </p>
+        </div>
+
+        <h3>El cas que ho aclareix tot</h3>
+        <p>
+          Torneu a la consulta model 4 de la unitat 00, sobre
+          <span class="tag incidencia">INCIDÈNCIA</span>, que és de registres
+          múltiples. Una persona amb tres baixes hi surt tres vegades.
+        </p>
+        <div class="versus">
+          <div class="no">
+            <h4>Compte de registres</h4>
+            <div class="criteri">Compte(*)  <span class="cm">sobre INCIDENCIA</span></div>
+            <p class="resposta"><b>73</b> incidències</p>
+            <p>Correcte si us han preguntat quants <strong>processos</strong> hi ha hagut.</p>
+          </div>
+          <div class="si">
+            <h4>Compte de valors distints</h4>
+            <div class="criteri">Distinct agregats - compte  <span class="cm">sobre PERS_NIF</span></div>
+            <p class="resposta"><b>48</b> persones</p>
+            <p>Correcte si us han preguntat quanta <strong>gent</strong> hi ha hagut.</p>
+          </div>
+        </div>
+        <div class="note bad">
+          <span class="label">On es trenquen els informes</span>
+          <p>
+            En una taula de <strong>registre únic</strong> com PERSONA, els tres
+            comptadors sobre el NIF donen pràcticament el mateix, i per això molta gent
+            no descobreix mai que són diferents. El dia que apliquen el mateix reflex a
+            una taula de <strong>registres múltiples</strong>, la xifra queda inflada i
+            res no avisa.
+          </p>
+        </div>
+      </section>
+
+      <section id="segona">
+        <h2><span class="num">Apartat 5</span>Afegir una segona variable</h2>
+        <p>
+          Com que el programa agrupa per tot el que queda seleccionat, afegir una
+          columna més desglossa el recompte automàticament.
+        </p>
+        <div class="versus">
+          <div class="si">
+            <h4>Una variable</h4>
+            <div class="criteri">Unitat A    15
+Unitat B     8</div>
+          </div>
+          <div class="si">
+            <h4>Dues variables</h4>
+            <div class="criteri">Unitat A   F    12
+Unitat A   I     3
+Unitat B   F     8</div>
+          </div>
+        </div>
+        <p>
+          Afegint el tipus de vincle es veu quants funcionaris i quants interins hi ha
+          a cada unitat. La suma per unitat continua sent la mateixa; el que canvia és
+          el nivell de detall.
+        </p>
+        <figure>
+          <img src="img/segona_variable_agrupacio.png" alt="Efecte d'afegir una segona variable a una consulta amb recompte: el resultat es desglossa.">
+          <figcaption>
+            Cada columna que afegiu parteix el recompte en més files.
+          </figcaption>
+        </figure>
+        <div class="note warn">
+          <span class="label">L'avís del material oficial</span>
+          <p>
+            Si afegiu més camps i torneu a executar, <strong>el resultat canvia</strong>
+            adaptant-se a la nova informació. Cal anar amb compte de no afegir camps que
+            no interessin per al càlcul, perquè poden distorsionar el resultat final.
+          </p>
+        </div>
+              <p>
+          L'exemple del vídeo agrupa per <code>UBIC_UN_ORGAN_CODI</code>, el
+          codi de la unitat orgànica, i hi afegeix
+          <code>PLRC_VINCLE_DESC</code> com a segona variable: així, en comptes
+          de quanta gent hi ha a cada unitat, s'obté quanta n'hi ha
+          <b>de cada vincle dins de cada unitat</b>. Cada camp que hi afegiu
+          parteix més els grups, i el recompte es reparteix.
+        </p>
+</section>
+
+      <section id="detall-regla">
+        <h2><span class="num">Apartat 6</span>La regla dels camps de detall</h2>
+        <p>
+          És la conseqüència directa de l'apartat anterior, i és el motiu número u pel
+          qual una agrupació "no funciona".
+        </p>
+        <div class="note bad">
+          <span class="label">Regla</span>
+          <p>
+            Perquè l'agrupació resumeixi de veritat, cal
+            <strong>treure de la consulta qualsevol camp de detall únic</strong>, com
+            el nom o el NIF de la persona. Si el deixeu, el programa no pot agrupar,
+            perquè cada persona és diferent i cada grup té una sola fila.
+          </p>
+        </div>
+        <div class="versus">
+          <div class="no">
+            <h4>Amb el nom seleccionat</h4>
+            <div class="criteri is-bad">Unitat A   Marta Alsina   1
+Unitat A   Jordi Bosch    1
+Unitat A   Laia Camps     1
+<span class="bad">-- 190 files, no s'ha agrupat res</span></div>
+          </div>
+          <div class="si">
+            <h4>Sense el nom</h4>
+            <div class="criteri is-good">Unitat A   15
+Unitat B    8
+<span class="good">-- 12 files, agrupat</span></div>
+          </div>
+        </div>
+        <p>
+          Si veieu una columna de recompte plena d'uns, ja sabeu què passa: hi ha un
+          camp de detall a la consulta.
+        </p>
+      </section>
+
+      <section id="numerics">
+        <h2><span class="num">Apartat 7</span>Agregats sobre números</h2>
+        <p>
+          Sobre un camp numèric, com l'edat, les opcions s'amplien: ja no només es pot
+          comptar, sinó fer operacions matemàtiques.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption>Agregats disponibles en camps numèrics</caption>
+            <thead>
+              <tr><th>Agregat</th><th>Resultat</th><th>Exemple d'ús</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="ui">Mínim</span></td><td>El valor més petit.</td><td>La persona més jove del grup.</td></tr>
+              <tr><td><span class="ui">Màxim</span></td><td>El valor més gran.</td><td>La persona de més edat del grup.</td></tr>
+              <tr><td><span class="ui">Suma</span></td><td>La suma de tots els valors.</td><td>Té sentit en imports; sumar edats no en té cap.</td></tr>
+              <tr><td><span class="ui">Mitjana</span></td><td>La mitjana del grup.</td><td>Edat mitjana per unitat orgànica.</td></tr>
+              <tr><td><span class="ui">Desviació estàndard</span></td><td>La dispersió de la mostra.</td><td>Com de repartides estan les edats.</td></tr>
+              <tr><td><span class="ui">Desviació estàndard de la població</span></td><td>El mateix, calculat sobre la població sencera.</td><td>Si el grup <em>és</em> tota la població, no una mostra.</td></tr>
+              <tr><td><span class="ui">Variança</span></td><td>El quadrat de la desviació.</td><td>Estadística.</td></tr>
+              <tr><td><span class="ui">Variança de la població</span></td><td>El mateix, sobre la població sencera.</td><td>Estadística.</td></tr>
+              <tr><td><span class="ui">Compte</span></td><td>Quants valors hi ha.</td><td>Quantes persones tenen l'edat informada.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">
+          <span class="label">Les quatre estadístiques</span>
+          <p>
+            Desviació estàndard i variança apareixen cadascuna dues vegades, en versió
+            <em>de mostra</em> i <em>de població</em>. La distinció importa si feu
+            estadística de veritat; per a la feina habitual d'explotació de dades, amb
+            mínim, màxim, mitjana i compte en teniu prou.
+          </p>
+        </div>
+        <figure>
+          <img src="img/agregats_numerics.png" alt="Opcions d'agregat sobre un camp numèric: mitjana, mínim, màxim, suma i compte.">
+          <figcaption>
+            Les opcions que apareixen en fer clic dret sobre un camp numèric.
+          </figcaption>
+        </figure>
+        <div class="note">
+          <span class="label">Recordeu la regla</span>
+          <p>
+            També aquí cal treure els camps de detall. Si deixeu el nom de la persona,
+            la "mitjana" de cada grup serà l'edat d'aquella persona, cosa que és
+            certa i completament inútil.
+          </p>
+        </div>
+              <p>
+          Aquí hi ha un pas que costa d'acceptar la primera vegada: per obtenir
+          la mitjana d'edat d'un grup, cal <b>esborrar</b> el camp del nom.
+          Mentre el nom hi sigui, cada persona forma el seu propi grup i la
+          mitjana de cadascú és la seva pròpia edat. L'agregació només té sentit
+          sobre el que queda després de treure el que és únic de cada fila.
+        </p>
+</section>
+
+      <section id="dates">
+        <h2><span class="num">Apartat 8</span>Agregats sobre dates</h2>
+        <p>
+          Els camps de data també admeten agregats, amb un sentit cronològic que els fa
+          molt útils:
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption>Agregats sobre camps de data</caption>
+            <thead>
+              <tr><th>Agregat</th><th>Resultat</th><th>Exemple d'ús</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="ui">Mínim</span></td><td>La data més antiga.</td><td>Qui fa més temps que hi és.</td></tr>
+              <tr><td><span class="ui">Màxim</span></td><td>La data més recent.</td><td>La darrera incorporació que hi ha hagut al departament.</td></tr>
+              <tr><td><span class="ui">Compte</span></td><td>Quantes dates hi ha informades.</td><td>Quants registres tenen la data plena.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <figure>
+          <img src="img/agregats_dates.png" alt="Agregats sobre un camp de data: compte, mínim i màxim, amb el seu sentit cronològic.">
+          <figcaption>
+            Sobre dates, mínim vol dir més antiga i màxim vol dir més recent.
+          </figcaption>
+        </figure>
+        <div class="note ok">
+          <span class="label">Una aplicació que val or</span>
+          <p>
+            <span class="ui">Compte</span> sobre un camp de data serveix per mesurar
+            la <strong>qualitat de les dades</strong>. Si una unitat té 40 persones i
+            només 31 tenen la data informada, teniu nou registres incomplets i ho
+            sabeu abans que us ho digui ningú.
+          </p>
+        </div>
+              <p>
+          El cas del vídeo és clar: amb <code>PERS_DATA_INGRES</code>, el
+          <b>màxim</b> és la <b>data d'ingrés més recent</b> del grup, és a dir,
+          l'última persona que hi ha entrat, i el mínim és la primera. Sobre una
+          data el menú només ofereix compte, mínim i màxim: sumar dates o
+          fer-ne la mitjana no vol dir res, i per això no hi són.
+        </p>
+</section>
+
+      <section id="errors">
+        <h2><span class="num">Apartat 9</span>Errors freqüents</h2>
+        <div class="versus">
+          <div class="no">
+            <h4>El que passa</h4>
+            <p><strong>La columna de recompte està plena d'uns.</strong></p>
+            <p><strong>El total no quadra amb el nombre de persones.</strong></p>
+            <p><strong>He afegit una columna i han sortit més files.</strong></p>
+            <p><strong>Ha desaparegut el camp que volia comptar.</strong></p>
+          </div>
+          <div class="si">
+            <h4>El que passa de veritat</h4>
+            <p>Hi ha un camp de detall seleccionat. Traieu-lo.</p>
+            <p>Esteu comptant registres en una taula de registres múltiples. Us cal el comptador de valors distints.</p>
+            <p>Normal: s'agrupa per tot el que està seleccionat. Cada columna nova parteix els grups.</p>
+            <p>El programa el desselecciona en crear l'agregat. La columna nova és al final.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="exercicis">
+        <h2><span class="num">Apartat 10</span>Exercicis</h2>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-10-1</span>
+            <h3>Persones per unitat</h3>
+            <span class="mena">Reprodueix</span>
+          </header>
+          <div class="cos">
+            <p>
+              Sobre <span class="tag persona">PERSONA</span>, filtrant el personal en
+              actiu, obteniu quantes persones hi ha a cada unitat orgànica. Poseu la
+              columna del recompte a la dreta de tot.
+            </p>
+            <details>
+              <summary>Pista</summary>
+              <div class="dins">
+                <p>
+                  Seleccioneu la unitat orgànica i el NIF. Clic dret sobre el NIF,
+                  <span class="ui">Agregats</span>, <span class="ui">Compte</span>. I
+                  no deixeu cap camp de detall com el nom.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>Comprovació</summary>
+              <div class="dins">
+                <p>
+                  La <strong>suma</strong> de la columna de recompte ha de donar
+                  exactament el nombre de persones actives que vau obtenir a
+                  l'exercici EX-07-1.
+                </p>
+                <p class="resposta"><b>152</b> repartides entre les unitats</p>
+                <p>
+                  Aquesta comprovació és la millor manera de validar qualsevol
+                  agrupació: el total agregat ha de coincidir amb el detall.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-10-2</span>
+            <h3>73 no són 48</h3>
+            <span class="mena">Trenca</span>
+          </header>
+          <div class="cos">
+            <p>
+              Sobre <span class="tag incidencia">INCIDÈNCIA</span>, amb el filtre de
+              les incidències vigents al setembre, feu-ho de dues maneres:
+            </p>
+            <ol>
+              <li>Un recompte de registres.</li>
+              <li>Un recompte de valors distints del NIF.</li>
+            </ol>
+            <p>
+              Anoteu les dues xifres i penseu quina donaríeu a la pregunta "quanta gent
+              ha estat de baixa aquest setembre".
+            </p>
+            <details>
+              <summary>Comprovació</summary>
+              <div class="dins">
+                <p class="resposta"><b>73</b> registres <span>enfront de 48 persones</span></p>
+                <p>
+                  És la consulta model 4 de la unitat 00, i ara ja sabeu exactament
+                  quin botó produeix cada número. La resposta professional segueix sent
+                  la mateixa: <strong>48 persones en 73 incidències</strong>.
+                </p>
+                <p>
+                  Proveu també de comptar el NIF amb l'agregat normal en comptes del
+                  distint: veureu que torna 73, perquè compta files, no persones.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-10-3</span>
+            <h3>Retrat d'una unitat</h3>
+            <span class="mena">Resol</span>
+          </header>
+          <div class="cos">
+            <p>
+              Us demanen un quadre resum del personal en actiu amb, per a cada unitat
+              orgànica:
+            </p>
+            <ul>
+              <li>quanta gent hi ha,</li>
+              <li>l'edat mitjana,</li>
+              <li>la data d'incorporació més recent.</li>
+            </ul>
+            <p>Quins camps seleccioneu i quins agregats hi apliqueu?</p>
+            <details>
+              <summary>Solució</summary>
+              <div class="dins">
+                <div class="criteri is-good">Unitat organica        <span class="cm">-- camp d'agrupacio</span>
+PERS_NIF               <span class="cm">-- agregat: compte</span>
+PERS_EDAT              <span class="cm">-- agregat: mitjana</span>
+PERS_DATA_INGRES       <span class="cm">-- agregat: maxim</span>
+
+<span class="cm">criteri: IND_ACTIU = 'A'</span></div>
+                <p>
+                  <strong>El que no hi ha de ser:</strong> ni el nom ni cap altre camp
+                  de detall. Amb el nom seleccionat obtindríeu 152 files amb el
+                  recompte a 1, l'edat de cada persona com a "mitjana" i la seva pròpia
+                  data com a "màxim".
+                </p>
+                <p>
+                  <strong>Sobre la data:</strong> màxim vol dir la més recent, que és
+                  el que us han demanat. Si volguessin l'antiguitat de la unitat, seria
+                  mínim.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="comprovacio">
+        <h2><span class="num">Apartat 11</span>Llista de comprovació</h2>
+        <ul class="checklist">
+          <li>Explicar la diferència entre una consulta de detall i una d'agrupada.</li>
+          <li>Crear un recompte pels dos camins, menú i botó dret.</li>
+          <li>Saber què fa el programa amb el camp original i on apareix el nou.</li>
+          <li>Enunciar els tres comptadors i què compta cadascun.</li>
+          <li>Dir quin comptador cal per saber quanta gent hi ha en una taula de registres múltiples.</li>
+          <li>Explicar per què s'agrupa per tot el que queda seleccionat.</li>
+          <li>Reconèixer una columna de recompte plena d'uns i saber per què passa.</li>
+          <li>Aplicar mitjana, mínim, màxim i suma sobre camps numèrics.</li>
+          <li>Aplicar mínim i màxim sobre dates sabent què vol dir cadascun.</li>
+          <li>Validar una agrupació comprovant que el total quadra amb el detall.</li>
+        </ul>
+        <div class="note">
+          <span class="label">A la unitat següent</span>
+          <p>
+            Hi ha una altra manera d'eliminar repeticions que no és agrupar: la
+            propietat <span class="ui">Registres únics</span>. És curta, i és l'eina
+            que hem promès dues vegades per descobrir quins codis existeixen en un
+            camp.
+          </p>
+        </div>
+      </section>
+
+      <nav class="unit-nav">
+        <a class="prev" href="../09/">
+          <span class="dir">Unitat 09</span>
+          <span class="ttl">Tipus de pressupost, llocs ocupats i reservats</span>
+        </a>
+        <a class="next" href="../11/">
+          <span class="dir">Unitat 11</span>
+          <span class="ttl">Consultes de registres únics</span>
+        </a>
+      </nav>
+
+      <footer class="site-foot">
+        <span>Guia elaborada per <strong>Ismael Trascastro</strong></span>
+        <span class="dret">Sobre material de l'Escola d'Administració Pública de Catalunya</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<script src="../../assets/tutorial.js?v=3"></script>
+</body>
+</html>

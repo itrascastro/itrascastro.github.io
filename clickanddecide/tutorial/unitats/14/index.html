@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ca" data-unit="14" data-root="../..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>14 · Històric persona-lloc: WAIV9030 i WAIV9031 - Click &amp; Decide</title>
+<meta name="description" content="Reconstruir qui ocupava quin lloc en una data passada, i per que cal aplicar la logica de dates dues vegades.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="prev" href="../13/">
+<link rel="next" href="../15/">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../../index.html">Click &amp; Decide <em>· Guia d'aprenentatge</em></a>
+    <nav>
+      <span class="position">Unitat 14 / 18</span>
+      <span data-unit-picker></span>
+      <a class="step-link" href="../../index.html">Índex</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+
+  <header class="unit-head">
+    <p class="eyebrow">Part III · Unitat 14</p>
+    <h1>Històric persona-lloc: WAIV9030 i WAIV9031</h1>
+    <p class="lede">
+      La unitat més exigent del curs, i l'única manera de contestar preguntes que
+      comencen amb <em>"abans"</em>. Aquí es fa servir tot: registres múltiples,
+      lògica de solapament, <span class="ui">Nou</span> i
+      <span class="ui">Combina</span>. I hi ha un gir: la lògica de dates s'ha
+      d'aplicar <strong>dues vegades</strong>, i qui només l'aplica una obté files
+      duplicades sense entendre d'on surten.
+    </p>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2>En aquesta unitat</h2>
+      <ol>
+        <li><a href="#dues">Les dues taules</a></li>
+        <li><a href="#punter">Recordeu què és un punter</a></li>
+        <li><a href="#linies">Per què es multipliquen les línies</a></li>
+        <li><a href="#data">La data concreta del passat</a></li>
+        <li><a href="#primera">Primera lògica: l'ocupació</a></li>
+        <li><a href="#segona">Segona lògica: el lloc</a></li>
+        <li><a href="#rotacio">Rotació i històric</a></li>
+        <li><a href="#errors">Errors freqüents</a></li>
+        <li><a href="#exercicis">Exercicis</a></li>
+        <li><a href="#comprovacio">Llista de comprovació</a></li>
+      </ol>
+      <dl class="sidebar-aside">
+        <dt>Objectiu</dt>
+        <dd>Saber qui ocupava quin lloc, i com era aquell lloc, en una data passada.</dd>
+        <dt>Taules</dt>
+        <dd><span class="tag punterh">WAIV9030_PUNTERH</span> i <code>WAIV9031_PUNTERDEP</code></dd>
+        <dt>Càrrega</dt>
+        <dd>Setmanal.</dd>
+        <dt>Consulta model</dt>
+        <dd>La número 6 de la unitat 00: 24 llocs amb alta rotació.</dd>
+      </dl>
+    </aside>
+
+    <main class="content">
+
+      <section id="dues">
+        <h2><span class="num">Apartat 1</span>Les dues taules</h2>
+        <p>
+          Serveixen per extreure la informació històrica de totes les relacions entre
+          persones i llocs. Tenen <strong>exactament la mateixa estructura</strong> i
+          donen resultats diferents, igual que la parella de la unitat anterior.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption>Quina fer servir</caption>
+            <thead>
+              <tr><th class="code">Taula</th><th>Conté</th><th>Per estudiar</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code">WAIV9030<br>PUNTERH</td>
+                <td>Tots els punters dels <strong>llocs</strong> del vostre àmbit, vigents i històrics.</td>
+                <td>L'evolució històrica dels <strong>vostres llocs</strong>: qui els ha ocupat.</td>
+              </tr>
+              <tr>
+                <td class="code">WAIV9031<br>PUNTERDEP</td>
+                <td>Tots els punters de les <strong>persones</strong> del vostre àmbit, actives i inactives.</td>
+                <td>La trajectòria de la <strong>vostra gent</strong>, encara que hagi passat per altres departaments.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note ok">
+          <span class="label">La regla, per tercera vegada</span>
+          <p>
+            Acabada en <strong>0</strong>, segueix el <strong>lloc</strong>. Acabada en
+            <strong>1</strong>, segueix la <strong>persona</strong>. Val per a 9060 i
+            9061, i val per a 9030 i 9031.
+          </p>
+        </div>
+        <figure>
+          <img src="img/comparativa_waiv9030_waiv9031.png" alt="Comparativa entre WAIV9030_PUNTERH i WAIV9031_PUNTERDEP: mateixa estructura, universos diferents.">
+          <figcaption>
+            La mateixa estructura amb dos universos de dades.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="punter">
+        <h2><span class="num">Apartat 2</span>Recordeu què és un punter</h2>
+        <div class="note">
+          <span class="label">De la unitat 7</span>
+          <p>
+            Un <strong>punter</strong> és la relació entre una persona i un lloc durant
+            un període: qui ocupava què, des de quan i fins quan. No és la persona ni el
+            lloc: és el vincle entre tots dos.
+          </p>
+        </div>
+        <p>
+          Per això aquesta taula es diu així: conté <strong>tots</strong> els punters,
+          també els tancats. És l'única taula del curs que guarda el passat de la
+          relació persona-lloc. La taula de llocs, com vam veure a la unitat 8, no té
+          memòria.
+        </p>
+        <p>Hi trobareu:</p>
+        <ul>
+          <li>la ubicació <strong>actual</strong> de la persona i la <strong>històrica</strong>;</li>
+          <li>dades personals;</li>
+          <li>la relació contractual i la situació administrativa <em>durant l'ocupació</em>;</li>
+          <li>dades del punter: com ocupava el lloc i entre quines dates;</li>
+          <li>dades del lloc de treball <em>durant aquell període</em>.</li>
+        </ul>
+      </section>
+
+      <section id="linies">
+        <h2><span class="num">Apartat 3</span>Per què es multipliquen les línies</h2>
+        <p>
+          Aquesta és la particularitat que fa difícil la taula, i cal entendre-la abans
+          de construir cap consulta.
+        </p>
+        <div class="note bad">
+          <span class="label">Una línia per cada canvi</span>
+          <p>
+            Si la informació d'un lloc <strong>varia mentre una persona l'ocupa</strong>,
+            es creen <strong>tantes línies com variacions</strong> hagi tingut aquell
+            lloc. Un canvi de nivell, de localitat, de centre de treball o de tipus
+            d'horari: sigui quin sigui el canvi, genera una línia nova.
+          </p>
+          <p>
+            Si el lloc no ha canviat durant l'ocupació, només hi ha una línia.
+          </p>
+        </div>
+
+        <div class="versus">
+          <div class="no">
+            <h4>El que veieu</h4>
+            <div class="criteri">Lloc 12345  ALSINA  2019-2024  nivell 22
+Lloc 12345  ALSINA  2019-2024  nivell 24
+Lloc 12345  ALSINA  2019-2024  nivell 24
+
+<span class="cm">3 files</span></div>
+          </div>
+          <div class="si">
+            <h4>El que hi ha</h4>
+            <p><strong>Una sola ocupació</strong>, partida en tres trams perquè el lloc va canviar dues vegades mentre la mateixa persona l'ocupava.</p>
+            <p>Comptar aquestes files i dir que hi ha hagut tres ocupants és fals.</p>
+          </div>
+        </div>
+        <figure>
+          <img src="img/formacio_registres_historics.png" alt="Com es generen els registres històrics: una línia per cada variació del lloc durant l'ocupació.">
+          <figcaption>
+            Cada modificació del lloc parteix l'ocupació en una línia més.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="data">
+        <h2><span class="num">Apartat 4</span>La data concreta del passat</h2>
+        <p>
+          La pregunta típica: <em>quins llocs del meu àmbit estaven ocupats el 15 de
+          març de 2023, i com eren?</em>
+        </p>
+        <p>
+          La lògica és la mateixa del solapament de la unitat 13, però amb un període
+          d'un sol dia. Situeu-vos a la línia del temps: la data d'estudi és un punt, i
+          voleu els trams que el travessen.
+        </p>
+        <div class="note ok">
+          <span class="label">La regla, amb una sola data</span>
+          <ul>
+            <li>la <strong>data d'inici</strong> ha de ser <strong>anterior o igual</strong> a la data d'estudi;</li>
+            <li>la <strong>data de fi</strong> ha de ser <strong>posterior o igual</strong> a la data d'estudi;</li>
+            <li><strong>o bé</strong> la data de fi ha de ser <strong>nul·la</strong>, perquè encara dura.</li>
+          </ul>
+        </div>
+        <figure>
+          <img src="img/ocupacions_vigents_data_passat.png" alt="Esquema de la lògica de dates per obtenir les ocupacions vigents en una data concreta del passat.">
+          <figcaption>
+            La data d'estudi com a punt de la línia del temps, i els trams que la
+            travessen.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="primera">
+        <h2><span class="num">Apartat 5</span>Primera lògica: l'ocupació</h2>
+        <p>
+          Es construeix exactament igual que a la unitat 13, sobre les dates
+          <strong>del punter</strong>:
+        </p>
+        <div class="criteri is-good">Data inici del punter <span class="op">&lt;=</span> 15/03/2023
+<span class="op">AND</span> <span class="good">(</span>
+      Data fi del punter <span class="op">&gt;=</span> 15/03/2023
+   <span class="op">or</span>
+      Data fi del punter <span class="op">És nul</span>
+<span class="good">)</span></div>
+        <ol class="steps">
+          <li>
+            <h3>Criteri sobre la data d'inici</h3>
+            <p>Operador <code>&lt;=</code> i la data d'estudi.</p>
+          </li>
+          <li>
+            <h3>Criteri sobre la data de fi</h3>
+            <p>Operador <code>&gt;=</code> i la mateixa data.</p>
+          </li>
+          <li>
+            <h3>Dupliqueu amb Nou i poseu-hi És nul</h3>
+            <p>
+              Situeu-vos sobre el criteri de la data de fi, premeu
+              <span class="ui">Nou</span>, i a la línia nova poseu
+              <span class="ui">És nul</span>.
+            </p>
+          </li>
+          <li>
+            <h3>Combineu i canvieu a or</h3>
+            <p>
+              <kbd>Ctrl</kbd> per seleccionar les dues línies de data de fi,
+              <span class="ui">Combina</span>, i el connector interior a
+              <strong>or</strong>.
+            </p>
+          </li>
+        </ol>
+        <div class="note warn">
+          <span class="label">Si us aturéssiu aquí</span>
+          <p>
+            La consulta ja tornaria qui ocupava cada lloc aquell dia. Però tornaria
+            també <strong>totes les versions</strong> d'aquells llocs, perquè no heu dit
+            res sobre les dates de la informació del lloc. Sortirien files repetides per
+            a la mateixa persona i el mateix lloc.
+          </p>
+        </div>
+      </section>
+
+      <section id="segona">
+        <h2><span class="num">Apartat 6</span>Segona lògica: el lloc</h2>
+        <p>
+          Aquí està el gir de la unitat. Com que el que analitzeu és la situació
+          <strong>en una data concreta</strong>, també voleu que la informació del lloc
+          sigui la d'aquella data i no la de cap altre tram.
+        </p>
+        <div class="note ok">
+          <span class="label">Es repeteix el mateix, en uns altres camps</span>
+          <p>
+            Apliqueu <strong>exactament la mateixa lògica</strong> als camps de
+            <em>data d'inici</em> i <em>data de fi de la informació del lloc</em>:
+          </p>
+        </div>
+        <div class="criteri is-good"><span class="cm">-- ocupacio</span>
+Data inici punter <span class="op">&lt;=</span> 15/03/2023
+<span class="op">AND</span> <span class="good">(</span>Data fi punter <span class="op">&gt;=</span> 15/03/2023 <span class="op">or</span> Data fi punter <span class="op">És nul</span><span class="good">)</span>
+
+<span class="cm">-- informacio del lloc</span>
+<span class="op">AND</span> Lloc data inici informacio <span class="op">&lt;=</span> 15/03/2023
+<span class="op">AND</span> <span class="good">(</span>Lloc data fi informacio <span class="op">&gt;=</span> 15/03/2023 <span class="op">or</span> Lloc data fi informacio <span class="op">És nul</span><span class="good">)</span></div>
+        <p>
+          Quatre criteris i <strong>dos parèntesis</strong>. Cada parèntesi combina les
+          dues condicions d'un mateix camp de data de fi, i els dos blocs s'uneixen amb
+          AND.
+        </p>
+        <div class="note ok">
+          <span class="label">Què heu obtingut</span>
+          <p>
+            Exactament <strong>qui ocupava cada lloc del vostre àmbit aquell dia i amb
+            quines característiques tenia el lloc en aquell moment</strong>. Una fila
+            per lloc ocupat, sense duplicats.
+          </p>
+        </div>
+        <figure>
+          <img src="img/construccio_consulta_pas_a_pas.png" alt="Construcció pas a pas de la consulta amb la doble lògica de dates: ocupació i informació del lloc.">
+          <figcaption>
+            Les dues lògiques, una sobre les dates del punter i l'altra sobre les de la
+            informació del lloc.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="rotacio">
+        <h2><span class="num">Apartat 7</span>Rotació i històric</h2>
+        <p>
+          L'altre gran ús d'aquesta taula no és mirar un dia concret, sinó mirar
+          <strong>tot el període</strong>: quants ocupants diferents ha tingut cada
+          lloc.
+        </p>
+        <div class="recepta punterh">
+          <h3>Llocs amb alta rotació</h3>
+          <dl>
+            <div><dt>Per a què serveix</dt><dd>Detectar llocs que han tingut diversos ocupants, senyal que costa de cobrir o de retenir.</dd></div>
+            <div><dt>Taula</dt><dd><span class="tag punterh">WAIV9030_PUNTERH</span></dd></div>
+            <div><dt>Camps</dt><dd><code>LLOC_CODI</code> i <code>PERS_NIF</code></dd></div>
+            <div><dt>Agregat</dt><dd>Clic dret sobre el NIF &rarr; <span class="ui">Distinct Agregats</span> &rarr; <span class="ui">Compte</span></dd></div>
+            <div><dt>Criteri</dt><dd>Sobre el recompte, <code>&gt;= 3</code></dd></div>
+            <div><dt>Idea clau</dt><dd>Cal <strong>Distinct</strong>: sense ell comptaríeu línies, i ja sabeu que una sola ocupació en pot generar diverses.</dd></div>
+          </dl>
+          <p class="recepta-out"><b>24</b> llocs <span>amb alta rotació</span></p>
+        </div>
+        <div class="note bad">
+          <span class="label">Per què Distinct no és opcional aquí</span>
+          <p>
+            És la conseqüència directa de l'apartat 3. Si compteu NIF amb un
+            <span class="ui">Agregats</span> normal, un lloc ocupat per
+            <strong>una sola persona</strong> durant sis anys, amb tres canvis de
+            nivell, us surt amb un recompte de 3 i entra a la llista de "alta rotació".
+            El resultat és fals i sembla perfectament raonable.
+          </p>
+        </div>
+      </section>
+
+      <section id="errors">
+        <h2><span class="num">Apartat 8</span>Errors freqüents</h2>
+        <div class="versus">
+          <div class="no">
+            <h4>El que passa</h4>
+            <p><strong>Em surt la mateixa persona i el mateix lloc diverses vegades.</strong></p>
+            <p><strong>La rotació surt disparada.</strong></p>
+            <p><strong>Zero registres.</strong></p>
+            <p><strong>Falten les ocupacions que encara duren.</strong></p>
+            <p><strong>Busco la trajectòria d'un company i no hi surt sencera.</strong></p>
+          </div>
+          <div class="si">
+            <h4>El que passa de veritat</h4>
+            <p>Només heu aplicat la primera lògica. Us falten els criteris sobre les dates de la informació del lloc.</p>
+            <p>Compteu línies en comptes de persones distintes. Us cal <span class="ui">Distinct Agregats</span>.</p>
+            <p>Algun parèntesi té un AND a dins on hi hauria d'haver un or.</p>
+            <p>Us falta la condició <span class="ui">És nul</span> a alguna de les dues dates de fi.</p>
+            <p>Esteu a <code>WAIV9030</code>, que segueix els vostres llocs. Per seguir persones, <code>WAIV9031</code>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="exercicis">
+        <h2><span class="num">Apartat 9</span>Exercicis</h2>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-14-1</span>
+            <h3>Una foto del passat</h3>
+            <span class="mena">Reprodueix</span>
+          </header>
+          <div class="cos">
+            <p>
+              Sobre <span class="tag punterh">WAIV9030</span>, obteniu els llocs del
+              vostre àmbit que estaven ocupats en una data concreta del passat, amb les
+              característiques que tenia el lloc aquell dia.
+            </p>
+            <p>Munteu les dues lògiques de dates completes.</p>
+            <details>
+              <summary>Pista</summary>
+              <div class="dins">
+                <p>
+                  Quatre criteris i dos parèntesis. Cada parèntesi tanca les dues
+                  condicions d'un mateix camp de data de fi. Feu servir
+                  <span class="ui">Nou</span> dues vegades i
+                  <span class="ui">Combina</span> dues vegades.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>Comprovació</summary>
+              <div class="dins">
+                <p>
+                  Seleccioneu <code>LLOC_CODI</code> i <code>PERS_NIF</code> i mireu la
+                  graella: <strong>cap combinació de lloc i persona s'ha de repetir</strong>.
+                  Si se'n repeteix alguna, us falta la segona lògica.
+                </p>
+                <p>
+                  Comproveu també al panell <span class="ui">Camps</span> que hi ha
+                  <strong>dos</strong> parèntesis i que cadascun conté un
+                  <strong>or</strong>.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-14-2</span>
+            <h3>Treu la segona lògica</h3>
+            <span class="mena">Trenca</span>
+          </header>
+          <div class="cos">
+            <p>
+              Suprimiu els dos criteris sobre les dates de la informació del lloc i
+              torneu a executar.
+            </p>
+            <ol>
+              <li>Quants registres surten ara?</li>
+              <li>Busqueu un lloc que aparegui més d'una vegada. Què hi canvia entre les seves files?</li>
+            </ol>
+            <details>
+              <summary>Què hauria d'haver passat</summary>
+              <div class="dins">
+                <p>
+                  <strong>1.</strong> Surten més files, i totes són certes: cadascuna és
+                  una versió del lloc durant aquella ocupació.
+                </p>
+                <p>
+                  <strong>2.</strong> El NIF i les dates del punter són idèntics; el que
+                  canvia és alguna característica del lloc, com el nivell o la localitat,
+                  i les dates de la informació del lloc.
+                </p>
+                <p>
+                  Aquest és l'error que produeix informes amb la plantilla inflada. No
+                  falla res: simplement heu demanat totes les versions en comptes de la
+                  d'aquell dia.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-14-3</span>
+            <h3>Els llocs que no paren</h3>
+            <span class="mena">Resol</span>
+          </header>
+          <div class="cos">
+            <p>
+              Per a un informe de provisió us demanen els llocs del vostre àmbit que han
+              tingut <strong>tres o més ocupants diferents</strong>, i quants n'ha
+              tingut cadascun.
+            </p>
+            <details>
+              <summary>Solució</summary>
+              <div class="dins">
+                <div class="criteri is-good">Taula:  WAIV9030_PUNTERH
+Camps:  LLOC_CODI
+        PERS_NIF   <span class="cm">-- Distinct Agregats &gt; Compte</span>
+Criteri sobre el recompte: &gt;= 3
+Ordre:  pel recompte, descendent</div>
+                <p class="resposta"><b>24</b> llocs</p>
+                <p>
+                  <strong>Distinct és obligatori</strong>, i és tota la gràcia de
+                  l'exercici. Amb un agregat normal comptaríeu línies, i un lloc amb un
+                  únic ocupant de fa sis anys que hagi canviat tres vegades de nivell us
+                  sortiria com a lloc d'alta rotació.
+                </p>
+                <p>
+                  <strong>No cal cap lògica de dates</strong> aquí: no mireu un moment
+                  concret, mireu tot l'històric. Les dates només calen quan pregunteu
+                  per una data.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="comprovacio">
+        <h2><span class="num">Apartat 10</span>Llista de comprovació</h2>
+        <ul class="checklist">
+          <li>Triar entre <code>WAIV9030</code> i <code>WAIV9031</code> segons l'encàrrec.</li>
+          <li>Explicar què és un punter sense mirar la unitat 7.</li>
+          <li>Explicar per què una ocupació pot ocupar diverses línies.</li>
+          <li>Enunciar la lògica de dates per a una data concreta.</li>
+          <li>Construir la lògica de l'ocupació amb <span class="ui">Nou</span> i <span class="ui">Combina</span>.</li>
+          <li>Saber per què cal aplicar-la una segona vegada sobre les dates del lloc.</li>
+          <li>Comprovar el resultat verificant que cap parella de lloc i persona es repeteix.</li>
+          <li>Muntar la consulta de rotació amb <span class="ui">Distinct Agregats</span>.</li>
+          <li>Explicar per què sense <span class="ui">Distinct</span> la rotació surt inflada.</li>
+          <li>Saber quan cal lògica de dates i quan no.</li>
+        </ul>
+        <div class="note">
+          <span class="label">Fi de la part III</span>
+          <p>
+            Amb aquesta unitat teniu totes les taules del curs i totes les tècniques de
+            consulta. La part IV tracta de què fer després: treure les dades del
+            programa, fer que les consultes preguntin, i el repàs dels errors que fan
+            perdre més temps.
+          </p>
+        </div>
+      </section>
+
+      <nav class="unit-nav">
+        <a class="prev" href="../13/">
+          <span class="dir">Unitat 13</span>
+          <span class="ttl">Incidències: WAIV9060 i WAIV9061</span>
+        </a>
+        <a class="next" href="../15/">
+          <span class="dir">Unitat 15</span>
+          <span class="ttl">Exportació de la informació</span>
+        </a>
+      </nav>
+
+      <footer class="site-foot">
+        <span>Guia elaborada per <strong>Ismael Trascastro</strong></span>
+        <span class="dret">Sobre material de l'Escola d'Administració Pública de Catalunya</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<script src="../../assets/tutorial.js?v=3"></script>
+</body>
+</html>

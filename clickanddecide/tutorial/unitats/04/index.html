@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="ca" data-unit="04" data-root="../..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>04 · Creació bàsica d'una consulta - Click &amp; Decide</title>
+<meta name="description" content="Origen de dades, selecció de taula i camps, prefixos, longituds i farciment amb espais, capçaleres, execució i desament.">
+<link rel="stylesheet" href="../../assets/styles.css">
+<link rel="prev" href="../03/">
+<link rel="next" href="../05/">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="../../index.html">Click &amp; Decide <em>· Guia d'aprenentatge</em></a>
+    <nav>
+      <span class="position">Unitat 04 / 18</span>
+      <span data-unit-picker></span>
+      <a class="step-link" href="../../index.html">Índex</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+
+  <header class="unit-head">
+    <p class="eyebrow">Part I · Unitat 04</p>
+    <h1>Creació bàsica d'una consulta</h1>
+    <p class="lede">
+      La unitat més llarga del curs, i la que més es fa servir. Aquí es construeix
+      la primera consulta de veritat: triar l'origen de dades, obrir una taula,
+      entendre com s'anomenen els camps, escollir-los, executar i desar. Al final hi
+      ha un detall aparentment menor - que Click &amp; Decide farceix el text amb
+      espais - que serà la causa de la meitat dels problemes de les unitats 9 i 18.
+    </p>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2>En aquesta unitat</h2>
+      <ol>
+        <li><a href="#crear">Crear la consulta</a></li>
+        <li><a href="#pestanyes">Les tres pestanyes</a></li>
+        <li><a href="#origen">L'origen de dades</a></li>
+        <li><a href="#taula">Seleccionar la taula</a></li>
+        <li><a href="#persona">Què conté WAIV9010_PERSONA</a></li>
+        <li><a href="#prefixos">Els prefixos dels camps</a></li>
+        <li><a href="#tipus">Tipus, longitud i espais</a></li>
+        <li><a href="#columnes">Les tres columnes de control</a></li>
+        <li><a href="#seleccionar">Seleccionar i ordenar columnes</a></li>
+        <li><a href="#capcalera">Canviar la capçalera</a></li>
+        <li><a href="#ocult">Camps ocults</a></li>
+        <li><a href="#executar">Executar la consulta</a></li>
+        <li><a href="#desar">Desar-la i recuperar-la</a></li>
+        <li><a href="#sql">La pestanya SQL</a></li>
+        <li><a href="#errors">Errors freqüents</a></li>
+        <li><a href="#exercicis">Exercicis</a></li>
+        <li><a href="#comprovacio">Llista de comprovació</a></li>
+      </ol>
+      <dl class="sidebar-aside">
+        <dt>Objectiu</dt>
+        <dd>Construir, executar i desar una consulta de la taula de persones.</dd>
+        <dt>Taula</dt>
+        <dd><span class="tag persona">WAIV9010_PERSONA</span></dd>
+        <dt>Origen de dades</dt>
+        <dd><code>MODEL_TOT</code></dd>
+        <dt>Ve de</dt>
+        <dd>Unitat 00, on vam decidir per què aquesta taula i no una altra.</dd>
+      </dl>
+    </aside>
+
+    <main class="content">
+
+      <section id="crear">
+        <h2><span class="num">Apartat 1</span>Crear la consulta</h2>
+        <p>
+          Amb el projecte obert, es prem el botó <span class="ui">Consultes</span> i
+          després <span class="ui">Crea</span>. Recordeu la regla de la unitat 3: la
+          consulta ha de viure dins d'un projecte, i el projecte ha d'existir i estar
+          desat abans.
+        </p>
+        <div class="path">
+          Projecte obert <span class="sep">&rarr;</span>
+          <span class="ui">Consultes</span> <span class="sep">&rarr;</span>
+          <span class="ui">Crea</span>
+        </div>
+        <figure>
+          <img src="img/flux_creacio_consulta.png" alt="Flux complet de creació d'una consulta: obrir el projecte, crear la consulta, seleccionar taula i camps, executar i desar.">
+          <figcaption>
+            El recorregut sencer d'aquesta unitat, de la creació al desament.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="pestanyes">
+        <h2><span class="num">Apartat 2</span>Les tres pestanyes</h2>
+        <p>
+          En crear la consulta s'obre una pestanya de treball nova que, a la part
+          inferior esquerra, en té tres més. Val la pena saber què fa cadascuna abans
+          de tocar res.
+        </p>
+        <div class="cards">
+          <div>
+            <h3>Taules</h3>
+            <p>On es tria l'origen de dades i les taules de les quals sortirà la informació. També és on s'esborra una taula que s'ha triat per error.</p>
+          </div>
+          <div>
+            <h3>Consulta</h3>
+            <p>L'àrea principal. Aquí es defineixen els camps que es volen veure, l'ordre i els criteris. És on passareu el 90 % del temps.</p>
+          </div>
+          <div>
+            <h3>SQL</h3>
+            <p>El programa hi tradueix automàticament el que aneu fent a llenguatge de base de dades. No cal saber SQL, però mirar-la ensenya molt.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="origen">
+        <h2><span class="num">Apartat 3</span>L'origen de dades</h2>
+        <p>
+          A la pestanya <span class="ui">Taules</span> la finestra queda dividida en
+          <strong>tres parts</strong>:
+        </p>
+        <ul>
+          <li>
+            a la <strong>part superior esquerra</strong>, els orígens de dades
+            disponibles segons el vostre perfil;
+          </li>
+          <li>
+            a la <strong>banda dreta</strong>, les taules que es carreguen en triar un
+            origen, també segons el perfil i l'àmbit de dades a què accediu;
+          </li>
+          <li>
+            a la <strong>part inferior</strong>, les taules que ja heu seleccionat per
+            a aquesta consulta.
+          </li>
+        </ul>
+        <div class="note">
+          <span class="label">Quin origen s'ha de triar</span>
+          <p>
+            El més habitual és seleccionar l'origen de dades
+            <strong>"Model tot"</strong>. És possible que el vostre usuari en tingui
+            més d'un d'autoritzat, però aquest és el que heu de fer servir sempre.
+            L'única excepció és el <strong>control horari</strong>, que utilitza
+            <code>EPOCA_CH_MODEL</code>.
+          </p>
+        </div>
+        <div class="note warn">
+          <span class="label">Dues coses amb el mateix nom</span>
+          <p>
+            "Model tot" és el nom de <strong>l'origen de dades</strong>, i també el del
+            <strong>projecte que s'obre per defecte</strong> que vam veure a la unitat
+            3. No tenen res a veure: un és l'arrel de l'arbre de taules del servidor i
+            l'altre és un fitxer. La coincidència és una font de confusió habitual.
+          </p>
+        </div>
+        <p>
+          En fer clic a l'origen, al cap d'una estona apareixen totes les taules a la
+          vostra disposició. Si tarda, no és que s'hagi penjat: està carregant l'arbre.
+        </p>
+              <figure>
+          <img src="img/pestanya_taules_real.png" alt="Pestanya Taules del Click &amp; Decide amb el panell Orígens disponibles a l'esquerra i la llista de taules a la dreta.">
+          <figcaption>
+            La pestanya <b>Taules</b>. A l'esquerra els orígens de dades, i el de sempre és <code>MODEL_TOT</code>. A sota de tot hi ha la franja dels enllaços, que és on es lliguen les taules quan n'hi ha més d'una. Les tres pestanyes de la consulta són a baix a l'esquerra.
+            <span class="font">Videotutorial 4 de l'EAPC, minut 1:19.</span>
+          </figcaption>
+        </figure>
+
+        <p>
+          A sota de tot de la pestanya <b>Taules</b> hi ha una franja que diu
+          <em>"Feu clic aquí per veure la llista d'enllaços"</em>. Amb una sola
+          taula no serveix de res, i per això passa desapercebuda; però és
+          exactament allà on es lliguen les taules quan la consulta n'ha de fer
+          servir més d'una. Ho veureu a la unitat 12.
+        </p>
+</section>
+
+      <section id="taula">
+        <h2><span class="num">Apartat 4</span>Seleccionar la taula</h2>
+        <p>Hi ha dues maneres de portar una taula a la consulta:</p>
+        <ol class="steps">
+          <li>
+            <h3>Arrossegar-la cap a la part inferior</h3>
+            <p>
+              Agafeu la taula de la banda dreta i arrossegueu-la a la part inferior de
+              la pantalla. Us deixa a la pestanya <span class="ui">Taules</span>, que
+              és on voleu quedar-vos si heu de seleccionar més d'una taula.
+            </p>
+          </li>
+          <li>
+            <h3>Doble clic sobre el nom de la taula</h3>
+            <p>
+              Fa el mateix, amb una diferència: el programa
+              <strong>salta de pestanya i us porta directament a
+              <span class="ui">Consulta</span></strong>, mostrant els camps que conté.
+            </p>
+          </li>
+        </ol>
+        <p>
+          Si us equivoqueu de taula, se selecciona fent clic al seu títol des de la
+          pestanya <span class="ui">Taules</span> i es prem <kbd>Supr</kbd>.
+        </p>
+              <p>
+          Si arrossegueu la taula equivocada, no cal començar de nou: feu clic
+          <b>al títol de la taula</b> a la zona de sota i premeu la tecla
+          <b>Supr</b>. Desapareix de la consulta.
+        </p>
+</section>
+
+      <section id="persona">
+        <h2><span class="num">Apartat 5</span>Què conté WAIV9010_PERSONA</h2>
+        <p>
+          Farem servir la taula de persones. Abans de seleccionar cap camp, les tres
+          preguntes de la unitat 00:
+        </p>
+
+        <p>
+          El videotutorial la resumeix en una frase que val la pena recordar tal com
+          sona: "hi trobarem totes les persones que actualment estan treballant, o bé
+          han de rebre alguna retribució en el mes en curs". Les dues meitats de la
+          frase compten: <strong>qui treballa</strong> i <strong>qui cobra</strong>.
+          Per això hi surt gent que avui no ocupa cap lloc.
+        </p>
+
+        <dl class="factsheet">
+          <div><dt>Contingut</dt><dd>Persones que ocupen, han ocupat o ocuparan un lloc de feina el mes en curs, i persones que no n'ocupen cap però tenen nòmina associada.</dd></div>
+          <div><dt>Vigència</dt><dd>Dades actuals, vigents el dia anterior.</dd></div>
+          <div><dt>Tipus de càrrega</dt><dd>Diària, durant la nit.</dd></div>
+          <div><dt>Tipus de registres</dt><dd>Únics. Camp clau: <code>PERS_NIF</code>.</dd></div>
+          <div><dt>Dades que porta</dt><dd>Personals, ubicació, relació contractual, situació administrativa, lloc ocupat actualment i l'immediatament anterior, grau, antiguitat i algunes de nòmina.</dd></div>
+          <div><dt>Abast</dt><dd>Segons el perfil: totes les persones, les del departament o les de la unitat orgànica.</dd></div>
+        </dl>
+
+        <h3>El camp que decideix qui hi surt: IND_ACTIU</h3>
+        <p>
+          Aquesta taula no conté només la gent en actiu avui. El camp
+          <code>IND_ACTIU</code> és el que separa els tres col·lectius, i la seva
+          definició tècnica és més precisa del que sembla:
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption>Valors de IND_ACTIU</caption>
+            <thead>
+              <tr><th class="code">Valor</th><th>Definició</th><th>Condició</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code">A</td>
+                <td>En actiu a data d'avui</td>
+                <td>Data fi d'ocupació nul·la, o posterior o igual a la data actual.</td>
+              </tr>
+              <tr>
+                <td class="code">M</td>
+                <td>En actiu aquest mes</td>
+                <td>Ha ocupat lloc algun dia del mes en curs, però no avui.</td>
+              </tr>
+              <tr>
+                <td class="code">N</td>
+                <td>No actiu</td>
+                <td>No té punter, o la data fi d'ocupació és anterior al dia 1 del mes actual.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note warn">
+          <span class="label">Conseqüència immediata</span>
+          <p>
+            Si executeu la consulta sense filtrar per <code>IND_ACTIU</code>, el
+            nombre de registres <strong>no és la vostra plantilla</strong>: hi ha gent
+            que ja no hi treballa però encara cobra endarreriments. A la unitat 7
+            construirem el filtre correcte.
+          </p>
+        </div>
+      </section>
+
+      <section id="prefixos">
+        <h2><span class="num">Apartat 6</span>Els prefixos dels camps</h2>
+        <p>
+          En passar a la pestanya <span class="ui">Consulta</span> es veu la taula amb
+          tots els seus camps. Els noms fan por al principi, però segueixen una
+          convenció: <strong>un prefix de tres o quatre lletres</strong> que indica la
+          família a la qual pertany el camp. Un cop la sabeu, trobar un camp deixa de
+          ser buscar a cegues.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Famílies de camps de la taula de persones</caption>
+            <thead>
+              <tr><th class="code">Prefix</th><th>Família</th><th>Hi trobareu</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="code">UBIC</td><td>Ubicació</td><td>Tipus d'ens, departament, unitat orgànica. Són els primers de la llista.</td></tr>
+              <tr><td>Indicadors</td><td>Indicadors</td><td>Just després dels d'ubicació. Aquí hi ha <code>IND_ACTIU</code>.</td></tr>
+              <tr><td class="code">PERS</td><td>Dades personals</td><td>NIF, cognoms i nom, sexe, edat, data d'ingrés, nacionalitat.</td></tr>
+              <tr><td class="code">ADRE</td><td>Adreces</td><td>Adreça habitual, codi postal, municipi.</td></tr>
+              <tr><td class="code">PLRC</td><td>Relació contractual</td><td>Vincle, cos, escala, categoria, grup, especialitat.</td></tr>
+              <tr><td class="code">PLSA</td><td>Situació administrativa</td><td>Servei actiu, serveis especials, motiu i dates.</td></tr>
+              <tr><td class="code">PLPT</td><td>Punters</td><td>La relació persona-lloc: com ocupa el lloc i les dates d'inici i fi del darrer punter.</td></tr>
+              <tr><td class="code">TRIE</td><td>Trienis</td><td>Quantitat, data de venciment i grup del darrer trienni.</td></tr>
+              <tr><td class="code">PLPA</td><td>Ubicació de la plaça</td><td>La mateixa estructura que <code>UBIC</code> però referida a la plaça: <code>PLPA_TIPUS_ENS</code>, <code>PLPA_DEPARTAM_CODI</code>, <code>PLPA_UN_ORGAN_NOM</code>...</td></tr>
+              <tr><td class="code">LLOC</td><td>Lloc que ocupa</td><td>Codi i nom del lloc, tipus, prefix de tractament, estat de plantilla, jornada, grup d'accés, funció.</td></tr>
+              <tr><td class="code">NOMI</td><td>Nòmina</td><td>Compte bancari, dates d'alta i baixa, número patronal, epígraf.</td></tr>
+              <tr><td>Càrrega</td><td>Control</td><td>Els <strong>dos darrers camps</strong> de la llista: <code>DATA_CARREGA</code> i <code>HORA_CARREGA</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note">
+          <span class="label">La llista és més llarga del que sembla</span>
+          <p>
+            Baixant per la graella es veu que la persona no porta només les seves
+            dades: porta també <strong>les del lloc que ocupa</strong>, amb el prefix
+            <code>LLOC</code>. Això vol dir que moltes consultes que semblen demanar
+            dues taules es resolen amb la de persones i prou. Només cal anar a
+            <code>WAIV9080_LLOC</code> quan es vol mirar el lloc <em>com a lloc</em>:
+            els vacants, els que ningú ocupa, els que estan en una situació concreta
+            de plantilla.
+          </p>
+        </div>
+
+        <div class="note ok">
+          <span class="label">Els dos darrers camps són més útils del que sembla</span>
+          <p>
+            La <strong>data i hora de càrrega</strong> us diuen exactament a quin
+            moment corresponen les dades que esteu mirant. És la manera de comprovar,
+            sense discutir amb ningú, allò que dèiem a la unitat 00: que "a data
+            d'avui" vol dir el dia anterior.
+          </p>
+        </div>
+
+        <h3>El sufix del final: C o D</h3>
+        <p>
+          Alguns conceptes tenen quatre camps en comptes de dos. Els de categoria i
+          especialitat, per exemple. La regla és simple: els que
+          <strong>acaben en C contenen el codi</strong> i els que
+          <strong>acaben en D contenen la descripció</strong>.
+        </p>
+
+        <figure>
+          <img src="img/camps_waiv9010_persona.png" alt="Esquema de les famílies de camps de la taula WAIV9010_PERSONA agrupades per prefix: UBIC, PERS, ADRE, PLRC, PLSA i PLPT, amb les codificacions principals.">
+          <figcaption>
+            Les famílies de camps i les codificacions principals de la taula de
+            persones. A la unitat 7 les recorrerem una per una.
+          </figcaption>
+        </figure>
+
+        <div class="note">
+          <span class="label">Parelles de camps CODI i DESC</span>
+          <p>
+            Molts conceptes apareixen <strong>dues vegades</strong>: un camp amb el
+            codi i un altre amb la descripció, com <code>PLRC_VINCLE_CODI</code> i
+            <code>PLRC_VINCLE_DESC</code>. Per <em>veure</em>, la descripció és més
+            còmoda. Per <em>filtrar</em>, s'ha de fer servir sempre el codi. El perquè
+            és a la unitat 6, i és una de les regles d'or del curs.
+          </p>
+        </div>
+              <p>
+          Els <b>dos últims camps</b> de la taula, al final de tot de la llista,
+          són la <b>data i l'hora de càrrega</b>. Serveixen per saber a quin
+          moment corresponen les dades que esteu mirant, que en aquesta taula és
+          la càrrega del dia abans.
+        </p>
+        <p>
+          Val la pena saber quins camps tria el vídeo oficial per al seu exemple,
+          perquè són els que es fan servir a la pràctica: de la ubicació,
+          <code>UBIC_UN_ORGAN_CODI</code> i <code>UBIC_UN_ORGAN_NOM</code>; de la
+          persona, <code>PERS_NIF</code> i <code>PERS_COGNOMS_NOM</code>; del
+          vincle, <code>PLRC_VINCLE_CODI</code> i <code>PLRC_VINCLE_DESC</code>;
+          de la categoria i l'especialitat, els quatre camps
+          <code>PLRC_COS_CATEGOR_C</code>, <code>PLRC_COS_CATEGOR_D</code>,
+          <code>PLRC_ESPECCOSCAT_C</code> i <code>PLRC_ESPECCOSCAT_D</code>; i
+          les dates del darrer punter, <code>PLPT_DATA_INICI</code> i
+          <code>PLPT_DATA_FI</code>. Fixeu-vos en el patró: els acabats en
+          <b>C</b> porten el codi i els acabats en <b>D</b>, la descripció.
+        </p>
+</section>
+
+      <section id="tipus">
+        <h2><span class="num">Apartat 7</span>Tipus, longitud i espais</h2>
+        <p>
+          La graella de camps té cinc columnes: <strong>Nom</strong>,
+          <strong>Tipus</strong>, <strong>Longitud</strong>,
+          <strong>Decimals</strong> i <strong>Descripció</strong>. Les dues del mig
+          són les que la majoria d'usuaris ignora i les que després els costen hores.
+        </p>
+
+        <h3>Tipus de dada</h3>
+        <p>
+          El tipus no apareix com a "text" o "número": apareix amb el nom tècnic que
+          fa servir la base de dades. El videotutorial els agrupa en tres famílies
+          -numèric, text i dates- i és una bona manera de recordar-los, perquè el
+          que canvia de debò segons la família és com es filtra. Aquests són els noms
+          que veureu escrits a la columna <span class="ui">Tipus</span>:
+        </p>
+        <div class="table-wrap">
+          <table>
+            <caption>Tipus de camp a les taules de la WAI</caption>
+            <thead>
+              <tr><th class="code">Tipus</th><th>Què és</th><th>Es farceix amb espais</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="code">Char</td>
+                <td>Text de <strong>longitud fixa</strong>. És el més habitual: NIF, cognoms, codis.</td>
+                <td><strong>Sí</strong></td>
+              </tr>
+              <tr>
+                <td class="code">Varchar</td>
+                <td>Text de <strong>longitud variable</strong>. Poc freqüent; per exemple el correu electrònic.</td>
+                <td>No</td>
+              </tr>
+              <tr>
+                <td class="code">Date</td>
+                <td>Data. És l'únic tipus que pot ser realment nul.</td>
+                <td>No</td>
+              </tr>
+              <tr>
+                <td class="code">Integer</td>
+                <td>Numèric enter. Per exemple el número de vincle.</td>
+                <td>No</td>
+              </tr>
+              <tr>
+                <td class="code">Pack</td>
+                <td>Numèric empaquetat. Per exemple el nombre de fills.</td>
+                <td>No</td>
+              </tr>
+              <tr>
+                <td class="code">Time</td>
+                <td>Hora. A la pràctica només el veureu en un camp: <code>HORA_CARREGA</code>, el darrer de cada taula.</td>
+                <td>No</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          No és decoratiu: el tipus determina quins operadors podreu fer servir a
+          l'hora de filtrar i, sobretot, <strong>com s'ha de buscar un camp
+          buit</strong>. La distinció entre <code>Char</code> i <code>Date</code> és
+          la que explica mitja unitat 9 i mitja unitat 18.
+        </p>
+
+        <h3>Longitud</h3>
+        <p>
+          Indica el nombre màxim de caràcters. I aquí ve el detall decisiu:
+        </p>
+
+        <div class="note warn">
+          <span class="label">Click &amp; Decide farceix el text amb espais</span>
+          <p>
+            El programa <strong>omple els camps <code>Char</code> amb la quantitat de
+            caràcters que indica la columna de longitud</strong>. L'exemple del material oficial
+            és el camp <code>PERS_NOM</code>, que en té divuit: si una persona es diu
+            <strong>Anna</strong>, que són quatre caràcters, Click &amp; Decide omple
+            del cinquè al divuitè amb <strong>espais</strong>.
+          </p>
+          <p>
+            I ho diu explícitament: <em>això ens pot condicionar en el moment que
+            vulguem aplicar un filtre o un criteri</em>.
+          </p>
+        </div>
+
+        <p>Això té tres conseqüències que apareixeran al llarg del curs:</p>
+        <ul>
+          <li>
+            <strong>Un camp de text mai és nul.</strong> Un camp de text "buit" conté
+            espais, no res. Per això l'operador <span class="ui">És nul</span> no hi
+            funciona i cal filtrar per espai. Unitats 9 i 18.
+          </li>
+          <li>
+            <strong>Els creuaments a Excel fallen.</strong> <code>Cultura</code> i
+            <code>Cultura&nbsp;&nbsp;&nbsp;</code> no són iguals per a un
+            <em>BUSCARV</em>. Per això el format d'exportació importa. Unitat 15.
+          </li>
+          <li>
+            <strong>Filtrar per descripció és fràgil.</strong> Un motiu més per
+            filtrar sempre pel camp de codi. Unitat 6.
+          </li>
+        </ul>
+      </section>
+
+      <section id="columnes">
+        <h2><span class="num">Apartat 8</span>Les tres columnes de control</h2>
+        <p>
+          A l'esquerra de la llista de camps hi ha tres columnes d'icones. Són el
+          comandament de tota la consulta i les fareu servir constantment.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Les tres columnes, d'esquerra a dreta</caption>
+            <thead>
+              <tr><th>Posició</th><th>Icona</th><th>Serveix per</th><th>On s'explica</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Primera</td>
+                <td><strong>Lupa</strong></td>
+                <td>Aplicar-hi un criteri o filtre.</td>
+                <td>Unitat 6</td>
+              </tr>
+              <tr>
+                <td>Segona</td>
+                <td><strong>Tres ratlletes vermelles</strong></td>
+                <td>Establir l'ordre de classificació per aquell camp.</td>
+                <td>Unitat 5</td>
+              </tr>
+              <tr>
+                <td>Tercera</td>
+                <td><strong>Ulleres</strong></td>
+                <td>Seleccionar o desseleccionar el camp perquè es vegi al resultat.</td>
+                <td>Aquesta unitat</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+        <figure>
+          <img src="img/cap_tres_columnes.png" alt="Pantalla de consulta amb la llista de camps de la taula de persones. A l'esquerra, les tres columnes de control remarcades.">
+          <figcaption>
+            Les tres columnes, en el seu ordre real. Fixeu-vos que la <strong>primera de totes és la lupa</strong>, i que la graella té cinc columnes: Nom, Tipus, Longitud, Decimals i Descripció.
+          </figcaption>
+        </figure>
+
+        <figure>
+          <img src="img/anatomia_consulta.png" alt="Anatomia de la pantalla de consulta: llista de camps amb les columnes d'ulleres, ordenació i criteris, graella de camps seleccionats i barra d'eines.">
+          <figcaption>
+            L'anatomia de la pantalla de consulta. Val la pena obrir-la en gran i
+            situar-hi les tres columnes abans de continuar.
+          </figcaption>
+        </figure>
+              <figure>
+          <img src="img/columnes_graella_real.png" alt="Graella de camps del Click &amp; Decide amb les tres columnes de control a l'esquerra i les columnes Nom, Tipus, Longitud, Decimals i Descripció.">
+          <figcaption>
+            Les tres columnes de control, en el seu ordre real: primer la <b>lupa</b>, després les <b>ratlletes</b> i finalment les <b>ulleres</b>, que són les que diuen si el camp es veurà. A la dreta, les cinc columnes de la graella: <b>Nom</b>, <b>Tipus</b>, <b>Longitud</b>, <b>Decimals</b> i <b>Descripció</b>.
+            <span class="font">Videotutorial 4 de l'EAPC, minut 6:20.</span>
+          </figcaption>
+        </figure>
+
+</section>
+
+      <section id="seleccionar">
+        <h2><span class="num">Apartat 9</span>Seleccionar i ordenar columnes</h2>
+        <p>
+          Es fa clic a la columna de les <strong>ulleres</strong> de cada camp que
+          vulgueu veure. Els camps van apareixent a la graella del peu de la taula, i
+          s'afegeixen <strong>d'esquerra a dreta per ordre de selecció</strong>.
+        </p>
+        <p>
+          Per a la nostra consulta d'exemple: codi i nom d'unitat orgànica, NIF,
+          cognoms i nom, codi i descripció del vincle, categoria, especialitat i les
+          dates d'inici i fi.
+        </p>
+
+        <h3>Canviar l'ordre de les columnes</h3>
+        <p>
+          L'ordre de selecció rarament és l'ordre en què voleu llegir la taula. Per
+          canviar-lo, seleccioneu un camp a la graella inferior i
+          <strong>arrossegueu-lo</strong> a la posició desitjada. El cursor ha de ser
+          una fletxa blanca.
+        </p>
+
+        <h3>Treure un camp</h3>
+        <p>
+          Podeu tornar a fer clic a les ulleres, o bé marcar el camp a la graella
+          inferior i prémer <kbd>Supr</kbd>.
+        </p>
+
+        <div class="note bad">
+          <span class="label">L'error del doble clic</span>
+          <p>
+            Si feu <strong>doble clic sobre el nom de la taula</strong> a la llista de
+            camps, se seleccionen <strong>tots els camps de cop</strong>. La consulta
+            es fa lentíssima i la graella és il·legible. No cal desfer-ho un per un:
+            feu clic dret sobre el nom de la taula i trieu
+            <span class="ui">Desselecciona-ho tot</span>.
+          </p>
+          <p>
+            Al mateix menú hi ha <span class="ui">Selecciona-ho tot</span>, que és el
+            que havíeu provocat sense voler, i
+            <span class="ui">Afegeix fórmula...</span>, que és per on es creen els
+            camps calculats.
+          </p>
+        </div>
+              <p>
+          Un truc que estalvia molt de temps quan la taula té centenars de
+          camps: feu <b>clic a sobre del títol d'una columna</b> a la graella de
+          resultats i el programa us porta directament a aquell camp dins de la
+          llista de dalt, sense haver de baixar amb la barra de desplaçament.
+        </p>
+</section>
+
+      <section id="capcalera">
+        <h2><span class="num">Apartat 10</span>Canviar la capçalera</h2>
+        <p>
+          El nom tècnic d'un camp és clar per al sistema i opac per a qui rebrà
+          l'informe. <code>PERS_NIF</code> es pot mostrar com a <em>DNI_NIE</em>, que és la capçalera que posa el videotutorial.
+        </p>
+        <ol class="steps">
+          <li>
+            <h3>Seleccioneu el camp</h3>
+            <p>Feu-hi clic perquè quedi marcat.</p>
+          </li>
+          <li>
+            <h3>Obriu les propietats</h3>
+            <p>
+              Premeu el botó <span class="ui">Propietats</span> de la barra d'eines,
+              el de la icona d'una mà que assenyala. S'obre un panell a la dreta.
+            </p>
+          </li>
+          <li>
+            <h3>Escriviu el text nou</h3>
+            <p>
+              Busqueu la propietat <span class="ui">Capçalera</span>, escriviu-hi el
+              nom que voleu i premeu <kbd>Retorn</kbd>.
+            </p>
+          </li>
+        </ol>
+        <figure>
+          <img src="img/propietats_camp_real.png" alt="Panell Propietats del camp seleccionat amb la pestanya General i les propietats Format, Decimals, Capçalera, Assigna al paràmetre, Valor que s'assigna i Longitud sortida ASCII.">
+          <figcaption>
+            El panell tal com surt: es titula <b>Propietats del camp seleccionat</b> i
+            té sis propietats. La <b>Capçalera</b> comença amb el nom tècnic del camp,
+            i és aquest text el que se substitueix.
+            <span class="font">Videotutorial 4 de l'EAPC.</span>
+          </figcaption>
+        </figure>
+
+        <p>
+          Des d'aquest mateix panell es canvia també el <strong>format</strong> dels
+          camps numèrics i de data. És el mateix panell que a la unitat 11 farem
+          servir per activar els registres únics, però allà seleccionant la consulta
+          sencera en comptes d'un camp.
+        </p>
+        <p>
+          Les dues propietats del mig, <span class="ui">Assigna al paràmetre</span> i
+          <span class="ui">Valor que s'assigna</span>, ara no diuen res: són les que
+          fan funcionar els paràmetres de les unitats 16 i 17. Val la pena saber des
+          d'ara on viuen.
+        </p>
+      </section>
+
+      <section id="ocult">
+        <h2><span class="num">Apartat 11</span>Camps ocults</h2>
+        <p>
+          De vegades voleu ordenar per un camp, o filtrar-hi, però no voleu que
+          aparegui a la graella. Per exemple, ordenar per codi de departament i
+          mostrar-ne només la descripció.
+        </p>
+        <div class="path">
+          Clic dret sobre el camp <span class="sep">&rarr;</span>
+          <span class="ui">Camp ocult</span>
+        </div>
+        <div class="note">
+          <span class="label">Recordeu</span>
+          <p>
+            Els criteris de selecció es poden establir tant sobre camps que heu triat
+            per veure com sobre camps que no. Filtrar per un camp
+            <strong>no</strong> obliga a mostrar-lo.
+          </p>
+        </div>
+      </section>
+
+      <section id="executar">
+        <h2><span class="num">Apartat 12</span>Executar la consulta</h2>
+        <p>
+          Fins ara només heu <em>dissenyat</em>. Per veure dades cal executar.
+        </p>
+        <div class="path">
+          Botó amb aspecte d'<strong>admiració</strong> a la barra d'eines
+          <span class="sep">&rarr;</span>
+          o menú <span class="ui">Consulta</span>
+          <span class="sep">&rarr;</span> <span class="ui">Executa</span>
+        </div>
+        <p>
+          El resultat apareix a la graella inferior i, a la
+          <strong>cantonada inferior dreta</strong>, una llegenda del tipus
+          <em>S'ha(n) trobat 10756 registre(s)</em>.
+        </p>
+        <div class="note ok">
+          <span class="label">Costum que val or</span>
+          <p>
+            Mireu sempre aquest número, i mireu-lo <em>abans i després</em> de cada
+            canvi de criteri. És l'única manera de saber si un filtre ha fet el que
+            esperàveu. La major part dels errors del curs es detecten aquí: un número
+            que no baixa quan hauria de baixar, o que cau a zero de cop.
+          </p>
+        </div>
+        <div class="note warn">
+          <span class="label">Res s'aplica sol</span>
+          <p>
+            Els canvis <strong>no es veuen en temps real</strong>. Cada vegada que
+            afegiu un camp, canvieu una ordenació o toqueu un criteri, cal tornar a
+            executar. Aquesta frase es repetirà a les unitats 5, 6 i 7 perquè és la
+            confusió més freqüent dels primers dies.
+          </p>
+        </div>
+        <div class="note ok">
+          <span class="label">Una consulta no guarda dades: les va a buscar</span>
+          <p>
+            El videotutorial ho diu amb totes les lletres: aquesta consulta,
+            <strong>quan la tornem a executar, sempre ens mostrarà les dades que ja hi
+            hagi a la taula en aquell moment</strong>. El que es desa és la definició
+            -quines taules, quins camps, quins criteris-, no el resultat. Per això una
+            consulta feta avui serveix d'aquí a un any, i per això el nombre de
+            registres pot canviar sense que hàgiu tocat res.
+          </p>
+        </div>
+      </section>
+
+      <section id="desar">
+        <h2><span class="num">Apartat 13</span>Desar-la i recuperar-la</h2>
+        <div class="path">
+          Menú <span class="ui">Fitxer</span> <span class="sep">&rarr;</span>
+          <span class="ui">Desa</span>, o la icona del disquet
+        </div>
+        <p>
+          En prémer el botó amb aspecte de <strong>disquet</strong> s'obre una finestra
+          anomenada <span class="ui">Desament</span>, on poseu el nom de la consulta.
+          No hi ha límit de caràcters, i convé que el nom digui què mostrarà. Si la
+          consulta ja existia i l'heu modificada, <strong>sobreescriu</strong> la
+          versió anterior.
+        </p>
+        <p>
+          En acceptar veureu que <strong>la pestanya canvia de nom</strong>: on posava
+          <span class="ui">Consulta</span> ara hi posa el nom que heu triat. És la
+          confirmació que s'ha desat.
+        </p>
+        <div class="note">
+          <span class="label">Compte amb quina x tanqueu</span>
+          <p>
+            Per tancar la consulta i tornar al projecte cal fer servir la
+            <strong>segona x</strong>, la de dins. La primera tanca el programa.
+          </p>
+        </div>
+
+        <div class="cards">
+          <div>
+            <h3>Desar una variant</h3>
+            <p>Si voleu conservar les dues versions, no useu <span class="ui">Desa</span> sinó <span class="ui">Desament</span> i poseu-hi un nom diferent.</p>
+          </div>
+          <div>
+            <h3>Tancar</h3>
+            <p><span class="ui">Fitxer</span> &rarr; <span class="ui">Tanca</span> us torna a l'índex de consultes del projecte.</p>
+          </div>
+          <div>
+            <h3>Tornar-la a obrir</h3>
+            <p>Seleccioneu-la a l'índex i feu-hi doble clic, o premeu <span class="ui">Obre</span>.</p>
+          </div>
+          <div>
+            <h3>Documentar-la</h3>
+            <p>Clic dret &rarr; <span class="ui">Propietats</span> &rarr; <span class="ui">Descripció</span>, tal com vam veure a la unitat 3.</p>
+          </div>
+        </div>
+
+        <div class="note">
+          <span class="label">Què es desa exactament</span>
+          <p>
+            Es desa <strong>l'estructura</strong>: els camps seleccionats, l'ordre i
+            els criteris. <strong>No es desen les dades.</strong> Cada vegada que
+            l'obriu i l'executeu, la consulta torna a anar a buscar la informació
+            actualitzada. Una consulta ben feta serveix mesos sense tocar-la.
+          </p>
+        </div>
+      </section>
+
+      <section id="sql">
+        <h2><span class="num">Apartat 14</span>La pestanya SQL</h2>
+        <p>
+          No cal saber SQL per fer servir Click &amp; Decide. Però la pestanya
+          <span class="ui">SQL</span> tradueix en temps real el que aneu construint, i
+          això la converteix en la millor eina d'aprenentatge del programa.
+        </p>
+        <p>
+          La consulta d'aquesta unitat, un cop seleccionats uns quants camps, s'hi
+          llegeix aproximadament així:
+        </p>
+        <div class="criteri"><span class="op">SELECT</span> UBIC_UORG_CODI, PERS_NIF, PERS_COGNOMS_NOM,
+       PLRC_VINCLE_CODI, PLRC_VINCLE_DESC
+<span class="op">FROM</span> WAIV9010_PERSONA</div>
+        <p>
+          Quan a la unitat 7 combineu criteris amb AND i OR, tornar aquí i llegir on
+          han quedat els parèntesis és la manera més ràpida de comprovar si la lògica
+          és la que volíeu. És, literalment, la consulta que s'executarà.
+        </p>
+      </section>
+
+      <section id="errors">
+        <h2><span class="num">Apartat 15</span>Errors freqüents</h2>
+
+        <div class="versus">
+          <div class="no">
+            <h4>El que passa</h4>
+            <p><strong>La consulta triga moltíssim.</strong></p>
+            <p><strong>Surten registres de gent que no és a la meva unitat.</strong></p>
+            <p><strong>He canviat un camp i el resultat és el mateix.</strong></p>
+            <p><strong>No trobo el camp a la llista.</strong></p>
+          </div>
+          <div class="si">
+            <h4>El que passa de veritat</h4>
+            <p>Doble clic al nom de la taula: teniu tots els camps seleccionats. Clic dret &rarr; <span class="ui">Desselecciona-ho tot</span>.</p>
+            <p>No heu filtrat per <code>IND_ACTIU</code>: la taula porta gent inactiva amb nòmina. Unitat 7.</p>
+            <p>No heu tornat a executar. Res s'aplica sol.</p>
+            <p>Feu clic a la capçalera de la columna a la graella de resultats: el programa busca el camp a la llista de dalt automàticament.</p>
+          </div>
+        </div>
+
+        <div class="note">
+          <span class="label">El truc de la capçalera</span>
+          <p>
+            Aquest últim mereix un lloc destacat, perquè estalvia molt temps. La
+            llista de camps d'una taula de la WAI és llarguíssima. En comptes de
+            buscar-hi a mà, <strong>feu clic al títol de la columna</strong> a la
+            graella de resultats de sota: el programa localitza i marca aquell camp a
+            la llista de dalt. Es fa servir constantment a les unitats 5 i 6.
+          </p>
+        </div>
+      </section>
+
+      <section id="exercicis">
+        <h2><span class="num">Apartat 16</span>Exercicis</h2>
+        <p>
+          Els tres exercicis segueixen sempre el mateix patró: primer
+          <strong>reproduir</strong>, després <strong>trencar</strong> a propòsit per
+          veure què passa, i finalment <strong>resoldre</strong> un encàrrec sense
+          instruccions. Es poden fer al simulador o a Click &amp; Decide si hi teniu
+          accés.
+        </p>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-04-1</span>
+            <h3>La primera consulta</h3>
+            <span class="mena">Reprodueix</span>
+          </header>
+          <div class="cos">
+            <p>
+              Sobre <span class="tag persona">WAIV9010_PERSONA</span>, munteu una
+              consulta amb aquests camps, en aquest ordre a la graella:
+            </p>
+            <ol>
+              <li>unitat orgànica</li>
+              <li>NIF</li>
+              <li>cognoms i nom</li>
+              <li>codi de vincle</li>
+              <li>descripció de vincle</li>
+            </ol>
+            <p>
+              Canvieu la capçalera del NIF perquè es llegeixi <strong>DNI_NIE</strong>,
+              executeu i anoteu el nombre de registres. Deseu-la com a
+              <code>Persones</code>.
+            </p>
+            <details>
+              <summary>Pista</summary>
+              <div class="dins">
+                <p>
+                  Els camps de vincle són a la família <code>PLRC</code>. Si no els
+                  trobeu a la llista, seleccioneu-los igualment de qualsevol manera,
+                  executeu, i després feu clic a la capçalera de la columna a la
+                  graella de resultats: el programa us marcarà el camp a dalt.
+                </p>
+                <p>
+                  La capçalera es canvia amb el camp seleccionat i el botó
+                  <span class="ui">Propietats</span>.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>Comprovació</summary>
+              <div class="dins">
+                <p>
+                  Al simulador el resultat és de <strong>190 registres</strong>: tota
+                  la taula, perquè encara no hi ha cap criteri. Si us en surten menys,
+                  teniu un filtre posat sense voler.
+                </p>
+                <p class="resposta"><b>190</b> registres</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-04-2</span>
+            <h3>Trenca-la a propòsit</h3>
+            <span class="mena">Trenca</span>
+          </header>
+          <div class="cos">
+            <p>Amb la consulta anterior oberta, feu aquestes tres coses i observeu:</p>
+            <ol>
+              <li>
+                Feu <strong>doble clic sobre el nom de la taula</strong> a la llista de
+                camps. Mireu la graella. Quants camps hi ha ara?
+              </li>
+              <li>
+                Torneu-la a deixar com estava sense desfer-ho camp per camp.
+              </li>
+              <li>
+                Afegiu un camp qualsevol i <strong>no executeu</strong>. Mireu la
+                graella. Ha canviat?
+              </li>
+            </ol>
+            <details>
+              <summary>Què hauria d'haver passat</summary>
+              <div class="dins">
+                <p>
+                  <strong>1.</strong> S'han seleccionat tots els camps de la taula de
+                  cop. És l'error més comú del curs i, en una taula real de la WAI,
+                  deixa la consulta inservible.
+                </p>
+                <p>
+                  <strong>2.</strong> Clic dret sobre el nom de la taula &rarr;
+                  <span class="ui">Desselecciona-ho tot</span>. Un sol gest.
+                </p>
+                <p>
+                  <strong>3.</strong> No ha canviat res. La graella segueix mostrant
+                  l'última execució. Res s'aplica sol: cal prémer executar. Recordeu-ho
+                  a les unitats 5, 6 i 7, on aquesta confusió reapareix.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="exercici">
+          <header>
+            <span class="codi">EX-04-3</span>
+            <h3>Quanta gent tenim en actiu</h3>
+            <span class="mena">Resol</span>
+          </header>
+          <div class="cos">
+            <p>
+              Us demanen el nombre de persones <strong>en actiu a data d'avui</strong>.
+              Partiu de la consulta <code>Persones</code>, afegiu el que calgui i
+              digueu el número.
+            </p>
+            <p>
+              Encara no hem vist com s'apliquen criteris, així que aquest exercici es
+              pot deixar per després de la unitat 6. Si el voleu intentar ara, la
+              columna de la lupa és el camí.
+            </p>
+            <details>
+              <summary>Pista</summary>
+              <div class="dins">
+                <p>
+                  El camp és <code>IND_ACTIU</code> i el valor és <code>A</code>, en
+                  majúscula. Fixeu-vos que no és el mateix que "actiu aquest mes":
+                  aquest seria el valor <code>M</code>, i el sumaríem amb l'operador
+                  <span class="ui">Llista</span>, que veurem a la unitat 6.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>Comprovació</summary>
+              <div class="dins">
+                <div class="criteri">IND_ACTIU <span class="op">=</span> 'A'</div>
+                <p>
+                  És la primera de les sis consultes model de la unitat 00. Com que
+                  PERSONA és de registre únic, comptar files aquí sí que compta gent.
+                </p>
+                <p class="resposta"><b>152</b> persones en actiu</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="comprovacio">
+        <h2><span class="num">Apartat 17</span>Llista de comprovació</h2>
+        <ul class="checklist">
+          <li>Crear una consulta dins d'un projecte.</li>
+          <li>Dir què fa cadascuna de les pestanyes Taules, Consulta i SQL.</li>
+          <li>Triar <code>MODEL_TOT</code> i saber quan no s'ha de fer servir.</li>
+          <li>Portar una taula a la consulta i esborrar-la si m'he equivocat.</li>
+          <li>Respondre les tres preguntes de la unitat 00 sobre WAIV9010_PERSONA.</li>
+          <li>Explicar què vol dir cada valor de <code>IND_ACTIU</code>.</li>
+          <li>Identificar la família d'un camp pel seu prefix.</li>
+          <li>Explicar per què un camp de text mai és nul i què implica.</li>
+          <li>Distingir les columnes d'ulleres, ordenació i criteris.</li>
+          <li>Seleccionar camps i reordenar les columnes arrossegant.</li>
+          <li>Sortir de la selecció massiva provocada per un doble clic.</li>
+          <li>Canviar la capçalera d'un camp des de les propietats.</li>
+          <li>Ocultar un camp que només serveix per ordenar o filtrar.</li>
+          <li>Executar i llegir el nombre de registres.</li>
+          <li>Desar amb <span class="ui">Desa</span> i amb <span class="ui">Desament</span>, i saber quan cal cadascun.</li>
+          <li>Trobar un camp fent clic a la capçalera de la columna.</li>
+        </ul>
+        <div class="note">
+          <span class="label">A la unitat següent</span>
+          <p>
+            Ja tenim dades a la graella, però surten en l'ordre que decideix el
+            programa. La unitat 5 és curta i resol això: ordenar per un camp, per
+            diversos, i revisar quins ordres té aplicats una consulta antiga.
+          </p>
+        </div>
+      </section>
+
+      <nav class="unit-nav">
+        <a class="prev" href="../03/">
+          <span class="dir">Unitat 03</span>
+          <span class="ttl">Projectes i objectes: consultes, informes i cubs</span>
+        </a>
+        <a class="next" href="../05/">
+          <span class="dir">Unitat 05</span>
+          <span class="ttl">Ordenació dels resultats</span>
+        </a>
+      </nav>
+
+      <footer class="site-foot">
+        <span>Guia elaborada per <strong>Ismael Trascastro</strong></span>
+        <span class="dret">Sobre material de l'Escola d'Administració Pública de Catalunya</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<script src="../../assets/tutorial.js?v=3"></script>
+</body>
+</html>
