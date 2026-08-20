@@ -844,8 +844,9 @@ figure img.is-zoomable:focus-visible { outline: 2px solid var(--blue); outline-o
   font-size: .82rem;
   color: var(--muted);
 }
-.site-foot strong { color: var(--ink); font-weight: 650; }
-.site-foot .dret { margin-left: auto; }
+.site-foot .dret { margin-left: auto; text-align: right; }
+.site-foot a { color: var(--blue); text-decoration: none; }
+.site-foot a:hover { text-decoration: underline; }
 
 @media (max-width: 620px) {
   .site-foot .dret { margin-left: 0; }
@@ -864,6 +865,9 @@ figure img.is-zoomable:focus-visible { outline: 2px solid var(--blue); outline-o
 }
 .colophon p { margin: 0 0 .7rem; }
 .colophon p:last-child { margin-bottom: 0; }
+.colophon p.dret { text-align: right; margin: 0; }
+.colophon a { color: var(--blue); text-decoration: none; }
+.colophon a:hover { text-decoration: underline; }
 
 /* --- Tornada a dalt ------------------------------------------------------ */
 

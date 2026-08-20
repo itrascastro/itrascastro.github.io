@@ -155,32 +155,29 @@
     });
     if (!entries.length) return;
 
-    /* L'apartat actiu és el que ocupa més superfície de la finestra, no el que
-       ha creuat una línia: una secció que omple tota la pantalla és la que
-       s'està llegint, encara que el seu títol quedi uns quants píxels per sota
-       de la capçalera. */
+    /* Mentre dura el desplaçament suau d'un clic, mana el que s'ha clicat. */
+    var fixat = null;
+    var rellotge = null;
+
+    /* L'apartat actiu és l'últim el títol del qual ha passat per sota de la
+       capçalera: el que s'acaba de començar a llegir. Abans es triava el que
+       ocupava més superfície de la finestra, i amb un apartat curt seguit d'un
+       de llarg -que és el cas de la pàgina de crèdits- el senyalador saltava
+       al següent abans d'hora. */
     function update() {
       var header = document.querySelector('.masthead');
-      var top = header ? header.getBoundingClientRect().height : 0;
-      var bottom = window.innerHeight;
+      var line = (header ? header.getBoundingClientRect().height : 0) + 24;
 
-      var best = null;
-      var bestArea = 0;
-
+      var best = entries[0];
       entries.forEach(function (entry) {
-        var box = entry.section.getBoundingClientRect();
-        var area = Math.min(box.bottom, bottom) - Math.max(box.top, top);
-        /* Amb empat guanya la de més avall: en fer scroll cap avall, l'apartat
-           nou pren el relleu tan bon punt iguala l'anterior. */
-        if (area >= bestArea) { bestArea = area; best = entry; }
+        if (entry.section.getBoundingClientRect().top <= line) best = entry;
       });
 
-      /* Si no n'hi ha cap de visible, l'últim que ha quedat amunt. */
-      if (!best) {
-        best = entries[0];
-        entries.forEach(function (entry) {
-          if (entry.section.getBoundingClientRect().top <= top) best = entry;
-        });
+      /* Al final de tot, l'últim apartat: si no, el penúltim es queda marcat
+         perquè l'últim no arriba mai a creuar la línia. */
+      var fons = window.scrollY + window.innerHeight;
+      if (fons >= document.documentElement.scrollHeight - 4) {
+        best = entries[entries.length - 1];
       }
 
       entries.forEach(function (entry) {
@@ -188,7 +185,22 @@
       });
     }
 
-    onScroll(update);
+    /* En clicar un enllaç de l'index, aquell apartat queda marcat de seguida.
+       Sense aixo, als ultims apartats d'una pagina curta la pagina ja no pot
+       baixar mes, el senyalador es queda a l'ultim i sembla que l'enllaç no
+       funcioni. */
+    entries.forEach(function (entry) {
+      entry.link.addEventListener('click', function () {
+        entries.forEach(function (altre) {
+          altre.link.classList.toggle('is-current', altre === entry);
+        });
+        fixat = entry;
+        clearTimeout(rellotge);
+        rellotge = setTimeout(function () { fixat = null; }, 900);
+      });
+    });
+
+    onScroll(function () { if (!fixat) update(); });
   }
 
   /* Un únic bucle de scroll per a tots els comportaments que en depenen. */
