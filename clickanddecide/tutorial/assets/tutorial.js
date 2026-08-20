@@ -79,6 +79,14 @@
 
   /* --- Enllac de cada exercici amb el simulador --------------------------- */
 
+  /* Unitats de les quals el simulador te exercicis. El simulador no guarda els
+     exercicis del tutorial un per un: els genera. L'enllaç, per tant, no obre
+     "aquest exercici" sino un exercici d'aquesta unitat, i nomes es posa on
+     n'hi ha: a les unitats 01, 02, 03, 04 i 15 no s'hi practica cap consulta i
+     un enllaç hi seria una mentida. */
+  var UNITATS_AMB_SIMULADOR = ['00', '05', '06', '07', '08', '09', '10', '11',
+                               '12', '13', '14', '16', '17', '18'];
+
   function linkExercises() {
     if (!SIMULADOR) return;
 
@@ -90,10 +98,15 @@
         var code = exercise.querySelector('.codi');
         if (!code) return;
 
+        var codi = code.textContent.trim();
+        var unitat = (/EX-(\d{2})/i.exec(codi) || [])[1];
+        if (!unitat || UNITATS_AMB_SIMULADOR.indexOf(unitat) === -1) return;
+
         var link = document.createElement('a');
         link.className = 'obre-simulador';
-        link.href = SIMULADOR + separator + 'ex=' + encodeURIComponent(code.textContent.trim());
-        link.textContent = "Obre'l al simulador";
+        link.href = SIMULADOR + separator + 'ex=' + encodeURIComponent(codi);
+        link.textContent = 'Practica-ho al simulador';
+        link.title = 'Obre el simulador amb un exercici de la unitat ' + unitat;
         link.rel = 'noopener';
         exercise.querySelector('header').appendChild(link);
       }

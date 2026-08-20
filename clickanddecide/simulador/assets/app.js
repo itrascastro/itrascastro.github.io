@@ -115,10 +115,18 @@
     pintaConceptes();
     pintaOrigens();
     /* Si s'hi arriba des del tutorial amb #ex=EX-06-2, es comenca per un
-       exercici d'aquella unitat. */
+       exercici d'aquella unitat i es diu d'on es ve: el simulador genera els
+       exercicis, no en guarda cap de fix, i sense dir-ho semblaria que ha
+       obert una altra cosa. */
     var codi = /[#&]ex=([^&]+)/.exec(window.location.hash || '');
     var demanat = codi ? Exercicis.generaPerCodi(decodeURIComponent(codi[1])) : null;
-    if (demanat) posaExercici(demanat); else nouExercici(null);
+    if (demanat) {
+      posaExercici(demanat);
+      avisDeProcedencia(decodeURIComponent(codi[1]), demanat.unitat);
+    } else {
+      if (codi) avisDeProcedencia(decodeURIComponent(codi[1]), null);
+      nouExercici(null);
+    }
   }
 
   /* --- Model de consulta --------------------------------------------------- */
@@ -1802,6 +1810,20 @@
        forma part de l'exercici. */
     var sol = exercici.solucio.consulta;
     novaConsulta(sol.taules || sol.taula);
+  }
+
+  /* La nota que surt quan s'arriba des del tutorial. */
+  function avisDeProcedencia(codi, unitat) {
+    var p = document.createElement('p');
+    p.className = 'nota procedencia';
+    p.innerHTML = unitat
+      ? 'Veniu de l\'exercici <code>' + codi + '</code> del tutorial. Aquí els exercicis ' +
+        'es generen: aquest és <b>un de la unitat ' + unitat + '</b>, no el mateix. ' +
+        'Amb <b>Un altre</b> en surt un de nou.'
+      : 'Veniu de l\'exercici <code>' + codi + '</code> del tutorial, però el simulador ' +
+        'encara no té exercicis d\'aquella unitat. Aquí en teniu un de qualsevol.';
+    var cos = document.querySelector('.bloc-exercici .cos');
+    if (cos) cos.appendChild(p);
   }
 
   function nomConcepte(id) {
