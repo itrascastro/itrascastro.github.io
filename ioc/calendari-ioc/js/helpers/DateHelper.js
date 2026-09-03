@@ -123,7 +123,8 @@ class DateHelper {
             ? studyTypeDiscovery.getConfig(calendar.type)
             : null;
         const semester = config?.semester;
-        return semester?.code === calendar.code ? semester.classesStartDate || null : null;
+        return config?.semesterClassesStartDates?.[calendar.code]
+            || (semester?.code === calendar.code ? semester.classesStartDate || null : null);
     }
 
     normalizeText(text) {
