@@ -53,6 +53,7 @@ class CalendariIOC_Calendar {
         this.lastEventId = data.lastEventId || 0;
         this.lastCategoryId = data.lastCategoryId || 0;
         this.paf1Date = data.paf1Date || null;
+        this.classesStartDate = data.classesStartDate || null;
         
         // Arrays d'INSTÀNCIES (no objectes literals)
         // Aquests arrays contindran només instàncies de les classes corresponents
@@ -246,6 +247,7 @@ class CalendariIOC_Calendar {
             lastEventId: this.lastEventId,
             lastCategoryId: this.lastCategoryId,
             paf1Date: this.paf1Date,
+            classesStartDate: this.classesStartDate,
             categories: Array.from(allRequiredCategories.values()).map(cat => cat.toJSON()),
             events: this.events.map(event => event.toJSON()) // Usa categoryId, no instància
         };

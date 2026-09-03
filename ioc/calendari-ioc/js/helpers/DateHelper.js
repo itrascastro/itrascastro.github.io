@@ -114,13 +114,16 @@ class DateHelper {
     }
 
     getClassesStartDate(calendar) {
-        if (!calendar || !Array.isArray(calendar.events)) return null;
-        const startEvent = calendar.events.find(e =>
-            e.isSystemEvent &&
-            typeof e.title === 'string' &&
-            this.normalizeText(e.title).includes("obertura d'aules de moduls i credits")
-        );
-        return startEvent ? startEvent.date : null;
+        if (!calendar) return null;
+        if (calendar.classesStartDate) return calendar.classesStartDate;
+
+        // Compatibilitat amb calendaris creats abans d'afegir la dada explícita.
+        // La font continua sent la configuració del tipus d'estudi, mai un títol d'event.
+        const config = typeof studyTypeDiscovery !== 'undefined'
+            ? studyTypeDiscovery.getConfig(calendar.type)
+            : null;
+        const semester = config?.semester;
+        return semester?.code === calendar.code ? semester.classesStartDate || null : null;
     }
 
     normalizeText(text) {

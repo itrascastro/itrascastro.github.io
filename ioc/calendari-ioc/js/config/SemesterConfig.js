@@ -79,4 +79,9 @@ class SemesterConfig {
         const semester = this.getSemester();
         return semester ? semester.code : null;
     }
+
+    getClassesStartDate() {
+        const semester = this.getSemester();
+        return semester ? semester.classesStartDate || null : null;
+    }
 }

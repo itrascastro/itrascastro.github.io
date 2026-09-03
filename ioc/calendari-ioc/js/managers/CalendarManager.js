@@ -103,8 +103,9 @@ class CalendarManager {
                 startDate: config.getStartDate(),
                 endDate: config.getEndDate(),
                 type: typeId,
-                paf1Date: config.getSemester()?.paf1Date || null,
-                config: config
+            paf1Date: config.getSemester()?.paf1Date || null,
+            classesStartDate: config.getClassesStartDate(),
+            config: config
             };
         } catch (error) {
             console.error('[CalendarManager] Error creant configuració de semestre:', error);
@@ -143,6 +144,7 @@ class CalendarManager {
             type: template.type,
             code,
             paf1Date: template.paf1Date || null,
+            classesStartDate: template.classesStartDate || null,
             lastEventId: 0,
             lastCategoryId: 0
         });
@@ -278,9 +280,9 @@ class CalendarManager {
         return !!appStateManager.calendars[calendarId];
     }
     
-    createCalendarData({ id, name, startDate, endDate, type, paf1Date = null, config = null }) {
+    createCalendarData({ id, name, startDate, endDate, type, paf1Date = null, classesStartDate = null, config = null }) {
         const calendar = new CalendariIOC_Calendar({
-            id, name, startDate, endDate, type, paf1Date,
+            id, name, startDate, endDate, type, paf1Date, classesStartDate,
             code: config ? config.getSemesterCode() : null,
             eventCounter: 0,
             categoryCounter: 0
