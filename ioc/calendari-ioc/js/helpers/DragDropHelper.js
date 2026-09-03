@@ -27,8 +27,8 @@ class DragDropHelper {
     setupDragAndDrop(container, calendar) {
         // Fer esdeveniments draggables (suport vistes estàndard i compacta)
         const draggableSelectors = [
-            '.event.is-user-event[draggable="true"]',
-            '.compact-event.is-user-event[draggable="true"]'
+            '.event[draggable="true"]',
+            '.compact-event[draggable="true"]'
         ].join(',');
 
         container.querySelectorAll(draggableSelectors).forEach(eventEl => {

@@ -244,7 +244,7 @@ class Bootstrap {
         const createBtn = menu.querySelector('[data-action="create-event-context"]');
         const pasteBtn = menu.querySelector('[data-action="paste-event"]');
         const event = eventId ? appStateManager.findEventById(eventId) : null;
-        const isUserEvent = !!event && !event.isSystemEvent;
+        const canManageEvent = !!event;
         const canDelete = !!event;
         const calendar = appStateManager.getCurrentCalendar();
         const canCreate = !!date && dateValidationService.isDateInCalendarRange(date, calendar);
@@ -254,11 +254,11 @@ class Bootstrap {
 
         if (copyBtn) {
             copyBtn.classList.toggle('hidden', mode !== 'copy');
-            copyBtn.classList.toggle('disabled', mode !== 'copy' || !isUserEvent);
+            copyBtn.classList.toggle('disabled', mode !== 'copy' || !canManageEvent);
         }
         if (editBtn) {
             editBtn.classList.toggle('hidden', mode !== 'copy');
-            editBtn.classList.toggle('disabled', mode !== 'copy' || !isUserEvent);
+            editBtn.classList.toggle('disabled', mode !== 'copy' || !canManageEvent);
         }
         if (deleteBtn) {
             deleteBtn.classList.toggle('hidden', mode !== 'copy');
@@ -299,16 +299,14 @@ class Bootstrap {
         if (!eventId) return;
 
         const event = appStateManager.findEventById(eventId);
-        if (!event || event.isSystemEvent) {
-            uiHelper.showMessage('Només es poden copiar events d\'usuari', 'warning');
-            return;
-        }
+        if (!event) return;
 
         const categoryId = event.getCategory()?.id || null;
         appStateManager.copiedEvent = {
             title: event.title,
             description: event.description || '',
-            categoryId
+            categoryId,
+            isSystemEvent: !!event.isSystemEvent
         };
 
         this.hideEventContextMenu();
@@ -321,10 +319,7 @@ class Bootstrap {
         if (!eventId) return;
 
         const event = appStateManager.findEventById(eventId);
-        if (!event || event.isSystemEvent) {
-            uiHelper.showMessage('Només es poden editar events d\'usuari', 'warning');
-            return;
-        }
+        if (!event) return;
 
         this.hideEventContextMenu();
         modalRenderer.openEventModal(event);
