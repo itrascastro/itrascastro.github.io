@@ -666,12 +666,12 @@ class ViewManager {
         if (!dayContainer) return;
         
         // Fer esdeveniments de la llista draggables
-        dayContainer.querySelectorAll('.event-list-item.is-user-event[draggable="true"]').forEach(eventEl => {
+        dayContainer.querySelectorAll('.event-list-item[draggable="true"]').forEach(eventEl => {
             const eventId = eventEl.dataset.eventId;
             const eventData = appStateManager.findEventById(eventId);
             const dateStr = dateHelper.toUTCString(appStateManager.currentDate);
             
-            if (eventData.id && dateStr) {
+            if (eventData?.id && dateStr) {
                 eventManager.makeEventDraggable(eventEl, eventData, dateStr);
             }
         });

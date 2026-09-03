@@ -1185,12 +1185,16 @@ body[data-current-view="compact"] .compact-day-cell:hover {
 }
 
 /* === DRAG & DROP === */
-.event.is-user-event[draggable="true"] {
+.event[draggable="true"],
+.compact-event[draggable="true"],
+.event-list-item[draggable="true"] {
     cursor: grab;
     transition: transform 0.2s, opacity 0.2s;
 }
 
-.event.is-user-event[draggable="true"]:hover {
+.event[draggable="true"]:hover,
+.compact-event[draggable="true"]:hover,
+.event-list-item[draggable="true"]:hover {
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }

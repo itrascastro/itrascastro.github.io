@@ -596,7 +596,7 @@ class CompactViewRenderer extends CalendarRenderer {
         } else {
             const eventClasses = ['compact-event', isUserEvent ? 'is-user-event' : 'is-system-event'];
             const openModalAction = `data-action="open-event-modal" data-event-id="${event.id}"`;
-            const draggableAttr = isUserEvent ? 'draggable="true"' : '';
+            const draggableAttr = 'draggable="true"';
             const contrastStyle = colorContrastHelper.getContrastStyle(color);
             
             return `<div class="${eventClasses.join(' ')}" style="${contrastStyle}" data-event-id="${event.id}" ${openModalAction} ${draggableAttr} title="${event.title}">${title}</div>`;
