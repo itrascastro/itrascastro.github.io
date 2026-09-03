@@ -25,7 +25,10 @@ class CalendarManager {
             if (selectedType === 'ALTRE') {
                 calendarData = this._createGenericCalendar();
             } else {
-                calendarData = await this._createStudyCalendar(selectedType);
+                const source = document.getElementById('calendarSource')?.value || 'institutional';
+                calendarData = source === 'template'
+                    ? await this._createTemplateCalendar(selectedType)
+                    : await this._createStudyCalendar(selectedType);
             }
 
             if (!calendarData) return;
@@ -34,7 +37,13 @@ class CalendarManager {
                 throw new CalendariIOCException('402', `El calendari amb ID "${calendarData.id}" ja existeix.`, false);
             }
 
-            this.createCalendarData(calendarData);
+            if (calendarData.calendarInstance) {
+                appStateManager.calendars[calendarData.id] = calendarData.calendarInstance;
+                appStateManager.currentCalendarId = calendarData.id;
+                appStateManager.currentDate = dateHelper.parseUTC(calendarData.calendarInstance.startDate);
+            } else {
+                this.createCalendarData(calendarData);
+            }
             
             viewManager.changeView('month');
             storageManager.saveToStorage();
@@ -101,6 +110,66 @@ class CalendarManager {
             console.error('[CalendarManager] Error creant configuració de semestre:', error);
             throw new CalendariIOCException('503', `Error processant la configuració per al tipus "${typeId}": ${error.message}`, false);
         }
+    }
+
+    async _createTemplateCalendar(typeId) {
+        const userIdentifier = document.getElementById('studyIdentifier').value.trim();
+        const file = document.getElementById('calendarTemplateFile')?.files?.[0];
+        if (!userIdentifier || !file) {
+            throw new CalendariIOCException('405', 'Cal indicar l\'identificador i seleccionar una plantilla.', false);
+        }
+
+        let template;
+        try {
+            template = JSON.parse(await file.text());
+        } catch {
+            throw new CalendariIOCException('414', 'El fitxer de plantilla no és un JSON vàlid.', false);
+        }
+
+        if (!template.templateInfo?.isCalendarTemplate || !template.id || !template.startDate || !template.endDate || !Array.isArray(template.categories) || !Array.isArray(template.events)) {
+            throw new CalendariIOCException('411', 'El fitxer no és una plantilla de calendari vàlida.', false);
+        }
+        if (template.type !== typeId) {
+            throw new CalendariIOCException('411', `La plantilla és de tipus ${template.type}, no de tipus ${typeId}.`, false);
+        }
+
+        const code = template.code || 'PLANTILLA';
+        const id = `${typeId}_${userIdentifier.toUpperCase()}_${code}`;
+        const calendar = new CalendariIOC_Calendar({
+            id,
+            name: id,
+            startDate: template.startDate,
+            endDate: template.endDate,
+            type: template.type,
+            code,
+            paf1Date: template.paf1Date || null,
+            lastEventId: 0,
+            lastCategoryId: 0
+        });
+
+        const categoryIds = new Map();
+        let categoryCounter = 0;
+        template.categories.forEach(categoryData => {
+            const categoryId = `${id}_C${++categoryCounter}`;
+            categoryIds.set(categoryData.id, categoryId);
+            calendar.addCategory(new CalendariIOC_Category({ ...categoryData, id: categoryId }));
+        });
+
+        template.events.forEach((eventData, index) => {
+            if (eventData.categoryId && !categoryIds.has(eventData.categoryId)) {
+                throw new CalendariIOCException('411', `L'esdeveniment "${eventData.title || index + 1}" referencia una categoria inexistent.`, false);
+            }
+            const category = calendar.findCategoryById(categoryIds.get(eventData.categoryId));
+            calendar.addEvent(new CalendariIOC_Event({
+                ...eventData,
+                id: `${id}_E${index + 1}`,
+                category
+            }));
+        });
+        calendar.lastEventId = template.events.length;
+        calendar.lastCategoryId = categoryCounter;
+
+        return { id, name: id, calendarInstance: calendar };
     }
 
     _createFallbackCalendar(typeId, userIdentifier) {

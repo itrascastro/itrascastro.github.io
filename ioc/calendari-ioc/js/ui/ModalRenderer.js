@@ -107,7 +107,21 @@ class ModalRenderer {
                     <label for="studyIdentifier">Identificador del Calendari</label>
                     <input type="text" id="studyIdentifier" name="studyIdentifier" placeholder="${selectedType.placeholder}" required>
                 </div>
+                <div class="form-group">
+                    <label for="calendarSource">Origen</label>
+                    <select id="calendarSource" name="calendarSource">
+                        <option value="institutional">Configuració per defecte</option>
+                        <option value="template">Plantilla pròpia (.json)</option>
+                    </select>
+                </div>
+                <div id="calendarTemplateField" class="form-group" style="display: none;">
+                    <label for="calendarTemplateFile">Plantilla</label>
+                    <input type="file" id="calendarTemplateFile" accept=".json,application/json">
+                </div>
             `;
+            document.getElementById('calendarSource').addEventListener('change', (event) => {
+                document.getElementById('calendarTemplateField').style.display = event.target.value === 'template' ? '' : 'none';
+            });
         }
     }
     

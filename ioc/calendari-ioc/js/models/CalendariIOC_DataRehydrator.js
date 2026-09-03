@@ -235,15 +235,14 @@ class CalendariIOC_DataRehydrator {
      * @private
      */
     static _createCategoryInstances(jsonState, categoryMap) {
-        // Mapa de noms per detectar duplicats amb categories del catàleg existent
-        const nameMap = new Map();
         // Set per marcar categories que ja existien al catàleg
         const existingCatalogCategories = new Set();
-        
-        // PRIMER: Poblar nameMap amb categories que ja existeixen al catàleg
+
+        // Les categories s'identifiquen exclusivament pel seu ID. Dos calendaris
+        // poden tenir categories amb el mateix nom i colors diferents, especialment
+        // quan un s'ha creat a partir d'una plantilla.
         if (appStateManager && appStateManager.categoryTemplates) {
             appStateManager.categoryTemplates.forEach(cat => {
-                nameMap.set(cat.name.toLowerCase(), cat);
                 categoryMap.set(cat.id, cat);
                 existingCatalogCategories.add(cat.id);
             });
@@ -253,19 +252,8 @@ class CalendariIOC_DataRehydrator {
         if (jsonState.categoryTemplates) {
             jsonState.categoryTemplates.forEach(catData => {
                 if (!categoryMap.has(catData.id)) {
-                    const normalizedName = catData.name.toLowerCase();
-                    const existingCategory = nameMap.get(normalizedName);
-                    
-                    if (existingCategory) {
-                        // Reusar categoria existent amb mateix nom
-                        categoryMap.set(catData.id, existingCategory);
-                        existingCatalogCategories.add(catData.id);
-                    } else {
-                        // Crear nova categoria
-                        const category = new CalendariIOC_Category(catData);
-                        categoryMap.set(category.id, category);
-                        nameMap.set(normalizedName, category);
-                    }
+                    const category = new CalendariIOC_Category(catData);
+                    categoryMap.set(category.id, category);
                 }
             });
         }
@@ -276,19 +264,8 @@ class CalendariIOC_DataRehydrator {
                 if (calData.categories) {
                     calData.categories.forEach(catData => {
                         if (!categoryMap.has(catData.id)) {
-                            const normalizedName = catData.name.toLowerCase();
-                            const existingCategory = nameMap.get(normalizedName);
-                            
-                            if (existingCategory) {
-                                // Reusar categoria existent amb mateix nom
-                                categoryMap.set(catData.id, existingCategory);
-                                existingCatalogCategories.add(catData.id);
-                            } else {
-                                // Crear nova categoria
-                                const category = new CalendariIOC_Category(catData);
-                                categoryMap.set(category.id, category);
-                                nameMap.set(normalizedName, category);
-                            }
+                            const category = new CalendariIOC_Category(catData);
+                            categoryMap.set(category.id, category);
                         }
                     });
                 }

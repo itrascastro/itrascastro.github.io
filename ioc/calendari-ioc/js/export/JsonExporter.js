@@ -35,6 +35,24 @@ class JsonExporter {
         this.downloadJsonFile(jsonContent, calendar.name);
         uiHelper.showMessage('Calendari desat com a fitxer JSON', 'success');
     }
+
+    exportTemplate(calendarId) {
+        const calendar = appStateManager.calendars[calendarId];
+        if (!calendar) {
+            throw new CalendariIOCException('1102', 'JsonExporter.exportTemplate');
+        }
+        const template = {
+            ...calendar.toJSON(),
+            templateInfo: {
+                isCalendarTemplate: true,
+                version: '1.0',
+                createdAt: new Date().toISOString(),
+                createdBy: 'Calendari-Modul-IOC'
+            }
+        };
+        this.downloadJsonFile(JSON.stringify(template, null, 2), `${calendar.name}_plantilla`);
+        uiHelper.showMessage('Plantilla desada com a fitxer JSON', 'success');
+    }
     
     // === GENERACIÓ DE CONTINGUT JSON ===
     generateJsonContent(calendar) {

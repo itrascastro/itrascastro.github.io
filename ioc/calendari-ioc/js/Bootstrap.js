@@ -158,6 +158,7 @@ class Bootstrap {
                 case 'open-color-picker-modal': modalRenderer.openColorPickerModal(target.dataset.categoryId, target); break;
                 case 'select-color': modalRenderer.selectCategoryColor(target.dataset.color); break;
                 case 'save-calendar-json': jsonExporter.exportCalendar(appStateManager.getSelectedCalendarId()); break;
+                case 'save-calendar-template': jsonExporter.exportTemplate(appStateManager.getSelectedCalendarId()); break;
                 case 'export-calendar-ics': icsExporter.exportCalendar(appStateManager.getSelectedCalendarId()); break;
                 case 'export-calendar-html': htmlExporter.exportCalendar(appStateManager.getSelectedCalendarId()); break;
                 case 'export-compact-html': compactHtmlExporter.exportCalendar(appStateManager.getSelectedCalendarId()); break;
