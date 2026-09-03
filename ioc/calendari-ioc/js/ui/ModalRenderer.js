@@ -266,20 +266,32 @@ class ModalRenderer {
         const descriptionInput = document.getElementById('eventDescription');
         
         if (event) {
+            const isSystemEvent = !!event.isSystemEvent;
             appStateManager.editingEventId = event.id;
-            title.textContent = 'Editar Esdeveniment';
+            title.textContent = isSystemEvent ? 'Esdeveniment de Sistema' : 'Editar Esdeveniment';
             titleInput.value = event.title;
             dateInput.value = event.date;
             descriptionInput.value = event.description || '';
-            eventManager.populateCategorySelect();
-            categorySelect.value = event.getCategory()?.id || '';
 
-            titleInput.disabled = false;
-            dateInput.disabled = false;
-            categorySelect.disabled = false;
-            descriptionInput.disabled = false;
-            saveBtn.disabled = false;
-            saveBtn.style.display = '';
+            if (isSystemEvent) {
+                categorySelect.innerHTML = '';
+                const systemOption = document.createElement('option');
+                const categoryName = event.getCategory()?.name || 'Sense categoria';
+                systemOption.value = event.getCategory()?.id || '';
+                systemOption.textContent = categoryName;
+                systemOption.selected = true;
+                categorySelect.appendChild(systemOption);
+            } else {
+                eventManager.populateCategorySelect();
+                categorySelect.value = event.getCategory()?.id || '';
+            }
+
+            titleInput.disabled = isSystemEvent;
+            dateInput.disabled = isSystemEvent;
+            categorySelect.disabled = isSystemEvent;
+            descriptionInput.disabled = isSystemEvent;
+            saveBtn.disabled = isSystemEvent;
+            saveBtn.style.display = isSystemEvent ? 'none' : '';
             deleteBtn.style.display = 'inline-block';
         } else {
             appStateManager.editingEventId = null;

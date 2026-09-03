@@ -43,16 +43,12 @@ class EventManager {
             throw new CalendariIOCException('603', 'EventManager.saveEvent', false);
         }
 
-        const existingEvent = appStateManager.editingEventId
-            ? calendar.findEventById(appStateManager.editingEventId)
-            : null;
         const eventData = {
             title,
             date,
             category, // REFERÈNCIA DIRECTA A INSTÀNCIA
             description,
-            // En editar, conservar si l'esdeveniment provenia de la configuració de sistema.
-            isSystemEvent: existingEvent ? existingEvent.isSystemEvent : false
+            isSystemEvent: false
         };
 
         if (appStateManager.editingEventId) {
@@ -139,7 +135,12 @@ class EventManager {
     
     // Validar moviment d'esdeveniment
     isValidEventMove(event, targetDate, calendar) {
-        // Qualsevol esdeveniment es pot moure a qualsevol data dins del rang.
+        // Només esdeveniments d'usuari es poden moure
+        if (event.isSystemEvent) {
+            throw new CalendariIOCException('605', 'EventManager.isValidEventMove', false);
+        }
+        
+        // Validar data utilitzant el servei centralitzat
         dateValidationService.validateEventDate(targetDate, calendar);
         return true;
     }
@@ -168,7 +169,11 @@ class EventManager {
 
         select.innerHTML = '<option value="" disabled selected>Selecciona una categoria</option>';
         
-        // Totes les categories estan disponibles per a tots els esdeveniments.
+        // Categories del sistema del calendari actual - NOMÉS PER INFORMACIÓ
+        const systemCategories = calendar.categories.filter(cat => cat.isSystem);
+        
+        // PER ESDEVENIMENTS D'USUARI: Només categories del catàleg (no sistema)
+        // FASE 3: Obtenir categories disponibles directament (sense servei intermedi)
         const allCategories = this.getAvailableCategories(calendar);
         
         if (allCategories.length === 0) {
@@ -187,7 +192,7 @@ class EventManager {
     
     // Fer esdeveniment arrossegable
     makeEventDraggable(eventElement, event, dateStr) {
-        if (!event) return;
+        if (!event || event.isSystemEvent) return;
         
         eventElement.draggable = true;
         
@@ -308,7 +313,7 @@ class EventManager {
         const copied = appStateManager.copiedEvent;
         if (!calendar || !copied) return;
 
-        const { title, description, categoryId, isSystemEvent } = copied;
+        const { title, description, categoryId } = copied;
         this.validateEventData(title, dateStr, categoryId, calendar);
         this.ensureCategoryExists(calendar, categoryId);
 
@@ -322,7 +327,7 @@ class EventManager {
             date: dateStr,
             category,
             description,
-            isSystemEvent: !!isSystemEvent
+            isSystemEvent: false
         });
 
         storageManager.saveToStorage();
@@ -337,8 +342,8 @@ class EventManager {
     getAvailableCategories(calendar) {
         if (!calendar) return [];
         
-        // Categories del calendari, incloses les del sistema.
-        const calendarCategories = calendar.categories;
+        // Categories del calendari (exclou sistema)
+        const calendarCategories = calendar.categories.filter(c => !c.isSystem);
         
         // Categories del catàleg global
         const templateCategories = appStateManager.categoryTemplates || [];

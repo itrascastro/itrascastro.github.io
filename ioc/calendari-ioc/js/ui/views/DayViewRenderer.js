@@ -124,7 +124,7 @@ class DayViewRenderer extends CalendarRenderer {
             // Per a DOM - amb interactivitat
             const eventClasses = ['event-list-item', isUserEvent ? 'is-user-event' : 'is-system-event'];
             const openModalAction = `data-action="open-event-modal" data-event-id="${event.id}"`;
-            const draggableAttr = 'draggable="true"';
+            const draggableAttr = isUserEvent ? 'draggable="true"' : '';
             
             return `
                 <div class="${eventClasses.join(' ')}" data-event-id="${event.id}" ${openModalAction} ${draggableAttr}>
@@ -134,7 +134,7 @@ class DayViewRenderer extends CalendarRenderer {
                         <div class="event-category">${categoryName}</div>
                         ${event.description ? `<div class="event-description">${event.description}</div>` : ''}
                     </div>
-                    <div class="event-actions">⋮</div>
+                    ${isUserEvent ? '<div class="event-actions">⋮</div>' : ''}
                 </div>
             `;
         }
