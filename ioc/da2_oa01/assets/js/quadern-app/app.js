@@ -51,6 +51,9 @@
           return;
         }
 
+        // Aplicar tema guardat
+        this._applyStoredTheme();
+
         // Inicialitzar mòduls en ordre de dependència
         this._initializeModules();
         // Escoltar canvis de localStorage des d'altres pestanyes per actualitzar el footer
@@ -66,6 +69,15 @@
       return document.querySelector('.quadern-layout') !== null ||
              document.querySelector('[data-page="quadern"]') !== null ||
              window.location.pathname.includes('quadern');
+    },
+
+    _applyStoredTheme() {
+      try {
+        const st = window.Quadern?.Store?.load?.();
+        const theme = st?.user?.theme || 'light';
+        document.body.setAttribute('data-theme', theme);
+        if (theme === 'dark') document.body.classList.add('dark-theme'); else document.body.classList.remove('dark-theme');
+      } catch(e){}
     },
 
     _initializeModules() {

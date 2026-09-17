@@ -18,21 +18,21 @@
 <meta property="og:locale" content="ca_ES" />
 <meta name="description" content="Creació de serveis, injecció de dependències i patrons de servei Angular" />
 <meta property="og:description" content="Creació de serveis, injecció de dependències i patrons de servei Angular" />
-<link rel="canonical" href="http://localhost:4004/ioc/da2_oa01/unitat-3/bloc-1/" />
-<meta property="og:url" content="http://localhost:4004/ioc/da2_oa01/unitat-3/bloc-1/" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/da2_oa01/unitat-3/bloc-1/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/da2_oa01/unitat-3/bloc-1/" />
 <meta property="og:site_name" content="DA2_OA01 - Programació Avançada (Angular)" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Bloc 1: Serveis i separació de responsabilitats" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Creació de serveis, injecció de dependències i patrons de servei Angular","headline":"Bloc 1: Serveis i separació de responsabilitats","url":"http://localhost:4004/ioc/da2_oa01/unitat-3/bloc-1/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Creació de serveis, injecció de dependències i patrons de servei Angular","headline":"Bloc 1: Serveis i separació de responsabilitats","url":"https://itrascastro.github.io/ioc/da2_oa01/unitat-3/bloc-1/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/ioc/da2_oa01/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="canonical" href="http://localhost:4004/ioc/da2_oa01/unitat-3/bloc-1/">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/da2_oa01/unitat-3/bloc-1/">
     <!-- Rich editor styles (for embedded notes panel) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
     <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -48,7 +48,7 @@
     <link rel="icon" type="image/x-icon" href="/ioc/da2_oa01/assets/images/favicon.ico">
     
     <!-- RSS Feed -->
-    <link type="application/atom+xml" rel="alternate" href="http://localhost:4004/ioc/da2_oa01/feed.xml" title="DA2_OA01 - Programació Avançada (Angular)" />
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/da2_oa01/feed.xml" title="DA2_OA01 - Programació Avançada (Angular)" />
 
     <!-- Syntax Highlighting (Prism) -->
     <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
@@ -130,7 +130,7 @@
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-2/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 2 - Bloc 2: Data binding i events
+                        Unitat 2 - Bloc 2: Control de flux, condicions i pipes
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-2/bloc-3/" class="nav-dropdown-item ">
@@ -148,11 +148,11 @@
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-3/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 3 - Bloc 2: Gestió d'estat i comunicació entre components
+                        Unitat 3 - Bloc 2: Models de dades i transformació
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-3/bloc-3/" class="nav-dropdown-item ">
-                        Unitat 3 - Bloc 3: Optimització i bones pràctiques
+                        Unitat 3 - Bloc 3: Formularis reactius i validacions
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-3/bloc-4/" class="nav-dropdown-item ">
@@ -166,11 +166,11 @@
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-4/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 4 - Bloc 2: Arquitectura escalable
+                        Unitat 4 - Bloc 2: Arquitectura i patrons
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-4/bloc-3/" class="nav-dropdown-item ">
-                        Unitat 4 - Bloc 3: Optimització de rendiment
+                        Unitat 4 - Bloc 3: Rendiment i optimització
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-4/bloc-4/" class="nav-dropdown-item ">
@@ -1156,74 +1156,8 @@
 
 <!-- Contingut principal -->
 <!-- SECCIÓ 1: Creació de serveis i separació de responsabilitats -->
-<div class="section" id="Unitat3_Bloc1_Seccio1">
+<div class="section">
   <h2 id="Unitat3_Bloc1_Seccio1">1. Creació de serveis i separació de responsabilitats</h2>
-
-  <!-- MULTIMÈDIA -->
-  <!--
-  ════════════════════════════════════════════════════════════════
-  Component: Enllaços multimèdia YouTube
-  ════════════════════════════════════════════════════════════════
-
-  Paràmetres:
-    - unitat: número de la unitat (1-4)
-    - bloc: número del bloc (1-4)
-    - seccio: número de la secció (1-3)
-
-  Exemple d'ús:
-    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
-
-  El component busca automàticament les URLs corresponents a
-  site.data.multimedia i mostra els botons de vídeo i àudio.
-  ════════════════════════════════════════════════════════════════
--->
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-<div class="multimedia-resources">
-  <div class="multimedia-header">
-    <i class="bi bi-play-circle-fill"></i>
-    <span>Contingut multimèdia d'aquesta lectura</span>
-  </div>
-
-  <div class="multimedia-buttons">
-    
-    <a href="https://www.youtube.com/watch?v=mB5qeQC4eZQ" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 3.1.1 · Creació de serveis i separació de responsabilitats">
-      <i class="bi bi-youtube"></i>
-      <span>Veure vídeo</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-
-    
-    <a href="https://www.youtube.com/watch?v=__msUahbc_s" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 3.1.1 · Creació de serveis i separació de responsabilitats">
-      <i class="bi bi-mic-fill"></i>
-      <span>Escoltar àudio</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-  </div>
-
-  
-  
-</div>
-  
-
-
-
 
   <!-- Component: Objectius del bloc/unitat -->
 
@@ -1273,7 +1207,7 @@
     <ul>
       <li><strong>Projecte base funcional:</strong> Unitat 2 completada amb catàleg d'elements operatiu, components de targeta, llista i cerca implementats, dades simulades (mock) actualment dins del component arrel.</li>
       <li><strong>Entorn preparat:</strong> Angular CLI instal·lat i verificat, projecte arrencant correctament amb <code>ng serve</code>, Visual Studio Code amb extensions Angular.</li>
-      <li><strong>Coneixements previs:</strong> Components i propietats @Input (Lectura 2.1.2), vinculació de dades i esdeveniments (Lectura 2.1.3), gestió d'arrays i iteració amb *ngFor (Lectura 2.2.1).</li>
+      <li><strong>Coneixements previs:</strong> Components i propietats @Input (Lectura 2.1.2), vinculació de dades i esdeveniments (Lectura 2.1.3), gestió d'arrays i iteració amb @for (Lectura 2.2.1).</li>
     </ul>
     <p><strong>Verificació ràpida:</strong></p>
     
@@ -1293,11 +1227,13 @@
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng version
+git switch ra3-serveis
+git status
 ng serve --open</code></pre>
   </div>
 </div>
 
-    <p><strong>Punt d'autocomprovació:</strong> El navegador mostra el catàleg d'elements amb dades locals. Git està net (<code>git status</code> sense canvis pendents).</p>
+    <p><strong>Punt d'autocomprovació:</strong> El navegador mostra el catàleg d'elements amb dades locals. Git està net (<code>git status</code> sense canvis pendents) i la branca activa és <code>ra3-serveis</code>. Recordeu que aquesta branca es va crear a partir de <code>main</code>: si voleu partir del catàleg de la Unitat 2, incorporeu-hi primer la feina de <code>ra2-components</code> amb <code>git merge ra2-components</code>.</p>
   
   </div>
 </div>
@@ -1342,7 +1278,7 @@ ng serve --open</code></pre>
   selector: &#39;app-root&#39;,
   template: `...`
 })
-export class AppComponent {
+export class App {
   // PROBLEMA: Dades barrejades amb lògica de presentació
   elements: Element[] = [
     { id: 1, titol: &#39;Portàtil ThinkPad&#39;, descripcio: &#39;...&#39; },
@@ -1419,7 +1355,7 @@ elements: Element[] = [
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// element.service.ts - SERVEI
-@Injectable({ providedIn: &#39;root&#39; })
+@Service()
 export class ElementService {
   private elements: Element[] = [
     { id: 1, titol: &#39;Portàtil ThinkPad&#39;, ... },
@@ -1442,7 +1378,7 @@ export class ElementService {
   selector: &#39;app-root&#39;,
   template: `...`
 })
-export class AppComponent {
+export class App {
   private elementService = inject(ElementService);
   elements: Element[] = [];
   ngOnInit(): void {
@@ -1495,7 +1431,7 @@ export class AppComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">AppComponent (200 línies)
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">App (200 línies)
 ├─ Dades: Element[]
 ├─ Lògica filtratge
 ├─ Lògica destacats
@@ -1532,7 +1468,7 @@ DetallComponent (150 línies)
 ├─ obtenirElements()
 ├─ filtrarPerText()
 └─ obtenirDestacats()
-AppComponent (60 línies)
+App (60 línies)
 ├─ Injecta servei
 ├─ Només presenta dades
 └─ Template + Estils
@@ -1585,7 +1521,7 @@ DetallComponent (50 línies)
 ├─────────────────────────────────────────────────────┤
 │                                                      │
 │  ┌──────────────────┐         ┌─────────────────┐  │
-│  │   AppComponent   │         │ DetallComponent │  │
+│  │   App   │         │ DetallComponent │  │
 │  │                  │         │                 │  │
 │  │  - elements[]    │         │  - element      │  │
 │  │  - ngOnInit()    │         │  - ngOnInit()   │  │
@@ -1598,7 +1534,7 @@ DetallComponent (50 línies)
 │                      ▼                              │
 │           ┌────────────────────┐                    │
 │           │  ElementService    │ ← Instància única │
-│           │  @Injectable       │                    │
+│           │  @Service          │                    │
 │           ├────────────────────┤                    │
 │           │ - elements: []     │                    │
 │           │ + obtenirElements()│                    │
@@ -1722,7 +1658,7 @@ DetallComponent (50 línies)
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Injectable({ providedIn: &#39;root&#39; })  // &quot;root&quot; = una sola instància per tota l&#39;app
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Service()  // servei singleton: una sola instància per tota l&#39;app
 export class ElementService { }</code></pre>
   </div>
 </div>
@@ -1744,7 +1680,7 @@ export class ElementService { }</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">export class AppComponent {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">export class App {
   private elementService = inject(ElementService);  // Angular proporciona la instància
 }</code></pre>
   </div>
@@ -1752,7 +1688,7 @@ export class ElementService { }</code></pre>
 
     <p><strong>Pas 3 - Angular connecta automàticament:</strong></p>
     <ul>
-      <li>Angular veu que <code>AppComponent</code> necessita <code>ElementService</code></li>
+      <li>Angular veu que <code>App</code> necessita <code>ElementService</code></li>
       <li>Comprova si ja existeix una instància (singleton)</li>
       <li>Si no existeix, la crea</li>
       <li>L'injecta al component</li>
@@ -1978,7 +1914,11 @@ obtenirPreuFinal(elementId: number): number {
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Component({
   selector: &#39;app-cataleg&#39;,
-  template: `&lt;div *ngFor=&quot;let e of elements&quot;&gt;{{ e.titol }}&lt;/div&gt;`
+  template: `
+    @for (e of elements; track e.id) {
+      &lt;div&gt;{{ e.titol }}&lt;/div&gt;
+    }
+  `
 })
 export class CatalegComponent {
   // Dades definides al component
@@ -2020,7 +1960,7 @@ export class CatalegComponent {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// element.service.ts
-@Injectable({ providedIn: &#39;root&#39; })
+@Service()
 export class ElementService {
   private elements: Element[] = [ /* dades */ ];
   obtenirElements(): Element[] {
@@ -2036,7 +1976,11 @@ export class ElementService {
 // cataleg.component.ts
 @Component({
   selector: &#39;app-cataleg&#39;,
-  template: `&lt;div *ngFor=&quot;let e of elements&quot;&gt;{{ e.titol }}&lt;/div&gt;`
+  template: `
+    @for (e of elements; track e.id) {
+      &lt;div&gt;{{ e.titol }}&lt;/div&gt;
+    }
+  `
 })
 export class CatalegComponent {
   private elementService = inject(ElementService);
@@ -2077,9 +2021,9 @@ export class CatalegComponent {
   <div class="section-point-body component-content">
     
     <h4>1.5.1. Objectiu</h4>
-    <p>Entendre què és exactament un servei Angular a nivell tècnic: una classe TypeScript amb el decorador @Injectable que encapsula funcionalitat específica i segueix el principi de responsabilitat única.</p>
+    <p>Entendre què és exactament un servei Angular a nivell tècnic: una classe TypeScript amb el decorador @Service que encapsula funcionalitat específica i segueix el principi de responsabilitat única.</p>
     <h4>1.5.2. Definició tècnica</h4>
-    <p>Un servei és una <strong>classe TypeScript</strong> amb el decorador <code>@Injectable</code> que encapsula funcionalitat específica i es pot injectar a components o altres serveis.</p>
+    <p>Un servei és una <strong>classe TypeScript</strong> amb el decorador <code>@Service</code> (o el clàssic <code>@Injectable</code>) que encapsula funcionalitat específica i es pot injectar a components o altres serveis.</p>
     
     <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
   <div class="code-header">
@@ -2096,7 +2040,7 @@ export class CatalegComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Injectable({ providedIn: &#39;root&#39; })
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Service()
 export class ElementService {
   // Propietats privades
   private elements: Element[] = [];
@@ -2114,7 +2058,7 @@ export class ElementService {
     <ul>
       <li><code>ElementService</code> → Gestiona elements del catàleg</li>
       <li><code>AuthService</code> → Gestiona autenticació d'usuaris</li>
-      <li><code>CarretaService</code> → Gestiona cistella de compra</li>
+      <li><code>CistellaService</code> → Gestiona cistella de compra</li>
     </ul>
     <p>NO creeu serveis que facin tot (<code>AppService</code> amb 50 mètodes diferents).</p>
     <p><strong>2. Mètodes clars i públics</strong></p>
@@ -2193,7 +2137,7 @@ process(): void</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Injectable({ providedIn: &#39;root&#39; })
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Service()
 export class ElementService {
   obtenirElements(): Element[] { }
   afegirElement(element: Element): void { }
@@ -2219,7 +2163,7 @@ export class ElementService {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Injectable({ providedIn: &#39;root&#39; })
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Service()
 export class PreuService {
   calcularPreuFinal(preu: number, descompte: number): number { }
   aplicarIVA(preu: number): number { }
@@ -2244,7 +2188,7 @@ export class PreuService {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Injectable({ providedIn: &#39;root&#39; })
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Service()
 export class NotificacioService {
   mostrarExit(missatge: string): void { }
   mostrarError(missatge: string): void { }
@@ -2265,7 +2209,7 @@ export class NotificacioService {
         <tr>
           <td><strong>Decorador</strong></td>
           <td><code>@Component</code></td>
-          <td><code>@Injectable</code></td>
+          <td><code>@Service</code></td>
         </tr>
         <tr>
           <td><strong>Té template</strong></td>
@@ -2479,7 +2423,7 @@ elements = MOCK_DATA;
 // després:
 ngOnInit() {
   this.http.get(&#39;/api/elements&#39;).subscribe(data =&gt; {
-    this.elements = data;
+    this.elements.set(data);
   });
 }</code></pre>
   </div>
@@ -2627,7 +2571,7 @@ export class ElementService {
 
     <h4>1.7.3. Com funciona internament</h4>
     <p><strong>1. Registre del servei</strong></p>
-    <p>El decorador <code>@Injectable({ providedIn: 'root' })</code> registra el servei al sistema de DI d'Angular:</p>
+    <p>El decorador <code>@Service()</code> registra el servei al sistema de DI d'Angular:</p>
     
     <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
   <div class="code-header">
@@ -2644,7 +2588,7 @@ export class ElementService {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Injectable({ providedIn: &#39;root&#39; })  // &quot;Registra&#39;m a nivell root&quot;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Service()  // &quot;Registra&#39;m a nivell d&#39;aplicació&quot;
 export class ElementService { }</code></pre>
   </div>
 </div>
@@ -2792,7 +2736,7 @@ export class DestacatsComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Injectable({ providedIn: &#39;root&#39; })</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Service()</code></pre>
   </div>
 </div>
 
@@ -3043,10 +2987,11 @@ mkdir -p src/app/services</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng generate service services/element --skip-tests</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng generate service services/element --skip-tests --add-type-to-class-name</code></pre>
   </div>
 </div>
 
+    <p>L'opció <code>--add-type-to-class-name</code> fa que la classe es digui <code>ElementService</code>. Sense ella, la CLI d'aquest projecte generaria una classe anomenada <code>Element</code>, que xocaria amb la interfície <code>Element</code> del model.</p>
     <p><strong>Sortida esperada:</strong></p>
     
     <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
@@ -3064,7 +3009,7 @@ mkdir -p src/app/services</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">CREATE src/app/services/element.service.ts (140 bytes)</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">CREATE src/app/services/element.service.ts (89 bytes)</code></pre>
   </div>
 </div>
 
@@ -3111,22 +3056,44 @@ ls src/app/services</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Injectable } from &#39;@angular/core&#39;;
-@Injectable({
-  providedIn: &#39;root&#39;
-})
-export class ElementService {
-  constructor() { }
-}</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Service } from &#39;@angular/core&#39;;
+
+@Service()
+export class ElementService {}</code></pre>
   </div>
 </div>
 
-    <p><strong>Desglosament:</strong></p>
+        <p>Angular 22 genera el decorador <code>@Service()</code>, una novetat d'aquesta versió: registra el servei a nivell d'aplicació amb una única instància (singleton) i està pensat per a serveis que injecten les seves dependències amb <code>inject()</code>. És el que farem servir en aquest mòdul. Equival a la forma clàssica, que trobareu a molts tutorials i que continua sent vàlida:</p>
+    
+    <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Injectable } from &#39;@angular/core&#39;;
+
+@Injectable({ providedIn: &#39;root&#39; })   // equivalent a @Service()
+export class ElementService {}</code></pre>
+  </div>
+</div>
+
+    <p><code>@Injectable</code> continua sent necessari quan cal injecció per constructor amb paràmetres decorats, un abast diferent de l'aplicació o configuració avançada; la CLI el genera amb <code>ng generate service ... --injectable</code>.</p>
+    <p><strong>Desglossament:</strong></p>
     <ol>
-      <li><strong>Import:</strong> <code>Injectable</code> és el decorador necessari</li>
-      <li><strong>Decorador:</strong> <code>@Injectable({ providedIn: 'root' })</code> registra el servei</li>
+      <li><strong>Import:</strong> <code>Service</code> és el decorador necessari</li>
+      <li><strong>Decorador:</strong> <code>@Service()</code> registra el servei com a singleton de l'aplicació</li>
       <li><strong>Classe:</strong> <code>ElementService</code> és la classe del servei</li>
-      <li><strong>Constructor:</strong> Lloc per injectar altres dependències</li>
+      <li><strong>Sense constructor:</strong> les dependències s'injecten amb la funció <code>inject()</code> a les propietats (ho veureu a la lectura 3.1.2); la CLI ja no genera un constructor buit</li>
     </ol>
     <h4>1.8.6. Ubicació dels serveis</h4>
     <p><strong>Convencions recomanades:</strong></p>
@@ -3277,13 +3244,11 @@ src/app/services/element.service.ts</code></pre>
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// 1. IMPORTS
-import { Injectable } from &#39;@angular/core&#39;;
+import { Service } from &#39;@angular/core&#39;;
 import { Element } from &#39;../models/element.model&#39;;
 import { ELEMENTS_MOCK } from &#39;../mocks/dades-mock&#39;;
 // 2. DECORADOR
-@Injectable({
-  providedIn: &#39;root&#39;
-})
+@Service()
 // 3. CLASSE
 export class ElementService {
   // 4. PROPIETATS PRIVADES
@@ -3316,7 +3281,7 @@ export class ElementService {
 </div>
 
     <h4>1.9.3. Imports necessaris</h4>
-    <p><strong>Injectable (obligatori):</strong></p>
+    <p><strong>Service (obligatori):</strong></p>
     
     <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
   <div class="code-header">
@@ -3333,7 +3298,7 @@ export class ElementService {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Injectable } from &#39;@angular/core&#39;;</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Service } from &#39;@angular/core&#39;;</code></pre>
   </div>
 </div>
 
@@ -3382,7 +3347,7 @@ export class ElementService {
 </div>
 
     <p>Array de dades simulades per treballar mentre no tenim API.</p>
-    <h4>1.9.4. Decorador @Injectable</h4>
+    <h4>1.9.4. Decorador @Service</h4>
     
     <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
   <div class="code-header">
@@ -3399,22 +3364,20 @@ export class ElementService {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Injectable({
-  providedIn: &#39;root&#39;
-})</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Service()</code></pre>
   </div>
 </div>
 
-    <p><strong>Opcions del decorador:</strong></p>
+    <p><strong>Formes equivalents i alternatives:</strong></p>
     <ul>
-      <li><code>providedIn: 'root'</code> → Singleton global (recomanat)</li>
-      <li><code>providedIn: 'platform'</code> → Compartit entre apps (ús molt rar)</li>
-      <li>Sense <code>providedIn</code> → Cal proveir manualment (obsolet)</li>
+      <li><code>@Service()</code> → Singleton d'aplicació, la forma d'Angular 22 (recomanada)</li>
+      <li><code>@Injectable({ providedIn: 'root' })</code> → Forma clàssica, equivalent; necessària per a injecció per constructor amb decoradors o abasts especials</li>
+      <li><code>@Injectable()</code> sense <code>providedIn</code> → Cal proveir-lo manualment a un <code>providers</code> (component o ruta) quan es vol una instància per abast</li>
     </ul>
     <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Per què 'root'?</strong> Garanteix que només hi ha una instància del servei per tota l'aplicació. Estalvia memòria i manté estat consistent.
+    <strong>Per què singleton?</strong> Garanteix que només hi ha una instància del servei per tota l'aplicació. Estalvia memòria i manté estat consistent.
 </div>
 
     <h4>1.9.5. Propietats privades</h4>
@@ -3721,7 +3684,6 @@ obtenirElements(): Element[] {
 import { ElementService } from &#39;../../services/element.service&#39;;
 @Component({
   selector: &#39;app-cataleg&#39;,
-  standalone: true,
   template: `...`
 })
 export class CatalegComponent {
@@ -3880,15 +3842,13 @@ export class CatalegComponent {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, OnInit, inject } from &#39;@angular/core&#39;;
-import { CommonModule } from &#39;@angular/common&#39;;
 import { ElementService } from &#39;../../services/element.service&#39;;
 import { Element } from &#39;../../models/element.model&#39;;
 import { LlistaElementsComponent } from &#39;../llista-elements/llista-elements.component&#39;;
 import { BarraCercaComponent } from &#39;../barra-cerca/barra-cerca.component&#39;;
 @Component({
   selector: &#39;app-cataleg&#39;,
-  standalone: true,
-  imports: [CommonModule, LlistaElementsComponent, BarraCercaComponent],
+  imports: [LlistaElementsComponent, BarraCercaComponent],
   template: `
     &lt;div class=&quot;cataleg&quot;&gt;
       &lt;h1&gt;Catàleg d&#39;Elements&lt;/h1&gt;
@@ -3925,7 +3885,7 @@ export class CatalegComponent implements OnInit {
 
     <h4>1.10.7. Errors habituals i solucions</h4>
     <p><strong>Error: "NullInjectorError: No provider for ElementService"</strong></p>
-    <p><strong>Causa:</strong> Servei no té <code>@Injectable({ providedIn: 'root' })</code></p>
+    <p><strong>Causa:</strong> Servei no té <code>@Service()</code></p>
     <p><strong>Solució:</strong></p>
     
     <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
@@ -3943,14 +3903,14 @@ export class CatalegComponent implements OnInit {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Injectable({ providedIn: &#39;root&#39; })  // Afegir això!
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Service()  // Afegir això!
 export class ElementService { }</code></pre>
   </div>
 </div>
 
     <p><strong>Error: "Cannot read properties of undefined"</strong></p>
-    <p><strong>Causa:</strong> Intentes usar servei abans que Angular l'hagi injectat.</p>
-    <p><strong>Solució:</strong> Usar <code>ngOnInit</code>, NO el constructor:</p>
+    <p><strong>Causa:</strong> Es fa servir el servei en un inicialitzador de propietat declarat <em>abans</em> de la línia que l'injecta. Els inicialitzadors s'executen en ordre: si <code>elements</code> es calcula abans que <code>elementService</code> existeixi, és <code>undefined</code>.</p>
+    <p><strong>Solució:</strong> Declarar primer la injecció (o carregar les dades a <code>ngOnInit</code>):</p>
     
     <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
   <div class="code-header">
@@ -3967,13 +3927,17 @@ export class ElementService { }</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// Incorrecte
-constructor() {
-  this.elements = this.elementService.obtenirElements();  // Massa aviat!
-}
-// Correcte
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// Incorrecte: &#39;elements&#39; s&#39;inicialitza abans que &#39;elementService&#39;
+elements = this.elementService.obtenirElements();  // undefined!
+private elementService = inject(ElementService);
+
+// Correcte: primer la injecció, després l&#39;ús
+private elementService = inject(ElementService);
+elements = this.elementService.obtenirElements();
+
+// També correcte: carregar a ngOnInit
 ngOnInit(): void {
-  this.elements = this.elementService.obtenirElements();  // Moment adequat
+  this.elements = this.elementService.obtenirElements();
 }</code></pre>
   </div>
 </div>
@@ -4095,12 +4059,10 @@ export const ELEMENTS_MOCK: Element[] = [
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Injectable } from &#39;@angular/core&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Service } from &#39;@angular/core&#39;;
 import { Element } from &#39;../models/element.model&#39;;
 import { ELEMENTS_MOCK } from &#39;../mocks/dades-mock&#39;;
-@Injectable({
-  providedIn: &#39;root&#39;
-})
+@Service()
 export class ElementService {
   private elements: Element[] = [...ELEMENTS_MOCK];
   obtenirElements(): Element[] {
@@ -4154,15 +4116,13 @@ export class ElementService {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, OnInit, inject } from &#39;@angular/core&#39;;
-import { CommonModule } from &#39;@angular/common&#39;;
 import { ElementService } from &#39;./services/element.service&#39;;
 import { Element } from &#39;./models/element.model&#39;;
 import { LlistaElementsComponent } from &#39;./components/llista-elements/llista-elements.component&#39;;
 import { BarraCercaComponent } from &#39;./components/barra-cerca/barra-cerca.component&#39;;
 @Component({
   selector: &#39;app-root&#39;,
-  standalone: true,
-  imports: [CommonModule, LlistaElementsComponent, BarraCercaComponent],
+  imports: [LlistaElementsComponent, BarraCercaComponent],
   template: `
     &lt;main class=&quot;contenidor&quot;&gt;
       &lt;header&gt;
@@ -4170,10 +4130,12 @@ import { BarraCercaComponent } from &#39;./components/barra-cerca/barra-cerca.co
         &lt;p&gt;Unitat 3 - Serveis i separació de responsabilitats&lt;/p&gt;
       &lt;/header&gt;
       &lt;app-barra-cerca (cercaCanviada)=&quot;filtrar($event)&quot;&gt;&lt;/app-barra-cerca&gt;
-      &lt;section *ngIf=&quot;elementsDestacats.length &gt; 0&quot; class=&quot;destacats&quot;&gt;
+      @if (elementsDestacats.length &gt; 0) {
+      &lt;section class=&quot;destacats&quot;&gt;
         &lt;h2&gt;Elements destacats&lt;/h2&gt;
         &lt;app-llista-elements [elements]=&quot;elementsDestacats&quot;&gt;&lt;/app-llista-elements&gt;
       &lt;/section&gt;
+      }
       &lt;section&gt;
         &lt;h2&gt;Tots els elements&lt;/h2&gt;
         &lt;app-llista-elements [elements]=&quot;elements&quot;&gt;&lt;/app-llista-elements&gt;
@@ -4186,7 +4148,7 @@ import { BarraCercaComponent } from &#39;./components/barra-cerca/barra-cerca.co
     .destacats { background: #f5f5f5; padding: 20px; margin-bottom: 40px; border-radius: 8px; }
   `]
 })
-export class AppComponent implements OnInit {
+export class App implements OnInit {
   private elementService = inject(ElementService);
   elements: Element[] = [];
   elementsDestacats: Element[] = [];
@@ -4292,7 +4254,7 @@ obtenirEstadistiques(): { total: number; mitjana: number } {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// app.component.ts
-export class AppComponent implements OnInit {
+export class App implements OnInit {
   private elementService = inject(ElementService);
   estadistiques = { total: 0, mitjana: 0 };
   ngOnInit(): void {
@@ -4364,8 +4326,8 @@ export class AppComponent implements OnInit {
       <tbody>
         <tr>
           <td>NullInjectorError</td>
-          <td>Afegir decorador @Injectable({ providedIn: 'root' }) al servei</td>
-          <td>Afegir decorador @Injectable({ providedIn: 'root' }) al servei</td>
+          <td>Afegir decorador @Service() al servei</td>
+          <td>Afegir decorador @Service() al servei</td>
         </tr>
         <tr>
           <td>Cannot find module</td>
@@ -4429,7 +4391,7 @@ export class AppComponent implements OnInit {
         <tr>
           <td>Dades desapareixen</td>
           <td>Servei no és singleton</td>
-          <td>Verificar <code>providedIn: 'root'</code></td>
+          <td>Verificar que el servei porta <code>@Service()</code> i no està a cap <code>providers</code> de component</td>
         </tr>
       </tbody>
     </table>
@@ -4533,7 +4495,7 @@ export class AppComponent implements OnInit {
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Organitzo projecte amb carpetes de serveis/models</div>
+    <div class="checklist-text">Organitzo projecte amb carpetes de services/models</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
@@ -4557,7 +4519,7 @@ export class AppComponent implements OnInit {
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Servei té decorador <code>@Injectable({ providedIn: 'root' })</code></div>
+    <div class="checklist-text">Servei té decorador <code>@Service()</code></div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
@@ -4664,7 +4626,7 @@ export class AppComponent implements OnInit {
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>Servei:</strong> Classe TypeScript amb decorador <code>@Injectable</code> que encapsula lògica de negoci i gestió de dades. Reutilitzable entre múltiples components com a instància única compartida (singleton).</p>
+    <p><strong>Servei:</strong> Classe TypeScript amb decorador <code>@Service</code> (o <code>@Injectable</code>) que encapsula lògica de negoci i gestió de dades. Reutilitzable entre múltiples components com a instància única compartida (singleton).</p>
   </div>
 </div>
 
@@ -4672,7 +4634,7 @@ export class AppComponent implements OnInit {
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>Injecció de dependències:</strong> Patró on Angular proporciona dependències automàticament. Components reben serveis sense crear-los manualment utilitzant <code>inject()</code> o constructor, registrats amb <code>providedIn: 'root'</code>.</p>
+    <p><strong>Injecció de dependències:</strong> Patró on Angular proporciona dependències automàticament. Components reben serveis sense crear-los manualment utilitzant <code>inject()</code> o constructor, registrats amb <code>@Service()</code>.</p>
   </div>
 </div>
 
@@ -4688,7 +4650,7 @@ export class AppComponent implements OnInit {
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>Singleton:</strong> Patró de disseny on només existeix una instància d'una classe per tota l'aplicació. Angular crea una sola instància del servei quan usa <code>providedIn: 'root'</code>, compartida entre tots els components.</p>
+    <p><strong>Singleton:</strong> Patró de disseny on només existeix una instància d'una classe per tota l'aplicació. Angular crea una sola instància del servei declarat amb <code>@Service()</code> (o <code>providedIn: 'root'</code>), compartida entre tots els components.</p>
   </div>
 </div>
 
@@ -4696,7 +4658,7 @@ export class AppComponent implements OnInit {
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>@Injectable:</strong> Decorador que marca una classe com injectable per al sistema de DI d'Angular. <code>providedIn: 'root'</code> registra el servei globalment com a singleton.</p>
+    <p><strong>@Service / @Injectable:</strong> Decoradors que marquen una classe com injectable per al sistema de DI d'Angular. <code>@Service()</code> (Angular 22) registra el servei com a singleton d'aplicació; equival al clàssic <code>@Injectable({ providedIn: 'root' })</code>.</p>
   </div>
 </div>
 
@@ -4720,7 +4682,7 @@ export class AppComponent implements OnInit {
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>providedIn: 'root':</strong> Opció del decorador @Injectable que registra el servei a nivell root. Crea una sola instància per tota l'aplicació, estalviant memòria i mantenint estat consistent.</p>
+    <p><strong>providedIn: 'root':</strong> Opció del decorador clàssic @Injectable que registra el servei a nivell d'aplicació; és el que fa @Service() per defecte. Crea una sola instància per tota l'aplicació.</p>
   </div>
 </div>
 
@@ -4780,74 +4742,8 @@ export class AppComponent implements OnInit {
 </div>
 
 <!-- SECCIÓ 2: Client de peticions i comunicació amb serveis web -->
-<div class="section" id="Unitat3_Bloc1_Seccio2">
+<div class="section">
   <h2 id="Unitat3_Bloc1_Seccio2">2. Client de peticions i comunicació amb serveis web</h2>
-
-  <!-- MULTIMÈDIA -->
-  <!--
-  ════════════════════════════════════════════════════════════════
-  Component: Enllaços multimèdia YouTube
-  ════════════════════════════════════════════════════════════════
-
-  Paràmetres:
-    - unitat: número de la unitat (1-4)
-    - bloc: número del bloc (1-4)
-    - seccio: número de la secció (1-3)
-
-  Exemple d'ús:
-    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
-
-  El component busca automàticament les URLs corresponents a
-  site.data.multimedia i mostra els botons de vídeo i àudio.
-  ════════════════════════════════════════════════════════════════
--->
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-<div class="multimedia-resources">
-  <div class="multimedia-header">
-    <i class="bi bi-play-circle-fill"></i>
-    <span>Contingut multimèdia d'aquesta lectura</span>
-  </div>
-
-  <div class="multimedia-buttons">
-    
-    <a href="https://www.youtube.com/watch?v=A-gAnoUhswg" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 3.1.2 · Client de peticions i comunicació amb serveis web">
-      <i class="bi bi-youtube"></i>
-      <span>Veure vídeo</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-
-    
-    <a href="https://www.youtube.com/watch?v=zYaHldwRSPg" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 3.1.2 · Client de peticions i comunicació amb serveis web">
-      <i class="bi bi-mic-fill"></i>
-      <span>Escoltar àudio</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-  </div>
-
-  
-  
-</div>
-  
-
-
-
 
   <!-- Component: Objectius del bloc/unitat -->
 
@@ -4862,7 +4758,7 @@ export class AppComponent implements OnInit {
       
         <li>Comprendre mètodes de petició (GET, POST, PUT, DELETE) i quan usar cada un</li>
       
-        <li>Fer la primera petició GET a una API pública i processar la resposta</li>
+        <li>Fer la primera petició GET a una API i processar la resposta</li>
       
         <li>Entendre el concepte d'asincronisme i Observable en Angular</li>
       
@@ -4983,7 +4879,7 @@ ng serve --open</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Injectable({ providedIn: &#39;root&#39; })
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Service()
 export class ElementService {
   private elements: Element[] = [
     { id: 1, titol: &#39;Portàtil ThinkPad&#39;, descripcio: &#39;...&#39;, valoracio: 4.8 },
@@ -5031,7 +4927,7 @@ export class ElementService {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Injectable({ providedIn: &#39;root&#39; })
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Service()
 export class ElementService {
   private http = inject(HttpClient);
   private apiUrl = &#39;https://api.example.com&#39;;
@@ -5267,10 +5163,10 @@ ngOnInit() {
     return this.http.post&lt;Element&gt;(`${this.apiUrl}/elements`, element);
   }
 }
-elements: Element[] = [];
+elements = signal&lt;Element[]&gt;([]);
 ngOnInit() {
   this.elementService.obtenirElements().subscribe({
-    next: (dades) =&gt; this.elements = dades,
+    next: (dades) =&gt; this.elements.set(dades),
     error: (err) =&gt; console.error(&#39;Error:&#39;, err)
   });
 }</code></pre>
@@ -5342,7 +5238,7 @@ ngOnInit() {
 ├─────────────────────────────────────────────────────────────┤
 │                                                              │
 │  ┌──────────────────┐         ┌─────────────────────────┐  │
-│  │  AppComponent    │  usa    │   ElementService        │  │
+│  │  App    │  usa    │   ElementService        │  │
 │  │                  │────────→│   (Servei Angular)      │  │
 │  │ - elements[]     │         │                         │  │
 │  │ - ngOnInit()     │         │ + obtenirElements()     │  │
@@ -5458,7 +5354,7 @@ Temps total: 0.001 segons (immediat)</code></pre>
   </div>
 </div>
 
-    <p><strong>Asíncron (API externa):</strong></p>
+    <p><strong>Asíncron (API remota o local amb json-server):</strong></p>
     
     <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
   <div class="code-header">
@@ -5611,8 +5507,8 @@ Temps total: 0.5 - 5 segons (depèn de xarxa)</code></pre>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">ngOnInit() {
   this.elementService.obtenirElements().subscribe({
     next: (dades) =&gt; {
-      this.elements = dades;
-      console.log(this.elements);
+      this.elements.set(dades);
+      console.log(this.elements());
     }
   });
 }</code></pre>
@@ -5637,7 +5533,7 @@ Temps total: 0.5 - 5 segons (depèn de xarxa)</code></pre>
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">this.elementService.obtenirElements().subscribe(
-  dades =&gt; this.elements = dades
+  dades =&gt; this.elements.set(dades)
 );</code></pre>
   </div>
 </div>
@@ -5660,7 +5556,7 @@ Temps total: 0.5 - 5 segons (depèn de xarxa)</code></pre>
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">this.elementService.obtenirElements().subscribe({
-  next: dades =&gt; this.elements = dades,
+  next: dades =&gt; this.elements.set(dades),
   error: err =&gt; console.error(&#39;Error:&#39;, err)
 });</code></pre>
   </div>
@@ -5703,10 +5599,9 @@ Temps total: 0.5 - 5 segons (depèn de xarxa)</code></pre>
   <div class="section-point-body component-content">
     
     <h4>2.4.1. Configuració necessària</h4>
-    <p>Per fer peticions HTTP, Angular proporciona el mòdul <code>HttpClient</code>. Cal importar-lo a la configuració de l'aplicació.</p>
-    <h4>2.4.2. Opcions d'importació</h4>
-    <p><strong>Opció 1 - provideHttpClient (recomanada per aplicacions standalone):</strong></p>
-    <p><strong>Fitxer <code>src/main.ts</code>:</strong></p>
+    <p>Per fer peticions HTTP, Angular proporciona el servei <code>HttpClient</code>. A Angular 22 ja està <strong>disponible per defecte</strong>: qualsevol servei o component pot fer <code>inject(HttpClient)</code> sense registrar res. Només cal tocar la configuració global quan voleu <em>personalitzar-lo</em>.</p>
+    <h4>2.4.2. Injectar HttpClient sense configuració</h4>
+    <p>El cas habitual d'aquest mòdul: importar la classe i injectar-la.</p>
     
     <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
   <div class="code-header">
@@ -5723,19 +5618,18 @@ Temps total: 0.5 - 5 segons (depèn de xarxa)</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { bootstrapApplication } from &#39;@angular/platform-browser&#39;;
-import { provideHttpClient } from &#39;@angular/common/http&#39;;
-import { AppComponent } from &#39;./app/app.component&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { HttpClient } from &#39;@angular/common/http&#39;;
+import { Service, inject } from &#39;@angular/core&#39;;
 
-bootstrapApplication(AppComponent, {
-  providers: [
-    provideHttpClient()
-  ]
-}).catch(err =&gt; console.error(err));</code></pre>
+@Service()
+export class ElementService {
+  private readonly http = inject(HttpClient);   // funciona sense provideHttpClient()
+}</code></pre>
   </div>
 </div>
 
-    <p><strong>Opció 2 - app.config.ts (si existeix):</strong></p>
+    <h4>2.4.3. Quan cal provideHttpClient()</h4>
+    <p><code>provideHttpClient(...)</code> és la funció de configuració d'<code>HttpClient</code>. S'afegeix a <code>providers</code> de <code>src/app/app.config.ts</code> (el fitxer que <code>main.ts</code> passa a <code>bootstrapApplication</code>) quan voleu activar opcions: interceptors propis, protecció XSRF, el backend XHR en lloc de <code>fetch</code>, etc.</p>
     
     <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
   <div class="code-header">
@@ -5752,18 +5646,24 @@ bootstrapApplication(AppComponent, {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { ApplicationConfig } from &#39;@angular/core&#39;;
-import { provideHttpClient } from &#39;@angular/common/http&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { provideHttpClient, withInterceptors } from &#39;@angular/common/http&#39;;
+import { ApplicationConfig, provideBrowserGlobalErrorListeners } from &#39;@angular/core&#39;;
+import { provideRouter } from &#39;@angular/router&#39;;
+import { routes } from &#39;./app.routes&#39;;
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient()
-  ]
+    provideBrowserGlobalErrorListeners(),
+    provideRouter(routes),
+    // Només si cal personalitzar HttpClient (per exemple, un interceptor d&#39;autenticació)
+    provideHttpClient(withInterceptors([/* authInterceptor */])),
+  ],
 };</code></pre>
   </div>
 </div>
 
-    <p><strong>Opció 3 - HttpClientModule (aplicacions amb mòduls tradicionals):</strong></p>
+    <p>Sense cap opció, <code>provideHttpClient()</code> és innocu: registra el mateix que Angular ja proporciona per defecte. No el necessitareu fins que configureu interceptors.</p>
+    <p><strong>Nota històrica:</strong> a Angular 20 i anteriors calia cridar <code>provideHttpClient()</code> sempre (i, en projectes amb <code>NgModule</code>, importar <code>HttpClientModule</code>). Si un tutorial ho demana com a pas obligatori, és d'una versió anterior.</p>
     
     <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
   <div class="code-header">
@@ -5780,33 +5680,16 @@ export const appConfig: ApplicationConfig = {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { HttpClientModule } from &#39;@angular/common/http&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// Sintaxi antiga (NgModule) — NO s&#39;usa en aquest curs
+import { HttpClientModule } from &#39;@angular/common/http&#39;;
+@NgModule({ imports: [HttpClientModule] })
+export class AppModule {}
 
-@NgModule({
-  imports: [
-    HttpClientModule
-  ]
-})
-export class AppModule { }</code></pre>
+// Angular 22: res a configurar per al cas bàsic; provideHttpClient(...) només per personalitzar</code></pre>
   </div>
 </div>
 
-    <h4>2.4.3. Què fa provideHttpClient()</h4>
-    <p>Quan cridem <code>provideHttpClient()</code>:</p>
-    <ul>
-      <li>Angular registra <code>HttpClient</code> al sistema de dependències</li>
-      <li>Qualsevol servei pot injectar <code>HttpClient</code></li>
-      <li>Es configuren interceptors per defecte</li>
-      <li>S'habilita la gestió d'errors HTTP</li>
-    </ul>
-    <!-- Component: Caixa d'èxit -->
-<div class="success-box" role="status" aria-live="polite">
-    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Important:</strong> Només cal cridar-ho <strong>un cop</strong> a <code>main.ts</code>. Tots els serveis poden usar-lo després.
-</div>
-
-    <h4>2.4.4. Verificar la configuració</h4>
-    <p><strong>Després d'afegir provideHttpClient():</strong></p>
+    <h4>2.4.4. Verificar que compila</h4>
     
     <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
   <div class="code-header">
@@ -5844,15 +5727,18 @@ export class AppModule { }</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">✔ Browser application bundle generation complete.
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">✔ Building...
 Initial chunk files | Names         | Raw size
-main.js             | main          | 250.45 kB
+main.js             | main          | 52.10 kB |
 ...
-✔ Compiled successfully.</code></pre>
+Application bundle generation complete. [0.612 seconds]
+
+Watch mode enabled. Watching for file changes...
+  ➜  Local:   http://localhost:4200/</code></pre>
   </div>
 </div>
 
-    <p><strong>Si hi ha error:</strong></p>
+    <p><strong>Un error que pot aparèixer en aquest punt:</strong></p>
     
     <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
   <div class="code-header">
@@ -5873,7 +5759,34 @@ main.js             | main          | 250.45 kB
   </div>
 </div>
 
-    <p><strong>Solució:</strong> Verificar que <code>provideHttpClient()</code> està a l'array <code>providers</code>.</p>
+    <p><strong>Causa i solució:</strong> no té res a veure amb proveïdors. Vol dir que <code>inject()</code> s'ha cridat fora d'un context d'injecció: dins de <code>ngOnInit()</code>, d'un mètode o d'un callback. Moveu la crida a un inicialitzador de propietat o al constructor:</p>
+    
+    <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">export class ElementService {
+  private readonly http = inject(HttpClient);   // correcte: inicialitzador de propietat
+
+  carregar() {
+    // const http = inject(HttpClient);          // NG0203: fora del context d&#39;injecció
+  }
+}</code></pre>
+  </div>
+</div>
+
+    <p>Si el que veieu és <code>NG0201: No provider for X</code>, el problema sí que és un servei no registrat (per exemple, un servei propi sense <code>@Service()</code>).</p>
   
   </div>
 </div>
@@ -5934,10 +5847,10 @@ import { inject } from &#39;@angular/core&#39;;</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Injectable, inject } from &#39;@angular/core&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Service, inject } from &#39;@angular/core&#39;;
 import { HttpClient } from &#39;@angular/common/http&#39;;
 
-@Injectable({ providedIn: &#39;root&#39; })
+@Service()
 export class ElementService {
   private http = inject(HttpClient);
 }</code></pre>
@@ -5961,7 +5874,7 @@ export class ElementService {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Injectable({ providedIn: &#39;root&#39; })
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Service()
 export class ElementService {
   constructor(private http: HttpClient) { }
 }</code></pre>
@@ -5992,7 +5905,7 @@ export class ElementService {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Injectable({ providedIn: &#39;root&#39; })
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Service()
 export class ElementService {
   private http = inject(HttpClient);
   private apiUrl = &#39;https://jsonplaceholder.typicode.com&#39;;
@@ -6206,7 +6119,7 @@ o
 ngOnInit() {
   this.elementService.obtenirElements().subscribe({
     next: (dades) =&gt; {
-      this.elements = dades;
+      this.elements.set(dades);
     },
     error: (err) =&gt; {
       console.error(&#39;Error:&#39;, err);
@@ -6272,12 +6185,12 @@ ngOnInit() {
   console.log(&#39;Inici&#39;);
   this.elementService.obtenirElements().subscribe({
     next: (dades) =&gt; {
-      this.elements = dades;
-      console.log(this.elements);
+      this.elements.set(dades);
+      console.log(this.elements());
     }
   });
   console.log(&#39;Després del subscribe&#39;);
-  console.log(this.elements);
+  console.log(this.elements());
 }</code></pre>
   </div>
 </div>
@@ -6350,7 +6263,7 @@ obs$.subscribe();</code></pre>
   <div class="section-point-body component-content">
     
     <h4>2.7.1. API de prova: JSONPlaceholder</h4>
-    <p>Usarem <strong>JSONPlaceholder</strong>, una API pública gratuïta per practicar:</p>
+    <p>Per als primers exemples usarem <strong>JSONPlaceholder</strong>, una API pública gratuïta a Internet, ideal per practicar sense instal·lar res. Al cas d'ús la substituirem per una API local amb <code>json-server</code>, que es consumeix exactament igual però la controleu vosaltres:</p>
     
     <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
   <div class="code-header">
@@ -6491,12 +6404,12 @@ GET https://jsonplaceholder.typicode.com/users/1
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Injectable, inject } from &#39;@angular/core&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Service, inject } from &#39;@angular/core&#39;;
 import { HttpClient } from &#39;@angular/common/http&#39;;
 import { Observable } from &#39;rxjs&#39;;
 import { Element } from &#39;../models/element.model&#39;;
 
-@Injectable({ providedIn: &#39;root&#39; })
+@Service()
 export class ElementService {
   private http = inject(HttpClient);
   private apiUrl = &#39;https://jsonplaceholder.typicode.com&#39;;
@@ -6606,17 +6519,17 @@ cercar(terme: string): Observable&lt;Element[]&gt; {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">export class AppComponent implements OnInit {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">export class App implements OnInit {
   private elementService = inject(ElementService);
   elements: Element[] = [];
   ngOnInit(): void {
-    this.elements = this.elementService.obtenirElements();
+    this.elements = this.elementService.obtenirElements();   // mock síncron
   }
 }</code></pre>
   </div>
 </div>
 
-    <p><strong>Component després (amb API):</strong></p>
+    <p><strong>Component després (amb API):</strong> les dades arriben de manera asíncrona, dins del <code>subscribe</code>. Com que els projectes d'Angular 22 no tenen <code>zone.js</code>, un canvi en una propietat normal fet dins d'aquest callback no refresca la vista: per això guardem la llista en un <strong>signal</strong> (<code>signal&lt;Element[]&gt;([])</code>), l'omplim amb <code>set()</code> i la llegim a la plantilla amb <code>elements()</code>. Angular detecta el canvi del signal i repinta el component.</p>
     
     <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
   <div class="code-header">
@@ -6633,36 +6546,40 @@ cercar(terme: string): Observable&lt;Element[]&gt; {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, OnInit, inject } from &#39;@angular/core&#39;;
-import { CommonModule } from &#39;@angular/common&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, OnInit, inject, signal } from &#39;@angular/core&#39;;
 import { ElementService } from &#39;./services/element.service&#39;;
 import { Element } from &#39;./models/element.model&#39;;
 
 @Component({
   selector: &#39;app-root&#39;,
-  standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
     &lt;div class=&quot;contenidor&quot;&gt;
       &lt;h1&gt;Elements de l&#39;API&lt;/h1&gt;
-      &lt;div *ngIf=&quot;elements.length === 0&quot;&gt;
+      @if (elements().length === 0) {
+      &lt;div&gt;
         Carregant...
       &lt;/div&gt;
-      &lt;ul *ngIf=&quot;elements.length &gt; 0&quot;&gt;
-        &lt;li *ngFor=&quot;let element of elements&quot;&gt;
+      }
+      @if (elements().length &gt; 0) {
+      &lt;ul&gt;
+        @for (element of elements(); track element.id) {
+        &lt;li&gt;
           {{ element.name }} ({{ element.email }})
         &lt;/li&gt;
+        }
       &lt;/ul&gt;
+      }
     &lt;/div&gt;
   `
 })
-export class AppComponent implements OnInit {
+export class App implements OnInit {
   private elementService = inject(ElementService);
-  elements: Element[] = [];
+  elements = signal&lt;Element[]&gt;([]);
   ngOnInit(): void {
     this.elementService.obtenirElements().subscribe({
       next: (dades) =&gt; {
-        this.elements = dades;
+        this.elements.set(dades);
         console.log(&#39;Elements rebuts:&#39;, dades.length);
       },
       error: (err) =&gt; {
@@ -6694,7 +6611,7 @@ export class AppComponent implements OnInit {
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">this.elementService.obtenirElements().subscribe({
   next: (dades) =&gt; {
-    this.elements = dades;
+    this.elements.set(dades);
   },
   error: (err) =&gt; {
     console.error(&#39;Error:&#39;, err);
@@ -6724,7 +6641,7 @@ export class AppComponent implements OnInit {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">this.elementService.obtenirElements().subscribe(
-  dades =&gt; this.elements = dades
+  dades =&gt; this.elements.set(dades)
 );</code></pre>
   </div>
 </div>
@@ -6758,11 +6675,11 @@ export class AppComponent implements OnInit {
   this.elementService.obtenirElements().subscribe({
     next: (dades) =&gt; {
       console.log(&#39;3. Dades rebudes&#39;);
-      this.elements = dades;
+      this.elements.set(dades);
     }
   });
   console.log(&#39;2. Després del subscribe&#39;);
-  console.log(&#39;Elements:&#39;, this.elements);
+  console.log(&#39;Elements:&#39;, this.elements());
 }</code></pre>
   </div>
 </div>
@@ -6892,11 +6809,11 @@ Elements: []
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Subscription } from &#39;rxjs&#39;;
 
-export class AppComponent implements OnInit, OnDestroy {
+export class App implements OnInit, OnDestroy {
   private subscription?: Subscription;
   ngOnInit(): void {
     this.subscription = this.elementService.obtenirElements().subscribe({
-      next: dades =&gt; this.elements = dades
+      next: dades =&gt; this.elements.set(dades)
     });
   }
   ngOnDestroy(): void {
@@ -6945,16 +6862,22 @@ export class AppComponent implements OnInit, OnDestroy {
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div class=&quot;contenidor&quot;&gt;
   &lt;h1&gt;Catàleg d&#39;Elements&lt;/h1&gt;
-  &lt;div *ngIf=&quot;elements.length === 0&quot; class=&quot;carregant&quot;&gt;
+  @if (elements.length === 0) {
+  &lt;div class=&quot;carregant&quot;&gt;
     &lt;p&gt;Carregant elements...&lt;/p&gt;
   &lt;/div&gt;
-  &lt;div *ngIf=&quot;elements.length &gt; 0&quot; class=&quot;llistat&quot;&gt;
-    &lt;div *ngFor=&quot;let element of elements&quot; class=&quot;targeta&quot;&gt;
+  }
+  @if (elements.length &gt; 0) {
+  &lt;div class=&quot;llistat&quot;&gt;
+    @for (element of elements; track element.id) {
+    &lt;div class=&quot;targeta&quot;&gt;
       &lt;h3&gt;{{ element.name }}&lt;/h3&gt;
       &lt;p&gt;@{{ element.username }}&lt;/p&gt;
       &lt;p&gt;{{ element.email }}&lt;/p&gt;
     &lt;/div&gt;
+    }
   &lt;/div&gt;
+  }
 &lt;/div&gt;</code></pre>
   </div>
 </div>
@@ -7064,25 +6987,24 @@ export class AppComponent implements OnInit, OnDestroy {
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Component({
   selector: &#39;app-root&#39;,
-  standalone: true,
-  imports: [CommonModule, LlistaElementsComponent, BarraCercaComponent],
+  imports: [LlistaElementsComponent, BarraCercaComponent],
   template: `
     &lt;main class=&quot;contenidor&quot;&gt;
       &lt;h1&gt;Catàleg amb API Real&lt;/h1&gt;
       &lt;app-barra-cerca (cercaCanviada)=&quot;filtrar($event)&quot;&gt;&lt;/app-barra-cerca&gt;
-      &lt;app-llista-elements [elements]=&quot;elements&quot;&gt;&lt;/app-llista-elements&gt;
+      &lt;app-llista-elements [elements]=&quot;elements()&quot;&gt;&lt;/app-llista-elements&gt;
     &lt;/main&gt;
   `
 })
-export class AppComponent implements OnInit {
+export class App implements OnInit {
   private elementService = inject(ElementService);
-  elements: Element[] = [];
+  elements = signal&lt;Element[]&gt;([]);
   ngOnInit(): void {
     this.carregarElements();
   }
   carregarElements(): void {
     this.elementService.obtenirElements().subscribe({
-      next: dades =&gt; this.elements = dades,
+      next: dades =&gt; this.elements.set(dades),
       error: err =&gt; console.error(&#39;Error:&#39;, err)
     });
   }
@@ -7091,9 +7013,9 @@ export class AppComponent implements OnInit {
       this.carregarElements();
       return;
     }
-    this.elements = this.elements.filter(e =&gt;
+    this.elements.update(llista =&gt; llista.filter(e =&gt;
       e.name.toLowerCase().includes(text.toLowerCase())
-    );
+    ));
   }
 }</code></pre>
   </div>
@@ -7460,12 +7382,12 @@ GET    /usuaris/456/amics  → Llistar amics</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Injectable, inject } from &#39;@angular/core&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Service, inject } from &#39;@angular/core&#39;;
 import { HttpClient } from &#39;@angular/common/http&#39;;
 import { Observable } from &#39;rxjs&#39;;
 import { Tasca } from &#39;../models/tasca.model&#39;;
 
-@Injectable({ providedIn: &#39;root&#39; })
+@Service()
 export class TascaService {
   private http = inject(HttpClient);
   private apiUrl = &#39;https://jsonplaceholder.typicode.com&#39;;
@@ -7493,33 +7415,33 @@ export class TascaService {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, OnInit, inject } from &#39;@angular/core&#39;;
-import { CommonModule } from &#39;@angular/common&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, OnInit, inject, signal } from &#39;@angular/core&#39;;
 import { TascaService } from &#39;./services/tasca.service&#39;;
 import { Tasca } from &#39;./models/tasca.model&#39;;
 
 @Component({
   selector: &#39;app-root&#39;,
-  standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
     &lt;div class=&quot;contenidor&quot;&gt;
       &lt;h1&gt;Tasques&lt;/h1&gt;
       &lt;ul&gt;
-        &lt;li *ngFor=&quot;let tasca of tasques&quot;&gt;
+        @for (tasca of tasques(); track tasca.id) {
+        &lt;li&gt;
           &lt;input type=&quot;checkbox&quot; [checked]=&quot;tasca.completed&quot; disabled&gt;
           {{ tasca.title }}
         &lt;/li&gt;
+        }
       &lt;/ul&gt;
     &lt;/div&gt;
   `
 })
-export class AppComponent implements OnInit {
+export class App implements OnInit {
   private tascaService = inject(TascaService);
-  tasques: Tasca[] = [];
+  tasques = signal&lt;Tasca[]&gt;([]);
   ngOnInit(): void {
     this.tascaService.obtenirTasques().subscribe({
-      next: dades =&gt; this.tasques = dades.slice(0, 10),
+      next: dades =&gt; this.tasques.set(dades.slice(0, 10)),
       error: err =&gt; console.error(&#39;Error:&#39;, err)
     });
   }
@@ -7563,9 +7485,9 @@ export class AppComponent implements OnInit {
       </thead>
       <tbody>
         <tr>
-          <td>NullInjectorError: HttpClient</td>
-          <td><code>provideHttpClient()</code> no importat</td>
-          <td>Afegir a <code>main.ts</code> dins <code>providers</code></td>
+          <td>NullInjectorError: No provider for HttpClient</td>
+          <td>Projecte amb versió anterior a Angular 21, o <code>HttpClient</code> importat d'un paquet incorrecte</td>
+          <td>A Angular 22 HttpClient és disponible per defecte: comproveu <code>import { HttpClient } from '@angular/common/http'</code> i la versió del projecte</td>
         </tr>
         <tr>
           <td>Cannot find name 'Observable'</td>
@@ -7639,7 +7561,7 @@ export class AppComponent implements OnInit {
         <tr>
           <td>Error "Cannot read property"</td>
           <td>Accedir dades abans que arribin</td>
-          <td>Usar <code>*ngIf="elements.length > 0"</code></td>
+          <td>Usar <code>@if (elements.length > 0) { ... }</code></td>
         </tr>
         <tr>
           <td>Múltiples peticions</td>
@@ -7683,7 +7605,7 @@ export class AppComponent implements OnInit {
     console.log(&#39;Dades rebudes:&#39;, dades);
     console.log(&#39;Tipus:&#39;, typeof dades);
     console.log(&#39;Longitud:&#39;, dades.length);
-    this.elements = dades;
+    this.elements.set(dades);
   }
 });</code></pre>
   </div>
@@ -7780,17 +7702,12 @@ export class AppComponent implements OnInit {
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">He afegit <code>provideHttpClient()</code> a <code>main.ts</code></div>
+    <div class="checklist-text">Sé que a Angular 22 HttpClient és disponible per defecte i que <code>provideHttpClient(...)</code> només serveix per personalitzar-lo</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
     <div class="checklist-text">Aplicació compila sense errors d'importació</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">He verificat que HttpClient està disponible globalment</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
@@ -7839,7 +7756,7 @@ export class AppComponent implements OnInit {
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Template mostra dades amb <code>*ngFor</code></div>
+    <div class="checklist-text">Template mostra dades amb <code>@for</code></div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
@@ -7932,7 +7849,7 @@ export class AppComponent implements OnInit {
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Configuro HttpClient amb provideHttpClient()</div>
+    <div class="checklist-text">Entenc quan cal provideHttpClient(...) (interceptors, XSRF) i quan no</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
@@ -8032,7 +7949,7 @@ export class AppComponent implements OnInit {
   </div>
   <div class="section-point-body component-content">
     
-    <p>Disposeu d'una <strong>aplicació Angular connectada a una API externa real</strong>. Heu aconseguit configurar HttpClient amb sistema de peticions HTTP operatiu, actualitzar el servei per fer peticions reals en lloc d'usar mock local, comprendre el concepte d'asincronisme amb Observable i subscribe(), crear un component reactiu que mostra dades de l'API automàticament, i preparar l'estructura per a futures millores. A la Lectura 3.1.3 afegireu gestió professional d'errors de xarxa, indicadors de càrrega (spinners, progress bars), missatges d'error amigables per a l'usuari, sistemes de reintent automàtic, i estats complets: loading, success, error, empty.</p>
+    <p>Disposeu d'una <strong>aplicació Angular connectada a una API real</strong>. Heu aconseguit configurar HttpClient amb sistema de peticions HTTP operatiu, actualitzar el servei per fer peticions reals en lloc d'usar mock local, comprendre el concepte d'asincronisme amb Observable i subscribe(), crear un component reactiu que mostra dades de l'API automàticament, i preparar l'estructura per a futures millores. A la Lectura 3.1.3 afegireu gestió professional d'errors de xarxa, indicadors de càrrega (spinners, progress bars), missatges d'error amigables per a l'usuari, sistemes de reintent automàtic, i estats complets: loading, success, error, empty.</p>
   
   </div>
 </div>
@@ -8064,7 +7981,7 @@ export class AppComponent implements OnInit {
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>HttpClient:</strong> Classe d'Angular per fer peticions HTTP. S'injecta als serveis amb <code>inject(HttpClient)</code>. Proporciona mètodes: get(), post(), put(), delete(). Configurat amb <code>provideHttpClient()</code> a <code>main.ts</code>.</p>
+    <p><strong>HttpClient:</strong> Classe d'Angular per fer peticions HTTP. S'injecta als serveis amb <code>inject(HttpClient)</code>. Proporciona mètodes: get(), post(), put(), delete(). Configurat amb <code>provideHttpClient()</code> a <code>app.config.ts</code>.</p>
   </div>
 </div>
 
@@ -8136,7 +8053,7 @@ export class AppComponent implements OnInit {
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>provideHttpClient():</strong> Funció que registra HttpClient al sistema de dependències d'Angular. Cal cridar-la un cop a <code>main.ts</code> dins l'array <code>providers</code>.</p>
+    <p><strong>provideHttpClient():</strong> Funció de configuració d'HttpClient (interceptors, XSRF, backend). A Angular 22 HttpClient ja és disponible per defecte; provideHttpClient(...) s'afegeix a <code>app.config.ts</code> només quan cal personalitzar-lo.</p>
   </div>
 </div>
 
@@ -8180,74 +8097,8 @@ export class AppComponent implements OnInit {
 </div>
 
 <!-- SECCIÓ 3: Gestió de càrrega i errors en peticions -->
-<div class="section" id="Unitat3_Bloc1_Seccio3">
+<div class="section">
   <h2 id="Unitat3_Bloc1_Seccio3">3. Gestió de càrrega i errors en peticions</h2>
-
-  <!-- MULTIMÈDIA -->
-  <!--
-  ════════════════════════════════════════════════════════════════
-  Component: Enllaços multimèdia YouTube
-  ════════════════════════════════════════════════════════════════
-
-  Paràmetres:
-    - unitat: número de la unitat (1-4)
-    - bloc: número del bloc (1-4)
-    - seccio: número de la secció (1-3)
-
-  Exemple d'ús:
-    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
-
-  El component busca automàticament les URLs corresponents a
-  site.data.multimedia i mostra els botons de vídeo i àudio.
-  ════════════════════════════════════════════════════════════════
--->
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-<div class="multimedia-resources">
-  <div class="multimedia-header">
-    <i class="bi bi-play-circle-fill"></i>
-    <span>Contingut multimèdia d'aquesta lectura</span>
-  </div>
-
-  <div class="multimedia-buttons">
-    
-    <a href="https://www.youtube.com/watch?v=7FXBBCx3FvE" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 3.1.3 · Gestió de càrrega i errors en peticions">
-      <i class="bi bi-youtube"></i>
-      <span>Veure vídeo</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-
-    
-    <a href="https://www.youtube.com/watch?v=CrN9WiYZ5Qk" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 3.1.3 · Gestió de càrrega i errors en peticions">
-      <i class="bi bi-mic-fill"></i>
-      <span>Escoltar àudio</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-  </div>
-
-  
-  
-</div>
-  
-
-
-
 
   <!-- Component: Objectius del bloc/unitat -->
 
@@ -8299,13 +8150,13 @@ export class AppComponent implements OnInit {
     <p><strong>Lectures anteriors completades:</strong></p>
     <ul>
       <li>Lectura 3.1.1: Servei <code>ElementService</code> funcional amb peticions GET</li>
-      <li>Lectura 3.1.2: HttpClient configurat i peticions a API externa o mock</li>
+      <li>Lectura 3.1.2: HttpClient configurat i peticions a una API (pública o local amb json-server)</li>
       <li>Models TypeScript: Interfície <code>Element</code> definida amb camps necessaris</li>
     </ul>
     <p><strong>Projecte operatiu:</strong></p>
     <ul>
       <li>Servidor de desenvolupament arrencant amb <code>ng serve</code> sense errors</li>
-      <li>API mock disponible (JSONPlaceholder o json-server) accessible</li>
+      <li>API mock disponible (json-server local) accessible</li>
       <li>Git amb commit net de les lectures anteriors</li>
     </ul>
     <p><strong>Verificació ràpida:</strong></p>
@@ -8373,7 +8224,7 @@ export class AppComponent implements OnInit {
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">carregarElements(): void {
   this.http.get&lt;Element[]&gt;(&#39;https://api.example.com/elements&#39;)
     .subscribe(dades =&gt; {
-      this.elements = dades;
+      this._elements.set(dades);
     });
 }</code></pre>
   </div>
@@ -8395,9 +8246,11 @@ export class AppComponent implements OnInit {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div *ngFor=&quot;let element of elements&quot;&gt;
-  {{ element.nom }}
-&lt;/div&gt;</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@for (element of elements; track element.id) {
+&lt;div&gt;
+  {{ element.name }}
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -8435,22 +8288,24 @@ export class AppComponent implements OnInit {
   error: string | null;
 }
 
-@Injectable({ providedIn: &#39;root&#39; })
+@Service()
 export class ElementService {
-  private elements = signal&lt;Element[]&gt;([]);
-  private estat = signal&lt;EstatServei&gt;({ carregant: false, error: null });
+  private readonly _elements = signal&lt;Element[]&gt;([]);
+  readonly elements = this._elements.asReadonly();
+  private readonly _estat = signal&lt;EstatServei&gt;({ carregant: false, error: null });
+  readonly estat = this._estat.asReadonly();
 
   carregarElements(): void {
-    this.estat.set({ carregant: true, error: null });
+    this._estat.set({ carregant: true, error: null });
 
     this.http.get&lt;Element[]&gt;(`${this.apiUrl}/elements`).subscribe({
       next: dades =&gt; {
-        this.elements.set(dades);
-        this.estat.set({ carregant: false, error: null });
+        this._elements.set(dades);
+        this._estat.set({ carregant: false, error: null });
       },
       error: err =&gt; {
-        this.elements.set([]);
-        this.estat.set({
+        this._elements.set([]);
+        this._estat.set({
           carregant: false,
           error: &#39;No hem pogut recuperar el catàleg. Reviseu la connexió.&#39;
         });
@@ -8458,8 +8313,7 @@ export class ElementService {
     });
   }
 
-  elements$() { return this.elements.asReadonly(); }
-  estat$() { return this.estat.asReadonly(); }
+  // &#39;elements&#39; i &#39;estat&#39; són els signals només de lectura declarats a dalt
 }</code></pre>
   </div>
 </div>
@@ -8480,20 +8334,28 @@ export class ElementService {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;section *ngIf=&quot;estatServei().carregant&quot; class=&quot;loading&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (estatServei().carregant) {
+&lt;section class=&quot;loading&quot;&gt;
   &lt;p role=&quot;status&quot;&gt;Carregant catàleg…&lt;/p&gt;
 &lt;/section&gt;
+    }
 
-&lt;section *ngIf=&quot;estatServei().error as missatge&quot; class=&quot;error&quot;&gt;
+@if (estatServei().error; as missatge) {
+&lt;section class=&quot;error&quot;&gt;
   &lt;p role=&quot;alert&quot;&gt;{{ missatge }}&lt;/p&gt;
   &lt;button (click)=&quot;reintentar()&quot;&gt;Torneu-ho a provar&lt;/button&gt;
 &lt;/section&gt;
+}
 
-&lt;section *ngIf=&quot;!estatServei().carregant &amp;&amp; !estatServei().error&quot;&gt;
-  &lt;div *ngFor=&quot;let element of elements()&quot;&gt;
-    {{ element.nom }}
+@if (!estatServei().carregant &amp;&amp; !estatServei().error) {
+&lt;section&gt;
+  @for (element of elements(); track element.id) {
+  &lt;div&gt;
+    {{ element.name }}
   &lt;/div&gt;
-&lt;/section&gt;</code></pre>
+  }
+&lt;/section&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -8541,10 +8403,10 @@ export class ElementService {
     </table>
     <h4>3.2.4. Integració amb lectures anteriors</h4>
     <ul>
-      <li><strong>Lectura 3.1.1 (Serveis):</strong> Extenem el servei <code>ElementService</code> amb gestió d'estats utilitzant <code>signals</code></li>
+      <li><strong>Lectura 3.1.1 (Serveis):</strong> Estenem el servei <code>ElementService</code> amb gestió d'estats utilitzant <code>signals</code></li>
       <li><strong>Lectura 3.1.2 (Peticions HTTP):</strong> Capturem errors del bloc <code>subscribe</code> i actualitzem l'estat corresponent</li>
-      <li><strong>Lectura 2.2.2 (Signals):</strong> Utilitzem <code>signal</code> per mantenir estats reactius que actualitzen la UI automàticament</li>
-      <li><strong>Lectura 2.1.3 (Directives estructurals):</strong> Apliquem <code>*ngIf</code> per mostrar condicionalment spinners, errors o contingut</li>
+      <li><strong>Cas d'ús de la Unitat 2 (secció 6.2) i Lectura 3.1.2 (Signals):</strong> Utilitzem <code>signal</code> per mantenir estats reactius que actualitzen la UI automàticament</li>
+      <li><strong>Lectura 2.2.2 (Control de flux condicional):</strong> Apliquem <code>@if</code> per mostrar condicionalment spinners, errors o contingut</li>
     </ul>
   
   </div>
@@ -8574,7 +8436,7 @@ export class ElementService {
     <p>Cada estat és <strong>mutuament excloent</strong>: només un pot estar actiu en cada moment. La vostra aplicació ha de gestionar sempre els tres estats per oferir una experiència completa.</p>
     <h4>3.3.1. Conceptes clau</h4>
     <p><strong>Estats explícits:</strong></p>
-    <p>Utilitzeu variables (<code>isLoading</code>, <code>error</code>) o <code>signals</code> per fer visibles els estats.</p>
+    <p>Guardeu-los en <code>signals</code> (<code>carregant</code>, <code>error</code>): en un projecte sense zone.js són els que fan visibles els canvis d'estat a la vista.</p>
     
     <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
   <div class="code-header">
@@ -8591,10 +8453,11 @@ export class ElementService {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">private estat = signal&lt;EstatServei&gt;({
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">private readonly _estat = signal&lt;EstatServei&gt;({
   carregant: false,
   error: null
-});</code></pre>
+});
+readonly estat = this._estat.asReadonly();   // els components només poden llegir</code></pre>
   </div>
 </div>
 
@@ -8877,11 +8740,11 @@ export class ElementService {
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">this.http.get&lt;Element[]&gt;(`${this.apiUrl}/elements`).subscribe({
   next: dades =&gt; {
     console.log(&#39;Dades rebudes:&#39;, dades);
-    this.elements.set(dades);
+    this._elements.set(dades);
   },
   error: err =&gt; {
     console.error(&#39;Error en la petició:&#39;, err);
-    this.estat.set({ carregant: false, error: &#39;Petició fallida&#39; });
+    this._estat.set({ carregant: false, error: &#39;Petició fallida&#39; });
   },
   complete: () =&gt; {
     console.log(&#39;Petició completada&#39;);
@@ -8914,26 +8777,26 @@ export class ElementService {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { catchError, of } from &#39;rxjs&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { catchError, EMPTY } from &#39;rxjs&#39;;
 
 carregarElements(): void {
   this.http.get&lt;Element[]&gt;(`${this.apiUrl}/elements`)
     .pipe(
       catchError(err =&gt; {
         console.error(&#39;Error capturat amb catchError:&#39;, err);
-        this.estat.set({ carregant: false, error: &#39;Petició fallida&#39; });
-        return of([]);
+        this._estat.set({ carregant: false, error: &#39;Petició fallida&#39; });
+        return EMPTY;   // completa sense emetre: &#39;next&#39; no s&#39;executa i l&#39;estat d&#39;error es conserva
       })
     )
     .subscribe(dades =&gt; {
-      this.elements.set(dades);
-      this.estat.set({ carregant: false, error: null });
+      this._elements.set(dades);
+      this._estat.set({ carregant: false, error: null });
     });
 }</code></pre>
   </div>
 </div>
 
-    <p><strong>Avantatge:</strong> Evita que l'error aborti la subscripció, permetent que l'observable continuï funcionant per a futures peticions.</p>
+    <p><strong>Com funciona:</strong> <code>catchError</code> substitueix el flux que ha fallat per l'observable que retorneu. Si retornéssiu <code>of([])</code>, s'emetria un array buit, s'executaria el bloc <code>next</code> i aquest esborraria el missatge d'error que acabeu de posar; per això aquí es retorna <code>EMPTY</code>. Retornar <code>of([])</code> té sentit quan voleu tractar l'error com a "llista buida" sense missatge. En cap cas <code>catchError</code> manté viva la petició: cada crida a <code>carregarElements()</code> crea una petició nova.</p>
     <h4>3.5.3. Registre i logging d'errors</h4>
     <p><strong>Registrar a consola (desenvolupament):</strong></p>
     
@@ -8989,7 +8852,7 @@ carregarElements(): void {
     timestamp: Date.now()
   });
 
-  this.estat.set({
+  this._estat.set({
     carregant: false,
     error: &#39;No hem pogut carregar el catàleg&#39;
   });
@@ -9039,16 +8902,14 @@ carregarElements(): void {
   error: string | null;
 }
 
-@Injectable({ providedIn: &#39;root&#39; })
+@Service()
 export class ElementService {
-  private estat = signal&lt;EstatServei&gt;({
+  private readonly _estat = signal&lt;EstatServei&gt;({
     carregant: false,
     error: null
   });
 
-  estat$() {
-    return this.estat.asReadonly();
-  }
+  readonly estat = this._estat.asReadonly();   // només lectura per als components
 }</code></pre>
   </div>
 </div>
@@ -9072,7 +8933,7 @@ export class ElementService {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">carregarElements(): void {
-  this.estat.set({ carregant: true, error: null });
+  this._estat.set({ carregant: true, error: null });
 
   this.http.get&lt;Element[]&gt;(`${this.apiUrl}/elements`)
     .subscribe({ /* ... */ });
@@ -9098,8 +8959,8 @@ export class ElementService {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">next: dades =&gt; {
-  this.elements.set(dades);
-  this.estat.set({ carregant: false, error: null });
+  this._elements.set(dades);
+  this._estat.set({ carregant: false, error: null });
 }</code></pre>
   </div>
 </div>
@@ -9122,8 +8983,8 @@ export class ElementService {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">error: err =&gt; {
-  this.elements.set([]);
-  this.estat.set({
+  this._elements.set([]);
+  this._estat.set({
     carregant: false,
     error: &#39;No hem pogut carregar el catàleg&#39;
   });
@@ -9132,7 +8993,7 @@ export class ElementService {
 </div>
 
     <h4>3.6.3. Condicionals a plantilla</h4>
-    <p>Utilitzeu <code>*ngIf</code> per mostrar diferents seccions segons l'estat actual.</p>
+    <p>Utilitzeu <code>@if</code> per mostrar diferents seccions segons l'estat actual.</p>
     
     <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
   <div class="code-header">
@@ -9149,31 +9010,39 @@ export class ElementService {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;section *ngIf=&quot;estatServei().carregant&quot; class=&quot;loading&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (estatServei().carregant) {
+&lt;section class=&quot;loading&quot;&gt;
   &lt;div class=&quot;spinner&quot; aria-label=&quot;Carregant&quot;&gt;&lt;/div&gt;
   &lt;p role=&quot;status&quot;&gt;Carregant catàleg d&#39;elements…&lt;/p&gt;
 &lt;/section&gt;
+    }
 
-&lt;section *ngIf=&quot;estatServei().error as missatge&quot; class=&quot;error&quot; role=&quot;alert&quot;&gt;
-  &lt;p class=&quot;error-message&quot;&gt;&lt;i class=&quot;bi bi-exclamation-triangle&quot;&gt;&lt;/i&gt; {{ missatge }}&lt;/p&gt;
+@if (estatServei().error; as missatge) {
+&lt;section class=&quot;error&quot; role=&quot;alert&quot;&gt;
+  &lt;p class=&quot;error-message&quot;&gt;{{ missatge }}&lt;/p&gt;
   &lt;button type=&quot;button&quot; (click)=&quot;reintentar()&quot; class=&quot;retry-button&quot;&gt;
     Torneu-ho a provar
   &lt;/button&gt;
 &lt;/section&gt;
+}
 
-&lt;section *ngIf=&quot;!estatServei().carregant &amp;&amp; !estatServei().error&quot; class=&quot;content&quot;&gt;
-  &lt;div *ngFor=&quot;let element of elements()&quot;&gt;
-    &lt;h3&gt;{{ element.nom }}&lt;/h3&gt;
-    &lt;p&gt;{{ element.descripcio }}&lt;/p&gt;
+@if (!estatServei().carregant &amp;&amp; !estatServei().error) {
+&lt;section class=&quot;content&quot;&gt;
+  @for (element of elements(); track element.id) {
+  &lt;div&gt;
+    &lt;h3&gt;{{ element.name }}&lt;/h3&gt;
+    &lt;p&gt;{{ element.email }}&lt;/p&gt;
   &lt;/div&gt;
-&lt;/section&gt;</code></pre>
+  }
+&lt;/section&gt;
+}</code></pre>
   </div>
 </div>
 
     <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Important:</strong> Els tres estats són <strong>mutuament excloents</strong>. En cada moment, només un bloc <code>*ngIf</code> s'hauria de mostrar.
+    <strong>Important:</strong> Els tres estats són <strong>mutuament excloents</strong>. En cada moment, només un bloc <code>@if</code> s'hauria de mostrar.
 </div>
 
     <h4>3.6.4. Taula d'estats i visibilitat</h4>
@@ -9291,10 +9160,12 @@ export class ElementService {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;section *ngIf=&quot;estatServei().carregant&quot; class=&quot;loading&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (estatServei().carregant) {
+&lt;section class=&quot;loading&quot;&gt;
   &lt;div class=&quot;spinner&quot; aria-label=&quot;Carregant contingut&quot;&gt;&lt;/div&gt;
   &lt;p role=&quot;status&quot;&gt;Carregant catàleg d&#39;elements…&lt;/p&gt;
-&lt;/section&gt;</code></pre>
+&lt;/section&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -9317,7 +9188,7 @@ export class ElementService {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">carregarElements(): void {
-  this.estat.set({ carregant: true, error: null });
+  this._estat.set({ carregant: true, error: null });
 
   this.http.get&lt;Element[]&gt;(`${this.apiUrl}/elements`)
     .subscribe({
@@ -9349,12 +9220,12 @@ export class ElementService {
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">this.http.get&lt;Element[]&gt;(`${this.apiUrl}/elements`)
   .subscribe({
     next: dades =&gt; {
-      this.elements.set(dades);
-      this.estat.set({ carregant: false, error: null });
+      this._elements.set(dades);
+      this._estat.set({ carregant: false, error: null });
     },
     error: err =&gt; {
-      this.elements.set([]);
-      this.estat.set({
+      this._elements.set([]);
+      this._estat.set({
         carregant: false,
         error: &#39;Petició fallida&#39;
       });
@@ -9519,16 +9390,16 @@ export class ElementService {
 }
 
 carregarElements(): void {
-  this.estat.set({ carregant: true, error: null });
+  this._estat.set({ carregant: true, error: null });
 
   this.http.get&lt;Element[]&gt;(`${this.apiUrl}/elements`).subscribe({
     next: dades =&gt; {
-      this.elements.set(dades);
-      this.estat.set({ carregant: false, error: null });
+      this._elements.set(dades);
+      this._estat.set({ carregant: false, error: null });
     },
     error: err =&gt; {
-      this.elements.set([]);
-      this.estat.set({
+      this._elements.set([]);
+      this._estat.set({
         carregant: false,
         error: this.obtenirMissatgeError(err)
       });
@@ -9556,15 +9427,17 @@ carregarElements(): void {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;section *ngIf=&quot;estatServei().error as missatge&quot; class=&quot;error&quot;&gt;
-  &lt;p class=&quot;error-message&quot;&gt;&lt;i class=&quot;bi bi-exclamation-triangle&quot;&gt;&lt;/i&gt; {{ missatge }}&lt;/p&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (estatServei().error; as missatge) {
+&lt;section class=&quot;error&quot;&gt;
+  &lt;p class=&quot;error-message&quot;&gt;{{ missatge }}&lt;/p&gt;
   &lt;button type=&quot;button&quot; (click)=&quot;reintentar()&quot; class=&quot;retry-button&quot;&gt;
-    &lt;i class=&quot;bi bi-arrow-clockwise&quot;&gt;&lt;/i&gt; Torneu-ho a provar
+    Torneu-ho a provar
   &lt;/button&gt;
   &lt;a href=&quot;/ajuda&quot; class=&quot;help-link&quot;&gt;
     Necessiteu ajuda?
   &lt;/a&gt;
-&lt;/section&gt;</code></pre>
+&lt;/section&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -9606,7 +9479,7 @@ carregarElements(): void {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { HttpClient } from &#39;@angular/common/http&#39;;
-import { Injectable, inject, signal } from &#39;@angular/core&#39;;
+import { Service, inject, signal } from &#39;@angular/core&#39;;
 import { Element } from &#39;../models/element.model&#39;;
 
 interface EstatServei {
@@ -9614,26 +9487,28 @@ interface EstatServei {
   error: string | null;
 }
 
-@Injectable({ providedIn: &#39;root&#39; })
+@Service()
 export class ElementService {
   private readonly http = inject(HttpClient);
   private readonly apiUrl = &#39;https://jsonplaceholder.typicode.com&#39;;
 
-  private readonly elements = signal&lt;Element[]&gt;([]);
-  private readonly estat = signal&lt;EstatServei&gt;({ carregant: false, error: null });
+  private readonly _elements = signal&lt;Element[]&gt;([]);
+  readonly elements = this._elements.asReadonly();
+  private readonly _estat = signal&lt;EstatServei&gt;({ carregant: false, error: null });
+  readonly estat = this._estat.asReadonly();
 
   carregarElements(): void {
-    this.estat.set({ carregant: true, error: null });
+    this._estat.set({ carregant: true, error: null });
 
     this.http.get&lt;Element[]&gt;(`${this.apiUrl}/users`).subscribe({
       next: dades =&gt; {
-        this.elements.set(dades);
-        this.estat.set({ carregant: false, error: null });
+        this._elements.set(dades);
+        this._estat.set({ carregant: false, error: null });
       },
       error: err =&gt; {
         console.error(&#39;Error carregant elements:&#39;, err);
-        this.elements.set([]);
-        this.estat.set({
+        this._elements.set([]);
+        this._estat.set({
           carregant: false,
           error: this.obtenirMissatgeError(err)
         });
@@ -9655,8 +9530,7 @@ export class ElementService {
     return &#39;Ha ocorregut un error inesperat. Torneu-ho a provar.&#39;;
   }
 
-  elements$() { return this.elements.asReadonly(); }
-  estat$() { return this.estat.asReadonly(); }
+  // &#39;elements&#39; i &#39;estat&#39; són els signals només de lectura declarats a dalt
 }</code></pre>
   </div>
 </div>
@@ -9678,22 +9552,21 @@ export class ElementService {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, OnInit, computed, inject } from &#39;@angular/core&#39;;
-import { CommonModule } from &#39;@angular/common&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, OnInit, inject } from &#39;@angular/core&#39;;
 import { ElementService } from &#39;./services/element.service&#39;;
 
 @Component({
   selector: &#39;app-root&#39;,
-  standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: &#39;./app.component.html&#39;,
-  styleUrls: [&#39;./app.component.scss&#39;]
+  styleUrl: &#39;./app.component.scss&#39;
 })
-export class AppComponent implements OnInit {
+export class App implements OnInit {
   private readonly elementService = inject(ElementService);
 
-  elements = computed(() =&gt; this.elementService.elements$()());
-  estatServei = computed(() =&gt; this.elementService.estat$()());
+  // Els signals del servei es poden usar directament: no cal cap computed()
+  readonly elements = this.elementService.elements;
+  readonly estatServei = this.elementService.estat;
 
   ngOnInit(): void {
     this.elementService.carregarElements();
@@ -9728,30 +9601,40 @@ export class AppComponent implements OnInit {
 &lt;/header&gt;
 
 &lt;main&gt;
-  &lt;section *ngIf=&quot;estatServei().carregant&quot; class=&quot;loading&quot;&gt;
+  @if (estatServei().carregant) {
+  &lt;section class=&quot;loading&quot;&gt;
     &lt;div class=&quot;spinner&quot; aria-label=&quot;Carregant&quot;&gt;&lt;/div&gt;
     &lt;p role=&quot;status&quot;&gt;Carregant catàleg d&#39;elements…&lt;/p&gt;
   &lt;/section&gt;
+  }
 
-  &lt;section *ngIf=&quot;estatServei().error as missatge&quot; class=&quot;error&quot;&gt;
+  @if (estatServei().error; as missatge) {
+  &lt;section class=&quot;error&quot;&gt;
     &lt;p role=&quot;alert&quot; class=&quot;error-message&quot;&gt;
-      &lt;i class=&quot;bi bi-exclamation-triangle&quot;&gt;&lt;/i&gt; {{ missatge }}
+      {{ missatge }}
     &lt;/p&gt;
     &lt;button type=&quot;button&quot; (click)=&quot;reintentar()&quot; class=&quot;retry-button&quot;&gt;
-      &lt;i class=&quot;bi bi-arrow-clockwise&quot;&gt;&lt;/i&gt; Torneu-ho a provar
+      Torneu-ho a provar
     &lt;/button&gt;
   &lt;/section&gt;
+  }
 
-  &lt;section *ngIf=&quot;!estatServei().carregant &amp;&amp; !estatServei().error&quot; class=&quot;content&quot;&gt;
-    &lt;div *ngIf=&quot;elements().length === 0&quot; class=&quot;empty-state&quot;&gt;
+  @if (!estatServei().carregant &amp;&amp; !estatServei().error) {
+  &lt;section class=&quot;content&quot;&gt;
+    @if (elements().length === 0) {
+    &lt;div class=&quot;empty-state&quot;&gt;
       &lt;p&gt;No hi ha elements al catàleg.&lt;/p&gt;
     &lt;/div&gt;
+    }
 
-    &lt;div *ngFor=&quot;let element of elements()&quot; class=&quot;element-card&quot;&gt;
+    @for (element of elements(); track element.id) {
+    &lt;div class=&quot;element-card&quot;&gt;
       &lt;h3&gt;{{ element.name }}&lt;/h3&gt;
       &lt;p&gt;{{ element.email }}&lt;/p&gt;
     &lt;/div&gt;
+    }
   &lt;/section&gt;
+  }
 &lt;/main&gt;</code></pre>
   </div>
 </div>
@@ -9834,7 +9717,7 @@ export class AppComponent implements OnInit {
 </div>
 
     <h4>3.10.3. Implementació de reintents automàtics amb delays</h4>
-    <p>Utilitzeu l'operador RxJS <code>retry</code> amb <code>delay</code> per implementar reintents automàtics.</p>
+    <p>Utilitzeu l'operador RxJS <code>retry</code> amb <code>delay</code> per implementar reintents automàtics. Aquest primer exemple mostra la mecànica de l'operador; fixeu-vos que reintenta <em>qualsevol</em> error, també un 404 o un 401 que no es resoldran mai reintentant. Al següent apartat ho corregim.</p>
     
     <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
   <div class="code-header">
@@ -9854,7 +9737,7 @@ export class AppComponent implements OnInit {
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { retry } from &#39;rxjs&#39;;
 
 carregarElements(): void {
-  this.estat.set({ carregant: true, error: null });
+  this._estat.set({ carregant: true, error: null });
 
   this.http.get&lt;Element[]&gt;(`${this.apiUrl}/elements`)
     .pipe(
@@ -9865,12 +9748,12 @@ carregarElements(): void {
     )
     .subscribe({
       next: dades =&gt; {
-        this.elements.set(dades);
-        this.estat.set({ carregant: false, error: null });
+        this._elements.set(dades);
+        this._estat.set({ carregant: false, error: null });
       },
       error: err =&gt; {
-        this.elements.set([]);
-        this.estat.set({
+        this._elements.set([]);
+        this._estat.set({
           carregant: false,
           error: &#39;No hem pogut carregar el catàleg després de 3 intents.&#39;
         });
@@ -9881,7 +9764,7 @@ carregarElements(): void {
 </div>
 
     <h4>3.10.4. Delays progressius (exponential backoff)</h4>
-    <p>Per evitar saturar el servidor, incrementeu el temps entre reintents.</p>
+    <p>Per evitar saturar el servidor, incrementeu el temps entre reintents. I, coherentment amb la taula de polítiques de 3.10.5, reintenteu només els errors que poden resoldre's sols (xarxa, timeout, 5xx): si l'error no és reintentable, la funció <code>delay</code> el rellança i <code>retry</code> el deixa passar al bloc <code>error</code>.</p>
     
     <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
   <div class="code-header">
@@ -9898,16 +9781,25 @@ carregarElements(): void {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { retry, timer } from &#39;rxjs&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { retry, throwError, timer } from &#39;rxjs&#39;;
+import { HttpErrorResponse } from &#39;@angular/common/http&#39;;
+
+private esReintentable(err: unknown): boolean {
+  const status = err instanceof HttpErrorResponse ? err.status : 0;
+  return status === 0 || status === 408 || status &gt;= 500;   // xarxa, timeout, servidor
+}
 
 carregarElements(): void {
-  this.estat.set({ carregant: true, error: null });
+  this._estat.set({ carregant: true, error: null });
 
   this.http.get&lt;Element[]&gt;(`${this.apiUrl}/elements`)
     .pipe(
       retry({
         count: 3,
         delay: (error, retryCount) =&gt; {
+          if (!this.esReintentable(error)) {
+            return throwError(() =&gt; error);   // 401, 403, 404...: no reintentar
+          }
           const delayMs = Math.pow(2, retryCount) * 1000;
           console.log(`Reintent ${retryCount} d&#39;aquí a ${delayMs}ms`);
           return timer(delayMs);
@@ -9916,12 +9808,12 @@ carregarElements(): void {
     )
     .subscribe({
       next: dades =&gt; {
-        this.elements.set(dades);
-        this.estat.set({ carregant: false, error: null });
+        this._elements.set(dades);
+        this._estat.set({ carregant: false, error: null });
       },
       error: err =&gt; {
-        this.elements.set([]);
-        this.estat.set({
+        this._elements.set([]);
+        this._estat.set({
           carregant: false,
           error: this.obtenirMissatgeError(err)
         });
@@ -10069,7 +9961,7 @@ carregarElements(): void {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">this.http.get(url).subscribe(dades =&gt; {
-  this.elements = dades;
+  this._elements.set(dades);
 });</code></pre>
   </div>
 </div>
@@ -10116,9 +10008,9 @@ carregarElements(): void {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">carregarElements(): void {
-  this.carregant = true;
+  this.carregant.set(true);
   this.http.get(url).subscribe(dades =&gt; {
-    this.elements = dades;
+    this._elements.set(dades);
   });
 }</code></pre>
   </div>
@@ -10143,11 +10035,11 @@ carregarElements(): void {
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">this.http.get(url).subscribe({
   next: dades =&gt; {
-    this.elements = dades;
-    this.carregant = false;
+    this._elements.set(dades);
+    this.carregant.set(false);
   },
   error: err =&gt; {
-    this.carregant = false;
+    this.carregant.set(false);
   }
 });</code></pre>
   </div>
@@ -10231,12 +10123,12 @@ carregarElements(): void {
         <tr>
           <td>Spinner no apareix</td>
           <td><code>carregant: true</code> no s'estableix abans de petició</td>
-          <td>Verificar ordre: primer <code>this.estat.set({ carregant: true })</code>, després <code>this.http.get()</code></td>
+          <td>Verificar ordre: primer <code>this._estat.set({ carregant: true })</code>, després <code>this.http.get()</code></td>
         </tr>
         <tr>
           <td>Spinner no desapareix</td>
           <td>Falta <code>carregant: false</code> a next o error</td>
-          <td>Afegir <code>this.estat.set({ carregant: false })</code> a tots dos blocs</td>
+          <td>Afegir <code>this._estat.set({ carregant: false })</code> a tots dos blocs</td>
         </tr>
         <tr>
           <td>Errors no es capturen</td>
@@ -10245,12 +10137,12 @@ carregarElements(): void {
         </tr>
         <tr>
           <td>Missatge error no es mostra</td>
-          <td><code>*ngIf="estatServei().error"</code> incorrecte</td>
+          <td><code>@if (estatServei().error) { ... }</code> mal plantejat</td>
           <td>Verificar que error té valor truthy (no null ni "")</td>
         </tr>
         <tr>
           <td>Múltiples estats visibles</td>
-          <td>Condicionals *ngIf mal configurats</td>
+          <td>Condicionals @if mal configurats</td>
           <td>Assegurar estats mutuament excloents amb <code>!carregant && !error</code></td>
         </tr>
         <tr>
@@ -10281,9 +10173,9 @@ carregarElements(): void {
       </thead>
       <tbody>
         <tr>
-          <td>HttpClient not provided</td>
-          <td><code>provideHttpClient()</code> no afegit</td>
-          <td>Afegir a <code>main.ts</code>: <code>providers: [provideHttpClient()]</code></td>
+          <td>No provider for HttpClient</td>
+          <td>Import incorrecte o projecte anterior a Angular 21</td>
+          <td>Importar <code>HttpClient</code> de <code>@angular/common/http</code>; a Angular 22 no cal cap proveïdor</td>
         </tr>
         <tr>
           <td>Cannot read property 'subscribe'</td>
@@ -10292,8 +10184,8 @@ carregarElements(): void {
         </tr>
         <tr>
           <td>Signal not reactive</td>
-          <td>Utilitzeu <code>computed()</code> incorrectament</td>
-          <td><code>elements = computed(() => this.service.elements$()())</code></td>
+          <td>S'ha copiat el valor (<code>service.elements()</code>) en lloc del signal</td>
+          <td><code>readonly elements = this.service.elements;</code> i a la plantilla <code>elements()</code></td>
         </tr>
         <tr>
           <td>Error "signal is not a function"</td>
@@ -10352,7 +10244,7 @@ carregarElements(): void {
     </div>
   </div>
   <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> Debugger Angular. <strong>Context:</strong> El meu spinner no desapareix després de la petició. <strong>Tasca:</strong> Identifica possibles causes: falta desactivar carregant en bloc error, signal no actualitzat correctament, condicional *ngIf incorrecte, o errors de sintaxi. <strong>Format:</strong> Llista de verificació amb passos de debugging.</div>
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> Debugger Angular. <strong>Context:</strong> El meu spinner no desapareix després de la petició. <strong>Tasca:</strong> Identifica possibles causes: falta desactivar carregant en bloc error, signal no actualitzat correctament, condicional @if incorrecte, o errors de sintaxi. <strong>Format:</strong> Llista de verificació amb passos de debugging.</div>
   </div>
 </div>
 
@@ -10520,7 +10412,7 @@ carregarElements(): void {
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Puc gestionar els tres estats (carregant, èxit, error) amb *ngIf</div>
+    <div class="checklist-text">Puc gestionar els tres estats (carregant, èxit, error) amb @if</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
@@ -10604,7 +10496,7 @@ carregarElements(): void {
       <li><strong>Reintents manuals:</strong> Botó "Torneu-ho a provar" que permet recuperació després d'errors</li>
       <li><strong>Gestió amb signals:</strong> Ús de signal d'Angular per mantenir estats reactius que actualitzen la UI automàticament</li>
     </ul>
-    <p>A les següents lectures aplicareu aquests conceptes a escenaris més complexos amb múltiples peticions simultànies, gestió d'estat global amb NgRx, i integració amb formularis reactius per validació en temps real.</p>
+    <p>A les següents lectures aplicareu aquests conceptes a escenaris més complexos: models i adaptadors de dades, integració reactiva amb signals i formularis reactius amb validació asíncrona.</p>
   
   </div>
 </div>
@@ -10841,7 +10733,7 @@ carregarElements(): void {
                     
                     <div class="nav-link-wrapper">
                         
-                        <a href="/ioc/da2_oa01/unitat-3/bloc-2/" class="nav-button" aria-label="Bloc següent: Gestió d'estat i comunicació entre components">Següent →</a>
+                        <a href="/ioc/da2_oa01/unitat-3/bloc-2/" class="nav-button" aria-label="Bloc següent: Models de dades i transformació">Següent →</a>
                         
                     </div>
                 </div>

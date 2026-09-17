@@ -5,34 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <title>Bloc 2: Directives estructurals i iteració | DA2_OA01 - Programació Avançada (Angular) - IOC</title>
+    <title>Bloc 2: Control de flux, condicions i pipes | DA2_OA01 - Programació Avançada (Angular) - IOC</title>
     <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
     <meta name="page-unitat" content="2">
     <meta name="page-bloc" content="2">
     
     <!-- SEO Tags -->
     <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Bloc 2: Directives estructurals i iteració | DA2_OA01 - Programació Avançada (Angular)</title>
+<title>Bloc 2: Control de flux, condicions i pipes | DA2_OA01 - Programació Avançada (Angular)</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="Bloc 2: Directives estructurals i iteració" />
+<meta property="og:title" content="Bloc 2: Control de flux, condicions i pipes" />
 <meta property="og:locale" content="ca_ES" />
-<meta name="description" content="Directives estructurals *ngFor, variables locals, trackBy i llistes niades" />
-<meta property="og:description" content="Directives estructurals *ngFor, variables locals, trackBy i llistes niades" />
-<link rel="canonical" href="http://localhost:4004/ioc/da2_oa01/unitat-2/bloc-2/" />
-<meta property="og:url" content="http://localhost:4004/ioc/da2_oa01/unitat-2/bloc-2/" />
+<meta name="description" content="@for, @if/@else, variables locals, track i llistes niades" />
+<meta property="og:description" content="@for, @if/@else, variables locals, track i llistes niades" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/da2_oa01/unitat-2/bloc-2/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/da2_oa01/unitat-2/bloc-2/" />
 <meta property="og:site_name" content="DA2_OA01 - Programació Avançada (Angular)" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Bloc 2: Directives estructurals i iteració" />
+<meta property="twitter:title" content="Bloc 2: Control de flux, condicions i pipes" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Directives estructurals *ngFor, variables locals, trackBy i llistes niades","headline":"Bloc 2: Directives estructurals i iteració","url":"http://localhost:4004/ioc/da2_oa01/unitat-2/bloc-2/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"@for, @if/@else, variables locals, track i llistes niades","headline":"Bloc 2: Control de flux, condicions i pipes","url":"https://itrascastro.github.io/ioc/da2_oa01/unitat-2/bloc-2/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/ioc/da2_oa01/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="canonical" href="http://localhost:4004/ioc/da2_oa01/unitat-2/bloc-2/">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/da2_oa01/unitat-2/bloc-2/">
     <!-- Rich editor styles (for embedded notes panel) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
     <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -48,7 +48,7 @@
     <link rel="icon" type="image/x-icon" href="/ioc/da2_oa01/assets/images/favicon.ico">
     
     <!-- RSS Feed -->
-    <link type="application/atom+xml" rel="alternate" href="http://localhost:4004/ioc/da2_oa01/feed.xml" title="DA2_OA01 - Programació Avançada (Angular)" />
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/da2_oa01/feed.xml" title="DA2_OA01 - Programació Avançada (Angular)" />
 
     <!-- Syntax Highlighting (Prism) -->
     <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
@@ -130,7 +130,7 @@
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-2/bloc-2/" class="nav-dropdown-item current">
-                        Unitat 2 - Bloc 2: Data binding i events
+                        Unitat 2 - Bloc 2: Control de flux, condicions i pipes
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-2/bloc-3/" class="nav-dropdown-item ">
@@ -148,11 +148,11 @@
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-3/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 3 - Bloc 2: Gestió d'estat i comunicació entre components
+                        Unitat 3 - Bloc 2: Models de dades i transformació
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-3/bloc-3/" class="nav-dropdown-item ">
-                        Unitat 3 - Bloc 3: Optimització i bones pràctiques
+                        Unitat 3 - Bloc 3: Formularis reactius i validacions
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-3/bloc-4/" class="nav-dropdown-item ">
@@ -166,11 +166,11 @@
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-4/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 4 - Bloc 2: Arquitectura escalable
+                        Unitat 4 - Bloc 2: Arquitectura i patrons
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-4/bloc-3/" class="nav-dropdown-item ">
-                        Unitat 4 - Bloc 3: Optimització de rendiment
+                        Unitat 4 - Bloc 3: Rendiment i optimització
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-4/bloc-4/" class="nav-dropdown-item ">
@@ -208,7 +208,7 @@
         
         
         <div class="nav-item">
-            <a href="#Unitat2_Bloc2_Seccio1" class="nav-link" data-section="Unitat2_Bloc2_Seccio1">1. Directives estructurals: iteració de llistes</a>
+            <a href="#Unitat2_Bloc2_Seccio1" class="nav-link" data-section="Unitat2_Bloc2_Seccio1">1. Control de flux: iteració de llistes</a>
         </div>
     
 
@@ -424,7 +424,7 @@
         
         
         <div class="nav-item">
-            <a href="#Unitat2_Bloc2_Seccio2" class="nav-link" data-section="Unitat2_Bloc2_Seccio2">2. Directives estructurals: condicions</a>
+            <a href="#Unitat2_Bloc2_Seccio2" class="nav-link" data-section="Unitat2_Bloc2_Seccio2">2. Control de flux: condicions</a>
         </div>
     
 
@@ -837,7 +837,7 @@
                             
                                 <span class="horizontal-nav-separator"> &gt; </span>
                                 <span class="horizontal-nav-item current">
-                                    Bloc 2.2: Data binding i events
+                                    Bloc 2.2: Control de flux, condicions i pipes
                                 </span>
                             
                         
@@ -855,75 +855,9 @@
 
 
 <!-- Contingut principal -->
-<!-- SECCIÓ 1: Directives estructurals: iteració de llistes -->
+<!-- SECCIÓ 1: Control de flux: iteració de llistes -->
 <div class="section" id="Unitat2_Bloc2_Seccio1">
-  <h2 id="Unitat2_Bloc2_Seccio1">1. Directives estructurals: iteració de llistes</h2>
-
-  <!-- MULTIMÈDIA -->
-  <!--
-  ════════════════════════════════════════════════════════════════
-  Component: Enllaços multimèdia YouTube
-  ════════════════════════════════════════════════════════════════
-
-  Paràmetres:
-    - unitat: número de la unitat (1-4)
-    - bloc: número del bloc (1-4)
-    - seccio: número de la secció (1-3)
-
-  Exemple d'ús:
-    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
-
-  El component busca automàticament les URLs corresponents a
-  site.data.multimedia i mostra els botons de vídeo i àudio.
-  ════════════════════════════════════════════════════════════════
--->
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-<div class="multimedia-resources">
-  <div class="multimedia-header">
-    <i class="bi bi-play-circle-fill"></i>
-    <span>Contingut multimèdia d'aquesta lectura</span>
-  </div>
-
-  <div class="multimedia-buttons">
-    
-    <a href="https://www.youtube.com/watch?v=Sx-EG-OCryc" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 2.2.1 · Directives estructurals: iteració de llistes">
-      <i class="bi bi-youtube"></i>
-      <span>Veure vídeo</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-
-    
-    <a href="https://www.youtube.com/watch?v=ha6V6kLCzFU" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 2.2.1 · Directives estructurals: iteració de llistes">
-      <i class="bi bi-mic-fill"></i>
-      <span>Escoltar àudio</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-  </div>
-
-  
-  
-</div>
-  
-
-
-
+  <h2 id="Unitat2_Bloc2_Seccio1">1. Control de flux: iteració de llistes</h2>
 
   <!-- Component: Objectius del bloc/unitat -->
 
@@ -934,11 +868,11 @@
   <div class="component-content">
     <ul>
       
-        <li>Comprendre què són les directives estructurals, com modifiquen l'estructura del DOM i diferenciar-les de la vinculació de propietats, identificant quan utilitzar cada eina segons el context del catàleg d'elements</li>
+        <li>Comprendre com el control de flux d'Angular 22 modifica el DOM i diferenciar-lo de la vinculació de propietats</li>
       
-        <li>Utilitzar *ngFor per iterar col·leccions mostrant variables locals (index, first, last, even, odd) i aplicant-les per a estils alterns, numeració d'elements i informació posicional dins de les llistes del catàleg</li>
+        <li>Utilitzar @for (...; track ...) per iterar col·leccions amb $index, $first, $last, $even i $odd, aplicant estils alterns i numeració</li>
       
-        <li>Aplicar trackBy amb identificadors únics per millorar el rendiment en llistes dinàmiques, preservant l'estat dels components fills i evitant recreacions innecessàries quan les dades canvien</li>
+        <li>Aplicar un identificador únic amb track per preservar l'estat dels components fills i evitar recreacions innecessàries</li>
       
     </ul>
   </div>
@@ -977,7 +911,7 @@
 
     <p>A més, necessiteu:</p>
     <ul>
-      <li><strong>Projecte funcional:</strong> <code>~/workspace/cataleg-elements</code> amb el component <code>TargetaElementComponent</code> integrat.</li>
+      <li><strong>Projecte funcional:</strong> <code>~/workspace/ioc-angular-[nom-app]-[nom-alumne]</code> amb el component de targeta integrat.</li>
       <li><strong>Servidor de desenvolupament:</strong> <code>ng serve</code> executant-se i accessible.</li>
       <li><strong>VS Code obert:</strong> Projecte carregat.</li>
     </ul>
@@ -1000,7 +934,7 @@
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">cd ~/workspace/cataleg-elements
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">cd ~/workspace/ioc-angular-[nom-app]-[nom-alumne]
 ng serve --open</code></pre>
   </div>
 </div>
@@ -1026,13 +960,13 @@ ng serve --open</code></pre>
   </div>
   <div class="section-point-body component-content">
     
-    <h4>1.2.1. Què són les directives estructurals</h4>
+    <h4>1.2.1. Què són els blocs de control de flux</h4>
 
-    <p>Les <strong>directives estructurals</strong> són eines d'Angular que permeten <strong>modificar l'estructura del DOM</strong> de manera declarativa. A diferència de les directives d'atribut que només canvien aparença o comportament, les directives estructurals poden <strong>afegir, eliminar o repetir</strong> elements sencers del DOM.</p>
+    <p>Els <strong>blocs de control de flux</strong> (<em>control flow blocks</em>) són la sintaxi integrada d'Angular per <strong>modificar l'estructura del DOM</strong> de manera declarativa: <strong>afegir, eliminar o repetir</strong> elements sencers segons les dades. A diferència de les vinculacions d'atribut, que només canvien valors d'elements que ja existeixen, els blocs decideixen <em>quins</em> elements hi ha.</p>
 
-    <p><strong>Característica distintiva:</strong> Totes s'escriuen amb un <strong>asterisc (<code>*</code>)</strong> al davant, que és la sintaxi simplificada d'Angular.</p>
+    <p><strong>Nota històrica:</strong> fins a Angular 16 aquesta feina la feien les <em>directives estructurals</em> <code>*ngFor</code>, <code>*ngIf</code> i <code>*ngSwitch</code>, que encara trobareu en molts tutorials. A Angular 22 el control de flux s'escriu amb els blocs <code>@for</code>, <code>@if</code>, <code>@else</code> i <code>@switch</code>: fan la mateixa funció, però formen part del llenguatge de plantilles i no cal importar res.</p>
 
-    <h4>1.2.2. Problema sense directives estructurals</h4>
+    <h4>1.2.2. Problema sense control de flux a la plantilla</h4>
 
     <p><strong>Situació abans d'Angular:</strong></p>
 
@@ -1297,9 +1231,9 @@ inputCerca.addEventListener(&#39;input&#39;, (event) =&gt; {
 
     <p><strong>Risc:</strong> Alta probabilitat de trencar funcionalitat existent per la interconnexió de tot el codi.</p>
 
-    <h4>1.2.3. Solució amb directives estructurals</h4>
+    <h4>1.2.3. Solució amb blocs de control de flux</h4>
 
-    <p>Angular simplifica radicalment la gestió de llistes dinàmiques amb <code>*ngFor</code>:</p>
+    <p>Angular 22 simplifica la gestió de llistes dinàmiques amb <code>@for</code>:</p>
 
     <p><strong>Plantilla HTML (declarativa i clara):</strong></p>
 
@@ -1321,7 +1255,8 @@ inputCerca.addEventListener(&#39;input&#39;, (event) =&gt; {
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Angular: sintaxi declarativa --&gt;
 &lt;ul class=&quot;grid-targetes&quot;&gt;
-  &lt;li *ngFor=&quot;let element of elements; let i = index; let esParell = even&quot;
+  @for (element of elements; track element.id; let i = $index; let esParell = $even) {
+  &lt;li
       [class.parell]=&quot;esParell&quot;
       [class.senar]=&quot;!esParell&quot;&gt;
     &lt;article class=&quot;targeta&quot; (click)=&quot;onClicElement(element)&quot;&gt;
@@ -1330,6 +1265,7 @@ inputCerca.addEventListener(&#39;input&#39;, (event) =&gt; {
       &lt;span class=&quot;categoria&quot;&gt;{{ element.categoria }}&lt;/span&gt;
     &lt;/article&gt;
   &lt;/li&gt;
+  }
 &lt;/ul&gt;</code></pre>
   </div>
 </div>
@@ -1375,7 +1311,7 @@ inputCerca.addEventListener(&#39;input&#39;, (event) =&gt; {
     <ul>
       <li><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> <strong>Codi declaratiu:</strong> Descriviu <strong>què</strong> voleu mostrar, Angular gestiona el <strong>com</strong>.</li>
       <li><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> <strong>Actualitzacions automàtiques:</strong> Canvis a l'array → actualització automàtica del DOM.</li>
-      <li><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> <strong>Rendiment optimitzat:</strong> Angular actualitza només els elements que canvien (amb <code>trackBy</code>).</li>
+      <li><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> <strong>Rendiment optimitzat:</strong> Angular actualitza només els elements que canvien (amb <code>track</code>).</li>
       <li><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> <strong>Sincronització garantida:</strong> Una única font de veritat (l'array del component).</li>
       <li><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> <strong>Mantenibilitat alta:</strong> Canvis concentrats en un sol lloc.</li>
       <li><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> <strong>Menys codi:</strong> Reducció del 75-80% de línies (40-50 → 10 línies).</li>
@@ -1383,7 +1319,7 @@ inputCerca.addEventListener(&#39;input&#39;, (event) =&gt; {
 
     <h4>1.2.4. Exemple real complet: Llista del catàleg</h4>
 
-    <p><strong><i class="bi bi-x-circle text-danger" aria-hidden="true"></i> Sense *ngFor (JavaScript manual - 45 línies):</strong></p>
+    <p><strong><i class="bi bi-x-circle text-danger" aria-hidden="true"></i> Sense control de flux Angular (JavaScript manual - 45 línies):</strong></p>
 
     
     <div class="code-block" data-lang="javascript" role="region" aria-label="Bloc de codi javascript">
@@ -1456,7 +1392,7 @@ renderitzarCataleg();
 </div>
 
 
-    <p><strong><i class="bi bi-check-circle text-success" aria-hidden="true"></i> Amb *ngFor (Angular - 12 línies):</strong></p>
+    <p><strong><i class="bi bi-check-circle text-success" aria-hidden="true"></i> Amb @for (Angular 22):</strong></p>
 
     
     <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
@@ -1476,7 +1412,8 @@ renderitzarCataleg();
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- cataleg.component.html --&gt;
 &lt;ul class=&quot;grid&quot;&gt;
-  &lt;li *ngFor=&quot;let element of elements; let i = index; let esParell = even; trackBy: trackById&quot;
+  @for (element of elements; track element.id; let i = $index; let esParell = $even) {
+  &lt;li
       [class.parell]=&quot;esParell&quot;&gt;
     &lt;article (click)=&quot;onClicElement(element)&quot;&gt;
       &lt;span class=&quot;num&quot;&gt;{{ i + 1 }}&lt;/span&gt;
@@ -1485,6 +1422,7 @@ renderitzarCataleg();
       &lt;span class=&quot;preu&quot;&gt;{{ element.preu === 0 ? &#39;Gratuït&#39; : element.preu + &#39;€&#39; }}&lt;/span&gt;
     &lt;/article&gt;
   &lt;/li&gt;
+  }
 &lt;/ul&gt;</code></pre>
   </div>
 </div>
@@ -1513,10 +1451,6 @@ export class CatalegComponent {
     { id: 2, titol: &#39;Icones&#39;, categoria: &#39;Icones&#39;, preu: 29 },
     { id: 3, titol: &#39;Tipografia&#39;, categoria: &#39;Tipografia&#39;, preu: 0 }
   ];
-
-  trackById(index: number, element: Element): number {
-    return element.id;
-  }
 
   onClicElement(element: Element): void {
     alert(&#39;Element: &#39; + element.titol);
@@ -1547,14 +1481,14 @@ export class CatalegComponent {
       <li><strong>Temps afegir funcionalitat:</strong> 30 min → 5 min (-83%)</li>
     </ul>
 
-    <h4>1.2.5. Taula comparativa: JavaScript manual vs *ngFor</h4>
+    <h4>1.2.5. Taula comparativa: JavaScript manual vs @for</h4>
 
     <table>
       <thead>
         <tr>
           <th>Característica</th>
           <th>JavaScript manual</th>
-          <th>*ngFor Angular</th>
+          <th>@for d'Angular 22</th>
         </tr>
       </thead>
       <tbody>
@@ -1629,53 +1563,53 @@ export class CatalegComponent {
       </thead>
       <tbody>
         <tr>
-          <td><strong>*ngFor</strong></td>
+          <td><strong>@for</strong></td>
           <td>Directiva d'iteració sobre col·leccions</td>
-          <td><code>*ngFor="let x of xs"</code></td>
+          <td><code>@for (x of xs; track x.id)</code></td>
           <td>Mostrar llista elements</td>
         </tr>
         <tr>
-          <td><strong>trackBy</strong></td>
+          <td><strong>track</strong></td>
           <td>Funció per identificar elements únics</td>
-          <td><code>trackBy: trackByFn</code></td>
+          <td><code>track item.id</code></td>
           <td>Optimitzar rendiment</td>
         </tr>
         <tr>
-          <td><strong>index</strong></td>
+          <td><strong>$index</strong></td>
           <td>Posició actual (començant per 0)</td>
-          <td><code>let i = index</code></td>
+          <td><code>let i = $index</code></td>
           <td>Numeració, zebrat</td>
         </tr>
         <tr>
-          <td><strong>first</strong></td>
+          <td><strong>$first</strong></td>
           <td>Primer element (boolean)</td>
-          <td><code>let isFirst = first</code></td>
+          <td><code>let isFirst = $first</code></td>
           <td>Estil especial primer</td>
         </tr>
         <tr>
-          <td><strong>last</strong></td>
+          <td><strong>$last</strong></td>
           <td>Últim element (boolean)</td>
-          <td><code>let isLast = last</code></td>
+          <td><code>let isLast = $last</code></td>
           <td>Estil especial últim</td>
         </tr>
         <tr>
-          <td><strong>even</strong></td>
+          <td><strong>$even</strong></td>
           <td>Element en posició parell (boolean)</td>
-          <td><code>let isEven = even</code></td>
+          <td><code>let isEven = $even</code></td>
           <td>Files zebrades</td>
         </tr>
         <tr>
-          <td><strong>odd</strong></td>
+          <td><strong>$odd</strong></td>
           <td>Element en posició senar (boolean)</td>
-          <td><code>let isOdd = odd</code></td>
+          <td><code>let isOdd = $odd</code></td>
           <td>Files zebrades</td>
         </tr>
       </tbody>
     </table>
 
-    <h4>1.2.7. Quan usar / quan no usar *ngFor</h4>
+    <h4>1.2.7. Quan usar / quan no usar @for</h4>
 
-    <p><strong><i class="bi bi-check-circle text-success" aria-hidden="true"></i> Usar *ngFor quan:</strong></p>
+    <p><strong><i class="bi bi-check-circle text-success" aria-hidden="true"></i> Usar @for quan:</strong></p>
     <ul>
       <li><strong>Mostrar llistes dinàmiques:</strong> Qualsevol col·lecció amb N elements desconeguts o variables (catàlegs, resultats cerca, feeds).</li>
       <li><strong>Generar opcions de formularis:</strong> Elements <code>&lt;option&gt;</code> dins de <code>&lt;select&gt;</code>, checkboxes o radios dinàmics.</li>
@@ -1683,7 +1617,7 @@ export class CatalegComponent {
       <li><strong>Mostrar grids de targetes:</strong> Galeries d'imatges, catàlegs de productes, grids de contingut (Pinterest-style).</li>
     </ul>
 
-    <p><strong><i class="bi bi-x-circle text-danger" aria-hidden="true"></i> No usar *ngFor (alternativa millor) quan:</strong></p>
+    <p><strong><i class="bi bi-x-circle text-danger" aria-hidden="true"></i> No usar @for (alternativa millor) quan:</strong></p>
 
     <p><strong>1. Nombre fix i conegut d'elements:</strong> Si sempre són exactament 3 botons o 5 seccions, escriviu-los manualment per claredat.</p>
 
@@ -1703,7 +1637,7 @@ export class CatalegComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- No cal *ngFor per 3 elements fixos --&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- No cal @for per 3 elements fixos --&gt;
 &lt;button&gt;Opció 1&lt;/button&gt;
 &lt;button&gt;Opció 2&lt;/button&gt;
 &lt;button&gt;Opció 3&lt;/button&gt;</code></pre>
@@ -1711,7 +1645,7 @@ export class CatalegComponent {
 </div>
 
 
-    <p><strong>2. Opcions exclusives conegudes:</strong> Per múltiples opcions mútuament exclusives, useu <code>*ngSwitch</code> en lloc de <code>*ngFor</code>.</p>
+    <p><strong>2. Opcions exclusives conegudes:</strong> Per múltiples opcions mútuament exclusives, useu <code>@switch</code> en lloc de <code>@for</code>.</p>
 
     
     <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
@@ -1729,17 +1663,17 @@ export class CatalegComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Millor amb *ngSwitch --&gt;
-&lt;div [ngSwitch]=&quot;estat&quot;&gt;
-  &lt;p *ngSwitchCase=&quot;&#39;carregant&#39;&quot;&gt;Carregant...&lt;/p&gt;
-  &lt;p *ngSwitchCase=&quot;&#39;error&#39;&quot;&gt;Error!&lt;/p&gt;
-  &lt;p *ngSwitchCase=&quot;&#39;exit&#39;&quot;&gt;Carregat&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Millor amb @switch --&gt;
+@switch (estat) {
+  @case (&#39;carregant&#39;) { &lt;p&gt;Carregant...&lt;/p&gt; }
+  @case (&#39;error&#39;) { &lt;p&gt;Error!&lt;/p&gt; }
+  @case (&#39;exit&#39;) { &lt;p&gt;Carregat&lt;/p&gt; }
+}</code></pre>
   </div>
 </div>
 
 
-    <p><strong>3. Un sol element condicional:</strong> Si només mostreu/amageu un element, useu <code>*ngIf</code>.</p>
+    <p><strong>3. Un sol element condicional:</strong> Si només mostreu/amageu un element, useu <code>@if</code>.</p>
 
     
     <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
@@ -1757,44 +1691,44 @@ export class CatalegComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Millor amb *ngIf --&gt;
-&lt;p *ngIf=&quot;teResultats&quot;&gt;Trobats {{ resultats.length }} elements&lt;/p&gt;</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Millor amb @if --&gt;
+@if (teResultats) { &lt;p&gt;Trobats {{ resultats.length }} elements&lt;/p&gt; }</code></pre>
   </div>
 </div>
 
 
-    <h4>1.2.8. Característiques principals de *ngFor</h4>
+    <h4>1.2.8. Característiques principals de @for</h4>
 
-    <p><strong>1. Sintaxi declarativa amb asterisc</strong><br>
-    La sintaxi <code>*ngFor</code> s'integra directament a la plantilla HTML. L'asterisc és <strong>sintaxi sugar</strong> que Angular transforma internament a <code>&lt;ng-template&gt;</code> per gestionar la creació i destrucció d'elements.</p>
+    <p><strong>1. Sintaxi declarativa de bloc</strong><br>
+    La sintaxi <code>@for</code> forma part del control de flux integrat d'Angular 22 i expressa directament la repetició i la identitat de cada element.</p>
 
     <p><strong>2. Variables locals contextuals</strong><br>
-    Cada iteració disposa de variables especials que proporcionen context sobre la posició: <code>index</code> (posició numèrica), <code>first</code>/<code>last</code> (booleans primers/últims), <code>even</code>/<code>odd</code> (booleans paritat). Aquestes variables permeten aplicar estils alterns, numeracions i comportaments condicionals.</p>
+    Cada iteració disposa de variables especials que proporcionen context sobre la posició: <code>$index</code> (posició numèrica), <code>$first</code>/<code>$last</code> (booleans primers/últims), <code>even</code>/<code>odd</code> (booleans paritat). Aquestes variables permeten aplicar estils alterns, numeracions i comportaments condicionals.</p>
 
-    <p><strong>3. Optimització amb trackBy</strong><br>
-    La funció <code>trackBy</code> permet a Angular identificar cada element de manera única, evitant recreacions innecessàries quan les dades canvien. Sense <code>trackBy</code>, Angular recrea tots els elements; amb <code>trackBy</code>, només actualitza els que han canviat realment.</p>
+    <p><strong>3. Optimització amb track</strong><br>
+    L'expressió <code>track</code> identifica cada element de manera única, evitant recreacions innecessàries quan les dades canvien.</p>
 
     <p><strong>4. Change Detection automàtic</strong><br>
     Quan l'array canvia (afegir, eliminar, ordenar elements), Angular detecta automàticament els canvis i actualitza només les parts del DOM afectades, sense necessitat de codi manual.</p>
 
     <p><strong>5. Integració amb components fills</strong><br>
-    <code>*ngFor</code> funciona perfectament amb components personalitzats, passant dades mitjançant <code>@Input()</code> i rebent esdeveniments amb <code>@Output()</code>, creant una arquitectura modular i reutilitzable.</p>
+    <code>@for</code> funciona perfectament amb components personalitzats, passant dades mitjançant <code>@Input()</code> i rebent esdeveniments amb <code>@Output()</code>, creant una arquitectura modular i reutilitzable.</p>
 
     <h4>1.2.9. Integració amb el projecte del curs</h4>
 
-    <p>Al <strong>catàleg d'elements</strong>, utilitzarem <code>*ngFor</code> per implementar:</p>
+    <p>Al projecte de l'alumne, utilitzarem <code>@for (...; track ...)</code> per implementar:</p>
 
     <p><strong>Funcionalitats principals:</strong></p>
     <ul>
-      <li><strong>Grid de targetes:</strong> Mostrar tots els elements del catàleg amb <code>*ngFor</code> sobre el component <code>TargetaElementComponent</code>.</li>
+      <li><strong>Grid de targetes:</strong> Mostrar tots els elements amb <code>@for</code> sobre el component de targeta.</li>
       <li><strong>Llistes de categories:</strong> Iterar categories i, dins de cada categoria, iterar els seus elements (llistes niades).</li>
-      <li><strong>Numeració d'elements:</strong> Utilitzar la variable <code>index</code> per mostrar "Element 1 de 50".</li>
-      <li><strong>Estils zebrats:</strong> Aplicar classes CSS diferents a files parells/senars amb variables <code>even</code>/<code>odd</code>.</li>
-      <li><strong>Optimització:</strong> Implementar <code>trackBy</code> amb els IDs únics per garantir rendiment amb centenars d'elements.</li>
+      <li><strong>Numeració d'elements:</strong> Utilitzar la variable <code>$index</code> per mostrar "Element 1 de 50".</li>
+      <li><strong>Estils zebrats:</strong> Aplicar classes CSS diferents a files parells/senars amb variables <code>$even</code>/<code>$odd</code>.</li>
+      <li><strong>Optimització:</strong> Implementar <code>track element.id</code> per garantir rendiment.</li>
       <li><strong>Filtres dinàmics:</strong> Filtrar elements per cerca o categoria actualitzant l'array, amb re-renderització automàtica.</li>
     </ul>
 
-    <p>Aquest patró de <code>*ngFor</code> serà <strong>fonamental</strong> per mostrar contingut dinàmic de manera eficient i mantenible al vostre projecte.</p>
+    <p>Aquest patró de <code>@for (...; track ...)</code> serà <strong>fonamental</strong> per mostrar contingut dinàmic de manera eficient i mantenible al vostre projecte.</p>
   
   </div>
 </div>
@@ -1814,7 +1748,7 @@ export class CatalegComponent {
   </div>
   <div class="section-point-body component-content">
     
-    <h4>1.3.1. Flux de treball amb *ngFor</h4>
+    <h4>1.3.1. Flux de treball amb @for</h4>
 
     
     <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
@@ -1832,11 +1766,11 @@ export class CatalegComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">[Disseny] → [Identificar llista] → [Definir array] → [Escriure *ngFor]
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">[Disseny] → [Identificar llista] → [Definir array] → [Escriure @for]
               ↓                      ↓                  ↓
 [Patró repetitiu]      [TypeScript interface]   [Variables locals]
               ↓                      ↓                  ↓
-          [Decidir si cal trackBy] → [Implementar] → [Verificar]</code></pre>
+          [Definir track] → [Implementar] → [Verificar]</code></pre>
   </div>
 </div>
 
@@ -1845,8 +1779,8 @@ export class CatalegComponent {
 
     <ul>
       <li><strong>Declaratiu vs imperatiu:</strong> Descriviu QUÈ voleu; Angular gestiona el COM.</li>
-      <li><strong>Context local:</strong> Variables <code>index</code>, <code>first</code>, <code>last</code>, <code>even</code>, <code>odd</code> disponibles automàticament.</li>
-      <li><strong>Identitat única:</strong> Utilitzeu <code>trackBy</code> amb IDs únics per optimitzar rendiment.</li>
+      <li><strong>Context local:</strong> Variables <code>$index</code>, <code>$first</code>, <code>$last</code>, <code>$even</code>, <code>$odd</code> i <code>$count</code> disponibles automàticament.</li>
+      <li><strong>Identitat única:</strong> Utilitzeu <code>track element.id</code> amb IDs únics per optimitzar rendiment.</li>
       <li><strong>Actualització intel·ligent:</strong> Angular actualitza només els elements que canvien.</li>
     </ul>
 
@@ -1872,15 +1806,18 @@ export class CatalegComponent {
     ↓
 elements: Element[] = [...]
     ↓
-Plantilla (*ngFor)
+Plantilla (@for)
     ↓
-&lt;li *ngFor=&quot;let element of elements&quot;&gt;
+@for (element of elements; track element.id) {
+  &lt;li&gt;
     ↓
 Component fill
     ↓
 &lt;app-targeta [element]=&quot;element&quot;&gt;
     ↓
-DOM renderitzat</code></pre>
+DOM renderitzat
+  &lt;/li&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -1888,7 +1825,7 @@ DOM renderitzat</code></pre>
     <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> Les directives estructurals són les eines més poderoses d'Angular per crear interfícies dinàmiques. *ngFor és especialment fonamental per mostrar qualsevol llista o col·lecció.
+    <strong>Clau:</strong> El control de flux integrat d'Angular 22 permet crear interfícies dinàmiques. <code>@for (...; track ...)</code> és la sintaxi que s'usa per a les llistes en tot el mòdul.
 </div>
 
   
@@ -1904,18 +1841,18 @@ DOM renderitzat</code></pre>
   <div class="component-header section-point-header" role="heading" aria-level="4">
     <i class="bi bi-journal-text" aria-hidden="true"></i>
     <div class="section-point-meta">
-      <div class="section-point-title">1.4. Què són les directives estructurals</div>
+      <div class="section-point-title">1.4. Què són els blocs de control de flux</div>
       
     </div>
   </div>
   <div class="section-point-body component-content">
     
     <h4>1.4.1. Objectiu</h4>
-    <p>Entendre què són les directives estructurals i com modifiquen l'estructura del DOM.</p>
+    <p>Entendre què són els blocs de control de flux i com modifiquen l'estructura del DOM.</p>
 
     <h4>1.4.2. Contingut</h4>
 
-    <p>Les directives estructurals modifiquen l'estructura del DOM afegint, eliminant o repetint elements. S'identifiquen amb l'asterisc <code>*</code>.</p>
+    <p>Els blocs de control de flux modifiquen l'estructura del DOM afegint, eliminant o repetint elements. A Angular 22 són <code>@for</code>, <code>@if</code> i <code>@switch</code> (les antigues directives estructurals <code>*ngFor</code>/<code>*ngIf</code> feien aquest paper).</p>
 
     <p><strong>Diferència amb vinculació de propietats:</strong></p>
 
@@ -1924,7 +1861,7 @@ DOM renderitzat</code></pre>
         <tr>
           <th>Aspecte</th>
           <th>Vinculació propietats</th>
-          <th>Directives estructurals</th>
+          <th>Blocs de control de flux</th>
         </tr>
       </thead>
       <tbody>
@@ -1936,19 +1873,19 @@ DOM renderitzat</code></pre>
         <tr>
           <td><strong>Sintaxi</strong></td>
           <td><code>[prop]="valor"</code></td>
-          <td><code>*directiva="expr"</code></td>
+          <td><code>@for (…) { … }</code>, <code>@if (…) { … }</code></td>
         </tr>
         <tr>
           <td><strong>Exemple</strong></td>
           <td><code>[src]="imatge"</code></td>
-          <td><code>*ngFor="let x of xs"</code></td>
+          <td><code>@for (x of xs; track x.id) { … }</code></td>
         </tr>
       </tbody>
     </table>
 
     <p><strong>Transformació interna:</strong></p>
 
-    <p>Angular transforma <code>*ngFor</code> internament a <code>&lt;ng-template&gt;</code>:</p>
+    <p>El control de flux integrat expressa directament la iteració a la plantilla:</p>
 
     
     <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
@@ -1966,13 +1903,9 @@ DOM renderitzat</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Escrivim (sintaxi sugar) --&gt;
-&lt;li *ngFor=&quot;let element of elements&quot;&gt;{{ element }}&lt;/li&gt;
-
-&lt;!-- Angular transforma a --&gt;
-&lt;ng-template ngFor let-element [ngForOf]=&quot;elements&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@for (element of elements; track element.id) {
   &lt;li&gt;{{ element }}&lt;/li&gt;
-&lt;/ng-template&gt;</code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -1987,12 +1920,12 @@ DOM renderitzat</code></pre>
     <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> Les directives estructurals canvien QUANTS elements hi ha al DOM, no només el seu contingut.
+    <strong>Clau:</strong> Els blocs de control de flux canvien QUANTS elements hi ha al DOM, no només el seu contingut.
 </div>
 
 
     <h4>1.4.3. Resultat esperat</h4>
-    <p>Compreneu la diferència fonamental entre directives estructurals i vinculació de propietats.</p>
+    <p>Compreneu la diferència fonamental entre blocs de control de flux i vinculació de propietats.</p>
   
   </div>
 </div>
@@ -2006,14 +1939,14 @@ DOM renderitzat</code></pre>
   <div class="component-header section-point-header" role="heading" aria-level="4">
     <i class="bi bi-journal-text" aria-hidden="true"></i>
     <div class="section-point-meta">
-      <div class="section-point-title">1.5. Sintaxi bàsica de *ngFor</div>
+      <div class="section-point-title">1.5. Sintaxi bàsica de @for</div>
       
     </div>
   </div>
   <div class="section-point-body component-content">
     
     <h4>1.5.1. Objectiu</h4>
-    <p>Dominar la sintaxi fonamental de <code>*ngFor</code> i crear la primera iteració.</p>
+    <p>Dominar la sintaxi fonamental de <code>@for</code> i crear la primera iteració.</p>
 
     <h4>1.5.2. Contingut</h4>
 
@@ -2035,16 +1968,16 @@ DOM renderitzat</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;element *ngFor=&quot;let item of col·lecció&quot;&gt;
-  {{ item }}
-&lt;/element&gt;</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@for (item of colleccio; track item.id) {
+  &lt;element&gt;{{ item.nom }}&lt;/element&gt;
+}</code></pre>
   </div>
 </div>
 
 
     <p><strong>Components:</strong></p>
     <ul>
-      <li><code>*ngFor</code>: directiva d'iteració</li>
+      <li><code>@for</code>: directiva d'iteració</li>
       <li><code>let item</code>: variable local accessible dins del bloc</li>
       <li><code>of col·lecció</code>: array o iterable a recórrer</li>
     </ul>
@@ -2093,7 +2026,9 @@ titols: string[] = [&#39;Angular&#39;, &#39;TypeScript&#39;, &#39;RxJS&#39;];</c
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Plantilla --&gt;
 &lt;ul&gt;
-  &lt;li *ngFor=&quot;let titol of titols&quot;&gt;{{ titol }}&lt;/li&gt;
+  @for (titol of titols; track titol) {
+    &lt;li&gt;{{ titol }}&lt;/li&gt;
+  }
 &lt;/ul&gt;</code></pre>
   </div>
 </div>
@@ -2183,10 +2118,12 @@ elements: Element[] = [
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;ul&gt;
-  &lt;li *ngFor=&quot;let element of elements&quot;&gt;
-    &lt;h3&gt;{{ element.titol }}&lt;/h3&gt;
-    &lt;span&gt;{{ element.categoria }}&lt;/span&gt;
-  &lt;/li&gt;
+  @for (element of elements; track element.id) {
+    &lt;li&gt;
+      &lt;h3&gt;{{ element.titol }}&lt;/h3&gt;
+      &lt;span&gt;{{ element.categoria }}&lt;/span&gt;
+    &lt;/li&gt;
+  }
 &lt;/ul&gt;</code></pre>
   </div>
 </div>
@@ -2195,12 +2132,12 @@ elements: Element[] = [
     <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> Una línia *ngFor substitueix bucles manuals de 20-30 línies.
+    <strong>Clau:</strong> Una línia @for substitueix bucles manuals de 20-30 línies.
 </div>
 
 
     <h4>1.5.3. Resultat esperat</h4>
-    <p>Sabeu utilitzar la sintaxi bàsica <code>*ngFor="let item of items"</code> per iterar col·leccions.</p>
+    <p>Sabeu utilitzar la sintaxi <code>@for (item of items; track item.id) { … }</code> per iterar col·leccions.</p>
   
   </div>
 </div>
@@ -2221,11 +2158,11 @@ elements: Element[] = [
   <div class="section-point-body component-content">
     
     <h4>1.6.1. Objectiu</h4>
-    <p>Utilitzar variables locals (<code>index</code>, <code>first</code>, <code>last</code>, <code>even</code>, <code>odd</code>) per estils i numeració.</p>
+    <p>Utilitzar les variables implícites (<code>$index</code>, <code>$first</code>, <code>$last</code>, <code>$even</code>, <code>$odd</code>) per estils i numeració.</p>
 
     <h4>1.6.2. Contingut</h4>
 
-    <p><code>*ngFor</code> proporciona variables locals amb informació contextual:</p>
+    <p><code>@for</code> proporciona variables locals amb informació contextual:</p>
 
     <table>
       <thead>
@@ -2238,31 +2175,31 @@ elements: Element[] = [
       </thead>
       <tbody>
         <tr>
-          <td><strong>index</strong></td>
+          <td><strong>$index</strong></td>
           <td>number</td>
           <td>0, 1, 2...</td>
           <td>Numeració</td>
         </tr>
         <tr>
-          <td><strong>first</strong></td>
+          <td><strong>$first</strong></td>
           <td>boolean</td>
           <td>true si és el primer</td>
           <td>Estil especial</td>
         </tr>
         <tr>
-          <td><strong>last</strong></td>
+          <td><strong>$last</strong></td>
           <td>boolean</td>
           <td>true si és l'últim</td>
           <td>Estil especial</td>
         </tr>
         <tr>
-          <td><strong>even</strong></td>
+          <td><strong>$even</strong></td>
           <td>boolean</td>
           <td>true si posició parell</td>
           <td>Zebrat</td>
         </tr>
         <tr>
-          <td><strong>odd</strong></td>
+          <td><strong>$odd</strong></td>
           <td>boolean</td>
           <td>true si posició senar</td>
           <td>Zebrat</td>
@@ -2288,12 +2225,13 @@ elements: Element[] = [
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;li *ngFor=&quot;let item of items; let i = index; let isFirst = first&quot;&gt;</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@for (item of items; track item.id; let i = $index; let isFirst = $first) {
+  &lt;li&gt;</code></pre>
   </div>
 </div>
 
 
-    <p><strong>Exemple amb index (numeració):</strong></p>
+    <p><strong>Exemple amb $index (numeració):</strong></p>
 
     
     <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
@@ -2311,10 +2249,12 @@ elements: Element[] = [
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;li *ngFor=&quot;let element of elements; let i = index&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@for (element of elements; track element.id; let i = $index) {
+&lt;li&gt;
   &lt;span class=&quot;numero&quot;&gt;{{ i + 1 }}&lt;/span&gt;
   &lt;h3&gt;{{ element.titol }}&lt;/h3&gt;
-&lt;/li&gt;</code></pre>
+&lt;/li&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -2344,7 +2284,7 @@ elements: Element[] = [
 </div>
 
 
-    <p><strong>Exemple amb even/odd (zebrat):</strong></p>
+    <p><strong>Exemple amb $even/$odd (zebrat):</strong></p>
 
     
     <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
@@ -2362,16 +2302,18 @@ elements: Element[] = [
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;li *ngFor=&quot;let element of elements; let esParell = even&quot;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@for (element of elements; track element.id; let esParell = $even) {
+&lt;li
     [class.fila-clara]=&quot;esParell&quot;
     [class.fila-fosca]=&quot;!esParell&quot;&gt;
   {{ element.titol }}
-&lt;/li&gt;</code></pre>
+&lt;/li&gt;
+}</code></pre>
   </div>
 </div>
 
 
-    <p><strong>Exemple amb first/last:</strong></p>
+    <p><strong>Exemple amb $first/$last:</strong></p>
 
     
     <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
@@ -2389,11 +2331,42 @@ elements: Element[] = [
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;li *ngFor=&quot;let element of elements; let isFirst = first; let isLast = last&quot;
-    [class.primera]=&quot;isFirst&quot;
-    [class.ultima]=&quot;isLast&quot;&gt;
-  {{ element.titol }}
-&lt;/li&gt;</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@for (element of elements; track element.id; let esPrimer = $first; let esUltim = $last) {
+  &lt;li [class.primera]=&quot;esPrimer&quot; [class.ultima]=&quot;esUltim&quot;&gt;
+    {{ element.titol }}
+  &lt;/li&gt;
+}</code></pre>
+  </div>
+</div>
+
+
+    <p><strong>Comptador d'elements i llista buida:</strong> <code>$count</code> conté el nombre total d'elements iterats, i el bloc opcional <code>@empty</code> es renderitza quan la col·lecció no té cap element. És la manera idiomàtica de mostrar l'estat "sense resultats" d'un llistat filtrat:</p>
+
+    
+    <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">HTML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;p&gt;Es mostren {{ elements.length }} elements&lt;/p&gt;
+
+&lt;ul&gt;
+  @for (element of elements; track element.id; let i = $index; let total = $count) {
+    &lt;li&gt;{{ i + 1 }} de {{ total }}: {{ element.titol }}&lt;/li&gt;
+  } @empty {
+    &lt;li class=&quot;buit&quot;&gt;No s&#39;ha trobat cap element amb aquests criteris.&lt;/li&gt;
+  }
+&lt;/ul&gt;</code></pre>
   </div>
 </div>
 
@@ -2401,12 +2374,12 @@ elements: Element[] = [
     <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> Les variables locals permeten estils dinàmics sense lògica adicional al component.
+    <strong>Clau:</strong> Les variables locals permeten estils dinàmics sense lògica adicional al component, i <code>@empty</code> resol l'estat de llista buida sense cap <code>@if</code> extra.
 </div>
 
 
     <h4>1.6.3. Resultat esperat</h4>
-    <p>Sabeu utilitzar variables locals per crear numeracions i aplicar estils condicionals.</p>
+    <p>Sabeu utilitzar variables locals per crear numeracions, aplicar estils condicionals i gestionar la llista buida amb <code>@empty</code>.</p>
   
   </div>
 </div>
@@ -2420,82 +2393,57 @@ elements: Element[] = [
   <div class="component-header section-point-header" role="heading" aria-level="4">
     <i class="bi bi-journal-text" aria-hidden="true"></i>
     <div class="section-point-meta">
-      <div class="section-point-title">1.7. Optimització amb trackBy</div>
+      <div class="section-point-title">1.7. Optimització amb track</div>
       
     </div>
   </div>
   <div class="section-point-body component-content">
     
     <h4>1.7.1. Objectiu</h4>
-    <p>Implementar <code>trackBy</code> per millorar rendiment i preservar estat de components.</p>
+    <p>Implementar l'expressió <code>track</code> de <code>@for</code> per millorar rendiment i preservar estat de components.</p>
 
     <h4>1.7.2. Contingut</h4>
 
-    <p><strong>Per què trackBy és crucial:</strong></p>
+    <p><strong>Per què track és crucial:</strong></p>
 
-    <p>Sense <code>trackBy</code>, quan l'array canvia, Angular destrueix i recrea TOTS els elements del DOM, perdent estat (scroll, focus, animacions).</p>
+    <p>A <code>@for</code> l'expressió <code>track</code> és obligatòria: diu a Angular com reconèixer cada element entre una renderització i la següent. Segons quina trieu, Angular pot reutilitzar les vistes existents (moure-les, actualitzar-les) o ha de destruir-les i crear-ne de noves, perdent l'estat dels components fills (scroll, focus, animacions).</p>
 
-    <p>Amb <code>trackBy</code>, Angular identifica cada element de manera única i només actualitza els que han canviat realment.</p>
-
-    <p><strong>Comparativa de rendiment:</strong></p>
+    <p><strong>Les tres opcions habituals:</strong></p>
 
     <table>
       <thead>
         <tr>
-          <th>Escenari</th>
-          <th>Sense trackBy</th>
-          <th>Amb trackBy</th>
+          <th>Expressió</th>
+          <th>Identitat</th>
+          <th>Quan és adequada</th>
+          <th>Què passa quan la llista canvia</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><strong>Actualitzar 1 de 100 elements</strong></td>
-          <td>Recrea 100</td>
-          <td>Actualitza 1</td>
+          <td><code>track element.id</code></td>
+          <td>Un identificador estable de les dades</td>
+          <td><strong>Recomanada</strong> per a llistes que s'afegeixen, s'eliminen, es filtren o es reordenen</td>
+          <td>Angular mou o actualitza només les vistes afectades; les altres es conserven</td>
         </tr>
         <tr>
-          <td><strong>Afegir 1 element</strong></td>
-          <td>Recrea 101</td>
-          <td>Crea 1</td>
+          <td><code>track $index</code></td>
+          <td>La posició a l'array</td>
+          <td>Llistes estàtiques o que només canvien al final (un registre de missatges, opcions fixes)</td>
+          <td>Si l'ordre canvia, la vista de la posició 0 mostrarà l'element nou de la posició 0: Angular actualitza el contingut de moltes vistes i pot perdre'n l'estat</td>
         </tr>
         <tr>
-          <td><strong>Reordenar llista</strong></td>
-          <td>Recrea tots</td>
-          <td>Reordena (no recrea)</td>
-        </tr>
-        <tr>
-          <td><strong>Temps 1000 elements</strong></td>
-          <td>1500ms</td>
-          <td>80ms</td>
+          <td><code>track element</code></td>
+          <td>La referència de l'objecte</td>
+          <td>Només si els objectes es conserven entre renderitzacions (mateixes instàncies)</td>
+          <td>Si cada càrrega crea objectes nous (resposta HTTP, <code>map</code>), cap referència coincideix i Angular recrea totes les vistes</td>
         </tr>
       </tbody>
     </table>
 
+    <p>Per al catàleg, on els elements arriben d'una API i es filtren i s'ordenen, <code>track element.id</code> és l'opció correcta.</p>
+
     <p><strong>Sintaxi:</strong></p>
-
-    
-    <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TYPESCRIPT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// Component
-trackById(index: number, element: Element): number {
-  return element.id; // Identificador únic
-}</code></pre>
-  </div>
-</div>
-
 
     
     <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
@@ -2513,18 +2461,20 @@ trackById(index: number, element: Element): number {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Plantilla --&gt;
-&lt;li *ngFor=&quot;let element of elements; trackBy: trackById&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Plantilla Angular 22 --&gt;
+@for (element of elements; track element.id) {
+&lt;li&gt;
   {{ element.titol }}
-&lt;/li&gt;</code></pre>
+&lt;/li&gt;
+}</code></pre>
   </div>
 </div>
 
 
     <p><strong>Important:</strong></p>
     <ul>
-      <li>La funció <code>trackBy</code> rep l'índex i l'element</li>
-      <li>Retorna un identificador únic (normalment <code>element.id</code>)</li>
+      <li>L'expressió <code>track</code> identifica cada element</li>
+      <li>Useu un identificador únic, normalment <code>element.id</code></li>
       <li>NO utilitzeu l'índex com a identificador si l'array pot reordenar-se</li>
     </ul>
 
@@ -2549,15 +2499,11 @@ trackById(index: number, element: Element): number {
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">export class CatalegComponent {
   elements: Element[] = [...];
 
-  trackById(index: number, element: Element): number {
-    return element.id;
-  }
-
   actualitzarElement(id: number, nouTitol: string): void {
     const element = this.elements.find(el =&gt; el.id === id);
     if (element) {
       element.titol = nouTitol;
-      // Angular actualitza només aquest element gràcies a trackBy
+      // Angular conserva la identitat gràcies a track element.id a la plantilla
     }
   }
 }</code></pre>
@@ -2568,12 +2514,12 @@ trackById(index: number, element: Element): number {
     <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> Sempre utilitzeu trackBy amb llistes dinàmiques per garantir rendiment i preservar estat.
+    <strong>Clau:</strong> Amb llistes dinàmiques, feu que <code>track</code> apunti a un identificador estable de les dades (<code>element.id</code>): és el que permet a Angular reutilitzar vistes i conservar-ne l'estat.
 </div>
 
 
     <h4>1.7.3. Resultat esperat</h4>
-    <p>Sabeu implementar <code>trackBy</code> per optimitzar el rendiment de llistes dinàmiques.</p>
+    <p>Sabeu implementar <code>track</code> per optimitzar el rendiment de llistes dinàmiques.</p>
   
   </div>
 </div>
@@ -2634,10 +2580,6 @@ export class CatalegComponent {
     { id: 3, titol: &#39;Tipografia&#39;, categoria: &#39;Tipografia&#39;, disponible: false }
   ];
 
-  trackById(index: number, element: Element): number {
-    return element.id;
-  }
-
   onClicElement(element: Element): void {
     console.log(&#39;Seleccionat:&#39;, element.titol);
   }
@@ -2665,29 +2607,24 @@ export class CatalegComponent {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;ul class=&quot;grid-cataleg&quot;&gt;
-  &lt;li *ngFor=&quot;let element of elements;
-              let i = index;
-              let esParell = even;
-              let isPrimer = first;
-              trackBy: trackById&quot;
-      [class.parell]=&quot;esParell&quot;
-      [class.primer]=&quot;isPrimer&quot;&gt;
-
-    &lt;article (click)=&quot;onClicElement(element)&quot;&gt;
-      &lt;span class=&quot;numero&quot;&gt;{{ i + 1 }}&lt;/span&gt;
-      &lt;h3&gt;{{ element.titol }}&lt;/h3&gt;
-      &lt;span class=&quot;categoria&quot;&gt;{{ element.categoria }}&lt;/span&gt;
-      &lt;span class=&quot;estat&quot; [class.disponible]=&quot;element.disponible&quot;&gt;
-        {{ element.disponible ? &#39;Disponible&#39; : &#39;No disponible&#39; }}
-      &lt;/span&gt;
-    &lt;/article&gt;
-  &lt;/li&gt;
+  @for (element of elements; track element.id; let i = $index; let esParell = $even; let esPrimer = $first) {
+    &lt;li [class.parell]=&quot;esParell&quot; [class.primer]=&quot;esPrimer&quot;&gt;
+      &lt;article (click)=&quot;onClicElement(element)&quot;&gt;
+        &lt;span class=&quot;numero&quot;&gt;{{ i + 1 }}&lt;/span&gt;
+        &lt;h3&gt;{{ element.titol }}&lt;/h3&gt;
+        &lt;span class=&quot;categoria&quot;&gt;{{ element.categoria }}&lt;/span&gt;
+        &lt;span class=&quot;estat&quot; [class.disponible]=&quot;element.disponible&quot;&gt;
+          {{ element.disponible ? &#39;Disponible&#39; : &#39;No disponible&#39; }}
+        &lt;/span&gt;
+      &lt;/article&gt;
+    &lt;/li&gt;
+  }
 &lt;/ul&gt;</code></pre>
   </div>
 </div>
 
 
-    <p><strong>Resultat:</strong> Llista amb numeració, estils zebrats, primer element destacat, estat visual i optimització amb trackBy.</p>
+    <p><strong>Resultat:</strong> Llista amb numeració, estils zebrats, primer element destacat, estat visual i optimització amb track.</p>
 
     <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
@@ -2718,7 +2655,7 @@ export class CatalegComponent {
   <div class="section-point-body component-content">
     
     <h4>1.9.1. Objectiu</h4>
-    <p>Gestionar múltiples nivells d'iteració amb <code>*ngFor</code>.</p>
+    <p>Gestionar múltiples nivells d'iteració amb <code>@for</code>.</p>
 
     <h4>1.9.2. Contingut</h4>
 
@@ -2785,15 +2722,19 @@ categories: Categoria[] = [
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;section *ngFor=&quot;let categoria of categories; trackBy: trackCategoriaById&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@for (categoria of categories; track categoria.id) {
+&lt;section&gt;
   &lt;h2&gt;{{ categoria.nom }}&lt;/h2&gt;
 
   &lt;ul&gt;
-    &lt;li *ngFor=&quot;let element of categoria.elements; trackBy: trackElementById&quot;&gt;
+    @for (element of categoria.elements; track element.id) {
+    &lt;li&gt;
       {{ element.titol }}
     &lt;/li&gt;
+    }
   &lt;/ul&gt;
-&lt;/section&gt;</code></pre>
+&lt;/section&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -2801,8 +2742,8 @@ categories: Categoria[] = [
     <p><strong>Important:</strong></p>
     <ul>
       <li>Cada nivell té el seu propi context de variables locals</li>
-      <li><code>trackBy</code> a TOTS els nivells per optimitzar</li>
-      <li>Variables locals <code>index</code>, <code>first</code>, etc. són independents per nivell</li>
+      <li><code>track</code> a TOTS els nivells per optimitzar</li>
+      <li>Les variables <code>$index</code>, <code>$first</code>, etc. són independents per nivell</li>
     </ul>
 
     <!-- Component: Caixa d'èxit -->
@@ -2813,7 +2754,7 @@ categories: Categoria[] = [
 
 
     <h4>1.9.3. Resultat esperat</h4>
-    <p>Sabeu crear estructures niades amb múltiples nivells de <code>*ngFor</code>.</p>
+    <p>Sabeu crear estructures niades amb múltiples nivells de <code>@for</code>.</p>
   
   </div>
 </div>
@@ -2834,11 +2775,11 @@ categories: Categoria[] = [
   <div class="section-point-body component-content">
     
     <h4>1.10.1. Objectiu</h4>
-    <p>Identificar i resoldre errors comuns amb <code>*ngFor</code>.</p>
+    <p>Identificar i resoldre errors comuns amb <code>@for</code>.</p>
 
     <h4>1.10.2. Contingut</h4>
 
-    <p><strong>Problema 1: Referències perdudes sense trackBy</strong></p>
+    <p><strong>Problema 1: Estat perdut per un <code>track</code> inestable</strong></p>
 
     
     <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
@@ -2857,8 +2798,8 @@ categories: Categoria[] = [
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Símptoma: Components fills perden estat en actualitzar array
-Causa: Angular recrea elements sense identificador únic
-Solució: Implementar trackBy amb element.id</code></pre>
+Causa: track $index (o una referència que canvia) fa que Angular recreï els elements
+Solució: Implementar track amb element.id</code></pre>
   </div>
 </div>
 
@@ -2882,8 +2823,8 @@ Solució: Implementar trackBy amb element.id</code></pre>
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Símptoma: Interfície lenta en llistes de 500+ elements
-Causa: Recreació completa sense trackBy
-Solució: trackBy + virtualització (CDK Virtual Scrolling)</code></pre>
+Causa: Recreació completa per un track inestable
+Solució: track + virtualització (CDK Virtual Scrolling)</code></pre>
   </div>
 </div>
 
@@ -2933,7 +2874,7 @@ Solució: Inicialitzar array buit: elements: Element[] = []</code></pre>
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Símptoma: {{ i }} mostra buit
 Causa: Sintaxi incorrecta
-Correcte: let i = index
+Correcte: let i = $index
 Incorrecte: let i = i o index</code></pre>
   </div>
 </div>
@@ -2942,12 +2883,12 @@ Incorrecte: let i = i o index</code></pre>
     <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> La majoria de problemes es resolen amb trackBy i inicialització correcta d'arrays.
+    <strong>Clau:</strong> La majoria de problemes es resolen amb track i inicialització correcta d'arrays.
 </div>
 
 
     <h4>1.10.3. Resultat esperat</h4>
-    <p>Sabeu identificar i resoldre els errors més comuns amb <code>*ngFor</code>.</p>
+    <p>Sabeu identificar i resoldre els errors més comuns amb <code>@for</code>.</p>
   
   </div>
 </div>
@@ -2968,17 +2909,17 @@ Incorrecte: let i = i o index</code></pre>
   <div class="section-point-body component-content">
     
     <h4>1.11.1. Objectiu</h4>
-    <p>Consolidar recomanacions per utilitzar <code>*ngFor</code> de forma professional.</p>
+    <p>Consolidar recomanacions per utilitzar <code>@for</code> de forma professional.</p>
 
     <h4>1.11.2. Contingut</h4>
 
-    <p><strong>1. Sempre trackBy amb llistes dinàmiques</strong></p>
+    <p><strong>1. Identificador estable a <code>track</code> per a llistes dinàmiques</strong></p>
 
     
-    <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+    <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
   <div class="code-header">
     <div class="code-info">
-      <span class="code-lang">TYPESCRIPT</span>
+      <span class="code-lang">HTML</span>
       
     </div>
     <div class="code-actions">
@@ -2990,10 +2931,11 @@ Incorrecte: let i = i o index</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// Sempre
-trackById(index: number, item: Item): number {
-  return item.id;
-}</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Llista dinàmica: identitat estable per les dades --&gt;
+@for (item of items; track item.id) { ... }
+
+&lt;!-- Llista estàtica: la posició és suficient --&gt;
+@for (opcio of opcionsFixes; track $index) { ... }</code></pre>
   </div>
 </div>
 
@@ -3071,10 +3013,14 @@ elements: Element[]; // undefined</code></pre>
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Clar --&gt;
-&lt;li *ngFor=&quot;let element of elements; let esPrimer = first&quot;&gt;
+@for (element of elements; track element.id; let esPrimer = $first) {
+  &lt;li&gt;{{ element.titol }}&lt;/li&gt;
+}
 
 &lt;!-- Confús --&gt;
-&lt;li *ngFor=&quot;let e of el; let f = first&quot;&gt;</code></pre>
+@for (e of el; track e; let f = $first) {
+  &lt;li&gt;{{ e.t }}&lt;/li&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -3087,7 +3033,7 @@ elements: Element[]; // undefined</code></pre>
 
 
     <h4>1.11.3. Resultat esperat</h4>
-    <p>Apliqueu bones pràctiques professionals en l'ús de <code>*ngFor</code>.</p>
+    <p>Apliqueu bones pràctiques professionals en l'ús de <code>@for</code>.</p>
   
   </div>
 </div>
@@ -3132,7 +3078,6 @@ export class CatalegComponent {
     { id: 2, titol: &#39;Icones&#39;, disponible: false }
   ];
 
-  trackById = (i: number, el: Element) =&gt; el.id;
 }</code></pre>
   </div>
 </div>
@@ -3158,10 +3103,12 @@ export class CatalegComponent {
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- cataleg.component.html --&gt;
 &lt;ul&gt;
-  &lt;li *ngFor=&quot;let el of elements; let i = index; trackBy: trackById&quot;
+  @for (el of elements; track el.id; let i = $index) {
+  &lt;li
       [class.no-disponible]=&quot;!el.disponible&quot;&gt;
     {{ i + 1 }}. {{ el.titol }}
   &lt;/li&gt;
+  }
 &lt;/ul&gt;</code></pre>
   </div>
 </div>
@@ -3201,13 +3148,13 @@ export class CatalegComponent {
         </tr>
         <tr>
           <td>Estat es perd</td>
-          <td>Falta trackBy</td>
-          <td>Afegir <code>trackBy: trackById</code></td>
+          <td><code>track $index</code> en una llista que canvia d'ordre</td>
+          <td>Usar un identificador estable: <code>track element.id</code></td>
         </tr>
         <tr>
           <td>Rendiment lent</td>
-          <td>Sense trackBy</td>
-          <td>Implementar trackBy</td>
+          <td><code>track</code> per índex o per referència inestable</td>
+          <td>Usar <code>track element.id</code></td>
         </tr>
         <tr>
           <td>Error "undefined"</td>
@@ -3247,7 +3194,7 @@ export class CatalegComponent {
     </div>
   </div>
   <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> formador Angular. <strong>Context:</strong> explicar diferència entre <code>of</code> i <code>in</code> a *ngFor. <strong>Tasca:</strong> crea taula comparativa 3 files (sintaxi, itera sobre, exemple). <strong>Format:</strong> Markdown.</div>
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> formador Angular. <strong>Context:</strong> explicar diferència entre <code>of</code> i <code>in</code> a @for. <strong>Tasca:</strong> crea taula comparativa 3 files (sintaxi, itera sobre, exemple). <strong>Format:</strong> Markdown.</div>
   </div>
 </div>
 
@@ -3264,7 +3211,7 @@ export class CatalegComponent {
     </div>
   </div>
   <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> mentor desenvolupament. <strong>Context:</strong> alumne pregunta quan usar trackBy. <strong>Tasca:</strong> explica en 80 paraules 3 situacions on trackBy és obligatori (llistes dinàmiques, components amb estat, rendiment). <strong>Format:</strong> paràgraf + 3 punts.</div>
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> mentor desenvolupament. <strong>Context:</strong> alumne pregunta quan usar track. <strong>Tasca:</strong> explica en 80 paraules 3 situacions on track és obligatori (llistes dinàmiques, components amb estat, rendiment). <strong>Format:</strong> paràgraf + 3 punts.</div>
   </div>
 </div>
 
@@ -3281,7 +3228,7 @@ export class CatalegComponent {
     </div>
   </div>
   <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> tècnica suport. <strong>Context:</strong> error "Cannot read property". <strong>Tasca:</strong> checklist 4 passos verificació quan *ngFor falla: 1. Array definit? 2. Array buit? 3. Propietats correctes? 4. TrackBy implementat? <strong>Format:</strong> llista numerada.</div>
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> tècnica suport. <strong>Context:</strong> error "Cannot read property". <strong>Tasca:</strong> checklist 4 passos verificació quan @for falla: 1. Array definit? 2. Array buit? 3. Propietats correctes? 4. track implementat? <strong>Format:</strong> llista numerada.</div>
   </div>
 </div>
 
@@ -3311,22 +3258,22 @@ export class CatalegComponent {
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Comprenc què són les directives estructurals i com modifiquen l'estructura del DOM</div>
+    <div class="checklist-text">Comprenc què són els blocs de control de flux i com modifiquen l'estructura del DOM</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Entenc la diferència entre directives estructurals i vinculació de propietats</div>
+    <div class="checklist-text">Entenc la diferència entre control de flux i vinculació de propietats</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Sé explicar per què <code>trackBy</code> és crucial per al rendiment</div>
+    <div class="checklist-text">Sé explicar per què <code>track</code> és crucial per al rendiment</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Comprenc com funciona la transformació interna de *ngFor a ng-template</div>
+    <div class="checklist-text">Comprenc que @for modifica el DOM repetint elements segons una col·lecció</div>
   </div>
   
   <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
@@ -3341,17 +3288,17 @@ export class CatalegComponent {
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Sé utilitzar la sintaxi bàsica <code>*ngFor="let item of items"</code></div>
+    <div class="checklist-text">Sé utilitzar la sintaxi bàsica <code>@for (item of items; track item.id)</code></div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Puc utilitzar variables locals (index, first, last, even, odd) per estils i numeració</div>
+    <div class="checklist-text">Puc utilitzar variables locals ($index, $first, $last, $even, $odd) per estils i numeració</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">He implementat <code>trackBy</code> amb identificadors únics per optimitzar rendiment</div>
+    <div class="checklist-text">He implementat <code>track</code> amb identificadors únics per optimitzar rendiment</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
@@ -3361,12 +3308,12 @@ export class CatalegComponent {
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Puc aplicar estils zebrats utilitzant les variables even/odd</div>
+    <div class="checklist-text">Puc aplicar estils zebrats utilitzant les variables $even/$odd</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Sé passar dades a components fills dins d'un *ngFor amb <code>@Input()</code></div>
+    <div class="checklist-text">Sé passar dades a components fills dins d'un @for amb <code>@Input()</code></div>
   </div>
   
   <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
@@ -3385,7 +3332,7 @@ export class CatalegComponent {
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Puc diagnosticar pèrdua d'estat per falta de trackBy</div>
+    <div class="checklist-text">Puc diagnosticar pèrdua d'estat per un track inestable</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
@@ -3416,7 +3363,7 @@ export class CatalegComponent {
   <div class="section-point-body component-content">
     
     <h4>Què heu après</h4>
-    <p>En aquesta lectura heu après a utilitzar directives estructurals per crear llistes dinàmiques amb <code>*ngFor</code>. Heu comprès com Angular modifica l'estructura del DOM, la diferència amb vinculació de propietats, i per què les directives estructurals són essencials per aplicacions interactives. Heu dominat la sintaxi <code>*ngFor="let item of items"</code> i sabeu iterar sobre arrays d'objectes. Heu explorat les variables locals (<code>index</code>, <code>first</code>, <code>last</code>, <code>even</code>, <code>odd</code>) per aplicar numeracions i estils zebrats. Heu après la importància crítica de <code>trackBy</code> per optimitzar rendiment i preservar estat de components, implementant funcions que retornen identificadors únics. Heu practicat amb llistes niades per estructures jeràrquiques i sabeu resoldre problemes habituals com referències perdudes o rendiment degradat. Finalment, heu consolidat bones pràctiques: trackBy sempre amb llistes dinàmiques, identificadors estables i únics, arrays inicialitzats correctament. Amb aquests coneixements, esteu preparats per crear interfícies dinàmiques i eficients al catàleg d'elements.</p>
+    <p>En aquesta lectura heu après a utilitzar els blocs de control de flux per crear llistes dinàmiques amb <code>@for</code>. Heu comprès com Angular modifica l'estructura del DOM, la diferència amb vinculació de propietats, i per què el control de flux és essencial per aplicacions interactives. Heu dominat la sintaxi <code>@for (item of items; track item.id)</code> i sabeu iterar sobre arrays d'objectes. Heu explorat les variables implícites (<code>$index</code>, <code>$first</code>, <code>$last</code>, <code>$even</code>, <code>$odd</code>) per aplicar numeracions i estils zebrats. Heu après la importància crítica de <code>track</code> per optimitzar rendiment i preservar estat de components, indicant una propietat identificadora estable com element.id. Heu practicat amb llistes niades per estructures jeràrquiques i sabeu resoldre problemes habituals com referències perdudes o rendiment degradat. Finalment, heu consolidat bones pràctiques: track sempre amb llistes dinàmiques, identificadors estables i únics, arrays inicialitzats correctament. Amb aquests coneixements, esteu preparats per crear interfícies dinàmiques i eficients al catàleg d'elements.</p>
   
   </div>
 </div>
@@ -3440,7 +3387,7 @@ export class CatalegComponent {
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>Directiva estructural:</strong> Eina d'Angular que modifica l'estructura del DOM afegint, eliminant o repetint elements.</p>
+    <p><strong>Bloc de control de flux:</strong> Sintaxi integrada d'Angular (@for, @if, @switch) que modifica l'estructura del DOM afegint, eliminant o repetint elements. Substitueix les antigues directives estructurals *ngFor, *ngIf i *ngSwitch.</p>
   </div>
 </div>
 
@@ -3449,7 +3396,7 @@ export class CatalegComponent {
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>*ngFor:</strong> Directiva d'iteració que crea múltiples còpies d'un element per cada ítem d'una col·lecció.</p>
+    <p><strong>@for:</strong> Directiva d'iteració que crea múltiples còpies d'un element per cada ítem d'una col·lecció.</p>
   </div>
 </div>
 
@@ -3458,7 +3405,7 @@ export class CatalegComponent {
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>Sintaxi sugar:</strong> Notació simplificada amb asterisc que Angular transforma internament a <code>&lt;ng-template&gt;</code>.</p>
+    <p><strong>Control de flux:</strong> Sintaxi d'Angular 22 que permet expressar repeticions, condicions i seleccions amb blocs com <code>@for</code>, <code>@if</code> i <code>@switch</code>.</p>
   </div>
 </div>
 
@@ -3467,7 +3414,7 @@ export class CatalegComponent {
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>Variables locals:</strong> <code>index</code>, <code>first</code>, <code>last</code>, <code>even</code>, <code>odd</code> disponibles automàticament dins de cada iteració.</p>
+    <p><strong>Variables locals:</strong> <code>$index</code>, <code>$first</code>, <code>$last</code>, <code>$even</code> i <code>$odd</code> disponibles automàticament dins de cada iteració.</p>
   </div>
 </div>
 
@@ -3476,7 +3423,7 @@ export class CatalegComponent {
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>trackBy:</strong> Funció que retorna identificador únic per cada element, permetent a Angular optimitzar actualitzacions.</p>
+    <p><strong>track:</strong> Funció que retorna identificador únic per cada element, permetent a Angular optimitzar actualitzacions.</p>
   </div>
 </div>
 
@@ -3485,7 +3432,7 @@ export class CatalegComponent {
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>Llistes niades:</strong> Múltiples nivells d'iteració amb <code>*ngFor</code> dins d'un altre <code>*ngFor</code>.</p>
+    <p><strong>Llistes niades:</strong> Múltiples nivells d'iteració amb <code>@for</code> dins d'un altre <code>@for</code>.</p>
   </div>
 </div>
 
@@ -3514,75 +3461,9 @@ export class CatalegComponent {
 
 </div>
 
-<!-- SECCIÓ 2: Directives estructurals: condicions -->
+<!-- SECCIÓ 2: Control de flux: condicions -->
 <div class="section" id="Unitat2_Bloc2_Seccio2">
-  <h2 id="Unitat2_Bloc2_Seccio2">2. Directives estructurals: condicions</h2>
-
-  <!-- MULTIMÈDIA -->
-  <!--
-  ════════════════════════════════════════════════════════════════
-  Component: Enllaços multimèdia YouTube
-  ════════════════════════════════════════════════════════════════
-
-  Paràmetres:
-    - unitat: número de la unitat (1-4)
-    - bloc: número del bloc (1-4)
-    - seccio: número de la secció (1-3)
-
-  Exemple d'ús:
-    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
-
-  El component busca automàticament les URLs corresponents a
-  site.data.multimedia i mostra els botons de vídeo i àudio.
-  ════════════════════════════════════════════════════════════════
--->
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-<div class="multimedia-resources">
-  <div class="multimedia-header">
-    <i class="bi bi-play-circle-fill"></i>
-    <span>Contingut multimèdia d'aquesta lectura</span>
-  </div>
-
-  <div class="multimedia-buttons">
-    
-    <a href="https://www.youtube.com/watch?v=U5HZkR-Kx_E" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 2.2.2 · Directives estructurals: condicions">
-      <i class="bi bi-youtube"></i>
-      <span>Veure vídeo</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-
-    
-    <a href="https://www.youtube.com/watch?v=Ehe_dg_ASVE" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 2.2.2 · Directives estructurals: condicions">
-      <i class="bi bi-mic-fill"></i>
-      <span>Escoltar àudio</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-  </div>
-
-  
-  
-</div>
-  
-
-
-
+  <h2 id="Unitat2_Bloc2_Seccio2">2. Control de flux: condicions</h2>
 
   <!-- Component: Objectius del bloc/unitat -->
 
@@ -3593,13 +3474,13 @@ export class CatalegComponent {
   <div class="component-content">
     <ul>
       
-        <li>Comprendre què són les directives condicionals, com permeten mostrar o amagar elements segons condicions booleanes, i diferenciar entre ocultar amb CSS i no renderitzar amb directives estructurals</li>
+        <li>Comprendre el control de flux condicional i diferenciar entre ocultar amb CSS i no renderitzar</li>
       
-        <li>Utilitzar *ngIf amb sintaxi bàsica i avançada (else, ng-template) per gestionar renderitzat condicional d'elements segons l'estat de l'aplicació</li>
+        <li>Utilitzar @if i @else per gestionar el renderitzat condicional segons l'estat de l'aplicació</li>
       
-        <li>Aplicar ngSwitch per gestionar múltiples opcions exclusives de manera clara i declarativa, evitant encadenar condicionals</li>
+        <li>Implementar estats carregant, buit, error i disponible mantenint la plantilla declarativa</li>
       
-        <li>Implementar gestió d'estats habituals de la interfície (carregant, buit, error, disponible) mantenint la lògica al component i la plantilla declarativa</li>
+        <li>Aplicar la sintaxi de control de flux d'Angular 22 en tots els exemples</li>
       
     </ul>
   </div>
@@ -3632,13 +3513,13 @@ export class CatalegComponent {
     
     <p>Abans de començar aquesta lectura, assegureu-vos que heu completat:</p>
     <ul>
-      <li><strong>Lectura 2.2.1</strong> — Directives estructurals: iteració de llistes amb domini de <code>*ngFor</code> i <code>trackBy</code>.</li>
+      <li><strong>Lectura 2.2.1</strong> — Control de flux: iteració de llistes amb domini de <code>@for</code> i <code>track</code>.</li>
       <li><strong>Lectura 2.1.2</strong> — Interpolació i vinculació de propietats per mostrar dades dinàmiques.</li>
     </ul>
 
     <p>A més, necessiteu:</p>
     <ul>
-      <li><strong>Projecte funcional:</strong> <code>~/workspace/cataleg-elements</code> amb llista d'elements iterada correctament.</li>
+      <li><strong>Projecte funcional:</strong> <code>~/workspace/ioc-angular-[nom-app]-[nom-alumne]</code> amb llista d'elements iterada correctament.</li>
       <li><strong>Servidor de desenvolupament:</strong> <code>ng serve</code> executant-se.</li>
       <li><strong>VS Code obert:</strong> Projecte carregat.</li>
     </ul>
@@ -3661,13 +3542,13 @@ export class CatalegComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">cd ~/workspace/cataleg-elements
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">cd ~/workspace/ioc-angular-[nom-app]-[nom-alumne]
 ng serve --open</code></pre>
   </div>
 </div>
 
 
-    <p><strong>Punt d'autocomprovació:</strong> La llista d'elements es mostra correctament amb <code>*ngFor</code> abans de començar aquesta lectura.</p>
+    <p><strong>Punt d'autocomprovació:</strong> La llista d'elements es mostra correctament amb <code>@for</code> abans de començar aquesta lectura.</p>
   
   </div>
 </div>
@@ -3687,18 +3568,18 @@ ng serve --open</code></pre>
   </div>
   <div class="section-point-body component-content">
     
-    <h4>2.2.1. Què són les directives condicionals</h4>
+    <h4>2.2.1. Què són els blocs condicionals</h4>
 
-    <p>Les <strong>directives condicionals</strong> són eines d'Angular que permeten <strong>mostrar o amagar elements</strong> del DOM segons condicions booleanes. A diferència d'ocultar amb CSS (<code>display: none</code>), les directives condicionals <strong>no renderitzen l'element al DOM</strong> si la condició és falsa, millorant rendiment i accessibilitat.</p>
+    <p>Els <strong>blocs condicionals</strong> (<code>@if</code>, <code>@else</code>, <code>@switch</code>) són els blocs de control de flux d'Angular que permeten <strong>mostrar o amagar elements</strong> del DOM segons condicions booleanes. A diferència d'ocultar amb CSS (<code>display: none</code>), els blocs condicionals <strong>no renderitzen l'element al DOM</strong> si la condició és falsa: el DOM queda més lleuger i l'estat de l'element (listeners, components fills) desapareix amb ell.</p>
 
     <p><strong>Característiques clau:</strong></p>
     <ul>
-      <li><strong><code>*ngIf</code>:</strong> Mostra element si condició és certa, el destrueix si és falsa</li>
-      <li><strong><code>*ngIf ... else</code>:</strong> Defineix plantilla alternativa amb <code>ng-template</code></li>
-      <li><strong><code>ngSwitch</code>:</strong> Gestiona múltiples opcions exclusives de manera clara</li>
+      <li><strong><code>@if</code>:</strong> Mostra element si condició és certa, el destrueix si és falsa</li>
+      <li><strong><code>@if ... @else</code>:</strong> Defineix contingut alternatiu sense plantilles auxiliars</li>
+      <li><strong><code>@switch</code>:</strong> Gestiona múltiples opcions exclusives de manera clara</li>
     </ul>
 
-    <h4>2.2.2. Problema sense directives condicionals</h4>
+    <h4>2.2.2. Problema sense blocs condicionals</h4>
 
     <p><strong>Situació abans d'Angular:</strong> Gestionar condicions i estats visuals requeria manipular el DOM manualment amb JavaScript:</p>
 
@@ -3775,7 +3656,7 @@ function actualitzarInterficie() {
 missatgeError.style.display = &#39;none&#39;; // Element segueix existint!
 
 // Conseqüències:
-// - Lectors de pantalla poden detectar-lo
+// - Continua al DOM: es pot inspeccionar amb DevTools
 // - Ocupa memòria innecessàriament
 // - Event listeners segueixen actius</code></pre>
   </div>
@@ -3783,9 +3664,8 @@ missatgeError.style.display = &#39;none&#39;; // Element segueix existint!
 
 
     <ul>
-      <li><strong>Accessibilitat:</strong> Lectors de pantalla poden llegir contingut "ocult"</li>
+      <li><strong>Inspeccionable:</strong> El contingut "ocult" continua al DOM i es pot veure amb DevTools</li>
       <li><strong>Rendiment:</strong> 100 elements ocults ocupen memòria i processament innecessari</li>
-      <li><strong>Seguretat:</strong> Dades sensibles "ocultes" segueixen visibles al codi font</li>
     </ul>
 
     <p><strong>3. Encadenament complex de condicionals</strong><br>
@@ -3827,9 +3707,9 @@ if (estat === &#39;carregant&#39;) {
 </div>
 
 
-    <h4>2.2.3. Solució amb directives condicionals</h4>
+    <h4>2.2.3. Solució amb blocs condicionals</h4>
 
-    <p>Angular simplifica radicalment la gestió de condicions amb <code>*ngIf</code> i <code>ngSwitch</code>:</p>
+    <p>Angular 22 simplifica la gestió de condicions amb <code>@if</code> i <code>@else</code>:</p>
 
     <p><strong>Plantilla HTML (declarativa i clara):</strong></p>
 
@@ -3850,21 +3730,23 @@ if (estat === &#39;carregant&#39;) {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Angular: sintaxi declarativa --&gt;
-&lt;div *ngIf=&quot;estat === &#39;carregant&#39;&quot;&gt;
-  &lt;i class=&quot;bi bi-hourglass-split&quot;&gt;&lt;/i&gt; Carregant...
+@if (estat() === &#39;carregant&#39;) {
+&lt;div&gt;
+  Carregant...
 &lt;/div&gt;
-
-&lt;div *ngIf=&quot;estat === &#39;error&#39;&quot;&gt;
-  &lt;i class=&quot;bi bi-exclamation-triangle&quot;&gt;&lt;/i&gt; Error en carregar els elements
+} @else if (estat() === &#39;error&#39;) {
+&lt;div&gt;
+  Error en carregar els elements
 &lt;/div&gt;
-
-&lt;ul *ngIf=&quot;estat === &#39;disponible&#39; &amp;&amp; elements.length &gt; 0&quot;&gt;
-  &lt;li *ngFor=&quot;let element of elements&quot;&gt;{{ element.titol }}&lt;/li&gt;
+} @else if (elements().length &gt; 0) {
+&lt;ul&gt;
+  @for (element of elements(); track element.id) { &lt;li&gt;{{ element.titol }}&lt;/li&gt; }
 &lt;/ul&gt;
-
-&lt;p *ngIf=&quot;estat === &#39;disponible&#39; &amp;&amp; elements.length === 0&quot;&gt;
+} @else {
+&lt;p&gt;
   No hi ha elements disponibles
-&lt;/p&gt;</code></pre>
+&lt;/p&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -3888,22 +3770,23 @@ if (estat === &#39;carregant&#39;) {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">export class CatalegComponent {
-  estat: &#39;carregant&#39; | &#39;error&#39; | &#39;disponible&#39; = &#39;carregant&#39;;
-  elements: Element[] = [];
+  // Estat que canvia quan arriba la resposta: signals (es llegeixen amb parèntesis)
+  estat = signal&lt;&#39;carregant&#39; | &#39;error&#39; | &#39;disponible&#39;&gt;(&#39;carregant&#39;);
+  elements = signal&lt;Element[]&gt;([]);
 
   ngOnInit(): void {
     this.carregarElements();
   }
 
   carregarElements(): void {
-    this.estat = &#39;carregant&#39;;
+    this.estat.set(&#39;carregant&#39;);
     this.apiService.getElements().subscribe({
       next: (data) =&gt; {
-        this.elements = data;
-        this.estat = &#39;disponible&#39;;
+        this.elements.set(data);
+        this.estat.set(&#39;disponible&#39;);
       },
       error: () =&gt; {
-        this.estat = &#39;error&#39;;
+        this.estat.set(&#39;error&#39;);
       }
     });
   }
@@ -3914,10 +3797,18 @@ if (estat === &#39;carregant&#39;) {
 </div>
 
 
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <strong>Nota Angular 22:</strong> <code>estat</code> i <code>elements</code> es declaren amb <code>signal()</code> perquè canvien dins d'una resposta asíncrona. En un projecte sense <code>zone.js</code>, assignar una propietat normal des d'un <code>subscribe</code> no repintaria la vista; el canvi d'un signal, sí. Els signals s'expliquen a fons a la Unitat 3.
+    
+</div>
+
+
     <p><strong>Avantatges principals:</strong></p>
     <ul>
       <li><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> <strong>Declaratiu:</strong> Descriviu <strong>què</strong> mostrar segons condició, Angular gestiona el <strong>com</strong>.</li>
-      <li><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> <strong>No al DOM si fals:</strong> Elements no existeixen al DOM si condició és falsa → millor rendiment i accessibilitat.</li>
+      <li><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> <strong>No al DOM si fals:</strong> Elements no existeixen al DOM si la condició és falsa → DOM més lleuger i sense estat residual.</li>
       <li><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> <strong>Actualització automàtica:</strong> Canvis a l'estat → re-renderització automàtica.</li>
       <li><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> <strong>Codi net:</strong> Reducció del 60-70% de línies (40-50 → 15 línies).</li>
     </ul>
@@ -3929,7 +3820,7 @@ if (estat === &#39;carregant&#39;) {
         <tr>
           <th>Característica</th>
           <th>JavaScript manual</th>
-          <th>*ngIf Angular</th>
+          <th>@if Angular</th>
         </tr>
       </thead>
       <tbody>
@@ -3949,9 +3840,9 @@ if (estat === &#39;carregant&#39;) {
           <td>Automàtiques</td>
         </tr>
         <tr>
-          <td><strong>Accessibilitat</strong></td>
-          <td>Problemàtica</td>
-          <td>Correcta</td>
+          <td><strong>Contingut al DOM</strong></td>
+          <td>Present (inspeccionable)</td>
+          <td>Absent</td>
         </tr>
         <tr>
           <td><strong>Rendiment</strong></td>
@@ -3984,7 +3875,7 @@ if (estat === &#39;carregant&#39;) {
   </div>
   <div class="section-point-body component-content">
     
-    <h4>2.3.1. Flux amb directives condicionals</h4>
+    <h4>2.3.1. Flux amb blocs condicionals</h4>
 
     
     <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
@@ -4002,11 +3893,13 @@ if (estat === &#39;carregant&#39;) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">[Component] → [Propietat booleana] → [*ngIf] → [Renderitzar si true / Destruir si false]
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">[Component] → [Propietat booleana] → [@if] → [Renderitzar si true / Destruir si false]
      ↓                                        ↓
-[estat: string]                      &lt;div *ngIf=&quot;estat === &#39;disponible&#39;&quot;&gt;
+@if (estat === &#39;disponible&#39;) {
+[estat: string]                      &lt;div&gt;
      ↓                                        ↓
-[canvi d&#39;estat]                      [Angular actualitza DOM automàticament]</code></pre>
+[canvi d&#39;estat]                      [Angular actualitza DOM automàticament]
+}</code></pre>
   </div>
 </div>
 
@@ -4030,7 +3923,7 @@ if (estat === &#39;carregant&#39;) {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">[hidden] o display:none  →  Element al DOM (ocult visualment)
-*ngIf=&quot;false&quot;            →  Element NO al DOM (destruït completament)</code></pre>
+@if (false) { }       →  Element NO al DOM (destruït completament)</code></pre>
   </div>
 </div>
 
@@ -4038,16 +3931,15 @@ if (estat === &#39;carregant&#39;) {
     <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> *ngIf NO oculta elements, els DESTRUEIX del DOM. Això millora rendiment, accessibilitat i seguretat.
+    <strong>Clau:</strong> @if NO oculta elements, els DESTRUEIX del DOM. Això alleugereix el DOM i evita exposar contingut que no s'ha de veure.
 </div>
 
 
     <h4>2.3.3. Quan usar cada opció</h4>
 
-    <p><strong><i class="bi bi-check-circle text-success" aria-hidden="true"></i> Usar *ngIf quan:</strong></p>
+    <p><strong><i class="bi bi-check-circle text-success" aria-hidden="true"></i> Usar @if quan:</strong></p>
     <ul>
       <li>L'element no és necessari la majoria del temps</li>
-      <li>Conté dades sensibles que no s'han de veure al codi font</li>
       <li>Té molts elements fills (millor rendiment)</li>
     </ul>
 
@@ -4070,18 +3962,18 @@ if (estat === &#39;carregant&#39;) {
   <div class="component-header section-point-header" role="heading" aria-level="4">
     <i class="bi bi-journal-text" aria-hidden="true"></i>
     <div class="section-point-meta">
-      <div class="section-point-title">2.4. Directiva condicional: mostrar/amagar segons booleà</div>
+      <div class="section-point-title">2.4. Control condicional: mostrar/amagar segons booleà</div>
       
     </div>
   </div>
   <div class="section-point-body component-content">
     
     <h4>2.4.1. Objectiu</h4>
-    <p>Entendre com les directives condicionals controlen el renderitzat d'elements basant-se en valors booleà.</p>
+    <p>Entendre com els blocs condicionals controlen el renderitzat d'elements basant-se en valors booleà.</p>
 
     <h4>2.4.2. Contingut</h4>
 
-    <p>Les directives condicionals permeten <strong>decidir si un element es renderitza o no</strong> al DOM segons una condició booleana.</p>
+    <p>Els blocs condicionals permeten <strong>decidir si un element es renderitza o no</strong> al DOM segons una condició booleana.</p>
 
     <p><strong>Diferència fonamental:</strong></p>
 
@@ -4091,7 +3983,7 @@ if (estat === &#39;carregant&#39;) {
           <th>Tècnica</th>
           <th>Efecte</th>
           <th>Element al DOM</th>
-          <th>Accessible</th>
+          <th>Inspeccionable</th>
         </tr>
       </thead>
       <tbody>
@@ -4099,22 +3991,21 @@ if (estat === &#39;carregant&#39;) {
           <td><strong>CSS display: none</strong></td>
           <td>Oculta visualment</td>
           <td>Sí</td>
-          <td>Sí (lectors pantalla)</td>
+          <td>Sí (DevTools)</td>
         </tr>
         <tr>
-          <td><strong>*ngIf</strong></td>
+          <td><strong>@if</strong></td>
           <td>No renderitza</td>
           <td>No</td>
-          <td>No (correcte)</td>
+          <td>No</td>
         </tr>
       </tbody>
     </table>
 
     <p><strong>Per què és important:</strong></p>
     <ul>
-      <li><strong>Accessibilitat:</strong> Elements ocults amb CSS segueixen sent detectats per lectors de pantalla. Amb <code>*ngIf</code>, l'element no existeix.</li>
-      <li><strong>Rendiment:</strong> 100 elements ocults ocupen memòria. Amb <code>*ngIf</code>, només els visibles consumeixen recursos.</li>
-      <li><strong>Seguretat:</strong> Dades sensibles "ocultes" amb CSS segueixen al codi HTML. Amb <code>*ngIf</code>, no es renderitzen.</li>
+      <li><strong>Estat viu:</strong> Els elements ocults amb CSS mantenen listeners i components fills en memòria. Amb <code>@if</code>, l'element no existeix.</li>
+      <li><strong>Rendiment:</strong> 100 elements ocults ocupen memòria. Amb <code>@if</code>, només els visibles consumeixen recursos.</li>
     </ul>
 
     <p><strong>Sintaxi bàsica:</strong></p>
@@ -4135,7 +4026,7 @@ if (estat === &#39;carregant&#39;) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;p *ngIf=&quot;teElements&quot;&gt;Hi ha elements disponibles&lt;/p&gt;</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (teElements) { &lt;p&gt;Hi ha elements disponibles&lt;/p&gt; }</code></pre>
   </div>
 </div>
 
@@ -4151,12 +4042,12 @@ if (estat === &#39;carregant&#39;) {
     <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> *ngIf controla l'<strong>existència</strong> de l'element al DOM, no només la seva visibilitat.
+    <strong>Clau:</strong> @if controla l'<strong>existència</strong> de l'element al DOM, no només la seva visibilitat.
 </div>
 
 
     <h4>2.4.3. Resultat esperat</h4>
-    <p>Compreneu la diferència entre ocultar amb CSS i no renderitzar amb <code>*ngIf</code>.</p>
+    <p>Compreneu la diferència entre ocultar amb CSS i no renderitzar amb <code>@if</code>.</p>
   
   </div>
 </div>
@@ -4177,7 +4068,7 @@ if (estat === &#39;carregant&#39;) {
   <div class="section-point-body component-content">
     
     <h4>2.5.1. Objectiu</h4>
-    <p>Dominar la sintaxi de <code>*ngIf</code> amb condicions simples, negació i expressions.</p>
+    <p>Dominar la sintaxi de <code>@if</code> amb condicions simples, negació i expressions.</p>
 
     <h4>2.5.2. Contingut</h4>
 
@@ -4199,7 +4090,7 @@ if (estat === &#39;carregant&#39;) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div *ngIf=&quot;disponible&quot;&gt;Element disponible&lt;/div&gt;</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (disponible) { &lt;div&gt;Element disponible&lt;/div&gt; }</code></pre>
   </div>
 </div>
 
@@ -4222,7 +4113,7 @@ if (estat === &#39;carregant&#39;) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div *ngIf=&quot;!disponible&quot;&gt;Element no disponible&lt;/div&gt;</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (!disponible) { &lt;div&gt;Element no disponible&lt;/div&gt; }</code></pre>
   </div>
 </div>
 
@@ -4245,17 +4136,17 @@ if (estat === &#39;carregant&#39;) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div *ngIf=&quot;elements.length &gt; 0&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (elements.length &gt; 0) { &lt;div&gt;
   Hi ha {{ elements.length }} elements
-&lt;/div&gt;
+&lt;/div&gt; }
 
-&lt;div *ngIf=&quot;estatLlista === &#39;error&#39;&quot;&gt;
+@if (estatLlista === &#39;error&#39;) { &lt;div&gt;
   Error en carregar
-&lt;/div&gt;
+&lt;/div&gt; }
 
-&lt;div *ngIf=&quot;elements.length &gt; 0 &amp;&amp; !carregant&quot;&gt;
+@if (elements.length &gt; 0 &amp;&amp; !carregant) { &lt;div&gt;
   Llista carregada
-&lt;/div&gt;</code></pre>
+&lt;/div&gt; }</code></pre>
   </div>
 </div>
 
@@ -4314,21 +4205,31 @@ if (estat === &#39;carregant&#39;) {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Condició simple --&gt;
-&lt;div *ngIf=&quot;carregant&quot;&gt;Carregant...&lt;/div&gt;
+@if (carregant) {
+&lt;div&gt;Carregant...&lt;/div&gt;
+}
 
 &lt;!-- Negació --&gt;
-&lt;div *ngIf=&quot;!carregant&quot;&gt;Carregat&lt;/div&gt;
+@if (!carregant) {
+&lt;div&gt;Carregat&lt;/div&gt;
+}
 
 &lt;!-- Expressió complexa --&gt;
-&lt;div *ngIf=&quot;!carregant &amp;&amp; teElements&quot;&gt;
+@if (!carregant &amp;&amp; teElements) {
+&lt;div&gt;
   Trobats {{ elementsCataleg.length }} elements
 &lt;/div&gt;
+}
 
 &lt;!-- Comprovació null --&gt;
-&lt;div *ngIf=&quot;error&quot;&gt;{{ error }}&lt;/div&gt;
+@if (error) {
+&lt;div&gt;{{ error }}&lt;/div&gt;
+}
 
 &lt;!-- Getter --&gt;
-&lt;div *ngIf=&quot;teElements&quot;&gt;Llista disponible&lt;/div&gt;</code></pre>
+@if (teElements) {
+&lt;div&gt;Llista disponible&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -4341,7 +4242,7 @@ if (estat === &#39;carregant&#39;) {
 
 
     <h4>2.5.3. Resultat esperat</h4>
-    <p>Sabeu utilitzar <code>*ngIf</code> amb condicions simples, negació i expressions complexes.</p>
+    <p>Sabeu utilitzar <code>@if</code> amb condicions simples, negació i expressions complexes.</p>
   
   </div>
 </div>
@@ -4362,7 +4263,7 @@ if (estat === &#39;carregant&#39;) {
   <div class="section-point-body component-content">
     
     <h4>2.6.1. Objectiu</h4>
-    <p>Utilitzar <code>else</code> i <code>ng-template</code> per definir contingut alternatiu de manera clara.</p>
+    <p>Utilitzar <code>@else</code> per definir contingut alternatiu de manera clara.</p>
 
     <h4>2.6.2. Contingut</h4>
 
@@ -4384,15 +4285,13 @@ if (estat === &#39;carregant&#39;) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div *ngIf=&quot;teElements; else missatgeBuit&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (teElements) { &lt;div&gt;
   &lt;ul&gt;
-    &lt;li *ngFor=&quot;let element of elements&quot;&gt;{{ element.titol }}&lt;/li&gt;
+    @for (element of elements; track element.id) { &lt;li&gt;{{ element.titol }}&lt;/li&gt; }
   &lt;/ul&gt;
-&lt;/div&gt;
-
-&lt;ng-template #missatgeBuit&gt;
+&lt;/div&gt; } @else {
   &lt;p&gt;No hi ha elements disponibles&lt;/p&gt;
-&lt;/ng-template&gt;</code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -4401,14 +4300,10 @@ if (estat === &#39;carregant&#39;) {
     <ol>
       <li>Angular avalua <code>teElements</code></li>
       <li>Si és <code>true</code>, renderitza el <code>&lt;div&gt;</code> amb la llista</li>
-      <li>Si és <code>false</code>, renderitza el contingut de <code>&lt;ng-template&gt;</code></li>
+      <li>Si és <code>false</code>, renderitza el bloc <code>@else</code></li>
     </ol>
 
-    <p><strong>ng-template explicat:</strong></p>
-
-    <p><code>ng-template</code> és un <strong>contenidor especial</strong> que no es renderitza per si mateix. Només es renderitza quan es referencia des d'un <code>else</code>, <code>then</code>, o programàticament.</p>
-
-    <p><strong>Sintaxi completa amb then i else:</strong></p>
+    <p><strong>Sintaxi completa:</strong></p>
 
     
     <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
@@ -4426,17 +4321,11 @@ if (estat === &#39;carregant&#39;) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div *ngIf=&quot;estatLlista === &#39;disponible&#39;; then llistaTemplate; else carregantTemplate&quot;&gt;&lt;/div&gt;
-
-&lt;ng-template #llistaTemplate&gt;
-  &lt;ul&gt;
-    &lt;li *ngFor=&quot;let element of elements&quot;&gt;{{ element.titol }}&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/ng-template&gt;
-
-&lt;ng-template #carregantTemplate&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (estatLlista === &#39;disponible&#39;) {
+  &lt;ul&gt;@for (element of elements; track element.id) { &lt;li&gt;{{ element.titol }}&lt;/li&gt; }&lt;/ul&gt;
+} @else {
   &lt;p&gt;Carregant elements...&lt;/p&gt;
-&lt;/ng-template&gt;</code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -4444,12 +4333,12 @@ if (estat === &#39;carregant&#39;) {
     <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> Utilitzeu ng-template per definir contingut alternatiu de manera clara i reutilitzable.
+    <strong>Clau:</strong> Utilitzeu @else per definir contingut alternatiu de manera clara.
 </div>
 
 
     <h4>2.6.3. Resultat esperat</h4>
-    <p>Sabeu utilitzar <code>else</code> i <code>ng-template</code> per gestionar alternatives.</p>
+    <p>Sabeu utilitzar <code>@else</code> per gestionar alternatives.</p>
   
   </div>
 </div>
@@ -4463,18 +4352,18 @@ if (estat === &#39;carregant&#39;) {
   <div class="component-header section-point-header" role="heading" aria-level="4">
     <i class="bi bi-journal-text" aria-hidden="true"></i>
     <div class="section-point-meta">
-      <div class="section-point-title">2.7. Directiva de selecció múltiple: ngSwitch</div>
+      <div class="section-point-title">2.7. Control de selecció múltiple: @switch</div>
       
     </div>
   </div>
   <div class="section-point-body component-content">
     
     <h4>2.7.1. Objectiu</h4>
-    <p>Utilitzar <code>ngSwitch</code> per gestionar múltiples opcions exclusives de manera clara.</p>
+    <p>Utilitzar <code>@switch</code> per gestionar múltiples opcions exclusives de manera clara.</p>
 
     <h4>2.7.2. Contingut</h4>
 
-    <p><strong>Quan usar ngSwitch:</strong> Utilitzeu <code>ngSwitch</code> quan tingueu <strong>3 o més opcions mútuament exclusives</strong>.</p>
+    <p><strong>Quan usar @switch:</strong> no és una regla d'Angular sinó de llegibilitat: <code>@switch</code> normalment queda més clar que una cadena d'<code>@if</code>/<code>@else if</code> quan hi ha <strong>tres o més opcions mútuament exclusives</strong> sobre un mateix valor.</p>
 
     <p><strong>Sintaxi:</strong></p>
 
@@ -4494,22 +4383,22 @@ if (estat === &#39;carregant&#39;) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div [ngSwitch]=&quot;estatLlista&quot;&gt;
-  &lt;p *ngSwitchCase=&quot;&#39;carregant&#39;&quot;&gt;Carregant elements...&lt;/p&gt;
-  &lt;p *ngSwitchCase=&quot;&#39;error&#39;&quot;&gt;Error en carregar&lt;/p&gt;
-  &lt;p *ngSwitchCase=&quot;&#39;buit&#39;&quot;&gt;No hi ha elements&lt;/p&gt;
-  &lt;p *ngSwitchCase=&quot;&#39;disponible&#39;&quot;&gt;Llista disponible&lt;/p&gt;
-  &lt;p *ngSwitchDefault&gt;Estat desconegut&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@switch (estatLlista) {
+  @case (&#39;carregant&#39;) { &lt;p&gt;Carregant elements...&lt;/p&gt; }
+  @case (&#39;error&#39;) { &lt;p&gt;Error en carregar&lt;/p&gt; }
+  @case (&#39;buit&#39;) { &lt;p&gt;No hi ha elements&lt;/p&gt; }
+  @case (&#39;disponible&#39;) { &lt;p&gt;Llista disponible&lt;/p&gt; }
+  @default { &lt;p&gt;Estat desconegut&lt;/p&gt; }
+}</code></pre>
   </div>
 </div>
 
 
     <p><strong>Components:</strong></p>
     <ul>
-      <li><code>[ngSwitch]="valor"</code>: Expressió a avaluar (sense asterisc)</li>
-      <li><code>*ngSwitchCase="'opcio'"</code>: Cas específic (amb asterisc)</li>
-      <li><code>*ngSwitchDefault</code>: Cas per defecte (amb asterisc)</li>
+      <li><code>@switch (valor)</code>: Expressió que selecciona el cas actiu</li>
+      <li><code>@case ('opcio')</code>: Cas específic</li>
+      <li><code>@default</code>: Cas per defecte quan cap cas coincideix</li>
     </ul>
 
     <p><strong>Comparativa:</strong></p>
@@ -4530,19 +4419,27 @@ if (estat === &#39;carregant&#39;) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Amb múltiples *ngIf (menys clar) --&gt;
-&lt;p *ngIf=&quot;estat === &#39;carregant&#39;&quot;&gt;Carregant...&lt;/p&gt;
-&lt;p *ngIf=&quot;estat === &#39;error&#39;&quot;&gt;Error&lt;/p&gt;
-&lt;p *ngIf=&quot;estat === &#39;buit&#39;&quot;&gt;Buit&lt;/p&gt;
-&lt;p *ngIf=&quot;estat === &#39;disponible&#39;&quot;&gt;Disponible&lt;/p&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Amb múltiples @if (menys clar) --&gt;
+@if (estat === &#39;carregant&#39;) {
+&lt;p&gt;Carregant...&lt;/p&gt;
+}
+@if (estat === &#39;error&#39;) {
+&lt;p&gt;Error&lt;/p&gt;
+}
+@if (estat === &#39;buit&#39;) {
+&lt;p&gt;Buit&lt;/p&gt;
+}
+@if (estat === &#39;disponible&#39;) {
+&lt;p&gt;Disponible&lt;/p&gt;
+}
 
-&lt;!-- Amb ngSwitch (més clar) --&gt;
-&lt;div [ngSwitch]=&quot;estat&quot;&gt;
-  &lt;p *ngSwitchCase=&quot;&#39;carregant&#39;&quot;&gt;Carregant...&lt;/p&gt;
-  &lt;p *ngSwitchCase=&quot;&#39;error&#39;&quot;&gt;Error&lt;/p&gt;
-  &lt;p *ngSwitchCase=&quot;&#39;buit&#39;&quot;&gt;Buit&lt;/p&gt;
-  &lt;p *ngSwitchCase=&quot;&#39;disponible&#39;&quot;&gt;Disponible&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+&lt;!-- Amb @switch (més clar) --&gt;
+@switch (estat) {
+  @case (&#39;carregant&#39;) { &lt;p&gt;Carregant...&lt;/p&gt; }
+  @case (&#39;error&#39;) { &lt;p&gt;Error&lt;/p&gt; }
+  @case (&#39;buit&#39;) { &lt;p&gt;Buit&lt;/p&gt; }
+  @case (&#39;disponible&#39;) { &lt;p&gt;Disponible&lt;/p&gt; }
+}</code></pre>
   </div>
 </div>
 
@@ -4550,12 +4447,12 @@ if (estat === &#39;carregant&#39;) {
     <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> ngSwitch millora la llegibilitat quan hi ha múltiples opcions exclusives.
+    <strong>Clau:</strong> @switch millora la llegibilitat quan hi ha múltiples opcions exclusives.
 </div>
 
 
     <h4>2.7.3. Resultat esperat</h4>
-    <p>Sabeu utilitzar <code>ngSwitch</code> per gestionar múltiples opcions exclusives.</p>
+    <p>Sabeu utilitzar <code>@switch</code> per gestionar múltiples opcions exclusives.</p>
   
   </div>
 </div>
@@ -4606,32 +4503,35 @@ if (estat === &#39;carregant&#39;) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">type EstatLlista = &#39;carregant&#39; | &#39;buit&#39; | &#39;error&#39; | &#39;disponible&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, signal } from &#39;@angular/core&#39;;
+
+type EstatLlista = &#39;carregant&#39; | &#39;buit&#39; | &#39;error&#39; | &#39;disponible&#39;;
 
 export class CatalegComponent {
-  estatLlista: EstatLlista = &#39;carregant&#39;;
-  elements: Element[] = [];
-  missatgeError = &#39;&#39;;
+  // Estat que canvia quan arriba una resposta asíncrona: signals
+  estatLlista = signal&lt;EstatLlista&gt;(&#39;carregant&#39;);
+  elements = signal&lt;Element[]&gt;([]);
+  missatgeError = signal(&#39;&#39;);
 
   ngOnInit(): void {
     this.carregarElements();
   }
 
   carregarElements(): void {
-    this.estatLlista = &#39;carregant&#39;;
+    this.estatLlista.set(&#39;carregant&#39;);
 
     this.servei.obtenirElements().subscribe({
       next: (data) =&gt; {
         if (data.length === 0) {
-          this.estatLlista = &#39;buit&#39;;
+          this.estatLlista.set(&#39;buit&#39;);
         } else {
-          this.elements = data;
-          this.estatLlista = &#39;disponible&#39;;
+          this.elements.set(data);
+          this.estatLlista.set(&#39;disponible&#39;);
         }
       },
       error: (err) =&gt; {
-        this.missatgeError = &#39;Error en carregar els elements&#39;;
-        this.estatLlista = &#39;error&#39;;
+        this.missatgeError.set(&#39;Error en carregar els elements&#39;);
+        this.estatLlista.set(&#39;error&#39;);
       }
     });
   }
@@ -4640,7 +4540,15 @@ export class CatalegComponent {
 </div>
 
 
-    <p><strong>Plantilla amb ngSwitch:</strong></p>
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <strong>Per què <code>signal</code>?</strong> Els projectes nous d'Angular 22 funcionen sense <code>zone.js</code>: la vista es refresca quan hi ha un esdeveniment de plantilla o quan canvia un signal que la plantilla llegeix. Una resposta HTTP o un temporitzador que assigni una propietat normal <em>no</em> repintaria la vista. Per això l'estat de càrrega es guarda en signals, es modifica amb <code>.set()</code> i es llegeix a la plantilla amb parèntesis: <code>estatLlista()</code>. Els signals s'expliquen a fons a la Unitat 3.
+    
+</div>
+
+
+    <p><strong>Plantilla amb @switch:</strong></p>
 
     
     <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
@@ -4658,26 +4566,30 @@ export class CatalegComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div [ngSwitch]=&quot;estatLlista&quot;&gt;
-  &lt;div *ngSwitchCase=&quot;&#39;carregant&#39;&quot;&gt;
-    &lt;i class=&quot;bi bi-hourglass-split&quot;&gt;&lt;/i&gt; Carregant...
-  &lt;/div&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@switch (estatLlista()) {
+  @case (&#39;carregant&#39;) {
+    &lt;div&gt;Carregant...&lt;/div&gt;
+  }
 
-  &lt;div *ngSwitchCase=&quot;&#39;error&#39;&quot;&gt;
-    &lt;i class=&quot;bi bi-exclamation-triangle text-danger&quot;&gt;&lt;/i&gt; {{ missatgeError }}
-    &lt;button (click)=&quot;carregarElements()&quot;&gt;Tornar a intentar&lt;/button&gt;
-  &lt;/div&gt;
+  @case (&#39;error&#39;) {
+    &lt;div&gt;
+      {{ missatgeError() }}
+      &lt;button (click)=&quot;carregarElements()&quot;&gt;Tornar a intentar&lt;/button&gt;
+    &lt;/div&gt;
+  }
 
-  &lt;div *ngSwitchCase=&quot;&#39;buit&#39;&quot;&gt;
-    &lt;i class=&quot;bi bi-inbox&quot;&gt;&lt;/i&gt; No hi ha elements disponibles
-  &lt;/div&gt;
+  @case (&#39;buit&#39;) {
+    &lt;div&gt;No hi ha elements disponibles&lt;/div&gt;
+  }
 
-  &lt;div *ngSwitchCase=&quot;&#39;disponible&#39;&quot;&gt;
+  @case (&#39;disponible&#39;) {
     &lt;ul&gt;
-      &lt;li *ngFor=&quot;let element of elements&quot;&gt;{{ element.titol }}&lt;/li&gt;
+      @for (element of elements(); track element.id) {
+        &lt;li&gt;{{ element.titol }}&lt;/li&gt;
+      }
     &lt;/ul&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+  }
+}</code></pre>
   </div>
 </div>
 
@@ -4733,31 +4645,35 @@ export class CatalegComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">type EstatLlista = &#39;carregant&#39; | &#39;buit&#39; | &#39;error&#39; | &#39;disponible&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, signal } from &#39;@angular/core&#39;;
+
+type EstatLlista = &#39;carregant&#39; | &#39;buit&#39; | &#39;error&#39; | &#39;disponible&#39;;
 
 export class CatalegComponent {
-  estatLlista: EstatLlista = &#39;carregant&#39;;
-  elements: Element[] = [];
-  missatgeError = &#39;&#39;;
+  estatLlista = signal&lt;EstatLlista&gt;(&#39;carregant&#39;);
+  elements = signal&lt;Element[]&gt;([]);
+  missatgeError = signal(&#39;&#39;);
 
   carregarElements(): void {
-    this.estatLlista = &#39;carregant&#39;;
+    this.estatLlista.set(&#39;carregant&#39;);
 
+    // Simulació d&#39;una petició: el canvi arriba dins d&#39;un setTimeout,
+    // per això l&#39;estat és un signal (vegeu la nota de 2.8)
     setTimeout(() =&gt; {
       const dades = this.obtenirDadesSimulades();
 
       if (Math.random() &gt; 0.8) {
-        this.estatLlista = &#39;error&#39;;
-        this.missatgeError = &#39;Error de xarxa&#39;;
+        this.estatLlista.set(&#39;error&#39;);
+        this.missatgeError.set(&#39;Error de xarxa&#39;);
       } else {
-        this.elements = dades;
-        this.estatLlista = dades.length &gt; 0 ? &#39;disponible&#39; : &#39;buit&#39;;
+        this.elements.set(dades);
+        this.estatLlista.set(dades.length &gt; 0 ? &#39;disponible&#39; : &#39;buit&#39;);
       }
     }, 2000);
   }
 
   simularEstat(estat: EstatLlista): void {
-    this.estatLlista = estat;
+    this.estatLlista.set(estat);
   }
 
   private obtenirDadesSimulades(): Element[] {
@@ -4798,26 +4714,30 @@ export class CatalegComponent {
 &lt;/nav&gt;
 
 &lt;!-- Interfície principal --&gt;
-&lt;div [ngSwitch]=&quot;estatLlista&quot;&gt;
-  &lt;div *ngSwitchCase=&quot;&#39;carregant&#39;&quot;&gt;
-    &lt;i class=&quot;bi bi-hourglass-split&quot;&gt;&lt;/i&gt; Carregant...
-  &lt;/div&gt;
+@switch (estatLlista()) {
+  @case (&#39;carregant&#39;) {
+    &lt;div&gt;Carregant...&lt;/div&gt;
+  }
 
-  &lt;div *ngSwitchCase=&quot;&#39;error&#39;&quot;&gt;
-    &lt;i class=&quot;bi bi-exclamation-triangle&quot;&gt;&lt;/i&gt; {{ missatgeError }}
-    &lt;button (click)=&quot;carregarElements()&quot;&gt;Tornar a intentar&lt;/button&gt;
-  &lt;/div&gt;
+  @case (&#39;error&#39;) {
+    &lt;div&gt;
+      {{ missatgeError() }}
+      &lt;button (click)=&quot;carregarElements()&quot;&gt;Tornar a intentar&lt;/button&gt;
+    &lt;/div&gt;
+  }
 
-  &lt;div *ngSwitchCase=&quot;&#39;buit&#39;&quot;&gt;
-    &lt;i class=&quot;bi bi-inbox&quot;&gt;&lt;/i&gt; No hi ha elements
-  &lt;/div&gt;
+  @case (&#39;buit&#39;) {
+    &lt;div&gt;No hi ha elements&lt;/div&gt;
+  }
 
-  &lt;div *ngSwitchCase=&quot;&#39;disponible&#39;&quot;&gt;
+  @case (&#39;disponible&#39;) {
     &lt;ul&gt;
-      &lt;li *ngFor=&quot;let el of elements; trackBy: trackById&quot;&gt;{{ el.titol }}&lt;/li&gt;
+      @for (el of elements(); track el.id) {
+        &lt;li&gt;{{ el.titol }}&lt;/li&gt;
+      }
     &lt;/ul&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+  }
+}</code></pre>
   </div>
 </div>
 
@@ -4851,7 +4771,7 @@ export class CatalegComponent {
   <div class="section-point-body component-content">
     
     <h4>2.10.1. Objectiu</h4>
-    <p>Comprendre les diferències tècniques entre amagar amb CSS i no renderitzar amb directives.</p>
+    <p>Comprendre les diferències tècniques entre amagar amb CSS i no renderitzar amb <code>@if</code>.</p>
 
     <h4>2.10.2. Contingut</h4>
 
@@ -4881,7 +4801,7 @@ export class CatalegComponent {
 </div>
 
 
-    <p><strong>No renderitzar amb *ngIf:</strong></p>
+    <p><strong>No renderitzar amb @if:</strong></p>
 
     
     <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
@@ -4899,8 +4819,8 @@ export class CatalegComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- *ngIf --&gt;
-&lt;div *ngIf=&quot;teElements&quot;&gt;Llista d&#39;elements&lt;/div&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- @if --&gt;
+@if (teElements) { &lt;div&gt;Llista d&#39;elements&lt;/div&gt; }
 
 &lt;!-- Resultat: element NO AL DOM si false --&gt;</code></pre>
   </div>
@@ -4914,7 +4834,7 @@ export class CatalegComponent {
         <tr>
           <th>Aspecte</th>
           <th>[hidden] / CSS</th>
-          <th>*ngIf</th>
+          <th>@if</th>
         </tr>
       </thead>
       <tbody>
@@ -4924,19 +4844,14 @@ export class CatalegComponent {
           <td>No</td>
         </tr>
         <tr>
-          <td><strong>Accessibilitat</strong></td>
-          <td>Problemàtica (lectors detecten)</td>
-          <td>Correcta</td>
+          <td><strong>Contingut al DOM</strong></td>
+          <td>Present (inspeccionable)</td>
+          <td>Absent</td>
         </tr>
         <tr>
           <td><strong>Rendiment</strong></td>
           <td>Baix (ocupa memòria)</td>
           <td>Alt (només renderitza necessari)</td>
-        </tr>
-        <tr>
-          <td><strong>Seguretat</strong></td>
-          <td>Baixa (dades al codi font)</td>
-          <td>Alta (no renderitza dades)</td>
         </tr>
         <tr>
           <td><strong>Canvis freqüents</strong></td>
@@ -4949,12 +4864,12 @@ export class CatalegComponent {
     <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> Utilitzeu *ngIf per defecte; [hidden] només si l'element canvia molt sovint.
+    <strong>Clau:</strong> Utilitzeu @if per defecte; [hidden] només si l'element canvia molt sovint.
 </div>
 
 
     <h4>2.10.3. Resultat esperat</h4>
-    <p>Compreneu quan usar CSS vs *ngIf segons el cas d'ús.</p>
+    <p>Compreneu quan usar CSS vs @if segons el cas d'ús.</p>
   
   </div>
 </div>
@@ -4975,7 +4890,7 @@ export class CatalegComponent {
   <div class="section-point-body component-content">
     
     <h4>2.11.1. Objectiu</h4>
-    <p>Consolidar recomanacions per utilitzar directives condicionals de forma professional.</p>
+    <p>Consolidar recomanacions per utilitzar els blocs condicionals de forma professional.</p>
 
     <h4>2.11.2. Contingut</h4>
 
@@ -5030,15 +4945,19 @@ get teElementsDisponibles(): boolean {
 }
 
 &lt;!-- Plantilla --&gt;
-&lt;div *ngIf=&quot;teElementsDisponibles&quot;&gt;...&lt;/div&gt;
+@if (teElementsDisponibles) {
+&lt;div&gt;...&lt;/div&gt;
+}
 
 // Incorrecte (lògica a plantilla)
-&lt;div *ngIf=&quot;elements.length &gt; 0 &amp;&amp; !carregant &amp;&amp; !error&quot;&gt;...&lt;/div&gt;</code></pre>
+@if (elements.length &gt; 0 &amp;&amp; !carregant &amp;&amp; !error) {
+&lt;div&gt;...&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
 
-    <p><strong>3. ngSwitch per 3+ opcions:</strong></p>
+    <p><strong>3. @switch per 3 o més opcions:</strong></p>
 
     
     <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
@@ -5057,15 +4976,19 @@ get teElementsDisponibles(): boolean {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Correcte amb 4 opcions --&gt;
-&lt;div [ngSwitch]=&quot;estat&quot;&gt;
-  &lt;p *ngSwitchCase=&quot;&#39;carregant&#39;&quot;&gt;...&lt;/p&gt;
-  &lt;p *ngSwitchCase=&quot;&#39;error&#39;&quot;&gt;...&lt;/p&gt;
-  &lt;p *ngSwitchCase=&quot;&#39;buit&#39;&quot;&gt;...&lt;/p&gt;
-  &lt;p *ngSwitchCase=&quot;&#39;ok&#39;&quot;&gt;...&lt;/p&gt;
-&lt;/div&gt;
+@switch (estat) {
+  @case (&#39;carregant&#39;) { &lt;p&gt;...&lt;/p&gt; }
+  @case (&#39;error&#39;) { &lt;p&gt;...&lt;/p&gt; }
+  @case (&#39;buit&#39;) { &lt;p&gt;...&lt;/p&gt; }
+  @case (&#39;ok&#39;) { &lt;p&gt;...&lt;/p&gt; }
+}
 
 &lt;!-- Acceptable amb 2 opcions --&gt;
-&lt;p *ngIf=&quot;disponible; else carregant&quot;&gt;...&lt;/p&gt;</code></pre>
+@if (disponible) {
+  &lt;p&gt;Disponible&lt;/p&gt;
+} @else {
+  &lt;p&gt;Carregant...&lt;/p&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -5078,7 +5001,7 @@ get teElementsDisponibles(): boolean {
 
 
     <h4>2.11.3. Resultat esperat</h4>
-    <p>Apliqueu bones pràctiques professionals amb directives condicionals.</p>
+    <p>Apliqueu bones pràctiques professionals amb els blocs condicionals.</p>
   
   </div>
 </div>
@@ -5120,20 +5043,20 @@ get teElementsDisponibles(): boolean {
 type Estat = &#39;carregant&#39; | &#39;error&#39; | &#39;buit&#39; | &#39;ok&#39;;
 
 export class CatalegComponent {
-  estat: Estat = &#39;carregant&#39;;
-  elements: Element[] = [];
-  error = &#39;&#39;;
+  estat = signal&lt;Estat&gt;(&#39;carregant&#39;);
+  elements = signal&lt;Element[]&gt;([]);
+  error = signal(&#39;&#39;);
 
   carregarElements(): void {
-    this.estat = &#39;carregant&#39;;
+    this.estat.set(&#39;carregant&#39;);
     this.servei.obtenirElements().subscribe({
       next: (data) =&gt; {
-        this.elements = data;
-        this.estat = data.length &gt; 0 ? &#39;ok&#39; : &#39;buit&#39;;
+        this.elements.set(data);
+        this.estat.set(data.length &gt; 0 ? &#39;ok&#39; : &#39;buit&#39;);
       },
       error: () =&gt; {
-        this.estat = &#39;error&#39;;
-        this.error = &#39;Error en carregar&#39;;
+        this.estat.set(&#39;error&#39;);
+        this.error.set(&#39;Error en carregar&#39;);
       }
     });
   }
@@ -5161,14 +5084,18 @@ export class CatalegComponent {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- cataleg.component.html --&gt;
-&lt;div [ngSwitch]=&quot;estat&quot;&gt;
-  &lt;p *ngSwitchCase=&quot;&#39;carregant&#39;&quot;&gt;Carregant...&lt;/p&gt;
-  &lt;p *ngSwitchCase=&quot;&#39;error&#39;&quot;&gt;{{ error }}&lt;/p&gt;
-  &lt;p *ngSwitchCase=&quot;&#39;buit&#39;&quot;&gt;Buit&lt;/p&gt;
-  &lt;ul *ngSwitchCase=&quot;&#39;ok&#39;&quot;&gt;
-    &lt;li *ngFor=&quot;let el of elements&quot;&gt;{{ el.titol }}&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/div&gt;</code></pre>
+@switch (estat()) {
+  @case (&#39;carregant&#39;) { &lt;p&gt;Carregant...&lt;/p&gt; }
+  @case (&#39;error&#39;) { &lt;p&gt;{{ error() }}&lt;/p&gt; }
+  @case (&#39;buit&#39;) { &lt;p&gt;Buit&lt;/p&gt; }
+  @case (&#39;ok&#39;) {
+    &lt;ul&gt;
+      @for (el of elements(); track el.id) {
+        &lt;li&gt;{{ el.titol }}&lt;/li&gt;
+      }
+    &lt;/ul&gt;
+  }
+}</code></pre>
   </div>
 </div>
 
@@ -5201,14 +5128,14 @@ export class CatalegComponent {
       </thead>
       <tbody>
         <tr>
-          <td>"Can't bind to 'ngSwitch'"</td>
-          <td>Falta CommonModule</td>
-          <td>Afegir <code>CommonModule</code> a imports</td>
+          <td>El bloc <code>@switch</code> no entra a cap cas</td>
+          <td>El valor de l'estat no coincideix amb cap <code>@case</code></td>
+          <td>Verificar els literals del tipus union i afegir <code>@default</code> si cal</td>
         </tr>
         <tr>
-          <td>ng-template no es mostra</td>
-          <td>Referència incorrecta</td>
-          <td>Verificar <code>#nom</code> coincideix amb <code>else nom</code></td>
+          <td>El bloc <code>@else</code> no es mostra</td>
+          <td>La condició de <code>@if</code> continua sent certa</td>
+          <td>Comprovar el valor real de la propietat usada a la condició</td>
         </tr>
         <tr>
           <td>Estat no canvia</td>
@@ -5253,7 +5180,7 @@ export class CatalegComponent {
     </div>
   </div>
   <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> mentor components. <strong>Context:</strong> reforçar ús de <code>*ngIf</code> amb plantilles alternatives. <strong>Tasca:</strong> crea taula amb 3 escenaris (sense dades, amb error, amb dades) indicant condició, contingut principal i plantilla alternativa. <strong>Format:</strong> taula Markdown.</div>
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> mentor components. <strong>Context:</strong> reforçar ús de <code>@if</code> amb plantilles alternatives. <strong>Tasca:</strong> crea taula amb 3 escenaris (sense dades, amb error, amb dades) indicant condició, contingut principal i plantilla alternativa. <strong>Format:</strong> taula Markdown.</div>
   </div>
 </div>
 
@@ -5270,7 +5197,7 @@ export class CatalegComponent {
     </div>
   </div>
   <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> tècnica suport. <strong>Context:</strong> alumne diu que estat d'error no mostra missatge. <strong>Tasca:</strong> checklist 5 passos (valor <code>estatLlista</code>, missatge, <code>ngSwitchCase</code>, CSS, consola) amb acció i resultat esperat. <strong>Format:</strong> llista numerada.</div>
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> tècnica suport. <strong>Context:</strong> alumne diu que estat d'error no mostra missatge. <strong>Tasca:</strong> checklist 5 passos (valor <code>estatLlista</code>, missatge, <code>@case</code>, CSS, consola) amb acció i resultat esperat. <strong>Format:</strong> llista numerada.</div>
   </div>
 </div>
 
@@ -5287,7 +5214,7 @@ export class CatalegComponent {
     </div>
   </div>
   <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> formadora Angular. <strong>Context:</strong> explicar diferència amagar CSS vs no renderitzar. <strong>Tasca:</strong> crea comparativa 6 aspectes (DOM, accessibilitat, rendiment, SEO, animacions, seguretat). <strong>Format:</strong> taula 3 columnes.</div>
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> formadora Angular. <strong>Context:</strong> explicar diferència amagar CSS vs no renderitzar. <strong>Tasca:</strong> crea comparativa 6 aspectes (DOM, estat dels components, rendiment, SEO, animacions, seguretat). <strong>Format:</strong> taula 3 columnes.</div>
   </div>
 </div>
 
@@ -5317,17 +5244,17 @@ export class CatalegComponent {
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Comprenc la diferència entre ocultar amb CSS i no renderitzar amb *ngIf</div>
+    <div class="checklist-text">Comprenc la diferència entre ocultar amb CSS i no renderitzar amb @if</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Entenc com funciona ng-template i quan es renderitza</div>
+    <div class="checklist-text">Sé aplicar @else quan la condició és falsa</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Sé explicar quan usar ngSwitch vs múltiples *ngIf</div>
+    <div class="checklist-text">Sé explicar quan usar @switch vs múltiples @if</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
@@ -5347,17 +5274,17 @@ export class CatalegComponent {
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Sé utilitzar *ngIf amb condicions simples i negació</div>
+    <div class="checklist-text">Sé utilitzar @if amb condicions simples i negació</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">He implementat plantilles alternatives amb else i ng-template</div>
+    <div class="checklist-text">He implementat alternatives amb @else</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Utilitzo ngSwitch per gestionar múltiples opcions exclusives</div>
+    <div class="checklist-text">Utilitzo @switch per gestionar múltiples opcions exclusives</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
@@ -5367,7 +5294,7 @@ export class CatalegComponent {
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Puc aplicar Bootstrap Icons per indicar estats visualment</div>
+    <div class="checklist-text">Puc indicar estats visualment amb classes CSS</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
@@ -5386,17 +5313,17 @@ export class CatalegComponent {
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Sé què fer si ng-template no es mostra (verificar referència)</div>
+    <div class="checklist-text">Sé què fer si @else no es mostra (verificar condició)</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Puc diagnosticar problemes amb ngSwitch (CommonModule, sintaxi)</div>
+    <div class="checklist-text">Puc diagnosticar problemes amb @switch (valor, casos i @default)</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Entenc quan usar CSS vs *ngIf segons el cas d'ús</div>
+    <div class="checklist-text">Entenc quan usar CSS vs @if segons el cas d'ús</div>
   </div>
   
   <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
@@ -5422,7 +5349,7 @@ export class CatalegComponent {
   <div class="section-point-body component-content">
     
     <h4>Què heu après</h4>
-    <p>Heu integrat directives condicionals per gestionar el renderitzat d'elements segons condicions i estats de la interfície. Heu comprès la diferència fonamental entre ocultar amb CSS i no renderitzar amb <code>*ngIf</code>, millorant accessibilitat i rendiment. Heu dominat <code>*ngIf</code> amb sintaxi bàsica i avançada (else, ng-template) per controlar quins elements es renderitzen al DOM. Heu aplicat <code>ngSwitch</code> per gestionar múltiples opcions exclusives de manera clara, evitant encadenar condicionals. Heu implementat una màquina d'estats completa amb els 4 escenaris habituals (carregant, error, buit, disponible), preparant la interfície per integrar dades reals de serveis. Heu consolidat bones pràctiques: tipus union per garantir estats vàlids, lògica al component per mantenir plantilles declaratives, i documentació per facilitar mantenibilitat. Amb aquests coneixements, esteu preparats per crear interfícies reactives que responen adequadament a diferents escenaris i proporcionen una experiència d'usuari professional.</p>
+    <p>Heu integrat els blocs condicionals per gestionar el renderitzat d'elements segons condicions i estats de la interfície. Heu comprès la diferència fonamental entre ocultar amb CSS i no renderitzar amb <code>@if</code>, alleugerint el DOM i millorant el rendiment. Heu dominat <code>@if</code> amb sintaxi bàsica i avançada (<code>@else</code>) per controlar quins elements es renderitzen al DOM. Heu aplicat <code>@switch</code> per gestionar múltiples opcions exclusives de manera clara, evitant encadenar condicionals. Heu implementat una màquina d'estats completa amb els 4 escenaris habituals (carregant, error, buit, disponible), preparant la interfície per integrar dades reals de serveis. Heu consolidat bones pràctiques: tipus union per garantir estats vàlids, lògica al component per mantenir plantilles declaratives, i documentació per facilitar mantenibilitat. Amb aquests coneixements, esteu preparats per crear interfícies reactives que responen adequadament a diferents escenaris i proporcionen una experiència d'usuari professional.</p>
   
   </div>
 </div>
@@ -5455,7 +5382,7 @@ export class CatalegComponent {
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>*ngIf:</strong> Directiva que renderitza element si condició és certa, el destrueix si és falsa.</p>
+    <p><strong>@if:</strong> Directiva que renderitza element si condició és certa, el destrueix si és falsa.</p>
   </div>
 </div>
 
@@ -5473,7 +5400,7 @@ export class CatalegComponent {
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>ng-template:</strong> Contenidor que no es renderitza fins referenciada des d'un else o then.</p>
+    <p><strong>@switch:</strong> Bloc de control de flux que selecciona un cas segons el valor d'una expressió.</p>
   </div>
 </div>
 
@@ -5482,7 +5409,7 @@ export class CatalegComponent {
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>ngSwitch:</strong> Directiva per seleccionar una plantilla entre múltiples opcions exclusives.</p>
+    <p><strong>@case:</strong> Cas específic dins d'un @switch que es renderitza si coincideix amb el valor.</p>
   </div>
 </div>
 
@@ -5491,16 +5418,7 @@ export class CatalegComponent {
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>*ngSwitchCase:</strong> Cas específic dins d'un ngSwitch que es renderitza si coincideix amb el valor.</p>
-  </div>
-</div>
-
-
-  <!-- Component: Definició curta -->
-<div class="definition-box" role="definition" aria-label="Definició">
-  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
-  <div class="component-content">
-    <p><strong>*ngSwitchDefault:</strong> Cas per defecte que es renderitza si cap *ngSwitchCase coincideix.</p>
+    <p><strong>@default:</strong> Cas per defecte que es renderitza si cap @case coincideix.</p>
   </div>
 </div>
 
@@ -5523,72 +5441,6 @@ export class CatalegComponent {
 <!-- SECCIÓ 3: Transformadors de dades (pipes) -->
 <div class="section" id="Unitat2_Bloc2_Seccio3">
   <h2 id="Unitat2_Bloc2_Seccio3">3. Transformadors de dades (pipes)</h2>
-
-  <!-- MULTIMÈDIA -->
-  <!--
-  ════════════════════════════════════════════════════════════════
-  Component: Enllaços multimèdia YouTube
-  ════════════════════════════════════════════════════════════════
-
-  Paràmetres:
-    - unitat: número de la unitat (1-4)
-    - bloc: número del bloc (1-4)
-    - seccio: número de la secció (1-3)
-
-  Exemple d'ús:
-    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
-
-  El component busca automàticament les URLs corresponents a
-  site.data.multimedia i mostra els botons de vídeo i àudio.
-  ════════════════════════════════════════════════════════════════
--->
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-<div class="multimedia-resources">
-  <div class="multimedia-header">
-    <i class="bi bi-play-circle-fill"></i>
-    <span>Contingut multimèdia d'aquesta lectura</span>
-  </div>
-
-  <div class="multimedia-buttons">
-    
-    <a href="https://www.youtube.com/watch?v=dQ2MdiIugyY" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 2.2.3 · Transformadors de dades (pipes)">
-      <i class="bi bi-youtube"></i>
-      <span>Veure vídeo</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-
-    
-    <a href="https://www.youtube.com/watch?v=sCmSzrvW51s" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 2.2.3 · Transformadors de dades (pipes)">
-      <i class="bi bi-mic-fill"></i>
-      <span>Escoltar àudio</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-  </div>
-
-  
-  
-</div>
-  
-
-
-
 
   <!-- Component: Objectius del bloc/unitat -->
 
@@ -5638,8 +5490,8 @@ export class CatalegComponent {
     
     <p>Abans de començar aquesta lectura, necessiteu:</p>
     <ul>
-      <li><strong>Lectures 2.2.1 i 2.2.2 completades:</strong> La llista d'elements del catàleg es mostra correctament amb <code>*ngFor</code> i les directives condicionals gestionen els diferents estats.</li>
-      <li><strong>Projecte funcional:</strong> <code>cataleg-elements</code> amb <code>ng serve</code> executant-se.</li>
+      <li><strong>Lectures 2.2.1 i 2.2.2 completades:</strong> La llista d'elements del catàleg es mostra correctament amb <code>@for</code> i els blocs condicionals gestionen els diferents estats.</li>
+      <li><strong>Projecte funcional:</strong> <code>ioc-angular-[nom-app]-[nom-alumne]</code> amb <code>ng serve</code> executant-se.</li>
       <li><strong>Dades de prova:</strong> L'array <code>elementsCataleg</code> conté almenys 3-4 elements amb informació variada.</li>
     </ul>
 
@@ -5714,7 +5566,7 @@ ng serve
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">export class AppComponent {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">export class App {
   elementsCataleg = [
     {
       id: 2,
@@ -5757,7 +5609,7 @@ ng serve
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// Component amb formatació manual - NO RECOMANAT
-export class AppComponent {
+export class App {
   elementsCataleg = [/* ... */];
 
   formatarPreu(preu: number): string {
@@ -5811,7 +5663,7 @@ export class AppComponent {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// Component net, sense lògica de formatació
-export class AppComponent {
+export class App {
   elementsCataleg = [
     {
       id: 2,
@@ -5844,22 +5696,26 @@ export class AppComponent {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Plantilla amb transformadors declaratius --&gt;
-&lt;li *ngFor=&quot;let element of elementsCataleg&quot;&gt;
+@for (element of elementsCataleg; track element.id) {
+&lt;li&gt;
   &lt;h3&gt;{{ element.titol }}&lt;/h3&gt;
   &lt;p&gt;Preu: {{ element.preu | currency:&#39;EUR&#39;:&#39;symbol&#39;:&#39;1.2-2&#39;:&#39;ca-ES&#39; }}&lt;/p&gt;
   &lt;p&gt;Actualitzat: {{ element.dataActualitzacio | date:&#39;d MMMM yyyy&#39;:&#39;&#39;:&#39;ca&#39; }}&lt;/p&gt;
   &lt;p&gt;Categoria: {{ element.categoria | uppercase }}&lt;/p&gt;
   &lt;p&gt;Disponibilitat: {{ element.percentatgeDisponibilitat | percent:&#39;1.0-0&#39;:&#39;ca&#39; }}&lt;/p&gt;
-&lt;/li&gt;</code></pre>
+&lt;/li&gt;
+}</code></pre>
   </div>
 </div>
 
+
+    <p>Els paràmetres <code>'ca'</code> i <code>'ca-ES'</code> demanen els formats en català; només funcionen si abans s'han registrat les dades del locale a <code>app.config.ts</code>. Ho configurem a la secció 3.5 ("Formats en català").</p>
 
     <p><strong>Avantatges:</strong></p>
     <ul>
       <li><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> <strong>Separació clara:</strong> La classe conté només dades i lògica de negoci.</li>
       <li><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> <strong>Reutilitzable:</strong> Els transformadors es poden utilitzar en qualsevol plantilla.</li>
-      <li><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> <strong>Rendiment optimitzat:</strong> S'executen només quan les dades canvien.</li>
+      <li><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> <strong>Rendiment optimitzat:</strong> S'executen només quan canvia l'entrada (un valor primitiu diferent o una referència nova d'objecte/array; una mutació interna del mateix objecte no ho activa).</li>
       <li><i class="bi bi-check-circle-fill text-success" aria-hidden="true"></i> <strong>Localització automàtica:</strong> Respecten la configuració <code>LOCALE_ID</code>.</li>
     </ul>
 
@@ -6189,6 +6045,7 @@ export class UpperCasePipe implements PipeTransform {
   </div>
 </div>
 
+    <p>Cada pipe té la seva classe: <code>uppercase</code> → <code>UpperCasePipe</code>, <code>lowercase</code> → <code>LowerCasePipe</code>, <code>number</code> → <code>DecimalPipe</code>. Per fer servir aquests tres exemples en un component caldria importar-los tots tres (vegeu més avall).</p>
 
     <p><strong>Transformadors amb paràmetres:</strong></p>
 
@@ -6240,15 +6097,90 @@ export class UpperCasePipe implements PipeTransform {
 </div>
 
 
+    <p><strong>Importar el transformador al component:</strong> en un component standalone, cada pipe integrat s'ha de declarar a l'array <code>imports</code> del decorador, igual que un component fill. Els pipes integrats viuen a <code>@angular/common</code>:</p>
+
+    
+    <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component } from &#39;@angular/core&#39;;
+import { CurrencyPipe, DatePipe, UpperCasePipe } from &#39;@angular/common&#39;;
+
+@Component({
+  imports: [DatePipe, CurrencyPipe, UpperCasePipe],
+  selector: &#39;app-targeta-element&#39;,
+  styleUrl: &#39;./targeta-element.component.scss&#39;,
+  templateUrl: &#39;./targeta-element.component.html&#39;,
+})
+export class TargetaElementComponent {
+  // ...
+}</code></pre>
+  </div>
+</div>
+
+
+    <p>Si un component fa servir molts pipes o directives de <code>@angular/common</code> (com <code>NgClass</code>), podeu importar <code>CommonModule</code> sencer en lloc de cada classe; és més curt, però menys explícit. Si oblideu la importació, Angular atura la compilació amb l'error <code>NG8004: No pipe found with name 'date'</code>.</p>
+
+    <p><strong>Formats en català:</strong> els paràmetres de locale com <code>'ca'</code> o <code>'ca-ES'</code> només funcionen si abans s'han registrat les dades del locale. Es fa un sol cop, a <code>app.config.ts</code>:</p>
+
+    
+    <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { ApplicationConfig, LOCALE_ID, provideBrowserGlobalErrorListeners } from &#39;@angular/core&#39;;
+import { registerLocaleData } from &#39;@angular/common&#39;;
+import localeCa from &#39;@angular/common/locales/ca&#39;;
+import { provideRouter } from &#39;@angular/router&#39;;
+import { routes } from &#39;./app.routes&#39;;
+
+registerLocaleData(localeCa);
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    provideRouter(routes),
+    { provide: LOCALE_ID, useValue: &#39;ca&#39; },
+  ],
+};</code></pre>
+  </div>
+</div>
+
+
+    <p>Amb <code>LOCALE_ID</code> configurat, <code>date</code>, <code>currency</code>, <code>number</code> i <code>percent</code> ja formaten en català sense haver de passar el locale a cada crida.</p>
+
     <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> L'operador | aplica transformadors; els paràmetres es passen amb : després del nom.
+    <strong>Clau:</strong> L'operador | aplica transformadors; els paràmetres es passen amb : després del nom. Cada pipe s'ha d'importar al component que l'utilitza.
 </div>
 
 
     <h4>3.5.3. Resultat esperat</h4>
-    <p>Sabeu utilitzar la sintaxi bàsica <code>|</code> i passar paràmetres als transformadors.</p>
+    <p>Sabeu utilitzar la sintaxi bàsica <code>|</code>, passar paràmetres als transformadors i importar-los al component.</p>
   
   </div>
 </div>
@@ -6720,11 +6652,13 @@ export class UpperCasePipe implements PipeTransform {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;ul&gt;
-  &lt;li *ngFor=&quot;let el of elements&quot;&gt;
+@for (el of elements; track el.id) {
+  &lt;li&gt;
     &lt;span&gt;{{ el.titol }}&lt;/span&gt;
     &lt;span&gt;Preu base: {{ el.preu | currency:&#39;EUR&#39; }}&lt;/span&gt;
     &lt;span&gt;Amb IVA: {{ (el.preu * 1.21) | currency:&#39;EUR&#39;:&#39;symbol&#39;:&#39;1.2-2&#39; }}&lt;/span&gt;
   &lt;/li&gt;
+}
 &lt;/ul&gt;</code></pre>
   </div>
 </div>
@@ -6748,10 +6682,12 @@ export class UpperCasePipe implements PipeTransform {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div *ngIf=&quot;element.descompte &gt; 0&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (element.descompte &gt; 0) {
+&lt;div&gt;
   &lt;p&gt;Estalvieu: {{ element.descompte | percent:&#39;1.0-0&#39; }}&lt;/p&gt;
   &lt;p&gt;Preu final: {{ element.preu * (1 - element.descompte) | currency:&#39;EUR&#39; }}&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -6807,7 +6743,7 @@ export class UpperCasePipe implements PipeTransform {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">export class AppComponent {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">export class App {
   preu = 49.99;
 }</code></pre>
   </div>
@@ -6910,7 +6846,9 @@ export class UpperCasePipe implements PipeTransform {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// Transformador personalitzat per formatar DNI
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// Generat amb: ng generate pipe pipes/dni
+import { Pipe, PipeTransform } from &#39;@angular/core&#39;;
+
 @Pipe({ name: &#39;dni&#39; })
 export class DniPipe implements PipeTransform {
   transform(value: string): string {
@@ -6943,6 +6881,8 @@ export class DniPipe implements PipeTransform {
   </div>
 </div>
 
+
+    <p>Com qualsevol pipe, el personalitzat també s'ha d'afegir a <code>imports</code> del component que el faci servir: <code>imports: [DniPipe]</code>.</p>
 
     <p><strong>Criteris per decidir:</strong></p>
     <table>
@@ -7014,7 +6954,10 @@ export class DniPipe implements PipeTransform {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">interface ElementCataleg {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component } from &#39;@angular/core&#39;;
+import { CurrencyPipe, DatePipe, PercentPipe, TitleCasePipe, UpperCasePipe } from &#39;@angular/common&#39;;
+
+interface ElementCataleg {
   id: number;
   titol: string;
   categoria: string;
@@ -7023,7 +6966,13 @@ export class DniPipe implements PipeTransform {
   percentatgeDisponibilitat: number;
 }
 
-export class AppComponent {
+@Component({
+  imports: [TitleCasePipe, UpperCasePipe, CurrencyPipe, DatePipe, PercentPipe],
+  selector: &#39;app-root&#39;,
+  styleUrl: &#39;./app.component.scss&#39;,
+  templateUrl: &#39;./app.component.html&#39;,
+})
+export class App {
   elementsCataleg: ElementCataleg[] = [
     {
       id: 2,
@@ -7057,13 +7006,15 @@ export class AppComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;article *ngFor=&quot;let element of elementsCataleg&quot; class=&quot;targeta&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@for (element of elementsCataleg; track element.id) {
+&lt;article class=&quot;targeta&quot;&gt;
   &lt;h3&gt;{{ element.titol | titlecase }}&lt;/h3&gt;
   &lt;span class=&quot;badge&quot;&gt;{{ element.categoria | uppercase }}&lt;/span&gt;
   &lt;p class=&quot;preu&quot;&gt;{{ element.preu | currency:&#39;EUR&#39;:&#39;symbol&#39;:&#39;1.2-2&#39;:&#39;ca-ES&#39; }}&lt;/p&gt;
   &lt;p class=&quot;data&quot;&gt;Actualitzat: {{ element.dataActualitzacio | date:&#39;dd/MM/yyyy&#39;:&#39;&#39;:&#39;ca&#39; }}&lt;/p&gt;
   &lt;p class=&quot;disponibilitat&quot;&gt;Disponibilitat: {{ element.percentatgeDisponibilitat | percent:&#39;1.0-0&#39; }}&lt;/p&gt;
-&lt;/article&gt;</code></pre>
+&lt;/article&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -7096,9 +7047,9 @@ export class AppComponent {
       </thead>
       <tbody>
         <tr>
-          <td>Pipe no funciona</td>
-          <td>Verificar importació <code>CommonModule</code></td>
-          <td>Verificar importació <code>CommonModule</code></td>
+          <td>Pipe no funciona (<code>NG8004: No pipe found</code>)</td>
+          <td>Afegir el pipe (<code>DatePipe</code>, <code>CurrencyPipe</code>...) o <code>CommonModule</code> a <code>imports</code> del component</td>
+          <td>Afegir el pipe (<code>DatePipe</code>, <code>CurrencyPipe</code>...) o <code>CommonModule</code> a <code>imports</code> del component</td>
         </tr>
         <tr>
           <td>Format incorrecte</td>
@@ -7106,9 +7057,9 @@ export class AppComponent {
           <td>Comprovar paràmetres separats per <code>:</code></td>
         </tr>
         <tr>
-          <td>Locale no aplicat</td>
-          <td>Configurar <code>LOCALE_ID</code> a <code>app.config.ts</code></td>
-          <td>Configurar <code>LOCALE_ID</code> a <code>app.config.ts</code></td>
+          <td>Locale no aplicat o error <code>NG0701: Missing locale data for 'ca'</code></td>
+          <td>Cridar <code>registerLocaleData(localeCa)</code> i configurar <code>LOCALE_ID</code> a <code>app.config.ts</code></td>
+          <td>Cridar <code>registerLocaleData(localeCa)</code> i configurar <code>LOCALE_ID</code> a <code>app.config.ts</code></td>
         </tr>
         <tr>
           <td>Data mostra ISO</td>
@@ -7281,7 +7232,7 @@ export class AppComponent {
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Sé què fer si un pipe no funciona (CommonModule)</div>
+    <div class="checklist-text">Sé què fer si un pipe no funciona (importar-lo al component)</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
@@ -7431,8 +7382,8 @@ export class AppComponent {
 {
   "@context": "https://schema.org",
   "@type": "LearningResource",
-  "name": "Bloc 2: Directives estructurals i iteració",
-  "description": "Directives estructurals *ngFor, variables locals, trackBy i llistes niades",
+  "name": "Bloc 2: Control de flux, condicions i pipes",
+  "description": "@for, @if/@else, variables locals, track i llistes niades",
   "author": {
     "@type": "Organization",
     "name": "Institut Obert de Catalunya"

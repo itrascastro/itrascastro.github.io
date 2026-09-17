@@ -5,34 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <title>Bloc 1: Conceptes fonamentals i instal·lació | DA2_OA01 - Programació Avançada (Angular) - IOC</title>
+    <title>Bloc 1: Components i comunicació bàsica | DA2_OA01 - Programació Avançada (Angular) - IOC</title>
     <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
     <meta name="page-unitat" content="2">
     <meta name="page-bloc" content="1">
     
     <!-- SEO Tags -->
     <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Bloc 1: Conceptes fonamentals i instal·lació | DA2_OA01 - Programació Avançada (Angular)</title>
+<title>Bloc 1: Components i comunicació bàsica | DA2_OA01 - Programació Avançada (Angular)</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="Bloc 1: Conceptes fonamentals i instal·lació" />
+<meta property="og:title" content="Bloc 1: Components i comunicació bàsica" />
 <meta property="og:locale" content="ca_ES" />
-<meta name="description" content="Components Angular, interpolació, binding i directives estructurals" />
-<meta property="og:description" content="Components Angular, interpolació, binding i directives estructurals" />
-<link rel="canonical" href="http://localhost:4004/ioc/da2_oa01/unitat-2/bloc-1/" />
-<meta property="og:url" content="http://localhost:4004/ioc/da2_oa01/unitat-2/bloc-1/" />
+<meta name="description" content="Components Angular, interpolació, binding i control de flux" />
+<meta property="og:description" content="Components Angular, interpolació, binding i control de flux" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/da2_oa01/unitat-2/bloc-1/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/da2_oa01/unitat-2/bloc-1/" />
 <meta property="og:site_name" content="DA2_OA01 - Programació Avançada (Angular)" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Bloc 1: Conceptes fonamentals i instal·lació" />
+<meta property="twitter:title" content="Bloc 1: Components i comunicació bàsica" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Components Angular, interpolació, binding i directives estructurals","headline":"Bloc 1: Conceptes fonamentals i instal·lació","url":"http://localhost:4004/ioc/da2_oa01/unitat-2/bloc-1/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Components Angular, interpolació, binding i control de flux","headline":"Bloc 1: Components i comunicació bàsica","url":"https://itrascastro.github.io/ioc/da2_oa01/unitat-2/bloc-1/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/ioc/da2_oa01/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="canonical" href="http://localhost:4004/ioc/da2_oa01/unitat-2/bloc-1/">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/da2_oa01/unitat-2/bloc-1/">
     <!-- Rich editor styles (for embedded notes panel) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
     <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -48,7 +48,7 @@
     <link rel="icon" type="image/x-icon" href="/ioc/da2_oa01/assets/images/favicon.ico">
     
     <!-- RSS Feed -->
-    <link type="application/atom+xml" rel="alternate" href="http://localhost:4004/ioc/da2_oa01/feed.xml" title="DA2_OA01 - Programació Avançada (Angular)" />
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/da2_oa01/feed.xml" title="DA2_OA01 - Programació Avançada (Angular)" />
 
     <!-- Syntax Highlighting (Prism) -->
     <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
@@ -130,7 +130,7 @@
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-2/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 2 - Bloc 2: Data binding i events
+                        Unitat 2 - Bloc 2: Control de flux, condicions i pipes
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-2/bloc-3/" class="nav-dropdown-item ">
@@ -148,11 +148,11 @@
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-3/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 3 - Bloc 2: Gestió d'estat i comunicació entre components
+                        Unitat 3 - Bloc 2: Models de dades i transformació
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-3/bloc-3/" class="nav-dropdown-item ">
-                        Unitat 3 - Bloc 3: Optimització i bones pràctiques
+                        Unitat 3 - Bloc 3: Formularis reactius i validacions
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-3/bloc-4/" class="nav-dropdown-item ">
@@ -166,11 +166,11 @@
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-4/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 4 - Bloc 2: Arquitectura escalable
+                        Unitat 4 - Bloc 2: Arquitectura i patrons
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-4/bloc-3/" class="nav-dropdown-item ">
-                        Unitat 4 - Bloc 3: Optimització de rendiment
+                        Unitat 4 - Bloc 3: Rendiment i optimització
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-4/bloc-4/" class="nav-dropdown-item ">
@@ -844,6 +844,41 @@
     
     
 
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
 
 
                 </div>
@@ -907,72 +942,6 @@
 <div class="section" id="Unitat2_Bloc1_Seccio1">
   <h2 id="Unitat2_Bloc1_Seccio1">1. Creació del primer component</h2>
 
-  <!-- MULTIMÈDIA -->
-  <!--
-  ════════════════════════════════════════════════════════════════
-  Component: Enllaços multimèdia YouTube
-  ════════════════════════════════════════════════════════════════
-
-  Paràmetres:
-    - unitat: número de la unitat (1-4)
-    - bloc: número del bloc (1-4)
-    - seccio: número de la secció (1-3)
-
-  Exemple d'ús:
-    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
-
-  El component busca automàticament les URLs corresponents a
-  site.data.multimedia i mostra els botons de vídeo i àudio.
-  ════════════════════════════════════════════════════════════════
--->
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-<div class="multimedia-resources">
-  <div class="multimedia-header">
-    <i class="bi bi-play-circle-fill"></i>
-    <span>Contingut multimèdia d'aquesta lectura</span>
-  </div>
-
-  <div class="multimedia-buttons">
-    
-    <a href="https://www.youtube.com/watch?v=CZpo06p__iM" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 2.1.1 · Creació del primer component">
-      <i class="bi bi-youtube"></i>
-      <span>Veure vídeo</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-
-    
-    <a href="https://www.youtube.com/watch?v=x7dcLS49ua8" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 2.1.1 · Creació del primer component">
-      <i class="bi bi-mic-fill"></i>
-      <span>Escoltar àudio</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-  </div>
-
-  
-  
-</div>
-  
-
-
-
-
   <!-- Component: Objectius del bloc/unitat -->
 
 
@@ -1019,7 +988,7 @@
     
     <p>Abans de començar, necessiteu:</p>
     <ul>
-      <li><strong>Lectura 1.3.2</strong> — Projecte <code>cataleg-elements</code> creat i explorat</li>
+      <li><strong>Lectura 1.3.2</strong> — Projecte <code>ioc-angular-[nom-app]-[nom-alumne]</code> creat i explorat</li>
       <li><strong>Lectura 1.3.3</strong> — Servidor operatiu amb <code>ng serve</code></li>
     </ul>
 
@@ -1041,14 +1010,15 @@
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">cd ~/workspace/cataleg-elements  # o cd %USERPROFILE%\workspace\cataleg-elements
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">cd ~/workspace/ioc-angular-[nom-app]-[nom-alumne]
 ng version
+git switch ra2-components
 git status</code></pre>
   </div>
 </div>
 
 
-    <p><strong>Punt d'autocomprovació:</strong> Angular CLI 18.x operativa, projecte net sense canvis pendents.</p>
+    <p><strong>Punt d'autocomprovació:</strong> Angular CLI 22.x operativa, projecte net sense canvis pendents i branca <code>ra2-components</code> activa. Aquesta branca es va crear a partir de <code>main</code> a la Unitat 1, de manera que parteix del projecte base generat per la CLI (sense la personalització de <code>ra1-setup</code>).</p>
   
   </div>
 </div>
@@ -1205,7 +1175,9 @@ function actualizarPaginacio() { ... }
 └── app.component.html (15 línies)
     &lt;app-capcalera&gt;&lt;/app-capcalera&gt;
     &lt;app-barra-cerca&gt;&lt;/app-barra-cerca&gt;
-    &lt;app-targeta-element *ngFor=&quot;let element of elements&quot;&gt;&lt;/app-targeta-element&gt;
+    @for (element of elements; track element.id) {
+      &lt;app-targeta-element [element]=&quot;element&quot;&gt;&lt;/app-targeta-element&gt;
+    }
     &lt;app-paginacio&gt;&lt;/app-paginacio&gt;</code></pre>
   </div>
 </div>
@@ -1313,8 +1285,8 @@ export class TargetaElementComponent {
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- targeta-element.component.html --&gt;
 &lt;div class=&quot;element&quot;&gt;
   &lt;img [src]=&quot;element.imatge&quot; [alt]=&quot;element.titol&quot;&gt;
-  &lt;h3&gt;&lt;/h3&gt;
-  &lt;p&gt;&lt;/p&gt;
+  &lt;h3&gt;{{ element.titol }}&lt;/h3&gt;
+  &lt;p&gt;{{ element.descripcio }}&lt;/p&gt;
 &lt;/div&gt;</code></pre>
   </div>
 </div>
@@ -1337,10 +1309,9 @@ export class TargetaElementComponent {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- app.component.html (10 línies) --&gt;
-&lt;app-targeta-element
-  *ngFor=&quot;let element of elements&quot;
-  [element]=&quot;element&quot;&gt;
-&lt;/app-targeta-element&gt;</code></pre>
+@for (element of elements; track element.id) {
+  &lt;app-targeta-element [element]=&quot;element&quot;&gt;&lt;/app-targeta-element&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -1441,9 +1412,9 @@ export class TargetaElementComponent {
         </tr>
         <tr>
           <td><strong>Standalone</strong></td>
-          <td>Component autònom sense NgModule</td>
-          <td><code>standalone: true</code></td>
-          <td>Sempre (model modern Angular)</td>
+          <td>Component autònom sense NgModule, amb les seves dependències a <code>imports</code></td>
+          <td><code>imports: [RouterOutlet]</code></td>
+          <td>Sempre: des d'Angular 19 és el comportament per defecte i no cal escriure <code>standalone: true</code></td>
         </tr>
       </tbody>
     </table>
@@ -1493,7 +1464,7 @@ export class TargetaElementComponent {
     <ul>
       <li>Passar dades als components (<code>@Input</code>)</li>
       <li>Rebre esdeveniments dels components (<code>@Output</code>)</li>
-      <li>Utilitzar directives per mostrar llistes de components (<code>*ngFor</code>)</li>
+      <li>Utilitzar directives per mostrar llistes de components (<code>@for</code>)</li>
       <li>Aplicar estils condicionals i dinàmics</li>
     </ul>
   
@@ -1569,7 +1540,7 @@ export class TargetaElementComponent {
 </div>
 
 
-    <p><strong>Connexió:</strong> La classe (.ts) referencia plantilla i estils. La plantilla accedeix a propietats de la classe amb interpolació <code></code>.</p>
+    <p><strong>Connexió:</strong> La classe (.ts) referencia plantilla i estils. La plantilla accedeix a propietats de la classe amb interpolació <code>{{ propietat }}</code>.</p>
 
     <h4>1.3.3. Flux de dades bàsic</h4>
 
@@ -1590,7 +1561,7 @@ export class TargetaElementComponent {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Component (TS) → Plantilla (HTML) → Navegador
-    titol = &#39;X&#39;  →    →  &lt;h2&gt;X&lt;/h2&gt;</code></pre>
+    titol = &#39;X&#39;  →  {{ titol }}  →  &lt;h2&gt;X&lt;/h2&gt;</code></pre>
   </div>
 </div>
 
@@ -1700,7 +1671,7 @@ export class TargetaElementComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">AppComponent
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Component arrel (App)
 ├── CapcaleraComponent
 ├── PaginaIniciComponent
 │   ├── BarraCercaComponent
@@ -1775,7 +1746,6 @@ export class TargetaElementComponent {
 
 @Component({
   selector: &#39;app-targeta-element&#39;,
-  standalone: true,
   templateUrl: &#39;./targeta-element.component.html&#39;,
   styleUrl: &#39;./targeta-element.component.scss&#39;
 })
@@ -1812,8 +1782,8 @@ export class TargetaElementComponent {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;article class=&quot;targeta&quot;&gt;
-  &lt;h2&gt;&lt;/h2&gt;
-  &lt;p&gt;&lt;/p&gt;
+  &lt;h2&gt;{{ titol }}&lt;/h2&gt;
+  &lt;p&gt;{{ descripcio }}&lt;/p&gt;
 &lt;/article&gt;</code></pre>
   </div>
 </div>
@@ -1938,6 +1908,29 @@ ng g c nom-component</code></pre>
 </div>
 
 
+    <p><code>--add-type-to-class-name</code> → Genera la classe amb el sufix del tipus (<code>TargetaElementComponent</code> en lloc de <code>TargetaElement</code>)</p>
+
+    
+    <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng g c targeta-element --add-type-to-class-name</code></pre>
+  </div>
+</div>
+
+
     <p><strong><code>--style=scss|css|less</code></strong> → Especifica preprocessador (per defecte usa configuració del projecte)</p>
 
     <p><strong><code>--inline-template</code></strong> → Plantilla dins del .ts en lloc d'arxiu .html separat</p>
@@ -2030,7 +2023,7 @@ ng g c nom-component</code></pre>
     <p><strong>Convencions de nomenclatura:</strong></p>
     <ul>
       <li>Nom en kebab-case: <code>targeta-element</code></li>
-      <li>Classe en PascalCase: <code>TargetaElementComponent</code></li>
+      <li>Classe en PascalCase: la CLI genera <code>TargetaElement</code> (en aquest projecte, <code>angular.json</code> té <code>addTypeToClassName: false</code>). En aquest curs afegim el sufix i l'anomenem <code>TargetaElementComponent</code>, perquè el nom digui què és; si preferiu que la CLI ja el generi amb sufix, afegiu <code>--add-type-to-class-name</code> a la comanda</li>
       <li>Selector: <code>app-targeta-element</code></li>
       <li>Arxius: <code>targeta-element.component.{ts,html,scss}</code></li>
     </ul>
@@ -2038,7 +2031,7 @@ ng g c nom-component</code></pre>
     <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> Angular CLI automatitza la creació de components amb la sintaxi <code>ng g c nom</code>. Els components es generen com a standalone per defecte a Angular 18.
+    <strong>Clau:</strong> Angular CLI automatitza la creació de components amb la sintaxi <code>ng g c nom</code>. Els components es generen com a standalone per defecte a Angular 22.
 </div>
 
 
@@ -2086,8 +2079,8 @@ ng g c nom-component</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">cd ~/workspace/cataleg-elements  # macOS/Linux
-cd %USERPROFILE%\workspace\cataleg-elements  # Windows</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">cd ~/workspace/ioc-angular-[nom-app]-[nom-alumne]  # macOS/Linux
+cd %USERPROFILE%\workspace\ioc-angular-[nom-app]-[nom-alumne]  # Windows</code></pre>
   </div>
 </div>
 
@@ -2110,7 +2103,7 @@ cd %USERPROFILE%\workspace\cataleg-elements  # Windows</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng generate component components/targeta-element</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng generate component components/targeta-element --add-type-to-class-name</code></pre>
   </div>
 </div>
 
@@ -2134,9 +2127,9 @@ cd %USERPROFILE%\workspace\cataleg-elements  # Windows</code></pre>
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">CREATE src/app/components/targeta-element/targeta-element.component.scss (0 bytes)
-CREATE src/app/components/targeta-element/targeta-element.component.html (36 bytes)
-CREATE src/app/components/targeta-element/targeta-element.component.spec.ts (639 bytes)
-CREATE src/app/components/targeta-element/targeta-element.component.ts (308 bytes)</code></pre>
+CREATE src/app/components/targeta-element/targeta-element.component.spec.ts (599 bytes)
+CREATE src/app/components/targeta-element/targeta-element.component.ts (241 bytes)
+CREATE src/app/components/targeta-element/targeta-element.component.html (30 bytes)</code></pre>
   </div>
 </div>
 
@@ -2164,18 +2157,17 @@ CREATE src/app/components/targeta-element/targeta-element.component.ts (308 byte
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component } from &#39;@angular/core&#39;;
 
 @Component({
-  selector: &#39;app-targeta-element&#39;,
-  standalone: true,
   imports: [],
+  selector: &#39;app-targeta-element&#39;,
+  styleUrl: &#39;./targeta-element.component.scss&#39;,
   templateUrl: &#39;./targeta-element.component.html&#39;,
-  styleUrl: &#39;./targeta-element.component.scss&#39;
 })
-export class TargetaElementComponent {
-
-}</code></pre>
+export class TargetaElementComponent {}</code></pre>
   </div>
 </div>
 
+
+    <p>Observeu tres detalls del codi generat per Angular 22: no hi ha <code>standalone: true</code> (és el valor per defecte), <code>imports</code> és un array buit on declarareu els components i mòduls que faci servir la plantilla, i la classe es diu <code>TargetaElementComponent</code> gràcies a <code>--add-type-to-class-name</code> (sense el flag es diria <code>TargetaElement</code>; si us passa, reanomeneu-la amb F2 a VS Code).</p>
 
     <p><strong>Pas 4:</strong> Afegiu propietats per emmagatzemar dades de l'element:</p>
 
@@ -2206,7 +2198,7 @@ export class TargetaElementComponent {
     <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> Angular CLI genera automàticament l'estructura bàsica. Afegiu propietats a la classe per emmagatzemar dades que s'usaran a la plantilla.
+    <strong>Clau:</strong> Angular CLI genera automàticament l'estructura bàsica. Genereu els components amb <code>--add-type-to-class-name</code> perquè la classe porti el sufix <code>Component</code> i afegiu-hi propietats per emmagatzemar dades que s'usaran a la plantilla.
 </div>
 
 
@@ -2257,8 +2249,8 @@ export class TargetaElementComponent {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;article class=&quot;targeta&quot;&gt;
-  &lt;h2 class=&quot;targeta__titol&quot;&gt;&lt;/h2&gt;
-  &lt;p class=&quot;targeta__descripcio&quot;&gt;&lt;/p&gt;
+  &lt;h2 class=&quot;targeta__titol&quot;&gt;{{ titol }}&lt;/h2&gt;
+  &lt;p class=&quot;targeta__descripcio&quot;&gt;{{ descripcio }}&lt;/p&gt;
 &lt;/article&gt;</code></pre>
   </div>
 </div>
@@ -2344,7 +2336,6 @@ export class TargetaElementComponent {
 
 @Component({
   selector: &#39;app-targeta-element&#39;,
-  standalone: true,
   imports: [],
   templateUrl: &#39;./targeta-element.component.html&#39;,
   styleUrl: &#39;./targeta-element.component.scss&#39;
@@ -2416,20 +2407,17 @@ import { RouterOutlet } from &#39;@angular/router&#39;;
 import { TargetaElementComponent } from &#39;./components/targeta-element/targeta-element.component&#39;;
 
 @Component({
-  selector: &#39;app-root&#39;,
-  standalone: true,
   imports: [RouterOutlet, TargetaElementComponent],  // Afegiu aquí
+  selector: &#39;app-root&#39;,
+  styleUrl: &#39;./app.component.scss&#39;,
   templateUrl: &#39;./app.component.html&#39;,
-  styleUrl: &#39;./app.component.scss&#39;
 })
-export class AppComponent {
-  title = &#39;cataleg-elements&#39;;
-}</code></pre>
+export class App {}</code></pre>
   </div>
 </div>
 
 
-    <p><strong>Important:</strong> Els components standalone s'han d'afegir a l'array <code>imports</code> per poder-los utilitzar a la plantilla.</p>
+    <p><strong>Important:</strong> Els components standalone s'han d'afegir a l'array <code>imports</code> per poder-los utilitzar a la plantilla. Hem eliminat la propietat <code>title</code> generada per la CLI i la importació de <code>signal</code>, perquè la plantilla nova no les farà servir: fins que no completeu el Pas 2 el terminal mostrarà un error de compilació, i és normal.</p>
 
     <p><strong>Pas 2:</strong> Obriu <code>src/app/app.component.html</code> i substituïu tot el contingut per:</p>
 
@@ -2456,12 +2444,14 @@ export class AppComponent {
   &lt;section class=&quot;llista-elements&quot;&gt;
     &lt;app-targeta-element&gt;&lt;/app-targeta-element&gt;
   &lt;/section&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+
+&lt;router-outlet /&gt;</code></pre>
   </div>
 </div>
 
 
-    <p><strong>Selector:</strong> L'etiqueta <code>&lt;app-targeta-element&gt;</code> és el <strong>selector</strong> definit al decorador del component. Angular substitueix aquesta etiqueta pel contingut de la plantilla del component.</p>
+    <p><strong>Selector:</strong> L'etiqueta del component és el <strong>selector</strong> definit al decorador. Adapteu el nom a la temàtica de la vostra aplicació (per exemple, <code>app-targeta-producte</code>).</p>
 
     <p><strong>Pas 3:</strong> Afegiu estils bàsics a <code>src/app/app.component.scss</code>:</p>
 
@@ -2562,7 +2552,7 @@ h1 {
 </div>
 
 
-    <p>Espereu el missatge: <code>✔ Compiled successfully.</code></p>
+    <p>Espereu el missatge: <code>Application bundle generation complete.</code></p>
 
     <p><strong>Pas 2:</strong> Obriu el navegador a <code>http://localhost:4200</code></p>
 
@@ -2603,7 +2593,7 @@ h1 {
 
     <p>Els atributs <code>_nghost</code> i <code>_ngcontent</code> són afegits automàticament per Angular per implementar l'encapsulació d'estils.</p>
 
-    <p><strong>Pas 4:</strong> Proveu el hot reload: canvieu el text de <code>titol</code> a <code>targeta-element.component.ts</code>:</p>
+    <p><strong>Pas 4:</strong> Proveu l'actualització automàtica: canvieu el text de <code>titol</code> a <code>targeta-element.component.ts</code>:</p>
 
     
     <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
@@ -2626,12 +2616,12 @@ h1 {
 </div>
 
 
-    <p>Deseu (Ctrl+S) i verifiqueu que el canvi es reflecteix automàticament al navegador sense recarregar.</p>
+    <p>Deseu (Ctrl+S): el servidor recompila i el navegador mostra el text nou sense que hàgiu de prémer F5. Com que és un canvi de TypeScript, Angular recarrega l'aplicació; si el canvi fos a la plantilla o als estils, l'aplicaria sense recarregar (HMR).</p>
 
     <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> El component funciona correctament quan es visualitza al navegador amb els estils aplicats i les dades interpolades. El hot reload permet veure canvis instantàniament.
+    <strong>Clau:</strong> El component funciona correctament quan es visualitza al navegador amb els estils aplicats i les dades interpolades. L'actualització automàtica del servidor permet veure els canvis a l'instant.
 </div>
 
 
@@ -2680,7 +2670,6 @@ h1 {
 
 @Component({
   selector: &#39;app-targeta-element-complet&#39;,
-  standalone: true,
   templateUrl: &#39;./targeta-element-complet.component.html&#39;,
   styleUrl: &#39;./targeta-element-complet.component.scss&#39;
 })
@@ -2689,7 +2678,7 @@ export class TargetaElementCompletComponent {
   descripcio = &#39;Microscopi d\&#39;alta resolució per a investigació científica avançada. Capacitat d\&#39;ampliació fins a 100.000x.&#39;;
   categoria = &#39;Equip de laboratori&#39;;
   preu = 45000;
-  imatge = &#39;https://via.placeholder.com/300x200&#39;;
+  imatge = &#39;https://placehold.co/300x200&#39;;
 
   veureDetalls(): void {
     console.log(`Veient detalls de: ${this.titol}`);
@@ -2721,12 +2710,12 @@ export class TargetaElementCompletComponent {
   &lt;img [src]=&quot;imatge&quot; [alt]=&quot;titol&quot; class=&quot;targeta-completa__imatge&quot;&gt;
 
   &lt;div class=&quot;targeta-completa__contingut&quot;&gt;
-    &lt;span class=&quot;targeta-completa__categoria&quot;&gt;&lt;/span&gt;
-    &lt;h3 class=&quot;targeta-completa__titol&quot;&gt;&lt;/h3&gt;
-    &lt;p class=&quot;targeta-completa__descripcio&quot;&gt;&lt;/p&gt;
+    &lt;span class=&quot;targeta-completa__categoria&quot;&gt;{{ categoria }}&lt;/span&gt;
+    &lt;h3 class=&quot;targeta-completa__titol&quot;&gt;{{ titol }}&lt;/h3&gt;
+    &lt;p class=&quot;targeta-completa__descripcio&quot;&gt;{{ descripcio }}&lt;/p&gt;
 
     &lt;div class=&quot;targeta-completa__peu&quot;&gt;
-      &lt;span class=&quot;targeta-completa__preu&quot;&gt;€&lt;/span&gt;
+      &lt;span class=&quot;targeta-completa__preu&quot;&gt;{{ preu }}€&lt;/span&gt;
       &lt;button class=&quot;targeta-completa__boto&quot; (click)=&quot;veureDetalls()&quot;&gt;
         Veure detalls
       &lt;/button&gt;
@@ -2841,7 +2830,7 @@ export class TargetaElementCompletComponent {
     <ul>
       <li><strong>Property binding:</strong> <code>[src]</code>, <code>[alt]</code></li>
       <li><strong>Event binding:</strong> <code>(click)</code></li>
-      <li><strong>Interpolació:</strong> <code></code>, <code></code></li>
+      <li><strong>Interpolació:</strong> <code>{{ titol }}</code>, <code>{{ preu }}</code></li>
       <li><strong>Estils avançats</strong> amb hover i transicions</li>
     </ul>
   
@@ -2952,7 +2941,7 @@ export class TargetaElementCompletComponent {
     </div>
   </div>
   <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> consultor tècnic Angular. <strong>Context:</strong> he creat un component nou però obtenint l'error "NullInjectorError: No provider for TargetaElementComponent". <strong>Tasca:</strong> explica pas a pas com resoldre aquest error, incloent: verificació de la importació al component pare, comprovació de l'array imports, verificació del selector a la plantilla. Proporciona exemple de codi correcte per a un component standalone. <strong>Format:</strong> llista numerada amb 5 passos, cadascun amb explicació i exemple de codi.</div>
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> consultor tècnic Angular. <strong>Context:</strong> he creat un component nou però obtinc l'error NG8001: 'app-targeta-element' is not a known element. <strong>Tasca:</strong> explica pas a pas com resoldre aquest error, incloent: verificació de la importació al component pare, comprovació de l'array imports, verificació del selector a la plantilla. Proporciona exemple de codi correcte per a un component standalone. <strong>Format:</strong> llista numerada amb 5 passos, cadascun amb explicació i exemple de codi.</div>
   </div>
 </div>
 
@@ -2969,7 +2958,7 @@ export class TargetaElementCompletComponent {
     </div>
   </div>
   <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> arquitecte Angular sènior. <strong>Context:</strong> tinc un catàleg amb 500 elements mostrats amb components, i l'aplicació va lenta. <strong>Tasca:</strong> proposa 5 estratègies d'optimització específiques per a components Angular: lazy loading, OnPush change detection, virtual scrolling, trackBy a *ngFor, i memoization. Per cada estratègia: explica el problema que resol, proporciona exemple de codi, indica quan usar-la i quan NO usar-la. <strong>Format:</strong> 5 seccions amb subseccions Problema/Solució/Codi/Quan usar.</div>
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> arquitecte Angular sènior. <strong>Context:</strong> tinc un catàleg amb 500 elements mostrats amb components, i l'aplicació va lenta. <strong>Tasca:</strong> proposa 5 estratègies d'optimització específiques per a components Angular: lazy loading, OnPush change detection, virtual scrolling, track a @for, i memoization. Per cada estratègia: explica el problema que resol, proporciona exemple de codi, indica quan usar-la i quan NO usar-la. <strong>Format:</strong> 5 seccions amb subseccions Problema/Solució/Codi/Quan usar.</div>
   </div>
 </div>
 
@@ -3115,10 +3104,10 @@ export class TargetaElementCompletComponent {
 
     <h4>Connexions amb altres lectures</h4>
     <ul>
-      <li><strong>Lectura 2.1.2:</strong> Aprendre <code>@Input</code> per passar dades als components</li>
-      <li><strong>Lectura 2.1.3:</strong> Aprendre <code>@Output</code> per rebre esdeveniments dels components</li>
-      <li><strong>Lectura 2.2.1:</strong> Utilitzar <code>*ngFor</code> per mostrar múltiples components</li>
-      <li><strong>Lectura 2.2.2:</strong> Aplicar <code>*ngIf</code> per mostrar components condicionalment</li>
+      <li><strong>Lectura 2.1.2:</strong> Interpolació i vinculació de propietats per mostrar dades del component a la plantilla</li>
+      <li><strong>Lectura 2.1.3:</strong> Vinculació d'esdeveniments i comunicació entre components amb <code>@Input</code> i <code>@Output</code></li>
+      <li><strong>Lectura 2.2.1:</strong> Utilitzar <code>@for (...; track ...)</code> per mostrar múltiples components</li>
+      <li><strong>Lectura 2.2.2:</strong> Aplicar <code>@if/@else</code> per mostrar components condicionalment</li>
     </ul>
 
     <h4>Aplicació al projecte</h4>
@@ -3216,72 +3205,6 @@ A la plantilla HTML: <code>&lt;h1&gt;{{ titol }}&lt;/h1&gt;</code>
 <div class="section" id="Unitat2_Bloc1_Seccio2">
   <h2 id="Unitat2_Bloc1_Seccio2">2. Interpolació i vinculació de propietats</h2>
 
-  <!-- MULTIMÈDIA -->
-  <!--
-  ════════════════════════════════════════════════════════════════
-  Component: Enllaços multimèdia YouTube
-  ════════════════════════════════════════════════════════════════
-
-  Paràmetres:
-    - unitat: número de la unitat (1-4)
-    - bloc: número del bloc (1-4)
-    - seccio: número de la secció (1-3)
-
-  Exemple d'ús:
-    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
-
-  El component busca automàticament les URLs corresponents a
-  site.data.multimedia i mostra els botons de vídeo i àudio.
-  ════════════════════════════════════════════════════════════════
--->
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-<div class="multimedia-resources">
-  <div class="multimedia-header">
-    <i class="bi bi-play-circle-fill"></i>
-    <span>Contingut multimèdia d'aquesta lectura</span>
-  </div>
-
-  <div class="multimedia-buttons">
-    
-    <a href="https://www.youtube.com/watch?v=FNzEl9TIVZc" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 2.1.2 · Interpolació i vinculació de propietats">
-      <i class="bi bi-youtube"></i>
-      <span>Veure vídeo</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-
-    
-    <a href="https://www.youtube.com/watch?v=jmxiY13HfKM" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 2.1.2 · Interpolació i vinculació de propietats">
-      <i class="bi bi-mic-fill"></i>
-      <span>Escoltar àudio</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-  </div>
-
-  
-  
-</div>
-  
-
-
-
-
   
   <!-- Component: Objectius del bloc/unitat -->
 
@@ -3332,7 +3255,7 @@ Comprendre les diferències entre dades estàtiques i dinàmiques a la interfíc
     <p>Abans de començar, necessiteu:</p>
     <ul>
       <li><strong>Lectura 2.1.1</strong> — Component <code>targeta-element</code> creat i funcional</li>
-      <li><strong>Projecte operatiu:</strong> <code>cataleg-elements</code> amb servidor executant-se</li>
+      <li><strong>Projecte operatiu:</strong> <code>ioc-angular-[nom-app]-[nom-alumne]</code> amb servidor executant-se</li>
       <li><strong>VS Code obert:</strong> Terminal integrada disponible</li>
     </ul>
 
@@ -3354,7 +3277,7 @@ Comprendre les diferències entre dades estàtiques i dinàmiques a la interfíc
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">cd ~/workspace/cataleg-elements
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">cd ~/workspace/ioc-angular-[nom-app]-[nom-alumne]
 ng serve</code></pre>
   </div>
 </div>
@@ -3535,8 +3458,8 @@ interface Element {
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- targeta-element.component.html --&gt;
 &lt;article class=&quot;targeta&quot;&gt;
-  &lt;h2&gt;&lt;/h2&gt;
-  &lt;p&gt;&lt;/p&gt;
+  &lt;h2&gt;{{ element.titol }}&lt;/h2&gt;
+  &lt;p&gt;{{ element.descripcio }}&lt;/p&gt;
   &lt;img [src]=&quot;element.imatge&quot; [alt]=&quot;element.titol&quot;&gt;
 &lt;/article&gt;</code></pre>
   </div>
@@ -3560,10 +3483,9 @@ interface Element {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- app.component.html --&gt;
-&lt;app-targeta-element
-  *ngFor=&quot;let element of elements&quot;
-  [element]=&quot;element&quot;&gt;
-&lt;/app-targeta-element&gt;</code></pre>
+@for (element of elements; track element.id) {
+  &lt;app-targeta-element [element]=&quot;element&quot;&gt;&lt;/app-targeta-element&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -3572,7 +3494,7 @@ interface Element {
 
     <ul>
       <li><i class="bi bi-check-circle" aria-hidden="true"></i> <strong>Codi declaratiu:</strong> 10 línies de plantilla vs 300 de manipulació DOM. Angular gestiona automàticament les actualitzacions.</li>
-      <li><i class="bi bi-check-circle" aria-hidden="true"></i> <strong>Sincronització automàtica:</strong> Canvieu <code>element.titol</code>, Angular actualitza el DOM immediatament. Zero codi de sincronització manual.</li>
+      <li><i class="bi bi-check-circle" aria-hidden="true"></i> <strong>Sincronització automàtica:</strong> Canvieu <code>element.titol</code> dins d'un gestor d'esdeveniment de la plantilla (o en un signal) i Angular actualitza el DOM. Zero codi de sincronització manual.</li>
       <li><i class="bi bi-check-circle" aria-hidden="true"></i> <strong>Desacoplament:</strong> La plantilla no coneix IDs, el TypeScript no coneix el DOM. Podeu canviar HTML sense tocar TypeScript i viceversa.</li>
       <li><i class="bi bi-check-circle" aria-hidden="true"></i> <strong>Rendiment optimitzat:</strong> Angular usa detecció de canvis eficient amb change detection. Només actualitza parts del DOM que han canviat.</li>
       <li><i class="bi bi-check-circle" aria-hidden="true"></i> <strong>Testing senzill:</strong> Proveu la lògica del component sense DOM. Angular proporciona TestBed per tests unitaris ràpids.</li>
@@ -4586,7 +4508,6 @@ processant = false;</code></pre>
 
 @Component({
   selector: &#39;app-targeta-element&#39;,
-  standalone: true,
   templateUrl: &#39;./targeta-element.component.html&#39;,
   styleUrl: &#39;./targeta-element.component.scss&#39;
 })
@@ -4594,7 +4515,7 @@ export class TargetaElementComponent {
   element = {
     nom: &#39;Microscopi Electrònic&#39;,
     descripcio: &#39;Microscopi d\&#39;alta resolució per a investigació científica.&#39;,
-    imatge: &#39;https://via.placeholder.com/300x200&#39;,
+    imatge: &#39;https://placehold.co/300x200&#39;,
     preu: 45000,
     disponible: true,
     enllac: &#39;/element/microscopi-electronic&#39;
@@ -4637,7 +4558,7 @@ export class TargetaElementComponent {
 
     &lt;div class=&quot;targeta__peu&quot;&gt;
       &lt;span class=&quot;targeta__preu&quot;&gt;
-        € (IVA inclòs)
+        {{ preuAmbIVA | number:&#39;1.2-2&#39; }}€ (IVA inclòs)
       &lt;/span&gt;
 
       &lt;a [href]=&quot;element.enllac&quot; [title]=&quot;&#39;Veure &#39; + element.nom&quot;&gt;
@@ -5007,11 +4928,10 @@ descompte = 0.15;</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component } from &#39;@angular/core&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, signal } from &#39;@angular/core&#39;;
 
 @Component({
   selector: &#39;app-targeta-dinamica&#39;,
-  standalone: true,
   templateUrl: &#39;./targeta-dinamica.component.html&#39;,
   styleUrl: &#39;./targeta-dinamica.component.scss&#39;
 })
@@ -5023,12 +4943,13 @@ export class TargetaDinamicaComponent {
     categoria: &#39;Equipament de laboratori&#39;,
     preu: 45000,
     stock: 3,
-    imatge: &#39;https://via.placeholder.com/400x300&#39;,
+    imatge: &#39;https://placehold.co/400x300&#39;,
     destacat: true,
     nou: false
   };
 
-  processant = false;
+  // Estat que canvia des d&#39;un temporitzador: ha de ser un signal (vegeu la nota més avall)
+  processant = signal(false);
 
   get disponible(): boolean {
     return this.element.stock &gt; 0;
@@ -5052,10 +4973,10 @@ export class TargetaDinamicaComponent {
   }
 
   afegirAlCarret(): void {
-    this.processant = true;
+    this.processant.set(true);
     console.log(`Afegint ${this.element.nom} al carret...`);
     setTimeout(() =&gt; {
-      this.processant = false;
+      this.processant.set(false);
       console.log(&#39;Afegit correctament!&#39;);
     }, 2000);
   }
@@ -5087,11 +5008,15 @@ export class TargetaDinamicaComponent {
          [class.exhaurit]=&quot;!disponible&quot;&gt;
 
   &lt;!-- Etiquetes --&gt;
-  &lt;div class=&quot;targeta__etiquetes&quot; *ngIf=&quot;etiquetes.length &gt; 0&quot;&gt;
-    &lt;span *ngFor=&quot;let etiqueta of etiquetes&quot; class=&quot;etiqueta&quot;&gt;
-      
+@if (etiquetes.length &gt; 0) {
+  &lt;div class=&quot;targeta__etiquetes&quot;&gt;
+@for (etiqueta of etiquetes; track etiqueta) {
+    &lt;span class=&quot;etiqueta&quot;&gt;
+      {{ etiqueta }}
     &lt;/span&gt;
+}
   &lt;/div&gt;
+}
 
   &lt;!-- Imatge --&gt;
   &lt;img [src]=&quot;element.imatge&quot;
@@ -5112,14 +5037,14 @@ export class TargetaDinamicaComponent {
         &lt;span class=&quot;targeta__preu&quot;&gt;{{ preuAmbIVA | number:&#39;1.2-2&#39; }}€&lt;/span&gt;
         &lt;span class=&quot;targeta__stock&quot;
               [class.pocs]=&quot;element.stock &lt; 5 &amp;&amp; element.stock &gt; 0&quot;&gt;
-          
+          {{ missatgeStock }}
         &lt;/span&gt;
       &lt;/div&gt;
 
       &lt;button class=&quot;targeta__boto&quot;
-              [disabled]=&quot;!disponible || processant&quot;
+              [disabled]=&quot;!disponible || processant()&quot;
               (click)=&quot;afegirAlCarret()&quot;&gt;
-        {{ processant ? &#39;Processant...&#39; : &#39;Afegir al carret&#39; }}
+        {{ processant() ? &#39;Processant...&#39; : &#39;Afegir al carret&#39; }}
       &lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -5133,10 +5058,17 @@ export class TargetaDinamicaComponent {
       <li>Interpolació per text: <code>{{ element.nom }}</code></li>
       <li>Property binding per atributs: <code>[src]</code>, <code>[alt]</code>, <code>[disabled]</code></li>
       <li>Classes condicionals: <code>[class.destacat]</code>, <code>[class.exhaurit]</code></li>
-      <li>Operador ternari: <code>{{ processant ? '...' : '...' }}</code></li>
+      <li>Operador ternari: <code>{{ processant() ? '...' : '...' }}</code></li>
       <li>Getters per lògica: <code>disponible</code>, <code>preuAmbIVA</code>, <code>missatgeStock</code></li>
       <li>Event binding: <code>(click)="afegirAlCarret()"</code></li>
     </ul>
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <strong>Per què <code>processant</code> és un <code>signal</code>?</strong> Els projectes nous d'Angular 22 funcionen sense <code>zone.js</code>: Angular refresca la vista quan hi ha un esdeveniment de plantilla (un clic) o quan canvia un signal que la plantilla llegeix. Un canvi fet dins d'un <code>setTimeout</code> (o d'una resposta HTTP) a una propietat normal <em>no</em> es veuria. Per això aquest estat es declara amb <code>signal(false)</code>, es modifica amb <code>.set()</code> i es llegeix a la plantilla amb parèntesis: <code>processant()</code>. La resta de propietats, que només canvien dins de gestors d'esdeveniments, poden continuar sent propietats normals. Els signals s'expliquen a fons a la Unitat 3.
+    
+</div>
+
   
   </div>
 </div>
@@ -5374,9 +5306,9 @@ export class TargetaDinamicaComponent {
 
     <h4>Connexions amb altres lectures</h4>
     <ul>
-      <li><strong>Lectura 2.1.3:</strong> Aprendre <code>@Input</code> per passar dades als components</li>
-      <li><strong>Lectura 2.2.1:</strong> Usar <code>*ngFor</code> per vincular llistes d'elements</li>
-      <li><strong>Lectura 2.2.2:</strong> Aplicar <code>*ngIf</code> per mostrar contingut condicional</li>
+      <li><strong>Lectura 2.1.3:</strong> Vinculació d'esdeveniments i comunicació entre components amb <code>@Input</code> i <code>@Output</code></li>
+      <li><strong>Lectura 2.2.1:</strong> Usar <code>@for</code> per vincular llistes d'elements</li>
+      <li><strong>Lectura 2.2.2:</strong> Aplicar <code>@if</code> per mostrar contingut condicional</li>
       <li><strong>Lectura 2.3.1:</strong> Vinculació bidireccional amb <code>[(ngModel)]</code></li>
     </ul>
 
@@ -5482,72 +5414,6 @@ export class TargetaDinamicaComponent {
 <div class="section" id="Unitat2_Bloc1_Seccio3">
   <h2 id="Unitat2_Bloc1_Seccio3">3. Vinculació d'esdeveniments i comunicació</h2>
 
-  <!-- MULTIMÈDIA -->
-  <!--
-  ════════════════════════════════════════════════════════════════
-  Component: Enllaços multimèdia YouTube
-  ════════════════════════════════════════════════════════════════
-
-  Paràmetres:
-    - unitat: número de la unitat (1-4)
-    - bloc: número del bloc (1-4)
-    - seccio: número de la secció (1-3)
-
-  Exemple d'ús:
-    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
-
-  El component busca automàticament les URLs corresponents a
-  site.data.multimedia i mostra els botons de vídeo i àudio.
-  ════════════════════════════════════════════════════════════════
--->
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-<div class="multimedia-resources">
-  <div class="multimedia-header">
-    <i class="bi bi-play-circle-fill"></i>
-    <span>Contingut multimèdia d'aquesta lectura</span>
-  </div>
-
-  <div class="multimedia-buttons">
-    
-    <a href="https://www.youtube.com/watch?v=pC-zvT8qsBI" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 2.1.3 · Vinculació d'esdeveniments i comunicació">
-      <i class="bi bi-youtube"></i>
-      <span>Veure vídeo</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-
-    
-    <a href="https://www.youtube.com/watch?v=XbEisNmnR4M" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 2.1.3 · Vinculació d'esdeveniments i comunicació">
-      <i class="bi bi-mic-fill"></i>
-      <span>Escoltar àudio</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-  </div>
-
-  
-  
-</div>
-  
-
-
-
-
   
   <!-- Component: Objectius del bloc/unitat -->
 
@@ -5603,7 +5469,7 @@ Comprendre què són els esdeveniments d'usuari i per què són essencials per a
 
     <p>A més, necessiteu:</p>
     <ul>
-      <li><strong>Projecte funcional:</strong> <code>~/workspace/cataleg-elements</code> (macOS/Linux) o <code>%USERPROFILE%\workspace\cataleg-elements</code> (Windows) amb el component <code>TargetaElementComponent</code> funcionant.</li>
+      <li><strong>Projecte funcional:</strong> <code>~/workspace/ioc-angular-[nom-app]-[nom-alumne]</code> (macOS/Linux) o <code>%USERPROFILE%\workspace\ioc-angular-[nom-app]-[nom-alumne]</code> (Windows) amb el component <code>TargetaElementComponent</code> funcionant.</li>
       <li><strong>Servidor de desenvolupament:</strong> capacitat d'executar <code>ng serve</code> i accedir a l'aplicació al navegador.</li>
       <li><strong>VS Code operatiu:</strong> amb extensions Angular Language Service i ESLint instal·lades.</li>
       <li><strong>Coneixements bàsics de TypeScript:</strong> funcions, paràmetres i tipus bàsics.</li>
@@ -5627,7 +5493,7 @@ Comprendre què són els esdeveniments d'usuari i per què són essencials per a
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">cd ~/workspace/cataleg-elements
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">cd ~/workspace/ioc-angular-[nom-app]-[nom-alumne]
 ng serve
 # Ha de compilar sense errors i obrir localhost:4200</code></pre>
   </div>
@@ -5778,17 +5644,21 @@ inputCerca.addEventListener(&#39;input&#39;, function(event) {
 &lt;p&gt;Elements al catàleg: {{ comptadorElements }}&lt;/p&gt;
 
 &lt;!-- Missatge de confirmació (actualització automàtica!) --&gt;
-&lt;p *ngIf=&quot;missatgeVisible&quot; class=&quot;missatge-confirmacio&quot;&gt;
+@if (missatgeVisible()) {
+&lt;p class=&quot;missatge-confirmacio&quot;&gt;
   ✓ {{ ultimElementAfegit }} afegit al catàleg
 &lt;/p&gt;
+}
 
 &lt;!-- Targetes amb botons --&gt;
-&lt;div *ngFor=&quot;let element of elementsFiltrats&quot; class=&quot;targeta-element&quot;&gt;
+@for (element of elementsFiltrats; track element.id) {
+&lt;div class=&quot;targeta-element&quot;&gt;
   &lt;h3&gt;{{ element.nom }}&lt;/h3&gt;
   &lt;button (click)=&quot;onAfegirElement(element)&quot;&gt;
     Afegir al catàleg
   &lt;/button&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -5814,7 +5684,7 @@ inputCerca.addEventListener(&#39;input&#39;, function(event) {
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">export class CatalegComponent {
   // Estat centralitzat
   comptadorElements = 0;
-  missatgeVisible = false;
+  missatgeVisible = signal(false);   // canvia dins d&#39;un setTimeout: signal
   ultimElementAfegit = &#39;&#39;;
   elements: Element[] = [...];
   elementsFiltrats: Element[] = this.elements;
@@ -5831,10 +5701,10 @@ inputCerca.addEventListener(&#39;input&#39;, function(event) {
   onAfegirElement(element: Element): void {
     this.comptadorElements++;
     this.ultimElementAfegit = element.nom;
-    this.missatgeVisible = true;
+    this.missatgeVisible.set(true);
 
     setTimeout(() =&gt; {
-      this.missatgeVisible = false;
+      this.missatgeVisible.set(false);   // el canvi del signal refresca la vista
     }, 2000);
   }
 }
@@ -5848,9 +5718,9 @@ inputCerca.addEventListener(&#39;input&#39;, function(event) {
 
     <ul>
       <li><i class="bi bi-check-circle" aria-hidden="true"></i> <strong>Sintaxi declarativa:</strong> Els esdeveniments es vinculen directament a la plantilla amb <code>(event)</code>, intuïtiu i fàcil de mantenir.</li>
-      <li><i class="bi bi-check-circle" aria-hidden="true"></i> <strong>Actualitzacions automàtiques:</strong> El Change Detection actualitza el DOM quan canvien propietats. 0 manipulacions manuals.</li>
+      <li><i class="bi bi-check-circle" aria-hidden="true"></i> <strong>Actualitzacions automàtiques:</strong> Després de cada esdeveniment gestionat a la plantilla, la detecció de canvis d'Angular torna a avaluar-la i actualitza el DOM. 0 manipulacions manuals.</li>
       <li><i class="bi bi-check-circle" aria-hidden="true"></i> <strong>Separació clara:</strong> Lògica al component TypeScript, presentació a la plantilla HTML.</li>
-      <li><i class="bi bi-check-circle" aria-hidden="true"></i> <strong>100% testable:</strong> Els mètodes són funcions TypeScript pures testables amb Jasmine/Jest.</li>
+      <li><i class="bi bi-check-circle" aria-hidden="true"></i> <strong>100% testable:</strong> Els mètodes són funcions TypeScript pures testables amb Vitest.</li>
       <li><i class="bi bi-check-circle" aria-hidden="true"></i> <strong>Menys codi:</strong> Reducció del 60% de línies (35-40 → 15 línies).</li>
       <li><i class="bi bi-check-circle" aria-hidden="true"></i> <strong>Estat centralitzat:</strong> Totes les propietats al component, una única font de veritat.</li>
     </ul>
@@ -6422,7 +6292,7 @@ Component:    onClic(): void {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;form (submit)=&quot;onCercarElements($event)&quot;&gt;
-  &lt;input type=&quot;text&quot; [(ngModel)]=&quot;cerca&quot;&gt;
+  &lt;input type=&quot;text&quot; name=&quot;cerca&quot; (input)=&quot;onCanviCerca($event)&quot;&gt;
   &lt;button type=&quot;submit&quot;&gt;Cercar&lt;/button&gt;
 &lt;/form&gt;</code></pre>
   </div>
@@ -6445,13 +6315,20 @@ Component:    onClic(): void {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">onCercarElements(event: Event): void {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">cerca = &#39;&#39;;
+
+onCanviCerca(event: Event): void {
+  this.cerca = (event.target as HTMLInputElement).value;
+}
+
+onCercarElements(event: Event): void {
   event.preventDefault(); // ❗ Evita recarregar pàgina
-  // Processar cerca
+  console.log(&#39;Cercar:&#39;, this.cerca);
 }</code></pre>
   </div>
 </div>
 
+    <p>La vinculació bidireccional <code>[(ngModel)]</code>, que estalvia el gestor <code>(input)</code>, s'estudia a la Lliçó 2.3.</p>
 
     <h4>Esdeveniments de teclat</h4>
 
@@ -6769,10 +6646,12 @@ onCanviNom(event: Event): void {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;button *ngFor=&quot;let element of elements&quot;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@for (element of elements; track element.id) {
+&lt;button
         (click)=&quot;onEliminar(element.id)&quot;&gt;
   Eliminar
-&lt;/button&gt;</code></pre>
+&lt;/button&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -7103,7 +6982,9 @@ console.log(event.target.value); // Property &#39;value&#39; does not exist</cod
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;input type=&quot;email&quot;
        (input)=&quot;onValidarEmail($event)&quot;
        (blur)=&quot;onComprovarEmail($event)&quot;&gt;
-&lt;p *ngIf=&quot;emailInvalid&quot; class=&quot;error&quot;&gt;Email invàlid&lt;/p&gt;</code></pre>
+@if (emailInvalid) {
+&lt;p class=&quot;error&quot;&gt;Email invàlid&lt;/p&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -7196,7 +7077,7 @@ onComprovarEmail(event: FocusEvent): void {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, Input } from &#39;@angular/core&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, Input, signal } from &#39;@angular/core&#39;;
 
 interface Element {
   id: number;
@@ -7207,7 +7088,7 @@ interface Element {
 @Component({
   selector: &#39;app-targeta-element&#39;,
   templateUrl: &#39;./targeta-element.component.html&#39;,
-  styleUrls: [&#39;./targeta-element.component.scss&#39;]
+  styleUrl: &#39;./targeta-element.component.scss&#39;
 })
 export class TargetaElementComponent {
   @Input() element!: Element;
@@ -7215,7 +7096,7 @@ export class TargetaElementComponent {
   destacat = false;
   comentari = &#39;&#39;;
   readonly MAX_CARACTERES = 200;
-  missatgeDesat = false;
+  missatgeDesat = signal(false);   // s&#39;amaga amb un setTimeout: signal
 
   get caracteresRestants(): number {
     return this.MAX_CARACTERES - this.comentari.length;
@@ -7239,17 +7120,17 @@ export class TargetaElementComponent {
   onDesarComentari(): void {
     if (this.comentariValid) {
       console.log(&#39;Comentari desat:&#39;, this.comentari);
-      this.missatgeDesat = true;
+      this.missatgeDesat.set(true);
 
       setTimeout(() =&gt; {
-        this.missatgeDesat = false;
+        this.missatgeDesat.set(false);
       }, 2000);
     }
   }
 
   onNetejarComentari(): void {
     this.comentari = &#39;&#39;;
-    this.missatgeDesat = false;
+    this.missatgeDesat.set(false);
   }
 
   onTeclaTextarea(event: KeyboardEvent): void {
@@ -7324,9 +7205,11 @@ export class TargetaElementComponent {
     &lt;/div&gt;
 
     &lt;!-- Missatge confirmació --&gt;
-    &lt;p *ngIf=&quot;missatgeDesat&quot; class=&quot;missatge-exit&quot;&gt;
+@if (missatgeDesat()) {
+    &lt;p class=&quot;missatge-exit&quot;&gt;
       ✅ Comentari desat correctament
     &lt;/p&gt;
+}
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
   </div>
@@ -7440,11 +7323,13 @@ export class TargetaElementComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div *ngFor=&quot;let element of elements&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@for (element of elements; track element.id) {
+&lt;div&gt;
   &lt;button (click)=&quot;onVeureDetalls(element.id, element.nom)&quot;&gt;
     Veure {{ element.nom }}
   &lt;/button&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -7671,7 +7556,448 @@ onEliminar(event: MouseEvent, id: number): void { }</code></pre>
   <div class="component-header section-point-header" role="heading" aria-level="4">
     <i class="bi bi-journal-text" aria-hidden="true"></i>
     <div class="section-point-meta">
-      <div class="section-point-title">3.11. Resum del flux complet</div>
+      <div class="section-point-title">3.11. Comunicació entre components: @Input i @Output</div>
+      
+    </div>
+  </div>
+  <div class="section-point-body component-content">
+    
+    <h4>3.11.1. Objectiu</h4>
+    <p>Comunicar components: passar dades del component pare als fills amb <code>@Input</code> i avisar el pare des d'un fill amb <code>@Output</code> i <code>EventEmitter</code>.</p>
+
+    <h4>3.11.2. Per què cal comunicar components</h4>
+
+    <p>Fins ara la targeta tenia les dades escrites dins de la seva pròpia classe. Això serveix per a una targeta, però un catàleg en té desenes: les dades viuen al component pare (el catàleg) i cada targeta n'ha de rebre una. I quan l'usuari fa clic en una targeta, qui ho ha de saber és el pare, que és qui pot mostrar el detall o actualitzar l'estat general. Angular resol els dos sentits amb dos decoradors, <code>@Input</code> i <code>@Output</code>:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Sentit</th>
+          <th>Decorador</th>
+          <th>Al fill</th>
+          <th>Al pare (plantilla)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Pare → fill (dades)</td>
+          <td><code>@Input()</code></td>
+          <td><code>@Input({ required: true }) element!: Element;</code></td>
+          <td><code>&lt;app-targeta-element [element]="el" /&gt;</code></td>
+        </tr>
+        <tr>
+          <td>Fill → pare (esdeveniments)</td>
+          <td><code>@Output()</code></td>
+          <td><code>@Output() seleccionat = new EventEmitter&lt;Element&gt;();</code></td>
+          <td><code>&lt;app-targeta-element (seleccionat)="onSeleccionat($event)" /&gt;</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Fixeu-vos en la simetria amb el que ja coneixeu: els claudàtors <code>[ ]</code> són vinculació de propietats (secció 2) i els parèntesis <code>( )</code> són vinculació d'esdeveniments (aquesta secció). La diferència és que ara la propietat i l'esdeveniment els defineix un component vostre, no el navegador.</p>
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <strong>API clàssica i API moderna.</strong> <code>@Input</code>/<code>@Output</code> amb <code>EventEmitter</code> continuen plenament suportats a Angular 22 i són la manera més directa d'entendre el patró pare/fill. Per a projectes nous, Angular recomana també les funcions <code>input()</code> i <code>output()</code>, basades en signals (<code>element = input.required&lt;Element&gt;()</code>, <code>seleccionat = output&lt;Element&gt;()</code>). En aquest mòdul comencem per la sintaxi clàssica; la moderna es presenta com a ampliació a la Unitat 4.
+    
+</div>
+
+
+    <h4>3.11.3. Pare → fill amb @Input</h4>
+
+    <p><strong>Pas 1:</strong> Definiu el model en un fitxer propi, <code>src/app/models/element.model.ts</code>, perquè pare i fill comparteixin el mateix tipus:</p>
+
+    
+    <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">export interface Element {
+  id: number;
+  nom: string;
+  categoria: string;
+  preu: number;
+  disponible: boolean;
+}</code></pre>
+  </div>
+</div>
+
+
+    <p><strong>Pas 2:</strong> A la targeta, substituïu les propietats fixes per una entrada. <code>required: true</code> fa que Angular avisi en temps de compilació si algú usa la targeta sense passar-li l'element; el signe <code>!</code> indica a TypeScript que el valor arribarà abans que la plantilla el necessiti:</p>
+
+    
+    <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, Input } from &#39;@angular/core&#39;;
+import { Element } from &#39;../../models/element.model&#39;;
+
+@Component({
+  imports: [],
+  selector: &#39;app-targeta-element&#39;,
+  styleUrl: &#39;./targeta-element.component.scss&#39;,
+  templateUrl: &#39;./targeta-element.component.html&#39;,
+})
+export class TargetaElementComponent {
+  @Input({ required: true }) element!: Element;
+  @Input() destacada = false;   // entrada opcional amb valor per defecte
+}</code></pre>
+  </div>
+</div>
+
+
+    
+    <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">HTML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;article class=&quot;targeta&quot; [class.destacada]=&quot;destacada&quot;&gt;
+  &lt;h3&gt;{{ element.nom }}&lt;/h3&gt;
+  &lt;p class=&quot;categoria&quot;&gt;{{ element.categoria }}&lt;/p&gt;
+  &lt;p class=&quot;preu&quot;&gt;{{ element.preu }} €&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+  </div>
+</div>
+
+
+    <p><strong>Pas 3:</strong> Al pare, passeu cada element amb vinculació de propietat. El nom entre claudàtors és exactament el de la propietat marcada amb <code>@Input</code>:</p>
+
+    
+    <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">HTML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@for (el of elements; track el.id) {
+  &lt;app-targeta-element [element]=&quot;el&quot; [destacada]=&quot;el.id === 1&quot; /&gt;
+}</code></pre>
+  </div>
+</div>
+
+
+    <p>Si escriviu <code>element="el"</code> sense claudàtors, la targeta rebrà el text literal <code>"el"</code>, no l'objecte: els claudàtors són els que avaluen l'expressió.</p>
+
+    <h4>3.11.4. Fill → pare amb @Output i EventEmitter</h4>
+
+    <p>El fill no ha de saber què farà el pare amb el clic: només l'anuncia. Per això declara un <code>EventEmitter</code> tipat amb la dada que enviarà i el dispara amb <code>emit()</code>:</p>
+
+    
+    <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, EventEmitter, Input, Output } from &#39;@angular/core&#39;;
+import { Element } from &#39;../../models/element.model&#39;;
+
+@Component({
+  imports: [],
+  selector: &#39;app-targeta-element&#39;,
+  styleUrl: &#39;./targeta-element.component.scss&#39;,
+  templateUrl: &#39;./targeta-element.component.html&#39;,
+})
+export class TargetaElementComponent {
+  @Input({ required: true }) element!: Element;
+  @Input() destacada = false;
+  @Output() seleccionat = new EventEmitter&lt;Element&gt;();
+
+  avisaSeleccio(): void {
+    this.seleccionat.emit(this.element);
+  }
+}</code></pre>
+  </div>
+</div>
+
+
+    
+    <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">HTML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;article class=&quot;targeta&quot; [class.destacada]=&quot;destacada&quot;&gt;
+  &lt;h3&gt;{{ element.nom }}&lt;/h3&gt;
+  &lt;p class=&quot;categoria&quot;&gt;{{ element.categoria }}&lt;/p&gt;
+  &lt;p class=&quot;preu&quot;&gt;{{ element.preu }} €&lt;/p&gt;
+  &lt;button type=&quot;button&quot; (click)=&quot;avisaSeleccio()&quot;&gt;Veure detall&lt;/button&gt;
+&lt;/article&gt;</code></pre>
+  </div>
+</div>
+
+
+    <p>Al pare, l'esdeveniment s'escolta amb parèntesis, com un <code>(click)</code>, i <code>$event</code> conté el valor emès (aquí, l'<code>Element</code>):</p>
+
+    
+    <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">HTML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@for (el of elements; track el.id) {
+  &lt;app-targeta-element
+    [element]=&quot;el&quot;
+    [destacada]=&quot;el.id === elementSeleccionat?.id&quot;
+    (seleccionat)=&quot;onSeleccionat($event)&quot; /&gt;
+}</code></pre>
+  </div>
+</div>
+
+
+    <h4>3.11.5. Exemple pràctic: seleccionar un element i mostrar-ne el detall</h4>
+
+    <p>Integrem els dos sentits en el component de catàleg. El pare guarda quin element està seleccionat i mostra un panell de detall; les targetes només reben dades i emeten la selecció:</p>
+
+    
+    <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component } from &#39;@angular/core&#39;;
+import { Element } from &#39;../../models/element.model&#39;;
+import { TargetaElementComponent } from &#39;../targeta-element/targeta-element.component&#39;;
+
+@Component({
+  imports: [TargetaElementComponent],
+  selector: &#39;app-cataleg&#39;,
+  styleUrl: &#39;./cataleg.component.scss&#39;,
+  templateUrl: &#39;./cataleg.component.html&#39;,
+})
+export class CatalegComponent {
+  elements: Element[] = [
+    { id: 1, nom: &#39;Portàtil&#39;, categoria: &#39;electrònica&#39;, preu: 899, disponible: true },
+    { id: 2, nom: &#39;Samarreta&#39;, categoria: &#39;roba&#39;, preu: 19.9, disponible: true },
+    { id: 3, nom: &#39;Ratolí&#39;, categoria: &#39;electrònica&#39;, preu: 24.5, disponible: false },
+  ];
+
+  elementSeleccionat: Element | undefined = undefined;
+
+  onSeleccionat(element: Element): void {
+    this.elementSeleccionat = element;
+  }
+
+  tancaDetall(): void {
+    this.elementSeleccionat = undefined;
+  }
+}</code></pre>
+  </div>
+</div>
+
+
+    
+    <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">HTML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;section class=&quot;llista&quot;&gt;
+  @for (el of elements; track el.id) {
+    &lt;app-targeta-element
+      [element]=&quot;el&quot;
+      [destacada]=&quot;el.id === elementSeleccionat?.id&quot;
+      (seleccionat)=&quot;onSeleccionat($event)&quot; /&gt;
+  }
+&lt;/section&gt;
+
+&lt;aside class=&quot;detall&quot; aria-live=&quot;polite&quot;&gt;
+  @if (elementSeleccionat) {
+    &lt;h2&gt;{{ elementSeleccionat.nom }}&lt;/h2&gt;
+    &lt;p&gt;Categoria: {{ elementSeleccionat.categoria }}&lt;/p&gt;
+    &lt;p&gt;Preu: {{ elementSeleccionat.preu }} €&lt;/p&gt;
+    &lt;p&gt;{{ elementSeleccionat.disponible ? &#39;Disponible&#39; : &#39;Esgotat&#39; }}&lt;/p&gt;
+    &lt;button type=&quot;button&quot; (click)=&quot;tancaDetall()&quot;&gt;Tanca&lt;/button&gt;
+  } @else {
+    &lt;p&gt;Seleccioneu un element per veure&#39;n el detall.&lt;/p&gt;
+  }
+&lt;/aside&gt;</code></pre>
+  </div>
+</div>
+
+
+    <p><strong>Flux complet:</strong></p>
+
+    
+    <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Clic al botó de la targeta
+    ↓
+avisaSeleccio() → this.seleccionat.emit(this.element)
+    ↓
+El pare escolta (seleccionat)=&quot;onSeleccionat($event)&quot;
+    ↓
+elementSeleccionat = element
+    ↓
+Angular actualitza el panell (@if) i la targeta destacada ([destacada])</code></pre>
+  </div>
+</div>
+
+
+    <p><strong>Verificació:</strong> en fer clic a "Veure detall" d'una targeta, el panell lateral mostra les seves dades i la targeta queda destacada; en clicar "Tanca", el panell torna al missatge inicial.</p>
+
+    <h4>3.11.6. Errors habituals</h4>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Error</th>
+          <th>Causa</th>
+          <th>Solució</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>NG8002: Can't bind to 'element' since it isn't a known property</code></td>
+          <td>El component fill no és a <code>imports</code> del pare, o el nom de la propietat no coincideix</td>
+          <td>Afegiu <code>TargetaElementComponent</code> a <code>imports</code> i comproveu el nom de l'<code>@Input</code></td>
+        </tr>
+        <tr>
+          <td><code>NG8008: Required input 'element' must be specified</code></td>
+          <td>S'usa el component sense passar-li l'entrada obligatòria</td>
+          <td>Afegiu <code>[element]="..."</code> a l'etiqueta</td>
+        </tr>
+        <tr>
+          <td>El pare no rep res</td>
+          <td>Falta <code>emit()</code>, o el nom de l'esdeveniment entre parèntesis no coincideix amb l'<code>@Output</code></td>
+          <td>Comproveu que el mètode crida <code>this.seleccionat.emit(...)</code> i que la plantilla del pare usa <code>(seleccionat)</code></td>
+        </tr>
+        <tr>
+          <td><code>$event</code> és <code>undefined</code></td>
+          <td>S'ha cridat <code>emit()</code> sense argument</td>
+          <td>Passeu la dada a <code>emit(this.element)</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <strong>Clau:</strong> Les dades baixen amb <code>@Input</code> i els esdeveniments pugen amb <code>@Output</code>. El fill mai no modifica les dades del pare directament: les rep i avisa.
+</div>
+
+
+    <h4>3.11.7. Resultat esperat</h4>
+    <p>Sabeu passar dades a un component fill, rebre'n esdeveniments tipats i construir un patró llista + panell de detall amb selecció.</p>
+  
+  </div>
+</div>
+
+
+  
+  <!-- Component: Punt destacat dins d'una secció -->
+
+
+<div class="section-point" >
+  <div class="component-header section-point-header" role="heading" aria-level="4">
+    <i class="bi bi-journal-text" aria-hidden="true"></i>
+    <div class="section-point-meta">
+      <div class="section-point-title">3.12. Resum del flux complet</div>
       
     </div>
   </div>
@@ -7721,7 +8047,7 @@ onEliminar(event: MouseEvent, id: number): void { }</code></pre>
    └─&gt; Re-renderitza parts afectades
        Interpolacions {{ }}
        Property bindings [property]
-       Directives *ngIf, *ngFor</code></pre>
+       Directives @if, @for</code></pre>
   </div>
 </div>
 
@@ -7747,9 +8073,11 @@ onEliminar(event: MouseEvent, id: number): void { }</code></pre>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Plantilla --&gt;
 &lt;input (input)=&quot;onCercar($event)&quot;&gt;
 &lt;p&gt;Resultats: {{ resultats.length }}&lt;/p&gt;
-&lt;div *ngFor=&quot;let element of resultats&quot;&gt;
+@for (element of resultats; track element.id) {
+&lt;div&gt;
   {{ element.nom }}
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -7794,9 +8122,9 @@ onCercar(event: Event): void {
     <ul>
       <li><strong>Declaratiu:</strong> La plantilla declara quins esdeveniments capturar</li>
       <li><strong>Automàtic:</strong> Angular gestiona detecció i actualització</li>
-      <li><strong>Reactiu:</strong> Canvis a propietats → actualització immediate</li>
+      <li><strong>Reactiu:</strong> Canvis a propietats → actualització immediata</li>
       <li><strong>Desacoblat:</strong> Lògica separada de presentació</li>
-      <li><strong>Testable:</strong> Mètodes purs testables amb Jasmine</li>
+      <li><strong>Testable:</strong> Mètodes purs testables amb Vitest</li>
     </ul>
 
     
@@ -7821,7 +8149,7 @@ onCercar(event: Event): void {
   <div class="component-header section-point-header" role="heading" aria-level="4">
     <i class="bi bi-journal-text" aria-hidden="true"></i>
     <div class="section-point-meta">
-      <div class="section-point-title">3.12. Mini exemple final consolidat</div>
+      <div class="section-point-title">3.13. Mini exemple final consolidat</div>
       
     </div>
   </div>
@@ -7864,12 +8192,14 @@ onCercar(event: Event): void {
   &lt;/select&gt;
 
   &lt;!-- Targetes --&gt;
-  &lt;div *ngFor=&quot;let element of elementsVisibles&quot; class=&quot;targeta&quot;&gt;
+@for (element of elementsVisibles; track element.id) {
+  &lt;div class=&quot;targeta&quot;&gt;
     &lt;h3&gt;{{ element.nom }}&lt;/h3&gt;
     &lt;button (click)=&quot;onAfegirAFavorits(element)&quot;&gt;
       ⭐ Afegir a favorits
     &lt;/button&gt;
   &lt;/div&gt;
+}
 &lt;/div&gt;</code></pre>
   </div>
 </div>
@@ -7944,7 +8274,7 @@ onCercar(event: Event): void {
   <div class="component-header section-point-header" role="heading" aria-level="4">
     <i class="bi bi-journal-text" aria-hidden="true"></i>
     <div class="section-point-meta">
-      <div class="section-point-title">3.13. Resolució de problemes</div>
+      <div class="section-point-title">3.14. Resolució de problemes</div>
       
     </div>
   </div>
@@ -8014,7 +8344,7 @@ onCercar(event: Event): void {
   <div class="component-header section-point-header" role="heading" aria-level="4">
     <i class="bi bi-journal-text" aria-hidden="true"></i>
     <div class="section-point-meta">
-      <div class="section-point-title">3.14. Prompts d'IA</div>
+      <div class="section-point-title">3.15. Prompts d'IA</div>
       
     </div>
   </div>
@@ -8083,7 +8413,7 @@ onCercar(event: Event): void {
   <div class="component-header section-point-header" role="heading" aria-level="4">
     <i class="bi bi-journal-text" aria-hidden="true"></i>
     <div class="section-point-meta">
-      <div class="section-point-title">3.15. Autoavaluació</div>
+      <div class="section-point-title">3.16. Autoavaluació</div>
       
     </div>
   </div>
@@ -8112,6 +8442,11 @@ onCercar(event: Event): void {
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
     <div class="checklist-text">Comprenc què és l'objecte <code>$event</code> i per què és útil</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé explicar el sentit de cada decorador: <code>@Input</code> baixa dades del pare al fill i <code>@Output</code> puja esdeveniments del fill al pare</div>
   </div>
   
   <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
@@ -8188,6 +8523,11 @@ onCercar(event: Event): void {
     <div class="checklist-text">Entenc el flux complet des de la interacció fins a l'actualització de la interfície</div>
   </div>
   
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé resoldre <code>NG8002</code> (component fill no importat) i <code>NG8008</code> (entrada obligatòria no informada)</div>
+  </div>
+  
   <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
 </div>
 
@@ -8204,7 +8544,7 @@ onCercar(event: Event): void {
   <div class="component-header section-point-header" role="heading" aria-level="4">
     <i class="bi bi-journal-text" aria-hidden="true"></i>
     <div class="section-point-meta">
-      <div class="section-point-title">3.16. Síntesi</div>
+      <div class="section-point-title">3.17. Síntesi</div>
       
     </div>
   </div>
@@ -8232,7 +8572,7 @@ onCercar(event: Event): void {
   <div class="component-header section-point-header" role="heading" aria-level="4">
     <i class="bi bi-journal-text" aria-hidden="true"></i>
     <div class="section-point-meta">
-      <div class="section-point-title">3.17. Repàs de conceptes</div>
+      <div class="section-point-title">3.18. Repàs de conceptes</div>
       
     </div>
   </div>
@@ -8323,7 +8663,7 @@ onCercar(event: Event): void {
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>Change Detection:</strong> Sistema d'Angular que detecta canvis a propietats i actualitza automàticament la plantilla.</p>
+    <p><strong>Change Detection:</strong> Mecanisme d'Angular que torna a avaluar la plantilla i actualitza el DOM quan rep un senyal de canvi: un esdeveniment gestionat a la plantilla, el canvi d'un signal que la plantilla llegeix o una entrada nova. Sense zone.js, un canvi fet des d'un temporitzador o d'una resposta HTTP en una propietat normal no el rep.</p>
   </div>
 </div>
 
@@ -8333,6 +8673,24 @@ onCercar(event: Event): void {
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
     <p><strong>Component reactiu:</strong> Component que respon immediatament a les accions de l'usuari actualitzant el seu estat i visualització.</p>
+  </div>
+</div>
+
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>@Input:</strong> Decorador que marca una propietat del fill com a entrada de dades; el pare la informa amb <code>[propietat]="expressió"</code>. Amb <code>{ required: true }</code> és obligatòria.</p>
+  </div>
+</div>
+
+
+    <!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>@Output i EventEmitter:</strong> Decorador i classe que permeten al fill emetre esdeveniments tipats amb <code>emit(valor)</code>; el pare els escolta amb <code>(esdeveniment)="metode($event)"</code>.</p>
   </div>
 </div>
 
@@ -8359,8 +8717,8 @@ onCercar(event: Event): void {
 {
   "@context": "https://schema.org",
   "@type": "LearningResource",
-  "name": "Bloc 1: Conceptes fonamentals i instal·lació",
-  "description": "Components Angular, interpolació, binding i directives estructurals",
+  "name": "Bloc 1: Components i comunicació bàsica",
+  "description": "Components Angular, interpolació, binding i control de flux",
   "author": {
     "@type": "Organization",
     "name": "Institut Obert de Catalunya"
@@ -8431,7 +8789,7 @@ onCercar(event: Event): void {
                     
                     <div class="nav-link-wrapper">
                         
-                        <a href="/ioc/da2_oa01/unitat-2/bloc-2/" class="nav-button" aria-label="Bloc següent: Data binding i events">Següent →</a>
+                        <a href="/ioc/da2_oa01/unitat-2/bloc-2/" class="nav-button" aria-label="Bloc següent: Control de flux, condicions i pipes">Següent →</a>
                         
                     </div>
                 </div>

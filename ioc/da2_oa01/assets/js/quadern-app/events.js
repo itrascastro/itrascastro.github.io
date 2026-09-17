@@ -330,6 +330,7 @@
 
     _toggleTheme() {
       const isDark = document.body.classList.toggle('dark-theme');
+      document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
       try {
         const st = window.Quadern?.Store?.load?.();
         if (st) {

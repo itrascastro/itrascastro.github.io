@@ -18,21 +18,21 @@
 <meta property="og:locale" content="ca_ES" />
 <meta name="description" content="Quarta unitat del curs - Sistema de rutes, arquitectura escalable i optimització" />
 <meta property="og:description" content="Quarta unitat del curs - Sistema de rutes, arquitectura escalable i optimització" />
-<link rel="canonical" href="http://localhost:4004/ioc/da2_oa01/unitat-4/" />
-<meta property="og:url" content="http://localhost:4004/ioc/da2_oa01/unitat-4/" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/da2_oa01/unitat-4/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/da2_oa01/unitat-4/" />
 <meta property="og:site_name" content="DA2_OA01 - Programació Avançada (Angular)" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Unitat 4: Navegació i arquitectura d’aplicacions (RA4)" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Quarta unitat del curs - Sistema de rutes, arquitectura escalable i optimització","headline":"Unitat 4: Navegació i arquitectura d’aplicacions (RA4)","url":"http://localhost:4004/ioc/da2_oa01/unitat-4/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Quarta unitat del curs - Sistema de rutes, arquitectura escalable i optimització","headline":"Unitat 4: Navegació i arquitectura d’aplicacions (RA4)","url":"https://itrascastro.github.io/ioc/da2_oa01/unitat-4/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/ioc/da2_oa01/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="canonical" href="http://localhost:4004/ioc/da2_oa01/unitat-4/">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/da2_oa01/unitat-4/">
     <!-- Rich editor styles (for embedded notes panel) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
     <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -48,7 +48,7 @@
     <link rel="icon" type="image/x-icon" href="/ioc/da2_oa01/assets/images/favicon.ico">
     
     <!-- RSS Feed -->
-    <link type="application/atom+xml" rel="alternate" href="http://localhost:4004/ioc/da2_oa01/feed.xml" title="DA2_OA01 - Programació Avançada (Angular)" />
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/da2_oa01/feed.xml" title="DA2_OA01 - Programació Avançada (Angular)" />
 
     <!-- Syntax Highlighting (Prism) -->
     <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
@@ -130,7 +130,7 @@
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-2/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 2 - Bloc 2: Data binding i events
+                        Unitat 2 - Bloc 2: Control de flux, condicions i pipes
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-2/bloc-3/" class="nav-dropdown-item ">
@@ -148,11 +148,11 @@
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-3/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 3 - Bloc 2: Gestió d'estat i comunicació entre components
+                        Unitat 3 - Bloc 2: Models de dades i transformació
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-3/bloc-3/" class="nav-dropdown-item ">
-                        Unitat 3 - Bloc 3: Optimització i bones pràctiques
+                        Unitat 3 - Bloc 3: Formularis reactius i validacions
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-3/bloc-4/" class="nav-dropdown-item ">
@@ -166,11 +166,11 @@
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-4/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 4 - Bloc 2: Arquitectura escalable
+                        Unitat 4 - Bloc 2: Arquitectura i patrons
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-4/bloc-3/" class="nav-dropdown-item ">
-                        Unitat 4 - Bloc 3: Optimització de rendiment
+                        Unitat 4 - Bloc 3: Rendiment i optimització
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-4/bloc-4/" class="nav-dropdown-item ">
@@ -250,7 +250,7 @@
 </p>
 
 <p>
-    Dominareu la configuració de rutes amb paràmetres, guàrdies de navegació, lazy loading de mòduls,
+    Dominareu la configuració de rutes amb paràmetres, guàrdies de navegació, càrrega sota demanda (lazy loading) d'àrees funcionals,
     gestió d'estat centralitzada, separació de responsabilitats en capes, estratègies de detecció de canvis
     i desplegament optimitzat per a entorns de producció.
 </p>
@@ -287,14 +287,14 @@
                 <div class="block-card">
                     <div class="block-card-header">
                         <span class="block-number">4.2</span>
-                        <h3 class="block-title">Arquitectura escalable</h3>
+                        <h3 class="block-title">Arquitectura i patrons</h3>
                     </div>
                     <div class="block-summary">
                         <h4 class="summary-title">Què aprendreu:</h4>
                         <div class="block-description">
                             <ul>
-    <li>Aplicar patrons d'<strong>arquitectura escalable</strong> amb gestió d'estat centralitzada</li>
-    <li>Organitzar l'aplicació en mòduls amb <strong>lazy loading</strong> per optimitzar la càrrega</li>
+    <li>Aplicar patrons d'arquitectura escalable amb gestió d'estat centralitzada en serveis</li>
+    <li>Organitzar l'aplicació en àrees funcionals amb <strong>lazy loading</strong> i preloading per optimitzar la càrrega</li>
     <li>Separar responsabilitats en capes: presentació, lògica de negoci i dades</li>
     <li>Implementar patrons de disseny per crear aplicacions mantenibles</li>
     <li>Aplicar principis SOLID per a codi net i escalable</li>
@@ -310,17 +310,17 @@
                 <div class="block-card">
                     <div class="block-card-header">
                         <span class="block-number">4.3</span>
-                        <h3 class="block-title">Optimització de rendiment</h3>
+                        <h3 class="block-title">Rendiment i optimització</h3>
                     </div>
                     <div class="block-summary">
                         <h4 class="summary-title">Què aprendreu:</h4>
                         <div class="block-description">
                             <ul>
-    <li>Optimitzar el <strong>rendiment</strong> amb estratègies de detecció de canvis (OnPush)</li>
-    <li>Implementar <strong>virtualització de llistes</strong> per gestionar grans volums de dades</li>
-    <li>Configurar <strong>builds de producció</strong> amb compressió i tree-shaking</li>
-    <li>Aplicar tècniques de lazy loading i preloading de mòduls</li>
-    <li>Desplegar l'aplicació en servidors web i plataformes cloud</li>
+    <li>Comprendre la detecció de canvis i programar components compatibles amb <code>OnPush</code>, l'estratègia per defecte a Angular 22</li>
+    <li>Implementar virtualització de llistes amb <strong>Angular CDK</strong> per gestionar grans volums de dades</li>
+    <li>Diferir seccions de la interfície amb <code>@defer</code></li>
+    <li>Generar builds de producció amb <code>ng build</code> i interpretar la mida inicial i els chunks lazy</li>
+    <li>Conèixer, com a ampliació opcional, el desplegament en servidors web i plataformes cloud</li>
 </ul>
 
                         </div>
@@ -339,11 +339,11 @@
                         <h4 class="summary-title">Què aprendreu:</h4>
                         <div class="block-description">
                             <ul>
-    <li>Integrar tots els conceptes en un <strong>cas d'ús pràctic complet</strong></li>
-    <li>Implementar <strong>navegació entre múltiples vistes</strong> amb sistema de rutes avançat</li>
-    <li>Aplicar <strong>arquitectura en capes</strong> amb separació de responsabilitats</li>
-    <li>Configurar <strong>lazy loading de mòduls</strong> per optimitzar la càrrega inicial</li>
-    <li>Aplicar optimitzacions de rendiment i preparar l'aplicació per a producció</li>
+    <li>Integrar tots els conceptes en un cas d'ús pràctic complet</li>
+    <li>Implementar navegació entre múltiples vistes amb rutes parametritzades, <code>queryParams</code> i un guard funcional amb <code>returnUrl</code></li>
+    <li>Aplicar arquitectura en capes amb separació de responsabilitats</li>
+    <li>Configurar lazy loading i preloading de seccions per optimitzar la càrrega inicial</li>
+    <li>Aplicar optimitzacions de rendiment (OnPush, CDK, <code>@defer</code>) i generar el build de producció</li>
 </ul>
 
                         </div>

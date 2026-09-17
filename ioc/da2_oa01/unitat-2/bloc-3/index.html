@@ -18,21 +18,21 @@
 <meta property="og:locale" content="ca_ES" />
 <meta name="description" content="FormsModule, validacions i accessibilitat en formularis Angular" />
 <meta property="og:description" content="FormsModule, validacions i accessibilitat en formularis Angular" />
-<link rel="canonical" href="http://localhost:4004/ioc/da2_oa01/unitat-2/bloc-3/" />
-<meta property="og:url" content="http://localhost:4004/ioc/da2_oa01/unitat-2/bloc-3/" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/da2_oa01/unitat-2/bloc-3/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/da2_oa01/unitat-2/bloc-3/" />
 <meta property="og:site_name" content="DA2_OA01 - Programació Avançada (Angular)" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Bloc 3: Formularis amb vinculació bidireccional" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"FormsModule, validacions i accessibilitat en formularis Angular","headline":"Bloc 3: Formularis amb vinculació bidireccional","url":"http://localhost:4004/ioc/da2_oa01/unitat-2/bloc-3/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"FormsModule, validacions i accessibilitat en formularis Angular","headline":"Bloc 3: Formularis amb vinculació bidireccional","url":"https://itrascastro.github.io/ioc/da2_oa01/unitat-2/bloc-3/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/ioc/da2_oa01/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="canonical" href="http://localhost:4004/ioc/da2_oa01/unitat-2/bloc-3/">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/da2_oa01/unitat-2/bloc-3/">
     <!-- Rich editor styles (for embedded notes panel) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
     <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -48,7 +48,7 @@
     <link rel="icon" type="image/x-icon" href="/ioc/da2_oa01/assets/images/favicon.ico">
     
     <!-- RSS Feed -->
-    <link type="application/atom+xml" rel="alternate" href="http://localhost:4004/ioc/da2_oa01/feed.xml" title="DA2_OA01 - Programació Avançada (Angular)" />
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/da2_oa01/feed.xml" title="DA2_OA01 - Programació Avançada (Angular)" />
 
     <!-- Syntax Highlighting (Prism) -->
     <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
@@ -130,7 +130,7 @@
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-2/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 2 - Bloc 2: Data binding i events
+                        Unitat 2 - Bloc 2: Control de flux, condicions i pipes
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-2/bloc-3/" class="nav-dropdown-item current">
@@ -148,11 +148,11 @@
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-3/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 3 - Bloc 2: Gestió d'estat i comunicació entre components
+                        Unitat 3 - Bloc 2: Models de dades i transformació
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-3/bloc-3/" class="nav-dropdown-item ">
-                        Unitat 3 - Bloc 3: Optimització i bones pràctiques
+                        Unitat 3 - Bloc 3: Formularis reactius i validacions
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-3/bloc-4/" class="nav-dropdown-item ">
@@ -166,11 +166,11 @@
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-4/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 4 - Bloc 2: Arquitectura escalable
+                        Unitat 4 - Bloc 2: Arquitectura i patrons
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-4/bloc-3/" class="nav-dropdown-item ">
-                        Unitat 4 - Bloc 3: Optimització de rendiment
+                        Unitat 4 - Bloc 3: Rendiment i optimització
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-4/bloc-4/" class="nav-dropdown-item ">
@@ -1276,72 +1276,6 @@
 <div class="section" id="Unitat2_Bloc3_Seccio1">
   <h2 id="Unitat2_Bloc3_Seccio1">1. Formularis bàsics amb vinculació bidireccional</h2>
 
-  <!-- MULTIMÈDIA -->
-  <!--
-  ════════════════════════════════════════════════════════════════
-  Component: Enllaços multimèdia YouTube
-  ════════════════════════════════════════════════════════════════
-
-  Paràmetres:
-    - unitat: número de la unitat (1-4)
-    - bloc: número del bloc (1-4)
-    - seccio: número de la secció (1-3)
-
-  Exemple d'ús:
-    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
-
-  El component busca automàticament les URLs corresponents a
-  site.data.multimedia i mostra els botons de vídeo i àudio.
-  ════════════════════════════════════════════════════════════════
--->
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-<div class="multimedia-resources">
-  <div class="multimedia-header">
-    <i class="bi bi-play-circle-fill"></i>
-    <span>Contingut multimèdia d'aquesta lectura</span>
-  </div>
-
-  <div class="multimedia-buttons">
-    
-    <a href="https://www.youtube.com/watch?v=ThRGdkz5Dx4" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 2.3.1 · Formularis bàsics amb vinculació bidireccional">
-      <i class="bi bi-youtube"></i>
-      <span>Veure vídeo</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-
-    
-    <a href="https://www.youtube.com/watch?v=TGWNYMWs_dM" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 2.3.1 · Formularis bàsics amb vinculació bidireccional">
-      <i class="bi bi-mic-fill"></i>
-      <span>Escoltar àudio</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-  </div>
-
-  
-  
-</div>
-  
-
-
-
-
   <!-- Component: Objectius del bloc/unitat -->
 
 
@@ -1388,9 +1322,9 @@
     
     <p>Abans de començar aquesta lectura, necessiteu:</p>
     <ul>
-      <li><strong>Lectures 2.2.1–2.2.3 completades:</strong> el projecte <code>catalog-elements</code> mostra llistes amb <code>*ngFor</code>, estats amb directives condicionals, i dades formatades amb transformadors (pipes).</li>
-      <li><strong>Projecte funcional:</strong> servidor <code>ng serve --port 4300</code> actiu (o llest per arrencar) i editor obert al workspace del projecte.</li>
-      <li><strong>Estructura de carpetes:</strong> directori <code>docs/</code> creat amb fitxers de documentació anteriors (<code>directives.md</code>, <code>presentacio-dades.md</code>).</li>
+      <li><strong>Lectures 2.2.1–2.2.3 completades:</strong> el projecte de l'alumne mostra llistes amb <code>@for (...; track ...)</code>, estats amb <code>@if/@else</code> i dades formatades amb pipes.</li>
+      <li><strong>Projecte funcional:</strong> servidor <code>ng serve</code> actiu (o llest per arrencar) i editor obert al workspace del projecte.</li>
+      <li><strong>Estructura de carpetes:</strong> directori <code>docs/</code> a l'arrel del projecte (creeu-lo si encara no existeix): hi documentareu els formularis a <code>docs/formularis.md</code>.</li>
       <li><strong>Node.js i Angular CLI:</strong> versions compatibles instal·lades i verificades.</li>
     </ul>
 
@@ -1415,8 +1349,8 @@
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Comproveu que no hi ha canvis pendents de commit
 git status
 # Verifiqueu que el servidor compila sense errors
-ng serve --port 4300
-# Al navegador, obriu: http://localhost:4300
+ng serve
+# Al navegador, obriu: http://localhost:4200
 # Heu de veure la llista d&#39;elements amb estats i transformacions</code></pre>
   </div>
 </div>
@@ -1469,7 +1403,7 @@ ng serve --port 4300
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// Component amb sincronització manual - NO RECOMANAT
-export class AppComponent {
+export class App {
   titolElement = &#39;&#39;;
   categoriaElement = &#39;Components UI&#39;;
   preuElement = 0;
@@ -1542,7 +1476,7 @@ Preu
     Per cada camp del formulari heu de crear un mètode que extregui el valor de l'esdeveniment, el converteixi si cal (string a number) i l'assigni a la propietat corresponent. Si teniu 10 camps, necessiteu 10 mètodes.</p>
 
     <p><strong>2. Gestió manual de tipus</strong><br>
-    Els valors dels controls HTML sempre són strings. Heu de convertir manualment a <code>number</code>, <code>boolean</code> o altres tipus segons el camp. Això és propens a errors i oblit.</p>
+    En una gestió manual, la propietat <code>value</code> dels controls de text és sempre una cadena i cal convertir-la a <code>number</code> o altres tipus; els checkboxes exposen l'estat a <code>checked</code>. És fàcil oblidar alguna conversió. (Angular Forms fa aquestes conversions per vosaltres mitjançant els seus <em>value accessors</em>, com veureu tot seguit.)</p>
 
     <p><strong>3. Sincronització unidireccional complexa</strong><br>
     Si necessiteu modificar el valor des del component (per exemple, reiniciar el formulari o carregar dades existents), heu de gestionar manualment l'actualització del DOM amb <code>[value]</code>.</p>
@@ -1579,11 +1513,10 @@ import { CommonModule } from &#39;@angular/common&#39;;
 import { FormsModule } from &#39;@angular/forms&#39;;
 @Component({
   selector: &#39;app-root&#39;,
-  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: &#39;./app.component.html&#39;
 })
-export class AppComponent {
+export class App {
   // Només propietats, sense mètodes de sincronització
   formulariElement = {
     titol: &#39;&#39;,
@@ -1771,10 +1704,10 @@ Preu
 
     <h4>1.2.6. Quan usar formularis template-driven (amb [(ngModel)])</h4>
 
-    <p><strong><i class="bi bi-check-circle text-success" aria-hidden="true"></i> Useu formularis template-driven ([(ngModel)]) SEMPRE que:</strong></p>
+    <p><strong><i class="bi bi-check-circle text-success" aria-hidden="true"></i> Els formularis template-driven ([(ngModel)]) són una bona opció quan:</strong></p>
 
     <ul>
-      <li><strong>El formulari és simple amb pocs camps</strong> (3-10 camps): afegir element, cerca bàsica, formulari de contacte.</li>
+      <li><strong>El formulari és simple amb pocs camps</strong> (orientativament, menys d'una desena): afegir element, cerca bàsica, formulari de contacte.</li>
       <li><strong>Les validacions són bàsiques:</strong> required, minlength, maxlength, pattern, email (validacions HTML estàndard).</li>
       <li><strong>No necessiteu lògica complexa de validació creuada</strong> (camps que depenen uns dels altres).</li>
       <li><strong>Voleu prototipatge ràpid:</strong> template-driven és més ràpid per començar.</li>
@@ -1874,7 +1807,7 @@ Preu
 
     <h4>1.3.4. FormsModule i name obligatori</h4>
 
-    <p>Angular necessita <code>FormsModule</code> per proporcionar les directives <code>ngModel</code> i <code>ngForm</code>. L'atribut <code>name</code> és obligatori perquè Angular identifica cada control dins del formulari. Sense <code>name</code>, Angular no pot registrar el control i llançarà l'error <code>NG0303: Cannot find control with unspecified name attribute</code>.</p>
+    <p>Angular necessita <code>FormsModule</code> per proporcionar les directives <code>ngModel</code> i <code>ngForm</code>. L'atribut <code>name</code> és obligatori perquè Angular identifica cada control dins del formulari. Sense <code>name</code>, Angular no pot registrar el control i llançarà un error que ho diu literalment: <em>If ngModel is used within a form tag, either the name attribute must be set or the form control must be defined as 'standalone' in ngModelOptions</em>.</p>
 
     <h4>1.3.5. Diferència template-driven vs reactive</h4>
 
@@ -2524,7 +2457,7 @@ cerca = &#39;&#39;;
 
     <h4>1.6.3. Importació en components standalone</h4>
 
-    <p>Angular 17+ utilitza components standalone per defecte. La configuració és:</p>
+    <p>Des d'Angular 19 els components són standalone per defecte. La configuració és:</p>
 
     
     <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
@@ -2548,15 +2481,14 @@ import { CommonModule } from &#39;@angular/common&#39;;
 import { FormsModule } from &#39;@angular/forms&#39;; // ← IMPORTAR
 @Component({
   selector: &#39;app-root&#39;,
-  standalone: true,
   imports: [
-    CommonModule,  // Per *ngFor, *ngIf, pipes, etc.
+    CommonModule,  // Pipes i directives compatibles; el control de flux @if/@for no requereix import
     FormsModule    // Per [(ngModel)] i formularis ← AFEGIR
   ],
   templateUrl: &#39;./app.component.html&#39;,
-  styleUrls: [&#39;./app.component.scss&#39;]
+  styleUrl: &#39;./app.component.scss&#39;
 })
-export class AppComponent {
+export class App {
   formulariElement = {
     titol: &#39;&#39;,
     categoria: &#39;Components UI&#39;,
@@ -2623,7 +2555,7 @@ export class AppComponent {
 
     <h4>1.6.5. Error comú: Oblidar atribut name</h4>
 
-    <p>Si utilitzeu <code>[(ngModel)]</code> sense l'atribut <code>name</code>, obteniu:</p>
+    <p>Si utilitzeu <code>[(ngModel)]</code> dins d'un <code>&lt;form&gt;</code> sense l'atribut <code>name</code>, obteniu:</p>
 
     
     <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
@@ -2641,7 +2573,8 @@ export class AppComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Error: NG0303: Cannot find control with unspecified name attribute</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Error: If ngModel is used within a form tag, either the name attribute must be set
+or the form control must be defined as &#39;standalone&#39; in ngModelOptions.</code></pre>
   </div>
 </div>
 
@@ -2699,7 +2632,7 @@ export class AppComponent {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;form&gt;
-&lt;!-- ERROR: sense name → NG0303 --&gt;
+&lt;!-- ERROR: sense name dins d&#39;un &lt;form&gt; → &quot;name attribute must be set&quot; --&gt;
 &lt;input type=&quot;text&quot; [(ngModel)]=&quot;formulariElement.titol&quot; /&gt;
 &lt;input type=&quot;number&quot; [(ngModel)]=&quot;formulariElement.preu&quot; /&gt;
 &lt;/form&gt;</code></pre>
@@ -2707,9 +2640,9 @@ export class AppComponent {
 </div>
 
 
-    <h4>1.6.6. Ús fora de &lt;form&gt;: standalone ngModel</h4>
+    <h4>1.6.6. Controls fora de &lt;form&gt; i l'opció standalone</h4>
 
-    <p>Si utilitzeu <code>[(ngModel)]</code> <strong>fora d'un <code>&lt;form&gt;</code></strong>, podeu ometre l'atribut <code>name</code> afegint <code>[ngModelOptions]="{standalone: true}"</code>:</p>
+    <p>L'atribut <code>name</code> serveix per registrar el control al <code>NgForm</code> del <code>&lt;form&gt;</code> que el conté. Per tant, <strong>fora d'un <code>&lt;form&gt;</code></strong> no hi ha cap formulari on registrar-se i <code>name</code> no és necessari:</p>
 
     
     <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
@@ -2727,14 +2660,40 @@ export class AppComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Fora de &lt;form&gt; --&gt;
-&lt;input type=&quot;text&quot; [(ngModel)]=&quot;cerca&quot; [ngModelOptions]=&quot;{standalone: true}&quot; /&gt;
-&lt;!-- Funciona sense name perquè és standalone --&gt;</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Fora de &lt;form&gt;: funciona sense name --&gt;
+&lt;input type=&quot;text&quot; [(ngModel)]=&quot;cerca&quot; /&gt;</code></pre>
   </div>
 </div>
 
 
-    <p>Però dins d'un <code>&lt;form&gt;</code>, <strong>sempre necessiteu <code>name</code></strong>.</p>
+    <p><strong>Dins d'un <code>&lt;form&gt;</code></strong> teniu dues opcions: posar-hi <code>name</code> (l'habitual: el control passa a formar part del formulari, amb el seu estat de validesa) o bé declarar-lo <code>standalone</code> perquè <em>no</em> es registri al formulari pare, per exemple un camp de cerca dins del mateix <code>&lt;form&gt;</code> que no s'ha d'enviar:</p>
+
+    
+    <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">HTML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;form (ngSubmit)=&quot;enviar()&quot;&gt;
+  &lt;input type=&quot;text&quot; name=&quot;titol&quot; [(ngModel)]=&quot;element.titol&quot; /&gt;
+  &lt;!-- No forma part del NgForm: no compta per a la validesa ni per a resetForm() --&gt;
+  &lt;input type=&quot;text&quot; [(ngModel)]=&quot;filtreRapid&quot; [ngModelOptions]=&quot;{standalone: true}&quot; /&gt;
+&lt;/form&gt;</code></pre>
+  </div>
+</div>
+
+
+    <p>Fora d'un formulari, <code>standalone: true</code> no té cap efecte.</p>
 
     <h4>1.6.7. FormsModule vs ReactiveFormsModule</h4>
 
@@ -2772,7 +2731,7 @@ export class AppComponent {
 
 
     <h4>1.6.8. Resultat esperat</h4>
-    <p>Sabeu configurar <code>FormsModule</code> correctament, enteneu per què cal l'atribut <code>name</code>, i podeu diagnosticar errors habituals (NG8002, NG0303).</p>
+    <p>Sabeu configurar <code>FormsModule</code> correctament, enteneu per què cal l'atribut <code>name</code>, i podeu diagnosticar errors habituals (NG8002, <em>name attribute must be set</em>).</p>
   
   </div>
 </div>
@@ -3172,7 +3131,9 @@ formulariElement = {
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Plantilla --&gt;
 &lt;select name=&quot;categoria&quot; [(ngModel)]=&quot;formulariElement.categoria&quot;&gt;
-&lt;option *ngFor=&quot;let cat of categories&quot; [value]=&quot;cat&quot;&gt;{{ cat }}&lt;/option&gt;
+@for (cat of categories; track cat) {
+&lt;option [value]=&quot;cat&quot;&gt;{{ cat }}&lt;/option&gt;
+}
 &lt;/select&gt;</code></pre>
   </div>
 </div>
@@ -3398,9 +3359,11 @@ Descripció (màxim {{ MAX_DESCRIPCIO }} caràcters)
 &lt;!-- Comptador en temps real --&gt;
 &lt;p class=&quot;char-counter&quot;&gt;
 {{ formulariElement.descripcio.length }} / {{ MAX_DESCRIPCIO }} caràcters
-&lt;span *ngIf=&quot;formulariElement.descripcio.length &gt; MAX_DESCRIPCIO * 0.9&quot; class=&quot;warning&quot;&gt;
+@if (formulariElement.descripcio.length &gt; MAX_DESCRIPCIO * 0.9) {
+&lt;span class=&quot;warning&quot;&gt;
 Apropant-se al límit
 &lt;/span&gt;
+}
 &lt;/p&gt;</code></pre>
   </div>
 </div>
@@ -3524,9 +3487,11 @@ Cerca
 &lt;!-- Resultats filtrats en temps real --&gt;
 &lt;p&gt;{{ elementsFiltratsPerCerca.length }} resultats&lt;/p&gt;
 &lt;ul&gt;
-&lt;li *ngFor=&quot;let element of elementsFiltratsPerCerca&quot;&gt;
+@for (element of elementsFiltratsPerCerca; track element.id) {
+&lt;li&gt;
 {{ element.titol }} ({{ element.categoria }})
 &lt;/li&gt;
+}
 &lt;/ul&gt;</code></pre>
   </div>
 </div>
@@ -3552,10 +3517,12 @@ Cerca
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;section class=&quot;debug&quot; *ngIf=&quot;mostrarDebug&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (mostrarDebug) {
+&lt;section class=&quot;debug&quot;&gt;
 &lt;h4&gt;Estat actual del formulari (JSON)&lt;/h4&gt;
 &lt;pre&gt;{{ formulariElement | json }}&lt;/pre&gt;
-&lt;/section&gt;</code></pre>
+&lt;/section&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -3632,7 +3599,7 @@ mostrarDebug = false; // Activar només durant desenvolupament</code></pre>
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// Component
-export class AppComponent {
+export class App {
   // Model de cerca
   filtreCerca = {
     text: &#39;&#39;,
@@ -3775,12 +3742,16 @@ Reiniciar filtres
 &lt;section class=&quot;resultats&quot;&gt;
 &lt;h3&gt;Resultats ({{ elementsFiltrats.length }})&lt;/h3&gt;
 &lt;!-- Missatge si no hi ha resultats --&gt;
-&lt;p *ngIf=&quot;elementsFiltrats.length === 0&quot; class=&quot;no-results&quot;&gt;
+@if (elementsFiltrats.length === 0) {
+&lt;p class=&quot;no-results&quot;&gt;
 No s&#39;han trobat elements amb aquests filtres. Prova de modificar els criteris de cerca.
 &lt;/p&gt;
+}
 &lt;!-- Llista d&#39;elements filtrats --&gt;
-&lt;ul *ngIf=&quot;elementsFiltrats.length &gt; 0&quot;&gt;
-&lt;li *ngFor=&quot;let element of elementsFiltrats&quot; class=&quot;element-item&quot;&gt;
+@if (elementsFiltrats.length &gt; 0) {
+&lt;ul&gt;
+@for (element of elementsFiltrats; track element.id) {
+&lt;li class=&quot;element-item&quot;&gt;
 &lt;h4&gt;{{ element.titol }}&lt;/h4&gt;
 &lt;p&gt;
 &lt;span class=&quot;badge&quot;&gt;{{ element.categoria }}&lt;/span&gt;
@@ -3790,7 +3761,9 @@ No s&#39;han trobat elements amb aquests filtres. Prova de modificar els criteri
 &lt;/span&gt;
 &lt;/p&gt;
 &lt;/li&gt;
+}
 &lt;/ul&gt;
+}
 &lt;/section&gt;</code></pre>
   </div>
 </div>
@@ -3985,7 +3958,7 @@ enviaFormulari(): void {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// Component
-export class AppComponent {
+export class App {
   formulariElement = {
     titol: &#39;&#39;,
     categoria: &#39;Components UI&#39;,
@@ -4071,16 +4044,20 @@ this.formulariElement.titol = &#39;&#39;; // novaEntrada NO es modifica</code></
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Historial d&#39;enviaments --&gt;
-&lt;section class=&quot;historial&quot; *ngIf=&quot;entradesFormulari.length &gt; 0&quot;&gt;
+@if (entradesFormulari.length &gt; 0) {
+&lt;section class=&quot;historial&quot;&gt;
 &lt;h3&gt;Elements afegits ({{ entradesFormulari.length }})&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li *ngFor=&quot;let entrada of entradesFormulari; let i = index&quot;&gt;
+@for (entrada of entradesFormulari; track entrada; let i = $index) {
+&lt;li&gt;
 &lt;strong&gt;{{ i + 1 }}.&lt;/strong&gt; {{ entrada.titol }} ({{ entrada.categoria }}) — {{ entrada.preu | currency:&#39;EUR&#39;:&#39;symbol&#39;:&#39;1.2-2&#39; }} &lt;/li&gt;
+}
 &lt;/ul&gt;
 &lt;button type=&quot;button&quot; (click)=&quot;entradesFormulari = []&quot;&gt;
 Esborrar historial
 &lt;/button&gt;
-&lt;/section&gt;</code></pre>
+&lt;/section&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -4171,7 +4148,7 @@ Guardar element
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// Component
-export class AppComponent {
+export class App {
   formulariElement = {
     titol: &#39;&#39;,
     categoria: &#39;Components UI&#39;,
@@ -4231,7 +4208,7 @@ export class AppComponent {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// Component
-export class AppComponent {
+export class App {
   formulariElement = this.obtenirValorsPerDefecte();
   private obtenirValorsPerDefecte() {
     return {
@@ -4313,21 +4290,29 @@ export class AppComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// Component
-missatgeExit = &#39;&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// Component (cal importar signal de &#39;@angular/core&#39;)
+missatgeExit = signal(&#39;&#39;);   // s&#39;amaga des d&#39;un setTimeout: signal
 enviaFormulari(): void {
   const novaEntrada = { ...this.formulariElement };
   this.entradesFormulari.unshift(novaEntrada);
   // Reiniciar
   this.formulariElement = this.obtenirValorsPerDefecte();
   // Mostrar missatge
-  this.missatgeExit = `Element &quot;${novaEntrada.titol}&quot; afegit correctament`;
+  this.missatgeExit.set(`Element &quot;${novaEntrada.titol}&quot; afegit correctament`);
   // Ocultar després de 3 segons
   setTimeout(() =&gt; {
-    this.missatgeExit = &#39;&#39;;
+    this.missatgeExit.set(&#39;&#39;);   // el canvi del signal refresca la vista
   }, 3000);
 }</code></pre>
   </div>
+</div>
+
+
+    <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <strong>Per què <code>missatgeExit</code> és un <code>signal</code>?</strong> Els projectes nous d'Angular 22 no porten <code>zone.js</code>: un canvi fet dins d'un <code>setTimeout</code> a una propietat normal no repintaria la vista. Amb un signal, <code>.set('')</code> fa que el missatge desaparegui de debò. A la plantilla es llegeix amb parèntesis: <code>missatgeExit()</code>.
+    
 </div>
 
 
@@ -4348,9 +4333,11 @@ enviaFormulari(): void {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Plantilla --&gt;
-&lt;div class=&quot;alert alert-success&quot; *ngIf=&quot;missatgeExit&quot;&gt;
-{{ missatgeExit }}
-&lt;/div&gt;</code></pre>
+@if (missatgeExit()) {
+&lt;div class=&quot;alert alert-success&quot;&gt;
+{{ missatgeExit() }}
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -4417,11 +4404,10 @@ interface FormulariElement {
 }
 @Component({
   selector: &#39;app-root&#39;,
-  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: &#39;./app.component.html&#39;
 })
-export class AppComponent {
+export class App {
   formulariElement = this.obtenirValorsPerDefecte();
   entradesFormulari: FormulariElement[] = [];
   private obtenirValorsPerDefecte(): FormulariElement {
@@ -4553,15 +4539,19 @@ Guardar element
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;section class=&quot;historial&quot; *ngIf=&quot;entradesFormulari.length &gt; 0&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (entradesFormulari.length &gt; 0) {
+&lt;section class=&quot;historial&quot;&gt;
 &lt;h4&gt;Elements afegits ({{ entradesFormulari.length }})&lt;/h4&gt;
 &lt;ul&gt;
-&lt;li *ngFor=&quot;let entrada of entradesFormulari; let i = index&quot;&gt;
+@for (entrada of entradesFormulari; track entrada; let i = $index) {
+&lt;li&gt;
 {{ i + 1 }}. {{ entrada.titol }} ({{ entrada.categoria }}) —
 {{ entrada.preu | currency:&#39;EUR&#39;:&#39;symbol&#39;:&#39;1.2-2&#39; }}
 &lt;/li&gt;
+}
 &lt;/ul&gt;
-&lt;/section&gt;</code></pre>
+&lt;/section&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -4604,7 +4594,7 @@ Guardar element
           <td>Afegiu <code>import { FormsModule } from '@angular/forms'</code> i <code>imports: [FormsModule]</code> al component</td>
         </tr>
         <tr>
-          <td>Error <code>NG0303: Cannot find control with unspecified name</code></td>
+          <td>Error <em>If ngModel is used within a form tag, either the name attribute must be set...</em></td>
           <td>Atribut <code>name</code> oblidat en control</td>
           <td>Afegiu <code>name="nomUnic"</code> a cada input/select/textarea amb <code>[(ngModel)]</code></td>
         </tr>
@@ -4804,7 +4794,7 @@ Guardar element
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Puc resoldre l'error NG0303 (atribut name oblidat)</div>
+    <div class="checklist-text">Puc resoldre l'error <em>name attribute must be set</em> (atribut name oblidat dins d'un form)</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
@@ -4942,72 +4932,6 @@ Guardar element
 <div class="section" id="Unitat2_Bloc3_Seccio2">
   <h2 id="Unitat2_Bloc3_Seccio2">2. Validacions i missatges d'error</h2>
 
-  <!-- MULTIMÈDIA -->
-  <!--
-  ════════════════════════════════════════════════════════════════
-  Component: Enllaços multimèdia YouTube
-  ════════════════════════════════════════════════════════════════
-
-  Paràmetres:
-    - unitat: número de la unitat (1-4)
-    - bloc: número del bloc (1-4)
-    - seccio: número de la secció (1-3)
-
-  Exemple d'ús:
-    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
-
-  El component busca automàticament les URLs corresponents a
-  site.data.multimedia i mostra els botons de vídeo i àudio.
-  ════════════════════════════════════════════════════════════════
--->
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-<div class="multimedia-resources">
-  <div class="multimedia-header">
-    <i class="bi bi-play-circle-fill"></i>
-    <span>Contingut multimèdia d'aquesta lectura</span>
-  </div>
-
-  <div class="multimedia-buttons">
-    
-    <a href="https://www.youtube.com/watch?v=13JBo1Is5vw" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 2.3.2 · Validacions i missatges d'error">
-      <i class="bi bi-youtube"></i>
-      <span>Veure vídeo</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-
-    
-    <a href="https://www.youtube.com/watch?v=yN1o7pFermo" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 2.3.2 · Validacions i missatges d'error">
-      <i class="bi bi-mic-fill"></i>
-      <span>Escoltar àudio</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-  </div>
-
-  
-  
-</div>
-  
-
-
-
-
   <!-- Component: Objectius del bloc/unitat -->
 
 
@@ -5055,7 +4979,7 @@ Guardar element
     <p>Abans de començar, necessiteu:</p>
     <ul>
       <li><strong>Lectura 2.3.1 completada:</strong> formulari template-driven funcional amb <code>FormsModule</code> importat, model <code>formulariElement</code> definit i array <code>entradesFormulari</code> disponible.</li>
-      <li><strong>Projecte funcional:</strong> servidor <code>ng serve --port 4300</code> actiu i formulari d'alta d'elements visualitzant-se correctament al navegador.</li>
+      <li><strong>Projecte funcional:</strong> servidor <code>ng serve</code> actiu i formulari d'alta d'elements visualitzant-se correctament al navegador.</li>
       <li><strong>Documentació inicial:</strong> fitxer <code>docs/formularis.md</code> amb les decisions de disseny de la lectura anterior.</li>
     </ul>
 
@@ -5078,8 +5002,8 @@ Guardar element
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Comproveu que el formulari funciona
-ng serve --port 4300
-# Al navegador, obriu: http://localhost:4300
+ng serve
+# Al navegador, obriu: http://localhost:4200
 # Heu de veure el formulari d&#39;alta amb vinculació bidireccional activa</code></pre>
   </div>
 </div>
@@ -5179,18 +5103,30 @@ ng serve --port 4300
 Títol
 &lt;input type=&quot;text&quot; name=&quot;titol&quot; required minlength=&quot;4&quot; maxlength=&quot;60&quot; [(ngModel)]=&quot;formulariElement.titol&quot; #campTitol=&quot;ngModel&quot;&gt;
 &lt;/label&gt;
-&lt;div *ngIf=&quot;campTitol.invalid &amp;&amp; (campTitol.dirty || campTitol.touched)&quot; class=&quot;error&quot;&gt;
-&lt;p *ngIf=&quot;campTitol.errors?.[&#39;required&#39;]&quot;&gt;Indiqueu el títol de l&#39;element.&lt;/p&gt;
-&lt;p *ngIf=&quot;campTitol.errors?.[&#39;minlength&#39;]&quot;&gt;El títol ha de tenir mínim 4 caràcters.&lt;/p&gt;
+@if (campTitol.invalid &amp;&amp; (campTitol.dirty || campTitol.touched)) {
+&lt;div class=&quot;error&quot;&gt;
+@if (campTitol.errors?.[&#39;required&#39;]) {
+&lt;p&gt;Indiqueu el títol de l&#39;element.&lt;/p&gt;
+}
+@if (campTitol.errors?.[&#39;minlength&#39;]) {
+&lt;p&gt;El títol ha de tenir mínim 4 caràcters.&lt;/p&gt;
+}
 &lt;/div&gt;
+}
 &lt;label&gt;
 Preu (EUR)
 &lt;input type=&quot;number&quot; name=&quot;preu&quot; required min=&quot;5&quot; max=&quot;500&quot; [(ngModel)]=&quot;formulariElement.preu&quot; #campPreu=&quot;ngModel&quot;&gt;
 &lt;/label&gt;
-&lt;div *ngIf=&quot;campPreu.invalid &amp;&amp; (campPreu.dirty || campPreu.touched)&quot; class=&quot;error&quot;&gt;
-&lt;p *ngIf=&quot;campPreu.errors?.[&#39;required&#39;]&quot;&gt;Indiqueu el preu.&lt;/p&gt;
-&lt;p *ngIf=&quot;campPreu.errors?.[&#39;min&#39;]&quot;&gt;El preu mínim és 5 EUR.&lt;/p&gt;
+@if (campPreu.invalid &amp;&amp; (campPreu.dirty || campPreu.touched)) {
+&lt;div class=&quot;error&quot;&gt;
+@if (campPreu.errors?.[&#39;required&#39;]) {
+&lt;p&gt;Indiqueu el preu.&lt;/p&gt;
+}
+@if (campPreu.errors?.[&#39;min&#39;]) {
+&lt;p&gt;El preu mínim és 5 EUR.&lt;/p&gt;
+}
 &lt;/div&gt;
+}
 &lt;button type=&quot;submit&quot; [disabled]=&quot;formulariElementForm.invalid&quot;&gt;Guardar&lt;/button&gt;
 &lt;/form&gt;</code></pre>
   </div>
@@ -5340,7 +5276,7 @@ Preu (EUR)
 
 
     <h4>2.4.3. Resultat esperat</h4>
-    <p>Reconeixeu la importància de les validacions i entén els beneficis tant per a l'usuari com per al manteniment del projecte.</p>
+    <p>Reconeixeu la importància de les validacions i enteneu els beneficis tant per a l'usuari com per al manteniment del projecte.</p>
   
   </div>
 </div>
@@ -5559,12 +5495,12 @@ Preu (EUR)
     <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> Les validacions integrades cobreixen el 80% dels casos habituals i s'apliquen simplement afegint atributs HTML als controls.
+    <strong>Clau:</strong> Les validacions integrades cobreixen molts dels casos habituals i s'apliquen simplement afegint atributs HTML als controls.
 </div>
 
 
     <h4>2.5.4. Resultat esperat</h4>
-    <p>Sabeu utilitzar les 7 validacions integrades principals i entén quina aplicar segons el tipus de camp i requisits.</p>
+    <p>Sabeu utilitzar les 7 validacions integrades principals i enteneu quina aplicar segons el tipus de camp i requisits.</p>
   
   </div>
 </div>
@@ -5609,7 +5545,9 @@ Preu (EUR)
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;input #campTitol=&quot;ngModel&quot; ...&gt;
-&lt;p *ngIf=&quot;campTitol.valid&quot;&gt;Correcte&lt;/p&gt;</code></pre>
+@if (campTitol.valid) {
+&lt;p&gt;Correcte&lt;/p&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -5633,7 +5571,9 @@ Preu (EUR)
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;p *ngIf=&quot;campTitol.invalid&quot;&gt;Hi ha errors&lt;/p&gt;</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (campTitol.invalid) {
+&lt;p&gt;Hi ha errors&lt;/p&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -5659,7 +5599,9 @@ Preu (EUR)
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;p *ngIf=&quot;campTitol.invalid &amp;&amp; campTitol.touched&quot;&gt;Corregiu els errors&lt;/p&gt;</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (campTitol.invalid &amp;&amp; campTitol.touched) {
+&lt;p&gt;Corregiu els errors&lt;/p&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -5686,7 +5628,9 @@ Preu (EUR)
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;p *ngIf=&quot;campTitol.invalid &amp;&amp; campTitol.dirty&quot;&gt;Corregiu els errors&lt;/p&gt;</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (campTitol.invalid &amp;&amp; campTitol.dirty) {
+&lt;p&gt;Corregiu els errors&lt;/p&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -5769,7 +5713,7 @@ Preu (EUR)
 
 
     <h4>2.6.7. Resultat esperat</h4>
-    <p>Enteneu els 6 estats principals dels controls i sap combinar-los per controlar quan mostrar errors i aplicar estils.</p>
+    <p>Enteneu els 6 estats principals dels controls i sabeu combinar-los per controlar quan mostrar errors i aplicar estils.</p>
   
   </div>
 </div>
@@ -5814,7 +5758,9 @@ Preu (EUR)
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;p *ngIf=&quot;campTitol.errors?.[&#39;required&#39;]&quot;&gt;Indiqueu el títol.&lt;/p&gt;</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (campTitol.errors?.[&#39;required&#39;]) {
+&lt;p&gt;Indiqueu el títol.&lt;/p&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -5837,11 +5783,19 @@ Preu (EUR)
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div *ngIf=&quot;campTitol.invalid &amp;&amp; (campTitol.touched || campTitol.dirty)&quot; class=&quot;missatges-error&quot;&gt;
-&lt;p *ngIf=&quot;campTitol.errors?.[&#39;required&#39;]&quot;&gt;{{ missatgesError.titol.required }}&lt;/p&gt;
-&lt;p *ngIf=&quot;campTitol.errors?.[&#39;minlength&#39;]&quot;&gt;{{ missatgesError.titol.minlength }}&lt;/p&gt;
-&lt;p *ngIf=&quot;campTitol.errors?.[&#39;maxlength&#39;]&quot;&gt;{{ missatgesError.titol.maxlength }}&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (campTitol.invalid &amp;&amp; (campTitol.touched || campTitol.dirty)) {
+&lt;div class=&quot;missatges-error&quot;&gt;
+@if (campTitol.errors?.[&#39;required&#39;]) {
+&lt;p&gt;{{ missatgesError.titol.required }}&lt;/p&gt;
+}
+@if (campTitol.errors?.[&#39;minlength&#39;]) {
+&lt;p&gt;{{ missatgesError.titol.minlength }}&lt;/p&gt;
+}
+@if (campTitol.errors?.[&#39;maxlength&#39;]) {
+&lt;p&gt;{{ missatgesError.titol.maxlength }}&lt;/p&gt;
+}
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -5893,11 +5847,19 @@ Preu (EUR)
 Títol de l&#39;element
 &lt;input type=&quot;text&quot; name=&quot;titol&quot; required minlength=&quot;4&quot; maxlength=&quot;60&quot; [(ngModel)]=&quot;formulariElement.titol&quot; #campTitol=&quot;ngModel&quot;&gt;
 &lt;/label&gt;
-&lt;div *ngIf=&quot;campTitol.invalid &amp;&amp; (campTitol.touched || campTitol.dirty)&quot; class=&quot;missatges-error&quot;&gt;
-&lt;p *ngIf=&quot;campTitol.errors?.[&#39;required&#39;]&quot;&gt;{{ missatgesError.titol.required }}&lt;/p&gt;
-&lt;p *ngIf=&quot;campTitol.errors?.[&#39;minlength&#39;]&quot;&gt;{{ missatgesError.titol.minlength }}&lt;/p&gt;
-&lt;p *ngIf=&quot;campTitol.errors?.[&#39;maxlength&#39;]&quot;&gt;{{ missatgesError.titol.maxlength }}&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+@if (campTitol.invalid &amp;&amp; (campTitol.touched || campTitol.dirty)) {
+&lt;div class=&quot;missatges-error&quot;&gt;
+@if (campTitol.errors?.[&#39;required&#39;]) {
+&lt;p&gt;{{ missatgesError.titol.required }}&lt;/p&gt;
+}
+@if (campTitol.errors?.[&#39;minlength&#39;]) {
+&lt;p&gt;{{ missatgesError.titol.minlength }}&lt;/p&gt;
+}
+@if (campTitol.errors?.[&#39;maxlength&#39;]) {
+&lt;p&gt;{{ missatgesError.titol.maxlength }}&lt;/p&gt;
+}
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -6051,7 +6013,7 @@ enviaFormulari(formulari: NgForm): void {
 
 
     <h4>2.8.5. Resultat esperat</h4>
-    <p>Sabeu bloquejar l'enviament del formulari quan hi ha errors i gestiona correctament la submissió amb comprovacions defensives.</p>
+    <p>Sabeu bloquejar l'enviament del formulari quan hi ha errors i gestioneu correctament la submissió amb comprovacions defensives.</p>
   
   </div>
 </div>
@@ -6095,7 +6057,7 @@ enviaFormulari(formulari: NgForm): void {
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// src/app/app.component.ts
 import { Component } from &#39;@angular/core&#39;;
 import { NgForm } from &#39;@angular/forms&#39;;
-export class AppComponent {
+export class App {
 formulariElement = {
 titol: &#39;&#39;,
 categoria: &#39;Components UI&#39;,
@@ -6137,21 +6099,37 @@ missatgesError: Record&lt;string, Record&lt;string, string&gt;&gt; = { titol: { 
 Títol de l&#39;element
 &lt;input type=&quot;text&quot; name=&quot;titol&quot; required [minlength]=&quot;validacionsElement.titol.min&quot; [maxlength]=&quot;validacionsElement.titol.max&quot; [(ngModel)]=&quot;formulariElement.titol&quot; #campTitol=&quot;ngModel&quot;&gt;
 &lt;/label&gt;
-&lt;div *ngIf=&quot;campTitol.invalid &amp;&amp; (campTitol.dirty || campTitol.touched)&quot; class=&quot;missatges-error&quot;&gt;
-&lt;p *ngIf=&quot;campTitol.errors?.[&#39;required&#39;]&quot;&gt;{{ missatgesError.titol.required }}&lt;/p&gt;
-&lt;p *ngIf=&quot;campTitol.errors?.[&#39;minlength&#39;]&quot;&gt;{{ missatgesError.titol.minlength }}&lt;/p&gt;
-&lt;p *ngIf=&quot;campTitol.errors?.[&#39;maxlength&#39;]&quot;&gt;{{ missatgesError.titol.maxlength }}&lt;/p&gt;
+@if (campTitol.invalid &amp;&amp; (campTitol.dirty || campTitol.touched)) {
+&lt;div class=&quot;missatges-error&quot;&gt;
+@if (campTitol.errors?.[&#39;required&#39;]) {
+&lt;p&gt;{{ missatgesError.titol.required }}&lt;/p&gt;
+}
+@if (campTitol.errors?.[&#39;minlength&#39;]) {
+&lt;p&gt;{{ missatgesError.titol.minlength }}&lt;/p&gt;
+}
+@if (campTitol.errors?.[&#39;maxlength&#39;]) {
+&lt;p&gt;{{ missatgesError.titol.maxlength }}&lt;/p&gt;
+}
 &lt;/div&gt;
+}
 &lt;!-- Camp 2: Preu --&gt;
 &lt;label&gt;
 Preu (EUR)
 &lt;input type=&quot;number&quot; name=&quot;preu&quot; required [min]=&quot;validacionsElement.preu.min&quot; [max]=&quot;validacionsElement.preu.max&quot; [(ngModel)]=&quot;formulariElement.preu&quot; #campPreu=&quot;ngModel&quot;&gt;
 &lt;/label&gt;
-&lt;div *ngIf=&quot;campPreu.invalid &amp;&amp; (campPreu.dirty || campPreu.touched)&quot; class=&quot;missatges-error&quot;&gt;
-&lt;p *ngIf=&quot;campPreu.errors?.[&#39;required&#39;]&quot;&gt;{{ missatgesError.preu.required }}&lt;/p&gt;
-&lt;p *ngIf=&quot;campPreu.errors?.[&#39;min&#39;]&quot;&gt;{{ missatgesError.preu.min }}&lt;/p&gt;
-&lt;p *ngIf=&quot;campPreu.errors?.[&#39;max&#39;]&quot;&gt;{{ missatgesError.preu.max }}&lt;/p&gt;
+@if (campPreu.invalid &amp;&amp; (campPreu.dirty || campPreu.touched)) {
+&lt;div class=&quot;missatges-error&quot;&gt;
+@if (campPreu.errors?.[&#39;required&#39;]) {
+&lt;p&gt;{{ missatgesError.preu.required }}&lt;/p&gt;
+}
+@if (campPreu.errors?.[&#39;min&#39;]) {
+&lt;p&gt;{{ missatgesError.preu.min }}&lt;/p&gt;
+}
+@if (campPreu.errors?.[&#39;max&#39;]) {
+&lt;p&gt;{{ missatgesError.preu.max }}&lt;/p&gt;
+}
 &lt;/div&gt;
+}
 &lt;!-- Botó d&#39;enviament --&gt;
 &lt;button type=&quot;submit&quot; [disabled]=&quot;formulariElementForm.invalid&quot;&gt;Guardar element&lt;/button&gt;
 &lt;/form&gt;</code></pre>
@@ -6167,7 +6145,7 @@ Preu (EUR)
 
 
     <h4>2.9.4. Resultat esperat</h4>
-    <p>Disposeu d'un exemple pràctic complet que pot reutilitzar i adaptar a altres formularis del projecte.</p>
+    <p>Disposeu d'un exemple pràctic complet que podeu reutilitzar i adaptar a altres formularis del projecte.</p>
   
   </div>
 </div>
@@ -6299,7 +6277,7 @@ button:disabled {
 
 
     <h4>2.10.6. Resultat esperat</h4>
-    <p>Sabeu aplicar estils visuals coherents per a camps vàlids/invàlids i entén la importància de combinar colors amb text per a accessibilitat.</p>
+    <p>Sabeu aplicar estils visuals coherents per a camps vàlids/invàlids i enteneu la importància de combinar colors amb text per a accessibilitat.</p>
   
   </div>
 </div>
@@ -6388,9 +6366,11 @@ button:disabled {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div *ngIf=&quot;campTitol.invalid &amp;&amp; (campTitol.touched || campTitol.dirty)&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (campTitol.invalid &amp;&amp; (campTitol.touched || campTitol.dirty)) {
+&lt;div&gt;
 &lt;p&gt;Indiqueu el títol.&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -6405,7 +6385,7 @@ button:disabled {
 
 
     <h4>2.11.6. Resultat esperat</h4>
-    <p>Compreneu la diferència entre touched i dirty i sap decidir quin estat utilitzar segons el tipus de feedback desitjat.</p>
+    <p>Compreneu la diferència entre touched i dirty i sabeu decidir quin estat utilitzar segons el tipus de feedback desitjat.</p>
   
   </div>
 </div>
@@ -6430,7 +6410,7 @@ button:disabled {
     <ol>
       <li><strong>Definiu les regles de validació a la classe:</strong> Creeu un objecte <code>validacionsElement</code> amb mínims i màxims per a cada camp. Creeu un diccionari <code>missatgesError</code> amb textos personalitzats per a cada error.</li>
       <li><strong>Apliqueu validacions HTML als controls:</strong> Afegiu atributs <code>required</code>, <code>minlength</code>, <code>maxlength</code>, <code>min</code>, <code>max</code> als camps. Assigneu referències ngModel (<code>#campTitol="ngModel"</code>, etc.).</li>
-      <li><strong>Configureu missatges d'error condicionals:</strong> Sota cada camp, afegiu un bloc <code>&lt;div *ngIf="campX.invalid && (campX.touched || campX.dirty)"&gt;</code>. Dins del bloc, mostreu <code>&lt;p&gt;</code> per a cada error possible (<code>required</code>, <code>minlength</code>, etc.).</li>
+      <li><strong>Configureu missatges d'error condicionals:</strong> Sota cada camp, afegiu un bloc <code>@if (campX.invalid && (campX.touched || campX.dirty)) { &lt;div&gt;...&lt;/div&gt; }</code>. Dins del bloc, mostreu <code>&lt;p&gt;</code> per a cada error possible (<code>required</code>, <code>minlength</code>, etc.).</li>
       <li><strong>Desactiveu el botó d'enviament:</strong> Afegiu <code>[disabled]="formulariElementForm.invalid"</code> al botó de tipus submit. Al mètode <code>enviaFormulari</code>, comproveu <code>if (formulari.invalid)</code> i crideu <code>markAllAsTouched()</code>.</li>
       <li><strong>Apliqueu estils visuals:</strong> Definiu regles CSS per a <code>.ng-invalid.ng-touched</code> (vermell) i <code>.ng-valid.ng-touched</code> (verd). Afegiu estils per a <code>.missatges-error</code> (color vermell, mida petita).</li>
       <li><strong>Proveu el formulari:</strong> Deixeu camps buits i sortiu-ne → missatges d'error apareixen. Ompliu correctament → errors desapareixen, botó s'activa, estils canvien a verd. Intenteu enviar amb errors → <code>markAllAsTouched()</code> mostra tots els errors.</li>
@@ -6473,14 +6453,14 @@ button:disabled {
       </thead>
       <tbody>
         <tr>
-          <td><strong>NG0303: Cannot find control with unspecified name attribute</strong></td>
+          <td><strong>If ngModel is used within a form tag, either the name attribute must be set or the form control must be defined as 'standalone'</strong></td>
           <td>Falta l'atribut <code>name</code> al control amb ngModel</td>
           <td>Afegiu <code>name="titol"</code> (o el nom corresponent) al control i deseu el fitxer</td>
         </tr>
         <tr>
           <td><strong>Els missatges apareixen sempre, fins i tot sense tocar</strong></td>
           <td>La condició no comprova <code>touched</code> o <code>dirty</code></td>
-          <td>Canvieu <code>*ngIf="campTitol.invalid"</code> per <code>*ngIf="campTitol.invalid && (campTitol.touched || campTitol.dirty)"</code></td>
+          <td>Canvieu <code>@if (campTitol.invalid) { ... }</code> per <code>@if (campTitol.invalid && (campTitol.touched || campTitol.dirty)) { ... }</code></td>
         </tr>
         <tr>
           <td><strong>El botó s'activa malgrat errors visibles</strong></td>
@@ -6494,8 +6474,8 @@ button:disabled {
         </tr>
         <tr>
           <td><strong>property 'markAllAsTouched' does not exist on type 'NgForm'</strong></td>
-          <td>Falta la importació de NgForm o el tipus del paràmetre</td>
-          <td>Importeu NgForm (<code>import &#123; NgForm &#125; from '@angular/forms';</code>) i tipau el paràmetre del mètode: <code>enviaFormulari(formulari: NgForm)</code></td>
+          <td>S'ha cridat el mètode sobre <code>NgForm</code>; qui el té és el <code>FormGroup</code> subjacent</td>
+          <td>Useu <code>formulari.control.markAllAsTouched()</code> (com al codi de la secció 2.8), amb el paràmetre tipat <code>enviaFormulari(formulari: NgForm)</code></td>
         </tr>
         <tr>
           <td><strong>errors és null i l'aplicació peta</strong></td>
@@ -6510,7 +6490,7 @@ button:disabled {
         <tr>
           <td><strong>Missatges en anglès (minlength must be ...)</strong></td>
           <td>Errors natius del navegador per a camps <code>type="email"</code> sense personalitzar</td>
-          <td>Desactiveu validació nativa amb <code>novalidate</code> al <code>&lt;form&gt;</code> o mostreu missatges personalitzats amb <code>*ngIf</code></td>
+          <td>Desactiveu validació nativa amb <code>novalidate</code> al <code>&lt;form&gt;</code> o mostreu missatges personalitzats amb <code>@if</code></td>
         </tr>
       </tbody>
     </table>
@@ -6682,7 +6662,7 @@ button:disabled {
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Sé diagnosticar l'error NG0303 (falta atribut name) i afegir-lo correctament</div>
+    <div class="checklist-text">Sé diagnosticar l'error <em>name attribute must be set</em> (falta name dins d'un form) i afegir-lo correctament</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
@@ -6705,7 +6685,7 @@ button:disabled {
 
 
     <h4>2.15.5. Resultat esperat</h4>
-    <p>Heu consolidat els coneixements sobre validacions i està preparat per implementar formularis amb feedback visual i missatges d'error de qualitat professional.</p>
+    <p>Heu consolidat els coneixements sobre validacions i esteu preparats per implementar formularis amb feedback visual i missatges d'error de qualitat professional.</p>
   
   </div>
 </div>
@@ -6744,7 +6724,7 @@ button:disabled {
 
 
     <h4>2.16.2. Resultat esperat</h4>
-    <p>Heu consolidat tots els conceptes de validacions i missatges d'error, i està preparat per aplicar-los a qualsevol formulari del projecte.</p>
+    <p>Heu consolidat tots els conceptes de validacions i missatges d'error, i esteu preparats per aplicar-los a qualsevol formulari del projecte.</p>
   
   </div>
 </div>
@@ -6843,7 +6823,7 @@ button:disabled {
 
 
     <h4>2.17.3. Resultat esperat</h4>
-    <p>Disposeu d'un repàs complet dels conceptes clau de validacions que pot consultar en qualsevol moment.</p>
+    <p>Disposeu d'un repàs complet dels conceptes clau de validacions que podeu consultar en qualsevol moment.</p>
   
   </div>
 </div>
@@ -6857,72 +6837,6 @@ button:disabled {
 
 <div class="section" id="Unitat2_Bloc3_Seccio3">
   <h2 id="Unitat2_Bloc3_Seccio3">3. Accessibilitat dels formularis</h2>
-
-  <!-- MULTIMÈDIA -->
-  <!--
-  ════════════════════════════════════════════════════════════════
-  Component: Enllaços multimèdia YouTube
-  ════════════════════════════════════════════════════════════════
-
-  Paràmetres:
-    - unitat: número de la unitat (1-4)
-    - bloc: número del bloc (1-4)
-    - seccio: número de la secció (1-3)
-
-  Exemple d'ús:
-    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
-
-  El component busca automàticament les URLs corresponents a
-  site.data.multimedia i mostra els botons de vídeo i àudio.
-  ════════════════════════════════════════════════════════════════
--->
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-<div class="multimedia-resources">
-  <div class="multimedia-header">
-    <i class="bi bi-play-circle-fill"></i>
-    <span>Contingut multimèdia d'aquesta lectura</span>
-  </div>
-
-  <div class="multimedia-buttons">
-    
-    <a href="https://www.youtube.com/watch?v=XX0QA6IBA9E" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 2.3.3 · Accessibilitat dels formularis">
-      <i class="bi bi-youtube"></i>
-      <span>Veure vídeo</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-
-    
-    <a href="https://www.youtube.com/watch?v=9DBEP-oeKo0" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 2.3.3 · Accessibilitat dels formularis">
-      <i class="bi bi-mic-fill"></i>
-      <span>Escoltar àudio</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-  </div>
-
-  
-  
-</div>
-  
-
-
-
 
   <!-- Component: Objectius del bloc/unitat -->
 
@@ -6954,7 +6868,6 @@ button:disabled {
 </div>
 
 
-
   <!-- Punt 3.1: Prerequisits -->
   
   <!-- Component: Punt destacat dins d'una secció -->
@@ -6972,8 +6885,8 @@ button:disabled {
     
     <p>Abans de començar, necessiteu:</p>
     <ul>
-      <li><strong>Lectures 2.3.1 i 2.3.2 completades:</strong> formulari templat-driven amb validacions, missatges d'error funcionals i estils visuals per a camps vàlids/invàlids.</li>
-      <li><strong>Projecte catalog-elements operatiu:</strong> ubicat a <code>%USERPROFILE%\workspace\catalog-elements</code> (Windows) o <code>~/workspace/catalog-elements</code> (macOS/Linux), amb <code>ng serve --port 4300</code> arrencant sense errors.</li>
+      <li><strong>Lectures 2.3.1 i 2.3.2 completades:</strong> formulari template-driven amb validacions, missatges d'error funcionals i estils visuals per a camps vàlids/invàlids.</li>
+      <li><strong>Projecte ioc-angular operatiu:</strong> ubicat a <code>%USERPROFILE%\workspace\ioc-angular-[nom-app]-[nom-alumne]</code> (Windows) o <code>~/workspace/ioc-angular-[nom-app]-[nom-alumne]</code> (macOS/Linux), amb <code>ng serve</code> arrencant sense errors.</li>
       <li><strong>Dossier de documentació:</strong> fitxer <code>docs/formularis.md</code> existent per afegir-hi la checklist d'accessibilitat i les proves realitzades.</li>
     </ul>
 
@@ -6996,8 +6909,8 @@ button:disabled {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># macOS/Linux
-cd ~/workspace/catalog-elements
-ng serve --port 4300</code></pre>
+cd ~/workspace/ioc-angular-[nom-app]-[nom-alumne]
+ng serve</code></pre>
   </div>
 </div>
 
@@ -7019,13 +6932,13 @@ ng serve --port 4300</code></pre>
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-powershell"># Windows
-cd $env:USERPROFILE\workspace\catalog-elements
-ng serve --port 4300</code></pre>
+cd $env:USERPROFILE\workspace\ioc-angular-[nom-app]-[nom-alumne]
+ng serve</code></pre>
   </div>
 </div>
 
 
-    <p><strong>Punt d'autocomprovació:</strong> confirmeu al navegador <code>http://localhost:4300</code> que el formulari mostra validacions i missatges d'error (lectura 2.3.2) abans d'afegir millores d'accessibilitat.</p>
+    <p><strong>Punt d'autocomprovació:</strong> confirmeu al navegador <code>http://localhost:4200</code> que el formulari mostra validacions i missatges d'error (lectura 2.3.2) abans d'afegir millores d'accessibilitat.</p>
   
   </div>
 </div>
@@ -7074,7 +6987,9 @@ ng serve --port 4300</code></pre>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;form (ngSubmit)=&quot;enviaFormulari()&quot;&gt;
 &lt;input type=&quot;text&quot; placeholder=&quot;Títol&quot; [(ngModel)]=&quot;formulariElement.titol&quot;&gt;
 &lt;input type=&quot;number&quot; placeholder=&quot;Preu&quot; [(ngModel)]=&quot;formulariElement.preu&quot;&gt;
-&lt;div *ngIf=&quot;campTitol.invalid&quot; style=&quot;color: red;&quot;&gt;Error!&lt;/div&gt;
+@if (campTitol.invalid) {
+&lt;div style=&quot;color: red;&quot;&gt;Error!&lt;/div&gt;
+}
 &lt;button type=&quot;submit&quot;&gt;Guardar&lt;/button&gt;
 &lt;/form&gt;</code></pre>
   </div>
@@ -7109,7 +7024,7 @@ ng serve --port 4300</code></pre>
     <ul>
       <li><strong>Inclusió real:</strong> qualsevol persona pot completar el formulari de manera autònoma, sense dependre d'ajuda externa.</li>
       <li><strong>Experiència d'usuari millorada per a tothom:</strong> les etiquetes clares i els missatges descriptius beneficien també usuaris sense diversitat funcional, especialment en contextos d'estrès o distraccions.</li>
-      <li><strong>Compliment normatiu:</strong> conformitat amb WCAG 2.1/2.2 nivell AA, evitant riscos legals i reputacionals.</li>
+      <li><strong>Compliment normatiu:</strong> aquestes pràctiques cobreixen criteris de les WCAG 2.1/2.2 (la conformitat AA s'avalua sobre el conjunt complet de criteris aplicables), i redueixen riscos legals i reputacionals.</li>
       <li><strong>SEO i posicionament:</strong> els cercadors valoren positivament l'accessibilitat com a indicador de qualitat del contingut.</li>
       <li><strong>Mantenibilitat:</strong> un codi semàntic ben estructurat facilita futurs canvis i reús de components.</li>
     </ul>
@@ -7136,9 +7051,13 @@ ng serve --port 4300</code></pre>
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;form (ngSubmit)=&quot;enviaFormulari()&quot;&gt;
 &lt;input type=&quot;text&quot; placeholder=&quot;Títol&quot; name=&quot;titol&quot; [(ngModel)]=&quot;formulariElement.titol&quot; #campTitol=&quot;ngModel&quot;&gt;
-&lt;div *ngIf=&quot;campTitol.invalid &amp;&amp; campTitol.touched&quot; style=&quot;color: red;&quot;&gt;Error!&lt;/div&gt;
+@if (campTitol.invalid &amp;&amp; campTitol.touched) {
+&lt;div style=&quot;color: red;&quot;&gt;Error!&lt;/div&gt;
+}
 &lt;input type=&quot;number&quot; placeholder=&quot;Preu&quot; name=&quot;preu&quot; [(ngModel)]=&quot;formulariElement.preu&quot; #campPreu=&quot;ngModel&quot;&gt;
-&lt;div *ngIf=&quot;campPreu.invalid &amp;&amp; campPreu.touched&quot; style=&quot;color: red;&quot;&gt;Error!&lt;/div&gt;
+@if (campPreu.invalid &amp;&amp; campPreu.touched) {
+&lt;div style=&quot;color: red;&quot;&gt;Error!&lt;/div&gt;
+}
 &lt;button type=&quot;submit&quot;&gt;Guardar&lt;/button&gt;
 &lt;/form&gt;</code></pre>
   </div>
@@ -7177,17 +7096,29 @@ ng serve --port 4300</code></pre>
 &lt;label for=&quot;campTitolInput&quot;&gt;Títol de l&#39;element&lt;/label&gt;
 &lt;input id=&quot;campTitolInput&quot; type=&quot;text&quot; name=&quot;titol&quot; required minlength=&quot;4&quot; [(ngModel)]=&quot;formulariElement.titol&quot; #campTitol=&quot;ngModel&quot; aria-describedby=&quot;ajudaTitol errorsTitol&quot; [attr.aria-invalid]=&quot;campTitol.invalid &amp;&amp; campTitol.touched&quot;&gt;
 &lt;p id=&quot;ajudaTitol&quot; class=&quot;ajuda&quot;&gt;Useu un títol descriptiu i únic (4-60 caràcters).&lt;/p&gt;
-&lt;div id=&quot;errorsTitol&quot; class=&quot;missatges-error&quot; *ngIf=&quot;campTitol.invalid &amp;&amp; campTitol.touched&quot; role=&quot;alert&quot; aria-live=&quot;assertive&quot;&gt;
-&lt;p *ngIf=&quot;campTitol.errors?.[&#39;required&#39;]&quot;&gt;Indiqueu el títol de l&#39;element.&lt;/p&gt;
-&lt;p *ngIf=&quot;campTitol.errors?.[&#39;minlength&#39;]&quot;&gt;El títol ha de tenir mínim 4 caràcters.&lt;/p&gt;
+@if (campTitol.invalid &amp;&amp; campTitol.touched) {
+&lt;div id=&quot;errorsTitol&quot; class=&quot;missatges-error&quot; role=&quot;alert&quot;&gt;
+@if (campTitol.errors?.[&#39;required&#39;]) {
+&lt;p&gt;Indiqueu el títol de l&#39;element.&lt;/p&gt;
+}
+@if (campTitol.errors?.[&#39;minlength&#39;]) {
+&lt;p&gt;El títol ha de tenir mínim 4 caràcters.&lt;/p&gt;
+}
 &lt;/div&gt;
+}
 &lt;label for=&quot;campPreuInput&quot;&gt;Preu (€)&lt;/label&gt;
 &lt;input id=&quot;campPreuInput&quot; type=&quot;number&quot; name=&quot;preu&quot; required min=&quot;5&quot; [(ngModel)]=&quot;formulariElement.preu&quot; #campPreu=&quot;ngModel&quot; aria-describedby=&quot;ajudaPreu errorsPreu&quot; [attr.aria-invalid]=&quot;campPreu.invalid &amp;&amp; campPreu.touched&quot;&gt;
 &lt;p id=&quot;ajudaPreu&quot; class=&quot;ajuda&quot;&gt;Preu entre 5 i 500 €.&lt;/p&gt;
-&lt;div id=&quot;errorsPreu&quot; class=&quot;missatges-error&quot; *ngIf=&quot;campPreu.invalid &amp;&amp; campPreu.touched&quot; role=&quot;alert&quot; aria-live=&quot;assertive&quot;&gt;
-&lt;p *ngIf=&quot;campPreu.errors?.[&#39;required&#39;]&quot;&gt;Indiqueu el preu.&lt;/p&gt;
-&lt;p *ngIf=&quot;campPreu.errors?.[&#39;min&#39;]&quot;&gt;El preu mínim és 5 €.&lt;/p&gt;
+@if (campPreu.invalid &amp;&amp; campPreu.touched) {
+&lt;div id=&quot;errorsPreu&quot; class=&quot;missatges-error&quot; role=&quot;alert&quot;&gt;
+@if (campPreu.errors?.[&#39;required&#39;]) {
+&lt;p&gt;Indiqueu el preu.&lt;/p&gt;
+}
+@if (campPreu.errors?.[&#39;min&#39;]) {
+&lt;p&gt;El preu mínim és 5 €.&lt;/p&gt;
+}
 &lt;/div&gt;
+}
 &lt;/fieldset&gt;
 &lt;button type=&quot;submit&quot; [disabled]=&quot;formulariElementForm.invalid&quot;&gt;Guardar element&lt;/button&gt;
 &lt;/form&gt;</code></pre>
@@ -7199,17 +7130,17 @@ ng serve --port 4300</code></pre>
     <ul>
       <li>Cada input té <code>&lt;label for="..."&gt;</code> associat → lector anuncia "Títol de l'element, camp d'edició requerit"</li>
       <li>Ajudes vinculades amb <code>aria-describedby="ajudaTitol"</code> → lector les anuncia automàticament</li>
-      <li>Errors amb <code>role="alert"</code> i <code>aria-live="assertive"</code> → anuncis immediats</li>
+      <li>Errors amb <code>role="alert"</code> → anuncis immediats (el rol ja implica <code>aria-live="assertive"</code>)</li>
       <li><code>aria-invalid="true"</code> quan hi ha errors → lector informa de l'estat invàlid</li>
       <li><code>&lt;fieldset&gt;</code> i <code>&lt;legend&gt;</code> per agrupar controls relacionats → context clar</li>
     </ul>
 
-    <p><strong>Comparativa quantitativa:</strong></p>
+    <p><strong>Què canvia per a l'usuari:</strong></p>
     <ul>
-      <li><strong>Temps per completar el formulari amb lector de pantalla:</strong> 5 minuts (inaccessible) vs 1 minut (accessible)</li>
-      <li><strong>Taxa d'errors per usuaris cecs:</strong> 80% (inaccessible) vs 10% (accessible)</li>
-      <li><strong>Satisfacció d'usuaris amb diversitat funcional:</strong> 2/5 (frustrant) vs 5/5 (autònom)</li>
-      <li><strong>Línies de codi afegides:</strong> +20-30 (atributs ARIA, labels, fieldsets)</li>
+      <li><strong>Identificació dels camps:</strong> cada control s'anuncia amb el seu nom, tipus i estat; no cal endevinar què s'hi ha d'escriure</li>
+      <li><strong>Errors:</strong> s'anuncien quan apareixen i s'expliquen; l'usuari sap què corregir sense veure el color vermell</li>
+      <li><strong>Autonomia:</strong> el formulari es pot completar amb teclat o lector de pantalla sense ajuda externa</li>
+      <li><strong>Cost:</strong> unes quantes desenes de línies d'atributs ARIA, <code>label</code> i <code>fieldset</code>, sense canviar la lògica</li>
     </ul>
 
     <h4>3.2.5. Taula comparativa: Formulari inaccessible vs Accessible</h4>
@@ -7241,7 +7172,7 @@ ng serve --port 4300</code></pre>
         <tr>
           <td><strong>Errors</strong></td>
           <td>Només color vermell</td>
-          <td>Missatge + <code>role="alert"</code> + <code>aria-live="assertive"</code></td>
+          <td>Missatge + <code>role="alert"</code></td>
         </tr>
         <tr>
           <td><strong>Estat invàlid</strong></td>
@@ -7373,7 +7304,7 @@ ng serve --port 4300</code></pre>
     <p>Respecteu l'ordre natural del DOM (d'esquerra a dreta, de dalt a baix). Eviteu <code>tabindex</code> positius (<code>tabindex="3"</code>) que trenquen l'ordre natural. Utilitzeu <code>tabindex="0"</code> només per elements no focusables per defecte (divs personalitzats) i <code>tabindex="-1"</code> per elements que no han de rebre focus amb <code>Tab</code> però que poden ser enfocats programàticament.</p>
 
     <p><strong>5. Focus visible amb contrast suficient</strong></p>
-    <p>Definiu un estil de focus personalitzat que superi el contrast 3:1 contra el fons segons WCAG 2.2. Un borde blau gruixut amb <code>box-shadow</code> és una bona opció. Mai utilitzeu <code>outline: none;</code> sense proporcionar una alternativa clarament visible.</p>
+    <p>Definiu un estil de focus personalitzat que superi el contrast 3:1 contra el fons (bona pràctica recollida al criteri 2.4.13 <em>Focus Appearance</em> de WCAG 2.2, nivell AAA). Un borde blau gruixut amb <code>box-shadow</code> és una bona opció. Mai utilitzeu <code>outline: none;</code> sense proporcionar una alternativa clarament visible.</p>
 
     <p><strong>6. Agrupació semàntica amb fieldset i legend</strong></p>
     <p>Per a formularis llargs amb múltiples seccions, utilitzeu <code>&lt;fieldset&gt;</code> per agrupar controls relacionats i <code>&lt;legend&gt;</code> per donar-los un títol. Això proporciona context addicional als lectors de pantalla: "Dades bàsiques, grup, 3 elements".</p>
@@ -7417,7 +7348,7 @@ ng serve --port 4300</code></pre>
     <p>Proporcioneu múltiples capes d'ajuda: etiquetes clares, textos d'ajuda opcionals (<code>aria-describedby</code>), missatges d'error específics (<code>role="alert"</code>), i indicadors visuals (focus, colors). Cada capa beneficia diferents usuaris: alguns només necessiten les etiquetes, altres també els lectors de pantalla.</p>
 
     <h4>Teclat com a prova base</h4>
-    <p>Si podeu completar el formulari només amb <code>Tab</code>, <code>Shift+Tab</code>, <code>Enter</code> i <code>Space</code> (sense tocar mai el ratolí ni la pantalla tàctil), ja heu cobert el 80% dels problemes d'accessibilitat. Aquesta prova és ràpida, gratuïta i molt efectiva.</p>
+    <p>Si podeu completar el formulari només amb <code>Tab</code>, <code>Shift+Tab</code>, <code>Enter</code> i <code>Space</code> (sense tocar mai el ratolí ni la pantalla tàctil), ja heu resolt una part molt important dels problemes d'accessibilitat més habituals.</p>
 
     <h4>Anuncis només quan cal</h4>
     <p>No abuseu de <code>role="alert"</code> ni <code>aria-live="assertive"</code>. Reserveu-los per a canvis realment importants (errors, confirmacions d'enviament). Anuncis excessius saturen l'usuari de lector de pantalla i dificulten la concentració.</p>
@@ -7427,7 +7358,6 @@ ng serve --port 4300</code></pre>
   
   </div>
 </div>
-
 
 
   <!-- Punt 3.4: Per què l'accessibilitat és important -->
@@ -7816,9 +7746,11 @@ ng serve --port 4300</code></pre>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;label for=&quot;campTitolInput&quot;&gt;Títol de l&#39;element&lt;/label&gt;
 &lt;input id=&quot;campTitolInput&quot; type=&quot;text&quot; name=&quot;titol&quot; required [(ngModel)]=&quot;formulariElement.titol&quot; aria-describedby=&quot;ajudaTitol errorsTitol&quot;&gt;
 &lt;p id=&quot;ajudaTitol&quot; class=&quot;ajuda&quot;&gt;Useu un títol descriptiu i únic (4-60 caràcters).&lt;/p&gt;
-&lt;div id=&quot;errorsTitol&quot; *ngIf=&quot;campTitol.invalid &amp;&amp; campTitol.touched&quot;&gt;
+@if (campTitol.invalid &amp;&amp; campTitol.touched) {
+&lt;div id=&quot;errorsTitol&quot;&gt;
 &lt;p&gt;El títol ha de tenir mínim 4 caràcters.&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -7918,7 +7850,7 @@ ng serve --port 4300</code></pre>
 
     <p><strong>3. aria-required — Indicar camps obligatoris</strong></p>
 
-    <p>Aquest atribut informa els lectors de pantalla que el camp és obligatori. És redundant amb l'atribut HTML5 <code>required</code>, però alguns lectors antics només reconeixen <code>aria-required</code>.</p>
+    <p>Aquest atribut informa els lectors de pantalla que el camp és obligatori. En controls HTML natius, <code>required</code> ja s'exposa a les tecnologies assistives als navegadors actuals, de manera que <code>aria-required</code> és redundant: pot ser útil en patrons personalitzats o per compatibilitat, però no cal afegir-lo sistemàticament.</p>
 
     <p><strong>Exemple:</strong></p>
 
@@ -8025,7 +7957,7 @@ ng serve --port 4300</code></pre>
           <td><strong>aria-required</strong></td>
           <td>Camp obligatori</td>
           <td><code>aria-required="true"</code></td>
-          <td>Camps amb <code>required</code> (redundant però recomanat)</td>
+          <td>Controls personalitzats o compatibilitat; en controls natius <code>required</code> és suficient</td>
         </tr>
         <tr>
           <td><strong>aria-invalid</strong></td>
@@ -8057,10 +7989,16 @@ ng serve --port 4300</code></pre>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;label for=&quot;campEmailInput&quot;&gt;Correu electrònic&lt;/label&gt;
 &lt;input id=&quot;campEmailInput&quot; type=&quot;email&quot; name=&quot;email&quot; required [(ngModel)]=&quot;formulariElement.email&quot; #campEmail=&quot;ngModel&quot; aria-describedby=&quot;ajudaEmail errorsEmail&quot; [attr.aria-required]=&quot;true&quot; [attr.aria-invalid]=&quot;campEmail.invalid &amp;&amp; campEmail.touched&quot;&gt;
 &lt;p id=&quot;ajudaEmail&quot; class=&quot;ajuda&quot;&gt;Utilitzarem aquest correu per enviar confirmacions.&lt;/p&gt;
-&lt;div id=&quot;errorsEmail&quot; *ngIf=&quot;campEmail.invalid &amp;&amp; campEmail.touched&quot; role=&quot;alert&quot;&gt;
-&lt;p *ngIf=&quot;campEmail.errors?.[&#39;required&#39;]&quot;&gt;Indiqueu el correu electrònic.&lt;/p&gt;
-&lt;p *ngIf=&quot;campEmail.errors?.[&#39;email&#39;]&quot;&gt;El format del correu no és vàlid.&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+@if (campEmail.invalid &amp;&amp; campEmail.touched) {
+&lt;div id=&quot;errorsEmail&quot; role=&quot;alert&quot;&gt;
+@if (campEmail.errors?.[&#39;required&#39;]) {
+&lt;p&gt;Indiqueu el correu electrònic.&lt;/p&gt;
+}
+@if (campEmail.errors?.[&#39;email&#39;]) {
+&lt;p&gt;El format del correu no és vàlid.&lt;/p&gt;
+}
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -8392,7 +8330,6 @@ document.querySelectorAll(&#39;input, textarea, select, button, a[href]&#39;).fo
 </div>
 
 
-
   <!-- Punt 3.8: Focus visible -->
   
   <!-- Component: Punt destacat dins d'una secció -->
@@ -8530,7 +8467,7 @@ button:focus {
 
     <p><strong>Contrast i visibilitat segons WCAG</strong></p>
 
-    <p>Les <strong>WCAG 2.2</strong> requereixen un contrast mínim de <strong>3:1</strong> entre el color del focus i el color de fons. Per exemple:</p>
+    <p>Un contrast mínim de <strong>3:1</strong> entre l'indicador de focus i el fons és la referència del criteri 2.4.13 <em>Focus Appearance</em> de les <strong>WCAG 2.2</strong> (nivell AAA; el nivell AA només exigeix que el focus sigui visible, 2.4.7). Per exemple:</p>
     <ul>
       <li>Focus blau <code>#2563eb</code> sobre fons blanc <code>#ffffff</code>: contrast ~8:1 <i class="bi bi-check-circle" aria-hidden="true"></i></li>
       <li>Focus groc clar <code>#ffeb3b</code> sobre fons blanc: contrast ~1.5:1 <i class="bi bi-x-circle" aria-hidden="true"></i></li>
@@ -8642,9 +8579,11 @@ input.ng-valid.ng-touched:focus {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div *ngIf=&quot;campTitol.invalid &amp;&amp; campTitol.touched&quot; style=&quot;color: red;&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (campTitol.invalid &amp;&amp; campTitol.touched) {
+&lt;div style=&quot;color: red;&quot;&gt;
 Indiqueu el títol de l&#39;element.
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -8669,9 +8608,11 @@ Indiqueu el títol de l&#39;element.
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div *ngIf=&quot;campTitol.invalid &amp;&amp; campTitol.touched&quot; role=&quot;alert&quot; aria-live=&quot;assertive&quot; class=&quot;missatges-error&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (campTitol.invalid &amp;&amp; campTitol.touched) {
+&lt;div role=&quot;alert&quot; class=&quot;missatges-error&quot;&gt;
 &lt;p&gt;Indiqueu el títol de l&#39;element.&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -8684,7 +8625,7 @@ Indiqueu el títol de l&#39;element.
     <ul>
       <li>Marca l'element com a regió d'alerta urgent.</li>
       <li>Els lectors de pantalla l'anuncien automàticament quan apareix.</li>
-      <li>Equivalent a <code>aria-live="assertive"</code> + <code>aria-atomic="true"</code>.</li>
+      <li>Equival a <code>aria-live="assertive"</code> + <code>aria-atomic="true"</code>: no cal afegir-los explícitament.</li>
     </ul>
 
     <p><strong>2. aria-live</strong></p>
@@ -8726,11 +8667,19 @@ Indiqueu el títol de l&#39;element.
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;label for=&quot;campTitolInput&quot;&gt;Títol de l&#39;element&lt;/label&gt;
 &lt;input id=&quot;campTitolInput&quot; type=&quot;text&quot; name=&quot;titol&quot; required minlength=&quot;4&quot; maxlength=&quot;60&quot; [(ngModel)]=&quot;formulariElement.titol&quot; #campTitol=&quot;ngModel&quot; aria-describedby=&quot;ajudaTitol errorsTitol&quot; [attr.aria-invalid]=&quot;campTitol.invalid &amp;&amp; campTitol.touched&quot;&gt;
 &lt;p id=&quot;ajudaTitol&quot; class=&quot;ajuda&quot;&gt;Useu un títol descriptiu i únic (4-60 caràcters).&lt;/p&gt;
-&lt;div id=&quot;errorsTitol&quot; class=&quot;missatges-error&quot; *ngIf=&quot;campTitol.invalid &amp;&amp; (campTitol.dirty || campTitol.touched)&quot; role=&quot;alert&quot; aria-live=&quot;assertive&quot;&gt;
-&lt;p *ngIf=&quot;campTitol.errors?.[&#39;required&#39;]&quot;&gt;{{ missatgesError.titol.required }}&lt;/p&gt;
-&lt;p *ngIf=&quot;campTitol.errors?.[&#39;minlength&#39;]&quot;&gt;{{ missatgesError.titol.minlength }}&lt;/p&gt;
-&lt;p *ngIf=&quot;campTitol.errors?.[&#39;maxlength&#39;]&quot;&gt;{{ missatgesError.titol.maxlength }}&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+@if (campTitol.invalid &amp;&amp; (campTitol.dirty || campTitol.touched)) {
+&lt;div id=&quot;errorsTitol&quot; class=&quot;missatges-error&quot; role=&quot;alert&quot;&gt;
+@if (campTitol.errors?.[&#39;required&#39;]) {
+&lt;p&gt;{{ missatgesError.titol.required }}&lt;/p&gt;
+}
+@if (campTitol.errors?.[&#39;minlength&#39;]) {
+&lt;p&gt;{{ missatgesError.titol.minlength }}&lt;/p&gt;
+}
+@if (campTitol.errors?.[&#39;maxlength&#39;]) {
+&lt;p&gt;{{ missatgesError.titol.maxlength }}&lt;/p&gt;
+}
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -8776,8 +8725,12 @@ Indiqueu el títol de l&#39;element.
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div role=&quot;alert&quot; *ngIf=&quot;campTitol.errors?.[&#39;required&#39;]&quot;&gt;Error 1&lt;/div&gt;
-&lt;div role=&quot;alert&quot; *ngIf=&quot;campTitol.errors?.[&#39;minlength&#39;]&quot;&gt;Error 2&lt;/div&gt;</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (campTitol.errors?.[&#39;required&#39;]) {
+&lt;div role=&quot;alert&quot;&gt;Error 1&lt;/div&gt;
+}
+@if (campTitol.errors?.[&#39;minlength&#39;]) {
+&lt;div role=&quot;alert&quot;&gt;Error 2&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -8800,10 +8753,16 @@ Indiqueu el títol de l&#39;element.
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div role=&quot;alert&quot; *ngIf=&quot;campTitol.invalid &amp;&amp; campTitol.touched&quot;&gt;
-&lt;p *ngIf=&quot;campTitol.errors?.[&#39;required&#39;]&quot;&gt;Error 1&lt;/p&gt;
-&lt;p *ngIf=&quot;campTitol.errors?.[&#39;minlength&#39;]&quot;&gt;Error 2&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (campTitol.invalid &amp;&amp; campTitol.touched) {
+&lt;div role=&quot;alert&quot;&gt;
+@if (campTitol.errors?.[&#39;required&#39;]) {
+&lt;p&gt;Error 1&lt;/p&gt;
+}
+@if (campTitol.errors?.[&#39;minlength&#39;]) {
+&lt;p&gt;Error 2&lt;/p&gt;
+}
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -8892,7 +8851,7 @@ Indiqueu el títol de l&#39;element.
     <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> utilitzeu <code>role="alert"</code> i <code>aria-live="assertive"</code> per anunciar errors automàticament, manteniu missatges breus i específics, i vinculeu-los al control amb <code>aria-describedby</code>.
+    <strong>Clau:</strong> utilitzeu <code>role="alert"</code> per anunciar errors automàticament (ja implica <code>aria-live="assertive"</code>; per a canvis no urgents, <code>aria-live="polite"</code>), manteniu missatges breus i específics, i vinculeu-los al control amb <code>aria-describedby</code>.
 </div>
 
 
@@ -8930,7 +8889,7 @@ Indiqueu el títol de l&#39;element.
 
     <p><strong>Passos:</strong></p>
     <ol>
-      <li>Obriu el formulari al navegador (<code>http://localhost:4300</code>).</li>
+      <li>Obriu el formulari al navegador (<code>http://localhost:4200</code>).</li>
       <li>Feu clic fora del navegador per desactivar qualsevol focus inicial.</li>
       <li>Premeu <code>Tab</code> per entrar al formulari.</li>
       <li>Ompliu cada camp utilitzant només:
@@ -9035,9 +8994,9 @@ Indiqueu el títol de l&#39;element.
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-markdown">## Proves d&#39;accessibilitat
 | Prova | Eina | Data | Resultat | Accions pendents |
 |-------|------|------|----------|------------------|
-| Navegació teclat | Manual (Chrome) | 2025-01-15 | &lt;i class=&quot;bi bi-check-circle&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt; Aprovat | Cap | | Lector de pantalla | VoiceOver (macOS) | 2025-01-15 | &lt;i class=&quot;bi bi-check-circle&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt; Aprovat | Cap |
+| Navegació teclat | Manual (Chrome) | 2025-01-15 | Aprovat | Cap | | Lector de pantalla | VoiceOver (macOS) | 2025-01-15 | Aprovat | Cap |
 | Lector de pantalla | NVDA (Windows) | 2025-01-15 | ⚠️ Advertència | Ajuda del preu no es llegeix (falta `aria-describedby`) |
-| Contrast colors | Lighthouse | 2025-01-15 | &lt;i class=&quot;bi bi-check-circle&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt; Aprovat | Cap | | Labels i ARIA | axe DevTools | 2025-01-15 | &lt;i class=&quot;bi bi-check-circle&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt; Aprovat | Cap |</code></pre>
+| Contrast colors | Lighthouse | 2025-01-15 | Aprovat | Cap | | Labels i ARIA | axe DevTools | 2025-01-15 | Aprovat | Cap |</code></pre>
   </div>
 </div>
 
@@ -9090,7 +9049,7 @@ Indiqueu el títol de l&#39;element.
     <i class="bi bi-x-circle" aria-hidden="true"></i> Ajudes desconnectades que els lectors ignoren.</p>
 
     <p><strong>4. Errors anunciables</strong></p>
-    <p><i class="bi bi-check-circle" aria-hidden="true"></i> Missatges d'error amb <code>role="alert"</code> i <code>aria-live="assertive"</code>.<br>
+    <p><i class="bi bi-check-circle" aria-hidden="true"></i> Missatges d'error amb <code>role="alert"</code> (i <code>aria-live="polite"</code> per a informació no urgent).<br>
     <i class="bi bi-x-circle" aria-hidden="true"></i> Errors només visuals (color vermell).</p>
 
     <p><strong>5. Estat invàlid comunicat</strong></p>
@@ -9227,7 +9186,7 @@ Indiqueu el títol de l&#39;element.
     <ol>
       <li><strong>Associeu labels i fieldsets:</strong> cada control té <code>&lt;label for="id"&gt;</code> i els grups estan dins de <code>&lt;fieldset&gt;</code> amb <code>&lt;legend&gt;</code>.</li>
       <li><strong>Vinculeu ajudes i errors:</strong> utilitzeu <code>aria-describedby="ajuda error"</code> per associar textos d'ajuda i missatges d'error als controls.</li>
-      <li><strong>Configureu errors anunciables:</strong> afegiu <code>role="alert"</code> i <code>aria-live="assertive"</code> als contenidors de missatges d'error.</li>
+      <li><strong>Configureu errors anunciables:</strong> afegiu <code>role="alert"</code> als contenidors de missatges d'error (ja implica un anunci immediat).</li>
       <li><strong>Indiqueu estat invàlid:</strong> utilitzeu <code>[attr.aria-invalid]="camp.invalid && camp.touched"</code> per comunicar errors als lectors.</li>
       <li><strong>Definiu focus visible:</strong> apliqueu estils amb <code>box-shadow</code> i <code>border-color</code> que superin el contrast 3:1.</li>
       <li><strong>Proveu amb teclat:</strong> completeu el formulari només amb <code>Tab</code>, <code>Enter</code> i <code>Space</code> sense tocar el ratolí.</li>
@@ -9267,7 +9226,7 @@ Indiqueu el títol de l&#39;element.
         <tr>
           <td><strong>El lector de pantalla no anuncia l'error</strong></td>
           <td>Falta <code>role="alert"</code> o <code>aria-live</code> al contenidor</td>
-          <td>Afegiu <code>&lt;div role="alert" aria-live="assertive"&gt;</code> al bloc de missatges d'error</td>
+          <td>Afegiu <code>&lt;div role="alert"&gt;</code> al bloc de missatges d'error</td>
         </tr>
         <tr>
           <td><strong>El focus no és visible</strong></td>
@@ -9287,7 +9246,7 @@ Indiqueu el títol de l&#39;element.
         <tr>
           <td><strong>Lector de pantalla repeteix missatges</strong></td>
           <td>El contenidor d'errors es recrea cada cicle de detecció de canvis</td>
-          <td>Manteniu el mateix <code>id</code> i eviteu recrear el DOM; utilitzeu <code>*ngIf</code> només al nivell del contenidor, no dels paràgrafs interns</td>
+          <td>Manteniu el mateix <code>id</code> i eviteu recrear el DOM; utilitzeu <code>@if</code> només al nivell del contenidor, no dels paràgrafs interns</td>
         </tr>
         <tr>
           <td><strong>Label no s'anuncia</strong></td>
@@ -9346,7 +9305,7 @@ Indiqueu el títol de l&#39;element.
     </div>
   </div>
   <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> Expert en accessibilitat web (WCAG 2.2). <strong>Context:</strong> Estic desenvolupant un formulari Angular templat-driven per a un catàleg d'elements. <strong>Tasca:</strong> Genera una checklist de 10 comprovacions essencials d'accessibilitat que hauria de fer abans de considerar el formulari llest per a producció, incloent com verificar cada punt manualment. <strong>Format:</strong> Llista numerada amb nom de la comprovació + 1-2 línies de descripció + mètode de verificació.</div>
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> Expert en accessibilitat web (WCAG 2.2). <strong>Context:</strong> Estic desenvolupant un formulari Angular template-driven per a un catàleg d'elements. <strong>Tasca:</strong> Genera una checklist de 10 comprovacions essencials d'accessibilitat que hauria de fer abans de considerar el formulari llest per a producció, incloent com verificar cada punt manualment. <strong>Format:</strong> Llista numerada amb nom de la comprovació + 1-2 línies de descripció + mètode de verificació.</div>
   </div>
 </div>
 
@@ -9486,7 +9445,7 @@ Indiqueu el títol de l&#39;element.
   </div>
   <div class="section-point-body component-content">
     
-    <p>Heu elevat el formulari templat-driven a un <strong>nivell accessible</strong> que garanteix que qualsevol persona, independentment de les seves capacitats, pugui completar-lo de manera autònoma. Heu aplicat les tècniques fonamentals d'accessibilitat: <strong>etiquetes semàntiques</strong>, <strong>atributs ARIA</strong> (<code>aria-describedby</code>, <code>role="alert"</code>, <code>aria-live</code>), <strong>focus visible</strong> amb contrast suficient, i <strong>ordre de tabulació lògic</strong>. Heu validat la interacció amb <strong>teclat</strong> i <strong>lectors de pantalla</strong> (VoiceOver, NVDA), deixant registre de les proves al dossier del projecte per facilitar auditories futures i compartir el coneixement amb l'equip. Heu establert un <strong>patró reutilitzable</strong> de formulari accessible que podreu aplicar a totes les lectures següents (formularis reactius, validacions asíncrones, integració amb APIs), mantenint el mateix estàndard de qualitat.</p>
+    <p>Heu elevat el formulari template-driven a un <strong>nivell accessible</strong> que garanteix que qualsevol persona, independentment de les seves capacitats, pugui completar-lo de manera autònoma. Heu aplicat les tècniques fonamentals d'accessibilitat: <strong>etiquetes semàntiques</strong>, <strong>atributs ARIA</strong> (<code>aria-describedby</code>, <code>role="alert"</code>, <code>aria-live</code>), <strong>focus visible</strong> amb contrast suficient, i <strong>ordre de tabulació lògic</strong>. Heu validat la interacció amb <strong>teclat</strong> i <strong>lectors de pantalla</strong> (VoiceOver, NVDA), deixant registre de les proves al dossier del projecte per facilitar auditories futures i compartir el coneixement amb l'equip. Heu establert un <strong>patró reutilitzable</strong> de formulari accessible que podreu aplicar a totes les lectures següents (formularis reactius, validacions asíncrones, integració amb APIs), mantenint el mateix estàndard de qualitat.</p>
   
   </div>
 </div>
@@ -9720,7 +9679,7 @@ Indiqueu el títol de l&#39;element.
                     
                     <div class="nav-link-wrapper">
                         
-                        <a href="/ioc/da2_oa01/unitat-2/bloc-2/" class="nav-button" aria-label="Bloc anterior: Data binding i events">← Anterior</a>
+                        <a href="/ioc/da2_oa01/unitat-2/bloc-2/" class="nav-button" aria-label="Bloc anterior: Control de flux, condicions i pipes">← Anterior</a>
                         
                     </div>
                     

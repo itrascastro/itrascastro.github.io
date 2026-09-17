@@ -18,21 +18,21 @@
 <meta property="og:locale" content="ca_ES" />
 <meta name="description" content="FormGroup, FormControl, FormBuilder i validadors integrats per gestió avançada de formularis" />
 <meta property="og:description" content="FormGroup, FormControl, FormBuilder i validadors integrats per gestió avançada de formularis" />
-<link rel="canonical" href="http://localhost:4004/ioc/da2_oa01/unitat-3/bloc-3/" />
-<meta property="og:url" content="http://localhost:4004/ioc/da2_oa01/unitat-3/bloc-3/" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/da2_oa01/unitat-3/bloc-3/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/da2_oa01/unitat-3/bloc-3/" />
 <meta property="og:site_name" content="DA2_OA01 - Programació Avançada (Angular)" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Bloc 3: Formularis reactius i validacions" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"FormGroup, FormControl, FormBuilder i validadors integrats per gestió avançada de formularis","headline":"Bloc 3: Formularis reactius i validacions","url":"http://localhost:4004/ioc/da2_oa01/unitat-3/bloc-3/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"FormGroup, FormControl, FormBuilder i validadors integrats per gestió avançada de formularis","headline":"Bloc 3: Formularis reactius i validacions","url":"https://itrascastro.github.io/ioc/da2_oa01/unitat-3/bloc-3/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/ioc/da2_oa01/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="canonical" href="http://localhost:4004/ioc/da2_oa01/unitat-3/bloc-3/">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/da2_oa01/unitat-3/bloc-3/">
     <!-- Rich editor styles (for embedded notes panel) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
     <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -48,7 +48,7 @@
     <link rel="icon" type="image/x-icon" href="/ioc/da2_oa01/assets/images/favicon.ico">
     
     <!-- RSS Feed -->
-    <link type="application/atom+xml" rel="alternate" href="http://localhost:4004/ioc/da2_oa01/feed.xml" title="DA2_OA01 - Programació Avançada (Angular)" />
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/da2_oa01/feed.xml" title="DA2_OA01 - Programació Avançada (Angular)" />
 
     <!-- Syntax Highlighting (Prism) -->
     <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
@@ -130,7 +130,7 @@
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-2/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 2 - Bloc 2: Data binding i events
+                        Unitat 2 - Bloc 2: Control de flux, condicions i pipes
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-2/bloc-3/" class="nav-dropdown-item ">
@@ -148,11 +148,11 @@
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-3/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 3 - Bloc 2: Gestió d'estat i comunicació entre components
+                        Unitat 3 - Bloc 2: Models de dades i transformació
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-3/bloc-3/" class="nav-dropdown-item current">
-                        Unitat 3 - Bloc 3: Optimització i bones pràctiques
+                        Unitat 3 - Bloc 3: Formularis reactius i validacions
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-3/bloc-4/" class="nav-dropdown-item ">
@@ -166,11 +166,11 @@
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-4/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 4 - Bloc 2: Arquitectura escalable
+                        Unitat 4 - Bloc 2: Arquitectura i patrons
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-4/bloc-3/" class="nav-dropdown-item ">
-                        Unitat 4 - Bloc 3: Optimització de rendiment
+                        Unitat 4 - Bloc 3: Rendiment i optimització
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-4/bloc-4/" class="nav-dropdown-item ">
@@ -1271,7 +1271,7 @@
                             
                                 <span class="horizontal-nav-separator"> &gt; </span>
                                 <span class="horizontal-nav-item current">
-                                    Bloc 3.3: Optimització i bones pràctiques
+                                    Bloc 3.3: Formularis reactius i validacions
                                 </span>
                             
                         
@@ -1290,74 +1290,8 @@
 
 <!-- Contingut principal -->
 <!-- SECCIÓ 1: Formularis reactius: grups i controls -->
-<div class="section" id="Unitat3_Bloc3_Seccio1">
+<div class="section">
   <h2 id="Unitat3_Bloc3_Seccio1">1. Formularis reactius: grups i controls</h2>
-
-  <!-- MULTIMÈDIA -->
-  <!--
-  ════════════════════════════════════════════════════════════════
-  Component: Enllaços multimèdia YouTube
-  ════════════════════════════════════════════════════════════════
-
-  Paràmetres:
-    - unitat: número de la unitat (1-4)
-    - bloc: número del bloc (1-4)
-    - seccio: número de la secció (1-3)
-
-  Exemple d'ús:
-    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
-
-  El component busca automàticament les URLs corresponents a
-  site.data.multimedia i mostra els botons de vídeo i àudio.
-  ════════════════════════════════════════════════════════════════
--->
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-<div class="multimedia-resources">
-  <div class="multimedia-header">
-    <i class="bi bi-play-circle-fill"></i>
-    <span>Contingut multimèdia d'aquesta lectura</span>
-  </div>
-
-  <div class="multimedia-buttons">
-    
-    <a href="https://www.youtube.com/watch?v=hwk4PEpVa6Q" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 3.3.1 · Formularis reactius: grups i controls">
-      <i class="bi bi-youtube"></i>
-      <span>Veure vídeo</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-
-    
-    <a href="https://www.youtube.com/watch?v=WgXW1IuRqMU" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 3.3.1 · Formularis reactius: grups i controls">
-      <i class="bi bi-mic-fill"></i>
-      <span>Escoltar àudio</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-  </div>
-
-  
-  
-</div>
-  
-
-
-
 
   <!-- Component: Objectius del bloc/unitat -->
 
@@ -1407,7 +1341,7 @@
 <ul>
 <li><strong>Unitat 2 completa:</strong> Formularis template-driven funcionals amb <code>[(ngModel)]</code> i validacions bàsiques.</li>
 <li><strong>Lectures 3.1.x–3.2.x:</strong> <code>ElementService</code> amb signals operatiu, components reactius funcionals.</li>
-<li><strong>Projecte actualitzat:</strong> <code>cataleg-elements</code> amb <code>git status</code> net, sense canvis pendents.</li>
+<li><strong>Projecte actualitzat:</strong> <code>ioc-angular-[nom-app]-[nom-alumne]</code> a la branca <code>ra3-serveis</code> amb <code>git status</code> net, sense canvis pendents.</li>
 <li><strong>VS Code obert:</strong> Terminal integrada disponible per executar comandes Angular CLI.</li>
 <li><strong>Documentació:</strong> Fitxer <code>docs/formularis.md</code> existent de la Unitat 2.</li>
 </ul>
@@ -1428,9 +1362,9 @@
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">cd ~/workspace/cataleg-elements
-ng serve --port 4300
-# Verificar http://localhost:4300 accessible amb catàleg funcional</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">cd ~/workspace/ioc-angular-[nom-app]-[nom-alumne]
+ng serve
+# Verificar http://localhost:4200 accessible amb catàleg funcional</code></pre>
   </div>
 </div>
 
@@ -1509,15 +1443,21 @@ ng serve --port 4300
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;form #formulari=&quot;ngForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;form #formulari=&quot;@form&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
 &lt;label&gt;
 Títol
 &lt;input type=&quot;text&quot; name=&quot;titol&quot; [(ngModel)]=&quot;element.titol&quot; required minlength=&quot;4&quot; #titol=&quot;ngModel&quot;&gt;
 &lt;/label&gt;
-&lt;div *ngIf=&quot;titol.touched &amp;&amp; titol.invalid&quot;&gt;
-&lt;p *ngIf=&quot;titol.errors?.[&#39;required&#39;]&quot;&gt;El títol és obligatori.&lt;/p&gt;
-&lt;p *ngIf=&quot;titol.errors?.[&#39;minlength&#39;]&quot;&gt;Cal almenys 4 caràcters.&lt;/p&gt;
+@if (titol.touched &amp;&amp; titol.invalid) {
+&lt;div&gt;
+@if (titol.errors?.[&#39;required&#39;]) {
+&lt;p&gt;El títol és obligatori.&lt;/p&gt;
+}
+@if (titol.errors?.[&#39;minlength&#39;]) {
+&lt;p&gt;Cal almenys 4 caràcters.&lt;/p&gt;
+}
 &lt;/div&gt;
+}
 &lt;label&gt;
 Categoria
 &lt;select name=&quot;categoria&quot; [(ngModel)]=&quot;element.categoria&quot; required&gt;
@@ -1537,11 +1477,11 @@ Valoració (0-5)
 
 <p><strong>Problemes que genera:</strong></p>
 <p><strong>1. Validacions dinàmiques impossibles</strong></p>
-<p>Afegir o eliminar validacions segons altres camps requereix lògica complexa al template amb múltiples <code>*ngIf</code>. Exemple: "Si categoria = 'Backend', el camp 'tecnologia' és obligatori". Amb template-driven, cal mantenir sincronitzat estat entre template i component. Codi fràgil i difícil de mantenir quan hi ha 10+ camps interdependents.</p>
+<p>Afegir o eliminar validacions segons altres camps requereix lògica complexa al template amb múltiples <code>@if</code>. Exemple: "Si categoria = 'Backend', el camp 'tecnologia' és obligatori". Amb template-driven, cal mantenir sincronitzat estat entre template i component. Codi fràgil i difícil de mantenir quan hi ha 10+ camps interdependents.</p>
 <p><strong>2. Testing extremadament difícil</strong></p>
 <p>Provar formulari template-driven requereix simular DOM complet, crear instàncies de directives Angular (<code>ngModel</code>, <code>ngForm</code>) i esperar detecció de canvis. Tests lents (100-300ms per test), fràgils (canviar HTML trenca tests) i acoblats a implementació. Impossible fer tests unitaris purs sense integració.</p>
 <p><strong>3. Lògica dispersa entre template i component</strong></p>
-<p>Validacions al HTML (<code>required</code>, <code>minlength</code>), gestió d'errors al template (<code>*ngIf</code>), transformacions al component. Quan teniu 15 camps amb validacions personalitzades, cal buscar codi a 3 llocs diferents. Manteniment caòtic. Difícil entendre flux complet.</p>
+<p>Validacions al HTML (<code>required</code>, <code>minlength</code>), gestió d'errors al template (<code>@if</code>), transformacions al component. Quan teniu 15 camps amb validacions personalitzades, cal buscar codi a 3 llocs diferents. Manteniment caòtic. Difícil entendre flux complet.</p>
 <p><strong>4. Reutilització limitada</strong></p>
 <p>Voleu el mateix formulari amb validacions diferents? Cal duplicar HTML complet. Voleu validacions compartides entre 5 formularis? Cal copiar directives a cada template. Zero reutilització de lògica de validació.</p>
 <p><strong>5. Control programàtic mínim</strong></p>
@@ -1565,32 +1505,36 @@ Valoració (0-5)
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, OnInit, inject } from &#39;@angular/core&#39;;
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from &#39;@angular/forms&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, inject } from &#39;@angular/core&#39;;
+import { takeUntilDestroyed } from &#39;@angular/core/rxjs-interop&#39;;
+import { FormBuilder, Validators, ReactiveFormsModule } from &#39;@angular/forms&#39;;
 @Component({
   selector: &#39;app-formulari-reactiu&#39;,
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule],   // @if/@for no necessiten CommonModule
   templateUrl: &#39;./formulari-reactiu.component.html&#39;
 })
-export class FormulariReactiuComponent implements OnInit {
+export class FormulariReactiuComponent {
   private readonly fb = inject(FormBuilder);
-  formulari!: FormGroup;
-  ngOnInit(): void {
-    this.formulari = this.fb.group({
-      titol: [&#39;&#39;, [Validators.required, Validators.minLength(4)]],
-      categoria: [&#39;&#39;, Validators.required],
-      valoracio: [0, [Validators.required, Validators.min(0), Validators.max(5)]],
-      descripcio: [&#39;&#39;, Validators.maxLength(200)]
-    });
-    this.formulari.get(&#39;categoria&#39;)?.valueChanges.subscribe(categoria =&gt; {
-      if (categoria === &#39;Backend&#39;) {
-        this.formulari.get(&#39;descripcio&#39;)?.setValidators([Validators.required, Validators.minLength(20)]);
-      } else {
-        this.formulari.get(&#39;descripcio&#39;)?.setValidators([Validators.maxLength(200)]);
-      }
-      this.formulari.get(&#39;descripcio&#39;)?.updateValueAndValidity();
-    });
+  // Formulari tipat: TypeScript infereix { titol: string; categoria: string; valoracio: number; descripcio: string }
+  // nonNullable: reset() torna al valor inicial (&#39;&#39; o 0), no a null
+  readonly formulari = this.fb.nonNullable.group({
+    titol: [&#39;&#39;, [Validators.required, Validators.minLength(4)]],
+    categoria: [&#39;&#39;, Validators.required],
+    valoracio: [0, [Validators.required, Validators.min(0), Validators.max(5)]],
+    descripcio: [&#39;&#39;, Validators.maxLength(200)]
+  });
+  constructor() {
+    this.formulari.controls.categoria.valueChanges
+      .pipe(takeUntilDestroyed())
+      .subscribe(categoria =&gt; {
+        const descripcio = this.formulari.controls.descripcio;
+        if (categoria === &#39;Backend&#39;) {
+          descripcio.setValidators([Validators.required, Validators.minLength(20)]);
+        } else {
+          descripcio.setValidators([Validators.maxLength(200)]);
+        }
+        descripcio.updateValueAndValidity();
+      });
   }
   onSubmit(): void {
     if (this.formulari.valid) {
@@ -1598,10 +1542,17 @@ export class FormulariReactiuComponent implements OnInit {
     }
   }
   get titolControl() {
-    return this.formulari.get(&#39;titol&#39;);
+    return this.formulari.controls.titol;   // accés tipat: FormControl&lt;string&gt;
   }
 }</code></pre>
   </div>
+</div>
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <strong>Formularis tipats i <code>nonNullable</code>.</strong> Des d'Angular 14 els formularis reactius són tipats: si declareu el grup com a propietat (<code>readonly formulari = this.fb.group(...)</code>), TypeScript sap que <code>formulari.controls.titol</code> és un <code>FormControl</code> i que <code>formulari.value.titol</code> és una cadena. Per defecte, un <code>FormControl('')</code> es tipa com a <code>FormControl&lt;string | null&gt;</code>, perquè <code>reset()</code> el deixa a <code>null</code>. Amb <code>fb.nonNullable.group(...)</code> (o <code>{ nonNullable: true }</code> a cada control) el tipus és <code>FormControl&lt;string&gt;</code> i <code>reset()</code> torna al valor inicial. Eviteu <code>formulari!: FormGroup</code> sense genèric: perdeu tota aquesta informació de tipus.
+    
 </div>
 
 
@@ -1625,12 +1576,18 @@ export class FormulariReactiuComponent implements OnInit {
 Títol
 &lt;input type=&quot;text&quot; formControlName=&quot;titol&quot;&gt;
 &lt;/label&gt;
-&lt;div *ngIf=&quot;titolControl?.touched &amp;&amp; titolControl?.invalid&quot; class=&quot;error&quot;&gt;
-&lt;p *ngIf=&quot;titolControl?.hasError(&#39;required&#39;)&quot;&gt;El títol és obligatori.&lt;/p&gt;
-&lt;p *ngIf=&quot;titolControl?.hasError(&#39;minlength&#39;)&quot;&gt;
+@if (titolControl?.touched &amp;&amp; titolControl?.invalid) {
+&lt;div class=&quot;error&quot;&gt;
+@if (titolControl?.hasError(&#39;required&#39;)) {
+&lt;p&gt;El títol és obligatori.&lt;/p&gt;
+}
+@if (titolControl?.hasError(&#39;minlength&#39;)) {
+&lt;p&gt;
 Cal almenys {{ titolControl?.errors?.[&#39;minlength&#39;].requiredLength }} caràcters.
 &lt;/p&gt;
+}
 &lt;/div&gt;
+}
 &lt;label&gt;
 Categoria
 &lt;select formControlName=&quot;categoria&quot;&gt;
@@ -1681,17 +1638,25 @@ Descripció
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;textarea name=&quot;descripcio&quot; [(ngModel)]=&quot;element.descripcio&quot; [required]=&quot;element.categoria === &#39;Backend&#39;&quot; [minlength]=&quot;element.categoria === &#39;Backend&#39; ? 20 : 0&quot; [maxlength]=&quot;element.categoria !== &#39;Backend&#39; ? 200 : 9999&quot;&gt;
 &lt;/textarea&gt;
-&lt;div *ngIf=&quot;descripcio.touched &amp;&amp; descripcio.invalid&quot;&gt;
-&lt;p *ngIf=&quot;descripcio.errors?.[&#39;required&#39;] &amp;&amp; element.categoria === &#39;Backend&#39;&quot;&gt;
+@if (descripcio.touched &amp;&amp; descripcio.invalid) {
+&lt;div&gt;
+@if (descripcio.errors?.[&#39;required&#39;] &amp;&amp; element.categoria === &#39;Backend&#39;) {
+&lt;p&gt;
 Descripció obligatòria per Backend.
 &lt;/p&gt;
-&lt;p *ngIf=&quot;descripcio.errors?.[&#39;minlength&#39;] &amp;&amp; element.categoria === &#39;Backend&#39;&quot;&gt;
+}
+@if (descripcio.errors?.[&#39;minlength&#39;] &amp;&amp; element.categoria === &#39;Backend&#39;) {
+&lt;p&gt;
 Cal almenys 20 caràcters per Backend.
 &lt;/p&gt;
-&lt;p *ngIf=&quot;descripcio.errors?.[&#39;maxlength&#39;] &amp;&amp; element.categoria !== &#39;Backend&#39;&quot;&gt;
+}
+@if (descripcio.errors?.[&#39;maxlength&#39;] &amp;&amp; element.categoria !== &#39;Backend&#39;) {
+&lt;p&gt;
 Màxim 200 caràcters.
 &lt;/p&gt;
-&lt;/div&gt;</code></pre>
+}
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -1751,14 +1716,20 @@ Màxim 200 caràcters.
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;select formControlName=&quot;categoria&quot;&gt;...&lt;/select&gt;
 &lt;textarea formControlName=&quot;descripcio&quot;&gt;&lt;/textarea&gt;
-&lt;div *ngIf=&quot;descripcioControl?.touched &amp;&amp; descripcioControl?.invalid&quot;&gt;
-&lt;p *ngIf=&quot;descripcioControl?.hasError(&#39;required&#39;)&quot;&gt;
+@if (descripcioControl?.touched &amp;&amp; descripcioControl?.invalid) {
+&lt;div&gt;
+@if (descripcioControl?.hasError(&#39;required&#39;)) {
+&lt;p&gt;
 Descripció obligatòria per Backend.
 &lt;/p&gt;
-&lt;p *ngIf=&quot;descripcioControl?.hasError(&#39;minlength&#39;)&quot;&gt;
+}
+@if (descripcioControl?.hasError(&#39;minlength&#39;)) {
+&lt;p&gt;
 Cal almenys 20 caràcters.
 &lt;/p&gt;
-&lt;/div&gt;</code></pre>
+}
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -1784,7 +1755,7 @@ Cal almenys 20 caràcters.
 </tr>
 <tr>
 <td><strong>Validacions dinàmiques</strong></td>
-<td>Difícil (lògica al template amb <code>*ngIf</code>)</td>
+<td>Difícil (lògica al template amb <code>@if</code>)</td>
 <td>Fàcil (<code>.setValidators()</code> programàtic)</td>
 </tr>
 <tr>
@@ -1820,7 +1791,7 @@ Cal almenys 20 caràcters.
 <tr>
 <td><strong>Accessibilitat a dades</strong></td>
 <td>Via <code>ngModel</code> (bidireccional)</td>
-<td>Via <code>.value</code> (unidireccional)</td>
+<td>Via <code>.value</code> del model explícit (font de veritat)</td>
 </tr>
 <tr>
 <td><strong>Subscripció a canvis</strong></td>
@@ -1971,7 +1942,7 @@ Subscripció reactiva (opcional)
 Estat del formulari actualitzat
   ↓ .valid / .invalid
 Change detection Angular
-  ↓ 
+  ↓ {{ formulari.value }}
 DOM actualitzat</code></pre>
   </div>
 </div>
@@ -2062,10 +2033,10 @@ DOM actualitzat</code></pre>
 <li>.valid / .invalid = Estat global del full (totes fórmules complides?)</li>
 </ul>
 <p><strong>Error comú a evitar:</strong></p>
-<p><i class="bi bi-x-circle" aria-hidden="true"></i> Pensar que FormControl és com ngModel (bidireccional)</p>
-<p><i class="bi bi-check-circle" aria-hidden="true"></i> FormControl és unidireccional: TypeScript → Template</p>
-<p><strong>Per què unidireccional?</strong></p>
-<p>Template NO pot modificar FormControl directament. Usuari escriu input → Angular actualitza FormControl → Change detection → Template mostra valor actualitzat. Flux controlat i predictible.</p>
+<p><i class="bi bi-x-circle" aria-hidden="true"></i> Pensar que amb Reactive Forms cal <code>[(ngModel)]</code> per sincronitzar l'input</p>
+<p><i class="bi bi-check-circle" aria-hidden="true"></i> El <code>FormControl</code> explícit és la font de veritat; Angular sincronitza vista ↔ model automàticament</p>
+<p><strong>Com funciona la sincronització?</strong></p>
+<p>La directiva <code>formControlName</code> connecta l'input amb el control mitjançant un <em>ControlValueAccessor</em>: quan l'usuari escriu, el valor passa a l'objecte <code>FormControl</code> (vista → model); quan feu <code>setValue()</code> des de TypeScript, l'input es refresca (model → vista). La diferència amb template-driven no és la direcció, sinó que el model del formulari és un objecte explícit que controleu des de la classe.</p>
   
   </div>
 </div>
@@ -2090,7 +2061,7 @@ DOM actualitzat</code></pre>
 <h4>1.4.2. Template-driven</h4>
 <ul>
 <li>Configuració basada en directives HTML: <code>[(ngModel)]</code>, <code>required</code>, <code>minlength</code></li>
-<li>Lògica de validació al template amb <code>*ngIf</code> i variables de plantilla</li>
+<li>Lògica de validació al template amb <code>@if</code> i variables de plantilla</li>
 <li>Adequat per formularis simples amb validacions estàtiques</li>
 <li>Menys codi TypeScript, més codi HTML</li>
 </ul>
@@ -2111,9 +2082,11 @@ DOM actualitzat</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;form #f=&quot;ngForm&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;form #f=&quot;@form&quot;&gt;
 &lt;input name=&quot;titol&quot; [(ngModel)]=&quot;titol&quot; required minlength=&quot;4&quot;&gt;
-&lt;div *ngIf=&quot;f.controls[&#39;titol&#39;]?.invalid&quot;&gt;Error&lt;/div&gt;
+@if (f.controls[&#39;titol&#39;]?.invalid) {
+&lt;div&gt;Error&lt;/div&gt;
+}
 &lt;/form&gt;</code></pre>
   </div>
 </div>
@@ -2166,7 +2139,9 @@ DOM actualitzat</code></pre>
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;form [formGroup]=&quot;formulari&quot;&gt;
 &lt;input formControlName=&quot;titol&quot;&gt;
-&lt;div *ngIf=&quot;formulari.get(&#39;titol&#39;)?.invalid&quot;&gt;Error&lt;/div&gt;
+@if (formulari.get(&#39;titol&#39;)?.invalid) {
+&lt;div&gt;Error&lt;/div&gt;
+}
 &lt;/form&gt;</code></pre>
   </div>
 </div>
@@ -2743,11 +2718,10 @@ Guardar
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, inject } from &#39;@angular/core&#39;;
 import { FormBuilder, ReactiveFormsModule, Validators } from &#39;@angular/forms&#39;;
-import { CommonModule } from &#39;@angular/common&#39;;
+import { JsonPipe } from &#39;@angular/common&#39;;   // només si useu el pipe json al template
 @Component({
   selector: &#39;app-formulari-element&#39;,
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, JsonPipe],
   templateUrl: &#39;./formulari-element.component.html&#39;
 })
 export class FormulariElementComponent {
@@ -2823,10 +2797,10 @@ Alta
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;p&gt;Formulari vàlid: &lt;/p&gt;
-&lt;p&gt;Modificat: &lt;/p&gt;
-&lt;p&gt;Tocat: &lt;/p&gt;
-&lt;pre&gt;&lt;/pre&gt;</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;p&gt;Formulari vàlid: {{ formulari.valid }}&lt;/p&gt;
+&lt;p&gt;Modificat: {{ formulari.dirty }}&lt;/p&gt;
+&lt;p&gt;Tocat: {{ formulari.touched }}&lt;/p&gt;
+&lt;pre&gt;{{ formulari.value | json }}&lt;/pre&gt;</code></pre>
   </div>
 </div>
 
@@ -2880,21 +2854,29 @@ Alta
 Títol
 &lt;input type=&quot;text&quot; formControlName=&quot;titol&quot;&gt;
 &lt;/label&gt;
-&lt;div *ngIf=&quot;formulari.get(&#39;titol&#39;)?.touched &amp;&amp; formulari.get(&#39;titol&#39;)?.invalid&quot; class=&quot;error&quot;&gt;
-&lt;p *ngIf=&quot;formulari.get(&#39;titol&#39;)?.hasError(&#39;required&#39;)&quot;&gt;
+@if (formulari.get(&#39;titol&#39;)?.touched &amp;&amp; formulari.get(&#39;titol&#39;)?.invalid) {
+&lt;div class=&quot;error&quot;&gt;
+@if (formulari.get(&#39;titol&#39;)?.hasError(&#39;required&#39;)) {
+&lt;p&gt;
 El títol és obligatori.
 &lt;/p&gt;
-&lt;p *ngIf=&quot;formulari.get(&#39;titol&#39;)?.hasError(&#39;minlength&#39;)&quot;&gt;
+}
+@if (formulari.get(&#39;titol&#39;)?.hasError(&#39;minlength&#39;)) {
+&lt;p&gt;
 Cal almenys
 {{ formulari.get(&#39;titol&#39;)?.errors?.[&#39;minlength&#39;].requiredLength }}
 caràcters.
 &lt;/p&gt;
-&lt;p *ngIf=&quot;formulari.get(&#39;titol&#39;)?.hasError(&#39;maxlength&#39;)&quot;&gt;
+}
+@if (formulari.get(&#39;titol&#39;)?.hasError(&#39;maxlength&#39;)) {
+&lt;p&gt;
 Màxim
 {{ formulari.get(&#39;titol&#39;)?.errors?.[&#39;maxlength&#39;].requiredLength }}
 caràcters.
 &lt;/p&gt;
-&lt;/div&gt;</code></pre>
+}
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -2937,14 +2919,20 @@ caràcters.
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div *ngIf=&quot;titolControl?.touched &amp;&amp; titolControl?.invalid&quot; class=&quot;error&quot;&gt;
-&lt;p *ngIf=&quot;titolControl?.hasError(&#39;required&#39;)&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (titolControl?.touched &amp;&amp; titolControl?.invalid) {
+&lt;div class=&quot;error&quot;&gt;
+@if (titolControl?.hasError(&#39;required&#39;)) {
+&lt;p&gt;
 El títol és obligatori.
 &lt;/p&gt;
-&lt;p *ngIf=&quot;titolControl?.hasError(&#39;minlength&#39;)&quot;&gt;
+}
+@if (titolControl?.hasError(&#39;minlength&#39;)) {
+&lt;p&gt;
 Cal almenys {{ titolControl?.errors?.[&#39;minlength&#39;].requiredLength }} caràcters.
 &lt;/p&gt;
-&lt;/div&gt;</code></pre>
+}
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -3003,30 +2991,48 @@ textarea.ng-touched.ng-invalid {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div *ngIf=&quot;emailControl?.touched &amp;&amp; emailControl?.invalid&quot; class=&quot;error&quot;&gt;
-&lt;p *ngIf=&quot;emailControl?.hasError(&#39;required&#39;)&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (emailControl?.touched &amp;&amp; emailControl?.invalid) {
+&lt;div class=&quot;error&quot;&gt;
+@if (emailControl?.hasError(&#39;required&#39;)) {
+&lt;p&gt;
 L&#39;email és obligatori.
 &lt;/p&gt;
-&lt;p *ngIf=&quot;emailControl?.hasError(&#39;email&#39;)&quot;&gt;
+}
+@if (emailControl?.hasError(&#39;email&#39;)) {
+&lt;p&gt;
 Format d&#39;email incorrecte.
 &lt;/p&gt;
+}
 &lt;/div&gt;
-&lt;div *ngIf=&quot;telefonControl?.touched &amp;&amp; telefonControl?.invalid&quot; class=&quot;error&quot;&gt;
-&lt;p *ngIf=&quot;telefonControl?.hasError(&#39;required&#39;)&quot;&gt;
+}
+@if (telefonControl?.touched &amp;&amp; telefonControl?.invalid) {
+&lt;div class=&quot;error&quot;&gt;
+@if (telefonControl?.hasError(&#39;required&#39;)) {
+&lt;p&gt;
 El telèfon és obligatori.
 &lt;/p&gt;
-&lt;p *ngIf=&quot;telefonControl?.hasError(&#39;pattern&#39;)&quot;&gt;
+}
+@if (telefonControl?.hasError(&#39;pattern&#39;)) {
+&lt;p&gt;
 El telèfon ha de tenir 9 dígits.
 &lt;/p&gt;
+}
 &lt;/div&gt;
-&lt;div *ngIf=&quot;edatControl?.touched &amp;&amp; edatControl?.invalid&quot; class=&quot;error&quot;&gt;
-&lt;p *ngIf=&quot;edatControl?.hasError(&#39;min&#39;)&quot;&gt;
+}
+@if (edatControl?.touched &amp;&amp; edatControl?.invalid) {
+&lt;div class=&quot;error&quot;&gt;
+@if (edatControl?.hasError(&#39;min&#39;)) {
+&lt;p&gt;
 Edat mínima: {{ edatControl?.errors?.[&#39;min&#39;].min }}.
 &lt;/p&gt;
-&lt;p *ngIf=&quot;edatControl?.hasError(&#39;max&#39;)&quot;&gt;
+}
+@if (edatControl?.hasError(&#39;max&#39;)) {
+&lt;p&gt;
 Edat màxima: {{ edatControl?.errors?.[&#39;max&#39;].max }}.
 &lt;/p&gt;
-&lt;/div&gt;</code></pre>
+}
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -3220,22 +3226,22 @@ this.formulari.reset({
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">isEnviant = false;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">isEnviant = signal(false);   // signal: canvia dins d&#39;una resposta HTTP
 onSubmit(): void {
   if (this.formulari.invalid) return;
-  this.isEnviant = true;
+  this.isEnviant.set(true);
   this.formulari.disable();
   this.elementService.crearElement(this.formulari.value).subscribe({
     next: () =&gt; {
       console.log(&#39;Element creat&#39;);
       this.formulari.enable();
       this.formulari.reset();
-      this.isEnviant = false;
+      this.isEnviant.set(false);
     },
     error: (err) =&gt; {
       console.error(&#39;Error:&#39;, err);
       this.formulari.enable();
-      this.isEnviant = false;
+      this.isEnviant.set(false);
     }
   });
 }</code></pre>
@@ -3258,8 +3264,8 @@ onSubmit(): void {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;button type=&quot;submit&quot; [disabled]=&quot;formulari.invalid || isEnviant&quot;&gt;
-{{ isEnviant ? &#39;Enviant...&#39; : &#39;Guardar&#39; }}
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;button type=&quot;submit&quot; [disabled]=&quot;formulari.invalid || isEnviant()&quot;&gt;
+{{ isEnviant() ? &#39;Enviant...&#39; : &#39;Guardar&#39; }}
 &lt;/button&gt;</code></pre>
   </div>
 </div>
@@ -3405,7 +3411,7 @@ onSubmit(): void {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng generate component components/formulari-element --standalone</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng generate component components/formulari-element --add-type-to-class-name</code></pre>
   </div>
 </div>
 
@@ -3428,13 +3434,11 @@ onSubmit(): void {
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, inject } from &#39;@angular/core&#39;;
 import { FormBuilder, ReactiveFormsModule, Validators } from &#39;@angular/forms&#39;;
-import { CommonModule } from &#39;@angular/common&#39;;
 @Component({
   selector: &#39;app-formulari-element&#39;,
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule],   // @if/@for són blocs natius: no cal CommonModule
   templateUrl: &#39;./formulari-element.component.html&#39;,
-  styleUrls: [&#39;./formulari-element.component.scss&#39;]
+  styleUrl: &#39;./formulari-element.component.scss&#39;
 })
 export class FormulariElementComponent {
   private readonly fb = inject(FormBuilder);
@@ -3482,10 +3486,16 @@ export class FormulariElementComponent {
 Títol
 &lt;input type=&quot;text&quot; formControlName=&quot;titol&quot;&gt;
 &lt;/label&gt;
-&lt;div *ngIf=&quot;titolControl?.touched &amp;&amp; titolControl?.invalid&quot; class=&quot;error&quot;&gt;
-&lt;p *ngIf=&quot;titolControl?.hasError(&#39;required&#39;)&quot;&gt;El títol és obligatori.&lt;/p&gt;
-&lt;p *ngIf=&quot;titolControl?.hasError(&#39;minlength&#39;)&quot;&gt;Cal almenys 4 caràcters.&lt;/p&gt;
+@if (titolControl?.touched &amp;&amp; titolControl?.invalid) {
+&lt;div class=&quot;error&quot;&gt;
+@if (titolControl?.hasError(&#39;required&#39;)) {
+&lt;p&gt;El títol és obligatori.&lt;/p&gt;
+}
+@if (titolControl?.hasError(&#39;minlength&#39;)) {
+&lt;p&gt;Cal almenys 4 caràcters.&lt;/p&gt;
+}
 &lt;/div&gt;
+}
 &lt;label&gt;
 Categoria
 &lt;select formControlName=&quot;categoria&quot;&gt;
@@ -3598,7 +3608,7 @@ button[type=&quot;submit&quot;] {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng serve --port 4300</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng serve</code></pre>
   </div>
 </div>
 
@@ -3963,7 +3973,7 @@ npm run test -- --watch=false</code></pre>
   <div class="section-point-body component-content">
     
 <p>
-Disposeu d'un formulari reactiu completament funcional amb control programàtic des de TypeScript, validacions integrades i missatges d'error contextuals que milloren l'experiència d'usuari. El projecte inclou FormBuilder configurat amb servei injectat per crear formularis amb sintaxi concisa reduint codi repetitiu i millorant llegibilitat, validadors integrats aplicats combinant múltiples validadors (required, minLength, maxLength, min, max) per assegurar qualitat de dades abans d'enviar, vinculació template reactiva amb plantilla HTML connectada a FormGroup mitjançant [formGroup] i formControlName amb sincronització automàtica bidireccional, missatges d'error contextuals proporcionant feedback visual només quan l'usuari ha tocat els camps (.touched) amb missatges específics segons tipus d'error (.hasError), gestió d'enviament robusta amb validació prèvia (.invalid), marcar camps (.markAllAsTouched) i deshabilitar durant enviament (.disable), i documentació completa amb taula de camps amb validacions i missatges, decisions de disseny registrades i comparativa template-driven vs reactius documentada. La base de formularis reactius establerta serveix com a fonament per funcionalitats avançades a la Lectura 3.3.2 incloent validacions personalitzades (custom validators), validacions asíncrones (consultar API), validacions dinàmiques avançades i FormArray per llistes dinàmiques.
+Disposeu d'un formulari reactiu completament funcional amb control programàtic des de TypeScript, validacions integrades i missatges d'error contextuals que milloren l'experiència d'usuari. El projecte inclou FormBuilder configurat amb servei injectat per crear formularis amb sintaxi concisa reduint codi repetitiu i millorant llegibilitat, validadors integrats aplicats combinant múltiples validadors (required, minLength, maxLength, min, max) per assegurar qualitat de dades abans d'enviar, vinculació template reactiva amb plantilla HTML connectada a FormGroup mitjançant [formGroup] i formControlName amb sincronització automàtica, missatges d'error contextuals proporcionant feedback visual només quan l'usuari ha tocat els camps (.touched) amb missatges específics segons tipus d'error (.hasError), gestió d'enviament robusta amb validació prèvia (.invalid), marcar camps (.markAllAsTouched) i deshabilitar durant enviament (.disable), i documentació completa amb taula de camps amb validacions i missatges, decisions de disseny registrades i comparativa template-driven vs reactius documentada. La base de formularis reactius establerta serveix com a fonament per funcionalitats avançades a la Lectura 3.3.2 incloent validacions personalitzades (custom validators), validacions asíncrones (consultar API), validacions dinàmiques avançades i FormArray per llistes dinàmiques.
 </p>
   
   </div>
@@ -4100,7 +4110,7 @@ Disposeu d'un formulari reactiu completament funcional amb control programàtic 
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>.reset():</strong> Mètode per resetear formulari a valors inicials netejant dades i estat de validació.</p>
+    <p><strong>.reset():</strong> Mètode que reinicia el formulari i neteja l'estat (touched, dirty). Sense argument, els controls tornen a <code>null</code>, llevat que siguin <code>nonNullable</code> (llavors tornen al valor inicial). També accepta un objecte amb els valors a restablir.</p>
   </div>
 </div>
 
@@ -4135,74 +4145,8 @@ Disposeu d'un formulari reactiu completament funcional amb control programàtic 
 </div>
 
 <!-- SECCIÓ 2: Validacions personalitzades i asíncrones -->
-<div class="section" id="Unitat3_Bloc3_Seccio2">
+<div class="section">
   <h2 id="Unitat3_Bloc3_Seccio2">2. Validacions personalitzades i asíncrones</h2>
-
-  <!-- MULTIMÈDIA -->
-  <!--
-  ════════════════════════════════════════════════════════════════
-  Component: Enllaços multimèdia YouTube
-  ════════════════════════════════════════════════════════════════
-
-  Paràmetres:
-    - unitat: número de la unitat (1-4)
-    - bloc: número del bloc (1-4)
-    - seccio: número de la secció (1-3)
-
-  Exemple d'ús:
-    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
-
-  El component busca automàticament les URLs corresponents a
-  site.data.multimedia i mostra els botons de vídeo i àudio.
-  ════════════════════════════════════════════════════════════════
--->
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-<div class="multimedia-resources">
-  <div class="multimedia-header">
-    <i class="bi bi-play-circle-fill"></i>
-    <span>Contingut multimèdia d'aquesta lectura</span>
-  </div>
-
-  <div class="multimedia-buttons">
-    
-    <a href="https://www.youtube.com/watch?v=B8i7XE5FeCs" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 3.3.2 · Validacions personalitzades i asíncrones">
-      <i class="bi bi-youtube"></i>
-      <span>Veure vídeo</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-
-    
-    <a href="https://www.youtube.com/watch?v=BA8JGTByNDw" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 3.3.2 · Validacions personalitzades i asíncrones">
-      <i class="bi bi-mic-fill"></i>
-      <span>Escoltar àudio</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-  </div>
-
-  
-  
-</div>
-  
-
-
-
 
   <!-- Component: Objectius del bloc/unitat -->
 
@@ -4251,9 +4195,9 @@ Disposeu d'un formulari reactiu completament funcional amb control programàtic 
 <p>Abans de començar, necessiteu:</p>
 <ul>
 <li><strong>Lectura 3.3.1 completa:</strong> Formulari reactiu amb <code>FormBuilder</code>, validadors integrats (<code>required</code>, <code>minLength</code>, etc.) i missatges d'error contextuals funcionals</li>
-<li><strong>json-server instal·lat globalment:</strong> Per crear API mock de validació asíncrona</li>
+<li><strong>json-server instal·lat com a dependència del projecte:</strong> Per crear API mock de validació asíncrona</li>
 <li><strong>API mock configurada:</strong> Fitxer <code>tools/api/cataleg.json</code> amb dades de prova</li>
-<li><strong>Projecte actualitzat:</strong> <code>cataleg-elements</code> amb <code>git status</code> net</li>
+<li><strong>Projecte actualitzat:</strong> <code>ioc-angular-[nom-app]-[nom-alumne]</code> a la branca <code>ra3-serveis</code> amb <code>git status</code> net</li>
 <li><strong>VS Code obert:</strong> Terminal integrada disponible per executar múltiples servidors</li>
 </ul>
 <p><strong>Verificació ràpida:</strong></p>
@@ -4273,10 +4217,10 @@ Disposeu d'un formulari reactiu completament funcional amb control programàtic 
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">cd ~/workspace/cataleg-elements
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">cd ~/workspace/ioc-angular-[nom-app]-[nom-alumne]
 json-server --version
 # Si no està instal·lat
-npm install -g json-server
+npm install --save-dev json-server
 # Crear estructura API mock
 mkdir -p tools/api</code></pre>
   </div>
@@ -4334,13 +4278,13 @@ EOF</code></pre>
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Terminal 1: Angular
-ng serve --port 4300
+ng serve
 # Terminal 2: json-server
-json-server --watch tools/api/cataleg.json --port 4301</code></pre>
+npm run api</code></pre>
   </div>
 </div>
 
-<p><strong>Punt d'autocomprovació:</strong> Ambdós servidors operatius, formulari base accessible a http://localhost:4300, API mock a http://localhost:4301/codisExistents.</p>
+<p><strong>Punt d'autocomprovació:</strong> Ambdós servidors operatius, formulari base accessible a http://localhost:4200, API mock a http://localhost:4301/codisExistents.</p>
   
   </div>
 </div>
@@ -4427,9 +4371,11 @@ onSubmit(): void {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div *ngIf=&quot;formulari.get(&#39;codi&#39;)?.hasError(&#39;pattern&#39;)&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (formulari.get(&#39;codi&#39;)?.hasError(&#39;pattern&#39;)) {
+&lt;div&gt;
   Format incorrecte.
 &lt;/div&gt;
+}
 &lt;!-- No hi ha validació reactiva per dates --&gt;
 &lt;!-- L&#39;usuari omple tot el formulari i descobreix l&#39;error al final --&gt;</code></pre>
   </div>
@@ -4565,19 +4511,27 @@ get codiControl() {
   Codi intern
   &lt;input type=&quot;text&quot; formControlName=&quot;codi&quot;&gt;
 &lt;/label&gt;
-&lt;div *ngIf=&quot;codiControl?.touched &amp;&amp; codiControl?.invalid&quot; class=&quot;error&quot;&gt;
-  &lt;p *ngIf=&quot;codiControl?.hasError(&#39;required&#39;)&quot;&gt;
+@if (codiControl?.touched &amp;&amp; codiControl?.invalid) {
+&lt;div class=&quot;error&quot;&gt;
+  @if (codiControl?.hasError(&#39;required&#39;)) {
+  &lt;p&gt;
     El codi és obligatori.
   &lt;/p&gt;
-  &lt;p *ngIf=&quot;codiControl?.hasError(&#39;codiInternInvalid&#39;)&quot;&gt;
+  }
+  @if (codiControl?.hasError(&#39;codiInternInvalid&#39;)) {
+  &lt;p&gt;
     El codi ha de tenir format {{ codiControl?.errors?.[&#39;codiInternInvalid&#39;].formatEsperat }}.
     Exemple: {{ codiControl?.errors?.[&#39;codiInternInvalid&#39;].exemple }}.
   &lt;/p&gt;
+  }
 &lt;/div&gt;
+}
 &lt;!-- Validació de grup --&gt;
-&lt;div *ngIf=&quot;formulari.hasError(&#39;dataFiNoPosteriror&#39;) &amp;&amp; formulari.get(&#39;dataFi&#39;)?.touched&quot; class=&quot;error&quot;&gt;
+@if (formulari.hasError(&#39;dataFiNoPosteriror&#39;) &amp;&amp; formulari.get(&#39;dataFi&#39;)?.touched) {
+&lt;div class=&quot;error&quot;&gt;
   &lt;p&gt;{{ formulari.errors?.[&#39;dataFiNoPosteriror&#39;].missatge }}&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -4600,13 +4554,14 @@ get codiControl() {
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// element.validators.ts - Validador asíncron
 import { HttpClient } from &#39;@angular/common/http&#39;;
+import { AbstractControl, AsyncValidatorFn, ValidationErrors } from &#39;@angular/forms&#39;;
 import { Observable, of, timer } from &#39;rxjs&#39;;
 import { map, switchMap, catchError } from &#39;rxjs/operators&#39;;
 /**
  * Valida que el codi no existeixi ja a la base de dades
- * Retorna Observable per permetre validació asíncrona
+ * Retorna Observable per permetre validació asíncrona (tipus AsyncValidatorFn, no ValidatorFn)
  */
-export function codiDisponible(http: HttpClient, apiUrl: string): ValidatorFn {
+export function codiDisponible(http: HttpClient, apiUrl: string): AsyncValidatorFn {
   return (control: AbstractControl): Observable&lt;ValidationErrors | null&gt; =&gt; {
     const valor = String(control.value || &#39;&#39;).trim();
     // Si buit o format incorrecte, altres validadors s&#39;encarreguen
@@ -4680,16 +4635,22 @@ formulari = this.fb.group({
   &lt;input type=&quot;text&quot; formControlName=&quot;codi&quot;&gt;
 &lt;/label&gt;
 &lt;!-- Indicador durant validació asíncrona --&gt;
-&lt;div *ngIf=&quot;codiControl?.pending&quot; class=&quot;info&quot;&gt;
+@if (codiControl?.pending) {
+&lt;div class=&quot;info&quot;&gt;
   &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt;
   Comprovant disponibilitat del codi...
 &lt;/div&gt;
-&lt;div *ngIf=&quot;codiControl?.touched &amp;&amp; codiControl?.invalid&quot; class=&quot;error&quot;&gt;
-  &lt;p *ngIf=&quot;codiControl?.hasError(&#39;codiDuplicat&#39;)&quot;&gt;
+}
+@if (codiControl?.touched &amp;&amp; codiControl?.invalid) {
+&lt;div class=&quot;error&quot;&gt;
+  @if (codiControl?.hasError(&#39;codiDuplicat&#39;)) {
+  &lt;p&gt;
     El codi {{ codiControl?.errors?.[&#39;codiDuplicat&#39;].valor }} ja existeix.
     Trieu un altre.
   &lt;/p&gt;
-&lt;/div&gt;</code></pre>
+  }
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -5057,14 +5018,18 @@ formulari = this.fb.group({
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div *ngIf=&quot;pressupostControl?.touched &amp;&amp; pressupostControl?.invalid&quot; class=&quot;error&quot;&gt;
-  &lt;p *ngIf=&quot;pressupostControl?.hasError(&#39;noMultipleCent&#39;)&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (pressupostControl?.touched &amp;&amp; pressupostControl?.invalid) {
+&lt;div class=&quot;error&quot;&gt;
+  @if (pressupostControl?.hasError(&#39;noMultipleCent&#39;)) {
+  &lt;p&gt;
     El pressupost ha de ser múltiple de 100€.
     Valors propers:
     {{ pressupostControl?.errors?.[&#39;noMultipleCent&#39;].multiplesPropers[0] }}€ o
     {{ pressupostControl?.errors?.[&#39;noMultipleCent&#39;].multiplesPropers[1] }}€.
   &lt;/p&gt;
-&lt;/div&gt;</code></pre>
+  }
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -5420,9 +5385,11 @@ export function senseParaulaProhibida(paraula: string): ValidatorFn {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div *ngIf=&quot;codiControl?.pending&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (codiControl?.pending) {
+&lt;div&gt;
   Comprovant disponibilitat...
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -5495,7 +5462,7 @@ export function senseParaulaProhibida(paraula: string): ValidatorFn {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">json-server --watch tools/api/cataleg.json --port 4301
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">npm run api
 # Verificar
 curl http://localhost:4301/codisExistents</code></pre>
   </div>
@@ -5615,7 +5582,7 @@ get codiControl() {
 <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> <code>timer()</code> per debounce, <code>switchMap()</code> per cancel·lar peticions anteriors, <code>catchError()</code> per no bloquejar si API falla.
+    <strong>Clau:</strong> <code>timer(500)</code> retarda l'inici de la petició; <code>switchMap()</code> encadena l'espera amb la crida HTTP; <code>catchError()</code> evita bloquejar el formulari si l'API falla. La cancel·lació de la validació anterior quan l'usuari torna a escriure la fa el mateix <code>FormControl</code>: en cada canvi de valor es desubscriu de l'Observable anterior i crida de nou el validador. Si el timer encara no havia acabat, la petició HTTP no s'arriba a fer mai.
 </div>
 
   
@@ -5684,27 +5651,39 @@ control.pending: boolean  // true durant validació asíncrona</code></pre>
     placeholder=&quot;CAT-2024-001&quot;&gt;
 &lt;/label&gt;
 &lt;!-- Indicador durant validació asíncrona --&gt;
-&lt;div *ngIf=&quot;codiControl?.pending&quot; class=&quot;info&quot;&gt;
+@if (codiControl?.pending) {
+&lt;div class=&quot;info&quot;&gt;
   &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt;
   &lt;span&gt;Comprovant disponibilitat del codi...&lt;/span&gt;
 &lt;/div&gt;
+}
 &lt;!-- Missatges d&#39;error --&gt;
-&lt;div *ngIf=&quot;codiControl?.touched &amp;&amp; codiControl?.invalid&quot; class=&quot;error&quot;&gt;
-  &lt;p *ngIf=&quot;codiControl?.hasError(&#39;required&#39;)&quot;&gt;
+@if (codiControl?.touched &amp;&amp; codiControl?.invalid) {
+&lt;div class=&quot;error&quot;&gt;
+  @if (codiControl?.hasError(&#39;required&#39;)) {
+  &lt;p&gt;
     El codi és obligatori.
   &lt;/p&gt;
-  &lt;p *ngIf=&quot;codiControl?.hasError(&#39;codiInternInvalid&#39;)&quot;&gt;
+  }
+  @if (codiControl?.hasError(&#39;codiInternInvalid&#39;)) {
+  &lt;p&gt;
     Format incorrecte. Esperat:
     {{ codiControl?.errors?.[&#39;codiInternInvalid&#39;].formatEsperat }}
   &lt;/p&gt;
-  &lt;p *ngIf=&quot;codiControl?.hasError(&#39;codiDuplicat&#39;)&quot;&gt;
+  }
+  @if (codiControl?.hasError(&#39;codiDuplicat&#39;)) {
+  &lt;p&gt;
     {{ codiControl?.errors?.[&#39;codiDuplicat&#39;].missatge }}
   &lt;/p&gt;
+  }
 &lt;/div&gt;
+}
 &lt;!-- Indicador d&#39;èxit --&gt;
-&lt;div *ngIf=&quot;codiControl?.valid &amp;&amp; codiControl?.value&quot; class=&quot;success&quot;&gt;
-  &lt;span&gt;&lt;i class=&quot;bi bi-check-circle-fill&quot;&gt;&lt;/i&gt;&lt;/span&gt; Codi disponible
-&lt;/div&gt;</code></pre>
+@if (codiControl?.valid &amp;&amp; codiControl?.value) {
+&lt;div class=&quot;success&quot;&gt;
+  &lt;span&gt;✓&lt;/span&gt; Codi disponible
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -6139,7 +6118,7 @@ formulari = this.fb.group({
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">json-server --watch tools/api/cataleg.json --port 4301</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">npm run api</code></pre>
   </div>
 </div>
 
@@ -6209,7 +6188,7 @@ formulari = this.fb.group({
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">{ &quot;codisExistents&quot;: [&quot;CAT-2024-001&quot;, &quot;CAT-2024-002&quot;] }
-json-server --watch tools/api/cataleg.json --port 4301</code></pre>
+npm run api</code></pre>
   </div>
 </div>
 
@@ -6261,14 +6240,20 @@ json-server --watch tools/api/cataleg.json --port 4301</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div *ngIf=&quot;codiControl?.pending&quot; class=&quot;info&quot;&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">@if (codiControl?.pending) {
+&lt;div class=&quot;info&quot;&gt;
   &lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; Comprovant...
 &lt;/div&gt;
-&lt;div *ngIf=&quot;codiControl?.touched &amp;&amp; codiControl?.invalid&quot; class=&quot;error&quot;&gt;
-  &lt;p *ngIf=&quot;codiControl?.hasError(&#39;codiDuplicat&#39;)&quot;&gt;
+}
+@if (codiControl?.touched &amp;&amp; codiControl?.invalid) {
+&lt;div class=&quot;error&quot;&gt;
+  @if (codiControl?.hasError(&#39;codiDuplicat&#39;)) {
+  &lt;p&gt;
     Codi ja existeix
   &lt;/p&gt;
-&lt;/div&gt;</code></pre>
+  }
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -6289,7 +6274,7 @@ json-server --watch tools/api/cataleg.json --port 4301</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng serve --port 4300
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng serve
 # Provar: CAT-2024-001 (duplicat), CAT-2024-999 (disponible)
 # Verificar spinner apareix
 # Verificar missatges contextuals
@@ -6372,13 +6357,13 @@ npm run test -- --watch=false</code></pre>
 <tbody>
 <tr>
 <td><code>AsyncValidator must return Observable</code></td>
-<td>Wrapejar amb <code>of()</code>: <code>return of(null)</code></td>
-<td>Wrapejar amb <code>of()</code>: <code>return of(null)</code></td>
+<td>Embolcallar amb <code>of()</code>: <code>return of(null)</code></td>
+<td>Embolcallar amb <code>of()</code>: <code>return of(null)</code></td>
 </tr>
 <tr>
 <td><code>json-server: command not found</code></td>
-<td><code>npm install -g json-server</code></td>
-<td><code>npm install -g json-server</code></td>
+<td><code>npm install --save-dev json-server</code></td>
+<td><code>npm install --save-dev json-server</code></td>
 </tr>
 <tr>
 <td><code>Cannot find name 'ValidatorFn'</code></td>
@@ -6386,9 +6371,9 @@ npm run test -- --watch=false</code></pre>
 <td><code>import { ValidatorFn } from '@angular/forms';</code></td>
 </tr>
 <tr>
-<td><code>HttpClient not provided</code></td>
-<td>Afegir a <code>app.config.ts</code>: <code>provideHttpClient()</code></td>
-<td>Afegir a <code>app.config.ts</code>: <code>provideHttpClient()</code></td>
+<td><code>No provider for HttpClient</code></td>
+<td>Comprovar l'import de <code>@angular/common/http</code> (a Angular 22 no cal proveïdor)</td>
+<td>Comprovar l'import de <code>@angular/common/http</code> (a Angular 22 no cal proveïdor)</td>
 </tr>
 </tbody>
 </table>
@@ -6629,7 +6614,7 @@ npm run test -- --watch=false</code></pre>
   </div>
   <div class="section-point-body component-content">
     
-<p>Disposeu de <strong>validacions personalitzades completes</strong> que extenen les capacitats dels validadors integrats amb regles de negoci específiques i comprovacions asíncrones contra fonts externes. El projecte inclou validadors síncrons personalitzats com funcions reutilitzables per formats interns (CAT-YYYY-NNN), múltiples (multipliDe), paraules prohibides i dependències entre camps (dates), validadors amb paràmetres utilitzant factory pattern per configurar validadors reutilitzables en diferents contextos sense duplicar codi, validació asíncrona funcional que comprova disponibilitat de codi contra API mock amb debounce de 500ms cancel·lació de peticions anteriors amb switchMap i gestió d'errors amb catchError, indicadors pending avançats proporcionant feedback visual durant validacions asíncrones amb spinners missatges contextuals i indicadors d'èxit/error, organització mantenible amb validadors estructurats en directori dedicat amb separació per domini (comuns element usuari) i barrel exports per imports nets, i documentació tècnica completa amb taules de validadors descripcions exemples d'ús missatges d'error amb metadades configuració API mock i proves realitzades registrades a docs/formularis.md. La base de validacions personalitzades establerta serveix com a fonament per aplicar-les a estructures de formularis més complexes amb FormArray i formularis niuats.</p>
+<p>Disposeu de <strong>validacions personalitzades completes</strong> que estenen les capacitats dels validadors integrats amb regles de negoci específiques i comprovacions asíncrones contra fonts externes. El projecte inclou validadors síncrons personalitzats com funcions reutilitzables per formats interns (CAT-YYYY-NNN), múltiples (multipliDe), paraules prohibides i dependències entre camps (dates), validadors amb paràmetres utilitzant factory pattern per configurar validadors reutilitzables en diferents contextos sense duplicar codi, validació asíncrona funcional que comprova disponibilitat de codi contra API mock amb debounce de 500ms cancel·lació de peticions anteriors amb switchMap i gestió d'errors amb catchError, indicadors pending avançats proporcionant feedback visual durant validacions asíncrones amb spinners missatges contextuals i indicadors d'èxit/error, organització mantenible amb validadors estructurats en directori dedicat amb separació per domini (comuns element usuari) i barrel exports per imports nets, i documentació tècnica completa amb taules de validadors descripcions exemples d'ús missatges d'error amb metadades configuració API mock i proves realitzades registrades a docs/formularis.md. La base de validacions personalitzades establerta serveix com a fonament per aplicar-les a estructures de formularis més complexes amb FormArray i formularis niuats.</p>
   
   </div>
 </div>
@@ -6661,7 +6646,7 @@ npm run test -- --watch=false</code></pre>
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>AsyncValidatorFn:</strong> Funció que retorna <code>Observable&lt;ValidationErrors | null&gt;</code> per validacions contra API/DB.</p>
+    <p><strong>AsyncValidatorFn:</strong> Funció que retorna <code>Observable&lt;ValidationErrors | null&gt;</code> o <code>Promise&lt;ValidationErrors | null&gt;</code> per validacions contra API/DB; s'executa només si els validadors síncrons passen.</p>
   </div>
 </div>
 
@@ -6709,7 +6694,7 @@ npm run test -- --watch=false</code></pre>
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>switchMap():</strong> Operador RxJS que cancel·la peticions anteriors quan arriba nou valor.</p>
+    <p><strong>switchMap():</strong> Operador RxJS que, per cada valor de l'Observable font, es subscriu a un Observable intern i cancel·la l'anterior. Al validador asíncron encadena <code>timer(500)</code> amb la petició HTTP; la cancel·lació entre tecleigs la gestiona el FormControl en desubscriure's de la validació anterior.</p>
   </div>
 </div>
 
@@ -6752,74 +6737,8 @@ npm run test -- --watch=false</code></pre>
 </div>
 
 <!-- SECCIÓ 3: Formularis complexos i camps dinàmics -->
-<div class="section" id="Unitat3_Bloc3_Seccio3">
+<div class="section">
   <h2 id="Unitat3_Bloc3_Seccio3">3. Formularis complexos i camps dinàmics</h2>
-
-  <!-- MULTIMÈDIA -->
-  <!--
-  ════════════════════════════════════════════════════════════════
-  Component: Enllaços multimèdia YouTube
-  ════════════════════════════════════════════════════════════════
-
-  Paràmetres:
-    - unitat: número de la unitat (1-4)
-    - bloc: número del bloc (1-4)
-    - seccio: número de la secció (1-3)
-
-  Exemple d'ús:
-    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
-
-  El component busca automàticament les URLs corresponents a
-  site.data.multimedia i mostra els botons de vídeo i àudio.
-  ════════════════════════════════════════════════════════════════
--->
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-<div class="multimedia-resources">
-  <div class="multimedia-header">
-    <i class="bi bi-play-circle-fill"></i>
-    <span>Contingut multimèdia d'aquesta lectura</span>
-  </div>
-
-  <div class="multimedia-buttons">
-    
-    <a href="https://www.youtube.com/watch?v=s2-UewCf_Fw" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 3.3.3 · Formularis complexos i camps dinàmics">
-      <i class="bi bi-youtube"></i>
-      <span>Veure vídeo</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-
-    
-    <a href="https://www.youtube.com/watch?v=e60Z6NInsNs" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 3.3.3 · Formularis complexos i camps dinàmics">
-      <i class="bi bi-mic-fill"></i>
-      <span>Escoltar àudio</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-  </div>
-
-  
-  
-</div>
-  
-
-
-
 
   <!-- Component: Objectius del bloc/unitat -->
 
@@ -6869,7 +6788,7 @@ npm run test -- --watch=false</code></pre>
 <ul>
 <li><strong>Lectures 3.3.1 i 3.3.2 completes:</strong> Formulari reactiu amb FormBuilder, validadors integrats, validadors personalitzats i asíncrons funcionals</li>
 <li><strong>Conceptes consolidats:</strong> FormGroup, FormControl, Validators, validadors personalitzats</li>
-<li><strong>Projecte actualitzat:</strong> <code>cataleg-elements</code> amb <code>git status</code> net</li>
+<li><strong>Projecte actualitzat:</strong> <code>ioc-angular-[nom-app]-[nom-alumne]</code> a la branca <code>ra3-serveis</code> amb <code>git status</code> net</li>
 <li><strong>VS Code obert:</strong> Terminal integrada disponible</li>
 </ul>
 <p><strong>Verificació ràpida:</strong></p>
@@ -6889,8 +6808,8 @@ npm run test -- --watch=false</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">cd ~/workspace/cataleg-elements
-ng serve --port 4300
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">cd ~/workspace/ioc-angular-[nom-app]-[nom-alumne]
+ng serve
 # Verificar formularis anteriors funcionals</code></pre>
   </div>
 </div>
@@ -6975,23 +6894,29 @@ ng serve --port 4300
 Telèfon 1
 &lt;input formControlName=&quot;telefon1&quot;&gt;
 &lt;/label&gt;
-&lt;div *ngIf=&quot;formulari.get(&#39;telefon1&#39;)?.hasError(&#39;pattern&#39;)&quot;&gt;
+@if (formulari.get(&#39;telefon1&#39;)?.hasError(&#39;pattern&#39;)) {
+&lt;div&gt;
 Format incorrecte
 &lt;/div&gt;
+}
 &lt;label&gt;
 Telèfon 2
 &lt;input formControlName=&quot;telefon2&quot;&gt;
 &lt;/label&gt;
-&lt;div *ngIf=&quot;formulari.get(&#39;telefon2&#39;)?.hasError(&#39;pattern&#39;)&quot;&gt;
+@if (formulari.get(&#39;telefon2&#39;)?.hasError(&#39;pattern&#39;)) {
+&lt;div&gt;
 Format incorrecte
 &lt;/div&gt;
+}
 &lt;label&gt;
 Telèfon 3
 &lt;input formControlName=&quot;telefon3&quot;&gt;
 &lt;/label&gt;
-&lt;div *ngIf=&quot;formulari.get(&#39;telefon3&#39;)?.hasError(&#39;pattern&#39;)&quot;&gt;
+@if (formulari.get(&#39;telefon3&#39;)?.hasError(&#39;pattern&#39;)) {
+&lt;div&gt;
 Format incorrecte
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+}</code></pre>
   </div>
 </div>
 
@@ -7078,7 +7003,8 @@ eliminarTelefon(index: number): void {
 Afegir telèfon
 &lt;/button&gt;
 &lt;div formArrayName=&quot;telefons&quot;&gt;
-&lt;div *ngFor=&quot;let telefon of telefons.controls; let i = index&quot; [formGroupName]=&quot;i&quot; class=&quot;telefon-item&quot;&gt;
+@for (telefon of telefons.controls; track telefon; let i = $index) {
+&lt;div [formGroupName]=&quot;i&quot; class=&quot;telefon-item&quot;&gt;
 &lt;label&gt;
 Número
 &lt;input formControlName=&quot;numero&quot; placeholder=&quot;612345678&quot;&gt;
@@ -7094,10 +7020,13 @@ Tipus
 &lt;button type=&quot;button&quot; (click)=&quot;eliminarTelefon(i)&quot;&gt;
 Eliminar
 &lt;/button&gt;
-&lt;div *ngIf=&quot;telefon.get(&#39;numero&#39;)?.hasError(&#39;pattern&#39;)&quot; class=&quot;error&quot;&gt;
+@if (telefon.get(&#39;numero&#39;)?.hasError(&#39;pattern&#39;)) {
+&lt;div class=&quot;error&quot;&gt;
 Format incorrecte (9 dígits)
 &lt;/div&gt;
+}
 &lt;/div&gt;
+}
 &lt;/div&gt;
 &lt;/section&gt;
 &lt;section formGroupName=&quot;adreca&quot;&gt;
@@ -7121,7 +7050,7 @@ Codi postal
 <p><strong>Avantatges específics:</strong></p>
 <ul>
 <li><i class="bi bi-check-circle" aria-hidden="true"></i> <strong>Flexibilitat total:</strong> Usuari afegeix 1, 5 o 10 telèfons segons necessitat. Botó "Afegir" crea nou FormGroup automàticament. Botó "Eliminar" esborra telèfon específic. Adaptació dinàmica perfecta.</li>
-<li><i class="bi bi-check-circle" aria-hidden="true"></i> <strong>Zero duplicació de codi:</strong> 1 mètode <code>crearTelefon()</code> reutilitzat per tots els telèfons. 1 bloc HTML amb <code>*ngFor</code> renderitza tots. Canviar validació: modificar 1 lloc vs 3-10 llocs. Manteniment simple.</li>
+<li><i class="bi bi-check-circle" aria-hidden="true"></i> <strong>Zero duplicació de codi:</strong> 1 mètode <code>crearTelefon()</code> reutilitzat per tots els telèfons. 1 bloc HTML amb <code>@for</code> renderitza tots. Canviar validació: modificar 1 lloc vs 3-10 llocs. Manteniment simple.</li>
 <li><i class="bi bi-check-circle" aria-hidden="true"></i> <strong>Organització lògica:</strong> Adreça agrupada amb <code>formGroupName="adreca"</code>. Accés net: <code>formulari.get('adreca.ciutat')</code>. Validacions interdependents fàcils (CP depèn de província). Estructura clara i mantenible.</li>
 <li><i class="bi bi-check-circle" aria-hidden="true"></i> <strong>Operacions col·lectives:</strong> Validar tots telèfons: <code>telefons.valid</code>. Comptar telèfons: <code>telefons.length</code>. Netejar tots: <code>telefons.clear()</code>. API potent per col·leccions.</li>
 <li><i class="bi bi-check-circle" aria-hidden="true"></i> <strong>Experiència d'usuari excel·lent:</strong> Usuari controla formulari: afegeix camps quan cal, elimina els que sobren. Formulari adaptat a cas real. Professional i intuïtiu.</li>
@@ -7224,7 +7153,7 @@ afegirVariant(): void {
 <tr>
 <td><strong>Duplicació de codi</strong></td>
 <td>Alta (repetir per cada camp)</td>
-<td>Baixa (1 mètode + *ngFor)</td>
+<td>Baixa (1 mètode + @for)</td>
 </tr>
 <tr>
 <td><strong>Organització lògica</strong></td>
@@ -7356,7 +7285,7 @@ afegirVariant(): void {
 <p><strong>Col·leccions tipades</strong></p>
 <p>FormArray és genèric: <code>FormArray&lt;FormGroup&gt;</code>, <code>FormArray&lt;FormControl&gt;</code>. TypeScript proporciona type safety. Compilador detecta errors d'accés.</p>
 <p><strong>Índexs dinàmics</strong></p>
-<p>Accés per índex: <code>.at(i)</code>. Iteració fàcil amb <code>*ngFor</code>. Gestió d'índexs automàtica (eliminar actualitza índexs restants).</p>
+<p>Accés per índex: <code>.at(i)</code>. Iteració fàcil amb <code>@for</code>. Gestió d'índexs automàtica (eliminar actualitza índexs restants).</p>
 <p><strong>Validacions globals i individuals</strong></p>
 <p>Validar FormArray complet: <code>formArray.valid</code>. Validar control individual: <code>formArray.at(i).valid</code>. Comptar vàlids: <code>formArray.controls.filter(c => c.valid).length</code>.</p>
 <p><strong>Composició il·limitada</strong></p>
@@ -7457,7 +7386,7 @@ Component executa mètode
   ↓ telefons.push(nouFormGroup)
 FormArray actualitzat
   ↓ Change detection Angular
-Template re-renderitza *ngFor
+Template re-renderitza @for
   ↓ Nou camp apareix a la UI
 Usuari pot omplir nou telèfon
 ---
@@ -7468,7 +7397,7 @@ Component executa mètode
 FormArray actualitzat (índexs recalculats)
   ↓ [0, 1, 2, 3] → [0, 1, 3]
   ↓ Índex 3 passa a ser 2
-Template re-renderitza *ngFor
+Template re-renderitza @for
   ↓ Camp eliminat desapareix
 Usuari veu canvi immediat</code></pre>
   </div>
@@ -7688,7 +7617,7 @@ formulari.reset({
 <tr>
 <td><strong>Iteració</strong></td>
 <td>No aplicable</td>
-<td>Fàcil amb *ngFor</td>
+<td>Fàcil amb @for</td>
 </tr>
 <tr>
 <td><strong>Afegir camp</strong></td>
@@ -7846,17 +7775,24 @@ telefons.at(0).get(&#39;numero&#39;)?.value</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div formArrayName=&quot;telefons&quot;&gt;
-&lt;div *ngFor=&quot;let telefon of telefons.controls; let i = index&quot;&gt;
-&lt;input [formControlName]=&quot;i&quot;&gt;
-&lt;div [formGroupName]=&quot;i&quot;&gt;
-&lt;input formControlName=&quot;numero&quot;&gt;
-&lt;select formControlName=&quot;tipus&quot;&gt;
-&lt;option value=&quot;mobil&quot;&gt;Mòbil&lt;/option&gt;
-&lt;option value=&quot;fix&quot;&gt;Fix&lt;/option&gt;
-&lt;/select&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Cas A: FormArray de FormControl (un input per posició) --&gt;
+&lt;div formArrayName=&quot;emails&quot;&gt;
+@for (email of emails.controls; track email; let i = $index) {
+  &lt;input [formControlName]=&quot;i&quot; type=&quot;email&quot;&gt;
+}
 &lt;/div&gt;
-&lt;/div&gt;
+
+&lt;!-- Cas B: FormArray de FormGroup (un grup per posició) --&gt;
+&lt;div formArrayName=&quot;telefons&quot;&gt;
+@for (telefon of telefons.controls; track telefon; let i = $index) {
+  &lt;div [formGroupName]=&quot;i&quot;&gt;
+    &lt;input formControlName=&quot;numero&quot;&gt;
+    &lt;select formControlName=&quot;tipus&quot;&gt;
+      &lt;option value=&quot;mobil&quot;&gt;Mòbil&lt;/option&gt;
+      &lt;option value=&quot;fix&quot;&gt;Fix&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+}
 &lt;/div&gt;</code></pre>
   </div>
 </div>
@@ -7911,12 +7847,16 @@ telefons.at(0).get(&#39;numero&#39;)?.value</code></pre>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;form [formGroup]=&quot;formulari&quot;&gt;
 &lt;h3&gt;Emails&lt;/h3&gt;
 &lt;div formArrayName=&quot;emails&quot;&gt;
-&lt;div *ngFor=&quot;let email of emails.controls; let i = index&quot;&gt;
+@for (email of emails.controls; track email; let i = $index) {
+&lt;div&gt;
 &lt;input [formControlName]=&quot;i&quot; placeholder=&quot;email@example.com&quot;&gt;
-&lt;div *ngIf=&quot;emails.at(i).hasError(&#39;email&#39;)&quot; class=&quot;error&quot;&gt;
+@if (emails.at(i).hasError(&#39;email&#39;)) {
+&lt;div class=&quot;error&quot;&gt;
 Format email incorrecte
 &lt;/div&gt;
+}
 &lt;/div&gt;
+}
 &lt;/div&gt;
 &lt;/form&gt;</code></pre>
   </div>
@@ -7925,7 +7865,7 @@ Format email incorrecte
 <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> FormArray es crea amb <code>fb.array([...])</code>. Accés amb <code>.at(i)</code>. Template amb <code>formArrayName</code> + <code>*ngFor</code>.
+    <strong>Clau:</strong> FormArray es crea amb <code>fb.array([...])</code>. Accés amb <code>.at(i)</code>. Template amb <code>formArrayName</code> + <code>@for</code>.
 </div>
 
 <h4>3.5.7. Resultat esperat</h4>
@@ -8077,13 +8017,15 @@ Afegir telèfon
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div formArrayName=&quot;telefons&quot;&gt;
-&lt;div *ngFor=&quot;let telefon of telefons.controls; let i = index&quot; [formGroupName]=&quot;i&quot;&gt;
+@for (telefon of telefons.controls; track telefon; let i = $index) {
+&lt;div [formGroupName]=&quot;i&quot;&gt;
 &lt;input formControlName=&quot;numero&quot;&gt;
 &lt;select formControlName=&quot;tipus&quot;&gt;&lt;/select&gt;
 &lt;button type=&quot;button&quot; (click)=&quot;eliminarTelefon(i)&quot; [disabled]=&quot;telefons.length === 1&quot;&gt;
 Eliminar
 &lt;/button&gt;
 &lt;/div&gt;
+}
 &lt;/div&gt;</code></pre>
   </div>
 </div>
@@ -8408,7 +8350,14 @@ codiPostalValidPerCiutat(): ValidatorFn {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">formulari.setValue({
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// Compte amb els FormArray: setValue exigeix EXACTAMENT tants valors com controls hi ha.
+// Si el FormArray telefons només té 1 control i passem 2 valors, llança
+// &quot;Must supply a value for form control at index: 1&quot; (o &quot;Cannot find form control at index 1&quot;).
+// Cal sincronitzar primer l&#39;estructura:
+this.telefons.clear();
+[1, 2].forEach(() =&gt; this.telefons.push(this.crearTelefon()));
+
+formulari.setValue({
   nom: &#39;Joan Garcia&#39;,
   telefons: [
     { numero: &#39;612345678&#39;, tipus: &#39;mobil&#39; },
@@ -8421,6 +8370,7 @@ codiPostalValidPerCiutat(): ValidatorFn {
     pais: &#39;Espanya&#39;
   }
 });
+// ERROR: falta telefons (setValue exigeix TOTS els camps)
 formulari.setValue({
   nom: &#39;Joan Garcia&#39;,
   adreca: {...}
@@ -8551,6 +8501,10 @@ formulari.get(&#39;adreca&#39;)?.reset({
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">carregarElement(id: number): void {
   this.elementService.obtenir(id).subscribe(element =&gt; {
+    // 1. Ajustar el FormArray al nombre de telèfons rebuts
+    this.telefons.clear();
+    element.telefons.forEach(() =&gt; this.telefons.push(this.crearTelefon()));
+    // 2. Ara sí: setValue amb l&#39;estructura sincronitzada
     this.formulari.setValue({
       nom: element.nom,
       telefons: element.telefons.map(t =&gt; ({
@@ -8671,12 +8625,15 @@ formulari.get(&#39;adreca&#39;)?.reset({
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">telefons: this.fb.array(
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// Atenció: Validators.minLength(1) NO serveix per exigir un element:
+// Angular no aplica minLength a valors buits (longitud 0), per permetre camps opcionals.
+// Per exigir com a mínim un telèfon, useu Validators.required (un array buit compta com a buit)
+telefons: this.fb.array(
   [this.crearTelefon()],
-  [Validators.minLength(1), Validators.maxLength(5)]
+  [Validators.required, Validators.maxLength(5)]
 )
 if (this.telefons.invalid) {
-  if (this.telefons.hasError(&#39;minlength&#39;)) {
+  if (this.telefons.hasError(&#39;required&#39;)) {
     console.log(&#39;Cal almenys 1 telèfon&#39;);
   }
   if (this.telefons.hasError(&#39;maxlength&#39;)) {
@@ -8744,23 +8701,35 @@ telefonUnic(): ValidatorFn {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div formArrayName=&quot;telefons&quot;&gt;
-&lt;div *ngIf=&quot;telefons.hasError(&#39;maxlength&#39;)&quot; class=&quot;error&quot;&gt;
+@if (telefons.hasError(&#39;maxlength&#39;)) {
+&lt;div class=&quot;error&quot;&gt;
 Màxim 5 telèfons permesos
 &lt;/div&gt;
-&lt;div *ngFor=&quot;let telefon of telefons.controls; let i = index&quot; [formGroupName]=&quot;i&quot;&gt;
+}
+@for (telefon of telefons.controls; track telefon; let i = $index) {
+&lt;div [formGroupName]=&quot;i&quot;&gt;
 &lt;input formControlName=&quot;numero&quot;&gt;
-&lt;div *ngIf=&quot;telefon.get(&#39;numero&#39;)?.touched &amp;&amp; telefon.get(&#39;numero&#39;)?.invalid&quot; class=&quot;error&quot;&gt;
-&lt;p *ngIf=&quot;telefon.get(&#39;numero&#39;)?.hasError(&#39;required&#39;)&quot;&gt;
+@if (telefon.get(&#39;numero&#39;)?.touched &amp;&amp; telefon.get(&#39;numero&#39;)?.invalid) {
+&lt;div class=&quot;error&quot;&gt;
+@if (telefon.get(&#39;numero&#39;)?.hasError(&#39;required&#39;)) {
+&lt;p&gt;
 Número obligatori
 &lt;/p&gt;
-&lt;p *ngIf=&quot;telefon.get(&#39;numero&#39;)?.hasError(&#39;pattern&#39;)&quot;&gt;
+}
+@if (telefon.get(&#39;numero&#39;)?.hasError(&#39;pattern&#39;)) {
+&lt;p&gt;
 Format incorrecte (9 dígits)
 &lt;/p&gt;
-&lt;p *ngIf=&quot;telefon.get(&#39;numero&#39;)?.hasError(&#39;telefonDuplicat&#39;)&quot;&gt;
+}
+@if (telefon.get(&#39;numero&#39;)?.hasError(&#39;telefonDuplicat&#39;)) {
+&lt;p&gt;
 Aquest telèfon ja existeix
 &lt;/p&gt;
+}
 &lt;/div&gt;
+}
 &lt;/div&gt;
+}
 &lt;/div&gt;</code></pre>
   </div>
 </div>
@@ -8822,7 +8791,7 @@ preuCoherentAmbEstoc(): ValidatorFn {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;button type=&quot;button&quot; (click)=&quot;afegirTelefon()&quot; [disabled]=&quot;telefons.length &gt;= 5&quot;&gt;
-Afegir telèfon (/5)
+Afegir telèfon ({{ telefons.length }}/5)
 &lt;/button&gt;</code></pre>
   </div>
 </div>
@@ -8856,7 +8825,8 @@ Afegir telèfon (/5)
     
 <h4>3.10.1. Objectiu</h4>
 <p>Gestionar índexs de FormArray de forma segura i eficient.</p>
-<h4>3.10.2. Tracking per index al *ngFor</h4>
+<h4>3.10.2. Tracking per referència del control al @for</h4>
+<p>En iterar <code>telefons.controls</code>, cada element és una instància de <code>FormGroup</code> (o <code>FormControl</code>) que es manté estable mentre el control existeixi. Aquesta referència és la clau de tracking ideal:</p>
 
 <div class="code-block" data-lang="html" role="region" aria-label="Bloc de codi html">
   <div class="code-header">
@@ -8873,35 +8843,22 @@ Afegir telèfon (/5)
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;div *ngFor=&quot;let telefon of telefons.controls; let i = index&quot;&gt;
-&lt;/div&gt;
-&lt;div *ngFor=&quot;let telefon of telefons.controls; let i = index; trackBy: trackByIndex&quot;&gt;
-&lt;/div&gt;</code></pre>
-  </div>
-</div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Recomanat: track per la referència del control --&gt;
+@for (telefon of telefons.controls; track telefon; let i = $index) {
+  &lt;div [formGroupName]=&quot;i&quot;&gt;
+    &lt;input formControlName=&quot;numero&quot;&gt;
+    &lt;button type=&quot;button&quot; (click)=&quot;eliminarTelefon(i)&quot;&gt;Eliminar&lt;/button&gt;
+  &lt;/div&gt;
+}
 
-
-<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TYPESCRIPT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">trackByIndex(index: number): number {
-  return index;
+&lt;!-- No recomanat: track $index --&gt;
+@for (telefon of telefons.controls; track telefon; let i = $index) {
+  ...
 }</code></pre>
   </div>
 </div>
 
+<p><strong>Per què no <code>track $index</code>?</strong> Si elimineu el telèfon de la posició 1, el que era a la posició 2 passa a ser l'1. Amb <code>track $index</code>, Angular pensa que "l'element 1" continua existint i reutilitza el seu DOM (i el seu estat: focus, scroll, classes CSS d'error); amb <code>track telefon</code>, Angular sap exactament quin control ha desaparegut i elimina només el seu DOM. L'índex <code>i</code> continueu necessitant-lo per a <code>[formGroupName]="i"</code>, però no com a clau de tracking.</p>
 <h4>3.10.3. Guardar referència a FormGroup</h4>
 
 <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
@@ -8919,11 +8876,15 @@ Afegir telèfon (/5)
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">eliminarTelefon(index: number): void {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// Fràgil: si l&#39;índex es guarda i s&#39;usa més tard (per exemple, després
+// d&#39;una confirmació asíncrona), pot apuntar a un altre element si la llista ha canviat
+eliminarTelefonPerIndex(index: number): void {
   setTimeout(() =&gt; {
-    this.telefons.removeAt(index);
+    this.telefons.removeAt(index);   // l&#39;índex pot haver quedat obsolet
   }, 2000);
 }
+
+// Robust: guardar la referència al control i calcular l&#39;índex en el moment d&#39;eliminar
 eliminarTelefon(telefon: AbstractControl): void {
   const index = this.telefons.controls.indexOf(telefon as FormGroup);
   if (index !== -1) {
@@ -9060,7 +9021,7 @@ get totalEstoc(): number {
 <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> Usar trackBy, guardar referències segures, marcar tocats abans d'enviar, getters per validacions agregades.
+    <strong>Clau:</strong> Usar track, guardar referències segures, marcar tocats abans d'enviar, getters per validacions agregades.
 </div>
 
 <h4>3.10.8. Resultat esperat</h4>
@@ -9191,7 +9152,7 @@ get totalEstoc(): number {
 <li>Deshabilita botons quan assoleixen límit</li>
 <li>Mostra comptador: "Telèfons (3/5)"</li>
 </ul>
-<p><strong>3. TrackBy en *ngFor</strong></p>
+<p><strong>3. Track en @for</strong></p>
 <ul>
 <li>Millora performance evitant recrear DOM</li>
 <li>Essencial per FormArrays grans (&gt;10 elements)</li>
@@ -9276,7 +9237,7 @@ get totalEstoc(): number {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng generate component components/formulari-variants --standalone</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng generate component components/formulari-variants --add-type-to-class-name</code></pre>
   </div>
 </div>
 
@@ -9301,7 +9262,7 @@ get totalEstoc(): number {
   nom: [&#39;&#39;, Validators.required],
   variants: this.fb.array([
     this.crearVariant()
-  ], [Validators.minLength(1), Validators.maxLength(5)]),
+  ], [Validators.required, Validators.maxLength(5)]),   // required: com a mínim una variant
   distribucio: this.fb.group({
     carrer: [&#39;&#39;, Validators.required],
     ciutat: [&#39;&#39;, Validators.required],
@@ -9376,15 +9337,17 @@ Nom element
 &lt;section&gt;
 &lt;h3&gt;Variants&lt;/h3&gt;
 &lt;button type=&quot;button&quot; (click)=&quot;afegirVariant()&quot; [disabled]=&quot;variants.length &gt;= 5&quot;&gt;
-Afegir (/5)
+Afegir ({{ variants.length }}/5)
 &lt;/button&gt;
 &lt;div formArrayName=&quot;variants&quot;&gt;
-&lt;div *ngFor=&quot;let variant of variants.controls; let i = index&quot; [formGroupName]=&quot;i&quot;&gt;
+@for (variant of variants.controls; track variant; let i = $index) {
+&lt;div [formGroupName]=&quot;i&quot;&gt;
 &lt;input formControlName=&quot;color&quot; placeholder=&quot;Color&quot;&gt;
 &lt;input type=&quot;number&quot; formControlName=&quot;estoc&quot; placeholder=&quot;Estoc&quot;&gt;
 &lt;input type=&quot;number&quot; formControlName=&quot;preu&quot; placeholder=&quot;Preu&quot;&gt;
 &lt;button type=&quot;button&quot; (click)=&quot;eliminarVariant(i)&quot;&gt;Eliminar&lt;/button&gt;
 &lt;/div&gt;
+}
 &lt;/div&gt;
 &lt;/section&gt;
 &lt;section formGroupName=&quot;distribucio&quot;&gt;
@@ -9415,7 +9378,7 @@ Afegir (/5)
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">carregarExemple(): void {
-  this.formulari.setValue({
+  const dades = {
     nom: &#39;Element exemple&#39;,
     variants: [
       { color: &#39;Blau&#39;, estoc: 10, preu: 50 },
@@ -9426,7 +9389,11 @@ Afegir (/5)
       ciutat: &#39;Barcelona&#39;,
       codiPostal: &#39;08001&#39;
     }
-  });
+  };
+  // setValue exigeix tants controls al FormArray com valors: sincronitzem l&#39;estructura primer
+  this.variants.clear();
+  dades.variants.forEach(() =&gt; this.variants.push(this.crearVariant()));
+  this.formulari.setValue(dades);
 }
 actualitzarCiutat(): void {
   this.formulari.patchValue({
@@ -9460,7 +9427,7 @@ reiniciar(): void {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng serve --port 4300
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng serve
 npm run lint
 npm run test -- --watch=false</code></pre>
   </div>
@@ -9514,12 +9481,12 @@ npm run test -- --watch=false</code></pre>
 <tr>
 <td>Controls no es reinicien</td>
 <td><code>reset()</code> sense passar objecte amb valors</td>
-<td>Passar objecte amb valors inicials: <code>reset({ campo: '' })</code></td>
+<td>Passar objecte amb valors inicials: <code>reset({ camp: '' })</code></td>
 </tr>
 <tr>
 <td>Botó eliminar no funciona</td>
 <td>Índex incorrecte o no actualitzat</td>
-<td>Usar <code>let i = index</code> a *ngFor i passar <code>i</code> a mètode</td>
+<td>Usar <code>let i = $index</code> a @for i passar <code>i</code> a mètode</td>
 </tr>
 <tr>
 <td>FormArray sempre buit després d'eliminar tot</td>
@@ -9550,8 +9517,8 @@ npm run test -- --watch=false</code></pre>
 </tr>
 <tr>
 <td><code>Expected validator to return Promise or Observable</code></td>
-<td>FormArray no suporta validadors asíncrons nativamente</td>
-<td>FormArray no suporta validadors asíncrons nativamente</td>
+<td>El validador asíncron ha de retornar <code>Observable</code> o <code>Promise</code>, no un valor directe</td>
+<td>El validador asíncron ha de retornar <code>Observable</code> o <code>Promise</code>, no un valor directe</td>
 </tr>
 <tr>
 <td>TypeScript error: <code>Type 'AbstractControl' is not assignable to 'FormGroup'</code></td>
@@ -9659,7 +9626,7 @@ npm run test -- --watch=false</code></pre>
     </div>
   </div>
   <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> Expert en patrons avançats Angular. <strong>Context:</strong> Necessito optimitzar formularis amb FormArrays grans i implementar funcionalitats avançades. <strong>Tasca:</strong> Descriu 7 patrons avançats per gestionar FormArrays: 1) reordenar elements amb drag & drop, 2) validacions creuades entre elements del FormArray, 3) auto-guardat temporal a localStorage, 4) duplicar elements existents, 5) límits dinàmics segons altres camps, 6) performance optimization amb trackBy i OnPush, 7) exportar/importar FormArray com JSON. Per cada patró proporciona explicació, cas d'ús, codi TypeScript complet i avantatges/inconvenients. <strong>Format:</strong> 7 seccions amb codi executable i taula resum final.</div>
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> Expert en patrons avançats Angular. <strong>Context:</strong> Necessito optimitzar formularis amb FormArrays grans i implementar funcionalitats avançades. <strong>Tasca:</strong> Descriu 7 patrons avançats per gestionar FormArrays: 1) reordenar elements amb drag & drop, 2) validacions creuades entre elements del FormArray, 3) auto-guardat temporal a localStorage, 4) duplicar elements existents, 5) límits dinàmics segons altres camps, 6) performance optimization amb track i OnPush, 7) exportar/importar FormArray com JSON. Per cada patró proporciona explicació, cas d'ús, codi TypeScript complet i avantatges/inconvenients. <strong>Format:</strong> 7 seccions amb codi executable i taula resum final.</div>
   </div>
 </div>
 
@@ -9748,7 +9715,7 @@ npm run test -- --watch=false</code></pre>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Sé aplicar validacions a FormArray complet (minLength, maxLength)</div>
+    <div class="checklist-text">Sé aplicar validacions a FormArray complet (required, maxLength)</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
@@ -9773,7 +9740,7 @@ npm run test -- --watch=false</code></pre>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Entenc com usar trackBy per optimitzar *ngFor en FormArrays grans</div>
+    <div class="checklist-text">Entenc com usar track per optimitzar @for en FormArrays grans</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
@@ -9841,7 +9808,7 @@ npm run test -- --watch=false</code></pre>
   </div>
   <div class="section-point-body component-content">
     
-<p>Disposeu de formularis complexos completament funcionals amb estructures jeràrquiques mitjançant FormGroups niuats per organitzar camps relacionats lògicament com adreces amb carrer ciutat i codi postal agrupats amb accés net utilitzant notació punt i validacions a nivell de grup, i col·leccions dinàmiques amb FormArrays que permeten a l'usuari afegir o eliminar controls en temps d'execució per gestionar múltiples telèfons emails o variants de producte amb límits mínim i màxim implementats i feedback visual. El projecte inclou mètodes factory com crearVariant i crearTelefon que centralitzen la configuració de controls amb validacions i valors per defecte facilitant el manteniment amb un sol lloc per canviar la lògica, gestió precisa de valors dominant setValue per càrrega completa des d'API patchValue per actualitzacions parcials de camps específics i reset per neteja amb valors inicials personalitzats segons cada necessitat, validacions completes aplicades a FormArray complet amb minLength i maxLength a controls individuals dins el FormArray i validadors custom per duplicats amb missatges contextuals per cada nivell, patrons de performance amb trackBy en ngFor per optimitzar renderitzat getters per accés eficient i marcar controls tocats abans d'enviar per mostrar tots els errors, i documentació exhaustiva amb taules d'estructures utilitzades patrons implementats bones pràctiques proves realitzades i decisions de disseny registrades al dossier tècnic. La base de formularis complexos establerta serveix com a fonament per qualsevol aplicació professional amb requisits dinàmics i adaptatius.</p>
+<p>Disposeu de formularis complexos completament funcionals amb estructures jeràrquiques mitjançant FormGroups niuats per organitzar camps relacionats lògicament com adreces amb carrer ciutat i codi postal agrupats amb accés net utilitzant notació punt i validacions a nivell de grup, i col·leccions dinàmiques amb FormArrays que permeten a l'usuari afegir o eliminar controls en temps d'execució per gestionar múltiples telèfons emails o variants de producte amb límits mínim i màxim implementats i feedback visual. El projecte inclou mètodes factory com crearVariant i crearTelefon que centralitzen la configuració de controls amb validacions i valors per defecte facilitant el manteniment amb un sol lloc per canviar la lògica, gestió precisa de valors dominant setValue per càrrega completa des d'API patchValue per actualitzacions parcials de camps específics i reset per neteja amb valors inicials personalitzats segons cada necessitat, validacions completes aplicades a FormArray complet amb required i maxLength a controls individuals dins el FormArray i validadors custom per duplicats amb missatges contextuals per cada nivell, patrons de performance amb track en @for per optimitzar renderitzat getters per accés eficient i marcar controls tocats abans d'enviar per mostrar tots els errors, i documentació exhaustiva amb taules d'estructures utilitzades patrons implementats bones pràctiques proves realitzades i decisions de disseny registrades al dossier tècnic. La base de formularis complexos establerta serveix com a fonament per qualsevol aplicació professional amb requisits dinàmics i adaptatius.</p>
   
   </div>
 </div>
@@ -9901,7 +9868,7 @@ npm run test -- --watch=false</code></pre>
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>Validacions:</strong> FormArray complet: <code>fb.array([...], [Validators.minLength(1)])</code>. Control individual: validacions a cada FormControl del factory. FormGroup dins FormArray: validadors a nivell grup.</p>
+    <p><strong>Validacions:</strong> FormArray complet: <code>fb.array([...], [Validators.required, Validators.maxLength(5)])</code> (minLength no s'aplica a arrays buits). Control individual: validacions a cada FormControl del factory. FormGroup dins FormArray: validadors a nivell grup.</p>
   </div>
 </div>
 
@@ -9910,7 +9877,7 @@ npm run test -- --watch=false</code></pre>
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>Template FormArray:</strong> <code>formArrayName="nom"</code> al contenidor. <code>*ngFor="let item of items.controls; let i = index"</code>. <code>[formGroupName]="i"</code> per FormGroups dins FormArray. <code>[formControlName]="i"</code> per FormControls dins FormArray.</p>
+    <p><strong>Template FormArray:</strong> <code>formArrayName="nom"</code> al contenidor. <code>@for (item of items.controls; track item; let i = $index)</code>. <code>[formGroupName]="i"</code> per FormGroups dins FormArray. <code>[formControlName]="i"</code> per FormControls dins FormArray.</p>
   </div>
 </div>
 
@@ -9919,7 +9886,7 @@ npm run test -- --watch=false</code></pre>
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>Patrons:</strong> TrackBy: optimitzar *ngFor amb <code>trackBy: trackByIndex</code>. Límits: deshabilitar botons quan assoleixen min/max. Marcar tocats: iterar controls abans d'enviar. Getters: accés net a FormArray i FormGroups.</p>
+    <p><strong>Patrons:</strong> Track: al @for d'un FormArray, <code>track control</code> (la referència del control és estable); eviteu <code>track $index</code> quan s'eliminen elements. Límits: deshabilitar botons quan assoleixen min/max. Marcar tocats: iterar controls abans d'enviar. Getters: accés net a FormArray i FormGroups.</p>
   </div>
 </div>
 
@@ -9964,7 +9931,7 @@ npm run test -- --watch=false</code></pre>
 <div class="definition-box" role="definition" aria-label="Definició">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
   <div class="component-content">
-    <p><strong>trackBy:</strong> Funció per optimitzar *ngFor: <code>trackBy: trackByIndex</code>. Evita recrear DOM innecessàriament.</p>
+    <p><strong>track:</strong> Expressió obligatòria del bloc @for que identifica cada element: <code>track element.id</code> per a dades, <code>track control</code> per a controls d'un FormArray. Evita recrear DOM innecessàriament.</p>
   </div>
 </div>
 
@@ -10077,7 +10044,7 @@ npm run test -- --watch=false</code></pre>
                     
                     <div class="nav-link-wrapper">
                         
-                        <a href="/ioc/da2_oa01/unitat-3/bloc-2/" class="nav-button" aria-label="Bloc anterior: Gestió d'estat i comunicació entre components">← Anterior</a>
+                        <a href="/ioc/da2_oa01/unitat-3/bloc-2/" class="nav-button" aria-label="Bloc anterior: Models de dades i transformació">← Anterior</a>
                         
                     </div>
                     

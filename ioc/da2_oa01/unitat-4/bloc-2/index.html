@@ -18,21 +18,21 @@
 <meta property="og:locale" content="ca_ES" />
 <meta name="description" content="Gestió d’estat, modularització i bones pràctiques arquitectòniques" />
 <meta property="og:description" content="Gestió d’estat, modularització i bones pràctiques arquitectòniques" />
-<link rel="canonical" href="http://localhost:4004/ioc/da2_oa01/unitat-4/bloc-2/" />
-<meta property="og:url" content="http://localhost:4004/ioc/da2_oa01/unitat-4/bloc-2/" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/da2_oa01/unitat-4/bloc-2/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/da2_oa01/unitat-4/bloc-2/" />
 <meta property="og:site_name" content="DA2_OA01 - Programació Avançada (Angular)" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Bloc 2: Arquitectura i patrons" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Gestió d’estat, modularització i bones pràctiques arquitectòniques","headline":"Bloc 2: Arquitectura i patrons","url":"http://localhost:4004/ioc/da2_oa01/unitat-4/bloc-2/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Gestió d’estat, modularització i bones pràctiques arquitectòniques","headline":"Bloc 2: Arquitectura i patrons","url":"https://itrascastro.github.io/ioc/da2_oa01/unitat-4/bloc-2/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/ioc/da2_oa01/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="canonical" href="http://localhost:4004/ioc/da2_oa01/unitat-4/bloc-2/">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/da2_oa01/unitat-4/bloc-2/">
     <!-- Rich editor styles (for embedded notes panel) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
     <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -48,7 +48,7 @@
     <link rel="icon" type="image/x-icon" href="/ioc/da2_oa01/assets/images/favicon.ico">
     
     <!-- RSS Feed -->
-    <link type="application/atom+xml" rel="alternate" href="http://localhost:4004/ioc/da2_oa01/feed.xml" title="DA2_OA01 - Programació Avançada (Angular)" />
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/da2_oa01/feed.xml" title="DA2_OA01 - Programació Avançada (Angular)" />
 
     <!-- Syntax Highlighting (Prism) -->
     <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
@@ -130,7 +130,7 @@
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-2/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 2 - Bloc 2: Data binding i events
+                        Unitat 2 - Bloc 2: Control de flux, condicions i pipes
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-2/bloc-3/" class="nav-dropdown-item ">
@@ -148,11 +148,11 @@
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-3/bloc-2/" class="nav-dropdown-item ">
-                        Unitat 3 - Bloc 2: Gestió d'estat i comunicació entre components
+                        Unitat 3 - Bloc 2: Models de dades i transformació
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-3/bloc-3/" class="nav-dropdown-item ">
-                        Unitat 3 - Bloc 3: Optimització i bones pràctiques
+                        Unitat 3 - Bloc 3: Formularis reactius i validacions
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-3/bloc-4/" class="nav-dropdown-item ">
@@ -166,11 +166,11 @@
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-4/bloc-2/" class="nav-dropdown-item current">
-                        Unitat 4 - Bloc 2: Arquitectura escalable
+                        Unitat 4 - Bloc 2: Arquitectura i patrons
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-4/bloc-3/" class="nav-dropdown-item ">
-                        Unitat 4 - Bloc 3: Optimització de rendiment
+                        Unitat 4 - Bloc 3: Rendiment i optimització
                     </a>
                 
                     <a href="/ioc/da2_oa01/unitat-4/bloc-4/" class="nav-dropdown-item ">
@@ -546,6 +546,11 @@
     
     
     
+
+    
+    
+    
+    
         
         
         
@@ -554,18 +559,8 @@
         
         
         <div class="nav-item">
-            <a href="#Unitat4_Bloc2_Seccio2" class="nav-link" data-section="Unitat4_Bloc2_Seccio2">2. Organització en mòduls i càrrega per seccions (lazy loading)</a>
+            <a href="#Unitat4_Bloc2_Seccio2" class="nav-link" data-section="Unitat4_Bloc2_Seccio2">2. Organització en àrees funcionals i càrrega per seccions (lazy loading)</a>
         </div>
-    
-
-    
-    
-    
-    
-
-    
-    
-    
     
 
     
@@ -1246,7 +1241,7 @@
                             
                                 <span class="horizontal-nav-separator"> &gt; </span>
                                 <span class="horizontal-nav-item current">
-                                    Bloc 4.2: Arquitectura escalable
+                                    Bloc 4.2: Arquitectura i patrons
                                 </span>
                             
                         
@@ -1276,72 +1271,6 @@
 
 <div class="section" id="Unitat4_Bloc2_Seccio1">
   <h2 id="Unitat4_Bloc2_Seccio1">1. Patró de gestió d'estat centralitzada</h2>
-
-  <!-- MULTIMÈDIA -->
-  <!--
-  ════════════════════════════════════════════════════════════════
-  Component: Enllaços multimèdia YouTube
-  ════════════════════════════════════════════════════════════════
-
-  Paràmetres:
-    - unitat: número de la unitat (1-4)
-    - bloc: número del bloc (1-4)
-    - seccio: número de la secció (1-3)
-
-  Exemple d'ús:
-    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
-
-  El component busca automàticament les URLs corresponents a
-  site.data.multimedia i mostra els botons de vídeo i àudio.
-  ════════════════════════════════════════════════════════════════
--->
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-<div class="multimedia-resources">
-  <div class="multimedia-header">
-    <i class="bi bi-play-circle-fill"></i>
-    <span>Contingut multimèdia d'aquesta lectura</span>
-  </div>
-
-  <div class="multimedia-buttons">
-    
-    <a href="https://www.youtube.com/watch?v=_baTUyKuHk4" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 4.2.1 · Patró de gestió d'estat centralitzada">
-      <i class="bi bi-youtube"></i>
-      <span>Veure vídeo</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-
-    
-    <a href="https://www.youtube.com/watch?v=TdCiyJH0uE8" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 4.2.1 · Patró de gestió d'estat centralitzada">
-      <i class="bi bi-mic-fill"></i>
-      <span>Escoltar àudio</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-  </div>
-
-  
-  
-</div>
-  
-
-
-
 
   <!-- Component: Objectius del bloc/unitat -->
 
@@ -1480,7 +1409,7 @@ ng serve --open</code></pre>
 </div>
 
 
-<p>Cada component duplica les dades i no sab quan altres components les modifiquen.</p>
+<p>Cada component duplica les dades i no sap quan altres components les modifiquen.</p>
 
 <p><strong>Problemes que genera:</strong></p>
 
@@ -1513,7 +1442,7 @@ this.currentUser = null; // PROBLEMA: Desincronitzat!</code></pre>
 
 
 <p><strong>2. Complexitat exponencial en comunicació</strong></p>
-<p>Per mantenir sincronitzats 4 components sobre l'usuari actual, necessiteu 6 connexions <code>@Output</code> i esdeveniments. Amb 10 components són 45 connexions. La quantitat de cables creix exponencialment: n × (n-1) / 2.</p>
+<p>Per mantenir sincronitzats 4 components sobre l'usuari actual, necessiteu 6 connexions <code>@Output</code> i esdeveniments. Amb 10 components són 45 connexions. La quantitat de cables creix quadràticament: n × (n-1) / 2.</p>
 
 <table>
 <thead>
@@ -1612,7 +1541,7 @@ export class HeaderComponent {
 }
 
 // app.component.ts (pare)
-export class AppComponent {
+export class App {
   onUserLoggedIn(user: User) {
     // Propagar a sidebar i profile
     this.sidebarUser = user;
@@ -1654,7 +1583,7 @@ export class ProfileComponent {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// auth-state.service.ts
-@Injectable({ providedIn: &#39;root&#39; })
+@Service()
 export class AuthStateService {
   private userSubject = new BehaviorSubject&lt;User | null&gt;(null);
   user$ = this.userSubject.asObservable();
@@ -1706,7 +1635,7 @@ export class ProfileComponent {
 <tr><td><strong>Connexions @Input/@Output</strong></td><td>6 per 4 components</td><td>0</td></tr>
 <tr><td><strong>Lloc de veritat</strong></td><td>Múltiple (cada component)</td><td>Únic (servei)</td></tr>
 <tr><td><strong>Temps actualització</strong></td><td>Manual i asíncron</td><td>Automàtic i síncron</td></tr>
-<tr><td><strong>Complexitat afegir component</strong></td><td>Creix exponencial</td><td>Constant</td></tr>
+<tr><td><strong>Complexitat afegir component</strong></td><td>Creix quadràticament</td><td>Constant</td></tr>
 <tr><td><strong>Facilitat proves</strong></td><td>Difícil (molts mocks)</td><td>Senzill (1 servei)</td></tr>
 </tbody>
 </table>
@@ -1963,7 +1892,7 @@ Components (reben canvi)</code></pre>
 </tr>
 </thead>
 <tbody>
-<tr><td><strong>@Input/@Output</strong></td><td>Bidireccional</td><td>Alta (creix exponencial)</td><td>Baixa</td></tr>
+<tr><td><strong>@Input/@Output</strong></td><td>Bidireccional</td><td>Alta (creix quadràticament)</td><td>Baixa</td></tr>
 <tr><td><strong>Flux unidireccional</strong></td><td>Unidireccional</td><td>Constant</td><td>Alta</td></tr>
 <tr><td><strong>Shared service sense Observable</strong></td><td>Bidireccional</td><td>Mitjana</td><td>Mitjana</td></tr>
 </tbody>
@@ -2096,10 +2025,10 @@ Components (reben canvi)</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Injectable } from &#39;@angular/core&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Service } from &#39;@angular/core&#39;;
 import { BehaviorSubject, Observable } from &#39;rxjs&#39;;
 
-@Injectable({ providedIn: &#39;root&#39; })
+@Service()
 export class AuthStateService {
   // 1. BehaviorSubject privat (només el servei pot modificar-lo)
   private userSubject = new BehaviorSubject&lt;User | null&gt;(null);
@@ -2208,7 +2137,7 @@ public user$ = this.userSubject.asObservable();</code></pre>
   quantity: number;
 }
 
-@Injectable({ providedIn: &#39;root&#39; })
+@Service()
 export class CartStateService {
   private itemsSubject = new BehaviorSubject&lt;CartItem[]&gt;([]);
   items$ = this.itemsSubject.asObservable();
@@ -2247,12 +2176,67 @@ export class CartStateService {
 <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> Un servei d'estat utilitza <code>BehaviorSubject</code> privat per emmagatzemar l'estat, <code>Observable</code> públic per exposar-lo, i mètodes per actualitzar-lo de manera controlada.
+    <strong>Clau:</strong> Un servei d'estat utilitza un contenidor privat per emmagatzemar l'estat, una vista pública de només lectura per exposar-lo, i mètodes per actualitzar-lo de manera controlada. El contenidor pot ser un <code>BehaviorSubject</code> (com aquí) o un <code>signal</code> (variant següent).
 </div>
 
 
-<h4>1.7.6. Resultat esperat</h4>
-<p>Creeu serveis d'estat amb <code>BehaviorSubject</code>, exposeu les dades com a <code>Observable</code>, i implementeu mètodes d'actualització controlats.</p>
+<h4>1.7.6. El mateix patró amb signals (recomanat per a codi nou)</h4>
+<p>El patró (contenidor privat → lectura pública → mètodes controlats) és independent de la tecnologia. A Angular 22 la primitiva nativa per a l'estat són els <strong>signals</strong>, que ja heu usat als serveis de la Unitat 3 (<code>_estat</code> privat + <code>estat = this._estat.asReadonly()</code>). El servei de cistella queda així:</p>
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Service, computed, signal } from &#39;@angular/core&#39;;
+
+@Service()
+export class CartStateService {
+  // 1. Signal privat: només el servei el modifica
+  private readonly _items = signal&lt;CartItem[]&gt;([]);
+
+  // 2. Lectura pública de només lectura (no té set/update)
+  readonly items = this._items.asReadonly();
+
+  // 3. Estat derivat: es recalcula sol quan canvia _items
+  readonly count = computed(() =&gt; this._items().reduce((total, i) =&gt; total + i.quantity, 0));
+  readonly total = computed(() =&gt; this._items().reduce((sum, i) =&gt; sum + i.price * i.quantity, 0));
+
+  // 4. Mètodes controlats, sempre immutables (array nou, mai push)
+  addItem(item: CartItem): void {
+    this._items.update(items =&gt; {
+      const existing = items.find(i =&gt; i.productId === item.productId);
+      return existing
+        ? items.map(i =&gt; i.productId === item.productId ? { ...i, quantity: i.quantity + item.quantity } : i)
+        : [...items, item];
+    });
+  }
+
+  removeItem(productId: number): void {
+    this._items.update(items =&gt; items.filter(i =&gt; i.productId !== productId));
+  }
+
+  clear(): void {
+    this._items.set([]);
+  }
+}</code></pre>
+  </div>
+</div>
+
+<p>Els components el consumeixen directament a la plantilla (<code>{{ cart.count() }}</code>) sense subscripcions ni <code>async</code> pipe ni <code>toSignal</code>, i Angular repinta exactament els components que llegeixen aquell signal. <strong>Quan continua tenint sentit <code>BehaviorSubject</code>?</strong> Quan l'estat forma part d'un flux genuïnament RxJS: es combina amb peticions HTTP (<code>switchMap</code>), amb temporitzadors o amb altres observables (com el <code>Subject</code> de criteris de cerca del cas d'ús de la Unitat 3). En aquest cas, la sortida del flux es guarda igualment en un signal. Al cas d'ús d'aquesta unitat el servei d'autenticació seguirà la variant amb signals.</p>
+
+<h4>1.7.7. Resultat esperat</h4>
+<p>Creeu serveis d'estat amb un contenidor privat (<code>signal</code> o <code>BehaviorSubject</code>), exposeu les dades en mode de només lectura, i implementeu mètodes d'actualització controlats i immutables.</p>
   
   </div>
 </div>
@@ -2312,6 +2296,40 @@ export class CartStateService {
 
 <p>Cada cop que el servei d'estat crida <code>this.userSubject.next(newUser)</code>, tots els components subscrits reben el nou valor i actualitzen la seva propietat local.</p>
 
+<p><strong>Atenció en un projecte Angular 22 (sense zone.js):</strong> assignar una propietat normal dins del <code>subscribe</code> actualitza la dada, però no diu a Angular que repinti la vista. Per això, en components reals, feu servir una de les dues opcions següents: l'<code>async</code> pipe (1.8.3) o la conversió de l'observable en signal amb <code>toSignal</code>:</p>
+
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, inject } from &#39;@angular/core&#39;;
+import { toSignal } from &#39;@angular/core/rxjs-interop&#39;;
+import { AuthStateService } from &#39;../services/auth-state.service&#39;;
+
+export class HeaderComponent {
+  private readonly authState = inject(AuthStateService);
+
+  // Signal sincronitzat amb user$: es llegeix a la plantilla com currentUser()
+  readonly currentUser = toSignal(this.authState.user$, { initialValue: null });
+}</code></pre>
+  </div>
+</div>
+
+
+<p><code>toSignal</code> se subscriu en crear el component, es desubscriu sol quan es destrueix i cada emissió actualitza el signal, que sí que activa la detecció de canvis.</p>
+
 <h4>1.8.3. Utilitzar l'async pipe per subscripcions automàtiques</h4>
 <p>En lloc de subscriure's manualment, podeu utilitzar l'<code>async</code> pipe a la plantilla. Això té l'avantatge que Angular gestiona automàticament la subscripció i desubscripció:</p>
 
@@ -2357,12 +2375,11 @@ export class CartStateService {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- Plantilla amb async pipe --&gt;
-&lt;div *ngIf=&quot;user$ | async as user; else notLoggedIn&quot;&gt;
+@if (user$ | async; as user) {
   &lt;p&gt;Benvingut, {{ user.name }}&lt;/p&gt;
-&lt;/div&gt;
-&lt;ng-template #notLoggedIn&gt;
+} @else {
   &lt;p&gt;No estàs autenticat&lt;/p&gt;
-&lt;/ng-template&gt;</code></pre>
+}</code></pre>
   </div>
 </div>
 
@@ -2412,7 +2429,7 @@ export class ProfileComponent {
 <p>Quan algú crida <code>authState.setUser(newUser)</code>, els tres components actualitzen la seva vista automàticament i simultàniament.</p>
 
 <h4>1.8.5. Gestió de subscripcions manuals</h4>
-<p>Si utilitzeu subscripcions manuals (sense <code>async</code> pipe), heu de desubscriure-us per evitar fuites de memòria:</p>
+<p>Si utilitzeu subscripcions manuals (sense <code>async</code> pipe ni <code>toSignal</code>), per exemple per executar lògica a cada emissió, heu de desubscriure-us quan el component es destrueix per evitar fuites de memòria. La manera moderna és <code>takeUntilDestroyed()</code> (Unitat 3), que ho fa automàticament si la subscripció es crea en un context d'injecció (constructor o inicialitzador de propietat):</p>
 
 
 <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
@@ -2430,27 +2447,29 @@ export class ProfileComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">export class HeaderComponent implements OnInit, OnDestroy {
-  private subscription: Subscription;
-  currentUser: User | null = null;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">import { Component, inject, signal } from &#39;@angular/core&#39;;
+import { takeUntilDestroyed } from &#39;@angular/core/rxjs-interop&#39;;
 
-  constructor(private authState: AuthStateService) {}
+export class HeaderComponent {
+  private readonly authState = inject(AuthStateService);
+  readonly currentUser = signal&lt;User | null&gt;(null);   // signal: el canvi repinta la vista
 
-  ngOnInit(): void {
-    this.subscription = this.authState.user$.subscribe(user =&gt; {
-      this.currentUser = user;
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  constructor() {
+    this.authState.user$
+      .pipe(takeUntilDestroyed())   // es cancel·la sola quan es destrueix el component
+      .subscribe(user =&gt; {
+        this.currentUser.set(user);
+        console.log(&#39;Usuari actualitzat:&#39;, user?.name);   // lògica addicional a cada emissió
+      });
   }
 }</code></pre>
   </div>
 </div>
 
 
-<p><strong>Recomanació:</strong> Sempre que sigui possible, utilitzeu l'<code>async</code> pipe per evitar gestió manual de subscripcions.</p>
+<p>El patró clàssic (<code>implements OnDestroy</code> + <code>subscription.unsubscribe()</code>) continua funcionant i el trobareu en codi existent, però és més fàcil d'oblidar. Recordeu també que el que assigneu a propietats normals dins del <code>subscribe</code> no repinta la vista en un projecte zoneless: per això <code>currentUser</code> és un signal.</p>
+
+<p><strong>Recomanació:</strong> Sempre que sigui possible, utilitzeu <code>toSignal</code> (o l'<code>async</code> pipe) per evitar gestió manual de subscripcions; reserveu <code>subscribe</code> + <code>takeUntilDestroyed()</code> per a quan calgui executar lògica a cada emissió.</p>
 
 <h4>1.8.6. Exemple: cistella amb comptador automàtic</h4>
 
@@ -2567,11 +2586,11 @@ export interface User {
 }
 
 // services/auth-state.service.ts
-import { Injectable } from &#39;@angular/core&#39;;
+import { Service } from &#39;@angular/core&#39;;
 import { BehaviorSubject } from &#39;rxjs&#39;;
 import { User } from &#39;../models/user.interface&#39;;
 
-@Injectable({ providedIn: &#39;root&#39; })
+@Service()
 export class AuthStateService {
   private userSubject = new BehaviorSubject&lt;User | null&gt;(null);
   user$ = this.userSubject.asObservable();
@@ -2690,13 +2709,12 @@ export class HeaderComponent {
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- header.component.html --&gt;
 &lt;nav&gt;
-  &lt;div *ngIf=&quot;user$ | async as user; else notAuthenticated&quot;&gt;
+  @if (user$ | async; as user) {
     &lt;span&gt;Benvingut, {{ user.name }}&lt;/span&gt;
     &lt;button (click)=&quot;logout()&quot;&gt;Sortir&lt;/button&gt;
-  &lt;/div&gt;
-  &lt;ng-template #notAuthenticated&gt;
+  } @else {
     &lt;a routerLink=&quot;/login&quot;&gt;Iniciar sessió&lt;/a&gt;
-  &lt;/ng-template&gt;
+  }
 &lt;/nav&gt;</code></pre>
   </div>
 </div>
@@ -2748,13 +2766,13 @@ export class SidebarComponent {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-html">&lt;!-- sidebar.component.html --&gt;
-&lt;aside *ngIf=&quot;user$ | async as user&quot;&gt;
+@if (user$ | async; as user) { &lt;aside&gt;
   &lt;div class=&quot;user-info&quot;&gt;
     &lt;h3&gt;{{ user.name }}&lt;/h3&gt;
     &lt;p&gt;{{ user.email }}&lt;/p&gt;
     &lt;span class=&quot;badge&quot;&gt;{{ user.role }}&lt;/span&gt;
   &lt;/div&gt;
-&lt;/aside&gt;</code></pre>
+&lt;/aside&gt; }</code></pre>
   </div>
 </div>
 
@@ -2779,16 +2797,17 @@ export class SidebarComponent {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// components/admin-panel/admin-panel.component.ts
-export class AdminPanelComponent implements OnInit {
-  canAccess = false;
+import { Component, computed, inject } from &#39;@angular/core&#39;;
+import { toSignal } from &#39;@angular/core/rxjs-interop&#39;;
 
-  constructor(private authState: AuthStateService) {}
+export class AdminPanelComponent {
+  private readonly authState = inject(AuthStateService);
 
-  ngOnInit(): void {
-    this.authState.user$.subscribe(user =&gt; {
-      this.canAccess = user?.role === &#39;admin&#39;;
-    });
-  }
+  // Observable → signal: es desubscriu sol i activa la detecció de canvis
+  private readonly user = toSignal(this.authState.user$, { initialValue: null });
+
+  // Derivat: es recalcula quan canvia l&#39;usuari
+  readonly canAccess = computed(() =&gt; this.user()?.role === &#39;admin&#39;);
 }</code></pre>
   </div>
 </div>
@@ -3174,12 +3193,12 @@ updateTheme(theme: string): void {
 <tr>
 <td>Error "Cannot read property 'subscribe' of undefined"</td>
 <td>El servei no està injectat correctament o l'Observable no està definit</td>
-<td>Verificar que el servei té <code>@Injectable({ providedIn: 'root' })</code> i que l'Observable s'exposa correctament</td>
+<td>Verificar que el servei té <code>@Service()</code> i que l'Observable s'exposa correctament</td>
 </tr>
 <tr>
 <td>Fuita de memòria: l'aplicació es torna lenta amb el temps</td>
-<td>Subscripcions manuals sense <code>unsubscribe()</code></td>
-<td>Utilitzar <code>async</code> pipe o implementar <code>ngOnDestroy()</code> amb <code>subscription.unsubscribe()</code></td>
+<td>Subscripcions manuals que no es cancel·len mai</td>
+<td>Utilitzar <code>toSignal</code> o l'<code>async</code> pipe; si cal <code>subscribe</code>, afegir <code>takeUntilDestroyed()</code> al <code>pipe</code></td>
 </tr>
 <tr>
 <td>Múltiples components mostren dades desincronitzades</td>
@@ -3301,7 +3320,7 @@ updateTheme(theme: string): void {
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Subscric components a l'estat centralitzat utilitzant l'async pipe o subscripcions manuals amb ngOnDestroy</div>
+    <div class="checklist-text">Subscric components a l'estat centralitzat utilitzant l'async pipe, toSignal o subscripcions manuals amb takeUntilDestroyed</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
@@ -3335,7 +3354,7 @@ updateTheme(theme: string): void {
 <ul>
 <li>La gestió d'estat centralitzada resol el problema de múltiples components que necessiten accedir a les mateixes dades globals eliminant duplicació, sincronització manual i cables de comunicació entre components.</li>
 <li>El patró de flux unidireccional garanteix que les dades sempre flueixen des del servei d'estat cap als components, mai a l'inrevés, millorant la predictibilitat, testabilitat i depuració del codi.</li>
-<li>Un servei d'estat típic utilitza <code>BehaviorSubject</code> privat per emmagatzemar l'estat actual, <code>Observable</code> públic per exposar-lo de només lectura, i mètodes controlats per actualitzar l'estat de manera immutable.</li>
+<li>Un servei d'estat típic utilitza un contenidor privat per emmagatzemar l'estat actual (un <code>signal</code>, la primitiva nativa d'Angular 22, o un <code>BehaviorSubject</code> quan l'estat forma part d'un flux RxJS), una vista pública de només lectura, i mètodes controlats per actualitzar l'estat de manera immutable.</li>
 <li>Els components se subscriuen a l'observable exposat pel servei i reben actualitzacions automàtiques cada cop que l'estat canvia, utilitzant l'<code>async</code> pipe per evitar gestió manual de subscripcions.</li>
 <li>El principi d'immutabilitat és fonamental: mai modifiqueu l'estat directament, sempre creeu nous objectes o arrays amb l'operador spread per garantir que Angular detecti els canvis i notifiqui els subscriptors.</li>
 </ul>
@@ -3371,7 +3390,7 @@ updateTheme(theme: string): void {
 <li><strong>Estat distribuït vs centralitzat:</strong> Estat distribuït manté dades locals a cada component; estat centralitzat guarda dades globals en serveis compartits.</li>
 <li><strong>Regla dels tres components:</strong> Si tres o més components necessiten les mateixes dades, és candidat ideal per a estat centralitzat.</li>
 <li><strong>Detecció de canvis:</strong> Mecanisme d'Angular per detectar quan les dades canvien i actualitzar la vista; depèn de comparar referències d'objectes.</li>
-<li><strong>Fuita de memòria:</strong> Problema quan subscripcions manuals no es cancelen amb <code>unsubscribe()</code>, causant que callbacks segueixin actius innecessàriament.</li>
+<li><strong>Fuita de memòria:</strong> Problema quan subscripcions manuals no es cancel·len (amb <code>takeUntilDestroyed()</code> o <code>unsubscribe()</code>), causant que callbacks segueixin actius innecessàriament.</li>
 </ul>
   
   </div>
@@ -3381,73 +3400,7 @@ updateTheme(theme: string): void {
 </div>
 
 <div class="section" id="Unitat4_Bloc2_Seccio2">
-  <h2 id="Unitat4_Bloc2_Seccio2">2. Organització en mòduls i càrrega per seccions (lazy loading)</h2>
-
-  <!-- MULTIMÈDIA -->
-  <!--
-  ════════════════════════════════════════════════════════════════
-  Component: Enllaços multimèdia YouTube
-  ════════════════════════════════════════════════════════════════
-
-  Paràmetres:
-    - unitat: número de la unitat (1-4)
-    - bloc: número del bloc (1-4)
-    - seccio: número de la secció (1-3)
-
-  Exemple d'ús:
-    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
-
-  El component busca automàticament les URLs corresponents a
-  site.data.multimedia i mostra els botons de vídeo i àudio.
-  ════════════════════════════════════════════════════════════════
--->
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-<div class="multimedia-resources">
-  <div class="multimedia-header">
-    <i class="bi bi-play-circle-fill"></i>
-    <span>Contingut multimèdia d'aquesta lectura</span>
-  </div>
-
-  <div class="multimedia-buttons">
-    
-    <a href="https://www.youtube.com/watch?v=-LFePw_VZeY" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 4.2.2 · Organització en mòduls i càrrega per seccions (lazyloading)">
-      <i class="bi bi-youtube"></i>
-      <span>Veure vídeo</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-
-    
-    <a href="https://www.youtube.com/watch?v=e8I-D4-mDtU" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 4.2.2 · Organització en mòduls i càrrega per seccions (lazyloading)">
-      <i class="bi bi-mic-fill"></i>
-      <span>Escoltar àudio</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-  </div>
-
-  
-  
-</div>
-  
-
-
-
+  <h2 id="Unitat4_Bloc2_Seccio2">2. Organització en àrees funcionals i càrrega per seccions (lazy loading)</h2>
 
   <!-- Component: Objectius del bloc/unitat -->
 
@@ -3458,9 +3411,9 @@ updateTheme(theme: string): void {
   <div class="component-content">
     <ul>
       
-        <li>Dividir l'aplicació en mòduls funcionals que agrupen components, serveis i rutes relacionats</li>
+        <li>Dividir l'aplicació en àrees funcionals que agrupen components, serveis i rutes relacionats</li>
       
-        <li>Configurar rutes amb lazy loading per carregar mòduls només quan l'usuari els necessita</li>
+        <li>Configurar rutes amb lazy loading per carregar àrees només quan l'usuari les necessita</li>
       
         <li>Implementar una estratègia de càrrega que optimitzi el temps de càrrega inicial de l'aplicació</li>
       
@@ -3500,7 +3453,7 @@ updateTheme(theme: string): void {
 <li><strong>Unitat 4.1 completada:</strong> Heu configurat el sistema de rutes i sabeu crear rutes bàsiques amb components associats.</li>
 <li><strong>Conceptes de components:</strong> Comprensió de com crear i organitzar components en carpetes.</li>
 <li><strong>Serveis i injecció de dependències:</strong> Sabeu crear serveis i injectar-los als components.</li>
-<li><strong>CLI d'Angular:</strong> Domini de comandes bàsiques per generar mòduls i components (<code>ng generate</code>).</li>
+<li><strong>CLI d'Angular:</strong> Domini de comandes bàsiques per generar components i serveis (<code>ng generate</code>).</li>
 <li><strong>Estructura de projecte:</strong> Enteneu l'organització actual del vostre projecte amb <code>src/app/</code>.</li>
 </ul>
 
@@ -3550,7 +3503,7 @@ ng serve --open
   <div class="section-point-body component-content">
     
 <h4>2.2.1. Què és la modularització amb lazy loading</h4>
-<p>La modularització és l'organització de l'aplicació en unitats lògiques independents (mòduls) que agrupen funcionalitats relacionades. El lazy loading (càrrega diferida) carrega aquests mòduls només quan l'usuari els necessita, no durant la càrrega inicial. Això redueix dràsticament el temps que l'aplicació triga a estar operativa.</p>
+<p>La modularització és l'organització de l'aplicació en unitats lògiques independents (àrees funcionals) que agrupen funcionalitats relacionades. El lazy loading (càrrega diferida) carrega aquestes àrees només quan l'usuari els necessita, no durant la càrrega inicial. Això redueix dràsticament el temps que l'aplicació triga a estar operativa.</p>
 
 <h4>2.2.2. Problema sense modularització i lazy loading</h4>
 <p><strong>Situació abans:</strong></p>
@@ -3627,18 +3580,18 @@ Connexió lenta (750 Kbps): 3.2 MB → 34 segons</code></pre>
 <p>Cada cop que modifiqueu un component, Angular ha de recompilar tota l'aplicació perquè tot està interconnectat. Una aplicació sense modularitzar pot trigar 15-20 segons a recompilar després d'un canvi petit. Això destrueix la productivitat: feu un canvi d'una línia, espereu 20 segons, veieu el resultat, repetiu.</p>
 
 <p><strong>5. Impossibilitat de treball en equip eficient</strong></p>
-<p>Quan diferents equips treballen en funcionalitats diferents (equip de dashboard, equip d'administració, equip de cerca), tots modifiquen fitxers al mateix directori. Els conflictes de merge es multipliquen. No podeu assignar clarament responsabilitats: "l'equip A s'encarrega del mòdul d'administració" no té sentit si tot és un monolit.</p>
+<p>Quan diferents equips treballen en funcionalitats diferents (equip de dashboard, equip d'administració, equip de cerca), tots modifiquen fitxers al mateix directori. Els conflictes de merge es multipliquen. No podeu assignar clarament responsabilitats: "l'equip A s'encarrega de l'àrea d'administració" no té sentit si tot és un monolit.</p>
 
-<h4>2.2.3. Solució amb modularització i lazy loading</h4>
-<p>Dividiu l'aplicació en mòduls funcionals independents que es carreguen només quan l'usuari accedeix a aquella funcionalitat. El fitxer inicial conté només el codi essencial; la resta es carrega sota demanda.</p>
+<h4>2.2.3. Solució amb arquitectura per funcionalitats i lazy loading</h4>
+<p>Dividiu l'aplicació en àrees funcionals independents que es carreguen només quan l'usuari accedeix a aquella funcionalitat. El paquet inicial conté només el codi essencial; la resta es carrega sota demanda mitjançant rutes standalone.</p>
 
 <p><strong>Avantatges principals:</strong></p>
 <ol>
 <li><strong>Càrrega inicial ràpida:</strong> Només es carrega el codi essencial (200-500 KB en lloc de 3 MB)</li>
 <li><strong>Escalabilitat:</strong> Podeu afegir noves funcionalitats sense augmentar el temps de càrrega inicial</li>
-<li><strong>Organització clara:</strong> Cada funcionalitat té el seu propi mòdul amb components i serveis</li>
+<li><strong>Organització clara:</strong> Cada funcionalitat té la seva pròpia carpeta amb components, serveis, models i rutes</li>
 <li><strong>Millor experiència d'usuari:</strong> L'aplicació respon en 1-2 segons, no 10-15 segons</li>
-<li><strong>Treball en equip eficient:</strong> Equips treballen en mòduls independents amb menys conflictes</li>
+<li><strong>Treball en equip eficient:</strong> Equips treballen en àrees independents amb menys conflictes</li>
 </ol>
 
 <h4>2.2.4. Exemple real complet: Sense vs Amb lazy loading</h4>
@@ -3661,7 +3614,7 @@ Connexió lenta (750 Kbps): 3.2 MB → 34 segons</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// app-routing.module.ts - TOT ES CARREGA IMMEDIATAMENT
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// src/app/app.routes.ts - TOT ES CARREGA IMMEDIATAMENT
 import { ProductListComponent } from &#39;./products/product-list.component&#39;;
 import { ProductDetailComponent } from &#39;./products/product-detail.component&#39;;
 import { AdminDashboardComponent } from &#39;./admin/admin-dashboard.component&#39;;
@@ -3699,26 +3652,26 @@ const routes: Routes = [
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// app-routing.module.ts - NOMÉS CARREGA EL QUE ES NECESSITA
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// src/app/app.routes.ts - NOMÉS CARREGA EL QUE ES NECESSITA
 const routes: Routes = [
   {
     path: &#39;&#39;,
-    loadChildren: () =&gt; import(&#39;./products/products.module&#39;).then(m =&gt; m.ProductsModule)
+    loadComponent: () =&gt; import(&#39;./products/product-list.component&#39;).then(c =&gt; c.ProductListComponent)
   },
   {
     path: &#39;admin&#39;,
-    loadChildren: () =&gt; import(&#39;./admin/admin.module&#39;).then(m =&gt; m.AdminModule)
+    loadChildren: () =&gt; import(&#39;./admin/admin.routes&#39;).then(r =&gt; r.ADMIN_ROUTES)
   },
   {
     path: &#39;favorites&#39;,
-    loadChildren: () =&gt; import(&#39;./favorites/favorites.module&#39;).then(m =&gt; m.FavoritesModule)
+    loadComponent: () =&gt; import(&#39;./favorites/favorites.component&#39;).then(c =&gt; c.FavoritesComponent)
   }
 ];</code></pre>
   </div>
 </div>
 
 
-<p>Resultat: <strong>main.js = 450 KB</strong>, càrrega inicial = 2 segons en 3G. Els mòduls admin (800 KB) i favorites (200 KB) es carreguen només quan l'usuari hi accedeix.</p>
+<p>Resultat: <strong>main.js = 450 KB</strong>, càrrega inicial = 2 segons en 3G. Les rutes d'administració (800 KB) i la vista de preferits (200 KB) es carreguen només quan l'usuari hi accedeix.</p>
 
 <h4>2.2.5. Taula comparativa: Abans vs Després</h4>
 <table>
@@ -3789,19 +3742,19 @@ const routes: Routes = [
   <div class="section-point-body component-content">
     
 <p><strong>Biblioteca modular d'una ciutat</strong></p>
-<p>Una biblioteca gran no posa tots els llibres en una única sala gegant. Organitza els llibres en sales temàtiques: sala de ciència, sala d'història, sala infantil. Quan entres a la biblioteca, només accedeixes a la sala que necessites. Els llibres de les altres sales no ocupen el teu espai mental. Els mòduls funcionen igual: cada "sala" (mòdul) s'obre només quan la necessites.</p>
+<p>Una biblioteca gran no posa tots els llibres en una única sala gegant. Organitza els llibres en sales temàtiques: sala de ciència, sala d'història, sala infantil. Quan entres a la biblioteca, només accedeixes a la sala que necessites. Els llibres de les altres sales no ocupen el teu espai mental. Les àrees funcionals funcionen igual: cada "sala" s'obre només quan la necessites.</p>
 
 <p><strong>Apartament amb habitacions tancades</strong></p>
-<p>Quan arribes a casa, no encens els llums de totes les habitacions simultàniament. Encens el llum del rebedor, i després obres les habitacions que necessites. El lazy loading funciona així: l'aplicació "encén" només el mòdul inicial, i després carrega cada mòdul (habitació) quan l'usuari hi "entra" navegant a aquella ruta.</p>
+<p>Quan arribes a casa, no encens els llums de totes les habitacions simultàniament. Encens el llum del rebedor, i després obres les habitacions que necessites. El lazy loading funciona així: l'aplicació "encén" només la vista inicial, i després carrega cada àrea quan l'usuari hi "entra" navegant a aquella ruta.</p>
 
 <p><strong>Restaurant amb cuina a la carta</strong></p>
-<p>Un restaurant no prepara tots els plats del menú quan obre. Prepara cada plat quan un client el demana. Això estalvia temps, ingredients i espai a la cuina. De la mateixa manera, el lazy loading no "cuina" (carrega) tot el codi al principi; prepara cada mòdul quan l'usuari l'accedeix.</p>
+<p>Un restaurant no prepara tots els plats del menú quan obre. Prepara cada plat quan un client el demana. Això estalvia temps, ingredients i espai a la cuina. De la mateixa manera, el lazy loading no "cuina" (carrega) tot el codi al principi; prepara cada àrea quan l'usuari l'accedeix.</p>
 
 <p><strong>Caixes en un magatzem amb etiquetes</strong></p>
-<p>Imagineu un magatzem amb 50 caixes. No obriu totes les caixes al matí per veure què hi ha dins. Cada caixa té una etiqueta, i només obriu la caixa que necessiteu en aquell moment. Els mòduls són com caixes etiquetades: sabeu què contenen (components, serveis), i només les "obriu" (carrega) quan les necessiteu.</p>
+<p>Imagineu un magatzem amb 50 caixes. No obriu totes les caixes al matí per veure què hi ha dins. Cada caixa té una etiqueta, i només obriu la caixa que necessiteu en aquell moment. Les carpetes funcionals són com caixes etiquetades: sabeu què contenen (components, serveis, models i rutes), i només les "obriu" quan les necessiteu.</p>
 
 <p><strong>Sistema de transport públic amb zones</strong></p>
-<p>Una ciutat no envia tots els autobusos de totes les línies simultàniament a l'hora punta. Cada línia d'autobús (mòdul) opera independentment. Quan agafes la línia 5, no estàs esperant que arribin també les línies 1, 2, 3 i 4. El lazy loading carrega només la "línia" (mòdul) que has demanat.</p>
+<p>Una ciutat no envia tots els autobusos de totes les línies simultàniament a l'hora punta. Cada línia d'autobús opera independentment. Quan agafes la línia 5, no estàs esperant que arribin també les línies 1, 2, 3 i 4. El lazy loading carrega només la "línia" funcional que has demanat.</p>
   
   </div>
 </div>
@@ -3815,29 +3768,63 @@ const routes: Routes = [
   <div class="component-header section-point-header" role="heading" aria-level="4">
     <i class="bi bi-journal-text" aria-hidden="true"></i>
     <div class="section-point-meta">
-      <div class="section-point-title">2.4. Què són els mòduls: agrupacions lògiques de funcionalitat</div>
+      <div class="section-point-title">2.4. Àrees funcionals: agrupacions lògiques de funcionalitat</div>
       
     </div>
   </div>
   <div class="section-point-body component-content">
     
 <h4>2.4.1. Objectiu</h4>
-<p>Comprendre què és un mòdul d'Angular i per què agrupar funcionalitats relacionades en mòduls independents.</p>
+<p>Comprendre què és una àrea funcional en una aplicació Angular standalone i per què agrupar funcionalitats relacionades en carpetes independents.</p>
 
-<h4>2.4.2. Definició de mòdul</h4>
-<p>Un mòdul d'Angular (<code>NgModule</code>) és una classe decorada amb <code>@NgModule()</code> que agrupa components, serveis, directives i pipes relacionats amb una funcionalitat específica. Cada mòdul és una unitat cohesiva que pot importar-se i reutilitzar-se.</p>
-<p>Angular té sempre almenys un mòdul: l'<code>AppModule</code> (mòdul principal). Però en aplicacions grans, creeu mòduls addicionals per organitzar la funcionalitat.</p>
+<h4>2.4.2. Definició d'àrea funcional</h4>
+<p>Una àrea funcional és una carpeta autocontinguda que agrupa components standalone, serveis, models, adaptadors i rutes relacionats amb una funcionalitat específica. Cada àrea té una responsabilitat clara i pot carregar-se sota demanda si la seva ruta és diferida.</p>
+<p>En una aplicació standalone, la configuració global viu a <code>app.config.ts</code> i el mapa de navegació viu a <code>app.routes.ts</code>. Les àrees grans poden exposar un fitxer propi de rutes, com <code>admin.routes.ts</code>, per mantenir el codi organitzat.</p>
 
-<h4>2.4.3. Analogia del mòdul com a caixa d'eines</h4>
-<p>Penseu en un mòdul com una caixa d'eines especialitzada. Un fuster té una caixa per treballar la fusta (serres, formó, nivell) i una altra per acabats (pinzells, lija, vernís). No barreja totes les eines en una única caixa gegant; les organitza per funcionalitat.</p>
-<p>De la mateixa manera, en lloc de tenir tots els 150 components en un únic <code>AppModule</code>, creeu:</p>
+<h4>2.4.3. Analogia de l'àrea funcional com a caixa d'eines</h4>
+<p>Penseu en una àrea funcional com una caixa d'eines especialitzada. Un fuster té una caixa per treballar la fusta (serres, formó, nivell) i una altra per acabats (pinzells, lija, vernís). No barreja totes les eines en una única caixa gegant; les organitza per funcionalitat.</p>
+<p>De la mateixa manera, en lloc de tenir tots els 150 components en una única carpeta plana, creeu:</p>
 <ul>
-<li><code>ProductsModule</code>: components i serveis per gestionar productes</li>
-<li><code>AdminModule</code>: components i serveis per administració</li>
-<li><code>AuthModule</code>: components i serveis d'autenticació</li>
+<li><code>features/products/</code>: components, serveis i rutes per gestionar productes</li>
+<li><code>features/admin/</code>: components, serveis i rutes d'administració</li>
+<li><code>features/auth/</code>: components, serveis i rutes d'autenticació</li>
 </ul>
 
-<h4>2.4.4. Estructura d'un mòdul típic</h4>
+<h4>2.4.4. Estructura d'una àrea funcional típica</h4>
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">src/app/features/products/
+├── product-list/
+│   ├── product-list.component.ts
+│   ├── product-list.component.html
+│   └── product-list.component.scss
+├── product-detail/
+│   ├── product-detail.component.ts
+│   ├── product-detail.component.html
+│   └── product-detail.component.scss
+├── models/
+│   └── product.model.ts
+├── services/
+│   └── products.service.ts
+└── products.routes.ts</code></pre>
+  </div>
+</div>
+
+
 
 <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
   <div class="code-header">
@@ -3854,40 +3841,38 @@ const routes: Routes = [
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// products.module.ts
-import { NgModule } from &#39;@angular/core&#39;;
-import { CommonModule } from &#39;@angular/common&#39;;
-import { ProductListComponent } from &#39;./product-list/product-list.component&#39;;
-import { ProductDetailComponent } from &#39;./product-detail/product-detail.component&#39;;
-import { ProductsRoutingModule } from &#39;./products-routing.module&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// src/app/features/products/products.routes.ts
+import { Routes } from &#39;@angular/router&#39;;
 
-@NgModule({
-  declarations: [
-    ProductListComponent,    // Components del mòdul
-    ProductDetailComponent
-  ],
-  imports: [
-    CommonModule,            // Mòduls que necessita
-    ProductsRoutingModule    // Rutes del mòdul
-  ],
-  providers: []              // Serveis específics del mòdul
-})
-export class ProductsModule { }</code></pre>
+export const PRODUCTS_ROUTES: Routes = [
+  {
+    path: &#39;&#39;,
+    loadComponent: () =&gt;
+      import(&#39;./product-list/product-list.component&#39;)
+        .then(c =&gt; c.ProductListComponent),
+  },
+  {
+    path: &#39;:id&#39;,
+    loadComponent: () =&gt;
+      import(&#39;./product-detail/product-detail.component&#39;)
+        .then(c =&gt; c.ProductDetailComponent),
+  },
+];</code></pre>
   </div>
 </div>
 
 
-<p>Aquest mòdul encapsula tota la funcionalitat de productes: llista, detall, i les seves rutes.</p>
+<p>Aquesta carpeta encapsula tota la funcionalitat de productes: llista, detall, models, servei i rutes. Les pantalles es poden carregar de manera diferida sense cap classe de mòdul.</p>
 
 <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> Un mòdul agrupa components, serveis i rutes relacionats amb una funcionalitat específica, mantenint l'organització clara i escalable.
+    <strong>Clau:</strong> Una àrea funcional agrupa components standalone, serveis, models i rutes relacionats amb una funcionalitat específica, mantenint l'organització clara i escalable.
 </div>
 
 
 <h4>2.4.5. Resultat esperat</h4>
-<p>Comprensió del concepte de mòdul d'Angular i la seva utilitat per agrupar funcionalitats relacionades.</p>
+<p>Comprensió del concepte d'àrea funcional i de la seva utilitat per agrupar funcionalitats relacionades en aplicacions standalone.</p>
   
   </div>
 </div>
@@ -3901,17 +3886,17 @@ export class ProductsModule { }</code></pre>
   <div class="component-header section-point-header" role="heading" aria-level="4">
     <i class="bi bi-journal-text" aria-hidden="true"></i>
     <div class="section-point-meta">
-      <div class="section-point-title">2.5. Avantatges de modularitzar: organització, reutilització, mantenibilitat</div>
+      <div class="section-point-title">2.5. Avantatges d'organitzar per funcionalitats</div>
       
     </div>
   </div>
   <div class="section-point-body component-content">
     
 <h4>2.5.1. Objectiu</h4>
-<p>Identificar els beneficis concrets que proporciona l'organització en mòduls.</p>
+<p>Identificar els beneficis concrets que proporciona l'organització en àrees funcionals.</p>
 
 <h4>2.5.2. Organització clara i escalable</h4>
-<p>Amb mòduls, l'estructura de carpetes reflecteix clarament les funcionalitats de l'aplicació:</p>
+<p>Amb àrees funcionals, l'estructura de carpetes reflecteix clarament les funcionalitats de l'aplicació:</p>
 
 
 <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
@@ -3930,17 +3915,19 @@ export class ProductsModule { }</code></pre>
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">src/app/
-├── core/               (Mòdul amb serveis globals)
-├── shared/             (Mòdul amb components reutilitzables)
-├── products/           (Mòdul de productes)
-│   ├── product-list/
-│   ├── product-detail/
-│   └── products.module.ts
-├── admin/              (Mòdul d&#39;administració)
-│   ├── dashboard/
-│   ├── users/
-│   └── admin.module.ts
-└── app.module.ts</code></pre>
+├── core/                    (serveis globals i configuració transversal)
+├── shared/                  (components, directives i pipes reutilitzables)
+├── features/
+│   ├── products/            (àrea de productes)
+│   │   ├── product-list/
+│   │   ├── product-detail/
+│   │   └── products.routes.ts
+│   ├── admin/               (àrea d&#39;administració)
+│   │   ├── dashboard/
+│   │   ├── users/
+│   │   └── admin.routes.ts
+│   └── auth/                (àrea d&#39;autenticació)
+└── app.routes.ts</code></pre>
   </div>
 </div>
 
@@ -3948,18 +3935,18 @@ export class ProductsModule { }</code></pre>
 <p>Trobar codi relacionat amb productes és trivial: tot està dins de <code>products/</code>. No cal buscar entre 150 components.</p>
 
 <h4>2.5.3. Reutilització entre projectes</h4>
-<p>Un mòdul ben dissenyat és autocontingut i es pot reutilitzar en altres projectes. Per exemple, si creeu un <code>AuthModule</code> amb login, registre i recuperació de contrasenya, podeu copiar aquesta carpeta sencera a un altre projecte i funciona sense modificacions.</p>
-<p>Això accelera el desenvolupament de nous projectes: en lloc de reescriure autenticació cada vegada, reutilitzeu el mòdul existent.</p>
+<p>Una àrea funcional ben dissenyada és autocontinguda i es pot reutilitzar en altres projectes. Per exemple, si creeu <code>features/auth/</code> amb login, registre i recuperació de contrasenya, podeu copiar aquesta carpeta sencera a un altre projecte i adaptar només les dependències externes.</p>
+<p>Això accelera el desenvolupament de nous projectes: en lloc de reescriure autenticació cada vegada, reutilitzeu l'àrea existent.</p>
 
 <h4>2.5.4. Mantenibilitat i reducció de conflictes</h4>
-<p>Quan equips diferents treballen en mòduls diferents, els conflictes de merge es redueixen dràsticament. L'equip A modifica fitxers dins de <code>admin/</code>, l'equip B modifica fitxers dins de <code>products/</code>. Rarament toquen els mateixos fitxers.</p>
-<p>A més, quan cal corregir un error relacionat amb administració, sabeu que el problema està dins del mòdul <code>AdminModule</code>. No cal revisar tota l'aplicació.</p>
+<p>Quan equips diferents treballen en àrees diferents, els conflictes de merge es redueixen dràsticament. L'equip A modifica fitxers dins de <code>features/admin/</code>, l'equip B modifica fitxers dins de <code>features/products/</code>. Rarament toquen els mateixos fitxers.</p>
+<p>A més, quan cal corregir un error relacionat amb administració, sabeu que el problema està dins de <code>features/admin/</code>. No cal revisar tota l'aplicació.</p>
 
 <h4>2.5.5. Compilació incremental més ràpida</h4>
-<p>Angular pot compilar només els mòduls que han canviat. Si modifiqueu un component dins de <code>ProductsModule</code>, Angular recompila només aquest mòdul, no <code>AdminModule</code> ni <code>AuthModule</code>. Això redueix el temps de recompilació de 18 segons a 4 segons.</p>
+<p>Angular i Vite recompilen de manera incremental els fitxers afectats. Si modifiqueu un component dins de <code>features/products/</code>, el servidor de desenvolupament actualitza aquella part sense reconstruir tota l'aplicació. Això redueix el temps de feedback durant el desenvolupament.</p>
 
 <h4>2.5.6. Proves unitàries més senzilles</h4>
-<p>Provar un mòdul aïlladament és més fàcil que provar tota l'aplicació. Podeu carregar només <code>ProductsModule</code> en les proves i verificar que funciona correctament sense preocupar-vos per interferències d'altres mòduls.</p>
+<p>Provar una àrea funcional aïlladament és més fàcil que provar tota l'aplicació. Podeu provar un component standalone amb els seus imports explícits i simular només els serveis que utilitza.</p>
 
 <table>
 <thead>
@@ -3995,12 +3982,12 @@ export class ProductsModule { }</code></pre>
 <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> La modularització millora l'organització, reutilització, mantenibilitat, temps de compilació i facilitat de proves de manera significativa.
+    <strong>Clau:</strong> L'organització per àrees funcionals millora l'organització, reutilització, mantenibilitat, temps de feedback i facilitat de proves de manera significativa.
 </div>
 
 
 <h4>2.5.7. Resultat esperat</h4>
-<p>Identificació dels avantatges concrets de modularitzar l'aplicació i com impacten positivament el desenvolupament.</p>
+<p>Identificació dels avantatges concrets d'organitzar l'aplicació per àrees funcionals i com impacten positivament el desenvolupament.</p>
   
   </div>
 </div>
@@ -4014,17 +4001,17 @@ export class ProductsModule { }</code></pre>
   <div class="component-header section-point-header" role="heading" aria-level="4">
     <i class="bi bi-journal-text" aria-hidden="true"></i>
     <div class="section-point-meta">
-      <div class="section-point-title">2.6. Crear mòdul funcional: agrupant components, serveis i rutes relacionats</div>
+      <div class="section-point-title">2.6. Crear una àrea funcional: components, serveis i rutes</div>
       
     </div>
   </div>
   <div class="section-point-body component-content">
     
 <h4>2.6.1. Objectiu</h4>
-<p>Crear un mòdul funcional complet que agrupa components, serveis i rutes d'una funcionalitat específica.</p>
+<p>Crear una àrea funcional completa que agrupa components standalone, serveis i rutes d'una funcionalitat específica.</p>
 
-<h4>2.6.2. Generar mòdul amb CLI</h4>
-<p>Angular CLI facilita la creació de mòduls amb una comanda:</p>
+<h4>2.6.2. Crear la carpeta funcional</h4>
+<p>Angular CLI facilita la creació dels components standalone dins d'una carpeta funcional:</p>
 
 
 <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
@@ -4042,9 +4029,9 @@ export class ProductsModule { }</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng generate module admin --routing
-# o forma abreujada:
-ng g m admin --routing</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng generate component features/admin/dashboard --add-type-to-class-name
+ng generate component features/admin/users --add-type-to-class-name
+ng generate service features/admin/services/user-management</code></pre>
   </div>
 </div>
 
@@ -4066,41 +4053,21 @@ ng g m admin --routing</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">src/app/admin/
-├── admin-routing.module.ts   (Rutes del mòdul)
-└── admin.module.ts            (Definició del mòdul)</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">src/app/features/admin/
+├── dashboard/
+│   └── dashboard.component.ts
+├── users/
+│   └── users.component.ts
+└── services/
+    └── user-management.service.ts</code></pre>
   </div>
 </div>
 
 
-<p>El flag <code>--routing</code> crea automàticament el fitxer de rutes del mòdul.</p>
+<p>Després afegiu manualment el fitxer de rutes de l'àrea. És petit, explícit i fàcil de revisar.</p>
 
-<h4>2.6.3. Afegir components al mòdul</h4>
-<p>Genereu components dins del mòdul:</p>
-
-
-<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng g c admin/dashboard
-ng g c admin/users</code></pre>
-  </div>
-</div>
-
-
-<p>Angular CLI detecta que esteu dins de <code>admin/</code> i afegeix automàticament els components a <code>admin.module.ts</code>:</p>
+<h4>2.6.3. Afegir components a l'àrea</h4>
+<p>Els components standalone declaren els imports que necessiten al propi decorador:</p>
 
 
 <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
@@ -4118,30 +4085,23 @@ ng g c admin/users</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// admin.module.ts
-import { NgModule } from &#39;@angular/core&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// src/app/features/admin/dashboard/dashboard.component.ts
+import { Component } from &#39;@angular/core&#39;;
 import { CommonModule } from &#39;@angular/common&#39;;
-import { AdminRoutingModule } from &#39;./admin-routing.module&#39;;
-import { DashboardComponent } from &#39;./dashboard/dashboard.component&#39;;
-import { UsersComponent } from &#39;./users/users.component&#39;;
 
-@NgModule({
-  declarations: [
-    DashboardComponent,
-    UsersComponent
-  ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule
-  ]
+@Component({
+  selector: &#39;app-admin-dashboard&#39;,
+  imports: [CommonModule],
+  templateUrl: &#39;./dashboard.component.html&#39;,
+  styleUrl: &#39;./dashboard.component.scss&#39;,
 })
-export class AdminModule { }</code></pre>
+export class DashboardComponent {}</code></pre>
   </div>
 </div>
 
 
-<h4>2.6.4. Configurar rutes del mòdul</h4>
-<p>Definiu les rutes internes del mòdul a <code>admin-routing.module.ts</code>:</p>
+<h4>2.6.4. Configurar rutes de l'àrea</h4>
+<p>Definiu les rutes internes de l'àrea a <code>admin.routes.ts</code>:</p>
 
 
 <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
@@ -4159,30 +4119,31 @@ export class AdminModule { }</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// admin-routing.module.ts
-import { NgModule } from &#39;@angular/core&#39;;
-import { RouterModule, Routes } from &#39;@angular/router&#39;;
-import { DashboardComponent } from &#39;./dashboard/dashboard.component&#39;;
-import { UsersComponent } from &#39;./users/users.component&#39;;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// src/app/features/admin/admin.routes.ts
+import { Routes } from &#39;@angular/router&#39;;
 
-const routes: Routes = [
-  { path: &#39;&#39;, component: DashboardComponent },        // /admin
-  { path: &#39;users&#39;, component: UsersComponent }        // /admin/users
-];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class AdminRoutingModule { }</code></pre>
+export const ADMIN_ROUTES: Routes = [
+  {
+    path: &#39;&#39;,
+    loadComponent: () =&gt;
+      import(&#39;./dashboard/dashboard.component&#39;)
+        .then(c =&gt; c.DashboardComponent),
+  },
+  {
+    path: &#39;users&#39;,
+    loadComponent: () =&gt;
+      import(&#39;./users/users.component&#39;)
+        .then(c =&gt; c.UsersComponent),
+  },
+];</code></pre>
   </div>
 </div>
 
 
-<p><strong>Nota important:</strong> Utilitzeu <code>RouterModule.forChild(routes)</code> als mòduls funcionals, NO <code>forRoot()</code>. El <code>forRoot()</code> només s'usa a l'<code>AppModule</code>.</p>
+<p><strong>Nota important:</strong> el fitxer de rutes exporta un array <code>Routes</code>. La ruta principal el carregarà amb <code>loadChildren</code> quan l'usuari entri a <code>/admin</code>.</p>
 
-<h4>2.6.5. Afegir serveis al mòdul (opcional)</h4>
-<p>Si el mòdul necessita serveis específics, creeu-los dins del mòdul:</p>
+<h4>2.6.5. Afegir serveis a l'àrea (opcional)</h4>
+<p>Si l'àrea necessita serveis específics, creeu-los dins de la seva carpeta:</p>
 
 
 <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
@@ -4200,12 +4161,12 @@ export class AdminRoutingModule { }</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng g s admin/services/user-management</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng generate service features/admin/services/user-management</code></pre>
   </div>
 </div>
 
 
-<p>Podeu proporcionar el servei a nivell de mòdul si voleu que només existeixi dins del mòdul:</p>
+<p>Si el servei només s'utilitza en aquesta àrea, manteniu-lo dins de la carpeta <code>features/admin/services/</code>. En la majoria de casos podeu declarar-lo amb <code>providedIn: 'root'</code> i importar-lo només on calgui.</p>
 
 
 <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
@@ -4223,14 +4184,10 @@ export class AdminRoutingModule { }</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// admin.module.ts
-import { UserManagementService } from &#39;./services/user-management.service&#39;;
-
-@NgModule({
-  // ...
-  providers: [UserManagementService]  // Servei específic del mòdul
-})
-export class AdminModule { }</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Service()
+export class UserManagementService {
+  // Lògica específica de l&#39;àrea d&#39;administració
+}</code></pre>
   </div>
 </div>
 
@@ -4238,12 +4195,12 @@ export class AdminModule { }</code></pre>
 <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> Un mòdul funcional agrupa components, serveis i rutes relacionats, creats amb CLI i configurats amb routing propi mitjançant RouterModule.forChild().
+    <strong>Clau:</strong> Una àrea funcional agrupa components standalone, serveis i rutes relacionats. Les seves rutes es defineixen en un fitxer propi i es poden carregar de manera diferida.
 </div>
 
 
 <h4>2.6.6. Resultat esperat</h4>
-<p>Creació de mòduls funcionals complets amb components, serveis i rutes agrupats lògicament.</p>
+<p>Creació d'àrees funcionals completes amb components, serveis i rutes agrupats lògicament.</p>
   
   </div>
 </div>
@@ -4257,60 +4214,17 @@ export class AdminModule { }</code></pre>
   <div class="component-header section-point-header" role="heading" aria-level="4">
     <i class="bi bi-journal-text" aria-hidden="true"></i>
     <div class="section-point-meta">
-      <div class="section-point-title">2.7. Importar mòduls: com integrar-los a l'aplicació principal</div>
+      <div class="section-point-title">2.7. Integrar àrees funcionals a l'aplicació principal</div>
       
     </div>
   </div>
   <div class="section-point-body component-content">
     
 <h4>2.7.1. Objectiu</h4>
-<p>Aprendre a importar mòduls a l'aplicació principal i comprendre la diferència entre eager i lazy loading.</p>
+<p>Aprendre a integrar àrees funcionals a l'aplicació principal i comprendre la diferència entre càrrega immediata i càrrega diferida.</p>
 
-<h4>2.7.2. Importació eager (càrrega immediata)</h4>
-<p>Per importar un mòdul de manera eager, l'afegiu a la llista <code>imports</code> de l'<code>AppModule</code>:</p>
-
-
-<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TYPESCRIPT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// app.module.ts
-import { NgModule } from &#39;@angular/core&#39;;
-import { BrowserModule } from &#39;@angular/platform-browser&#39;;
-import { AppRoutingModule } from &#39;./app-routing.module&#39;;
-import { AppComponent } from &#39;./app.component&#39;;
-import { AdminModule } from &#39;./admin/admin.module&#39;;  // Import eager
-
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AdminModule,        // Mòdul carregat immediatament
-    AppRoutingModule    // AppRoutingModule sempre últim
-  ],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }</code></pre>
-  </div>
-</div>
-
-
-<p>Amb aquesta configuració, tot el codi de <code>AdminModule</code> es carrega immediatament quan l'aplicació arrenca.</p>
-
-<h4>2.7.3. Configurar ruta per a mòdul eager</h4>
-<p>Quan importeu un mòdul eager, les seves rutes s'integren automàticament. No cal fer res especial a <code>app-routing.module.ts</code>; les rutes del mòdul ja estan disponibles.</p>
-<p>Però sovint voleu prefixar les rutes del mòdul:</p>
+<h4>2.7.2. Càrrega immediata amb import estàtic</h4>
+<p>Quan una vista és essencial i ha d'estar disponible des del primer moment, la podeu importar de manera estàtica a <code>app.routes.ts</code>:</p>
 
 
 <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
@@ -4328,19 +4242,23 @@ export class AppModule { }</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// app-routing.module.ts
-const routes: Routes = [
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// src/app/app.routes.ts
+import { Routes } from &#39;@angular/router&#39;;
+import { HomeComponent } from &#39;./features/home/home.component&#39;;
+import { ProductListComponent } from &#39;./features/products/product-list/product-list.component&#39;;
+
+export const routes: Routes = [
   { path: &#39;&#39;, component: HomeComponent },
-  { path: &#39;admin&#39;, loadChildren: () =&gt; import(&#39;./admin/admin.module&#39;).then(m =&gt; m.AdminModule) }
+  { path: &#39;products&#39;, component: ProductListComponent },
 ];</code></pre>
   </div>
 </div>
 
 
-<p><strong>Nota:</strong> Amb <code>loadChildren</code>, passem de eager a lazy. Més endavant veurem això en detall.</p>
+<p>Amb aquesta configuració, el codi dels components importats estàticament forma part del paquet inicial de l'aplicació.</p>
 
-<h4>2.7.4. Ordre d'importació de mòduls</h4>
-<p><strong>Crític:</strong> L'ordre d'importació dels mòduls dins de <code>imports</code> és important. L'<code>AppRoutingModule</code> ha d'anar sempre últim:</p>
+<h4>2.7.3. Càrrega diferida amb import dinàmic</h4>
+<p>Quan una funcionalitat és gran, avançada o poc utilitzada, la carregueu amb <code>loadComponent</code> o <code>loadChildren</code>:</p>
 
 
 <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
@@ -4358,22 +4276,57 @@ const routes: Routes = [
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">imports: [
-  BrowserModule,
-  SharedModule,       // Mòduls compartits primer
-  AdminModule,        // Mòduls funcionals després
-  AppRoutingModule    // AppRoutingModule SEMPRE ÚLTIM
-]</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// src/app/app.routes.ts
+export const routes: Routes = [
+  { path: &#39;&#39;, component: HomeComponent },
+  {
+    path: &#39;admin&#39;,
+    loadChildren: () =&gt;
+      import(&#39;./features/admin/admin.routes&#39;)
+        .then(r =&gt; r.ADMIN_ROUTES),
+  },
+];</code></pre>
   </div>
 </div>
 
 
-<p>Si poseu <code>AppRoutingModule</code> abans que altres mòduls amb rutes, les rutes d'aquests mòduls es poden ignorar perquè el router troba primer la ruta genèrica <code>{ path: '**' }</code> de l'<code>AppRoutingModule</code>.</p>
+<p><strong>Nota:</strong> <code>loadComponent</code> és útil per diferir una pantalla concreta. <code>loadChildren</code> és útil quan una àrea té diverses rutes internes.</p>
 
-<h4>2.7.5. Diferència entre forRoot() i forChild()</h4>
+<h4>2.7.4. Ordre de les rutes</h4>
+<p><strong>Crític:</strong> l'ordre de les rutes dins de l'array és important. Les rutes específiques han d'anar abans que les genèriques:</p>
+
+
+<div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TYPESCRIPT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">export const routes: Routes = [
+  { path: &#39;&#39;, component: HomeComponent },
+  { path: &#39;products/:id&#39;, loadComponent: () =&gt; import(&#39;./features/products/product-detail/product-detail.component&#39;).then(c =&gt; c.ProductDetailComponent) },
+  { path: &#39;products&#39;, loadComponent: () =&gt; import(&#39;./features/products/product-list/product-list.component&#39;).then(c =&gt; c.ProductListComponent) },
+  { path: &#39;**&#39;, redirectTo: &#39;&#39; },
+];</code></pre>
+  </div>
+</div>
+
+
+<p>Si poseu la ruta comodí <code>**</code> abans de les rutes reals, el Router capturarà totes les URLs i les vistes correctes no es mostraran.</p>
+
+<h4>2.7.5. Diferència entre configuració global i rutes d'àrea</h4>
 <ul>
-<li><strong><code>forRoot()</code>:</strong> Només s'usa una vegada a l'<code>AppModule</code>. Configura el router amb configuració global.</li>
-<li><strong><code>forChild()</code>:</strong> S'usa a tots els mòduls funcionals. Afegeix rutes al router sense duplicar la configuració global.</li>
+<li><strong><code>provideRouter(routes)</code>:</strong> S'usa una vegada a <code>app.config.ts</code> per activar el Router i opcions globals.</li>
+<li><strong><code>Routes</code> d'una àrea:</strong> Array de rutes exportat per una carpeta funcional, carregat amb <code>loadChildren</code>.</li>
 </ul>
 
 
@@ -4392,11 +4345,16 @@ const routes: Routes = [
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// AppModule
-RouterModule.forRoot(routes)  // Configura router globalment
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// src/app/app.config.ts
+export const appConfig: ApplicationConfig = {
+  providers: [provideRouter(routes)],
+};
 
-// Mòduls funcionals
-RouterModule.forChild(routes) // Afegeix rutes sense reconfigurar</code></pre>
+// src/app/features/admin/admin.routes.ts
+export const ADMIN_ROUTES: Routes = [
+  { path: &#39;&#39;, loadComponent: () =&gt; import(&#39;./dashboard/dashboard.component&#39;).then(c =&gt; c.DashboardComponent) },
+  { path: &#39;users&#39;, loadComponent: () =&gt; import(&#39;./users/users.component&#39;).then(c =&gt; c.UsersComponent) },
+];</code></pre>
   </div>
 </div>
 
@@ -4404,12 +4362,12 @@ RouterModule.forChild(routes) // Afegeix rutes sense reconfigurar</code></pre>
 <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> Els mòduls es poden importar de manera eager (càrrega immediata) afegint-los a imports de l'AppModule, tenint cura de l'ordre d'importació.
+    <strong>Clau:</strong> Les àrees es poden carregar immediatament amb imports estàtics o diferir amb imports dinàmics. El Router global es configura una sola vegada amb <code>provideRouter(routes)</code>.
 </div>
 
 
 <h4>2.7.6. Resultat esperat</h4>
-<p>Importació de mòduls a l'aplicació principal i comprensió de la diferència entre forRoot() i forChild().</p>
+<p>Integració d'àrees funcionals a l'aplicació principal i comprensió de la diferència entre configuració global, imports estàtics i imports dinàmics.</p>
   
   </div>
 </div>
@@ -4423,7 +4381,7 @@ RouterModule.forChild(routes) // Afegeix rutes sense reconfigurar</code></pre>
   <div class="component-header section-point-header" role="heading" aria-level="4">
     <i class="bi bi-journal-text" aria-hidden="true"></i>
     <div class="section-point-meta">
-      <div class="section-point-title">2.8. Lazy loading: càrrega diferida de mòduls quan es necessiten</div>
+      <div class="section-point-title">2.8. Lazy loading: càrrega diferida quan es necessita</div>
       
     </div>
   </div>
@@ -4433,16 +4391,16 @@ RouterModule.forChild(routes) // Afegeix rutes sense reconfigurar</code></pre>
 <p>Comprendre el concepte de lazy loading i per què és fonamental per optimitzar el rendiment.</p>
 
 <h4>2.8.2. Què és el lazy loading</h4>
-<p>Lazy loading (càrrega diferida) és la tècnica de carregar parts del codi només quan l'usuari les necessita. En lloc de descarregar tot el codi al principi, l'aplicació descarrega el codi mínim necessari, i després carrega mòduls addicionals sota demanda.</p>
+<p>Lazy loading (càrrega diferida) és la tècnica de carregar parts del codi només quan l'usuari les necessita. En lloc de descarregar tot el codi al principi, l'aplicació descarrega el codi mínim necessari, i després carrega les àrees addicionals sota demanda.</p>
 <p>Això redueix dràsticament el temps de càrrega inicial perquè el navegador només descarrega, parseja i executa el codi essencial.</p>
 
 <h4>2.8.3. Com funciona internament</h4>
 <p>Quan configureu lazy loading, Angular:</p>
 <ol>
-<li>Compila cada mòdul lazy en un fitxer JavaScript separat (chunk)</li>
+<li>Compila cada ruta o àrea diferida en un fitxer JavaScript separat (chunk)</li>
 <li>Durant la càrrega inicial, NO inclou aquests chunks al fitxer principal</li>
 <li>Quan l'usuari navega a una ruta lazy, Angular descarrega el chunk corresponent</li>
-<li>Una vegada descarregat, Angular carrega el mòdul i renderitza els components</li>
+<li>Una vegada descarregat, Angular carrega la ruta i renderitza el component</li>
 </ol>
 
 
@@ -4469,21 +4427,21 @@ Aplicació operativa en 2 segons
   ↓
 Usuari clica &quot;Admin&quot;
   ↓
-Descarrega admin.chunk.js (800 KB) en background
+Descarrega admin.chunk.js (800 KB)
   ↓
-Mòdul admin operatiu en 1 segon</code></pre>
+Àrea admin operativa en 1 segon</code></pre>
   </div>
 </div>
 
 
 <h4>2.8.4. Avantatges del lazy loading</h4>
-<p><strong>Temps de càrrega inicial reduït:</strong> El fitxer principal és 70-80% més petit. Una aplicació de 3.2 MB es redueix a 450 KB. Això significa temps de càrrega inicial de 2-3 segons en lloc de 10-15 segons.</p>
+<p><strong>Temps de càrrega inicial reduït:</strong> El fitxer principal només conté el codi de les rutes inicials. En l'exemple il·lustratiu d'aquest bloc, una aplicació de 3,2 MB es redueix a 450 kB, i la càrrega inicial en 3G passa d'una desena de segons a un parell; la proporció real depèn de quanta funcionalitat pugueu diferir.</p>
 <p><strong>Millor experiència d'usuari:</strong> L'usuari veu contingut i pot interactuar amb l'aplicació molt més ràpidament. La percepció de velocitat millora dràsticament.</p>
 <p><strong>Estalvi d'ample de banda:</strong> Els usuaris només descarreguen el codi que realment utilitzen. Si un usuari mai accedeix a l'administració, mai descarrega els 800 KB de codi d'admin. Això és especialment important en connexions mòbils amb dades limitades.</p>
-<p><strong>Escalabilitat sense penalització:</strong> Podeu afegir noves funcionalitats (nous mòduls lazy) sense augmentar el temps de càrrega inicial. Cada nova funcionalitat és un nou chunk que es carrega sota demanda.</p>
+<p><strong>Escalabilitat sense penalització:</strong> Podeu afegir noves funcionalitats diferides sense augmentar el temps de càrrega inicial. Cada nova funcionalitat és un nou chunk que es carrega sota demanda.</p>
 
-<h4>2.8.5. Quan es carrega un mòdul lazy</h4>
-<p>Un mòdul lazy es carrega la primera vegada que l'usuari navega a una ruta d'aquell mòdul. Després de carregar-se, queda en memòria i ja no cal tornar-lo a descarregar.</p>
+<h4>2.8.5. Quan es carrega una ruta lazy</h4>
+<p>Una ruta lazy es carrega la primera vegada que l'usuari hi navega. Després de carregar-se, queda en memòria i ja no cal tornar-la a descarregar durant la mateixa sessió.</p>
 
 
 <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
@@ -4501,10 +4459,10 @@ Mòdul admin operatiu en 1 segon</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Usuari accedeix /products → ProductsModule es carrega
-Usuari accedeix /product/123 → ProductsModule ja està carregat, no es descarrega novament
-Usuari accedeix /admin → AdminModule es carrega per primera vegada
-Usuari accedeix /admin/users → AdminModule ja està carregat</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Usuari accedeix /products → ProductListComponent es carrega
+Usuari accedeix /product/123 → ProductDetailComponent es carrega
+Usuari accedeix /admin → ADMIN_ROUTES i DashboardComponent es carreguen
+Usuari accedeix /admin/users → UsersComponent es carrega dins de l&#39;àrea admin</code></pre>
   </div>
 </div>
 
@@ -4538,7 +4496,7 @@ Usuari accedeix /admin/users → AdminModule ja està carregat</code></pre>
 <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> El lazy loading carrega mòduls només quan l'usuari els necessita, reduint dràsticament el temps de càrrega inicial i millorant l'experiència d'usuari.
+    <strong>Clau:</strong> El lazy loading carrega rutes i components només quan l'usuari els necessita, reduint dràsticament el temps de càrrega inicial i millorant l'experiència d'usuari.
 </div>
 
 
@@ -4564,10 +4522,10 @@ Usuari accedeix /admin/users → AdminModule ja està carregat</code></pre>
   <div class="section-point-body component-content">
     
 <h4>2.9.1. Objectiu</h4>
-<p>Implementar lazy loading configurant rutes amb la sintaxi <code>loadChildren</code> i imports dinàmics.</p>
+<p>Implementar lazy loading configurant rutes amb <code>loadComponent</code>, <code>loadChildren</code> i imports dinàmics.</p>
 
 <h4>2.9.2. Sintaxi de lazy loading</h4>
-<p>Per configurar una ruta lazy, utilitzeu <code>loadChildren</code> amb una funció que retorna una promise d'importació dinàmica:</p>
+<p>Per configurar una ruta lazy, utilitzeu <code>loadComponent</code> per a una pantalla concreta o <code>loadChildren</code> per a una àrea amb rutes internes:</p>
 
 
 <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
@@ -4585,23 +4543,27 @@ Usuari accedeix /admin/users → AdminModule ja està carregat</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// app-routing.module.ts
-const routes: Routes = [
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// src/app/app.routes.ts
+export const routes: Routes = [
   { path: &#39;&#39;, component: HomeComponent },
   {
     path: &#39;admin&#39;,
-    loadChildren: () =&gt; import(&#39;./admin/admin.module&#39;).then(m =&gt; m.AdminModule)
+    loadChildren: () =&gt;
+      import(&#39;./features/admin/admin.routes&#39;)
+        .then(r =&gt; r.ADMIN_ROUTES),
   },
   {
     path: &#39;products&#39;,
-    loadChildren: () =&gt; import(&#39;./products/products.module&#39;).then(m =&gt; m.ProductsModule)
+    loadComponent: () =&gt;
+      import(&#39;./features/products/product-list/product-list.component&#39;)
+        .then(c =&gt; c.ProductListComponent),
   }
 ];</code></pre>
   </div>
 </div>
 
 
-<p><strong>Nota important:</strong> NO importeu el mòdul a la part superior del fitxer quan useu lazy loading. L'import dinàmic <code>import()</code> dins de <code>loadChildren</code> és l'única importació necessària.</p>
+<p><strong>Nota important:</strong> NO importeu estàticament el component o les rutes diferides a la part superior del fitxer. L'import dinàmic <code>import()</code> dins de <code>loadComponent</code> o <code>loadChildren</code> és l'única importació necessària.</p>
 
 <h4>2.9.3. Anatomia de loadChildren</h4>
 
@@ -4620,9 +4582,9 @@ const routes: Routes = [
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">loadChildren: () =&gt; import(&#39;./admin/admin.module&#39;).then(m =&gt; m.AdminModule)
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">loadChildren: () =&gt; import(&#39;./features/admin/admin.routes&#39;).then(r =&gt; r.ADMIN_ROUTES)
 //            ↑    ↑                                ↑       ↑
-//            │    │                                │       └─ Classe del mòdul
+//            │    │                                │       └─ Array Routes exportat
 //            │    │                                └───────── Promesa resolta
 //            │    └────────────────────────────────────────── Import dinàmic
 //            └─────────────────────────────────────────────── Funció arrow</code></pre>
@@ -4632,12 +4594,12 @@ const routes: Routes = [
 
 <ol>
 <li><strong>Funció arrow:</strong> <code>() =&gt;</code> crea una funció que s'executa quan l'usuari accedeix a la ruta</li>
-<li><strong>Import dinàmic:</strong> <code>import('./admin/admin.module')</code> carrega el mòdul de manera asíncrona</li>
-<li><strong>Promesa resolta:</strong> <code>.then(m =&gt; m.AdminModule)</code> retorna la classe del mòdul quan s'ha carregat</li>
+<li><strong>Import dinàmic:</strong> <code>import('./features/admin/admin.routes')</code> carrega les rutes de manera asíncrona</li>
+<li><strong>Promesa resolta:</strong> <code>.then(r =&gt; r.ADMIN_ROUTES)</code> retorna l'array de rutes quan s'ha carregat</li>
 </ol>
 
-<h4>2.9.4. Eliminar importació eager del mòdul</h4>
-<p>Si prèviament teníeu el mòdul importat a l'<code>AppModule</code>, elimineu aquesta importació:</p>
+<h4>2.9.4. Evitar imports estàtics de codi diferit</h4>
+<p>Si voleu que una vista sigui realment lazy, no la importeu a la part superior de <code>app.routes.ts</code>:</p>
 
 
 <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
@@ -4655,27 +4617,26 @@ const routes: Routes = [
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// app.module.ts
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// src/app/app.routes.ts
 
-// ELIMINAR si useu lazy loading:
-import { AdminModule } from &#39;./admin/admin.module&#39;;
+// EVITEU això si voleu lazy loading:
+import { AdminDashboardComponent } from &#39;./features/admin/dashboard/dashboard.component&#39;;
 
-@NgModule({
-  imports: [
-    BrowserModule,
-    // AdminModule,  ← ELIMINAR aquesta línia
-    AppRoutingModule
-  ]
-})
-export class AppModule { }</code></pre>
+// Utilitzeu això:
+{
+  path: &#39;admin&#39;,
+  loadChildren: () =&gt;
+    import(&#39;./features/admin/admin.routes&#39;)
+      .then(r =&gt; r.ADMIN_ROUTES),
+}</code></pre>
   </div>
 </div>
 
 
-<p>Si deixeu la importació eager, el mòdul es carregarà immediatament i el lazy loading no funcionarà.</p>
+<p>Si deixeu la importació estàtica, aquell codi pot acabar al paquet inicial i el lazy loading perd sentit.</p>
 
 <h4>2.9.5. Rutes niades amb lazy loading</h4>
-<p>Els mòduls lazy poden tenir rutes niades definides al seu propi routing module:</p>
+<p>Les àrees lazy poden tenir rutes niades definides al seu propi fitxer de rutes:</p>
 
 
 <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
@@ -4693,11 +4654,11 @@ export class AppModule { }</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// admin-routing.module.ts (dins del mòdul lazy)
-const routes: Routes = [
-  { path: &#39;&#39;, component: AdminDashboardComponent },
-  { path: &#39;users&#39;, component: UsersComponent },
-  { path: &#39;settings&#39;, component: SettingsComponent }
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// src/app/features/admin/admin.routes.ts
+export const ADMIN_ROUTES: Routes = [
+  { path: &#39;&#39;, loadComponent: () =&gt; import(&#39;./dashboard/dashboard.component&#39;).then(c =&gt; c.DashboardComponent) },
+  { path: &#39;users&#39;, loadComponent: () =&gt; import(&#39;./users/users.component&#39;).then(c =&gt; c.UsersComponent) },
+  { path: &#39;settings&#39;, loadComponent: () =&gt; import(&#39;./settings/settings.component&#39;).then(c =&gt; c.SettingsComponent) },
 ];</code></pre>
   </div>
 </div>
@@ -4705,8 +4666,8 @@ const routes: Routes = [
 
 <p>Quan accediu a <code>/admin/users</code>, el router:</p>
 <ol>
-<li>Carrega <code>AdminModule</code> (si no està carregat)</li>
-<li>Navega a la ruta <code>users</code> dins del mòdul</li>
+<li>Carrega <code>ADMIN_ROUTES</code> (si no està carregat)</li>
+<li>Navega a la ruta <code>users</code> dins de l'àrea</li>
 </ol>
 
 <h4>2.9.6. Verificar que funciona</h4>
@@ -4739,12 +4700,12 @@ const routes: Routes = [
 <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> El lazy loading es configura amb loadChildren i imports dinàmics, eliminant la importació eager del mòdul de l'AppModule.
+    <strong>Clau:</strong> El lazy loading es configura amb <code>loadComponent</code>, <code>loadChildren</code> i imports dinàmics. El codi diferit no s'ha d'importar estàticament.
 </div>
 
 
 <h4>2.9.7. Resultat esperat</h4>
-<p>Configuració de rutes amb lazy loading utilitzant <code>loadChildren</code> i verificació que els mòduls es carreguen sota demanda.</p>
+<p>Configuració de rutes amb lazy loading utilitzant <code>loadChildren</code> i verificació que les àrees es carreguen sota demanda.</p>
   
   </div>
 </div>
@@ -4765,116 +4726,79 @@ const routes: Routes = [
   <div class="section-point-body component-content">
     
 <h4>2.10.1. Objectiu</h4>
-<p>Mesurar i quantificar els beneficis reals del lazy loading en temps de càrrega i experiència d'usuari.</p>
+<p>Saber amb quines mètriques es mesura l'efecte del lazy loading i interpretar un exemple il·lustratiu.</p>
 
-<h4>2.10.2. Mètrica 1: Time to Interactive (TTI)</h4>
-<p>El Time to Interactive és el temps que triga l'aplicació des que l'usuari obre la pàgina fins que pot interactuar amb ella. Google considera que un TTI inferior a 3.8 segons és bo.</p>
-
-<p><strong>Sense lazy loading:</strong></p>
+<h4>2.10.2. Què mesurem: mida del bundle inicial i mètriques de càrrega</h4>
+<p>El lazy loading actua sobre una cosa concreta: la quantitat de JavaScript que el navegador ha de descarregar, analitzar i executar abans que la pàgina sigui usable. Per veure'n l'efecte hi ha dues fonts:</p>
 <ul>
-<li>Descarregar 3.2 MB: 12.8s (3G)</li>
-<li>Parsejar i executar JavaScript: 2.5s</li>
-<li>TTI total: <strong>15.3 segons</strong></li>
+<li><strong>La sortida de <code>ng build</code>:</strong> mostra la mida de cada fitxer i el total <em>Initial</em> (el que es descarrega sempre) separat dels <em>Lazy chunk files</em>. És la mesura més directa i reproduïble: la veureu al Bloc 3 i al cas d'ús.</li>
+<li><strong>Les mètriques de rendiment web</strong> que mesuren eines com Lighthouse (DevTools → Lighthouse) o el panell Performance:
+  <ul>
+    <li><strong>LCP (Largest Contentful Paint):</strong> quan es pinta l'element de contingut més gran; objectiu orientatiu &lt; 2,5 s.</li>
+    <li><strong>TBT (Total Blocking Time):</strong> temps total en què el fil principal està bloquejat executant JavaScript; és la mètrica més sensible a la mida del bundle inicial.</li>
+    <li><strong>INP (Interaction to Next Paint):</strong> temps de resposta a les interaccions de l'usuari; objectiu orientatiu &lt; 200 ms.</li>
+  </ul>
+</li>
 </ul>
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    Potser trobareu materials que parlen de <em>Time to Interactive</em> (TTI). Lighthouse va retirar aquesta mètrica a la versió 10 perquè era massa inestable; les mètriques actuals són LCP, TBT i INP (les Core Web Vitals). No la feu servir com a referència.
+    
+</div>
 
-<p><strong>Amb lazy loading:</strong></p>
-<ul>
-<li>Descarregar 450 KB: 2s (3G)</li>
-<li>Parsejar i executar JavaScript: 0.8s</li>
-<li>TTI total: <strong>2.8 segons</strong></li>
-</ul>
 
-<p>Millora: <strong>82% més ràpid</strong>.</p>
-
-<h4>2.10.3. Mètrica 2: First Contentful Paint (FCP)</h4>
-<p>El First Contentful Paint és el temps que triga a aparèixer el primer contingut visible a la pantalla.</p>
-<p><strong>Sense lazy loading:</strong> FCP = 8.5 segons (l'usuari veu pantalla blanca 8 segons)</p>
-<p><strong>Amb lazy loading:</strong> FCP = 1.2 segons</p>
-<p>Millora: <strong>86% més ràpid</strong>.</p>
-
-<h4>2.10.4. Mètrica 3: Retenció d'usuaris</h4>
-<p>Segons estadístiques de Google i Amazon:</p>
-<ul>
-<li>53% dels usuaris abandonen si la pàgina triga més de 3 segons</li>
-<li>Cada 100ms de millora en velocitat augmenta conversions un 1%</li>
-</ul>
-
-<p><strong>Aplicació sense lazy loading (TTI 15s):</strong></p>
-<ul>
-<li>Taxa d'abandonament: 75%</li>
-<li>Usuaris que interactuen: 25%</li>
-</ul>
-
-<p><strong>Aplicació amb lazy loading (TTI 2.8s):</strong></p>
-<ul>
-<li>Taxa d'abandonament: 12%</li>
-<li>Usuaris que interactuen: 88%</li>
-</ul>
-
-<p>Millora: <strong>252% més usuaris</strong> que utilitzen l'aplicació.</p>
-
-<h4>2.10.5. Mètrica 4: Consum de dades mòbils</h4>
-<p>En connexions mòbils amb plans de dades limitats, cada MB compte.</p>
-<p><strong>Usuari típic que només visita 3 pàgines:</strong></p>
-<ul>
-<li>Sense lazy loading: Descarrega 3.2 MB (tot el codi)</li>
-<li>Amb lazy loading: Descarrega 450 KB (inicial) + 280 KB (products) = 730 KB</li>
-</ul>
-<p>Estalvi: <strong>2.47 MB (77% menys dades)</strong> per usuari típic.</p>
-
-<h4>2.10.6. Taula de beneficis quantificats</h4>
+<h4>2.10.3. Exemple il·lustratiu</h4>
+<p>Les xifres següents són un <strong>exemple hipotètic</strong> per fer visible l'ordre de magnitud: no són valors que Angular garanteixi. El resultat real depèn de la vostra aplicació, de la xarxa i del dispositiu.</p>
 <table>
 <thead>
 <tr>
-<th>Mètrica</th>
+<th>Mesura (exemple)</th>
 <th>Sense lazy</th>
 <th>Amb lazy</th>
-<th>Millora</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>TTI (3G)</strong></td>
-<td>15.3s</td>
-<td>2.8s</td>
-<td>82% més ràpid</td>
+<td><strong>Initial total (ng build)</strong></td>
+<td>3,2 MB</td>
+<td>450 kB</td>
 </tr>
 <tr>
-<td><strong>FCP</strong></td>
-<td>8.5s</td>
-<td>1.2s</td>
-<td>86% més ràpid</td>
+<td><strong>Descàrrega en 3G (2 Mbps)</strong></td>
+<td>≈ 13 s</td>
+<td>≈ 2 s</td>
 </tr>
 <tr>
-<td><strong>Mida inicial</strong></td>
-<td>3.2 MB</td>
-<td>450 KB</td>
-<td>86% més petit</td>
+<td><strong>TBT</strong></td>
+<td>alt (tot el JS s'executa a l'inici)</td>
+<td>baix (només el JS de la ruta inicial)</td>
 </tr>
 <tr>
-<td><strong>Taxa retenció</strong></td>
-<td>25%</td>
-<td>88%</td>
-<td>252% més usuaris</td>
-</tr>
-<tr>
-<td><strong>Consum dades</strong></td>
-<td>3.2 MB</td>
-<td>730 KB</td>
-<td>77% menys</td>
+<td><strong>Dades descarregades per un usuari que visita 3 pàgines</strong></td>
+<td>3,2 MB</td>
+<td>450 kB + 280 kB (chunk de productes) = 730 kB</td>
 </tr>
 </tbody>
 </table>
+<p>El que sí és general: com més codi traieu del bundle inicial, menys ha d'esperar l'usuari abans de veure i usar la primera pantalla, i menys dades descarrega qui no visita totes les seccions.</p>
+
+<h4>2.10.4. Com mesurar-ho al vostre projecte</h4>
+<ol>
+<li>Executeu <code>ng build</code> i anoteu el valor <em>Initial total</em> abans i després d'aplicar lazy loading.</li>
+<li>Serviu el build de producció localment (ho fareu al Bloc 3) i executeu Lighthouse en mode incògnit amb la simulació de xarxa lenta.</li>
+<li>Compareu LCP, TBT i INP entre les dues versions.</li>
+</ol>
 
 <!-- Component: Caixa d'èxit -->
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <strong>Clau:</strong> El lazy loading redueix el TTI en un 82%, millora el FCP en un 86%, i augmenta la retenció d'usuaris en un 252%, amb impacte directe en l'experiència i l'èxit de l'aplicació.
+    <strong>Clau:</strong> L'efecte del lazy loading es mesura amb la mida del bundle inicial (<code>ng build</code>) i amb LCP, TBT i INP (Lighthouse). Les xifres concretes són sempre d'un escenari; el principi (menys JavaScript inicial, primera pantalla usable abans) és general.
 </div>
 
 
-<h4>2.10.7. Resultat esperat</h4>
-<p>Quantificació dels beneficis reals del lazy loading en temps de càrrega, retenció d'usuaris i consum de dades.</p>
+<h4>2.10.5. Resultat esperat</h4>
+<p>Sabeu quines mètriques mirar i com obtenir-les al vostre projecte, i distingiu un exemple il·lustratiu d'una garantia.</p>
   
   </div>
 </div>
@@ -4895,14 +4819,14 @@ const routes: Routes = [
   <div class="section-point-body component-content">
     
 <h4>2.11.1. Objectiu</h4>
-<p>Aprendre a prendre decisions estratègiques sobre quins mòduls carregar immediatament i quins diferir amb lazy loading.</p>
+<p>Aprendre a prendre decisions estratègiques sobre quines àrees carregar immediatament i quins diferir amb lazy loading.</p>
 
 <h4>2.11.2. Criteris de decisió</h4>
 <p><strong>Carregueu immediatament (eager):</strong></p>
 <ul>
 <li>Components visibles a la pàgina inicial (header, footer, home)</li>
 <li>Funcionalitat crítica que tots els usuaris necessiten</li>
-<li>Mòduls molt petits (&lt; 50 KB) on el lazy overhead no compensa</li>
+<li>Vistes molt petites (&lt; 50 KB) on el cost d'una càrrega diferida no compensa</li>
 <li>Serveis globals que molts components necessiten</li>
 </ul>
 
@@ -4968,7 +4892,7 @@ const routes: Routes = [
 </table>
 
 <h4>2.11.4. Preloading strategies avançades</h4>
-<p>Angular ofereix estratègies de preload que carreguen mòduls lazy en background després de la càrrega inicial:</p>
+<p>Angular ofereix estratègies de preload que carreguen rutes lazy en background després de la càrrega inicial:</p>
 
 
 <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
@@ -4986,13 +4910,16 @@ const routes: Routes = [
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// app-routing.module.ts
-@NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    preloadingStrategy: PreloadAllModules  // Precarrega tots els mòduls lazy
-  })],
-  exports: [RouterModule]
-})</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// src/app/app.config.ts
+import { ApplicationConfig } from &#39;@angular/core&#39;;
+import { provideRouter, PreloadAllModules, withPreloading } from &#39;@angular/router&#39;;
+import { routes } from &#39;./app.routes&#39;;
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideRouter(routes, withPreloading(PreloadAllModules)),
+  ],
+};</code></pre>
   </div>
 </div>
 
@@ -5000,23 +4927,23 @@ const routes: Routes = [
 <p>Estratègies disponibles:</p>
 <ul>
 <li><strong>NoPreloading</strong> (per defecte): Només carrega quan l'usuari accedeix</li>
-<li><strong>PreloadAllModules</strong>: Carrega tots els mòduls lazy en background després de l'inici</li>
-<li><strong>Custom</strong>: Podeu crear estratègies personalitzades per precarregar només certs mòduls</li>
+<li><strong>PreloadAllModules</strong>: Carrega totes les rutes lazy en background després de l'inici</li>
+<li><strong>Custom</strong>: Podeu crear estratègies personalitzades per precarregar només certes rutes</li>
 </ul>
 
 <h4>2.11.5. Quan usar preloading</h4>
 <p><strong>Useu PreloadAllModules quan:</strong></p>
 <ul>
-<li>L'aplicació no és massa gran (&lt; 5 mòduls lazy)</li>
-<li>Voleu eliminar el petit retard quan l'usuari accedeix a un mòdul lazy</li>
+<li>L'aplicació no és massa gran (&lt; 5 àrees lazy)</li>
+<li>Voleu eliminar el petit retard quan l'usuari accedeix a una ruta lazy</li>
 <li>Els usuaris tenen connexions ràpides</li>
 </ul>
 
 <p><strong>NO useu preloading quan:</strong></p>
 <ul>
-<li>L'aplicació és molt gran (&gt; 10 mòduls lazy)</li>
+<li>L'aplicació és molt gran (&gt; 10 àrees lazy)</li>
 <li>Molts usuaris tenen connexions lentes</li>
-<li>Hi ha mòduls que molt pocs usuaris utilitzen</li>
+<li>Hi ha àrees que molt pocs usuaris utilitzen</li>
 </ul>
 
 <!-- Component: Caixa d'èxit -->
@@ -5041,40 +4968,40 @@ const routes: Routes = [
   <div class="component-header section-point-header" role="heading" aria-level="4">
     <i class="bi bi-journal-text" aria-hidden="true"></i>
     <div class="section-point-meta">
-      <div class="section-point-title">2.12. Mini exemple pràctic · Mòdul d'administració amb lazy loading</div>
+      <div class="section-point-title">2.12. Mini exemple pràctic · Àrea d'administració amb lazy loading</div>
       
     </div>
   </div>
   <div class="section-point-body component-content">
     
-<h3>Mini exemple pràctic: Mòdul d'administració amb lazy loading</h3>
+<h3>Mini exemple pràctic: àrea d'administració amb lazy loading</h3>
 <!-- Component: Checklist (sense contenidor extern) -->
 
 <div class="checklist-list" role="group" aria-label="Checklist">
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Crear mòdul admin amb routing: ng g m admin --routing</div>
+    <div class="checklist-text">Crear carpeta features/admin</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Crear dos components dins del mòdul: ng g c admin/dashboard i ng g c admin/users</div>
+    <div class="checklist-text">Crear dos components standalone: ng generate component features/admin/dashboard --add-type-to-class-name i el mateix per a features/admin/users</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Configurar rutes internes del mòdul a admin-routing.module.ts amb forChild()</div>
+    <div class="checklist-text">Crear admin.routes.ts amb ADMIN_ROUTES</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Afegir ruta lazy a app-routing.module.ts amb loadChildren i import dinàmic</div>
+    <div class="checklist-text">Afegir ruta lazy a app.routes.ts amb loadChildren i import dinàmic</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Eliminar qualsevol import eager de AdminModule de l'AppModule</div>
+    <div class="checklist-text">Evitar imports estàtics dels components d'admin al fitxer app.routes.ts</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
@@ -5084,19 +5011,19 @@ const routes: Routes = [
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Navegar a /admin i observar com es descarrega admin.chunk.js</div>
+    <div class="checklist-text">Navegar a /admin i observar com es descarrega un chunk d'admin</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Verificar que la navegació entre /admin i /admin/users no descarrega res més</div>
+    <div class="checklist-text">Verificar que /admin/users funciona dins de la mateixa àrea</div>
   </div>
   
   <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
 </div>
 
 
-<p><strong>Resultat esperat:</strong> Un mòdul d'administració que es carrega només quan l'usuari accedeix a <code>/admin</code>, reduint la mida inicial de l'aplicació.</p>
+<p><strong>Resultat esperat:</strong> Una àrea d'administració que es carrega només quan l'usuari accedeix a <code>/admin</code>, reduint la mida inicial de l'aplicació.</p>
   
   </div>
 </div>
@@ -5126,44 +5053,44 @@ const routes: Routes = [
 </thead>
 <tbody>
 <tr>
-<td>El mòdul lazy no es carrega i dóna error 404</td>
-<td>El path del loadChildren és incorrecte o el mòdul no existeix</td>
-<td>Verificar que el path './admin/admin.module' és correcte i que el fitxer existeix</td>
+<td>La ruta lazy no es carrega i dóna error 404</td>
+<td>El path del <code>loadChildren</code> és incorrecte o el fitxer de rutes no existeix</td>
+<td>Verificar que el path <code>./features/admin/admin.routes</code> és correcte i que el fitxer existeix</td>
 </tr>
 <tr>
 <td>Error "Cannot find module" quan navego a ruta lazy</td>
-<td>Sintaxi incorrecta de loadChildren o falta .then(m =&gt; m.ModuleName)</td>
-<td>Assegurar sintaxi: loadChildren: () =&gt; import('./path').then(m =&gt; m.ModuleName)</td>
+<td>Sintaxi incorrecta de <code>loadChildren</code> o export no coincident</td>
+<td>Assegurar sintaxi: <code>loadChildren: () =&gt; import('./path').then(r =&gt; r.ADMIN_ROUTES)</code></td>
 </tr>
 <tr>
-<td>El mòdul es carrega immediatament, no lazy</td>
-<td>El mòdul encara està importat a l'AppModule</td>
-<td>Eliminar la importació del mòdul de imports: [] a AppModule</td>
+<td>La funcionalitat es carrega immediatament, no lazy</td>
+<td>El component o les rutes s'han importat estàticament</td>
+<td>Eliminar la importació estàtica i deixar només l'import dinàmic dins de <code>loadComponent</code> o <code>loadChildren</code></td>
 </tr>
 <tr>
-<td>Error "forRoot() already called"</td>
-<td>S'està usant forRoot() en un mòdul lazy en lloc de forChild()</td>
-<td>Canviar RouterModule.forRoot(routes) per RouterModule.forChild(routes) al mòdul lazy</td>
+<td>Error de configuració duplicada del Router</td>
+<td>S'ha cridat <code>provideRouter()</code> en més d'un lloc</td>
+<td>Mantenir <code>provideRouter(routes)</code> només a <code>app.config.ts</code></td>
 </tr>
 <tr>
-<td>Les rutes del mòdul lazy no funcionen</td>
-<td>El routing module del mòdul no està importat al mòdul</td>
-<td>Afegir ModuleRoutingModule a imports: [] del mòdul</td>
+<td>Les rutes internes de l'àrea lazy no funcionen</td>
+<td>L'array exportat no coincideix amb el que retorna <code>loadChildren</code></td>
+<td>Comprovar que <code>admin.routes.ts</code> exporta <code>ADMIN_ROUTES</code> i que <code>app.routes.ts</code> el retorna correctament</td>
 </tr>
 <tr>
 <td>No es veuen fitxers .chunk.js a DevTools</td>
 <td>El lazy loading no està configurat o la build és de desenvolupament sense optimització</td>
-<td>Verificar configuració de loadChildren i compilar amb ng build --configuration production</td>
+<td>Verificar configuració de loadChildren i compilar amb ng build (producció per defecte)</td>
 </tr>
 <tr>
-<td>Error "Unexpected value 'Module' imported by module"</td>
-<td>Està important el mòdul amb import estàtic en lloc de dinàmic</td>
-<td>Eliminar import { Module } from './path' i deixar només l'import dins de loadChildren</td>
+<td>Error per import circular o component duplicat</td>
+<td>La vista lazy s'ha importat també de forma estàtica</td>
+<td>Eliminar l'import estàtic i revisar que el component només apareix a l'import dinàmic</td>
 </tr>
 <tr>
 <td>El temps de càrrega inicial no millora</td>
-<td>Hi ha massa mòduls eager o els chunks lazy són massa petits</td>
-<td>Revisar estratègia: convertir més mòduls a lazy, especialment els grans (&gt; 200 KB)</td>
+<td>Hi ha massa funcionalitats carregades de forma immediata o els chunks lazy són massa petits</td>
+<td>Revisar estratègia: convertir més àrees grans a lazy, especialment les de més de 200 KB</td>
 </tr>
 </tbody>
 </table>
@@ -5198,7 +5125,7 @@ const routes: Routes = [
     </div>
   </div>
   <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> Arquitecte d'aplicacions Angular especialitzat en optimització de rendiment.<br><br><strong>Context:</strong> Tinc una aplicació Angular amb 8 funcionalitats principals: catàleg de productes, cistella, checkout, perfil d'usuari, preferits, administració, cerca avançada i configuració. Actualment tot es carrega immediatament i el temps de càrrega inicial és de 14 segons.<br><br><strong>Tasca:</strong> Proposa una estratègia completa de modularització i lazy loading indicant quins mòduls crear, quins carregar eager i quins lazy, i estima la millora esperada en temps de càrrega.<br><br><strong>Format:</strong> Taula amb columnes: Funcionalitat, Mòdul, Mètode (Eager/Lazy), Mida estimada, Raó, i un resum final amb temps de càrrega abans/després.</div>
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> Arquitecte d'aplicacions Angular especialitzat en optimització de rendiment.<br><br><strong>Context:</strong> Tinc una aplicació Angular standalone amb 8 funcionalitats principals: catàleg de productes, cistella, checkout, perfil d'usuari, preferits, administració, cerca avançada i configuració. Actualment tot es carrega immediatament i el temps de càrrega inicial és de 14 segons.<br><br><strong>Tasca:</strong> Proposa una estratègia completa d'organització per àrees funcionals i lazy loading indicant quines carpetes crear, quines rutes carregar immediatament i quines diferir, i estima la millora esperada en temps de càrrega.<br><br><strong>Format:</strong> Taula amb columnes: Funcionalitat, Àrea, Mètode (immediata/lazy), Mida estimada, Raó, i un resum final amb temps de càrrega abans/després.</div>
   </div>
 </div>
 
@@ -5215,7 +5142,7 @@ const routes: Routes = [
     </div>
   </div>
   <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> Instructor d'Angular especialitzat en lazy loading.<br><br><strong>Context:</strong> He creat un mòdul AdminModule amb components de dashboard i gestió d'usuaris. Vull implementar lazy loading però no estic segur de la sintaxi exacta ni dels passos necessaris per evitar errors.<br><br><strong>Tasca:</strong> Proporciona una guia pas a pas completa per convertir el meu AdminModule de càrrega eager a lazy loading, incloent codi complet dels fitxers afectats (app-routing.module.ts, admin-routing.module.ts, app.module.ts) i com verificar que funciona correctament.<br><br><strong>Format:</strong> Guia numerada amb snippets de codi complets per cada fitxer i instruccions de verificació amb DevTools.</div>
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> Instructor d'Angular especialitzat en lazy loading standalone.<br><br><strong>Context:</strong> He creat una carpeta <code>features/admin</code> amb components standalone de dashboard i gestió d'usuaris. Vull implementar lazy loading però no estic segur de la sintaxi exacta ni dels passos necessaris per evitar errors.<br><br><strong>Tasca:</strong> Proporciona una guia pas a pas completa per configurar aquesta àrea amb <code>admin.routes.ts</code>, <code>loadChildren</code> a <code>app.routes.ts</code> i verificació a DevTools.<br><br><strong>Format:</strong> Guia numerada amb snippets de codi complets per cada fitxer i instruccions de verificació.</div>
   </div>
 </div>
 
@@ -5245,27 +5172,27 @@ const routes: Routes = [
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Creo mòduls funcionals amb CLI que agrupen components, serveis i rutes relacionats amb --routing</div>
+    <div class="checklist-text">Creo àrees funcionals amb components standalone, serveis, models i rutes relacionats</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Configuro rutes internes dels mòduls utilitzant RouterModule.forChild() correctament</div>
+    <div class="checklist-text">Configuro rutes internes amb fitxers com admin.routes.ts</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Implemento lazy loading amb loadChildren i imports dinàmics eliminant imports eager del mòdul</div>
+    <div class="checklist-text">Implemento lazy loading amb loadComponent, loadChildren i imports dinàmics</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Aplico criteris estratègics per decidir quins mòduls carregar eager (crítics, visibles) i quins lazy (administració, avançats)</div>
+    <div class="checklist-text">Aplico criteris estratègics per decidir quines rutes carregar immediatament i quines diferir</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Verifico que els mòduls lazy es carreguen correctament observant fitxers .chunk.js a DevTools Network</div>
+    <div class="checklist-text">Verifico que les rutes lazy es carreguen correctament observant chunks a DevTools Network</div>
   </div>
   
   <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
@@ -5292,11 +5219,11 @@ const routes: Routes = [
     
 <h3>Síntesi</h3>
 <ul>
-<li>La modularització organitza l'aplicació en unitats funcionals independents que agrupen components, serveis i rutes relacionats, millorant l'organització, reutilització i mantenibilitat del codi amb reducció de temps de compilació.</li>
-<li>El lazy loading carrega mòduls només quan l'usuari els necessita, reduint el temps de càrrega inicial en un 80-85% i la mida del fitxer principal de 3 MB a 450 KB, millorant dràsticament Time to Interactive i First Contentful Paint.</li>
-<li>Els mòduls funcionals es creen amb <code>ng g m module-name --routing</code>, configuren rutes internes amb <code>RouterModule.forChild()</code>, i es carreguen lazy amb <code>loadChildren: () =&gt; import('./path').then(m =&gt; m.Module)</code> eliminant imports eager.</li>
+<li>L'organització per àrees funcionals estructura l'aplicació en carpetes independents que agrupen components standalone, serveis, models i rutes relacionats, millorant l'organització, reutilització i mantenibilitat del codi.</li>
+<li>El lazy loading carrega rutes i components només quan l'usuari els necessita, reduint la mida del bundle inicial (a l'exemple il·lustratiu, de 3,2 MB a 450 kB) i, amb això, el temps fins que la primera pantalla és usable.</li>
+<li>Les àrees funcionals es creen amb components standalone, fitxers de rutes propis com <code>admin.routes.ts</code>, i es carreguen lazy amb <code>loadComponent</code> o <code>loadChildren</code> i imports dinàmics.</li>
 <li>L'estratègia òptima és carregar eager la funcionalitat crítica visible inicialment (home, header, catàleg) i diferir amb lazy les seccions d'administració, funcionalitats avançades i contingut poc utilitzat per optimitzar recursos.</li>
-<li>Els beneficis quantificables inclouen 82% millora en TTI, 86% reducció en mida inicial, 252% augment en retenció d'usuaris, i 77% estalvi de dades mòbils per usuaris típics.</li>
+<li>L'efecte es mesura amb la sortida de <code>ng build</code> (Initial total vs. lazy chunks) i amb les mètriques de Lighthouse (LCP, TBT, INP); les xifres concretes són sempre d'un escenari.</li>
 </ul>
   
   </div>
@@ -5319,18 +5246,20 @@ const routes: Routes = [
     
 <h3>Conceptes clau</h3>
 <ul>
-<li><strong>Mòdul funcional:</strong> Agrupació de components, serveis i rutes relacionats amb una funcionalitat específica de l'aplicació.</li>
-<li><strong>Lazy loading:</strong> Tècnica de càrrega diferida que carrega mòduls només quan l'usuari accedeix a les seves rutes.</li>
-<li><strong>Eager loading:</strong> Càrrega immediata de mòduls durant l'inici de l'aplicació, inclosos a <code>imports</code> de l'<code>AppModule</code>.</li>
-<li><strong>loadChildren:</strong> Propietat de configuració de rutes que especifica un mòdul per carregar de manera lazy amb import dinàmic.</li>
-<li><strong>Import dinàmic:</strong> Sintaxi <code>import('./path')</code> que retorna una promise i permet carregar mòduls de manera asíncrona.</li>
+<li><strong>Àrea funcional:</strong> Agrupació de components standalone, serveis, models i rutes relacionats amb una funcionalitat específica de l'aplicació.</li>
+<li><strong>Lazy loading:</strong> Tècnica de càrrega diferida que carrega rutes o components només quan l'usuari hi accedeix.</li>
+<li><strong>Càrrega immediata:</strong> Càrrega de rutes i components que formen part del paquet inicial perquè s'importen estàticament.</li>
+<li><strong>loadComponent:</strong> Propietat de configuració de rutes que carrega un component standalone amb import dinàmic.</li>
+<li><strong>loadChildren:</strong> Propietat de configuració de rutes que carrega un array de rutes d'una àrea funcional amb import dinàmic.</li>
+<li><strong>Import dinàmic:</strong> Sintaxi <code>import('./path')</code> que retorna una promise i permet carregar fitxers JavaScript de manera asíncrona.</li>
 <li><strong>Code splitting:</strong> Divisió automàtica del codi en múltiples fitxers (chunks) que es carreguen separadament.</li>
-<li><strong>Chunk:</strong> Fitxer JavaScript generat pel compilador que conté el codi d'un mòdul lazy (ex: <code>admin.chunk.js</code>).</li>
-<li><strong>RouterModule.forChild():</strong> Mètode per configurar rutes en mòduls funcionals sense duplicar configuració global del router.</li>
-<li><strong>Time to Interactive (TTI):</strong> Temps des que l'usuari obre la pàgina fins que pot interactuar; objectiu &lt; 3.8 segons.</li>
-<li><strong>First Contentful Paint (FCP):</strong> Temps fins que apareix el primer contingut visible a la pantalla de l'usuari.</li>
-<li><strong>Preloading strategy:</strong> Estratègia per carregar mòduls lazy en background després de la càrrega inicial per eliminar retards.</li>
-<li><strong>SharedModule:</strong> Mòdul que conté components, directives i pipes reutilitzables compartits entre múltiples mòduls funcionals.</li>
+<li><strong>Chunk:</strong> Fitxer JavaScript generat pel compilador que conté el codi d'una ruta o àrea lazy (ex: <code>admin.chunk.js</code>).</li>
+<li><strong>provideRouter:</strong> Funció que configura el Router globalment a <code>app.config.ts</code>.</li>
+<li><strong>LCP (Largest Contentful Paint):</strong> Temps fins que es pinta l'element de contingut més gran de la pantalla inicial; objectiu orientatiu &lt; 2,5 s.</li>
+<li><strong>TBT (Total Blocking Time):</strong> Temps total en què el fil principal està bloquejat executant JavaScript durant la càrrega; és la mètrica més sensible a la mida del bundle inicial.</li>
+<li><strong>INP (Interaction to Next Paint):</strong> Temps de resposta a les interaccions de l'usuari; objectiu orientatiu &lt; 200 ms.</li>
+<li><strong>Preloading strategy:</strong> Estratègia per carregar rutes lazy en background després de la càrrega inicial per eliminar retards.</li>
+<li><strong>Shared:</strong> Carpeta que conté components, directives i pipes reutilitzables compartits entre múltiples àrees funcionals.</li>
 </ul>
   
   </div>
@@ -5341,72 +5270,6 @@ const routes: Routes = [
 
 <div class="section" id="Unitat4_Bloc2_Seccio3">
   <h2 id="Unitat4_Bloc2_Seccio3">3. Separació de responsabilitats i capes</h2>
-
-  <!-- MULTIMÈDIA -->
-  <!--
-  ════════════════════════════════════════════════════════════════
-  Component: Enllaços multimèdia YouTube
-  ════════════════════════════════════════════════════════════════
-
-  Paràmetres:
-    - unitat: número de la unitat (1-4)
-    - bloc: número del bloc (1-4)
-    - seccio: número de la secció (1-3)
-
-  Exemple d'ús:
-    {% include multimedia-youtube.html unitat=1 bloc=1 seccio=1 %}
-
-  El component busca automàticament les URLs corresponents a
-  site.data.multimedia i mostra els botons de vídeo i àudio.
-  ════════════════════════════════════════════════════════════════
--->
-
-
-
-
-
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-<div class="multimedia-resources">
-  <div class="multimedia-header">
-    <i class="bi bi-play-circle-fill"></i>
-    <span>Contingut multimèdia d'aquesta lectura</span>
-  </div>
-
-  <div class="multimedia-buttons">
-    
-    <a href="https://www.youtube.com/watch?v=e-1xF0Pttws" target="_blank" rel="noopener noreferrer" class="multimedia-btn video-btn" title="Lectura 4.2.3 · Separació de responsabilitats i capes">
-      <i class="bi bi-youtube"></i>
-      <span>Veure vídeo</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-
-    
-    <a href="https://www.youtube.com/watch?v=Rf8ol8HOprg" target="_blank" rel="noopener noreferrer" class="multimedia-btn audio-btn" title="[Audio] Lectura 4.2.3 · Separació de responsabilitats i capes">
-      <i class="bi bi-mic-fill"></i>
-      <span>Escoltar àudio</span>
-      <i class="bi bi-box-arrow-up-right"></i>
-    </a>
-    
-  </div>
-
-  
-  
-</div>
-  
-
-
-
 
   <!-- Component: Objectius del bloc/unitat -->
 
@@ -5458,7 +5321,7 @@ const routes: Routes = [
 <ul>
 <li><strong>Unitat 3 completada:</strong> Heu treballat amb serveis, injecció de dependències i comunicació amb APIs.</li>
 <li><strong>Components funcionals:</strong> Sabeu crear components i gestionar el seu cicle de vida amb <code>ngOnInit</code> i <code>ngOnDestroy</code>.</li>
-<li><strong>Serveis bàsics:</strong> Comprensió de com crear serveis amb <code>@Injectable</code> i injectar-los als components.</li>
+<li><strong>Serveis bàsics:</strong> Comprensió de com crear serveis amb <code>@Service</code> i injectar-los als components.</li>
 <li><strong>HttpClient:</strong> Experiència bàsica fent peticions HTTP a APIs externes.</li>
 <li><strong>Conceptes de responsabilitat:</strong> Enteneu què significa que una classe o funció tingui una única responsabilitat.</li>
 </ul>
@@ -5534,11 +5397,11 @@ ng serve --open
 @Component({
   selector: &#39;app-product-list&#39;,
   template: `
-    &lt;div *ngFor=&quot;let product of products&quot;&gt;
+    @for (product of products; track product.id) { &lt;div&gt;
       &lt;h3&gt;{{ product.name }}&lt;/h3&gt;
       &lt;p&gt;{{ product.price }}€ - Descompte: {{ calculateDiscount(product) }}%&lt;/p&gt;
       &lt;button (click)=&quot;addToCart(product)&quot;&gt;Afegir&lt;/button&gt;
-    &lt;/div&gt;
+    &lt;/div&gt; }
   `
 })
 export class ProductListComponent implements OnInit {
@@ -5690,7 +5553,7 @@ export class ProductListComponent {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// 1. CAPA DE DADES: Servei que comunica amb API
-@Injectable({ providedIn: &#39;root&#39; })
+@Service()
 export class ProductDataService {
   constructor(private http: HttpClient) {}
 
@@ -5701,7 +5564,7 @@ export class ProductDataService {
 }
 
 // 2. CAPA DE LÒGICA: Servei amb regles de negoci
-@Injectable({ providedIn: &#39;root&#39; })
+@Service()
 export class DiscountService {
   calculateDiscount(stock: number): number {
     if (stock &gt; 100) return 20;
@@ -5714,10 +5577,12 @@ export class DiscountService {
 @Component({
   selector: &#39;app-product-list&#39;,
   template: `
-    &lt;div *ngFor=&quot;let product of products$ | async&quot;&gt;
+    @if (products$ | async; as products) {
+      @for (product of products; track product.id) { &lt;div&gt;
       &lt;h3&gt;{{ product.name }}&lt;/h3&gt;
       &lt;p&gt;{{ product.price }}€ - Descompte: {{ getDiscount(product) }}%&lt;/p&gt;
-    &lt;/div&gt;
+      &lt;/div&gt; }
+    }
   `
 })
 export class ProductListComponent {
@@ -5922,7 +5787,7 @@ export class ProductListComponent {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// UserDataService: NOMÉS accés a dades
-@Injectable({ providedIn: &#39;root&#39; })
+@Service()
 export class UserDataService {
   getUser(id: number): Observable&lt;User&gt; {
     return this.http.get&lt;UserDTO&gt;(`/api/user/${id}`)
@@ -5931,7 +5796,7 @@ export class UserDataService {
 }
 
 // UserValidationService: NOMÉS validació
-@Injectable({ providedIn: &#39;root&#39; })
+@Service()
 export class UserValidationService {
   isValid(user: User): boolean {
     return user.name &amp;&amp; user.email &amp;&amp; user.birthDate;
@@ -5958,7 +5823,7 @@ export class UserProfileComponent {
 
 
 <h4>3.4.6. Resultat esperat</h4>
-<p>L'alumnat comprèn el principi de responsabilitat única i identifica quan una classe té múltiples responsabilitats que haurien de separar-se.</p>
+<p>Compreneu el principi de responsabilitat única i identifiqueu quan una classe té múltiples responsabilitats que haurien de separar-se.</p>
   
   </div>
 </div>
@@ -6042,6 +5907,7 @@ Component mostra dades</code></pre>
 <p>Les dades sempre flueixen en una direcció clara: usuari → presentació → lògica → dades → lògica → presentació → usuari.</p>
 
 <h4>3.5.4. Exemple d'organització en carpetes</h4>
+<p>Les tres capes són una separació <em>conceptual</em>: no cal (ni convé) crear tres carpetes globals <code>components/</code>, <code>services/business/</code> i <code>services/data/</code>. Seguint l'organització per àrees funcionals de la secció 2, cada àrea conté les seves tres capes:</p>
 
 <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
   <div class="code-header">
@@ -6059,27 +5925,28 @@ Component mostra dades</code></pre>
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">src/app/
-├── components/              # CAPA PRESENTACIÓ
-│   ├── product-list/
-│   ├── product-card/
-│   └── product-detail/
-├── services/
-│   ├── business/            # CAPA LÒGICA
-│   │   ├── discount.service.ts
-│   │   ├── validation.service.ts
-│   │   └── calculation.service.ts
-│   └── data/                # CAPA DADES
-│       ├── product-data.service.ts
-│       ├── user-data.service.ts
-│       └── order-data.service.ts
-└── models/
-    ├── product.model.ts
-    └── user.model.ts</code></pre>
+├── features/
+│   └── products/
+│       ├── product-list/              # CAPA PRESENTACIÓ (components)
+│       ├── product-card/
+│       ├── product-detail/
+│       ├── services/
+│       │   ├── discount.service.ts    # CAPA LÒGICA (regles de negoci)
+│       │   ├── validation.service.ts
+│       │   └── product-data.service.ts # CAPA DADES (HttpClient, adaptadors)
+│       ├── models/
+│       │   └── product.model.ts
+│       └── products.routes.ts
+├── shared/                            # Només allò que usen diverses àrees
+│   ├── models/user.model.ts
+│   └── services/auth.service.ts
+├── app.routes.ts
+└── app.config.ts</code></pre>
   </div>
 </div>
 
 
-<p>Aquesta estructura fa evident quina és la responsabilitat de cada fitxer.</p>
+<p>El sufix del fitxer (<code>-data.service.ts</code>, <code>discount.service.ts</code>, carpeta de component) fa evident la capa de cada peça, i l'àrea funcional manté junt tot el que canvia junt. En aplicacions petites com la del cas d'ús, on encara hi ha una sola àrea gran (el catàleg), és acceptable que <code>services/</code>, <code>models/</code> o <code>adaptadors/</code> visquin a l'arrel de <code>src/app/</code>; el que cal evitar és créixer amb carpetes globals per tipus tècnic (una carpeta amb 150 components) en lloc de per funcionalitat.</p>
 
 <h4>3.5.5. Avantatges de l'arquitectura en capes</h4>
 <table>
@@ -6205,7 +6072,7 @@ export class DiscountService {
 
 
 <h4>3.5.7. Resultat esperat</h4>
-<p>L'alumnat identifica les tres capes principals d'una aplicació i comprèn les responsabilitats específiques de cadascuna.</p>
+<p>Identifiqueu les tres capes principals d'una aplicació i compreneu les responsabilitats específiques de cadascuna.</p>
   
   </div>
 </div>
@@ -6261,7 +6128,9 @@ export class DiscountService {
     &lt;div class=&quot;card&quot;&gt;
       &lt;h3&gt;{{ product.name }}&lt;/h3&gt;
       &lt;p&gt;{{ product.price }}€&lt;/p&gt;
-      &lt;p class=&quot;discount&quot; *ngIf=&quot;discount &gt; 0&quot;&gt;Descompte: {{ discount }}%&lt;/p&gt;
+      @if (discount &gt; 0) {
+        &lt;p class=&quot;discount&quot;&gt;Descompte: {{ discount }}%&lt;/p&gt;
+      }
       &lt;button (click)=&quot;onAddToCart()&quot;&gt;Afegir a cistella&lt;/button&gt;
     &lt;/div&gt;
   `
@@ -6369,12 +6238,15 @@ it(&#39;should display product name&#39;, () =&gt; {
 @Component({
   selector: &#39;app-product-list-container&#39;,
   template: `
+    @if (products$ | async; as products) {
+      @for (product of products; track product.id) {
     &lt;app-product-card
-      *ngFor=&quot;let product of products$ | async&quot;
       [product]=&quot;product&quot;
       [discount]=&quot;getDiscount(product)&quot;
       (addToCart)=&quot;handleAddToCart($event)&quot;&gt;
     &lt;/app-product-card&gt;
+      }
+    }
   `
 })
 export class ProductListContainerComponent {
@@ -6417,7 +6289,7 @@ export class ProductCardComponent {
 
 
 <h4>3.6.6. Resultat esperat</h4>
-<p>L'alumnat crea components presentacionals purs que separen clarament la responsabilitat de presentació de la lògica de negoci.</p>
+<p>Creeu components presentacionals purs que separen clarament la responsabilitat de presentació de la lògica de negoci.</p>
   
   </div>
 </div>
@@ -6467,7 +6339,7 @@ export class ProductCardComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Injectable({ providedIn: &#39;root&#39; })
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Service()
 export class DiscountService {
 
   calculateDiscount(product: Product): number {
@@ -6515,7 +6387,7 @@ export class DiscountService {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Injectable({ providedIn: &#39;root&#39; })
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Service()
 export class ProductValidationService {
 
   validateProduct(product: Product): ValidationResult {
@@ -6656,7 +6528,7 @@ export class CartComponent {
 
 
 <h4>3.7.7. Resultat esperat</h4>
-<p>L'alumnat crea serveis de lògica de negoci amb regles, validacions i processament separats dels components i l'accés a dades.</p>
+<p>Creeu serveis de lògica de negoci amb regles, validacions i processament separats dels components i l'accés a dades.</p>
   
   </div>
 </div>
@@ -6723,7 +6595,7 @@ export interface Product {
 }
 
 // Servei d&#39;accés a dades
-@Injectable({ providedIn: &#39;root&#39; })
+@Service()
 export class ProductDataService {
   private apiUrl = &#39;https://api.example.com&#39;;
 
@@ -6887,7 +6759,7 @@ getProducts(): Observable&lt;Product[]&gt; {
 
 
 <h4>3.8.5. Proves unitàries de serveis d'accés a dades</h4>
-<p>Els serveis d'accés a dades es proven amb <code>HttpClientTestingModule</code>:</p>
+<p>Els serveis d'accés a dades es proven amb <code>provideHttpClientTesting()</code>, que substitueix el <code>HttpClient</code> real per un de simulat controlable amb <code>HttpTestingController</code>:</p>
 
 
 <div class="code-block" data-lang="typescript" role="region" aria-label="Bloc de codi typescript">
@@ -6911,8 +6783,7 @@ getProducts(): Observable&lt;Product[]&gt; {
 
   beforeEach(() =&gt; {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [ProductDataService]
+      providers: [provideHttpClient(), provideHttpClientTesting()]
     });
     service = TestBed.inject(ProductDataService);
     httpMock = TestBed.inject(HttpTestingController);
@@ -6949,7 +6820,7 @@ getProducts(): Observable&lt;Product[]&gt; {
 
 
 <h4>3.8.6. Resultat esperat</h4>
-<p>L'alumnat crea serveis d'accés a dades que separen la comunicació HTTP de la lògica de negoci i components.</p>
+<p>Creeu serveis d'accés a dades que separen la comunicació HTTP de la lògica de negoci i components.</p>
   
   </div>
 </div>
@@ -6992,13 +6863,13 @@ getProducts(): Observable&lt;Product[]&gt; {
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Component({
   selector: &#39;app-product-list&#39;,
   template: `
-    &lt;div *ngFor=&quot;let product of products&quot;&gt;
+    @for (product of products; track product.id) { &lt;div&gt;
       &lt;h3&gt;{{ product.name }}&lt;/h3&gt;
       &lt;p&gt;{{ product.price }}€ - Descompte: {{ calculateDiscount(product) }}%&lt;/p&gt;
       &lt;button (click)=&quot;addToCart(product)&quot; [disabled]=&quot;!canBeSold(product)&quot;&gt;
         Afegir
       &lt;/button&gt;
-    &lt;/div&gt;
+    &lt;/div&gt; }
   `
 })
 export class ProductListComponent implements OnInit {
@@ -7062,7 +6933,7 @@ export class ProductListComponent implements OnInit {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Injectable({ providedIn: &#39;root&#39; })
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Service()
 export class ProductDataService {
   private apiUrl = &#39;https://api.example.com&#39;;
 
@@ -7101,7 +6972,7 @@ export class ProductDataService {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Injectable({ providedIn: &#39;root&#39; })
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Service()
 export class DiscountService {
   calculateDiscount(product: Product): number {
     if (product.stock &gt; 100) return 20;
@@ -7110,14 +6981,14 @@ export class DiscountService {
   }
 }
 
-@Injectable({ providedIn: &#39;root&#39; })
+@Service()
 export class ProductValidationService {
   canBeSold(product: Product): boolean {
     return product.stock &gt; 0;
   }
 }
 
-@Injectable({ providedIn: &#39;root&#39; })
+@Service()
 export class CartService {
   private cart: Product[] = [];
 
@@ -7154,13 +7025,15 @@ export class CartService {
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Component({
   selector: &#39;app-product-list&#39;,
   template: `
-    &lt;div *ngFor=&quot;let product of products$ | async&quot;&gt;
+    @if (products$ | async; as products) {
+      @for (product of products; track product.id) { &lt;div&gt;
       &lt;h3&gt;{{ product.name }}&lt;/h3&gt;
       &lt;p&gt;{{ product.price }}€ - Descompte: {{ getDiscount(product) }}%&lt;/p&gt;
       &lt;button (click)=&quot;addToCart(product)&quot; [disabled]=&quot;!canBeSold(product)&quot;&gt;
         Afegir
       &lt;/button&gt;
-    &lt;/div&gt;
+      &lt;/div&gt; }
+    }
   `
 })
 export class ProductListComponent {
@@ -7235,7 +7108,7 @@ export class ProductListComponent {
 
 
 <h4>3.9.7. Resultat esperat</h4>
-<p>L'alumnat aplica la separació de responsabilitats refactoritzant components barrejats en arquitectura de capes clara i mantenible.</p>
+<p>Apliqueu la separació de responsabilitats refactoritzant components barrejats en arquitectura de capes clara i mantenible.</p>
   
   </div>
 </div>
@@ -7278,9 +7151,8 @@ export class ProductListComponent {
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// Per provar càlcul de descompte necessites:
 TestBed.configureTestingModule({
-  imports: [HttpClientTestingModule],
-  declarations: [ProductListComponent],
-  providers: [...]
+  imports: [ProductListComponent],
+  providers: [provideHttpClient(), provideHttpClientTesting(), ...]
 });
 // Simular HttpClient, localStorage, events...
 // 50 línies de setup per provar 1 funció</code></pre>
@@ -7362,7 +7234,7 @@ this.products = response.data.map(item =&gt; ({ price: item.price_cents / 100 })
 // ... 13 components més amb el mateix codi duplicat
 
 // Amb separació: Canviar 1 servei
-@Injectable({ providedIn: &#39;root&#39; })
+@Service()
 export class ProductDataService {
   private mapDTOToModel(dto: ProductDTO): Product {
     return {
@@ -7463,7 +7335,7 @@ export class ProductDataService {
 
 
 <h4>3.10.7. Resultat esperat</h4>
-<p>L'alumnat quantifica els beneficis reals de la separació de responsabilitats en proves, mantenibilitat i productivitat de desenvolupament.</p>
+<p>Quantifiqueu els beneficis reals de la separació de responsabilitats en proves, mantenibilitat i productivitat de desenvolupament.</p>
   
   </div>
 </div>
@@ -7529,7 +7401,9 @@ export class ProductDataService {
     &lt;div class=&quot;card&quot;&gt;
       &lt;h3&gt;{{ product.name }}&lt;/h3&gt;
       &lt;p&gt;{{ product.price }}€&lt;/p&gt;
-      &lt;span class=&quot;discount&quot; *ngIf=&quot;discount &gt; 0&quot;&gt;-{{ discount }}%&lt;/span&gt;
+      @if (discount &gt; 0) {
+        &lt;span class=&quot;discount&quot;&gt;-{{ discount }}%&lt;/span&gt;
+      }
       &lt;button (click)=&quot;onAddClick()&quot;&gt;Afegir&lt;/button&gt;
     &lt;/div&gt;
   `
@@ -7567,12 +7441,15 @@ export class ProductCardComponent {
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">@Component({
   selector: &#39;app-product-list-container&#39;,
   template: `
+    @if (products$ | async; as products) {
+      @for (product of products; track product.id) {
     &lt;app-product-card
-      *ngFor=&quot;let product of products$ | async&quot;
       [product]=&quot;product&quot;
       [discount]=&quot;calculateDiscount(product)&quot;
       (addToCart)=&quot;handleAddToCart($event)&quot;&gt;
     &lt;/app-product-card&gt;
+      }
+    }
   `
 })
 export class ProductListContainerComponent {
@@ -7648,7 +7525,7 @@ export class ProductListContainerComponent {
 
 
 <h4>3.11.6. Resultat esperat</h4>
-<p>L'alumnat aplica el patró contenidor/presentacional creant components smart que gestionen lògica i components dumb que només presenten dades.</p>
+<p>Apliqueu el patró contenidor/presentacional creant components smart que gestionen lògica i components dumb que només presenten dades.</p>
   
   </div>
 </div>
@@ -7670,12 +7547,12 @@ export class ProductListContainerComponent {
     
 <p><strong>Mini exemple pràctic:</strong> Component de llista amb capes separades</p>
 <ol>
-  <li>Crear servei d'accés a dades <code>ProductDataService</code> que obté productes de JSONPlaceholder</li>
+  <li>Crear servei d'accés a dades <code>ProductDataService</code> que obté productes de l'API</li>
   <li>Crear servei de lògica <code>DiscountService</code> amb mètode <code>calculateDiscount(stock: number)</code></li>
   <li>Crear component presentacional <code>ProductCardComponent</code> amb <code>@Input() product</code> i <code>@Output() selected</code></li>
   <li>Crear component contenidor <code>ProductListContainerComponent</code> que injecta els serveis</li>
   <li>Al contenidor, obtenir productes amb <code>products$ = this.productData.getProducts()</code></li>
-  <li>Al template del contenidor, usar <code>*ngFor</code> amb <code>async</code> pipe per iterar productes</li>
+  <li>Al template del contenidor, usar <code>@for</code> amb <code>async</code> pipe per iterar productes</li>
   <li>Passar cada producte al <code>ProductCardComponent</code> amb <code>[product]="p"</code> i <code>[discount]="calculateDiscount(p)"</code></li>
   <li>Gestionar esdeveniment <code>(selected)</code> al contenidor per mostrar log a consola</li>
 </ol>
@@ -7718,12 +7595,12 @@ export class ProductListContainerComponent {
 <tr>
 <td>Error "Cannot read property of undefined" en component presentacional</td>
 <td>El <code>@Input()</code> no està rebent dades del pare o es mostra abans que arribin</td>
-<td>Usar operador <code>?</code> de safe navigation (<code>product?.name</code>) o <code>*ngIf="product"</code> per esperar dades</td>
+<td>Usar operador <code>?</code> de safe navigation (<code>product?.name</code>) o <code>@if (product)</code> per esperar dades</td>
 </tr>
 <tr>
 <td>Lògica de negoci duplicada en múltiples components</td>
 <td>No s'ha creat servei de lògica; cada component implementa la seva versió</td>
-<td>Crear servei <code>@Injectable</code> amb la lògica i injectar-lo als components que ho necessitin</td>
+<td>Crear servei <code>@Service</code> amb la lògica i injectar-lo als components que ho necessitin</td>
 </tr>
 <tr>
 <td>Proves unitàries requereixen molts mocks</td>
@@ -8026,7 +7903,7 @@ export class ProductListContainerComponent {
                     
                     <div class="nav-link-wrapper">
                         
-                        <a href="/ioc/da2_oa01/unitat-4/bloc-3/" class="nav-button" aria-label="Bloc següent: Optimització de rendiment">Següent →</a>
+                        <a href="/ioc/da2_oa01/unitat-4/bloc-3/" class="nav-button" aria-label="Bloc següent: Rendiment i optimització">Següent →</a>
                         
                     </div>
                 </div>
