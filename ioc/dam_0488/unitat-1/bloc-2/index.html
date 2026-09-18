@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 2: Disseny del formulari: controls, propietats i esdeveniments | Desenvolupament d'interfícies - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="1">
+    <meta name="page-bloc" content="2">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 2: Disseny del formulari: controls, propietats i esdeveniments | Desenvolupament d’interfícies</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 2: Disseny del formulari: controls, propietats i esdeveniments" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Controls i contenidors, finestra de propietats, esdeveniments, WIMP i regla de Miller" />
+<meta property="og:description" content="Controls i contenidors, finestra de propietats, esdeveniments, WIMP i regla de Miller" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-1/bloc-2/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0488/unitat-1/bloc-2/" />
+<meta property="og:site_name" content="Desenvolupament d’interfícies" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 2: Disseny del formulari: controls, propietats i esdeveniments" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Controls i contenidors, finestra de propietats, esdeveniments, WIMP i regla de Miller","headline":"Bloc 2: Disseny del formulari: controls, propietats i esdeveniments","url":"https://itrascastro.github.io/ioc/dam_0488/unitat-1/bloc-2/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-1/bloc-2/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/dam_0488/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0488/feed.xml" title="Desenvolupament d&apos;interfícies" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/code-block.css">
+    <script src="/ioc/dam_0488/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/dam_0488">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/dam_0488/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/dam_0488/" class="title-link">
+                <h1>DAM_0488 - Desenvolupament d'interfícies</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/dam_0488/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Entorn de treball i projecte base
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-2/" class="nav-dropdown-item current">
+                        Unitat 1 - Bloc 2: Disseny del formulari: controls, propietats i esdeveniments
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Components visuals propis
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Persistència, proves, documentació i revisió
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Usabilitat i accessibilitat
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Disseny de pantalles i pautes d'interfície
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Informes
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Manuals i documentació
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 1: Interfícies naturals i reconeixement de veu
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 2: Síntesi de veu i integració
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 3: Distribució i instal·lació
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 4: Proves
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc2_Seccio1" class="nav-link" data-section="Unitat1_Bloc2_Seccio1">1. Dissenyar el formulari principal</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc2_Seccio2" class="nav-link" data-section="Unitat1_Bloc2_Seccio2">2. Propietats i la finestra de propietats</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc2_Seccio3" class="nav-link" data-section="Unitat1_Bloc2_Seccio3">3. Esdeveniments: el motor de la interactivitat</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc2_Seccio4" class="nav-link" data-section="Unitat1_Bloc2_Seccio4">4. WIMP i la regla de Miller aplicats a l'exemple</a>
+        </div>
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/dam_0488/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/dam_0488/unitat-1/" class="horizontal-nav-item">
+                                Unitat 1: Interfícies gràfiques amb editor visual i components visuals (RA1, RA3)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 1.2: Disseny del formulari: controls, propietats i esdeveniments
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<!--
+  BLOC 2 - UNITAT 1
+  Contingut migrat des de materials/DAM_0488_teoria_unitat1.html (seccions 4, 5, 6, 7)
+-->
+
+<div class="section" id="Unitat1_Bloc2_Seccio1">
+  <h2 id="Unitat1_Bloc2_Seccio1">1. Dissenyar el formulari principal</h2>
+
+<p>Un <strong>editor visual</strong> (com el dissenyador de formularis de Visual Studio) permet arrossegar controls des d'un quadre d'eines cap a un formulari i configurar-ne les propietats amb un panell, sense escriure directament el codi que els crea. Al fer-ho, l'editor genera i manté automàticament el fitxer <code>Form1.Designer.cs</code>, dins del mètode <code>InitializeComponent()</code>.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Regla d'or</strong></p><p>No s'ha d'editar el <code>.Designer.cs</code> a mà. Si es fa, el proper cop que s'obri el formulari amb el dissenyador visual, aquest pot sobreescriure els canvis o generar un fitxer inconsistent. Tots els canvis d'estructura de la interfície s'han de fer amb el dissenyador; els canvis de comportament, al fitxer normal (<code>Form1.cs</code>).</p>
+</div>
+
+
+<p>Per al nostre exemple, l'objectiu és arribar a aquesta distribució: un <code>SplitContainer</code> amb un llistat de productes a l'esquerra i un panell de detall a la dreta, un menú superior i una barra d'estat inferior.</p>
+
+<ol>
+<li>Des del quadre d'eines (<em>Toolbox</em>, normalment a l'esquerra; si no es veu, <em>Visualitza → Quadre d'eines</em>), arrossegar un <strong>MenuStrip</strong> al formulari: es col·loca automàticament a la part superior.</li>
+<li>Arrossegar un <strong>SplitContainer</strong> just a sota: ocupa la resta del formulari i el divideix en dos panells.</li>
+<li>Dins del panell esquerre, arrossegar-hi un <strong>DataGridView</strong>. Amb la seva icona de tasques ràpides (la fletxa a la cantonada superior dreta un cop seleccionat), triar <em>Dock in parent container</em> perquè ocupi tot el panell.</li>
+<li>Dins del panell dret, arrossegar-hi un <strong>GroupBox</strong> (també amb <em>Dock in parent container</em>).</li>
+<li>Dins del <code>GroupBox</code>, arrossegar-hi un <strong>TableLayoutPanel</strong> de 4 files, i dins d'aquest: un <code>Label</code> (nom del producte), un espai reservat per al component propi (s'afegirà a l'apartat 8), un <code>NumericUpDown</code> amb la seva etiqueta, i dos <code>Button</code> (<em>Reaprovisiona</em> i <em>Desa</em>).</li>
+<li>Arrossegar un <strong>StatusStrip</strong> des del quadre d'eines: es col·loca automàticament a la part inferior del formulari.</li>
+</ol>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0488/assets/img/unitat-1/03_disseny_formulari.png" alt="Formulari GestorEstocBotiga en mode disseny amb tots els controls col·locats" class="figure-img"/>
+      
+      <figcaption class="figure-caption">Formulari principal en mode disseny: SplitContainer, DataGridView, GroupBox amb el detall, i StatusStrip.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+<p>En total, aquest formulari fa servir set tipus de control o contenidor diferents (<code>MenuStrip</code>, <code>SplitContainer</code>, <code>DataGridView</code>, <code>GroupBox</code>, <code>TableLayoutPanel</code>, <code>Label</code>, <code>NumericUpDown</code>, <code>Button</code>, <code>StatusStrip</code>), més el component propi que s'afegirà més endavant. Aquesta varietat és exactament el que es valora en un exercici d'aquest tipus.</p>
+
+  <h3>1.1. Controls habituals i quan usar-los</h3>
+
+<table class="table">
+<tr><th>Control</th><th>Ús típic</th></tr>
+<tr><td><code>Label</code></td><td>Text informatiu no editable per l'usuari.</td></tr>
+<tr><td><code>TextBox</code></td><td>Entrada de text lliure d'una o diverses línies.</td></tr>
+<tr><td><code>Button</code></td><td>Disparar una acció concreta i puntual.</td></tr>
+<tr><td><code>CheckBox</code></td><td>Opció booleana independent (es pot marcar més d'una alhora).</td></tr>
+<tr><td><code>RadioButton</code></td><td>Selecció única dins d'un grup petit i sempre visible d'opcions excloents.</td></tr>
+<tr><td><code>ComboBox</code></td><td>Selecció única dins d'una llista llarga, quan no cal veure totes les opcions alhora.</td></tr>
+<tr><td><code>ListBox</code></td><td>Llista d'elements, amb opció de selecció múltiple, sempre visible.</td></tr>
+<tr><td><code>NumericUpDown</code></td><td>Valor numèric dins d'un rang conegut, amb increments controlats.</td></tr>
+<tr><td><code>TrackBar</code></td><td>Valor numèric dins d'un rang, quan interessa una manipulació més visual/analògica que precisa.</td></tr>
+<tr><td><code>DataGridView</code></td><td>Llistats tabulars de dades, amb files i columnes, sovint enllaçats a una col·lecció d'objectes.</td></tr>
+<tr><td><code>PictureBox</code></td><td>Mostrar imatges o icones.</td></tr>
+<tr><td><code>ProgressBar</code></td><td>Indicar visualment un percentatge o progrés.</td></tr>
+<tr><td><code>ToolTip</code></td><td>Mostrar informació addicional en passar el ratolí per sobre d'un control.</td></tr>
+<tr><td><code>StatusStrip</code></td><td>Barra d'estat a la part inferior d'un formulari, amb missatges o indicadors.</td></tr>
+<tr><td><code>MenuStrip</code> / <code>ToolStrip</code></td><td>Menús desplegables i barres d'eines amb accions agrupades.</td></tr>
+</table>
+
+  <h3>1.2. Contenidors: organitzar l'espai</h3>
+
+<table class="table">
+<tr><th>Contenidor</th><th>Quan usar-lo</th></tr>
+<tr><td><code>Panel</code></td><td>Agrupar controls sense marc visible, sovint per mostrar/amagar seccions senceres.</td></tr>
+<tr><td><code>GroupBox</code></td><td>Agrupar controls relacionats amb un marc i un títol visibles (per exemple, "Detall del producte").</td></tr>
+<tr><td><code>TableLayoutPanel</code></td><td>Organitzar controls en una graella de files i columnes amb mides proporcionals o fixes.</td></tr>
+<tr><td><code>FlowLayoutPanel</code></td><td>Col·locar controls en seqüència, ajustant-se automàticament a l'amplada disponible (per exemple, la fila de botons).</td></tr>
+<tr><td><code>SplitContainer</code></td><td>Dividir l'espai en dues zones ajustables per l'usuari mitjançant una barra separadora (llistat a l'esquerra, detall a la dreta).</td></tr>
+</table>
+
+<p>És perfectament vàlid <strong>llegir</strong> el <code>.Designer.cs</code> per entendre exactament quines propietats s'han fixat, i també és habitual haver d'<strong>ajustar-hi coses a mà de manera puntual</strong> quan l'editor visual no ofereix una opció concreta, sempre sabent que un futur ús del dissenyador pot regenerar aquest fitxer.</p>
+
+  <h3>1.3. Enllaçar dades al DataGridView</h3>
+
+<p>El <code>DataGridView</code> que heu arrossegat és una graella buida: cal dir-li d'on ha de treure les files. Això es fa amb <strong>data binding</strong> (enllaç de dades): en lloc d'omplir la graella fila a fila manualment, s'assigna a la seva propietat <code>DataSource</code> una col·lecció d'objectes, i el control es dibuixa (i s'actualitza) sol a partir d'aquesta col·lecció.</p>
+
+
+<div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private readonly BindingList&lt;Producte&gt; productes = new();
+
+public Form1()
+{
+    InitializeComponent();
+
+    dgvProductes.AutoGenerateColumns = true;
+    dgvProductes.DataSource = productes;
+}</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Concepte clau: per què BindingList&lt;T&gt; i no List&lt;T&gt;</strong></p><p>Una <code>List&lt;T&gt;</code> normal no avisa ningú quan s'hi afegeix o s'hi treu un element. Una <code>BindingList&lt;T&gt;</code> és una llista "conscient" dels seus canvis: quan s'hi afegeix o elimina un <code>Producte</code>, notifica automàticament els controls que hi estan enllaçats (com el <code>DataGridView</code>) perquè es redibuixin sols, sense haver de cridar cap mètode addicional per refrescar la graella.</p>
+    
+</div>
+
+
+<p><code>AutoGenerateColumns = true</code> fa que el <code>DataGridView</code> creï automàticament una columna per cada propietat pública de <code>Producte</code> (<code>Nom</code>, <code>CapacitatMaxima</code>, <code>Estoc</code>, <code>Proveidor</code>), llegint-les per reflexió. És la manera més ràpida de començar; més endavant es poden personalitzar columnes concretes (amagar-ne alguna, canviar-ne el títol) des de l'editor de columnes del <code>DataGridView</code> en mode disseny.</p>
+
+</div>
+
+<div class="section" id="Unitat1_Bloc2_Seccio2">
+  <h2 id="Unitat1_Bloc2_Seccio2">2. Propietats i la finestra de propietats</h2>
+
+<p>Cada control té un conjunt de <strong>propietats</strong> que en determinen l'aspecte i comportament (per exemple, <code>Text</code>, <code>Name</code>, <code>Font</code>, <code>BackColor</code>, <code>Enabled</code>, <code>Visible</code>). Es poden modificar de dues maneres:</p>
+
+<ul>
+<li><strong>Des del dissenyador visual</strong>, amb la finestra <em>Propietats</em> (normalment amb <kbd>F4</kbd>): els canvis queden escrits automàticament al <code>.Designer.cs</code>.</li>
+<li><strong>Per codi</strong>, en temps d'execució (per exemple <code>lblNomProducte.Text = producte.Nom;</code>), quan el valor depèn de dades que no es coneixen en temps de disseny.</li>
+</ul>
+
+<p>Al nostre exemple, seleccioneu el <code>GroupBox</code> i, a la finestra de Propietats, canvieu la seva propietat <code>Text</code> a "Detall del producte seleccionat": és un text fix, així que té sentit fixar-lo en temps de disseny. En canvi, el <code>Label</code> del nom del producte es deixa amb un text provisional al dissenyador, perquè el seu valor real es fixarà per codi quan l'usuari seleccioni una fila de la taula.</p>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0488/assets/img/unitat-1/04_finestra_propietats.png" alt="Finestra de propietats de Visual Studio mostrant les propietats del GroupBox" class="figure-img"/>
+      
+      <figcaption class="figure-caption">Finestra de Propietats (F4) amb el GroupBox seleccionat.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+<p>Una bona pràctica és fixar en temps de disseny tot el que és constant (textos fixos, mides inicials, colors base) i deixar per al codi només allò que depèn de dades o de la interacció de l'usuari.</p>
+
+</div>
+
+<div class="section" id="Unitat1_Bloc2_Seccio3">
+  <h2 id="Unitat1_Bloc2_Seccio3">3. Esdeveniments: el motor de la interactivitat</h2>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Concepte clau: programació orientada a esdeveniments</strong></p><p>Un programa de consola s'executa de dalt a baix, línia a línia, en un únic flux que el programador controla del tot: primer passa A, després B, després C. Una interfície gràfica <strong>no funciona així</strong>. Un cop es crida <code>Application.Run(new Form1())</code> a <code>Program.cs</code>, l'aplicació entra en un <strong>bucle d'esdeveniments</strong> (<em>event loop</em>): es queda esperant que passi alguna cosa (un clic, una tecla premuda, un canvi de valor...) i, cada vegada que passa, executa el mètode que s'hagi associat a aquell esdeveniment concret, per després tornar a esperar. Per això el codi d'un formulari no té "un flux": té molts mètodes petits i independents (<code>BtnDesa_Click</code>, <code>NudEstoc_ValueChanged</code>...) que s'executen en l'ordre que decideix l'usuari en interactuar amb l'aplicació, no en l'ordre en què estan escrits al fitxer.</p>
+    
+</div>
+
+
+<p>Un <strong>esdeveniment</strong> és un avís que un objecte envia quan passa alguna cosa rellevant (un clic, un canvi de valor, el tancament d'una finestra...). <strong>Tots</strong> els controls de Windows Forms, no només els que hem fet servir en aquest exemple, porten associada una llista llarga d'esdeveniments possibles: a més dels que ja coneixem (<code>Click</code>, <code>ValueChanged</code>, <code>SelectionChanged</code>), qualsevol control també exposa coses com <code>MouseEnter</code> i <code>MouseLeave</code> (quan el ratolí hi entra o en surt), <code>KeyDown</code> (una tecla premuda), <code>Paint</code> (quan cal redibuixar-lo) o <code>Enter</code>/<code>Leave</code> (quan rep o perd el focus). Es poden veure tots a la pestanya d'esdeveniments (icona del llamp) de la finestra de Propietats, amb independència de si l'exercici concret els fa servir o no.</p>
+
+<p>A .NET, els esdeveniments es basen en <strong>delegats</strong>.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Concepte clau: què és un delegat</strong></p><p>Un <strong>delegat</strong> és un tipus que representa "una referència a un mètode amb una signatura concreta" (uns paràmetres i un tipus de retorn determinats), de la mateixa manera que una variable normal representa una referència a una dada. Un delegat es pot assignar, passar com a paràmetre i, sobretot, <em>invocar</em>: quan s'invoca el delegat, s'executa el mètode al qual apunta. .NET ja porta un delegat genèric predefinit pensat expressament per a esdeveniments, <code>EventHandler</code>, amb la signatura <code>void (object? sender, EventArgs e)</code>. Per això <strong>tots</strong> els gestors d'esdeveniments de Windows Forms tenen aquesta mateixa forma: no és una convenció arbitrària, és la signatura que exigeix el delegat <code>EventHandler</code>.</p>
+    
+</div>
+
+
+<p>Al nostre formulari, el botó <em>Desa</em> necessita reaccionar quan l'usuari hi fa clic:</p>
+
+
+<div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private void BtnDesa_Click(object? sender, EventArgs e)
+{
+    repositori.Desa(rutaFitxer, productes);
+    MessageBox.Show(&quot;Productes desats correctament.&quot;, &quot;Desar&quot;);
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Aquest mètode s'associa al botó <strong>des del dissenyador</strong>: fent doble clic sobre el botó en mode disseny (crea el mètode i enllaça l'esdeveniment <code>Click</code> per defecte) o triant un esdeveniment concret des de la finestra de propietats, a la seva pestanya d'esdeveniments (icona del llamp, a dalt de la finestra de Propietats). En qualsevol dels dos casos, el dissenyador escriu una línia com aquesta dins d'<code>InitializeComponent()</code>, al <code>Form1.Designer.cs</code>:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">this.btnDesa.Click += new System.EventHandler(this.BtnDesa_Click);</code></pre>
+  </div>
+</div>
+
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0488/assets/img/unitat-1/05_esdeveniments_llampec.png" alt="Finestra de propietats amb la pestanya d&#x27;esdeveniments (icona de llampec) mostrant l&#x27;esdeveniment Click" class="figure-img"/>
+      
+      <figcaption class="figure-caption">Pestanya d&#x27;esdeveniments a la finestra de Propietats (icona de llampec).</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+
+<!-- Component: Problema -->
+<div class="problem-box" role="alert" aria-live="assertive">
+    <div class="component-header error-header" role="heading" aria-level="4"><i class="bi bi-x-circle" aria-hidden="true"></i> Problema</div>
+    <p><strong>Parany habitual: enllaçar l'esdeveniment "a mà" al constructor</strong></p><p>També és tècnicament possible escriure <code>btnDesa.Click += BtnDesa_Click;</code> dins del constructor del formulari, en lloc de deixar que ho faci el dissenyador. <strong>No es recomana</strong>: el dissenyador no sap res d'aquesta línia (viu al <code>.Designer.cs</code>, no al vostre codi), i si algú fa doble clic sobre el botó pensant que li falta l'esdeveniment, Visual Studio en crearà un <strong>segon</strong> gestor duplicat (per exemple <code>btnDesa_Click_1</code>), perquè no ha trobat cap enllaç registrat al lloc on ell mira. Deixeu sempre que sigui el dissenyador qui escrigui aquesta connexió.</p>
+</div>
+
+
+<p>El paràmetre <code>sender</code> és l'objecte que ha llançat l'esdeveniment i <code>e</code> conté informació addicional sobre què ha passat (per exemple, <code>KeyEventArgs</code> per a una tecla premuda, o un tipus personalitzat quan l'esdeveniment és propi d'un component, com es veurà a l'apartat 10).</p>
+
+<p><strong>Nota sobre el <code>?</code> d'<code>object? sender</code>:</strong> amb els <em>tipus de referència anul·lables</em> (<code>Nullable</code> activat per defecte als projectes nous), el compilador distingeix entre un tipus que sempre ha de tenir valor (<code>object sender</code>) i un que pot ser <code>null</code> (<code>object? sender</code>). En un gestor d'esdeveniments es marca com a anul·lable perquè, en teoria, algú podria invocar-lo passant <code>null</code> com a origen; no canvia el comportament del programa, però permet que l'editor avisi si s'utilitza <code>sender</code> sense comprovar prèviament que no sigui <code>null</code>.</p>
+
+</div>
+
+<div class="section" id="Unitat1_Bloc2_Seccio4">
+  <h2 id="Unitat1_Bloc2_Seccio4">4. WIMP i la regla de Miller aplicats a l'exemple</h2>
+
+<p>Aquests dos conceptes es treballen en profunditat a la Unitat 2 (usabilitat), però convé conèixer-los ja des del disseny inicial de la interfície:</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Model WIMP</strong></p><p><em>Windows, Icons, Menus, Pointer</em>: descriu l'estil d'interfície gràfica clàssica basada en finestres, icones, menús i un punter (ratolí). Analitzar si una interfície segueix el model WIMP vol dir identificar clarament aquests quatre elements dins del disseny.</p>
+    
+</div>
+
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Regla de Miller (7 ± 2)</strong></p><p>Fa referència a la capacitat limitada de la memòria de treball humana: es recomana no presentar més de 5 a 9 grups d'informació de primer nivell simultàniament (per exemple, opcions de menú principal, seccions visibles d'un formulari). Superar aquest nombre sol fer que la interfície es percebi com a sobrecarregada.</p>
+    
+</div>
+
+
+<p>Aplicant-ho a <code>GestorEstocBotiga</code>:</p>
+
+<ul>
+<li><strong>Windows:</strong> l'única finestra és <code>Form1</code>, amb un títol clar a la barra de títol.</li>
+<li><strong>Icons:</strong> el color de l'<code>IndicadorEstoc</code> fa de senyal visual ràpid (verd/taronja/vermell) sense necessitat de llegir cap text.</li>
+<li><strong>Menus:</strong> el <code>MenuStrip</code> superior, amb només dues opcions de primer nivell ("Fitxer" i "Ajuda").</li>
+<li><strong>Pointer:</strong> tota la interacció (seleccionar fila, arrossegar el <code>NumericUpDown</code>, prémer botons) es fa amb el ratolí.</li>
+</ul>
+
+<p>Quant a la regla de Miller, el formulari només mostra <strong>dos grups visibles de primer nivell</strong> (el llistat i el panell de detall), molt per sota del límit de 7±2: és un disseny senzill i fàcil de llegir d'un cop d'ull.</p>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 2: Disseny del formulari: controls, propietats i esdeveniments",
+  "description": "Controls i contenidors, finestra de propietats, esdeveniments, WIMP i regla de Miller",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Desenvolupament d'interfícies — IOC",
+    "description": "Materials del mòdul DAM_0488 - Desenvolupament d'interfícies (C# i Windows Forms)"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                        
+                                        
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0488/unitat-1/bloc-1/" class="nav-button" aria-label="Bloc anterior: Entorn de treball i projecte base">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0488/unitat-1/bloc-3/" class="nav-button" aria-label="Bloc següent: Components visuals propis">Següent →</a>
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="1" data-total="3">(1/3)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 33%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="2" data-total="4">(2/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 50%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="4">(1/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 25%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/dam_0488/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/dam_0488",
+        title: "Desenvolupament d'interfícies",
+        version: "v1.0",
+        cicle_modul: "DAM_0488"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/dam_0488/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/dam_0488/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

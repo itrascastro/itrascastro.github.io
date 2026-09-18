@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 4: Manuals i documentació | Desenvolupament d'interfícies - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="2">
+    <meta name="page-bloc" content="4">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 4: Manuals i documentació | Desenvolupament d’interfícies</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 4: Manuals i documentació" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Tipus de manuals i generació d’un manual amb DocBook" />
+<meta property="og:description" content="Tipus de manuals i generació d’un manual amb DocBook" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-2/bloc-4/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0488/unitat-2/bloc-4/" />
+<meta property="og:site_name" content="Desenvolupament d’interfícies" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 4: Manuals i documentació" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Tipus de manuals i generació d’un manual amb DocBook","headline":"Bloc 4: Manuals i documentació","url":"https://itrascastro.github.io/ioc/dam_0488/unitat-2/bloc-4/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-2/bloc-4/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/dam_0488/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0488/feed.xml" title="Desenvolupament d&apos;interfícies" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/code-block.css">
+    <script src="/ioc/dam_0488/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/dam_0488">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/dam_0488/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/dam_0488/" class="title-link">
+                <h1>DAM_0488 - Desenvolupament d'interfícies</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/dam_0488/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Entorn de treball i projecte base
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Disseny del formulari: controls, propietats i esdeveniments
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Components visuals propis
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Persistència, proves, documentació i revisió
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Usabilitat i accessibilitat
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Disseny de pantalles i pautes d'interfície
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Informes
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-4/" class="nav-dropdown-item current">
+                        Unitat 2 - Bloc 4: Manuals i documentació
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 1: Interfícies naturals i reconeixement de veu
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 2: Síntesi de veu i integració
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 3: Distribució i instal·lació
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 4: Proves
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc4_Seccio1" class="nav-link" data-section="Unitat2_Bloc4_Seccio1">1. Tipus de manuals</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc4_Seccio2" class="nav-link" data-section="Unitat2_Bloc4_Seccio2">2. Escriure i generar un manual DocBook</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc4_Seccio3" class="nav-link" data-section="Unitat2_Bloc4_Seccio3">3. Errors habituals</a>
+        </div>
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/dam_0488/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/dam_0488/unitat-2/" class="horizontal-nav-item">
+                                Unitat 2: Usabilitat, accessibilitat, informes i documentació (RA4, RA5, RA6)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 2.4: Manuals i documentació
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<!--
+  BLOC 4 - UNITAT 2
+  Contingut migrat des de materials/DAM_0488_teoria_unitat2.html (seccions 14, 15, 16)
+-->
+
+<div class="section" id="Unitat2_Bloc4_Seccio1">
+  <h2 id="Unitat2_Bloc4_Seccio1">1. Tipus de manuals</h2>
+
+<table class="table">
+<tr><th>Tipus de manual</th><th>Destinatari i objectiu</th></tr>
+<tr><td>Manual d'usuari</td><td>Usuari final: com utilitzar les funcions de l'aplicació pas a pas.</td></tr>
+<tr><td>Guia de referència</td><td>Usuari que ja coneix l'aplicació i necessita consultar un detall concret ràpidament.</td></tr>
+<tr><td>Guia ràpida</td><td>Resum molt breu de les tasques més habituals, per a un primer contacte.</td></tr>
+<tr><td>Manual d'instal·lació</td><td>Com instal·lar l'aplicació i els seus requisits previs.</td></tr>
+<tr><td>Manual de configuració</td><td>Com ajustar paràmetres i opcions un cop instal·lada.</td></tr>
+<tr><td>Manual d'administració</td><td>Tasques de manteniment, còpies de seguretat, gestió d'usuaris, per a perfils tècnics.</td></tr>
+</table>
+
+<p>Més enllà dels manuals estàtics, també existeixen sistemes d'<strong>ajuda sensible al context</strong> i <strong>tutorials</strong> guiats pas a pas.</p>
+
+</div>
+
+<div class="section" id="Unitat2_Bloc4_Seccio2">
+  <h2 id="Unitat2_Bloc4_Seccio2">2. Escriure i generar un manual DocBook</h2>
+
+<p><strong>DocBook</strong> és un format de marcatge basat en XML pensat específicament per escriure documentació tècnica de manera estructurada, independent de com es presenti finalment.</p>
+
+
+<div class="code-block" data-lang="xml" role="region" aria-label="Bloc de codi xml">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">XML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-xml">&lt;book xmlns=&quot;http://docbook.org/ns/docbook&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; version=&quot;5.1&quot;&gt;
+  &lt;info&gt;&lt;title&gt;Manual d&#39;usuari de BibliotecaInformes&lt;/title&gt;&lt;/info&gt;
+  &lt;chapter xml:id=&quot;introduccio&quot;&gt;
+    &lt;title&gt;Introducció&lt;/title&gt;
+    &lt;para&gt;...&lt;/para&gt;
+    &lt;section xml:id=&quot;objectiu&quot;&gt;
+      &lt;title&gt;Objectiu de l&#39;aplicació&lt;/title&gt;
+      &lt;para&gt;...&lt;/para&gt;
+    &lt;/section&gt;
+  &lt;/chapter&gt;
+  &lt;index/&gt;
+&lt;/book&gt;</code></pre>
+  </div>
+</div>
+
+
+<table class="table">
+<tr><th>Element</th><th>Ús</th></tr>
+<tr><td><code>&lt;book&gt;</code></td><td>Element arrel de tot el document.</td></tr>
+<tr><td><code>&lt;chapter&gt;</code> / <code>&lt;section&gt;</code></td><td>Divisió jeràrquica del contingut.</td></tr>
+<tr><td><code>&lt;figure&gt;</code> amb <code>&lt;imagedata&gt;</code></td><td>Incrustar una imatge amb el seu peu de figura.</td></tr>
+<tr><td><code>&lt;table&gt;</code></td><td>Taules de dades dins del text.</td></tr>
+<tr><td><code>&lt;itemizedlist&gt;</code> / <code>&lt;orderedlist&gt;</code></td><td>Llistes sense ordre o numerades.</td></tr>
+<tr><td><code>&lt;xref linkend="..."&gt;</code></td><td>Referència creuada cap a un altre punt del document (ha d'apuntar a un <code>xml:id</code> que existeixi).</td></tr>
+<tr><td><code>&lt;footnote&gt;</code></td><td>Nota a peu de pàgina.</td></tr>
+<tr><td><code>&lt;note&gt;</code>, <code>&lt;warning&gt;</code>, <code>&lt;caution&gt;</code></td><td>Avisos destacats de diferent gravetat.</td></tr>
+<tr><td><code>&lt;indexterm&gt;</code> i <code>&lt;index/&gt;</code></td><td>Marcar termes per a l'índex alfabètic final i generar-lo.</td></tr>
+</table>
+
+  <h3>2.1. Instal·lar les eines necessàries</h3>
+
+<p>Per transformar un document DocBook (XML) en HTML o PDF calen dues coses: un processador XSLT que apliqui un full d'estil, i el full d'estil mateix.</p>
+
+<table class="table">
+<tr><th>Sistema</th><th>Opció</th></tr>
+<tr><td>Linux (Ubuntu/Debian) o WSL</td><td><code>sudo apt install xsltproc docbook-xsl</code>.</td></tr>
+<tr><td>macOS (amb Homebrew)</td><td><code>brew install libxslt docbook-xsl</code>.</td></tr>
+<tr><td>Windows, sense WSL</td><td><code>xsltproc</code> no sempre és fàcil d'instal·lar. L'alternativa que fem servir en aquesta unitat: Python amb el paquet <code>lxml</code> (inclou <code>libxslt</code>).</td></tr>
+</table>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">pip install lxml</code></pre>
+  </div>
+</div>
+
+
+<p>Amb <code>lxml</code>, la transformació es fa amb un petit script en lloc d'una comanda de terminal:</p>
+
+
+<div class="code-block" data-lang="python" role="region" aria-label="Bloc de codi python">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">PYTHON</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-python">from lxml import etree
+
+xml = etree.parse(&#39;manual_bibliotecainformes.xml&#39;)
+xslt_doc = etree.parse(&#39;docbook_html_minim.xsl&#39;)
+transform = etree.XSLT(xslt_doc)
+result = transform(xml)
+
+with open(&#39;manual_bibliotecainformes.html&#39;, &#39;wb&#39;) as f:
+    f.write(etree.tostring(result, pretty_print=True, encoding=&#39;utf-8&#39;))</code></pre>
+  </div>
+</div>
+
+
+<p>El full d'estil <code>docbook_html_minim.xsl</code> és propi (no l'oficial de DocBook, que és molt més gran): defineix, amb plantilles XSLT senzilles, com convertir cada element de DocBook (<code>chapter</code>, <code>section</code>, <code>xref</code>, <code>table</code>, <code>footnote</code>...) en el seu equivalent HTML.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Concepte clau: com resol xref el seu text</strong></p><p>Un full d'estil XSLT pot definir una <em>clau</em> (<code>xsl:key</code>) que indexa tots els capítols i seccions pel seu <code>xml:id</code>. Quan es processa un <code>&lt;xref linkend="generar-informe"/&gt;</code>, el full d'estil busca a la clau l'element amb aquest identificador i n'agafa el <code>&lt;title&gt;</code> per generar automàticament un enllaç com «Com generar l'informe». Així, si mai es canvia el títol d'una secció, tots els <code>xref</code> que hi apunten s'actualitzen sols la propera vegada que es transforma el document.</p>
+    
+</div>
+
+
+<p>Un cop generat l'HTML, per obtenir el PDF sense necessitat d'un processador XSL-FO dedicat, <strong>LibreOffice</strong> el pot obrir i exportar directament:</p>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">soffice --headless --convert-to pdf manual_bibliotecainformes.html</code></pre>
+  </div>
+</div>
+
+
+<p>El requisit clau que sol demanar-se és que <strong>totes dues sortides (HTML i PDF) provinguin del mateix XML</strong>, no que s'utilitzi un mètode concret per al pas final.</p>
+
+  <h3>2.2. El manual de <code>BibliotecaInformes</code></h3>
+
+<p>El manual complet té 4 capítols i 8 seccions, amb 3 figures, 1 taula, 2 llistes, 3 referències creuades, 3 notes a peu de pàgina, 2 avisos i 5 termes d'índex: molt per sobre dels mínims estructurals que se solen demanar, i tot generat des d'un únic fitxer XML.</p>
+
+
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Per què DocBook i no un processador de textos normal</strong></p><p>En separar el contingut (XML) de la presentació (full d'estil), es pot generar automàticament més d'una sortida (HTML, PDF...) a partir de la mateixa font, i es pot validar l'estructura del document de manera automàtica, per exemple comprovant amb un script que hi ha com a mínim 4 capítols abans de donar per bo el lliurament.</p>
+</div>
+
+
+</div>
+
+<div class="section" id="Unitat2_Bloc4_Seccio3">
+  <h2 id="Unitat2_Bloc4_Seccio3">3. Errors habituals</h2>
+
+<table class="table">
+<tr><th>Error</th><th>Per què passa i com evitar-lo</th></tr>
+<tr><td>Justificar puntuacions d'usabilitat de manera genèrica</td><td>Una avaluació d'usabilitat ha d'anar acompanyada d'observacions concretes sobre la interfície analitzada, no valoracions vagues del tipus "és intuïtiu".</td></tr>
+<tr><td>Redissenyar un missatge d'error sense oferir accions</td><td>Reescriure el text amb un to més amable no és suficient: cal oferir com a mínim una acció concreta que l'usuari pugui prendre.</td></tr>
+<tr><td>Generar un informe amb totals que no corresponen a les dades</td><td>Els valors calculats s'han de verificar contra el joc de dades real utilitzat, no donar-se per fets.</td></tr>
+<tr><td>Confondre "informe generat amb una eina" amb "informe generat amb codi"</td><td>Utilitzar únicament un assistent visual sense escriure ni modificar cap línia de codi no cobreix els criteris relacionats amb la generació de codi d'informes.</td></tr>
+<tr><td>Referències creuades (<code>xref</code>) que apunten a un <code>xml:id</code> inexistent</td><td>Provoca que el document no sigui vàlid o que la referència no funcioni en generar l'HTML/PDF.</td></tr>
+<tr><td>Redactar l'HTML o el PDF del manual a part, sense generar-los des del XML</td><td>Trenca l'objectiu de DocBook (una sola font per a diverses sortides) i sol ser fàcilment detectable en revisar-ho.</td></tr>
+<tr><td>Connectar el botó que genera l'informe a mà al constructor</td><td>Igual que a la Unitat 1: si algú fa doble clic sobre el botó al dissenyador pensant que li falta l'esdeveniment, es crea un gestor duplicat. Cal deixar que el dissenyador escrigui la connexió a <code>InitializeComponent()</code>.</td></tr>
+</table>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 4: Manuals i documentació",
+  "description": "Tipus de manuals i generació d'un manual amb DocBook",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Desenvolupament d'interfícies — IOC",
+    "description": "Materials del mòdul DAM_0488 - Desenvolupament d'interfícies (C# i Windows Forms)"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                    
+                                        
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0488/unitat-2/bloc-3/" class="nav-button" aria-label="Bloc anterior: Informes">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="2" data-total="3">(2/3)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 66%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="4" data-total="4">(4/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="3">(1/3)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 33%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/dam_0488/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/dam_0488",
+        title: "Desenvolupament d'interfícies",
+        version: "v1.0",
+        cicle_modul: "DAM_0488"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/dam_0488/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/dam_0488/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

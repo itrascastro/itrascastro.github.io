@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 2: Disseny de pantalles i pautes d'interfície | Desenvolupament d'interfícies - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="2">
+    <meta name="page-bloc" content="2">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 2: Disseny de pantalles i pautes d’interfície | Desenvolupament d’interfícies</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 2: Disseny de pantalles i pautes d’interfície" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Prototip d’una pantalla mòbil, pautes d’estructura, aspecte i interactius, redisseny d’un missatge d’error" />
+<meta property="og:description" content="Prototip d’una pantalla mòbil, pautes d’estructura, aspecte i interactius, redisseny d’un missatge d’error" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-2/bloc-2/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0488/unitat-2/bloc-2/" />
+<meta property="og:site_name" content="Desenvolupament d’interfícies" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 2: Disseny de pantalles i pautes d’interfície" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Prototip d’una pantalla mòbil, pautes d’estructura, aspecte i interactius, redisseny d’un missatge d’error","headline":"Bloc 2: Disseny de pantalles i pautes d’interfície","url":"https://itrascastro.github.io/ioc/dam_0488/unitat-2/bloc-2/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-2/bloc-2/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/dam_0488/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0488/feed.xml" title="Desenvolupament d&apos;interfícies" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/code-block.css">
+    <script src="/ioc/dam_0488/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/dam_0488">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/dam_0488/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/dam_0488/" class="title-link">
+                <h1>DAM_0488 - Desenvolupament d'interfícies</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/dam_0488/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Entorn de treball i projecte base
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Disseny del formulari: controls, propietats i esdeveniments
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Components visuals propis
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Persistència, proves, documentació i revisió
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Usabilitat i accessibilitat
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-2/" class="nav-dropdown-item current">
+                        Unitat 2 - Bloc 2: Disseny de pantalles i pautes d'interfície
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Informes
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Manuals i documentació
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 1: Interfícies naturals i reconeixement de veu
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 2: Síntesi de veu i integració
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 3: Distribució i instal·lació
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 4: Proves
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc2_Seccio1" class="nav-link" data-section="Unitat2_Bloc2_Seccio1">1. Dissenyar una pantalla mòbil</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc2_Seccio2" class="nav-link" data-section="Unitat2_Bloc2_Seccio2">2. Pautes de disseny d'estructura, aspecte i interactius</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc2_Seccio3" class="nav-link" data-section="Unitat2_Bloc2_Seccio3">3. Redissenyar un missatge d'error</a>
+        </div>
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/dam_0488/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/dam_0488/unitat-2/" class="horizontal-nav-item">
+                                Unitat 2: Usabilitat, accessibilitat, informes i documentació (RA4, RA5, RA6)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 2.2: Disseny de pantalles i pautes d'interfície
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<!--
+  BLOC 2 - UNITAT 2
+  Contingut migrat des de materials/DAM_0488_teoria_unitat2.html (seccions 6, 7, 8)
+-->
+
+<div class="section" id="Unitat2_Bloc2_Seccio1">
+  <h2 id="Unitat2_Bloc2_Seccio1">1. Dissenyar una pantalla mòbil</h2>
+
+<table class="table">
+<tr><th>Terme</th><th>Nivell de detall</th></tr>
+<tr><td><strong>Wireframe</strong></td><td>Esquema esquemàtic de baixa fidelitat: capes, blocs i posició dels elements, normalment sense color ni tipografia definitiva. Serveix per validar l'estructura abans d'invertir temps en l'aspecte final.</td></tr>
+<tr><td><strong>Mockup</strong></td><td>Representació d'alta fidelitat, amb colors, tipografia i contingut real o realista, molt propera al resultat final, tot i que encara no és funcional.</td></tr>
+</table>
+
+<p>Es poden fer amb eines dedicades de prototipatge, amb eines d'ofimàtica o de disseny genèriques, o directament sobre paper: el que importa per a l'avaluació no és l'eina utilitzada, sinó que el prototip permeti raonar i justificar les decisions d'usabilitat preses.</p>
+
+<p>Per a <code>BibliotecaInformes</code>, la pantalla mòbil "Sol·licitar un préstec" ha de permetre triar categoria, llibre, data i franja horària de recollida, i mostrar la disponibilitat:</p>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0488/assets/img/unitat-2/prototip_prestec.png" alt="Mockup de la pantalla mòbil Sol·licitar un préstec, amb selectors de categoria, llibre, data i franja horària, indicador de disponibilitat en verd, i botons de confirmar i cancel·lar" class="figure-img"/>
+      
+      <figcaption class="figure-caption">Mockup de la pantalla &quot;Sol·licitar un préstec&quot;.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+<p>Cada control del mockup s'ha de poder justificar, i també cal justificar per què <strong>no</strong> s'ha triat una alternativa raonable:</p>
+
+<table class="table">
+<tr><th>Element</th><th>Control triat</th><th>Alternativa descartada i per què</th></tr>
+<tr><td>Categoria</td><td><code>ComboBox</code></td><td>Descartats els <code>RadioButton</code>: hi ha 4 categories, dins del límit de 2-5 on tots dos serien vàlids, però un desplegable ocupa menys espai vertical en una pantalla mòbil, on l'espai és més escàs que en escriptori.</td></tr>
+<tr><td>Llibre</td><td><code>ComboBox</code></td><td>Descartat un <code>ListBox</code> sempre visible: la llista de llibres pot ser llarga (desenes de títols), i mostrar-la sencera ocuparia tota la pantalla; un desplegable la manté amagada fins que cal.</td></tr>
+<tr><td>Disponibilitat</td><td>Text + color</td><td>Descartat "només color": un indicador que fos només un punt verd/vermell sense text seria il·legible per a una persona amb daltonisme; per això s'acompanya sempre del text ("2 exemplars disponibles").</td></tr>
+<tr><td>Confirmar / Cancel·la</td><td>Botó ple + botó de text</td><td>Descartats dos botons plens del mateix pes visual: si tots dos criden igual l'atenció, l'usuari no sap quina és l'acció principal esperada.</td></tr>
+</table>
+
+<p>Quant a l'<strong>ordre de tabulació</strong>: en aquesta pantalla ha de seguir l'ordre visual de dalt a baix (Categoria → Llibre → Data → Franja horària → Observacions → Confirmar → Cancel·la), i el focus s'ha de marcar amb un contorn visible al voltant del control actiu, no només amb un canvi de color subtil.</p>
+
+</div>
+
+<div class="section" id="Unitat2_Bloc2_Seccio2">
+  <h2 id="Unitat2_Bloc2_Seccio2">2. Pautes de disseny d'estructura, aspecte i interactius</h2>
+
+  <h3>2.1. Estructura</h3>
+
+<ul>
+<li><strong>Menús:</strong> es recomana no superar les 7 opcions de primer nivell (regla de Miller, vista a la Unitat 1), agrupant la resta en submenús coherents.</li>
+<li><strong>Finestres i quadres de diàleg:</strong> cada finestra hauria de tenir un propòsit clar; els diàlegs modals s'utilitzen quan cal una resposta obligatòria abans de continuar, i els no modals quan l'usuari pot seguir treballant en paral·lel.</li>
+<li><strong>Dreceres de teclat:</strong> per a les accions més freqüents, sobretot en aplicacions d'escriptori on l'usuari expert n'espera.</li>
+<li><strong>Seqüència de control:</strong> l'ordre en què l'usuari es mou per la interfície (amb el ratolí o amb <kbd>Tab</kbd>) ha de seguir un flux lògic, normalment d'esquerra a dreta i de dalt a baix.</li>
+</ul>
+
+<p>Aplicant-ho a l'aplicació completa de <code>BibliotecaInformes</code> (no només la pantalla mòbil): un menú principal amb un màxim de 7 opcions, i "Sol·licitar un préstec" col·locat al primer nivell perquè és la tasca més freqüent, no amagada dins d'un submenú:</p>
+
+<table class="table">
+<tr><th>Menú principal</th><th>Submenú</th></tr>
+<tr><td>Préstecs</td><td>Sol·licitar un préstec · Consultar préstecs actius · Historial</td></tr>
+<tr><td>Llibres</td><td>Cercar · Afegir · Donar de baixa</td></tr>
+<tr><td>Socis</td><td>Cercar · Donar d'alta</td></tr>
+<tr><td>Informes</td><td>Generar informe de préstecs</td></tr>
+<tr><td>Ajuda</td><td>Manual d'usuari · Quant a</td></tr>
+</table>
+
+<p>Cinc opcions de primer nivell, per sota del límit de 7. Tres dreceres de teclat per a la versió d'escriptori, triades per a les accions més repetitives:</p>
+
+<table class="table">
+<tr><th>Drecera</th><th>Acció</th></tr>
+<tr><td><kbd>Ctrl+N</kbd></td><td>Obrir directament la pantalla de nou préstec.</td></tr>
+<tr><td><kbd>Ctrl+G</kbd></td><td>Generar l'informe sense haver de navegar pels menús.</td></tr>
+<tr><td><kbd>F3</kbd></td><td>Situar el focus al camp de cerca de llibres.</td></tr>
+</table>
+
+  <h3>2.2. Aspecte</h3>
+
+<ul>
+<li><strong>Colors:</strong> paleta reduïda i coherent, amb contrast suficient (vegeu apartat 3).</li>
+<li><strong>Tipografia:</strong> mida i família llegibles; evitar barrejar massa tipus de lletra diferents.</li>
+<li><strong>Icones:</strong> reconeixibles i coherents amb el significat habitual (una papallona no hauria de representar "eliminar").</li>
+<li><strong>Distribució dels elements:</strong> espaiat consistent, alineació clara, agrupació visual dels elements relacionats.</li>
+</ul>
+
+  <h3>2.3. Elements interactius</h3>
+
+<p>Triar el control interactiu adequat és una decisió d'usabilitat, no només tècnica:</p>
+
+<table class="table">
+<tr><th>Situació</th><th>Control recomanat</th><th>Per què</th></tr>
+<tr><td>Poques opcions (2–5), sempre visibles</td><td><code>RadioButton</code></td><td>Permet comparar totes les opcions d'un cop d'ull.</td></tr>
+<tr><td>Moltes opcions, no cal veure-les totes</td><td><code>ComboBox</code></td><td>Estalvia espai; adequat quan l'usuari sap què busca.</td></tr>
+<tr><td>Opció booleana independent</td><td><code>CheckBox</code></td><td>Es pot combinar amb altres opcions sense excloure-les.</td></tr>
+<tr><td>Valor numèric dins d'un rang conegut</td><td><code>NumericUpDown</code> o <code>TrackBar</code></td><td>El primer per precisió, el segon per manipulació més visual/ràpida.</td></tr>
+</table>
+
+<p>Justificar per què <strong>no</strong> s'ha triat una alternativa raonable (per exemple, per què un desplegable i no una llista de botons d'opció) sol formar part explícita de l'avaluació d'aquests exercicis: cal poder argumentar la decisió, no només prendre-la.</p>
+
+</div>
+
+<div class="section" id="Unitat2_Bloc2_Seccio3">
+  <h2 id="Unitat2_Bloc2_Seccio3">3. Redissenyar un missatge d'error</h2>
+
+<p>Un missatge d'error de baixa qualitat típic:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">ERROR 404: Llibre no disponible. Torna-ho a provar més tard.</code></pre>
+  </div>
+</div>
+
+
+<p>D'aquest missatge concret es poden identificar com a mínim quatre problemes:</p>
+
+<ol>
+<li><strong>Codi tècnic visible</strong> ("ERROR 404"): és un codi HTTP intern, sense cap significat per a l'usuari final.</li>
+<li><strong>No explica la causa real</strong>: "no disponible" no diu si és perquè no queden exemplars, perquè està donat de baixa, o per un altre motiu.</li>
+<li><strong>No ofereix cap acció</strong>: "torna-ho a provar més tard" no és una acció, és una manera d'ajornar el problema sense resoldre'l.</li>
+<li><strong>To poc amable</strong>: una ordre seca ("torna-ho a provar"), sense cap orientació de què fer mentrestant.</li>
+</ol>
+
+
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Estructura recomanada d'un bon missatge d'error</strong></p><ol>
+<li><strong>Què ha passat</strong>, en llenguatge planer.</li>
+<li><strong>Per què</strong> ha passat (la causa concreta, no un codi intern).</li>
+<li><strong>Què pot fer l'usuari ara</strong>: com a mínim una, preferiblement dues accions concretes.</li>
+</ol>
+</div>
+
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0488/assets/img/unitat-2/missatge_redissenyat.png" alt="Comparació del missatge d&#x27;error original (codi tècnic sense accions) i el redissenyat (explica què ha passat, per què, i ofereix dues accions: reservar quan torni o veure llibres semblants)" class="figure-img"/>
+      
+      <figcaption class="figure-caption">Missatge original (esquerra) i redissenyat (dreta), amb accions concretes.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 2: Disseny de pantalles i pautes d'interfície",
+  "description": "Prototip d'una pantalla mòbil, pautes d'estructura, aspecte i interactius, redisseny d'un missatge d'error",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Desenvolupament d'interfícies — IOC",
+    "description": "Materials del mòdul DAM_0488 - Desenvolupament d'interfícies (C# i Windows Forms)"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                        
+                                        
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0488/unitat-2/bloc-1/" class="nav-button" aria-label="Bloc anterior: Usabilitat i accessibilitat">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0488/unitat-2/bloc-3/" class="nav-button" aria-label="Bloc següent: Informes">Següent →</a>
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="2" data-total="3">(2/3)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 66%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="2" data-total="4">(2/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 50%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="3">(1/3)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 33%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/dam_0488/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/dam_0488",
+        title: "Desenvolupament d'interfícies",
+        version: "v1.0",
+        cicle_modul: "DAM_0488"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/dam_0488/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/dam_0488/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 2: Síntesi de veu i integració | Desenvolupament d'interfícies - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="3">
+    <meta name="page-bloc" content="2">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 2: Síntesi de veu i integració | Desenvolupament d’interfícies</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 2: Síntesi de veu i integració" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Síntesi de veu, muntatge de l’aplicació completa, limitacions i bones pràctiques" />
+<meta property="og:description" content="Síntesi de veu, muntatge de l’aplicació completa, limitacions i bones pràctiques" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-3/bloc-2/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0488/unitat-3/bloc-2/" />
+<meta property="og:site_name" content="Desenvolupament d’interfícies" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 2: Síntesi de veu i integració" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Síntesi de veu, muntatge de l’aplicació completa, limitacions i bones pràctiques","headline":"Bloc 2: Síntesi de veu i integració","url":"https://itrascastro.github.io/ioc/dam_0488/unitat-3/bloc-2/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-3/bloc-2/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/dam_0488/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0488/feed.xml" title="Desenvolupament d&apos;interfícies" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/code-block.css">
+    <script src="/ioc/dam_0488/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/dam_0488">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/dam_0488/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/dam_0488/" class="title-link">
+                <h1>DAM_0488 - Desenvolupament d'interfícies</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/dam_0488/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Entorn de treball i projecte base
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Disseny del formulari: controls, propietats i esdeveniments
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Components visuals propis
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Persistència, proves, documentació i revisió
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Usabilitat i accessibilitat
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Disseny de pantalles i pautes d'interfície
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Informes
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Manuals i documentació
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 1: Interfícies naturals i reconeixement de veu
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-2/" class="nav-dropdown-item current">
+                        Unitat 3 - Bloc 2: Síntesi de veu i integració
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 3: Distribució i instal·lació
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 4: Proves
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc2_Seccio1" class="nav-link" data-section="Unitat3_Bloc2_Seccio1">1. Síntesi de veu</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc2_Seccio2" class="nav-link" data-section="Unitat3_Bloc2_Seccio2">2. Muntar TallerVeu pas a pas</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc2_Seccio3" class="nav-link" data-section="Unitat3_Bloc2_Seccio3">3. Limitacions i bones pràctiques</a>
+        </div>
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/dam_0488/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/dam_0488/unitat-3/" class="horizontal-nav-item">
+                                Unitat 3: Interfícies naturals, distribució i proves (RA2, RA7, RA8)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 3.2: Síntesi de veu i integració
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<!--
+  BLOC 2 - UNITAT 3
+  Contingut migrat des de materials/DAM_0488_teoria_unitat3.html (seccions 5, 6, 7)
+-->
+
+<div class="section" id="Unitat3_Bloc2_Seccio1">
+  <h2 id="Unitat3_Bloc2_Seccio1">1. Síntesi de veu</h2>
+
+<p>Per al camí invers, que l'aplicació "parli", s'utilitza <code>System.Speech.Synthesis</code>. A <code>TallerVeu</code>, quan es reconeix "llegeix pendents":</p>
+
+
+<div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">using System.Speech.Synthesis;
+
+private readonly SpeechSynthesizer sintetitzador = new();
+
+// ...
+string missatge = gestor.TextPendents();
+sintetitzador.SpeakAsync(missatge);</code></pre>
+  </div>
+</div>
+
+
+<p><code>SpeakAsync</code> llegeix el text sense bloquejar la resta de l'aplicació; existeix també <code>Speak</code> (versió síncrona, que bloqueja fins que acaba de llegir) i <code>SpeakAsyncCancelAll()</code> per aturar la lectura en curs, que és el que fa <code>TallerVeu</code> quan es reconeix "atura la lectura".</p>
+
+
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Això sí que es pot verificar sense micròfon</strong></p><p>A diferència del reconeixement, la síntesi es pot comprovar sense cap maquinari especial: en lloc d'enviar l'àudio als altaveus amb <code>SetOutputToDefaultAudioDevice()</code>, es pot enviar a un fitxer amb <code>SetOutputToWaveFile("prova.wav")</code>. El fitxer resultant es pot inspeccionar (durada, format) per confirmar que s'ha generat àudio real, sense necessitat que ningú l'escolti en directe. És així com s'ha comprovat aquest mateix exemple: <code>sintetitzador.Speak("Reparacions pendents: Reparació 1, Reparació 2.")</code> escrit a un <code>.wav</code> ha donat un fitxer d'àudio PCM de 5,07 segons, vàlid i reproduïble.</p>
+</div>
+
+
+  <h3>1.1. Parany real: Windows no sol tenir cap veu en català instal·lada</h3>
+
+<p>Les veus de síntesi (SAPI) que hi ha disponibles depenen del que porti instal·lat cada Windows en concret, no del que faci l'aplicació. És habitual que un Windows en català només tingui instal·lades veus en altres idiomes, per exemple:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Microsoft Zira Desktop   | Culture: en-US | Gender: Female
+Microsoft Helena Desktop | Culture: es-ES | Gender: Female</code></pre>
+  </div>
+</div>
+
+
+<p><strong>Cap en català.</strong> Si no es fa res, <code>SpeechSynthesizer</code> fa servir la veu marcada com a "per defecte" al sistema, que pot ser perfectament una veu <strong>anglesa</strong>: el text en català es llegeix amb pronúncia anglesa, molt allunyada del que s'espera.</p>
+
+
+<!-- Component: Problema -->
+<div class="problem-box" role="alert" aria-live="assertive">
+    <div class="component-header error-header" role="heading" aria-level="4"><i class="bi bi-x-circle" aria-hidden="true"></i> Problema</div>
+    <p><strong>Parany dins del parany: SelectVoiceByHints no avisa quan falla</strong></p><p>Es podria pensar a forçar una veu en català amb <code>sintetitzador.SelectVoiceByHints(VoiceGender.NotSet, VoiceAge.NotSet, 0, new CultureInfo("ca-ES"))</code>, i capturar amb un <code>try/catch</code> el cas que no n'hi hagi cap. <strong>No funciona</strong>: <code>SelectVoiceByHints</code> no llança cap excepció encara que no trobi cap coincidència exacta; simplement es queda amb qualsevol altra veu disponible en silenci, sense cap avís. El resultat és el mateix problema (una veu que no és la catalana) però amagat darrere d'un codi que sembla que "ha funcionat".</p>
+</div>
+
+
+<p>La manera fiable de comprovar-ho és preguntar explícitament quantes veus hi ha d'una cultura concreta abans de triar-ne cap, amb <code>GetInstalledVoices(CultureInfo)</code>, que retorna una llista buida (no una excepció) quan no n'hi ha cap:</p>
+
+
+<div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private void SeleccionaMillorVeuDisponible()
+{
+    var veusCatala = sintetitzador.GetInstalledVoices(new CultureInfo(&quot;ca-ES&quot;));
+    if (veusCatala.Count &gt; 0)
+    {
+        sintetitzador.SelectVoice(veusCatala[0].VoiceInfo.Name);
+        return;
+    }
+
+    var veusCastella = sintetitzador.GetInstalledVoices(new CultureInfo(&quot;es-ES&quot;));
+    if (veusCastella.Count &gt; 0)
+    {
+        sintetitzador.SelectVoice(veusCastella[0].VoiceInfo.Name);
+        lblEstat.Text = &quot;Estat: sense veu en català instal·lada; s&#39;utilitza castellà (&quot; + sintetitzador.Voice.Name + &quot;)&quot;;
+        return;
+    }
+
+    lblEstat.Text = &quot;Estat: sense veu en català ni castellà; s&#39;utilitza &quot; + sintetitzador.Voice.Name;
+}</code></pre>
+  </div>
+</div>
+
+
+<p><code>TallerVeu</code> crida aquest mètode just en arrencar el formulari: si l'equip no té cap veu en català, selecciona automàticament la veu en castellà (Helena) i ho indica a l'estat de l'aplicació, en lloc de llegir en anglès en silenci.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No és un error del codi</strong></p><p>Si l'ordinador on s'executa l'aplicació no té cap veu en català instal·lada, <strong>no és un error</strong>: és una limitació habitual de Windows, no de l'aplicació. La solució que aplica <code>TallerVeu</code> és seleccionar explícitament la veu en castellà com a alternativa més propera, i deixar-ho documentat com a limitació coneguda. Instal·lar una veu en català de tercers és possible en alguns Windows, però no és un requisit per completar l'exercici.</p>
+</div>
+
+
+</div>
+
+<div class="section" id="Unitat3_Bloc2_Seccio2">
+  <h2 id="Unitat3_Bloc2_Seccio2">2. Muntar TallerVeu pas a pas</h2>
+
+<p>Aquesta secció recull, en ordre, tot el que cal fer per construir l'exemple des de zero: què crear, què executar, què hauríeu de veure a cada pas, i què vol dir cada error habitual si apareix.</p>
+
+<ol>
+<li><strong>Crea el projecte.</strong> Windows Forms App, <code>net8.0-windows</code>, com a la Unitat 1. Nom del projecte: <code>TallerVeu</code>.</li>
+<li><strong>Afegeix el paquet de veu:</strong>
+<pre style="margin-top:8px"><code>dotnet add package System.Speech</code></pre>
+        Hauríeu de veure "Restore succeeded" i una línia "PackageReference for package 'System.Speech'... added". Si surt un error de xarxa, comproveu la connexió a Internet: aquest paquet es descarrega del repositori NuGet la primera vegada.
+      </li>
+<li><strong>Crea <code>Reparacio.cs</code> i <code>GestorReparacions.cs</code></strong> (apartat 3) amb tota la lògica de negoci, sense cap referència a <code>System.Speech</code> encara.</li>
+<li><strong>Crea el projecte de proves</strong> i escriu-hi les proves de <code>GestorReparacions</code> (apartat 14). Executeu <code>dotnet test</code>: hauríeu de veure "Passed! - Failed: 0, Passed: 6". Si en surt algun en vermell, l'error de la prova indica exactament quina ordre no es comporta com s'espera; corregiu <code>GestorReparacions</code>, no la prova.</li>
+<li><strong>Dissenya el formulari</strong> (Unitat 1): un botó "Comença a escoltar", les etiquetes d'ordres disponibles, avisos i última ordre, i la llista de reparacions.</li>
+<li><strong>Escriu el codi de reconeixement i síntesi</strong> a <code>Form1.cs</code> (apartats 4 i 5), connectant l'esdeveniment del botó des del dissenyador (mai a mà al constructor, vegeu Unitat 1).</li>
+<li><strong>Executa l'aplicació</strong> (<kbd>F5</kbd>) i prem "Comença a escoltar".</li>
+</ol>
+
+<table class="table">
+<tr><th>Si veieu...</th><th>Vol dir...</th></tr>
+<tr><td>El botó canvia a "Atura l'escolta" i l'estat diu "escoltant..."</td><td>Tot correcte: el micròfon s'ha activat i l'aplicació espera ordres.</td></tr>
+<tr><td><code>COMException</code> en prémer "Comença a escoltar"</td><td>L'equip no té cap motor de reconeixement de veu instal·lat, o no té cap micròfon configurat. Cal provar-ho en un altre equip amb Windows complet i micròfon (vegeu apartat 15, casos P-06 i P-07).</td></tr>
+<tr><td>L'estat mostra "sense veu en català instal·lada; s'utilitza castellà"</td><td>Comportament esperat en la majoria d'equips (apartat 5): no hi ha cap veu en català a Windows, i l'aplicació ha triat automàticament la veu en castellà en lloc de l'anglesa.</td></tr>
+<tr><td>Es diu una ordre i no passa res</td><td>Comproveu que la frase coincideix exactament amb una de les sis ordres de la gramàtica (apartat 4): el reconeixement amb <code>Choices</code> tancades no interpreta sinònims ni frases parcials.</td></tr>
+<tr><td>Excepció intermitent en tocar un control després de reconèixer una ordre</td><td>Falta el pas per <code>Invoke</code> dins de <code>SpeechRecognized</code> (apartat 4): l'esdeveniment arriba en un fil diferent del de la interfície.</td></tr>
+</table>
+
+</div>
+
+<div class="section" id="Unitat3_Bloc2_Seccio3">
+  <h2 id="Unitat3_Bloc2_Seccio3">3. Limitacions i bones pràctiques</h2>
+
+<ul>
+<li><strong>Soroll ambiental:</strong> el reconeixement de veu es degrada en entorns sorollosos; cal tenir-ho en compte i, si cal, documentar-ho com a limitació coneguda.</li>
+<li><strong>Confirmació d'accions crítiques:</strong> una ordre de veu que provoca una acció important o irreversible (per exemple, sortir de l'aplicació) hauria de demanar confirmació abans d'executar-se, exactament igual que amb un botó. A <code>TallerVeu</code>, l'ordre "surt" sempre mostra un <code>MessageBox</code> de confirmació abans de tancar l'aplicació.</li>
+<li><strong>Feedback visual de l'estat:</strong> l'usuari ha de poder veure si el sistema està escoltant, si ha reconegut alguna cosa i què és exactament el que ha entès, per evitar accions inesperades. Per això <code>TallerVeu</code> mostra sempre "Última ordre: ..." i l'estat actual en una <strong>zona d'avisos</strong> permanent (l'etiqueta <code>lblEstat</code>), a més d'un control sempre visible amb les ordres disponibles (<code>lblOrdresDisponibles</code>), que no depèn de dir "ajuda" per consultar-les.</li>
+<li><strong>Control sobre la síntesi:</strong> permetre aturar o silenciar la lectura en veu alta si l'usuari no la vol en un moment donat (ordre "atura la lectura").</li>
+<li><strong>Accessibilitat, aplicada a <code>TallerVeu</code>:</strong> en un taller mecànic, els operaris solen treballar amb les mans brutes de greix o amb guants, cosa que fa poc pràctic escriure amb teclat o tocar una pantalla amb precisió. El control per veu no és aquí un afegit opcional: és la via principal que permet registrar i consultar reparacions sense haver-se de netejar o treure's els guants per cada interacció. La síntesi de veu, complementàriament, permet consultar les reparacions pendents sense haver de mirar la pantalla mentre es treballa amb les mans ocupades.</li>
+</ul>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 2: Síntesi de veu i integració",
+  "description": "Síntesi de veu, muntatge de l'aplicació completa, limitacions i bones pràctiques",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Desenvolupament d'interfícies — IOC",
+    "description": "Materials del mòdul DAM_0488 - Desenvolupament d'interfícies (C# i Windows Forms)"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                        
+                                        
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0488/unitat-3/bloc-1/" class="nav-button" aria-label="Bloc anterior: Interfícies naturals i reconeixement de veu">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0488/unitat-3/bloc-3/" class="nav-button" aria-label="Bloc següent: Distribució i instal·lació">Següent →</a>
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="3" data-total="3">(3/3)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="2" data-total="4">(2/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 50%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="3">(1/3)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 33%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/dam_0488/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/dam_0488",
+        title: "Desenvolupament d'interfícies",
+        version: "v1.0",
+        cicle_modul: "DAM_0488"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/dam_0488/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/dam_0488/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

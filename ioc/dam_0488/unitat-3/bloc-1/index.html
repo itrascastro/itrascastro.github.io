@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 1: Interfícies naturals i reconeixement de veu | Desenvolupament d'interfícies - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="3">
+    <meta name="page-bloc" content="1">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 1: Interfícies naturals i reconeixement de veu | Desenvolupament d’interfícies</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 1: Interfícies naturals i reconeixement de veu" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Tipus d’interfícies naturals, separació de la lògica i reconeixement de veu a .NET" />
+<meta property="og:description" content="Tipus d’interfícies naturals, separació de la lògica i reconeixement de veu a .NET" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-3/bloc-1/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0488/unitat-3/bloc-1/" />
+<meta property="og:site_name" content="Desenvolupament d’interfícies" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 1: Interfícies naturals i reconeixement de veu" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Tipus d’interfícies naturals, separació de la lògica i reconeixement de veu a .NET","headline":"Bloc 1: Interfícies naturals i reconeixement de veu","url":"https://itrascastro.github.io/ioc/dam_0488/unitat-3/bloc-1/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-3/bloc-1/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/dam_0488/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0488/feed.xml" title="Desenvolupament d&apos;interfícies" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/code-block.css">
+    <script src="/ioc/dam_0488/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/dam_0488">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/dam_0488/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/dam_0488/" class="title-link">
+                <h1>DAM_0488 - Desenvolupament d'interfícies</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/dam_0488/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Entorn de treball i projecte base
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Disseny del formulari: controls, propietats i esdeveniments
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Components visuals propis
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Persistència, proves, documentació i revisió
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Usabilitat i accessibilitat
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Disseny de pantalles i pautes d'interfície
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Informes
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Manuals i documentació
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-1/" class="nav-dropdown-item current">
+                        Unitat 3 - Bloc 1: Interfícies naturals i reconeixement de veu
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 2: Síntesi de veu i integració
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 3: Distribució i instal·lació
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 4: Proves
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc1_Seccio1" class="nav-link" data-section="Unitat3_Bloc1_Seccio1">1. El projecte d'exemple d'aquesta unitat</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc1_Seccio2" class="nav-link" data-section="Unitat3_Bloc1_Seccio2">2. Interfícies naturals d'usuari: concepte i tipus</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc1_Seccio3" class="nav-link" data-section="Unitat3_Bloc1_Seccio3">3. Separar la lògica del reconeixement de veu</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc1_Seccio4" class="nav-link" data-section="Unitat3_Bloc1_Seccio4">4. Reconeixement de veu a .NET</a>
+        </div>
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/dam_0488/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/dam_0488/unitat-3/" class="horizontal-nav-item">
+                                Unitat 3: Interfícies naturals, distribució i proves (RA2, RA7, RA8)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 3.1: Interfícies naturals i reconeixement de veu
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<!--
+  BLOC 1 - UNITAT 3
+  Contingut migrat des de materials/DAM_0488_teoria_unitat3.html (seccions 1, 2, 3, 4)
+-->
+
+<div class="section" id="Unitat3_Bloc1_Seccio1">
+  <h2 id="Unitat3_Bloc1_Seccio1">1. El projecte d'exemple d'aquesta unitat</h2>
+
+<p>Aquesta unitat es construeix al voltant d'una petita aplicació de control per veu per a un taller mecànic, <strong><code>TallerVeu</code></strong>. Permet crear i tancar fitxes de reparació dient ordres en veu alta, i llegir en veu alta les reparacions pendents. Igual que a les altres unitats, no és el mateix exercici que es demanarà a l'activitat avaluable, però treballa exactament les mateixes tècniques: reconeixement de veu, síntesi de veu, distribució amb instal·lador, i un pla de proves real.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Què conté aquest projecte</strong></p><p>Sis ordres de veu ("nova reparació", "marca acabada", "llegeix pendents", "atura la lectura", "ajuda", "surt"), un formulari amb una llista de reparacions i indicadors d'estat, un projecte de proves amb 6 proves automatitzades, un paquet de distribució amb instal·lador i README, i un pla de proves amb 8 casos.</p>
+    
+</div>
+
+
+<p>Tot el codi d'aquesta unitat prové d'aquest projecte.</p>
+
+</div>
+
+<div class="section" id="Unitat3_Bloc1_Seccio2">
+  <h2 id="Unitat3_Bloc1_Seccio2">2. Interfícies naturals d'usuari: concepte i tipus</h2>
+
+<p>Una <strong>interfície natural d'usuari</strong> (NUI, <em>Natural User Interface</em>) és aquella en què la interacció es basa en habilitats humanes ja apreses (parlar, gesticular, tocar, moure's), en lloc de requerir aprendre l'ús d'un dispositiu intermediari com el ratolí o el teclat.</p>
+
+<table class="table">
+<tr><th>Tipus</th><th>Exemple</th><th>Viabilitat en un entorn d'aula estàndard</th></tr>
+<tr><td>Veu (reconeixement i síntesi)</td><td>Ordres de veu, lectura d'avisos en veu alta</td><td>Alta: només cal micròfon i altaveus, habituals en qualsevol ordinador.</td></tr>
+<tr><td>Gest / tacte</td><td>Pantalles tàctils, gestos multitouch</td><td>Mitjana: requereix maquinari tàctil, no sempre disponible.</td></tr>
+<tr><td>Moviment del cos</td><td>Sensors de profunditat tipus Kinect</td><td>Baixa: maquinari específic i poc habitual fora d'entorns dedicats.</td></tr>
+<tr><td>Realitat augmentada</td><td>Superposar informació digital sobre la càmera en temps real</td><td>Baixa: requereix maquinari i biblioteques especialitzades.</td></tr>
+</table>
+
+<p>Per aquest motiu, en un context de formació general, la <strong>veu</strong> és la via d'interfície natural més pràctica: no depèn de maquinari especial i es pot implementar amb biblioteques incloses al mateix sistema operatiu.</p>
+
+</div>
+
+<div class="section" id="Unitat3_Bloc1_Seccio3">
+  <h2 id="Unitat3_Bloc1_Seccio3">3. Separar la lògica del reconeixement de veu</h2>
+
+<p>Abans d'entrar en el codi de reconeixement, convé prendre una decisió d'arquitectura important: <strong>que el reconeixement de veu no contingui cap lògica de negoci</strong>. El reconeixement només ha de fer una cosa: convertir un so en un text. Què es fa amb aquest text ha de ser responsabilitat d'una altra classe, completament independent de com s'ha obtingut el text.</p>
+
+
+<div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">public class GestorReparacions
+{
+    private readonly List&lt;Reparacio&gt; reparacions = new();
+    public IReadOnlyList&lt;Reparacio&gt; Reparacions =&gt; reparacions;
+
+    public string ProcessaOrdre(string ordre)
+    {
+        switch (ordre.Trim().ToLowerInvariant())
+        {
+            case &quot;nova reparació&quot;: return NovaReparacio();
+            case &quot;marca acabada&quot;: return MarcaAcabada();
+            case &quot;llegeix pendents&quot;: return TextPendents();
+            case &quot;surt&quot;: SortidaSollicitada = true; return &quot;Vols sortir de l&#39;aplicació?&quot;;
+            default: return &quot;Ordre no reconeguda.&quot;;
+        }
+    }
+    // ...
+}</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Concepte clau: per què separar-ho</strong></p><p><code>GestorReparacions.ProcessaOrdre(string)</code> no sap res de micròfons ni de <code>System.Speech</code>: rep un text i actua. Això vol dir que es pot escriure una prova unitària que cridi <code>ProcessaOrdre("nova reparació")</code> directament, sense necessitat de cap micròfon ni de dir res en veu alta. És exactament el mateix principi que separar la interfície visual de la lògica de negoci (Unitat 1): la part que depèn d'un recurs difícil de controlar en una prova automàtica (el micròfon) queda aïllada en una capa prima, i tota la resta es pot testejar de manera normal.</p>
+</div>
+
+
+<p>El formulari només s'encarrega de connectar les dues coses: quan el reconeixedor de veu detecta una frase, en passa el text a <code>ProcessaOrdre</code>, i mostra o llegeix en veu alta el resultat.</p>
+
+</div>
+
+<div class="section" id="Unitat3_Bloc1_Seccio4">
+  <h2 id="Unitat3_Bloc1_Seccio4">4. Reconeixement de veu a .NET</h2>
+
+<p>A Windows, l'espai de noms <code>System.Speech.Recognition</code> (paquet NuGet <code>System.Speech</code> a partir de .NET 5) permet implementar reconeixement de veu sense dependre de serveis externs. El seu funcionament es basa a definir una <strong>gramàtica</strong>: el conjunt exacte de paraules o frases que el sistema ha de reconèixer.</p>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">dotnet add package System.Speech</code></pre>
+  </div>
+</div>
+
+
+
+<div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">using System.Speech.Recognition;
+
+reconeixedor = new SpeechRecognitionEngine();
+
+var ordres = new Choices();
+ordres.Add(new string[]
+{
+    &quot;nova reparació&quot;, &quot;marca acabada&quot;, &quot;llegeix pendents&quot;,
+    &quot;atura la lectura&quot;, &quot;ajuda&quot;, &quot;surt&quot;
+});
+reconeixedor.LoadGrammar(new Grammar(new GrammarBuilder(ordres)));
+reconeixedor.SpeechRecognized += Reconeixedor_SpeechRecognized;
+
+reconeixedor.SetInputToDefaultAudioDevice();
+reconeixedor.RecognizeAsync(RecognizeMode.Multiple);</code></pre>
+  </div>
+</div>
+
+
+<table class="table">
+<tr><th>Element</th><th>Funció</th></tr>
+<tr><td><code>Choices</code></td><td>Llista de paraules o frases vàlides.</td></tr>
+<tr><td><code>GrammarBuilder</code> / <code>Grammar</code></td><td>Construeix la gramàtica final que el motor de reconeixement carregarà.</td></tr>
+<tr><td><code>SpeechRecognized</code></td><td>Esdeveniment que es dispara quan es reconeix alguna de les frases de la gramàtica.</td></tr>
+<tr><td><code>RecognizeAsync(RecognizeMode.Multiple)</code></td><td>Inicia l'escolta contínua (reconeix diverses vegades, no només un cop).</td></tr>
+</table>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Per què usar una gramàtica tancada</strong></p><p>Restringir el reconeixement a un conjunt conegut de paraules (en lloc de dictat lliure) millora molt la precisió i la fiabilitat, i és suficient per implementar ordres de control d'una aplicació.</p>
+    
+</div>
+
+
+<p>L'esdeveniment <code>SpeechRecognized</code> es dispara en un fil diferent del de la interfície gràfica, així que cal passar per <code>Invoke</code> abans de tocar qualsevol control:</p>
+
+
+<div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private void Reconeixedor_SpeechRecognized(object? sender, SpeechRecognizedEventArgs e)
+{
+    string ordre = e.Result.Text;
+    if (InvokeRequired)
+        Invoke(new Action(() =&gt; ProcessaOrdreReconeguda(ordre)));
+    else
+        ProcessaOrdreReconeguda(ordre);
+}</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Parany habitual: tocar la interfície des del fil equivocat</strong></p><p>Si s'actualitza un <code>Label</code> o una <code>ListBox</code> directament dins de <code>SpeechRecognized</code> sense passar per <code>Invoke</code>, l'aplicació pot llançar una excepció de "operació no vàlida entre fils" de manera intermitent, difícil de reproduir perquè només falla quan l'esdeveniment arriba en un moment concret.</p>
+</div>
+
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 1: Interfícies naturals i reconeixement de veu",
+  "description": "Tipus d'interfícies naturals, separació de la lògica i reconeixement de veu a .NET",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Desenvolupament d'interfícies — IOC",
+    "description": "Materials del mòdul DAM_0488 - Desenvolupament d'interfícies (C# i Windows Forms)"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                        
+                                        
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0488/unitat-3/bloc-2/" class="nav-button" aria-label="Bloc següent: Síntesi de veu i integració">Següent →</a>
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="3" data-total="3">(3/3)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="1" data-total="4">(1/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 25%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="4">(1/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 25%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/dam_0488/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/dam_0488",
+        title: "Desenvolupament d'interfícies",
+        version: "v1.0",
+        cicle_modul: "DAM_0488"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/dam_0488/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/dam_0488/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

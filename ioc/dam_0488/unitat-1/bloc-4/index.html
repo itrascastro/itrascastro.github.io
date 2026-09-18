@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 4: Persistència, proves, documentació i revisió | Desenvolupament d'interfícies - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="1">
+    <meta name="page-bloc" content="4">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 4: Persistència, proves, documentació i revisió | Desenvolupament d’interfícies</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 4: Persistència, proves, documentació i revisió" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Desar dades en fitxer, proves unitàries del component, comentaris XML i revisió final" />
+<meta property="og:description" content="Desar dades en fitxer, proves unitàries del component, comentaris XML i revisió final" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-1/bloc-4/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0488/unitat-1/bloc-4/" />
+<meta property="og:site_name" content="Desenvolupament d’interfícies" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 4: Persistència, proves, documentació i revisió" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Desar dades en fitxer, proves unitàries del component, comentaris XML i revisió final","headline":"Bloc 4: Persistència, proves, documentació i revisió","url":"https://itrascastro.github.io/ioc/dam_0488/unitat-1/bloc-4/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-1/bloc-4/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/dam_0488/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0488/feed.xml" title="Desenvolupament d&apos;interfícies" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/code-block.css">
+    <script src="/ioc/dam_0488/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/dam_0488">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/dam_0488/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/dam_0488/" class="title-link">
+                <h1>DAM_0488 - Desenvolupament d'interfícies</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/dam_0488/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Entorn de treball i projecte base
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Disseny del formulari: controls, propietats i esdeveniments
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Components visuals propis
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-4/" class="nav-dropdown-item current">
+                        Unitat 1 - Bloc 4: Persistència, proves, documentació i revisió
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Usabilitat i accessibilitat
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Disseny de pantalles i pautes d'interfície
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Informes
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Manuals i documentació
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 1: Interfícies naturals i reconeixement de veu
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 2: Síntesi de veu i integració
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 3: Distribució i instal·lació
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 4: Proves
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc4_Seccio1" class="nav-link" data-section="Unitat1_Bloc4_Seccio1">1. Persistència de dades</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc4_Seccio2" class="nav-link" data-section="Unitat1_Bloc4_Seccio2">2. Proves unitàries del component</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc4_Seccio3" class="nav-link" data-section="Unitat1_Bloc4_Seccio3">3. Documentar el codi</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc4_Seccio4" class="nav-link" data-section="Unitat1_Bloc4_Seccio4">4. Revisió final de l'aplicació</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc4_Seccio5" class="nav-link" data-section="Unitat1_Bloc4_Seccio5">5. Errors habituals</a>
+        </div>
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/dam_0488/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/dam_0488/unitat-1/" class="horizontal-nav-item">
+                                Unitat 1: Interfícies gràfiques amb editor visual i components visuals (RA1, RA3)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 1.4: Persistència, proves, documentació i revisió
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<!--
+  BLOC 4 - UNITAT 1
+  Contingut migrat des de materials/DAM_0488_teoria_unitat1.html (seccions 11, 12, 13, 14, 15)
+-->
+
+<div class="section" id="Unitat1_Bloc4_Seccio1">
+  <h2 id="Unitat1_Bloc4_Seccio1">1. Persistència de dades</h2>
+
+<p>Quan un component o formulari ha de recordar dades entre execucions sense necessitat d'una base de dades, una solució senzilla i molt habitual en exercicis d'aquest nivell és desar-les en un fitxer de text pla, encapsulant l'accés en una classe de tipus <em>repositori</em>. Al nostre projecte, primer cal la classe de dades:</p>
+
+
+<div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">public class Producte
+{
+    public string Nom { get; set; } = string.Empty;
+    public int CapacitatMaxima { get; set; }
+    public int Estoc { get; set; }
+    public string Proveidor { get; set; } = string.Empty;
+}</code></pre>
+  </div>
+</div>
+
+
+<p>I el repositori, amb el fitxer <code>productes.txt</code> com a format <code>Nom|CapacitatMaxima|Estoc|Proveidor</code>:</p>
+
+
+<div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">public class ProducteRepository
+{
+    public List&lt;Producte&gt; Carrega(string ruta)
+    {
+        if (!File.Exists(ruta)) return new List&lt;Producte&gt;();
+
+        var resultat = new List&lt;Producte&gt;();
+        foreach (var linia in File.ReadAllLines(ruta, Encoding.UTF8))
+        {
+            if (string.IsNullOrWhiteSpace(linia)) continue;
+
+            var camps = linia.Split(&#39;|&#39;);
+            if (camps.Length != 4) continue;
+            if (!int.TryParse(camps[1], out int capacitat)) continue;
+            if (!int.TryParse(camps[2], out int estoc)) continue;
+
+            resultat.Add(new Producte
+            {
+                Nom = camps[0],
+                CapacitatMaxima = capacitat,
+                Estoc = estoc,
+                Proveidor = camps[3]
+            });
+        }
+        return resultat;
+    }
+
+    public void Desa(string ruta, IEnumerable&lt;Producte&gt; productes)
+    {
+        var linies = productes.Select(p =&gt; $&quot;{p.Nom}|{p.CapacitatMaxima}|{p.Estoc}|{p.Proveidor}&quot;);
+        File.WriteAllLines(ruta, linies, Encoding.UTF8);
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Els punts clau d'un repositori robust: no llançar excepció si el fitxer no existeix (retornar una llista buida), ignorar línies buides o malformades en lloc de fallar, i escriure sempre amb una codificació explícita (normalment UTF-8) per evitar problemes amb accents. Fixeu-vos que <code>Carrega</code> també ignora una línia si algun dels camps numèrics no es pot convertir (<code>int.TryParse</code> retorna <code>false</code>), en lloc de deixar que l'excepció aturi tota la càrrega.</p>
+
+<p>En prémer el botó <em>Desa</em>, el fitxer <code>productes.txt</code> queda escrit al directori de sortida del projecte:</p>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0488/assets/img/unitat-1/09_fitxer_productes_desat.png" alt="Contingut del fitxer productes.txt obert en un editor de text, amb les línies dels productes separades per barres verticals" class="figure-img"/>
+      
+      <figcaption class="figure-caption">Contingut de productes.txt després de prémer &quot;Desa&quot;.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+</div>
+
+<div class="section" id="Unitat1_Bloc4_Seccio2">
+  <h2 id="Unitat1_Bloc4_Seccio2">2. Proves unitàries del component</h2>
+
+<p>Una <strong>prova unitària</strong> comprova, de manera aïllada i automàtica, que una peça petita de codi (normalment un mètode) es comporta com s'espera. A .NET, els frameworks més habituals són <strong>xUnit</strong>, <strong>MSTest</strong> i <strong>NUnit</strong>; xUnit és el més utilitzat en projectes moderns. Les proves d'<code>IndicadorEstoc</code>:</p>
+
+
+<div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">public class IndicadorEstocTests
+{
+    [Fact]
+    public void PercentatgeNegatiu_EsRetallaAZero()
+    {
+        var indicador = new IndicadorEstoc();
+        indicador.PercentatgeEstoc = -15;
+        Assert.Equal(0, indicador.PercentatgeEstoc);
+    }
+
+    [Fact]
+    public void PercentatgeSuperiorA100_EsRetallaA100()
+    {
+        var indicador = new IndicadorEstoc();
+        indicador.PercentatgeEstoc = 150;
+        Assert.Equal(100, indicador.PercentatgeEstoc);
+    }
+
+    [Theory]
+    [InlineData(0, &quot;Esgotat&quot;)]
+    [InlineData(19, &quot;Esgotat&quot;)]
+    [InlineData(20, &quot;Estoc baix&quot;)]
+    [InlineData(49, &quot;Estoc baix&quot;)]
+    [InlineData(50, &quot;Disponible&quot;)]
+    [InlineData(100, &quot;Disponible&quot;)]
+    public void EstatEstoc_CorresponAlPercentatge(int percentatge, string estatEsperat)
+    {
+        var indicador = new IndicadorEstoc { PercentatgeEstoc = percentatge };
+        Assert.Equal(estatEsperat, indicador.EstatEstoc);
+    }
+
+    [Fact]
+    public void Reaprovisiona_DeixaElPercentatgeAlCent()
+    {
+        var indicador = new IndicadorEstoc();
+        indicador.PercentatgeEstoc = 10;
+        indicador.Reaprovisiona();
+        Assert.Equal(100, indicador.PercentatgeEstoc);
+    }
+
+    [Fact]
+    public void EstocBaix_NomesEsLlancaUnCopEnCanviarDEstat()
+    {
+        var indicador = new IndicadorEstoc();
+        int vegadesLlancat = 0;
+        indicador.EstocBaix += (s, e) =&gt; vegadesLlancat++;
+
+        indicador.PercentatgeEstoc = 30; // entra a &quot;Estoc baix&quot;: es dispara
+        indicador.PercentatgeEstoc = 35; // continua a &quot;Estoc baix&quot;: NO s&#39;ha de tornar a disparar
+        indicador.PercentatgeEstoc = 40; // continua a &quot;Estoc baix&quot;: tampoc
+
+        Assert.Equal(1, vegadesLlancat);
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Un detall important: es pot instanciar i testejar un <code>UserControl</code> sense mostrar-lo mai en pantalla ni obrir cap finestra. Les proves creen l'objecte, li assignen valors i comproven el resultat de les seves propietats, mètodes i esdeveniments, igual que amb qualsevol altra classe.</p>
+
+  <h3>2.1. Crear el projecte de proves des de zero</h3>
+
+<p>Els passos per afegir un projecte de proves xUnit a una solució que ja té el projecte principal de Windows Forms:</p>
+
+<ol>
+<li>A l'Explorador de solucions, clic dret sobre la solució → <em>Afegeix → Nou projecte</em>.</li>
+<li>Es tria la plantilla <strong>xUnit Test Project</strong> (a vegades apareix com "xUnit Test Project (.NET)") i se li dona un nom, per exemple el mateix nom del projecte principal amb el sufix <code>.Tests</code>.</li>
+<li>Un cop creat, clic dret sobre el nou projecte de proves → <em>Afegeix → Referència de projecte...</em> i es marca el projecte principal.</li>
+<li>S'obre el <code>.csproj</code> del projecte de proves (doble clic sobre el seu node a l'Explorador de solucions) i s'hi afegeixen, si no hi són, aquestes línies dins del primer <code>&lt;PropertyGroup&gt;</code>:</li>
+</ol>
+
+
+<div class="code-block" data-lang="xml" role="region" aria-label="Bloc de codi xml">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">XML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-xml">&lt;TargetFramework&gt;net8.0-windows&lt;/TargetFramework&gt;
+&lt;UseWindowsForms&gt;true&lt;/UseWindowsForms&gt;</code></pre>
+  </div>
+</div>
+
+
+<p>Això és necessari perquè el projecte de proves pugui instanciar classes que depenen de Windows Forms (com un <code>UserControl</code>), encara que les proves no mostrin cap finestra en pantalla.</p>
+
+<p>Amb l'ordre <code>dotnet</code> (des d'un terminal, a la carpeta de la solució), els mateixos passos equivalen a:</p>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">dotnet new xunit -n NomDelProjecte.Tests
+dotnet add NomDelProjecte.Tests/NomDelProjecte.Tests.csproj reference NomDelProjecte/NomDelProjecte.csproj
+dotnet sln add NomDelProjecte.Tests/NomDelProjecte.Tests.csproj</code></pre>
+  </div>
+</div>
+
+
+<p>Per executar totes les proves i veure el resultat: des de Visual Studio, <em>Prova → Executa totes les proves</em> (o l'Explorador de proves, <em>Test Explorer</em>); des de terminal, <code>dotnet test</code>.</p>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0488/assets/img/unitat-1/10_explorador_proves_verd.png" alt="Explorador de proves de Visual Studio amb totes les proves d&#x27;IndicadorEstoc en verd" class="figure-img"/>
+      
+      <figcaption class="figure-caption">Explorador de proves amb totes les proves d&#x27;IndicadorEstoc en verd.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+</div>
+
+<div class="section" id="Unitat1_Bloc4_Seccio3">
+  <h2 id="Unitat1_Bloc4_Seccio3">3. Documentar el codi</h2>
+
+<p>.NET permet generar documentació estructurada directament a partir de comentaris especials anomenats <strong>comentaris de documentació XML</strong>, que comencen per <code>///</code>. Al nostre component:</p>
+
+
+<div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">/// &lt;summary&gt;
+/// Component visual reutilitzable que mostra l&#39;estoc d&#39;un producte com a percentatge,
+/// amb un indicador de color segons l&#39;estat.
+/// &lt;/summary&gt;
+public partial class IndicadorEstoc : UserControl
+{
+    /// &lt;summary&gt;
+    /// Percentatge d&#39;estoc actual, sempre entre 0 i 100. Els valors fora de rang
+    /// es retallen automàticament (no es llança cap excepció).
+    /// &lt;/summary&gt;
+    public int PercentatgeEstoc { get; set; }
+
+    /// &lt;summary&gt;Reaprovisiona el producte: posa l&#39;estoc al 100% i actualitza la interfície.&lt;/summary&gt;
+    public void Reaprovisiona() { /* ... */ }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Per activar la generació del fitxer de documentació (un <code>.xml</code> amb tot aquest contingut estructurat, que eines com IntelliSense poden llegir), cal afegir al <code>.csproj</code>:</p>
+
+
+<div class="code-block" data-lang="xml" role="region" aria-label="Bloc de codi xml">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">XML</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-xml">&lt;PropertyGroup&gt;
+    &lt;GenerateDocumentationFile&gt;true&lt;/GenerateDocumentationFile&gt;
+&lt;/PropertyGroup&gt;</code></pre>
+  </div>
+</div>
+
+
+<p>Un cop activat, IntelliSense mostra aquest text en passar el ratolí per sobre del nom de la propietat o del mètode, des de qualsevol altre punt del codi o des d'un altre projecte que faci servir el component.</p>
+
+</div>
+
+<div class="section" id="Unitat1_Bloc4_Seccio4">
+  <h2 id="Unitat1_Bloc4_Seccio4">4. Revisió final de l'aplicació</h2>
+
+<p>Amb tots els passos anteriors completats, l'aplicació final permet: triar un producte de la llista, veure el seu estoc representat pel color i la barra d'<code>IndicadorEstoc</code>, ajustar l'estoc amb el <code>NumericUpDown</code>, reaprovisionar-lo amb un clic, i desar els canvis a <code>productes.txt</code>.</p>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0488/assets/img/unitat-1/11_aplicacio_final_execucio.png" alt="Aplicació GestorEstocBotiga en execució, amb un producte seleccionat i l&#x27;indicador d&#x27;estoc en color taronja" class="figure-img"/>
+      
+      <figcaption class="figure-caption">GestorEstocBotiga en execució: llistat de productes i panell de detall amb l&#x27;IndicadorEstoc.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+<p>Aquesta mateixa estructura (formulari amb editor visual + component visual propi + persistència + proves + documentació) és el que s'espera en qualsevol exercici d'aquesta unitat, encara que el domini de l'aplicació canviï.</p>
+
+</div>
+
+<div class="section" id="Unitat1_Bloc4_Seccio5">
+  <h2 id="Unitat1_Bloc4_Seccio5">5. Errors habituals</h2>
+
+<table class="table">
+<tr><th>Error</th><th>Per què passa i com evitar-lo</th></tr>
+<tr><td>Editar el <code>.Designer.cs</code> a mà</td><td>El dissenyador el pot sobreescriure. Els canvis d'estructura visual s'han de fer sempre des del dissenyador.</td></tr>
+<tr><td>Triar la plantilla "Windows Forms App (.NET Framework)"</td><td>És la plantilla antiga. Cal triar "Windows Forms App" (sense ".NET Framework") i el framework .NET 8.0 al pas següent de l'assistent.</td></tr>
+<tr><td>Llançar una excepció per un valor de propietat fora de rang</td><td>Trenca l'ús normal del component des del dissenyador o des d'un altre formulari. És preferible retallar (clamp) el valor.</td></tr>
+<tr><td>Llançar un esdeveniment en cada canvi de valor</td><td>Genera soroll d'esdeveniments innecessari. Cal comparar l'estat anterior i el nou, i disparar l'esdeveniment només quan l'estat canvia realment.</td></tr>
+<tr><td>Crear un "component" que és només un grup de controls dins del formulari</td><td>No és reutilitzable ni es pot arrossegar des del quadre d'eines a un altre formulari. Ha de ser un <code>UserControl</code> independent.</td></tr>
+<tr><td>No tractar el cas de fitxer inexistent en carregar dades</td><td>Provoca que l'aplicació falli en la primera execució, quan encara no existeix el fitxer de dades.</td></tr>
+<tr><td>El component de proves no compila</td><td>Sol faltar afegir <code>&lt;UseWindowsForms&gt;true&lt;/UseWindowsForms&gt;</code> i el <code>TargetFramework</code> correcte al <code>.csproj</code> del projecte de proves, o la referència cap al projecte principal.</td></tr>
+</table>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 4: Persistència, proves, documentació i revisió",
+  "description": "Desar dades en fitxer, proves unitàries del component, comentaris XML i revisió final",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Desenvolupament d'interfícies — IOC",
+    "description": "Materials del mòdul DAM_0488 - Desenvolupament d'interfícies (C# i Windows Forms)"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                    
+                                        
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0488/unitat-1/bloc-3/" class="nav-button" aria-label="Bloc anterior: Components visuals propis">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="1" data-total="3">(1/3)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 33%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="4" data-total="4">(4/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="5">(1/5)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 20%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/dam_0488/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/dam_0488",
+        title: "Desenvolupament d'interfícies",
+        version: "v1.0",
+        cicle_modul: "DAM_0488"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/dam_0488/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/dam_0488/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

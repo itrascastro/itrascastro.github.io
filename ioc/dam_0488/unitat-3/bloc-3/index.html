@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 3: Distribució i instal·lació | Desenvolupament d'interfícies - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="3">
+    <meta name="page-bloc" content="3">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 3: Distribució i instal·lació | Desenvolupament d’interfícies</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 3: Distribució i instal·lació" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Cicle de vida, empaquetament .NET, instal·lador amb Inno Setup, personalització i desinstal·lació" />
+<meta property="og:description" content="Cicle de vida, empaquetament .NET, instal·lador amb Inno Setup, personalització i desinstal·lació" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-3/bloc-3/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0488/unitat-3/bloc-3/" />
+<meta property="og:site_name" content="Desenvolupament d’interfícies" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 3: Distribució i instal·lació" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Cicle de vida, empaquetament .NET, instal·lador amb Inno Setup, personalització i desinstal·lació","headline":"Bloc 3: Distribució i instal·lació","url":"https://itrascastro.github.io/ioc/dam_0488/unitat-3/bloc-3/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-3/bloc-3/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/dam_0488/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0488/feed.xml" title="Desenvolupament d&apos;interfícies" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/code-block.css">
+    <script src="/ioc/dam_0488/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/dam_0488">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/dam_0488/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/dam_0488/" class="title-link">
+                <h1>DAM_0488 - Desenvolupament d'interfícies</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/dam_0488/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Entorn de treball i projecte base
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Disseny del formulari: controls, propietats i esdeveniments
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Components visuals propis
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Persistència, proves, documentació i revisió
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Usabilitat i accessibilitat
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Disseny de pantalles i pautes d'interfície
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Informes
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Manuals i documentació
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 1: Interfícies naturals i reconeixement de veu
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 2: Síntesi de veu i integració
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-3/" class="nav-dropdown-item current">
+                        Unitat 3 - Bloc 3: Distribució i instal·lació
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 4: Proves
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc3_Seccio1" class="nav-link" data-section="Unitat3_Bloc3_Seccio1">1. Cicle de vida d'una aplicació i distribució</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc3_Seccio2" class="nav-link" data-section="Unitat3_Bloc3_Seccio2">2. Empaquetament d'una aplicació .NET</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc3_Seccio3" class="nav-link" data-section="Unitat3_Bloc3_Seccio3">3. Crear un instal·lador</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc3_Seccio4" class="nav-link" data-section="Unitat3_Bloc3_Seccio4">4. Personalització i desinstal·lació</a>
+        </div>
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/dam_0488/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/dam_0488/unitat-3/" class="horizontal-nav-item">
+                                Unitat 3: Interfícies naturals, distribució i proves (RA2, RA7, RA8)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 3.3: Distribució i instal·lació
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<!--
+  BLOC 3 - UNITAT 3
+  Contingut migrat des de materials/DAM_0488_teoria_unitat3.html (seccions 8, 9, 10, 11)
+-->
+
+<div class="section" id="Unitat3_Bloc3_Seccio1">
+  <h2 id="Unitat3_Bloc3_Seccio1">1. Cicle de vida d'una aplicació i distribució</h2>
+
+<p>La <strong>distribució</strong> és la fase final del cicle de vida d'una aplicació: un cop desenvolupada i provada, cal preparar-la perquè arribi a l'usuari final en un format instal·lable i fàcil d'usar, sense necessitat que aquest tingui instal·lades les eines de desenvolupament.</p>
+
+</div>
+
+<div class="section" id="Unitat3_Bloc3_Seccio2">
+  <h2 id="Unitat3_Bloc3_Seccio2">2. Empaquetament d'una aplicació .NET</h2>
+
+<p>El SDK de .NET inclou l'ordre <code>dotnet publish</code>, que genera una versió de l'aplicació preparada per distribuir, amb diverses opcions:</p>
+
+<table class="table">
+<tr><th>Opció</th><th>Efecte</th></tr>
+<tr><td>Framework-dependent (per defecte)</td><td>L'ordinador de destí ha de tenir instal·lat el runtime de .NET corresponent.</td></tr>
+<tr><td><code>--self-contained</code></td><td>Inclou el runtime de .NET dins del paquet: l'usuari final no necessita instal·lar res prèviament, a canvi d'una mida de paquet més gran.</td></tr>
+<tr><td><code>-p:PublishSingleFile=true</code></td><td>Combina tots els fitxers necessaris en un únic executable.</td></tr>
+<tr><td><code>-r &lt;runtime identifier&gt;</code></td><td>Especifica la plataforma de destí (per exemple <code>win-x64</code>).</td></tr>
+</table>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true</code></pre>
+  </div>
+</div>
+
+
+<p>Aplicat a <code>TallerVeu</code>, aquesta ordre genera un únic <code>TallerVeu.exe</code> autònom de <strong>155 MB</strong> (inclou tot el runtime de .NET i les llibreries de Windows Forms), que s'ha comprovat que arrenca correctament sense cap instal·lació prèvia del SDK ni del runtime.</p>
+
+</div>
+
+<div class="section" id="Unitat3_Bloc3_Seccio3">
+  <h2 id="Unitat3_Bloc3_Seccio3">3. Crear un instal·lador</h2>
+
+<table class="table">
+<tr><th>Eina</th><th>Característiques</th></tr>
+<tr><td>Inno Setup</td><td>Eina gratuïta molt utilitzada per crear instal·ladors clàssics (<code>.exe</code>) personalitzables mitjançant un script de text.</td></tr>
+<tr><td>WiX Toolset</td><td>Eina de codi obert per generar paquets <code>.msi</code>, amb més control i complexitat que Inno Setup.</td></tr>
+<tr><td>MSIX</td><td>Format modern d'empaquetat de Microsoft, amb instal·lació i desinstal·lació netes i suport per a actualitzacions automàtiques.</td></tr>
+</table>
+
+<p>Amb independència de l'eina triada, un paquet d'instal·lació complet ha d'incloure totes les dependències necessàries perquè l'aplicació funcioni a l'ordinador de destí sense passos manuals addicionals.</p>
+
+  <h3>3.1. Script d'Inno Setup per a <code>TallerVeu</code></h3>
+
+<ol>
+<li>Descarregar i instal·lar Inno Setup des del seu lloc oficial.</li>
+<li>Generar prèviament la versió distribuïble amb <code>dotnet publish</code> (apartat anterior).</li>
+<li>Obrir Inno Setup i triar <em>Create a new script file using the Script Wizard</em>, o escriure l'script directament.</li>
+<li>Compilar l'script (<em>Build → Compile</em>) per obtenir l'instal·lador final.</li>
+</ol>
+
+
+<div class="code-block" data-lang="ini" role="region" aria-label="Bloc de codi ini">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">INI</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-ini">[Setup]
+AppName=TallerVeu
+AppVersion=1.0
+DefaultDirName={autopf}\TallerVeu
+DefaultGroupName=TallerVeu
+OutputBaseFilename=Instal·lador_TallerVeu
+Compression=lzma2
+SolidCompression=yes
+
+[Files]
+Source: &quot;..\TallerVeu\bin\Release\net8.0-windows\win-x64\publish\*&quot;; DestDir: &quot;{app}&quot;; Flags: recursesubdirs
+
+[Icons]
+Name: &quot;{group}\TallerVeu&quot;; Filename: &quot;{app}\TallerVeu.exe&quot;
+Name: &quot;{group}\Desinstal·la TallerVeu&quot;; Filename: &quot;{uninstallexe}&quot;
+Name: &quot;{autodesktop}\TallerVeu&quot;; Filename: &quot;{app}\TallerVeu.exe&quot;; Tasks: icona_escriptori
+
+[Tasks]
+Name: &quot;icona_escriptori&quot;; Description: &quot;Crea una icona a l&#39;escriptori&quot;; GroupDescription: &quot;Icones addicionals:&quot;</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Verifiqueu sempre l'script abans de donar-lo per bo</strong></p><p>Un script <code>.iss</code> sintàcticament correcte no garanteix un instal·lador funcional: cal compilar-lo (<code>ISCC.exe</code>, o el botó <em>Build → Compile</em> dins d'Inno Setup) i comprovar realment que l'instal·lador resultant instal·la i desinstal·la l'aplicació sense errors, abans de donar-lo per bo en un projecte real.</p>
+</div>
+
+
+<p>La secció <code>[Icons]</code> amb <code>{uninstallexe}</code> és el que garanteix que es crea una entrada de desinstal·lació neta, accessible tant des del menú d'inici com des de Configuració. La secció <code>[Tasks]</code> amb <code>icona_escriptori</code> deixa l'accés directe a l'escriptori com a opcional, no obligatori.</p>
+
+  <h3>3.2. WiX Toolset i MSIX: quan es fan servir</h3>
+
+<p><strong>WiX</strong> genera paquets <code>.msi</code> a partir d'un fitxer XML que descriu components, carpetes i registre; té una corba d'aprenentatge més pronunciada que Inno Setup però és l'estàndard de facto en molts entorns empresarials .NET. <strong>MSIX</strong> és el format més modern de Microsoft, pensat per a instal·lació i actualització a través de la Microsoft Store o de sistemes de gestió d'aplicacions corporatius. Per a un primer instal·lador funcional i senzill de mantenir, Inno Setup sol ser suficient.</p>
+
+</div>
+
+<div class="section" id="Unitat3_Bloc3_Seccio4">
+  <h2 id="Unitat3_Bloc3_Seccio4">4. Personalització i desinstal·lació</h2>
+
+<p>Un instal·lador ben preparat permet personalitzar aspectes com el logotip, els diàlegs de benvinguda, l'idioma o la carpeta de destí, i ha de deixar sempre una via clara per <strong>desinstal·lar</strong> l'aplicació de manera neta (retirant fitxers, dreceres i entrades de registre creades durant la instal·lació).</p>
+
+<p>El paquet de distribució de <code>TallerVeu</code> inclou també un <code>README_instal·lacio.txt</code>, amb els requisits (Windows 64 bits, micròfon i altaveus, cap dependència addicional gràcies al <code>--self-contained</code>), els passos d'instal·lació i desinstal·lació, i les dependències i permisos necessaris (accés al micròfon).</p>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 3: Distribució i instal·lació",
+  "description": "Cicle de vida, empaquetament .NET, instal·lador amb Inno Setup, personalització i desinstal·lació",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Desenvolupament d'interfícies — IOC",
+    "description": "Materials del mòdul DAM_0488 - Desenvolupament d'interfícies (C# i Windows Forms)"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                        
+                                        
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0488/unitat-3/bloc-2/" class="nav-button" aria-label="Bloc anterior: Síntesi de veu i integració">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0488/unitat-3/bloc-4/" class="nav-button" aria-label="Bloc següent: Proves">Següent →</a>
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="3" data-total="3">(3/3)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="3" data-total="4">(3/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 75%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="4">(1/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 25%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/dam_0488/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/dam_0488",
+        title: "Desenvolupament d'interfícies",
+        version: "v1.0",
+        cicle_modul: "DAM_0488"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/dam_0488/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/dam_0488/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>
