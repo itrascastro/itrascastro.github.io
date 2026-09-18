@@ -4640,7 +4640,7 @@ export class ProductListVirtualComponent {
   <ol>
     <li><strong>Càrrega inicial ràpida:</strong> Només es creen 20-30 nodes inicials (&lt; 1 segon)</li>
     <li><strong>Memòria optimitzada:</strong> Consum de només 10-20 MB, 95% de reducció</li>
-    <li><strong>Scroll fluid:</strong> 60 FPS constants amb reciclatge de nodes</li>
+    <li><strong>Scroll fluid:</strong> el reciclatge de nodes manté el scroll suau fins i tot amb milers d'elements</li>
     <li><strong>Detecció eficient:</strong> Només comprova els elements visibles</li>
     <li><strong>Funciona en mòbils:</strong> Experiència fluida fins i tot en dispositius antics</li>
   </ol>
@@ -5262,12 +5262,13 @@ function updateVisibleItems(newRange: [start, end]) {
 
 
   <h4>2.5.3. Avantatges de la virtualització</h4>
+  <p>La columna d'exemple mostra l'ordre de magnitud en un escenari hipotètic de 5.000 files; els valors reals depenen del contingut de cada fila i del dispositiu.</p>
   <table>
     <thead>
       <tr>
         <th>Aspecte</th>
         <th>Benefici</th>
-        <th>Mesura quantitativa</th>
+        <th>Exemple orientatiu</th>
       </tr>
     </thead>
     <tbody>
@@ -5278,18 +5279,18 @@ function updateVisibleItems(newRange: [start, end]) {
       </tr>
       <tr>
         <td><strong>Memòria</strong></td>
-        <td>95% menys</td>
-        <td>15 MB (vs 500 MB)</td>
+        <td>Molt menys (només les files visibles)</td>
+        <td>desenes de MB (vs centenars)</td>
       </tr>
       <tr>
-        <td><strong>Temps càrrega</strong></td>
-        <td>98% més ràpid</td>
-        <td>0.5s (vs 25s)</td>
+        <td><strong>Temps de render</strong></td>
+        <td>Molt més ràpid</td>
+        <td>menys d'1 s (vs desenes de segons)</td>
       </tr>
       <tr>
-        <td><strong>FPS scroll</strong></td>
-        <td>60 FPS constant</td>
-        <td>Fluid (vs 10 FPS)</td>
+        <td><strong>Scroll</strong></td>
+        <td>Fluid (nodes reciclats)</td>
+        <td>sense salts (vs scroll a batzegades)</td>
       </tr>
       <tr>
         <td><strong>Dispositius mòbils</strong></td>
@@ -6678,8 +6679,12 @@ export class MeasuredListComponent implements AfterViewInit {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// test-list-normal.component.ts (SENSE virtualització)
+import { Component, Injector, afterNextRender, inject } from &#39;@angular/core&#39;;
+import { CurrencyPipe } from &#39;@angular/common&#39;;
+
 @Component({
   selector: &#39;app-test-list-normal&#39;,
+  imports: [CurrencyPipe],
   template: `
     &lt;div class=&quot;container&quot;&gt;
       &lt;h2&gt;Llista normal ({{ items.length }} elements)&lt;/h2&gt;
@@ -6699,10 +6704,11 @@ export class MeasuredListComponent implements AfterViewInit {
   `
 })
 export class TestListNormalComponent {
-  items: any[] = [];
+  private readonly injector = inject(Injector);
+  items: Item[] = [];
 
   loadItems() {
-    const startTime = performance.now();
+    const inici = performance.now();
 
     this.items = Array.from({length: 5000}, (_, i) =&gt; ({
       id: i,
@@ -6712,17 +6718,15 @@ export class TestListNormalComponent {
       image: `https://placehold.co/80?text=${i}`
     }));
 
-    setTimeout(() =&gt; {
-      const endTime = performance.now();
-      console.log(`Temps càrrega: ${(endTime - startTime).toFixed(0)}ms`);
+    // afterNextRender s&#39;executa un cop Angular ha pintat el DOM: mesura orientativa del render
+    afterNextRender(() =&gt; {
+      console.log(`Temps fins al render: ${(performance.now() - inici).toFixed(0)} ms`);
       console.log(`Nodes al DOM: ${document.querySelectorAll(&#39;.item&#39;).length}`);
-    }, 100);
+    }, { injector: this.injector });
   }
+}
 
-  trackById(index: number, item: any): number {
-    return item.id;
-  }
-}</code></pre>
+interface Item { id: number; name: string; description: string; price: number; image: string; }</code></pre>
   </div>
 </div>
 
@@ -6744,8 +6748,13 @@ export class TestListNormalComponent {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// test-list-virtual.component.ts (AMB virtualització)
+import { Component, Injector, afterNextRender, inject } from &#39;@angular/core&#39;;
+import { CurrencyPipe } from &#39;@angular/common&#39;;
+import { ScrollingModule } from &#39;@angular/cdk/scrolling&#39;;
+
 @Component({
   selector: &#39;app-test-list-virtual&#39;,
+  imports: [ScrollingModule, CurrencyPipe],
   template: `
     &lt;div class=&quot;container&quot;&gt;
       &lt;h2&gt;Llista virtualitzada ({{ items.length }} elements)&lt;/h2&gt;
@@ -6765,10 +6774,11 @@ export class TestListNormalComponent {
   `
 })
 export class TestListVirtualComponent {
-  items: any[] = [];
+  private readonly injector = inject(Injector);
+  items: Item[] = [];
 
   loadItems() {
-    const startTime = performance.now();
+    const inici = performance.now();
 
     this.items = Array.from({length: 5000}, (_, i) =&gt; ({
       id: i,
@@ -6778,22 +6788,26 @@ export class TestListVirtualComponent {
       image: `https://placehold.co/80?text=${i}`
     }));
 
-    setTimeout(() =&gt; {
-      const endTime = performance.now();
-      console.log(`Temps càrrega: ${(endTime - startTime).toFixed(0)}ms`);
+    afterNextRender(() =&gt; {
+      console.log(`Temps fins al render: ${(performance.now() - inici).toFixed(0)} ms`);
       console.log(`Nodes al DOM: ${document.querySelectorAll(&#39;.item&#39;).length}`);
-    }, 100);
+    }, { injector: this.injector });
   }
 
-  trackById(index: number, item: any): number {
+  trackById(index: number, item: Item): number {
     return item.id;
   }
-}</code></pre>
+}
+
+interface Item { id: number; name: string; description: string; price: number; image: string; }</code></pre>
   </div>
 </div>
 
 
-  <h4>2.9.3. Resultats quantitatius (exemple orientatiu d'una mesura concreta)</h4>
+  <p>La mesura amb <code>performance.now()</code> és orientativa (depèn de la màquina, del navegador i del que estigui fent el fil principal). Per a una mesura fiable, useu el panell <em>Performance</em> de DevTools (gravació del clic fins al final del render) o Lighthouse sobre el build de producció, i compareu les dues versions en les mateixes condicions.</p>
+
+  <h4>2.9.3. Resultats quantitatius (exemple hipotètic)</h4>
+  <p>Taula d'un escenari hipotètic per fer visible l'ordre de magnitud de la diferència. Els vostres valors dependran de la màquina, el navegador i la mida de cada fila; el que és general és la proporció: el DOM passa de milers de nodes a unes desenes.</p>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -6818,15 +6832,15 @@ export class TestListVirtualComponent {
       </tr>
       <tr>
         <td><strong>Memòria (heap)</strong></td>
-        <td>420 MB</td>
-        <td>18 MB</td>
-        <td><strong>95% menys</strong></td>
+        <td>alta (un node de DOM i un component per fila)</td>
+        <td>baixa (només les files visibles)</td>
+        <td><strong>Molt menys</strong></td>
       </tr>
       <tr>
-        <td><strong>FPS durant scroll</strong></td>
-        <td>12 FPS</td>
-        <td>60 FPS</td>
-        <td><strong>5× més fluid</strong></td>
+        <td><strong>Fluïdesa del scroll</strong></td>
+        <td>salts perceptibles (el navegador recalcula milers de nodes)</td>
+        <td>fluida (nodes reciclats)</td>
+        <td><strong>Molt millor</strong></td>
       </tr>
       <tr>
         <td><strong>TBT (Total Blocking Time)</strong></td>
@@ -6836,9 +6850,9 @@ export class TestListVirtualComponent {
       </tr>
       <tr>
         <td><strong>Lighthouse Performance</strong></td>
-        <td>32/100</td>
-        <td>98/100</td>
-        <td><strong>3× millor</strong></td>
+        <td>baixa</td>
+        <td>alta</td>
+        <td><strong>Millor</strong></td>
       </tr>
     </tbody>
   </table>
@@ -9222,7 +9236,7 @@ export class DebugVirtualListComponent implements AfterViewInit {
 
   <ol>
     <li><strong>Virtualització CDK:</strong> Només renderitza 20-30 elements visibles, independentment del total</li>
-    <li><strong>Rendiment optimitzat:</strong> Càrrega inicial 95% més ràpida, scroll fluid a 60 FPS constant</li>
+    <li><strong>Rendiment optimitzat:</strong> Render inicial molt més ràpid i scroll fluid, perquè el DOM només conté les files visibles</li>
     <li><strong>TrackBy implementat:</strong> Reciclatge eficient de nodes, actualitzacions instantànies</li>
     <li><strong>Cerca i ordenació:</strong> Filtrat al component sense pipes impurs, respostes immediates</li>
     <li><strong>Bones pràctiques aplicades:</strong> OnPush, pipes purs, gestió de memòria optimitzada</li>
@@ -9557,7 +9571,7 @@ Amb virtual: 20 / 200 = 0.1 segons</code></pre>
 □ Mesurat rendiment amb DevTools?
 □ Testat en dispositiu mòbil?
 □ Memòria &lt; 50 MB per 1.000+ elements?
-□ Scroll a 60 FPS constant?</code></pre>
+□ El scroll és fluid, sense salts, amb la llista gran?</code></pre>
   </div>
 </div>
 
@@ -9781,15 +9795,9 @@ npm --version</code></pre>
     <li>Puntuació Lighthouse: 30-50/100</li>
   </ul>
 
-  <p><strong>3. Seguretat compromesa</strong></p>
+  <p><strong>3. Codi font exposat innecessàriament</strong></p>
 
-  <p>El codi de desenvolupament conté:</p>
-  <ul>
-    <li>Source maps que exposen el codi original complet</li>
-    <li>Noms de variables i funcions originals</li>
-    <li>Comentaris amb informació sensible</li>
-    <li>Configuracions de debug actives</li>
-  </ul>
+  <p>El codi de desenvolupament conté source maps, noms originals, comentaris i configuració de depuració. Publicar-ho fa més fàcil llegir la vostra implementació, però no és una qüestió de seguretat: tot el que arriba al navegador es pot inspeccionar, minificat o no. Els secrets (claus d'API, contrasenyes, dades personals) no poden estar mai al codi del client, sigui quina sigui la configuració del build.</p>
 
   <p><strong>4. Experiència d'usuari pobre</strong></p>
 
@@ -9836,8 +9844,8 @@ npm --version</code></pre>
   <ul>
     <li><strong>Reducció dràstica de mida:</strong> 85-95% menys (15 MB → 1 MB)</li>
     <li><strong>Càrrega ultraràpida:</strong> 80-90% més ràpid (5s → 0.8s)</li>
-    <li><strong>Millor SEO i rendiment:</strong> Lighthouse 95-100/100</li>
-    <li><strong>Seguretat millorada:</strong> Codi ofuscat sense source maps</li>
+    <li><strong>Millor puntuació de rendiment:</strong> Lighthouse notablement més alta que en desenvolupament</li>
+    <li><strong>Sense source maps públics:</strong> el codi publicat és més compacte i menys llegible (no és una mesura de seguretat)</li>
     <li><strong>Experiència d'usuari òptima:</strong> Aplicació instantània fins i tot en 3G</li>
   </ul>
 
@@ -9930,7 +9938,7 @@ npm --version</code></pre>
         <td><strong>Minificació</strong></td>
         <td>No</td>
         <td>Sí</td>
-        <td>Codi ofuscat</td>
+        <td>Codi compacte (noms curts, sense espais)</td>
       </tr>
       <tr>
         <td><strong>AOT</strong></td>
@@ -10041,7 +10049,8 @@ MODE PRODUCCIÓ (ng build)
 │ ↓                                     │
 │ Bundle splitting: Chunks separats    │
 │ ↓                                     │
-│ Compressió: Gzip / Brotli            │
+│ (La compressió gzip/brotli la fa el  │
+│  servidor o CDN, no ng build)        │
 │ ↓                                     │
 │ Bundle: 1 MB                         │
 │ Càrrega: 0.8 segons                  │
@@ -10085,7 +10094,9 @@ MODE PRODUCCIÓ (ng build)
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">ABANS: Mode desenvolupament
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">(Xifres il·lustratives d&#39;un projecte hipotètic)
+
+ABANS: Mode desenvolupament
 ┌─────────────────────────────────────────────┐
 │ Codi Font (src/)                            │
 │   ├─ app.component.ts        (llegible)     │
@@ -10127,7 +10138,7 @@ DESPRÉS: Mode producció
 │                                             │
 │ TOTAL inicial: ~200 KB (95% reducció)       │
 │ Temps càrrega: 0.8 segons                   │
-│ Lighthouse: 98/100                          │
+│ Lighthouse: puntuació alta                  │
 └─────────────────────────────────────────────┘</code></pre>
   </div>
 </div>
@@ -12997,7 +13008,7 @@ lighthouse https://your-app.com --view</code></pre>
     <li>Tots els recursos carreguen (status 200)</li>
     <li>No hi ha errors 404 o 500</li>
     <li>Fitxers tenen cache headers adequats</li>
-    <li>Compressió gzip/brotli activa</li>
+    <li>Compressió gzip/brotli activa al servidor (capçalera <code>Content-Encoding</code>)</li>
   </ul>
 
   <p><strong>3. WebPageTest</strong></p>
@@ -13299,18 +13310,19 @@ netlify deploy --prod --dir=dist/ioc-angular-[nom-app]-[nom-alumne]/browser</cod
 
 
   <h4>3.12.9. Resultat final</h4>
+  <p>La mida del paquet la dona <code>ng build</code> i és reproduïble; els temps i la puntuació Lighthouse depenen de la màquina i la xarxa simulada (valors d'exemple d'una execució concreta).</p>
   <p><strong>Abans d'optimitzar:</strong></p>
   <ul>
     <li>Paquet inicial: 733 kB (avís de budget)</li>
-    <li>Càrrega: 3,2 s en 3G</li>
-    <li>Lighthouse: 65/100</li>
+    <li>Càrrega en 3G simulada: ≈ 3 s</li>
+    <li>Lighthouse: puntuació mitjana</li>
   </ul>
 
   <p><strong>Després d'optimitzar:</strong></p>
   <ul>
     <li>Paquet inicial: 333 kB (55% de reducció), sense avisos</li>
-    <li>Càrrega: 1,4 s en 3G</li>
-    <li>Lighthouse: 98/100</li>
+    <li>Càrrega en 3G simulada: ≈ 1,5 s</li>
+    <li>Lighthouse: puntuació alta</li>
   </ul>
 
   <p><strong>Evidències que cal conservar:</strong> la sortida de <code>ng build</code> amb la mida inicial i la taula de chunks lazy, i una captura de la pestanya Network on es vegi un chunk carregat sota demanda.</p>

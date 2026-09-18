@@ -4312,7 +4312,7 @@ const test: ElementCataleg = {
   </div>
 </div>
 
-    <p><strong>8. Validar amb linter:</strong></p>
+    <p><strong>8. Validar la compilació:</strong></p>
     
     <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
   <div class="code-header">
@@ -4329,8 +4329,8 @@ const test: ElementCataleg = {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">npm run lint   # Comprova tipus correctes
-ng build       # Compila verificant models</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng build       # Compila verificant tipus i models (el projecte no porta ESLint per defecte)
+npm test -- --watch=false</code></pre>
   </div>
 </div>
 
@@ -7294,10 +7294,10 @@ export function adaptarElementAPI(apiElement: ElementAPI): ElementCataleg {
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash"># Estructura verificada:
 tree src/app/adaptadors
-# Tests de tots els adaptadors:
-npm run test -- adaptadors/
+# Tests de tots els adaptadors (--include accepta una carpeta o un glob):
+npm run test -- --include=src/app/adaptadors --watch=false
 # Coverage dels adaptadors:
-npm run test -- --coverage --coveragePathPattern=adaptadors</code></pre>
+npm run test -- --include=src/app/adaptadors --coverage --coverage-include=&#39;src/app/adaptadors/**/*.ts&#39; --watch=false</code></pre>
   </div>
 </div>
 
@@ -7747,8 +7747,8 @@ describe(&#39;adaptarElementAPI&#39;, () =&gt; {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">npm run lint
-npm run test -- adaptadors/
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng build
+npm run test -- --include=src/app/adaptadors --watch=false
 ng serve</code></pre>
   </div>
 </div>
@@ -8252,7 +8252,7 @@ ng serve</code></pre>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">He executat <code>npm run lint</code> sense errors</div>
+    <div class="checklist-text">He executat <code>ng build</code> i els tests sense errors</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
@@ -8468,8 +8468,8 @@ ng serve</code></pre>
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng generate class adaptadors/element-adaptador
-npm run test -- adaptadors/
-npm run test -- --coverage --coveragePathPattern=adaptadors</code></pre>
+npm run test -- --include=src/app/adaptadors --watch=false
+npm run test -- --include=src/app/adaptadors --coverage --coverage-include=&#39;src/app/adaptadors/**/*.ts&#39; --watch=false</code></pre>
   </div>
 </div>
 
@@ -10573,7 +10573,7 @@ readonly estatServei = this.elementService.estat;</code></pre>
     <h4>3.13.2. Problemes transversals</h4>
     <div class="table-responsive"><table class="table table-bordered"><thead><tr><th>Símptoma</th><th>Possible causa</th><th>Solució ràpida</th></tr></thead><tbody><tr><td>Components sense actualitzar</td><td>No s'utilitza <code>computed</code> correctament</td><td>Verificar sintaxi: <code>computed(() => service.signal$())</code></td></tr><tr><td><code>Cannot read properties of undefined</code></td><td>Accés a propietat abans que dades estiguin disponibles</td><td>Afegir guards al template: <code>@if (elements().length > 0) { ... }</code></td></tr><tr><td>Fuites de memòria amb observables</td><td>Subscripció sense desubscriure</td><td>Usar <code>takeUntilDestroyed()</code> o convertir a signal amb <code>toSignal()</code></td></tr><tr><td>Duplicació de codi entre components</td><td>Components repetint lògica de servei</td><td>Centralitzar al component contenidor, passar dades via <code>@Input()</code></td></tr><tr><td>Errors de change detection</td><td>Modificació directa de signals readonly</td><td>Només modificar signals privats al servei amb <code>.set()</code> o <code>.update()</code></td></tr></tbody></table></div>
     <h4>3.13.3. Errors de configuració</h4>
-    <div class="table-responsive"><table class="table table-bordered"><thead><tr><th>Error</th><th>Causa</th><th>Solució</th></tr></thead><tbody><tr><td><code>inject() can only be used in constructor</code></td><td>Cridar <code>inject()</code> fora de constructor</td><td>Moure <code>inject()</code> a nivell de classe o usar constructor</td></tr><tr><td><code>signal is not a function</code></td><td>Import incorrecte de signal</td><td><code>import { signal } from '@angular/core';</code></td></tr><tr><td><code>computed() returned undefined</code></td><td>Funció computed no retorna valor</td><td>Afegir <code>return</code> a la funció</td></tr><tr><td>Component no carrega en ruta</td><td>Ruta mal configurada</td><td>Verificar <code>app.routes.ts</code></td></tr><tr><td><code>asReadonly is not a function</code></td><td>Versió Angular &lt; 16</td><td>Actualitzar Angular: <code>ng update @angular/core @angular/cli</code></td></tr></tbody></table></div>
+    <div class="table-responsive"><table class="table table-bordered"><thead><tr><th>Error</th><th>Causa</th><th>Solució</th></tr></thead><tbody><tr><td><code>NG0203: inject() must be called from an injection context</code></td><td>Cridar <code>inject()</code> fora d'un context d'injecció (per exemple, dins d'<code>ngOnInit</code> o d'un callback)</td><td>Cridar-lo en un inicialitzador de propietat o al constructor (tots dos són contextos d'injecció)</td></tr><tr><td><code>signal is not a function</code></td><td>Import incorrecte de signal</td><td><code>import { signal } from '@angular/core';</code></td></tr><tr><td><code>computed() returned undefined</code></td><td>Funció computed no retorna valor</td><td>Afegir <code>return</code> a la funció</td></tr><tr><td>Component no carrega en ruta</td><td>Ruta mal configurada</td><td>Verificar <code>app.routes.ts</code></td></tr><tr><td><code>asReadonly is not a function</code></td><td>Versió Angular &lt; 16</td><td>Actualitzar Angular: <code>ng update @angular/core @angular/cli</code></td></tr></tbody></table></div>
     <h4>3.13.4. Problemes de dependències</h4>
     <div class="table-responsive"><table class="table table-bordered"><thead><tr><th>Error</th><th>Causa</th><th>Solució</th></tr></thead><tbody><tr><td><code>No provider for HttpClient</code></td><td>Import incorrecte o projecte anterior a Angular 21 (a Angular 22 HttpClient és disponible per defecte)</td><td>Importar <code>HttpClient</code> de <code>@angular/common/http</code>; <code>provideHttpClient(...)</code> només per personalitzar-lo</td></tr><tr><td><code>CommonModule directive not found</code></td><td>CommonModule no importat</td><td>Afegir a imports component: <code>imports: [CommonModule, ...]</code></td></tr><tr><td><code>RouterOutlet not found</code></td><td>RouterOutlet no importat</td><td>Afegir a App: <code>imports: [RouterOutlet]</code></td></tr><tr><td>TypeScript errors amb signals</td><td>tsconfig massa restrictiu</td><td>Verificar <code>tsconfig.json</code>: <code>"target": "ES2022"</code></td></tr><tr><td>Template no actualitza signals</td><td>El template no invoca els signals</td><td>Usar <code>signal()</code> amb parèntesis: <code>{{ elements() }}</code></td></tr></tbody></table></div>
   
@@ -10622,7 +10622,7 @@ readonly estatServei = this.elementService.estat;</code></pre>
     </div>
   </div>
   <div class="ai-container">
-    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> Expert RxJS i Angular. <strong>Context:</strong> Tinc components Angular que utilitzen observables i necessito gestionar subscripcions correctament per evitar fuites de memòria. <strong>Tasca:</strong> Explica detalladament tres estratègies diferents per gestionar subscripcions: 1) <code>takeUntilDestroyed()</code> amb Subject, 2) <code>async</code> pipe al template, i 3) <code>toSignal()</code> per convertir a signals. Per cada estratègia proporciona exemple de codi complet, casos d'ús recomanats, avantatges, inconvenients i impacte en el rendiment. <strong>Format:</strong> Guia comparativa amb taula resum i exemples pràctics.</div>
+    <div class="ai-prompt-content" aria-label="Text del prompt"><strong>Rol:</strong> Expert RxJS i Angular. <strong>Context:</strong> Tinc components Angular que utilitzen observables i necessito gestionar subscripcions correctament per evitar fuites de memòria. <strong>Tasca:</strong> Explica detalladament tres estratègies diferents per gestionar subscripcions: 1) <code>takeUntilDestroyed()</code> (i el patró anterior <code>takeUntil(destroy$)</code> amb Subject com a referència històrica), 2) <code>async</code> pipe al template, i 3) <code>toSignal()</code> per convertir a signals. Per cada estratègia proporciona exemple de codi complet, casos d'ús recomanats, avantatges, inconvenients i impacte en el rendiment. <strong>Format:</strong> Guia comparativa amb taula resum i exemples pràctics.</div>
   </div>
 </div>
 

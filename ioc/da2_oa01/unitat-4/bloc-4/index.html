@@ -2867,7 +2867,7 @@ npm install @angular/cdk@22</code></pre>
 </div>
 
 
-  <p>El component és presentacional: rep la llista per <code>@Input</code>, emet la selecció per <code>@Output</code> i no coneix el servei. Això el fa perfectament compatible amb <code>OnPush</code>, l'estratègia que ja té per defecte a Angular 22: només es repinta quan canvia la referència de la llista o quan l'usuari hi interactua. En aquest exemple indiquem <code>changeDetection: ChangeDetectionStrategy.OnPush</code> de manera explícita (és redundant) per fer visible l'estratègia que estem estudiant.</p>
+  <p>El component és presentacional: rep la llista per <code>@Input</code>, emet la selecció per <code>@Output</code> i no coneix el servei. Això el fa perfectament compatible amb <code>OnPush</code>, l'estratègia que ja té per defecte a Angular 22: en aquest exemple es repinta, principalment, quan canvia la referència de la llista o quan l'usuari hi interactua (també ho faria per un signal llegit a la plantilla, per <code>markForCheck()</code> o per un esdeveniment en un descendent). En aquest exemple indiquem <code>changeDetection: ChangeDetectionStrategy.OnPush</code> de manera explícita (és redundant) per fer visible l'estratègia que estem estudiant.</p>
 
   <p>Fitxer <code>src/app/components/llista-elements/llista-elements.component.ts</code>:</p>
 

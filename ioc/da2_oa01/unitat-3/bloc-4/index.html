@@ -5866,7 +5866,7 @@ export class FormulariNouElementComponent {
 <div class="section cas-dus">
   <h2 id="Unitat3_Bloc4_Seccio11">11. Verificació final i control de versions</h2>
 
-  <h3>11.1. Executar linter</h3>
+  <h3>11.1. Comprovar la compilació</h3>
 
   <p><strong>PowerShell (Windows):</strong></p>
 
@@ -5886,7 +5886,7 @@ export class FormulariNouElementComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-powershell">ng lint</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-powershell">ng build</code></pre>
   </div>
 </div>
 
@@ -5909,12 +5909,12 @@ export class FormulariNouElementComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng lint</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng build</code></pre>
   </div>
 </div>
 
 
-  <p><strong>Verificació:</strong> No hi ha d'haver errors de linting. Si n'hi ha, corregiu-los abans de continuar. El projecte generat amb Angular 22 no porta ESLint configurat: la primera vegada, <code>ng lint</code> ofereix instal·lar <code>angular-eslint</code>; accepteu-ho o ometeu aquest pas si no voleu afegir dependències.</p>
+  <p><strong>Verificació:</strong> El build ha d'acabar sense errors de tipus ni de plantilla. El projecte generat amb Angular 22 no porta cap eina de <em>lint</em> (no hi ha script <code>npm run lint</code>); si en voleu una, <code>ng add angular-eslint</code> la configura, però no és necessària per a aquest cas d'ús.</p>
 
   <h3>11.2. Executar tests</h3>
 
@@ -6111,7 +6111,7 @@ git tag -l</code></pre>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">El linter no reporta errors</div>
+    <div class="checklist-text">El build acaba sense errors</div>
   </div>
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
@@ -6719,7 +6719,7 @@ ng serve</code></pre>
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng serve                    # Arrencar app (http://localhost:4200)
 ng build                    # Build de producció
-npm run lint                # Validar codi
+npm test -- --watch=false   # Executar tests
 git status                  # Estat del repositori</code></pre>
   </div>
 </div>

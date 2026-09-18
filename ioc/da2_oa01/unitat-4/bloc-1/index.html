@@ -1660,8 +1660,8 @@ export class App {
     <li><strong>URLs no reflecteixen l'estat:</strong> La barra d'adreces sempre mostra la mateixa URL. No es poden compartir enllaços específics ni crear marcadors per cada secció</li>
     <li><strong>Botons de navegació no funcionen:</strong> Els botons "Enrere" i "Endavant" del navegador no responen perquè la URL no canvia</li>
     <li><strong>Codi desorganitzat:</strong> Tot el codi de navegació queda en un sol component gegant, difícil de mantenir i provar</li>
-    <li><strong>Càrrega innecessària:</strong> Tots els components es carreguen sempre, fins i tot els que l'usuari no visitarà mai</li>
-    <li><strong>SEO impossible:</strong> Els motors de cerca només indexen una URL, no poden trobar contingut específic</li>
+    <li><strong>Instanciació innecessària:</strong> Tots els components es creen i es mantenen al DOM alhora, fins i tot els que l'usuari no visitarà mai</li>
+    <li><strong>Sense URL per vista:</strong> No es pot enllaçar ni compartir una pantalla concreta, i els motors de cerca només veuen una única adreça</li>
   </ul>
 
   <h4>1.2.3. Solució amb sistema de rutes</h4>
@@ -1743,8 +1743,8 @@ export class App {}</code></pre>
     <li><strong>URLs significatives:</strong> Cada vista té la seva URL única que es pot compartir, guardar com a marcador i recarregar mantenint l'estat</li>
     <li><strong>Navegació funcional:</strong> Els botons enrere/endavant del navegador funcionen correctament perquè el Router actualitza l'historial</li>
     <li><strong>Codi organitzat:</strong> Cada vista té el seu propi component amb responsabilitats clarament definides</li>
-    <li><strong>Càrrega selectiva:</strong> El Router només carrega el component de la ruta activa, millorant el rendiment inicial</li>
-    <li><strong>SEO optimitzat:</strong> Cada ruta és indexable pels motors de cerca amb el seu propi contingut i metadades</li>
+    <li><strong>Instanciació selectiva:</strong> El Router només crea el component de la ruta activa. Atenció: amb <code>component: X</code> i imports estàtics, el JavaScript de totes les rutes continua formant part del paquet inicial; la descàrrega sota demanda arriba amb <code>loadComponent</code>/<code>loadChildren</code> (Bloc 2)</li>
+    <li><strong>Una URL per vista:</strong> Cada pantalla es pot enllaçar i compartir. Per a la indexació als cercadors, un projecte creat amb <code>--ssr=false</code> es renderitza al client; si el SEO és un requisit, cal SSR o prerenderització (fora de l'abast d'aquest mòdul)</li>
   </ul>
 
   <h4>1.2.4. Components clau del sistema</h4>
@@ -3038,7 +3038,7 @@ export const appConfig: ApplicationConfig = {
   <h4>1.6.3. Verificació de la configuració</h4>
   <p><strong>Pas 1:</strong> Obriu <code>src/app/app.config.ts</code> i verifiqueu que <code>provideRouter(routes)</code> està present.</p>
 
-  <p><strong>Pas 2:</strong> Executeu el linter per detectar errors:</p>
+  <p><strong>Pas 2:</strong> Compileu per detectar errors de configuració o de tipus:</p>
 
 <div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
   <div class="code-header">
@@ -3055,7 +3055,7 @@ export const appConfig: ApplicationConfig = {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">npm run lint</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ng build</code></pre>
   </div>
 </div>
 
@@ -6162,7 +6162,7 @@ this.service.obtenirPerID(id).subscribe(...);</code></pre>
 <h4>2.3.4. Snapshot vs Subscribe com foto vs vídeo</h4>
 <p><code>snapshot.paramMap</code> és com fer una foto: captura el valor actual en un instant. <code>toSignal(paramMap)</code> (o <code>paramMap.subscribe()</code>) és com gravar un vídeo: et notifica cada vegada que els paràmetres canvien, frame a frame.</p>
 <h4>2.3.5. Router state com notes adhesives temporals</h4>
-<p>Passar dades amb <code>router state</code> és com enganxar una nota adhesiva al dorso d'un document. Les dades viatgen amb la navegació, però no són permanents (si recarregues la pàgina, es perden). Útil per informació temporal que no vols exposar a la URL.</p>
+<p>Passar dades amb <code>router state</code> és com enganxar una nota adhesiva al dorso d'un document. Les dades viatgen amb la navegació i queden enganxades a aquella entrada de l'historial del navegador, però no formen part de la URL: no es poden compartir ni obrir en una pestanya nova. Útil per informació temporal que no té sentit a la URL.</p>
   
   </div>
 </div>
@@ -8089,7 +8089,7 @@ export class ConfirmacioComponent {
 <!-- Component: Caixa informativa -->
 <div class="info-box" role="note">
     <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
-    <strong>On viu realment l'estat?</strong> Angular desa <code>state</code> a <code>history.state</code> del navegador en acabar la navegació. Per això, quan l'usuari recarrega (F5) o prem Enrere/Endavant, el Router el recupera i torna a omplir <code>extras.state</code> de la nova navegació, mentre existeixi aquella entrada de l'historial. El que no fa mai és aparèixer a la URL: no és compartible ni marcable, i qualsevol persona amb DevTools pot llegir-lo (<code>history.state</code>). No és, doncs, un lloc segur per a informació sensible.
+    <strong>On viu realment l'estat?</strong> Angular desa <code>state</code> a <code>history.state</code> del navegador en acabar la navegació. Per això, quan l'usuari recarrega (F5) o prem Enrere/Endavant, l'estat continua disponible a <code>history.state</code> (o <code>inject(Location).getState()</code>) mentre existeixi aquella entrada de l'historial; en la navegació Enrere/Endavant el Router també l'exposa com a <code>NavigationStart.restoredState</code>. <code>currentNavigation()?.extras.state</code> és per a la navegació que s'està executant: no hi compteu com a via de recuperació en aquests casos. El que no fa mai és aparèixer a la URL: no és compartible ni marcable, i qualsevol persona amb DevTools pot llegir-lo (<code>history.state</code>). No és, doncs, un lloc segur per a informació sensible.
     
 </div>
 
@@ -8202,7 +8202,7 @@ export class ConfirmacioComponent {
 <p><strong>Avantatges:</strong></p>
 <ul>
 <li><strong>URLs netes:</strong> Les dades NO apareixen a la URL</li>
-<li><strong>Objectes complexos:</strong> Podeu passar objectes grans sense límits de longitud de URL</li>
+<li><strong>Objectes complexos:</strong> No consumeixen espai a la URL. L'estat ha de ser serialitzable (res de funcions ni instàncies de classe) i el navegador hi imposa un límit de mida a <code>history.state</code></li>
 <li><strong>Temporal per disseny:</strong> L'estat viatja amb aquella navegació concreta, ideal per a missatges de confirmació</li>
 </ul>
 <p><strong>Limitacions:</strong></p>
@@ -8244,7 +8244,7 @@ export class ConfirmacioComponent {
 <td><strong>Persistent amb recàrrega</strong></td>
 <td>Sí</td>
 <td>Sí</td>
-<td>No (es perd)</td>
+<td>Només mentre existeix l'entrada de l'historial (<code>history.state</code>); no si s'obre la URL en una pestanya nova</td>
 </tr>
 <tr>
 <td><strong>Compartible</strong></td>

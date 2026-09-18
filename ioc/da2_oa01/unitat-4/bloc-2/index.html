@@ -1695,7 +1695,7 @@ export class ProfileComponent {
 <li>Dades que només passa un component pare a un fill directe</li>
 </ul>
 
-<p><strong>Regla pràctica:</strong> Si més de 3 components necessiten les mateixes dades o si components no relacionats han de compartir informació, useu gestió d'estat centralitzada.</p>
+<p><strong>Heurística pràctica:</strong> Si més de 3 components necessiten les mateixes dades o si components no relacionats han de compartir informació, useu gestió d'estat centralitzada.</p>
 
 <h4>1.2.8. Característiques principals</h4>
 <p><strong>1. BehaviorSubject com a contenidor d'estat</strong></p>
@@ -3018,7 +3018,7 @@ updateTheme(theme: string): void {
 <h4>1.11.1. Objectiu</h4>
 <p>Establir criteris clars per decidir quan implementar gestió d'estat centralitzada i quan utilitzar estat local.</p>
 
-<h4>1.11.2. Regla dels tres components</h4>
+<h4>1.11.2. Heurística dels tres components</h4>
 <p>Si tres o més components necessiten accedir a les mateixes dades, és un bon candidat per a estat centralitzat. Amb menys de tres components, la comunicació <code>@Input/@Output</code> o un servei simple és suficient.</p>
 
 <table>
@@ -3388,7 +3388,7 @@ updateTheme(theme: string): void {
 <li><strong>Subscripció:</strong> Mecanisme pel qual un component escolta canvis d'un observable i rep notificacions automàtiques quan l'estat canvia.</li>
 <li><strong>async pipe:</strong> Pipe d'Angular que gestiona automàticament subscripció i desubscripció, evitant fuites de memòria.</li>
 <li><strong>Estat distribuït vs centralitzat:</strong> Estat distribuït manté dades locals a cada component; estat centralitzat guarda dades globals en serveis compartits.</li>
-<li><strong>Regla dels tres components:</strong> Si tres o més components necessiten les mateixes dades, és candidat ideal per a estat centralitzat.</li>
+<li><strong>Heurística dels tres components:</strong> Si tres o més components necessiten les mateixes dades, és candidat ideal per a estat centralitzat.</li>
 <li><strong>Detecció de canvis:</strong> Mecanisme d'Angular per detectar quan les dades canvien i actualitzar la vista; depèn de comparar referències d'objectes.</li>
 <li><strong>Fuita de memòria:</strong> Problema quan subscripcions manuals no es cancel·len (amb <code>takeUntilDestroyed()</code> o <code>unsubscribe()</code>), causant que callbacks segueixin actius innecessàriament.</li>
 </ul>
@@ -3544,7 +3544,7 @@ Temps de càrrega inicial: 8-12 segons amb connexió mitjana</code></pre>
 <p><strong>Problemes que genera:</strong></p>
 
 <p><strong>1. Temps de càrrega inicial inacceptable</strong></p>
-<p>Amb aplicacions grans, el fitxer principal pot pesar 3-5 MB. En connexions mòbils o 3G, això significa 10-15 segons de pantalla blanca abans que l'usuari vegi res. El 53% dels usuaris abandonen un lloc web que triga més de 3 segons a carregar (dades de Google). Esteu perdent la meitat dels vostres usuaris potencials per mala optimització.</p>
+<p>Amb aplicacions grans, el fitxer principal pot pesar 3-5 MB. En connexions mòbils o 3G, això significa 10-15 segons de pantalla blanca abans que l'usuari vegi res. Els estudis sobre abandonament coincideixen que una part important dels usuaris marxa quan la càrrega passa d'uns pocs segons: cada segon de pantalla blanca costa usuaris.</p>
 
 
 <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
@@ -3562,7 +3562,8 @@ Temps de càrrega inicial: 8-12 segons amb connexió mitjana</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Connexió 4G (10 Mbps): 3.2 MB → 2.5 segons
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text"># Exemple il·lustratiu (un paquet hipotètic de 3,2 MB)
+Connexió 4G (10 Mbps): 3.2 MB → 2.5 segons
 Connexió 3G (2 Mbps): 3.2 MB → 12.8 segons
 Connexió lenta (750 Kbps): 3.2 MB → 34 segons</code></pre>
   </div>
@@ -3571,7 +3572,7 @@ Connexió lenta (750 Kbps): 3.2 MB → 34 segons</code></pre>
 
 <p><strong>2. Desperdici de recursos en funcionalitats no utilitzades</strong></p>
 <p>Si el 90% dels usuaris són usuaris normals que mai accedeixen al panell d'administració, esteu forçant-los a descarregar 800 KB de codi d'administració que mai utilitzaran. Això és com portar 50 kg de roba a un viatge de cap de setmana "per si de cas".</p>
-<p>Un estudi de Chrome revela que el 60% del codi JavaScript descarregat en una aplicació web típica mai s'executa. Esteu malgastant ample de banda i recursos de processador dels vostres usuaris.</p>
+<p>En moltes aplicacions, una part gran del JavaScript descarregat a l'inici no s'arriba a executar en aquella visita: és ample de banda i temps de processador malgastats.</p>
 
 <p><strong>3. Dificultat per mantenir i organitzar codi gran</strong></p>
 <p>Quan tot el codi està en un únic lloc, trobar components específics es complica. Teniu 150 components en una única carpeta plana <code>src/app/components/</code>. Localitzar el component que necessiteu modificar requereix desplaçar-se per llistes interminables. Els conflictes en control de versions augmenten perquè múltiples desenvolupadors treballen en el mateix espai.</p>
@@ -3673,7 +3674,8 @@ const routes: Routes = [
 
 <p>Resultat: <strong>main.js = 450 KB</strong>, càrrega inicial = 2 segons en 3G. Les rutes d'administració (800 KB) i la vista de preferits (200 KB) es carreguen només quan l'usuari hi accedeix.</p>
 
-<h4>2.2.5. Taula comparativa: Abans vs Després</h4>
+<h4>2.2.5. Taula comparativa: Abans vs Després (exemple il·lustratiu)</h4>
+<p>Les xifres següents corresponen a un escenari hipotètic per fer visible l'ordre de magnitud; no són valors garantits.</p>
 <table>
 <thead>
 <tr>
@@ -3699,9 +3701,9 @@ const routes: Routes = [
 <td>3 segons</td>
 </tr>
 <tr>
-<td><strong>% usuaris que abandonen</strong></td>
-<td>53%</td>
-<td>12%</td>
+<td><strong>Codi de la primera pantalla realment necessari</strong></td>
+<td>Una part petita del paquet</td>
+<td>Gairebé tot el paquet inicial</td>
 </tr>
 <tr>
 <td><strong>Codi no utilitzat descarregat</strong></td>
@@ -4735,7 +4737,7 @@ export const ADMIN_ROUTES: Routes = [
 <li><strong>Les mètriques de rendiment web</strong> que mesuren eines com Lighthouse (DevTools → Lighthouse) o el panell Performance:
   <ul>
     <li><strong>LCP (Largest Contentful Paint):</strong> quan es pinta l'element de contingut més gran; objectiu orientatiu &lt; 2,5 s.</li>
-    <li><strong>TBT (Total Blocking Time):</strong> temps total en què el fil principal està bloquejat executant JavaScript; és la mètrica més sensible a la mida del bundle inicial.</li>
+    <li><strong>TBT (Total Blocking Time):</strong> temps total en què el fil principal està bloquejat executant JavaScript; és una mètrica de laboratori (no forma part de les Core Web Vitals, que són LCP, INP i CLS) i la més sensible a la mida del bundle inicial.</li>
     <li><strong>INP (Interaction to Next Paint):</strong> temps de resposta a les interaccions de l'usuari; objectiu orientatiu &lt; 200 ms.</li>
   </ul>
 </li>
@@ -4743,7 +4745,7 @@ export const ADMIN_ROUTES: Routes = [
 <!-- Component: Caixa informativa -->
 <div class="info-box" role="note">
     <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
-    Potser trobareu materials que parlen de <em>Time to Interactive</em> (TTI). Lighthouse va retirar aquesta mètrica a la versió 10 perquè era massa inestable; les mètriques actuals són LCP, TBT i INP (les Core Web Vitals). No la feu servir com a referència.
+    Potser trobareu materials que parlen de <em>Time to Interactive</em> (TTI). Lighthouse va retirar aquesta mètrica a la versió 10 perquè era massa inestable; les mètriques actuals són LCP, INP i CLS (les Core Web Vitals) i, al laboratori, Lighthouse hi afegeix TBT com a aproximació d'INP quan no hi ha interacció real. No la feu servir com a referència.
     
 </div>
 
@@ -5739,8 +5741,10 @@ export class ProductListComponent {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">export class UserProfileComponent {
-  user: User;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// Exemple esquemàtic (pseudocodi abreujat) per veure les responsabilitats barrejades
+export class UserProfileComponent {
+  private http = inject(HttpClient);
+  user?: User;
 
   ngOnInit() {
     // Responsabilitat 1: Accés a dades
@@ -5756,8 +5760,8 @@ export class ProductListComponent {
   }
 
   // Responsabilitat 5: Lògica de negoci
-  calculateAge(birthDate: Date): number {
-    return new Date().getFullYear() - birthDate.getFullYear();
+  calculateSeniority(createdAt: Date): number {
+    return new Date().getFullYear() - createdAt.getFullYear();
   }
 
   // Responsabilitat 6: Presentació
@@ -5789,9 +5793,11 @@ export class ProductListComponent {
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-typescript">// UserDataService: NOMÉS accés a dades
 @Service()
 export class UserDataService {
+  private http = inject(HttpClient);
+
   getUser(id: number): Observable&lt;User&gt; {
     return this.http.get&lt;UserDTO&gt;(`/api/user/${id}`)
-      .pipe(map(dto =&gt; this.transformDTO(dto)));
+      .pipe(map(dto =&gt; adaptarUser(dto)));   // adaptador pur (Unitat 3), fora del servei
   }
 }
 
@@ -5799,15 +5805,14 @@ export class UserDataService {
 @Service()
 export class UserValidationService {
   isValid(user: User): boolean {
-    return user.name &amp;&amp; user.email &amp;&amp; user.birthDate;
+    return user.name.trim().length &gt; 0 &amp;&amp; user.email.includes(&#39;@&#39;);
   }
 }
 
 // UserProfileComponent: NOMÉS presentació
 export class UserProfileComponent {
-  user$ = this.userData.getUser(123);
-
-  constructor(private userData: UserDataService) {}
+  private userData = inject(UserDataService);
+  readonly user = toSignal(this.userData.getUser(123));
 }</code></pre>
   </div>
 </div>
