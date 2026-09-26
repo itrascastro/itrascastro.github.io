@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+<title id="title">HTTP: petició i resposta</title>
+<desc id="desc">Esquema simple d'un client que envia una petició HTTP i un servidor que retorna una resposta HTTP.</desc>
+<style>
+text{font-family:Arial,sans-serif;fill:#1f2937}.title{font-size:30px;font-weight:700}.label{font-size:24px;font-weight:700}.small{font-size:20px}.box{fill:#f8fafc;stroke:#334155;stroke-width:3}.msg{fill:#ffffff;stroke:#64748b;stroke-width:2}.arrow{stroke:#334155;stroke-width:4;fill:none;marker-end:url(#m)}
+</style>
+<defs><marker id="m" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#334155"/></marker></defs>
+<text x="600" y="48" text-anchor="middle" class="title">HTTP = petició + resposta</text>
+<rect x="70" y="140" width="260" height="130" rx="18" class="box"/><text x="200" y="195" text-anchor="middle" class="label">Client</text><text x="200" y="232" text-anchor="middle" class="small">navegador o Java</text>
+<rect x="870" y="140" width="260" height="130" rx="18" class="box"/><text x="1000" y="195" text-anchor="middle" class="label">Servidor</text><text x="1000" y="232" text-anchor="middle" class="small">servei web</text>
+<path d="M330 180 H855" class="arrow"/><rect x="410" y="95" width="365" height="130" rx="14" class="msg"/>
+<text x="435" y="130" class="small">GET /index.html HTTP/1.1</text><text x="435" y="160" class="small">Host: example.org</text><text x="435" y="190" class="small">[línia buida]</text>
+<path d="M870 330 H345" class="arrow"/><rect x="410" y="300" width="365" height="175" rx="14" class="msg"/>
+<text x="435" y="338" class="small">HTTP/1.1 200 OK</text><text x="435" y="368" class="small">Content-Type: text/html</text><text x="435" y="398" class="small">Content-Length: ...</text><text x="435" y="428" class="small">[línia buida]</text><text x="435" y="458" class="small">&lt;h1&gt;Hola&lt;/h1&gt;</text>
+<text x="600" y="530" text-anchor="middle" class="small">La línia inicial i les capçaleres expliquen la conversa; el cos transporta el contingut.</text>
+</svg>

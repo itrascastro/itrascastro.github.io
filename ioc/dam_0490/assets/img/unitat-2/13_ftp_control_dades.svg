@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-labelledby="title desc">
+<title id="title">FTP: canal de control i canal de dades</title>
+<desc id="desc">Esquema amb una connexió de control persistent i una connexió de dades temporal entre client i servidor FTP.</desc>
+<style>
+text{font-family:Arial,sans-serif;fill:#1f2937}.title{font-size:30px;font-weight:700}.label{font-size:24px;font-weight:700}.small{font-size:20px}.box{fill:#f8fafc;stroke:#334155;stroke-width:3}.line{stroke:#334155;stroke-width:4;fill:none;marker-end:url(#m)}.dash{stroke:#64748b;stroke-width:4;stroke-dasharray:12 10;fill:none;marker-end:url(#m)}
+</style>
+<defs><marker id="m" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#334155"/></marker></defs>
+<text x="600" y="48" text-anchor="middle" class="title">FTP separa control i dades</text>
+<rect x="90" y="190" width="250" height="150" rx="18" class="box"/><text x="215" y="250" text-anchor="middle" class="label">Client FTP</text><text x="215" y="287" text-anchor="middle" class="small">comandes + fitxers</text>
+<rect x="860" y="190" width="250" height="150" rx="18" class="box"/><text x="985" y="250" text-anchor="middle" class="label">Servidor FTP</text><text x="985" y="287" text-anchor="middle" class="small">port 21: control</text>
+<path d="M340 210 H845" class="line"/><text x="592" y="190" text-anchor="middle" class="small">Canal de control persistent</text><text x="592" y="245" text-anchor="middle" class="small">USER · PASS · PWD · PASV · LIST · RETR · STOR</text>
+<path d="M340 390 H845" class="dash"/><text x="592" y="375" text-anchor="middle" class="small">Canal de dades temporal</text><text x="592" y="430" text-anchor="middle" class="small">llistats i bytes dels fitxers</text>
+<text x="600" y="515" text-anchor="middle" class="small">Mode actiu: el servidor inicia la connexió de dades.</text>
+<text x="600" y="550" text-anchor="middle" class="small">Mode passiu: el client inicia la connexió de dades.</text>
+</svg>

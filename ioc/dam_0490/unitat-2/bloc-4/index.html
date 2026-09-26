@@ -16,8 +16,8 @@
 <meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Bloc 4: Protocols reals: serveis i correu electrònic" />
 <meta property="og:locale" content="ca_ES" />
-<meta name="description" content="Serveis estàndard, format dels missatges, SMTP, servidor i client propis i Jakarta Mail" />
-<meta property="og:description" content="Serveis estàndard, format dels missatges, SMTP, servidor i client propis i Jakarta Mail" />
+<meta name="description" content="URL i recursos remots, HTTP, FTP, correu electrònic, SMTP, POP3/IMAP i Jakarta Mail" />
+<meta property="og:description" content="URL i recursos remots, HTTP, FTP, correu electrònic, SMTP, POP3/IMAP i Jakarta Mail" />
 <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-2/bloc-4/" />
 <meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0490/unitat-2/bloc-4/" />
 <meta property="og:site_name" content="Programació de serveis i processos" />
@@ -25,7 +25,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Bloc 4: Protocols reals: serveis i correu electrònic" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Serveis estàndard, format dels missatges, SMTP, servidor i client propis i Jakarta Mail","headline":"Bloc 4: Protocols reals: serveis i correu electrònic","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-2/bloc-4/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"URL i recursos remots, HTTP, FTP, correu electrònic, SMTP, POP3/IMAP i Jakarta Mail","headline":"Bloc 4: Protocols reals: serveis i correu electrònic","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-2/bloc-4/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
@@ -174,6 +174,41 @@
         <div class="nav-item">
             <a href="#Unitat2_Bloc4_Seccio1" class="nav-link" data-section="Unitat2_Bloc4_Seccio1">1. Serveis estàndard i arquitectura del correu</a>
         </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
     
 
     
@@ -385,6 +420,21 @@
     
     
 
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
 
 
                 </div>
@@ -475,6 +525,116 @@
 </div>
 
 
+
+<h3>Localitzar un recurs: URL i URLConnection</h3>
+
+<p>Abans d'obrir un sòcol manualment, convé entendre com es representa un <strong>recurs remot</strong>. Una URL combina el protocol, l'autoritat, el port, el camí i, si n'hi ha, els paràmetres de consulta. Aquesta idea apareix al material oficial perquè permet passar d'una cadena com <code>https://servidor/cami?x=1</code> a objectes Java que saben extreure'n cada part.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">DesmuntarUrl.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.net.URI;
+import java.net.URL;
+
+public class DesmuntarUrl {
+    public static void main(String[] args) throws Exception {
+
+        URL url = URI.create(
+                &quot;https://example.org:8443/docs/index.html?q=java&quot;
+        ).toURL();
+
+        System.out.println(&quot;Protocol:  &quot; + url.getProtocol());
+        System.out.println(&quot;Autoritat: &quot; + url.getAuthority());
+        System.out.println(&quot;Host:      &quot; + url.getHost());
+        System.out.println(&quot;Port:      &quot; + url.getPort());
+        System.out.println(&quot;Camí:      &quot; + url.getPath());
+        System.out.println(&quot;Query:     &quot; + url.getQuery());
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>La classe <code>URL</code> no serveix només per separar una adreça. També pot obrir una <code>URLConnection</code>. Aquesta classe representa una connexió d'alt nivell cap al recurs i ens permet consultar metadades i obtenir-ne el contingut sense gestionar directament el <code>Socket</code>.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">LlegirRecurs.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
+
+public class LlegirRecurs {
+
+    public static void main(String[] args)
+            throws Exception {
+
+        URLConnection con =
+                URI.create(&quot;https://example.org/&quot;)
+                   .toURL()
+                   .openConnection();
+
+        con.setConnectTimeout(3_000);
+        con.setReadTimeout(3_000);
+
+        System.out.println(
+                &quot;Tipus: &quot; + con.getContentType()
+        );
+        System.out.println(
+                &quot;Longitud: &quot; + con.getContentLengthLong()
+        );
+
+        try (BufferedReader in =
+                     new BufferedReader(
+                             new InputStreamReader(
+                                     con.getInputStream(),
+                                     StandardCharsets.UTF_8))) {
+
+            System.out.println(in.readLine());
+        }
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Canvi de nivell d'abstracció.</strong></p><p>Amb <code>Socket</code> controleu la conversa byte a byte o línia a línia. Amb <code>URLConnection</code> demaneu un recurs i la biblioteca resol part del protocol. Saber baixar i pujar de nivell és una de les idees més importants de la unitat.</p>
+    
+</div>
+
+
 <h3>Veure HTTP sense cap llibreria web</h3>
 
 <p>Podem obrir un socket TCP contra un servidor HTTP i escriure una petició textual. Aquest exemple és només per observar el protocol; per programar clients web reals és preferible <code>java.net.http.HttpClient</code>.</p>
@@ -521,6 +681,188 @@
 
 <p>El detall canvia, però la idea és exactament la que ja coneixem: connexió TCP, protocol d'aplicació, delimitadors, petició i resposta.</p>
 
+
+<h3>HTTP amb HttpURLConnection</h3>
+
+<p>El material oficial treballa amb <code>HttpURLConnection</code>, una especialització de <code>URLConnection</code> que fa visibles conceptes propis d'HTTP: mètode, capçaleres, codi d'estat i cos de la resposta. Encara és útil per entendre aquests conceptes, tot i que en codi modern sovint preferirem <code>HttpClient</code>.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">ClientHttpURLConnection.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.nio.charset.StandardCharsets;
+
+public class ClientHttpURLConnection {
+
+    public static void main(String[] args)
+            throws Exception {
+
+        HttpURLConnection con =
+                (HttpURLConnection)
+                URI.create(&quot;https://example.org/&quot;)
+                   .toURL()
+                   .openConnection();
+
+        con.setRequestMethod(&quot;GET&quot;);
+        con.setConnectTimeout(3_000);
+        con.setReadTimeout(3_000);
+        con.setRequestProperty(
+                &quot;Accept&quot;, &quot;text/html&quot;);
+
+        int status = con.getResponseCode();
+
+        System.out.println(&quot;Estat: &quot; + status);
+        System.out.println(
+                &quot;Content-Type: &quot;
+                + con.getContentType()
+        );
+
+        InputStream stream =
+                status &gt;= 400
+                ? con.getErrorStream()
+                : con.getInputStream();
+
+        if (stream != null) {
+            try (BufferedReader in =
+                         new BufferedReader(
+                                 new InputStreamReader(
+                                         stream,
+                                         StandardCharsets.UTF_8))) {
+
+                in.lines()
+                  .limit(10)
+                  .forEach(System.out::println);
+            }
+        }
+
+        con.disconnect();
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Observeu el paral·lelisme: <code>GET</code> és la petició, <code>getResponseCode()</code> ens dona l'estat de la resposta i <code>getInputStream()</code> ens dona el cos. Si la resposta és d'error, el cos pot arribar per <code>getErrorStream()</code>.</p>
+
+<h3>Enviar dades amb POST</h3>
+
+<p>Amb <code>POST</code> les dades acostumen a viatjar al cos de la petició. En una petició de formulari senzilla, el tipus <code>application/x-www-form-urlencoded</code> representa parelles <code>nom=valor</code>.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">EnviarPost.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
+String body =
+        &quot;nom=&quot;
+        + URLEncoder.encode(
+                &quot;Anna Serra&quot;,
+                StandardCharsets.UTF_8)
+        + &quot;&amp;modul=0490&quot;;
+
+byte[] dades =
+        body.getBytes(StandardCharsets.UTF_8);
+
+HttpURLConnection con =
+        (HttpURLConnection)
+        URI.create(&quot;https://example.org/form&quot;)
+           .toURL()
+           .openConnection();
+
+con.setRequestMethod(&quot;POST&quot;);
+con.setDoOutput(true);
+con.setRequestProperty(
+        &quot;Content-Type&quot;,
+        &quot;application/x-www-form-urlencoded; charset=UTF-8&quot;
+);
+con.setFixedLengthStreamingMode(dades.length);
+
+try (OutputStream out =
+             con.getOutputStream()) {
+    out.write(dades);
+}
+
+System.out.println(
+        &quot;Estat: &quot; + con.getResponseCode()
+);
+
+con.disconnect();</code></pre>
+  </div>
+</div>
+
+
+<p>La diferència important no és memoritzar dues receptes. És saber <strong>on viatgen les dades</strong>: en un <code>GET</code> poden formar part de la query de la URL; en un <code>POST</code> acostumen a formar part del cos.</p>
+
+<h3>Llegir el codi d'estat abans del cos</h3>
+
+<table class="table">
+<thead><tr><th>Família</th><th>Idea</th><th>Exemples habituals</th></tr></thead>
+<tbody>
+<tr><td>2xx</td><td>La petició s'ha processat correctament.</td><td><code>200 OK</code></td></tr>
+<tr><td>3xx</td><td>Cal fer una altra acció o seguir una redirecció.</td><td><code>301 Moved Permanently</code></td></tr>
+<tr><td>4xx</td><td>La petició del client no es pot satisfer tal com s'ha enviat.</td><td><code>403 Forbidden</code>, <code>404 Not Found</code></td></tr>
+<tr><td>5xx</td><td>El servidor ha fallat mentre intentava atendre una petició vàlida.</td><td><code>500 Internal Server Error</code></td></tr>
+</tbody>
+</table>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Primer estat, després contingut.</strong></p><p>Un client HTTP robust no assumeix que sempre rebrà una pàgina correcta. Primer mira l'estat i les capçaleres; després decideix com interpretar el cos.</p>
+    
+</div>
+
+
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-2/12_http_peticio_resposta.svg" alt="Un client envia una petició HTTP amb línia inicial, capçaleres i línia buida, i el servidor respon amb estat, capçaleres i cos." class="figure-img"/>
+      
+      <figcaption class="figure-caption">HTTP manté el patró petició-resposta: una línia inicial, capçaleres, una línia buida i, quan cal, un cos.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
 <h3>HTTP amb una API d'alt nivell</h3>
 
 <p>Quan l'objectiu ja no és estudiar el protocol, Java disposa de <code>HttpClient</code>. El mateix patró petició-resposta queda expressat amb objectes d'alt nivell:</p>
@@ -562,6 +904,90 @@ System.out.println(response.body());</code></pre>
 
 <p>La diferència és de nivell d'abstracció: ja no gestionem directament el <code>Socket</code>, els salts de línia ni el parser de la resposta HTTP.</p>
 
+
+<h3>Un servidor HTTP mínim per veure l'altra banda</h3>
+
+<p>Per entendre un servei web no cal començar per un contenidor complet. Aquest servidor didàctic accepta una connexió, llegeix la primera petició HTTP i retorna una resposta <code>200 OK</code>. No és un servidor de producció: només serveix per veure com els conceptes de <code>ServerSocket</code> i protocol d'aplicació encaixen amb HTTP.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">MiniHttpServer.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.nio.charset.StandardCharsets;
+
+public class MiniHttpServer {
+
+    public static void main(String[] args)
+            throws Exception {
+
+        try (ServerSocket server =
+                     new ServerSocket(8080)) {
+
+            System.out.println(
+                    &quot;Obriu http://localhost:8080/&quot;
+            );
+
+            try (Socket client = server.accept();
+                 BufferedReader in =
+                         new BufferedReader(
+                                 new InputStreamReader(
+                                         client.getInputStream(),
+                                         StandardCharsets.US_ASCII));
+                 OutputStream out =
+                         client.getOutputStream()) {
+
+                String requestLine = in.readLine();
+                System.out.println(requestLine);
+
+                String line;
+                while ((line = in.readLine()) != null
+                        &amp;&amp; !line.isEmpty()) {
+                    System.out.println(line);
+                }
+
+                byte[] body =
+                        &quot;&lt;h1&gt;Hola des de Java&lt;/h1&gt;&quot;
+                        .getBytes(StandardCharsets.UTF_8);
+
+                String headers =
+                        &quot;HTTP/1.1 200 OK\r\n&quot;
+                        + &quot;Content-Type: text/html; charset=UTF-8\r\n&quot;
+                        + &quot;Content-Length: &quot; + body.length + &quot;\r\n&quot;
+                        + &quot;Connection: close\r\n&quot;
+                        + &quot;\r\n&quot;;
+
+                out.write(
+                        headers.getBytes(
+                                StandardCharsets.US_ASCII));
+                out.write(body);
+                out.flush();
+            }
+        }
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Si executeu el programa i visiteu <code>http://localhost:8080/</code>, el navegador es converteix en el client. Veureu a la consola una línia similar a <code>GET / HTTP/1.1</code> i les capçaleres que el navegador ha enviat.</p>
+
 <h3>FTP: control i dades en canals diferents</h3>
 
 <p>FTP també és un protocol client-servidor sobre TCP, però introdueix una idea interessant: <strong>separa el canal de control del canal de dades</strong>. Les comandes i respostes textuals mantenen una connexió de control, habitualment associada al port 21 del servidor, mentre que una transferència de fitxer utilitza una connexió de dades temporal.</p>
@@ -596,6 +1022,147 @@ Client  &lt;=================&gt;  Servidor
 
 
 <p>En <strong>mode actiu</strong>, el client indica on escoltarà i el servidor inicia la connexió de dades. En <strong>mode passiu</strong>, el servidor indica una adreça i un port i és el client qui inicia la connexió. El mode passiu acostuma a encaixar millor amb clients situats darrere de NAT o tallafocs.</p>
+
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-2/13_ftp_control_dades.svg" alt="FTP manté una connexió de control per a comandes i respostes i crea una connexió de dades temporal per a llistats o fitxers." class="figure-img"/>
+      
+      <figcaption class="figure-caption">FTP separa la conversa de control de la transferència de dades. Aquesta diferència explica bona part de la seva complexitat.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+<h3>Veure la conversa FTP</h3>
+
+<p>Una sessió de control FTP és textual. El client envia comandes i el servidor respon amb codis numèrics. Per exemple:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">S: 220 Servei FTP preparat
+C: USER alumne
+S: 331 Cal contrasenya
+C: PASS ****
+S: 230 Sessió iniciada
+C: PWD
+S: 257 &quot;/&quot;
+C: PASV
+S: 227 Entering Passive Mode (...)
+C: LIST
+S: 150 Obrint canal de dades
+   ... llistat pel canal de dades ...
+S: 226 Transferència completada
+C: QUIT
+S: 221 Adeu</code></pre>
+  </div>
+</div>
+
+
+<p>La comanda <code>PASV</code> no transfereix encara el llistat. Primer prepara el canal de dades. Després, comandes com <code>LIST</code>, <code>RETR</code> o <code>STOR</code> utilitzen aquest segon canal.</p>
+
+<h3>Client mínim del canal de control</h3>
+
+<p>Aquest exemple es pot executar contra un <strong>servidor FTP de proves</strong> que tingueu disponible. No implementa la transferència de fitxers: el seu objectiu és que veieu la mateixa estructura petició-resposta que ja coneixeu de SMTP i HTTP.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">FtpControlClient.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.nio.charset.StandardCharsets;
+
+public class FtpControlClient {
+
+    public static void main(String[] args)
+            throws Exception {
+
+        String host = args.length &gt; 0
+                ? args[0]
+                : &quot;localhost&quot;;
+
+        int port = args.length &gt; 1
+                ? Integer.parseInt(args[1])
+                : 21;
+
+        try (Socket socket =
+                     new Socket(host, port);
+             BufferedReader in =
+                     new BufferedReader(
+                             new InputStreamReader(
+                                     socket.getInputStream(),
+                                     StandardCharsets.US_ASCII));
+             PrintWriter out =
+                     new PrintWriter(
+                             socket.getOutputStream(),
+                             true,
+                             StandardCharsets.US_ASCII)) {
+
+            System.out.println(&quot;S: &quot; + in.readLine());
+
+            enviar(out, in, &quot;USER anonymous&quot;);
+            enviar(out, in, &quot;PASS alumne@example.test&quot;);
+            enviar(out, in, &quot;PWD&quot;);
+            enviar(out, in, &quot;QUIT&quot;);
+        }
+    }
+
+    private static void enviar(
+            PrintWriter out,
+            BufferedReader in,
+            String ordre) throws Exception {
+
+        System.out.println(&quot;C: &quot; + ordre);
+        out.print(ordre + &quot;\r\n&quot;);
+        out.flush();
+
+        System.out.println(&quot;S: &quot; + in.readLine());
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Una implementació FTP real ha de fer més feina.</strong></p><p>Les respostes poden ocupar diverses línies i les ordres de transferència necessiten el canal de dades. Aquí només fem visible el mecanisme essencial abans de delegar-lo en una llibreria FTP.</p>
+</div>
+
 
 
 <!-- Component: Caixa informativa -->
@@ -1923,9 +2490,159 @@ message.setContent(multipart);</code></pre>
 
 <p>Per a un cos HTML, una part MIME pot declarar <code>text/html</code> i el charset corresponent. El principi és el mateix: la llibreria transforma objectes Java en el format MIME correcte.</p>
 
+
+<h3>Abans de l'API: què fa POP3?</h3>
+
+<p>POP3 és un bon exemple de protocol textual simple per accedir a una bústia. Després d'autenticar-se, el client pot llistar, recuperar o marcar per eliminar missatges. Les respostes comencen habitualment per <code>+OK</code> o <code>-ERR</code>.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">S: +OK POP3 server ready
+C: USER alumne
+S: +OK password required
+C: PASS ****
+S: +OK 3 messages
+C: LIST
+S: +OK 3 messages
+S: 1 513
+S: 2 1825
+S: 3 1019
+S: .
+C: RETR 1
+S: +OK 513 octets
+S: ... capçaleres i cos ...
+S: .
+C: QUIT
+S: +OK bye</code></pre>
+  </div>
+</div>
+
+
+<p>Fixeu-vos en el paral·lelisme amb SMTP: tots dos són protocols textuals amb estat, però resolen problemes diferents. SMTP transfereix missatges; POP3 permet recuperar-los d'una bústia.</p>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-2/14_store_folder.svg" alt="Jakarta Mail crea una Session, obre un Store POP3 o IMAP i des del Store accedeix a una Folder com INBOX que conté Message." class="figure-img"/>
+      
+      <figcaption class="figure-caption">Jakarta Mail encapsula POP3 i IMAP amb els mateixos conceptes: Session, Store, Folder i Message.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
 <h3>Accedir a una bústia</h3>
 
-<p>Jakarta Mail no serveix només per SMTP. També pot obrir un <code>Store</code> IMAP o POP3 i accedir a carpetes i missatges. Aquest fragment mostra el patró general amb IMAP:</p>
+<p>Jakarta Mail no serveix només per SMTP. Per llegir una bústia treballa amb un <code>Store</code>. El protocol concret pot ser POP3 o IMAP. Després obtenim una <code>Folder</code>, habitualment <code>INBOX</code>, i d'allà recuperem objectes <code>Message</code>.</p>
+
+<h3>Llegir INBOX amb POP3</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">LlegirPop3.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import jakarta.mail.Folder;
+import jakarta.mail.Message;
+import jakarta.mail.Session;
+import jakarta.mail.Store;
+
+import java.util.Properties;
+
+public class LlegirPop3 {
+
+    public static void main(String[] args)
+            throws Exception {
+
+        String host = &quot;mail.example.test&quot;;
+        String usuari = &quot;alumne&quot;;
+        String contrasenya = System.getenv(
+                &quot;MAIL_PASSWORD&quot;
+        );
+
+        Properties props = new Properties();
+        props.put(&quot;mail.pop3.host&quot;, host);
+        props.put(&quot;mail.pop3.port&quot;, &quot;110&quot;);
+
+        Session session =
+                Session.getInstance(props);
+
+        Store store =
+                session.getStore(&quot;pop3&quot;);
+
+        Folder inbox = null;
+
+        try {
+            store.connect(
+                    host,
+                    usuari,
+                    contrasenya
+            );
+
+            inbox = store.getFolder(&quot;INBOX&quot;);
+            inbox.open(Folder.READ_ONLY);
+
+            Message[] missatges =
+                    inbox.getMessages();
+
+            System.out.println(
+                    &quot;Missatges: &quot; + missatges.length
+            );
+
+            for (Message m : missatges) {
+                System.out.println(
+                        &quot;Assumpte: &quot; + m.getSubject()
+                );
+            }
+
+        } finally {
+            if (inbox != null &amp;&amp; inbox.isOpen()) {
+                inbox.close(false);
+            }
+
+            if (store.isConnected()) {
+                store.close();
+            }
+        }
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>POP3 té un model senzill orientat a la recuperació. Jakarta Mail continua presentant la bústia com una <code>Folder</code>, però en POP3 la carpeta útil és essencialment <code>INBOX</code>.</p>
+
+<h3>Canviar a IMAP</h3>
+
+<p>Amb IMAP, la mateixa abstracció permet treballar amb diverses carpetes mantingudes al servidor. El canvi conceptual és petit perquè la biblioteca amaga moltes diferències del protocol:</p>
 
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
@@ -1943,30 +2660,51 @@ message.setContent(multipart);</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Session session = Session.getInstance(props);
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Store store = session.getStore(&quot;imap&quot;);
 
-try (Store store = session.getStore(&quot;imap&quot;)) {
+try {
+    store.connect(host, usuari, contrasenya);
 
-    store.connect(
-            host,
-            usuari,
-            contrasenya
-    );
+    Folder arrel = store.getDefaultFolder();
 
-    try (Folder inbox =
-                 store.getFolder(&quot;INBOX&quot;)) {
+    for (Folder carpeta : arrel.list(&quot;*&quot;)) {
+        System.out.println(
+                carpeta.getFullName()
+        );
+    }
 
+    Folder inbox = store.getFolder(&quot;INBOX&quot;);
+
+    try {
         inbox.open(Folder.READ_ONLY);
 
-        System.out.println(
-                &quot;Missatges: &quot;
-                + inbox.getMessageCount()
-        );
+        for (Message m : inbox.getMessages()) {
+            System.out.println(m.getSubject());
+        }
+
+    } finally {
+        if (inbox.isOpen()) {
+            inbox.close(false);
+        }
+    }
+
+} finally {
+    if (store.isConnected()) {
+        store.close();
     }
 }</code></pre>
   </div>
 </div>
 
+
+<table class="table">
+<thead><tr><th>POP3</th><th>IMAP</th></tr></thead>
+<tbody>
+<tr><td>Model simple de recuperació de missatges.</td><td>Model de bústia sincronitzada al servidor.</td></tr>
+<tr><td><code>INBOX</code> és la carpeta principal que interessa al client.</td><td>Pot gestionar múltiples carpetes i estats.</td></tr>
+<tr><td>Ordres típiques: <code>USER</code>, <code>PASS</code>, <code>LIST</code>, <code>RETR</code>, <code>DELE</code>.</td><td>La biblioteca ens permet navegar carpetes i missatges sense construir manualment les comandes.</td></tr>
+</tbody>
+</table>
 
 
 <!-- Component: Caixa d'advertiment -->
@@ -2141,6 +2879,36 @@ Session session =
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé descompondre una URL i obtenir recursos amb URLConnection</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc llegir l'estat, les capçaleres i el cos d'una resposta HTTP</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Entenc on viatgen les dades en GET i POST</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc construir un servidor HTTP mínim</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Entenc per què FTP separa canal de control i canal de dades</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc explicar les comandes bàsiques USER, PASS, PWD, PASV, LIST, RETR i STOR d'FTP</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
     <div class="checklist-text">Puc explicar la diferència entre SMTP i IMAP/POP3</div>
   </div>
   
@@ -2176,6 +2944,16 @@ Session session =
   
   <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
     <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc accedir a una bústia amb Store, Folder i Message</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé diferenciar el model POP3 del model IMAP</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
     <div class="checklist-text">Puc explicar què encapsula una API d'alt nivell respecte dels sockets manuals</div>
   </div>
   
@@ -2206,7 +2984,7 @@ Session session =
   "@context": "https://schema.org",
   "@type": "LearningResource",
   "name": "Bloc 4: Protocols reals: serveis i correu electrònic",
-  "description": "Serveis estàndard, format dels missatges, SMTP, servidor i client propis i Jakarta Mail",
+  "description": "URL i recursos remots, HTTP, FTP, correu electrònic, SMTP, POP3/IMAP i Jakarta Mail",
   "author": {
     "@type": "Organization",
     "name": "Institut Obert de Catalunya"
