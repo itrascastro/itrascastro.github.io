@@ -1,0 +1,65 @@
+name: Build and publish DAM_0490 static site
+
+on:
+  push:
+    branches: ["master"]
+    paths:
+      - ".github/workflows/build-dam-0490.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout target site repository
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - name: Checkout DAM_0490 source
+        uses: actions/checkout@v4
+        with:
+          repository: itrascastro/ioc-dam_0490
+          ref: main
+          path: _dam0490_source
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.1"
+
+      - name: Install Jekyll dependencies
+        working-directory: _dam0490_source/docs
+        run: |
+          bundle config set path vendor/bundle
+          bundle install
+
+      - name: Build DAM_0490
+        working-directory: _dam0490_source/docs
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build
+
+      - name: Replace published DAM_0490 folder
+        run: |
+          rm -rf ioc/dam_0490
+          mkdir -p ioc/dam_0490
+          cp -a _dam0490_source/docs/_site/. ioc/dam_0490/
+          rm -rf _dam0490_source
+
+      - name: Commit generated site
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ioc/dam_0490
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+          else
+            git commit -m "Publica DAM_0490"
+            git push origin master
+          fi
