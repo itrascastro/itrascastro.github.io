@@ -1170,7 +1170,16 @@ comptador.incrementAndGet();</code></pre>
 </div>
 
 
-<p><code>wait()</code> allibera temporalment el monitor i posa el fil en espera. <code>notifyAll()</code> desperta els fils que esperen aquell mateix monitor perquè tornin a comprovar la condició.</p>
+<p><code>wait()</code> allibera temporalment el monitor i posa el fil en espera. <code>notify()</code> desperta un dels fils que esperen aquell monitor. <code>notifyAll()</code> els desperta tots perquè tornin a competir pel monitor i comprovin de nou la condició.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Quan hi ha diversos tipus d'espera, <code>notifyAll()</code> acostuma a ser més fàcil de raonar.</strong> Despertar un únic fil pot triar-ne un que encara no pugui avançar. En qualsevol cas, la condició s'ha de tornar a comprovar amb <code>while</code>.</p>
+    
+</div>
+
 
 
 <!-- Component: Caixa d'advertiment -->

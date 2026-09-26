@@ -203,6 +203,11 @@
     
     
     
+
+    
+    
+    
+    
         
         
         
@@ -647,6 +652,43 @@ for (Future&lt;Integer&gt; futur : futurs) {
 <div class="solution-box" role="region" aria-label="Solució">
     <div class="component-header solution-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Solució</div>
     <p>Separeu l'enviament de la recollida quan les tasques siguin independents. Així el pool pot començar a treballar en moltes tasques abans que el fil principal esperi els resultats.</p>
+</div>
+
+
+<h3>Validar col·leccions abans de processar-les</h3>
+
+<p>Quan un mètode públic rep una col·lecció de tasques o resultats futurs, convé validar tant la col·lecció com els seus elements. Un <code>List</code> no nul encara pot contenir valors <code>null</code>.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static void validarFuturs(
+        List&lt;? extends Future&lt;?&gt;&gt; futurs) {
+
+    if (futurs == null) {
+        throw new IllegalArgumentException(
+                &quot;La llista no pot ser null&quot;);
+    }
+
+    if (futurs.stream().anyMatch(java.util.Objects::isNull)) {
+        throw new IllegalArgumentException(
+                &quot;La llista conté un Future null&quot;);
+    }
+}</code></pre>
+  </div>
 </div>
 
 
@@ -1278,17 +1320,23 @@ record ResultatPeticio(
                 resultats.add(
                     futur.get(2, TimeUnit.SECONDS)
                 );
+
             } catch (TimeoutException e) {
                 futur.cancel(true);
+
+            } catch (ExecutionException e) {
+                System.err.println(
+                        &quot;Una tasca ha fallat: &quot; + e.getCause()
+                );
+
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                break;
             }
         }
 
         // Fase 3: tancar
-        executor.shutdown();
-
-        if (!executor.awaitTermination(5, TimeUnit.SECONDS)) {
-            executor.shutdownNow();
-        }
+        tancarExecutor(executor);
 
         long tempsRealMs = TimeUnit.NANOSECONDS.toMillis(
                 System.nanoTime() - inici
@@ -1313,6 +1361,31 @@ record ResultatPeticio(
         System.out.println(&quot;FILS_UTILITZATS=&quot; + filsUtilitzats);
         System.out.println(&quot;TEMPS_REAL_MS=&quot; + tempsRealMs);
         System.out.println(&quot;COHERENT=&quot; + coherent);
+    }
+
+    private static void tancarExecutor(
+            ExecutorService executor) {
+
+        executor.shutdown();
+
+        try {
+            if (!executor.awaitTermination(
+                    5, TimeUnit.SECONDS)) {
+
+                executor.shutdownNow();
+
+                if (!executor.awaitTermination(
+                        2, TimeUnit.SECONDS)) {
+                    System.err.println(
+                            &quot;El pool no ha finalitzat&quot;
+                    );
+                }
+            }
+
+        } catch (InterruptedException e) {
+            executor.shutdownNow();
+            Thread.currentThread().interrupt();
+        }
     }
 }</code></pre>
   </div>

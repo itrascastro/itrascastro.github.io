@@ -203,6 +203,11 @@
     
     
     
+
+    
+    
+    
+    
         
         
         
@@ -270,6 +275,11 @@
         <div class="nav-item">
             <a href="#Unitat1_Bloc2_Seccio5" class="nav-link" data-section="Unitat1_Bloc2_Seccio5">5. Monitoratge, fitxers i depuració</a>
         </div>
+    
+
+    
+    
+    
     
 
     
@@ -635,6 +645,51 @@ System.out.println(sortida);</code></pre>
 
 
 <p>Amb <code>redirectErrorStream(true)</code> la sortida d'error es combina amb la sortida estàndard. Això simplifica molts casos on només necessitem un únic registre del procés.</p>
+
+<h3>Enviar dades per l'entrada estàndard</h3>
+
+<p>També podem escriure a l'entrada estàndard del procés fill. Des del punt de vista del procés pare, escrivim al seu <code>OutputStream</code> perquè aquest flux entra cap al procés fill.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Process proces = pb.start();
+
+try (var escriptor = proces.outputWriter()) {
+    escriptor.write(&quot;42&quot;);
+    escriptor.newLine();
+}
+
+try (var lector = proces.inputReader()) {
+    lector.lines().forEach(System.out::println);
+}
+
+int codi = proces.waitFor();</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Els noms poden confondre al principi.</strong></p><p><code>proces.getInputStream()</code> és el flux que el procés pare <em>llegeix</em>, és a dir, la sortida estàndard del fill. <code>proces.getOutputStream()</code> és el flux que el pare <em>escriu</em>, és a dir, l'entrada estàndard del fill.</p>
+    
+</div>
+
 
 <h3>Redirigir la sortida a un fitxer</h3>
 
@@ -1067,6 +1122,67 @@ Files.createDirectories(resultats);</code></pre>
   </div>
 </div>
 
+
+<h3>Acceptar una ruta de manera robusta</h3>
+
+<p>De vegades un mètode pot acceptar una carpeta o directament un fitxer. En lloc de repartir aquesta decisió per tot el programa, podem centralitzar-la:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static Path resoldreFitxer(
+        Path entrada,
+        String nomPerDefecte) throws IOException {
+
+    if (entrada == null) {
+        throw new IllegalArgumentException(
+                &quot;L&#39;entrada no pot ser null&quot;);
+    }
+
+    if (nomPerDefecte == null || nomPerDefecte.isBlank()) {
+        throw new IllegalArgumentException(
+                &quot;Cal indicar un nom de fitxer&quot;);
+    }
+
+    Path fitxer;
+
+    if (Files.isDirectory(entrada)) {
+        fitxer = entrada.resolve(nomPerDefecte);
+
+    } else if (Files.isRegularFile(entrada)) {
+        fitxer = entrada;
+
+    } else {
+        throw new IllegalArgumentException(
+                &quot;La ruta no és un fitxer ni una carpeta&quot;);
+    }
+
+    if (!Files.isRegularFile(fitxer)
+            || !Files.isReadable(fitxer)) {
+        throw new IOException(
+                &quot;No es pot llegir el fitxer: &quot; + fitxer);
+    }
+
+    return fitxer;
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Aquest patró té dues virtuts: les precondicions queden explícites i la resta del programa pot treballar amb una ruta ja validada.</p>
 
 <h3>Validar precondicions</h3>
 
