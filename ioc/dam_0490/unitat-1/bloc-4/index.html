@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 4: Gestionar moltes tasques amb ExecutorService | Programació de serveis i processos - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="1">
+    <meta name="page-bloc" content="4">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 4: Gestionar moltes tasques amb ExecutorService | Programació de serveis i processos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 4: Gestionar moltes tasques amb ExecutorService" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Materials pràctics i progressius de la unitat 1" />
+<meta property="og:description" content="Materials pràctics i progressius de la unitat 1" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-4/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-4/" />
+<meta property="og:site_name" content="Programació de serveis i processos" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 4: Gestionar moltes tasques amb ExecutorService" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Materials pràctics i progressius de la unitat 1","headline":"Bloc 4: Gestionar moltes tasques amb ExecutorService","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-4/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/dam_0490/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-4/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/dam_0490/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/dam_0490/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0490/feed.xml" title="Programació de serveis i processos" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/dam_0490/assets/css/code-block.css">
+    <script src="/ioc/dam_0490/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/dam_0490">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/dam_0490/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/dam_0490/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/dam_0490/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/dam_0490/" class="title-link">
+                <h1>DAM_0490 - Programació de serveis i processos</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/dam_0490/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Entendre què passa quan hi ha diverses tasques
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Crear i controlar processos des de Java
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Fils, memòria compartida i sincronització
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-4/" class="nav-dropdown-item current">
+                        Unitat 1 - Bloc 4: Gestionar moltes tasques amb ExecutorService
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/dam_0490/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/dam_0490/unitat-1/" class="horizontal-nav-item">
+                                Unitat 1: Processos i fils (RA1, RA2)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 1.4: Gestionar moltes tasques amb ExecutorService
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<div class="section" id="Unitat1_Bloc4_Seccio1">
+  <h2>1. Per què utilitzar un pool de fils?</h2>
+
+<p>Aquest codi crea un fil nou per cada element:</p>
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">for (Tasca tasca : tasques) {
+    new Thread(() -&gt; processar(tasca)).start();
+}</code></pre>
+  </div>
+</div>
+
+<p>Amb deu tasques pot semblar raonable. Amb milers de tasques, no.</p>
+<p>Cada fil consumeix recursos. Massa fils impliquen més memòria, més canvis de context i més dificultat per controlar la finalització.</p>
+<p>Un <strong>pool de fils</strong> reutilitza un nombre limitat de treballadors.</p>
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">ExecutorService executor = Executors.newFixedThreadPool(3);</code></pre>
+  </div>
+</div>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">+-- fil 1
+TASQUES -----&gt; +-- fil 2
+   cua         +-- fil 3</code></pre>
+  </div>
+</div>
+
+<p>Si enviem deu tasques, els tres fils van agafant feina de la cua.</p>
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-1/u1_07_thread_pool.svg" alt="Cua de tasques distribuïda entre tres fils d'un ExecutorService." class="figure-img"/>
+      
+      <figcaption class="figure-caption">Cua de tasques distribuïda entre tres fils d'un ExecutorService.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat1_Bloc4_Seccio2">
+  <h2>2. Runnable, Callable i Future</h2>
+
+<p><code>Runnable</code> representa una tasca que no retorna un resultat.</p>
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Runnable tasca = () -&gt; {
+    System.out.println(&quot;Processant...&quot;);
+};
+
+executor.submit(tasca);</code></pre>
+  </div>
+</div>
+
+<p><code>Callable&lt;T&gt;</code> representa una tasca que retorna un valor.</p>
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Callable&lt;Integer&gt; tasca = () -&gt; 6 * 7;
+Future&lt;Integer&gt; futur = executor.submit(tasca);</code></pre>
+  </div>
+</div>
+
+<p>El <code>Future</code> representa un resultat que potser encara no està disponible.</p>
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">int resultat = futur.get();</code></pre>
+  </div>
+</div>
+
+<p>El fil que crida <code>get()</code> espera fins que la tasca acaba.</p>
+<p>Podem posar un límit:</p>
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">int resultat = futur.get(3, TimeUnit.SECONDS);</code></pre>
+  </div>
+</div>
+
+<p>Aquesta família de classes es troba a <code>java.util.concurrent</code>, que proporciona abstraccions de nivell més alt que la gestió manual de fils. També hi trobem eines com <code>Semaphore</code>, <code>BlockingQueue</code>, <code>AtomicInteger</code> o <code>ScheduledExecutorService</code>.</p>
+
+<h3>Enviar primer i recollir després</h3>
+<p>Aquest codi utilitza un executor, però pràcticament serialitza el treball:</p>
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">for (int n : numeros) {
+    Future&lt;Integer&gt; futur = executor.submit(() -&gt; calcular(n));
+    System.out.println(futur.get());
+}</code></pre>
+  </div>
+</div>
+
+<p>Cada iteració espera abans d'enviar la següent tasca.</p>
+<p>La versió concurrent separa l'enviament de la recollida:</p>
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">List&lt;Future&lt;Integer&gt;&gt; futurs = new ArrayList&lt;&gt;();
+
+for (int n : numeros) {
+    futurs.add(executor.submit(() -&gt; calcular(n)));
+}
+
+for (Future&lt;Integer&gt; futur : futurs) {
+    System.out.println(futur.get());
+}</code></pre>
+  </div>
+</div>
+
+<p>És el mateix patró que hem vist amb processos.</p>
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">1. crear o enviar totes les tasques
+2. deixar que avancin
+3. esperar i recollir els resultats</code></pre>
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat1_Bloc4_Seccio3">
+  <h2>3. Timeout, cancel·lació i tancament</h2>
+
+<p>Un <code>Future</code> també pot quedar esperant massa temps.</p>
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">try {
+    String resultat = futur.get(3, TimeUnit.SECONDS);
+    System.out.println(resultat);
+
+} catch (TimeoutException e) {
+    futur.cancel(true);
+    System.out.println(&quot;Tasca cancel·lada per timeout&quot;);
+
+} catch (ExecutionException e) {
+    System.out.println(&quot;La tasca ha fallat: &quot; + e.getCause());
+
+} catch (InterruptedException e) {
+    Thread.currentThread().interrupt();
+}</code></pre>
+  </div>
+</div>
+
+<p>Les tres situacions són diferents:</p>
+<ul><li><code>TimeoutException</code>: no tenim resultat dins del temps permès.</li><li><code>ExecutionException</code>: la tasca ha acabat amb una excepció.</li><li><code>InterruptedException</code>: el fil que estava esperant ha estat interromput.</li></ul>
+<p><code>cancel(true)</code> intenta interrompre la tasca, però la cancel·lació és cooperativa. El codi de la tasca ha de reaccionar a la interrupció.</p>
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">try {
+    Thread.sleep(10_000);
+} catch (InterruptedException e) {
+    Thread.currentThread().interrupt();
+    return;
+}</code></pre>
+  </div>
+</div>
+
+
+<h3>Tancar correctament l'executor</h3>
+<p>Un <code>ExecutorService</code> manté fils vius. S'ha de tancar de forma explícita.</p>
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">executor.shutdown();
+
+try {
+    if (!executor.awaitTermination(5, TimeUnit.SECONDS)) {
+        executor.shutdownNow();
+    }
+} catch (InterruptedException e) {
+    executor.shutdownNow();
+    Thread.currentThread().interrupt();
+}</code></pre>
+  </div>
+</div>
+
+<p><code>shutdown()</code> deixa d'acceptar tasques noves i permet acabar les pendents.</p>
+<p><code>awaitTermination(...)</code> espera un temps màxim.</p>
+<p><code>shutdownNow()</code> intenta interrompre la feina que encara continua. No és una garantia de finalització instantània.</p>
+</div>
+
+<div class="section" id="Unitat1_Bloc4_Seccio4">
+  <h2>4. Construir una aplicació concurrent completa</h2>
+
+<p>Aquest exemple utilitza un context diferent del de l'EAC. Volem processar diversos fitxers i obtenir un resultat per a cadascun.</p>
+<h3>Les dades</h3>
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">record FitxerTreball(String nom, long tempsMs) {}</code></pre>
+  </div>
+</div>
+
+<h3>El resultat</h3>
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">record ResultatFitxer(
+        String nom,
+        boolean correcte,
+        long tempsMs,
+        String fil
+) {}</code></pre>
+  </div>
+</div>
+
+<h3>La tasca</h3>
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.concurrent.Callable;
+
+class ProcessarFitxer implements Callable&lt;ResultatFitxer&gt; {
+
+    private final FitxerTreball fitxer;
+
+    ProcessarFitxer(FitxerTreball fitxer) {
+        this.fitxer = fitxer;
+    }
+
+    @Override
+    public ResultatFitxer call() throws Exception {
+        long inici = System.nanoTime();
+
+        Thread.sleep(fitxer.tempsMs());
+
+        boolean correcte = !fitxer.nom().contains(&quot;corrupt&quot;);
+        long temps = (System.nanoTime() - inici) / 1_000_000;
+
+        return new ResultatFitxer(
+                fitxer.nom(),
+                correcte,
+                temps,
+                Thread.currentThread().getName()
+        );
+    }
+}</code></pre>
+  </div>
+</div>
+
+<p>Cada tasca pot executar-se de manera independent i retorna el seu propi resultat.</p>
+<h3>Estat compartit</h3>
+<p>Ara volem acumular estadístiques globals:</p>
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">class EstadistiquesFitxers {
+    private int total;
+    private int correctes;
+    private int errors;
+    private long tempsAcumulatMs;
+
+    public synchronized void registrar(ResultatFitxer resultat) {
+        if (resultat == null) {
+            throw new IllegalArgumentException(&quot;El resultat no pot ser null&quot;);
+        }
+
+        total++;
+
+        if (resultat.correcte()) {
+            correctes++;
+        } else {
+            errors++;
+        }
+
+        tempsAcumulatMs += resultat.tempsMs();
+    }
+
+    public synchronized String resum() {
+        return &quot;total=&quot; + total
+                + &quot;, correctes=&quot; + correctes
+                + &quot;, errors=&quot; + errors
+                + &quot;, tempsAcumulatMs=&quot; + tempsAcumulatMs;
+    }
+}</code></pre>
+  </div>
+</div>
+
+<p>La sincronització és necessària perquè moltes tasques poden cridar <code>registrar()</code> sobre el mateix objecte.</p>
+<h3>Crear el pool i enviar tasques</h3>
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">ExecutorService executor = Executors.newFixedThreadPool(4);
+List&lt;Future&lt;ResultatFitxer&gt;&gt; futurs = new ArrayList&lt;&gt;();
+
+for (FitxerTreball fitxer : fitxers) {
+    futurs.add(executor.submit(new ProcessarFitxer(fitxer)));
+}</code></pre>
+  </div>
+</div>
+
+<h3>Recollir resultats</h3>
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">EstadistiquesFitxers estadistiques = new EstadistiquesFitxers();
+
+for (Future&lt;ResultatFitxer&gt; futur : futurs) {
+    try {
+        ResultatFitxer resultat = futur.get(3, TimeUnit.SECONDS);
+        estadistiques.registrar(resultat);
+
+        System.out.printf(
+                &quot;%s -&gt; %s (%s)%n&quot;,
+                resultat.nom(),
+                resultat.correcte() ? &quot;OK&quot; : &quot;ERROR&quot;,
+                resultat.fil()
+        );
+
+    } catch (TimeoutException e) {
+        futur.cancel(true);
+        System.out.println(&quot;TIMEOUT&quot;);
+
+    } catch (ExecutionException e) {
+        System.out.println(&quot;ERROR TASCA: &quot; + e.getCause());
+
+    } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+        break;
+    }
+}</code></pre>
+  </div>
+</div>
+
+<p>Quan no queden tasques pendents, podem construir el resum final.</p>
+
+<h3>Temps real i temps acumulat</h3>
+<p>Suposem quatre tasques de dos segons.</p>
+<p>En seqüencial:</p>
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">temps acumulat = 2 + 2 + 2 + 2 = 8 s
+temps real aproximat = 8 s</code></pre>
+  </div>
+</div>
+
+<p>Amb quatre tasques executant-se alhora:</p>
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">temps acumulat = 2 + 2 + 2 + 2 = 8 s
+temps real aproximat = 2 s</code></pre>
+  </div>
+</div>
+
+<p>El temps acumulat suma el temps dedicat a totes les tasques. El temps real mesura quant ha trigat el programa vist des de fora.</p>
+<p>Aquesta diferència és molt útil per comprovar si hi ha hagut concurrència real en el nostre disseny.</p>
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-1/u1_08_temps.svg" alt="Comparació entre temps acumulat i temps real." class="figure-img"/>
+      
+      <figcaption class="figure-caption">Comparació entre temps acumulat i temps real.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+<h3>Comprovar que l'estat compartit és coherent</h3>
+<p>Una prova petita pot no mostrar cap error. Per això és útil una prova d'estrès.</p>
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">int total = 100_000;
+Comptador marcador = new Comptador();
+ExecutorService executor = Executors.newFixedThreadPool(10);
+
+for (int i = 0; i &lt; total; i++) {
+    executor.submit(marcador::incrementar);
+}
+
+executor.shutdown();
+executor.awaitTermination(30, TimeUnit.SECONDS);
+
+System.out.println(&quot;ESPERAT=&quot; + total);
+System.out.println(&quot;OBTINGUT=&quot; + marcador.getValor());</code></pre>
+  </div>
+</div>
+
+<p>Sense sincronització podem perdre actualitzacions. Amb una protecció correcta, el resultat final ha de respectar els invariants.</p>
+<p>En un marcador amb totals, per exemple:</p>
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">totalProcessats = totalCorrectes + totalErrors</code></pre>
+  </div>
+</div>
+
+<p>També és important construir l'informe final quan totes les tasques que poden modificar el marcador ja han acabat. Un marcador ben sincronitzat no evita que llegim un resultat massa aviat.</p>
+</div>
+
+<div class="section" id="Unitat1_Bloc4_Seccio5">
+  <h2>5. Preparació de l'EAC i síntesi final</h2>
+
+<p>La fase amb fils segueix aquest esquema:</p>
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">CarregadorLliuraments
+    |
+    v
+List&lt;Lliurament&gt;
+    |
+    v
+CorrectorExecutor
+    |
+    | envia una TascaCorreccio per lliurament
+    v
+ExecutorService
+    |
+    +-- fil 1 -&gt; TascaCorreccio -&gt; ResultatCorreccio
+    +-- fil 2 -&gt; TascaCorreccio -&gt; ResultatCorreccio
+    +-- fil 3 -&gt; TascaCorreccio -&gt; ResultatCorreccio
+    |
+    v
+MarcadorCorreccions compartit
+    |
+    v
+informe final coherent</code></pre>
+  </div>
+</div>
+
+<p>Per arribar-hi, cal dominar aquestes peces:</p>
+<table class="table"><thead><tr><th>Part de l'EAC</th><th>Coneixement necessari</th></tr></thead><tbody><tr><td><code>CorrectorLliurament</code></td><td><code>Path</code>, <code>Files</code>, validació, excepcions, separació de responsabilitats</td></tr><tr><td><code>CorrectorProcessos</code></td><td><code>ProcessBuilder</code>, procés pare i fill, arguments, redirecció, codis de retorn, timeout, llançament abans de recollida</td></tr><tr><td><code>CorrectorExecutor</code></td><td><code>ExecutorService</code>, pool fix, <code>Callable</code>, <code>Future</code>, timeout, cancel·lació, tancament</td></tr><tr><td><code>MarcadorCorreccions</code></td><td>estat compartit, condició de cursa, <code>synchronized</code>, lectura coherent, invariants</td></tr><tr><td>sistema concurrent propi</td><td>model de dades, tasques, pool, resultats, estat compartit, sincronització, comprovació final</td></tr></tbody></table>
+
+<h3>Una seqüència de pràctiques que prepara l'EAC</h3>
+<h3>Dos fils i un ordre imprevisible</h3>
+<p>Creeu dos fils. Un imprimeix <code>A1</code>, <code>A2</code>, <code>A3</code> i l'altre <code>B1</code>, <code>B2</code>, <code>B3</code>. Executeu el programa diverses vegades.</p>
+<p>La sortida no ha de tenir sempre el mateix ordre.</p>
+<h3>Esperar amb <code>join()</code></h3>
+<p>Afegiu un <code>FINAL</code> que només aparegui quan hagin acabat els dos fils.</p>
+<h3>Provocar una condició de cursa</h3>
+<p>Creeu quatre fils que incrementin 100.000 vegades el mateix comptador. Proveu-lo sense <code>synchronized</code> i després amb <code>synchronized</code>.</p>
+<h3>Pool de tres fils</h3>
+<p>Creeu deu tasques i executeu-les amb:</p>
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Executors.newFixedThreadPool(3)</code></pre>
+  </div>
+</div>
+
+<p>Cada tasca ha d'imprimir el nom del fil. Hauríeu de veure que el pool reutilitza els mateixos treballadors.</p>
+<h3>Timeout d'una tasca</h3>
+<p>Creeu una tasca que trigui deu segons i proveu:</p>
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">futur.get(1, TimeUnit.SECONDS)</code></pre>
+  </div>
+</div>
+
+<p>Quan es produeixi el timeout, cancel·leu la tasca.</p>
+<h3>Procés fill</h3>
+<p>Creeu una classe que rebi arguments i finalitzi amb tres codis diferents:</p>
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">0: operació correcta
+2: dades no vàlides
+10: arguments incorrectes</code></pre>
+  </div>
+</div>
+
+<p>Executeu-la des d'un altre programa amb <code>ProcessBuilder</code>. Després llanceu cinc processos abans d'esperar-ne cap.</p>
+
+<h3>Què s'ha de saber al final de la unitat</h3>
+<h3>RA1: processos</h3>
+<p>Heu de poder explicar i aplicar:</p>
+<ul><li>programació concurrent i àmbits d'aplicació;</li><li>diferència entre concurrència, paral·lelisme i distribució;</li><li>procés, estats, planificació i relació amb el sistema operatiu;</li><li>relació entre processos i fils;</li><li>creació de subprocessos des de Java;</li><li>comunicació bàsica amb arguments, streams, fitxers i codis de sortida;</li><li>sincronització amb la finalització d'un procés;</li><li>execució de diverses tasques amb processos;</li><li>timeout, monitoratge, depuració i documentació.</li></ul>
+<h3>RA2: fils</h3>
+<p>Heu de poder explicar i aplicar:</p>
+<ul><li>situacions on és útil treballar amb diversos fils;</li><li>creació, inici, espera i finalització de fils;</li><li>estats i context d'execució;</li><li>memòria compartida entre fils;</li><li>prioritat i fils dimoni;</li><li>condicions de cursa;</li><li>seccions crítiques i <code>synchronized</code>;</li><li>visibilitat amb <code>volatile</code> i diferència amb l'atomicitat;</li><li>interbloqueig;</li><li>espera i notificació amb <code>wait()</code> i <code>notifyAll()</code>;</li><li>concepte de semàfor i monitor;</li><li><code>ExecutorService</code>, <code>Runnable</code>, <code>Callable</code> i <code>Future</code>;</li><li>timeout, cancel·lació, interrupció i tancament del pool;</li><li>proves d'estrès, invariants, depuració i documentació.</li></ul>
+
+<h3>Mapa final</h3>
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">CONCURRÈNCIA
+|
++-- PROCESSOS
+|   |
+|   +-- memòria separada
+|   +-- ProcessBuilder
+|   +-- procés pare i fill
+|   +-- arguments, stdout, stderr i fitxers
+|   +-- codi de sortida
+|   +-- waitFor i timeout
+|   +-- iniciar primer, recollir després
+|
++-- FILS
+    |
+    +-- memòria compartida
+    +-- Thread i Runnable
+    +-- join
+    +-- estats i context
+    +-- condició de cursa
+    +-- synchronized
+    +-- volatile
+    +-- deadlock
+    +-- wait i notifyAll
+    |
+    +-- ExecutorService
+        +-- pool de fils
+        +-- Callable
+        +-- Future
+        +-- timeout i cancel·lació
+        +-- estat compartit
+        +-- shutdown</code></pre>
+  </div>
+</div>
+
+<p>Quan mireu un programa concurrent, quatre preguntes acostumen a aclarir gairebé tot:</p>
+<ol><li>Quines tasques existeixen?</li><li>Què comparteixen?</li><li>Qui ha d'esperar a qui?</li><li>Com comprovem que el resultat final és coherent?</li></ol>
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 4: Gestionar moltes tasques amb ExecutorService",
+  "description": "Materials pràctics i progressius de la unitat 1",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Programació de serveis i processos — IOC",
+    "description": "Materials del mòdul DAM_0490 - Programació de serveis i processos"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                    
+                                        
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0490/unitat-1/bloc-3/" class="nav-button" aria-label="Bloc anterior: Fils, memòria compartida i sincronització">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="1" data-total="1">(1/1)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="4" data-total="4">(4/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="5">(1/5)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 20%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/dam_0490/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/dam_0490",
+        title: "Programació de serveis i processos",
+        version: "v1.0",
+        cicle_modul: "DAM_0490"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/dam_0490/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/dam_0490/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 1: Entendre què passa quan hi ha diverses tasques | Programació de serveis i processos - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="1">
+    <meta name="page-bloc" content="1">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 1: Entendre què passa quan hi ha diverses tasques | Programació de serveis i processos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 1: Entendre què passa quan hi ha diverses tasques" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Conceptes bàsics de processos, fils, concurrència i paral·lelisme" />
+<meta property="og:description" content="Conceptes bàsics de processos, fils, concurrència i paral·lelisme" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-1/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-1/" />
+<meta property="og:site_name" content="Programació de serveis i processos" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 1: Entendre què passa quan hi ha diverses tasques" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Conceptes bàsics de processos, fils, concurrència i paral·lelisme","headline":"Bloc 1: Entendre què passa quan hi ha diverses tasques","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-1/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/dam_0490/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-1/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/dam_0490/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/dam_0490/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0490/feed.xml" title="Programació de serveis i processos" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/dam_0490/assets/css/code-block.css">
+    <script src="/ioc/dam_0490/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/dam_0490">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/dam_0490/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/dam_0490/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/dam_0490/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/dam_0490/" class="title-link">
+                <h1>DAM_0490 - Programació de serveis i processos</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/dam_0490/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-1/" class="nav-dropdown-item current">
+                        Unitat 1 - Bloc 1: Entendre què passa quan hi ha diverses tasques
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Crear i controlar processos des de Java
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Fils, memòria compartida i sincronització
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Gestionar moltes tasques amb ExecutorService
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/dam_0490/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/dam_0490/unitat-1/" class="horizontal-nav-item">
+                                Unitat 1: Processos i fils (RA1, RA2)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 1.1: Entendre què passa quan hi ha diverses tasques
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<div class="section" id="Unitat1_Bloc1_Seccio1">
+  <h2>1. Programa, procés i fil</h2>
+
+<p>Un <strong>programa</strong> és un conjunt d'instruccions. Mentre està guardat al disc és una cosa estàtica.</p>
+<p>Quan l'executem, el sistema operatiu crea un <strong>procés</strong>. El procés és la instància del programa que està funcionant en aquell moment.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">programa Java
+    |
+    | executar
+    v
+procés Java</code></pre>
+  </div>
+</div>
+
+
+<p>Si obrim dues vegades la mateixa aplicació, normalment obtenim dos processos diferents. Cada procés té els seus propis recursos i el seu propi espai de memòria.</p>
+<p>Dins d'un procés hi pot haver un o més <strong>fils</strong>. Un fil és un camí d'execució.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">PROCÉS
+|
++-- fil main
++-- fil treballador 1
++-- fil treballador 2</code></pre>
+  </div>
+</div>
+
+
+<p>Els fils d'un mateix procés comparteixen objectes i memòria del procés. Cada fil, però, manté el seu propi context d'execució, com ara la pila de crides i el punt del programa on es troba.</p>
+
+<table class="table">
+<thead><tr><th></th><th>Processos diferents</th><th>Fils del mateix procés</th></tr></thead>
+<tbody>
+<tr><td>Memòria</td><td>Separada</td><td>Compartida</td></tr>
+<tr><td>Aïllament</td><td>Alt</td><td>Baix</td></tr>
+<tr><td>Comunicació</td><td>Necessita un mecanisme específic</td><td>Poden compartir objectes</td></tr>
+<tr><td>Cost de creació</td><td>Més alt</td><td>Més baix</td></tr>
+<tr><td>Risc de condicions de cursa sobre objectes Java</td><td>No directament entre JVM independents</td><td>Sí</td></tr>
+</tbody>
+</table>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-1/u1_01_programa_proces_fil.svg" alt="Diferència entre programa, processos i fils." class="figure-img"/>
+      
+      <figcaption class="figure-caption">Els processos tenen memòria separada. Els fils d'un mateix procés comparteixen el heap.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+<h3>Executable, procés i servei</h3>
+<p>També convé distingir tres termes habituals:</p>
+<ul>
+<li>Un <strong>executable</strong> és allò que el sistema pot iniciar. En Java, la JVM executa el bytecode de les classes.</li>
+<li>Un <strong>procés</strong> és una execució concreta d'un programa.</li>
+<li>Un <strong>servei</strong> és un procés pensat per mantenir-se actiu i oferir una funció durant un període llarg, sovint en segon pla.</li>
+</ul>
+<p>Un servidor web és un bon exemple de servei: queda actiu esperant peticions i les va atenent quan arriben.</p>
+</div>
+
+<div class="section" id="Unitat1_Bloc1_Seccio2">
+  <h2>2. Concurrència, paral·lelisme i distribució</h2>
+
+<p>Són conceptes relacionats, però no volen dir el mateix.</p>
+
+<h3>Concurrència</h3>
+<p>Hi ha diverses tasques en progrés durant el mateix interval de temps. En un únic nucli, el sistema pot alternar-les.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">temps ---&gt;
+
+Tasca A: AAAA      AAAA       AAA
+Tasca B:     BBBBBB    BBBBBBB</code></pre>
+  </div>
+</div>
+
+
+<p>Les dues avancen, encara que no estiguin executant instruccions exactament al mateix instant.</p>
+
+<h3>Paral·lelisme</h3>
+<p>Dues o més tasques s'executen realment al mateix temps, per exemple en nuclis diferents.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Nucli 1: AAAAAAAAAAAAA
+Nucli 2: BBBBBBBBBBBBB</code></pre>
+  </div>
+</div>
+
+
+<h3>Programació distribuïda</h3>
+<p>Les parts del sistema s'executen en màquines diferents i es comuniquen per xarxa.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Ordinador A  &lt;---- xarxa ----&gt;  Ordinador B</code></pre>
+  </div>
+</div>
+
+
+<p>Un programa pot ser concurrent sense ser paral·lel. També pot ser concurrent i paral·lel al mateix temps.</p>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-1/u1_02_concurrencia_paralelisme_distribucio.svg" alt="Comparació de concurrència, paral·lelisme i distribució." class="figure-img"/>
+      
+      <figcaption class="figure-caption">Concurrència, paral·lelisme i distribució són conceptes relacionats, però diferents.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat1_Bloc1_Seccio3">
+  <h2>3. Processos, planificació i tipus de tasques</h2>
+
+<p>Quan s'inicia un procés, el sistema operatiu li assigna recursos i guarda informació necessària per controlar-lo. Aquesta informació forma part del <strong>bloc de control del procés</strong>, sovint anomenat BCP o PCB.</p>
+<p>Entre altres dades, el sistema necessita saber:</p>
+<ul>
+<li>quin procés és;</li>
+<li>en quin estat es troba;</li>
+<li>quin punt del programa estava executant;</li>
+<li>quins recursos té assignats;</li>
+<li>quina informació necessita recuperar quan torni a executar-se.</li>
+</ul>
+
+<p>Un model simplificat dels estats d'un procés és aquest:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">NOU -&gt; PREPARAT -&gt; EXECUCIÓ -&gt; FINALITZAT
+          ^           |
+          |           v
+          +-------- ESPERA</code></pre>
+  </div>
+</div>
+
+
+<p>Un procés pot passar a espera perquè necessita dades del disc, de la xarxa, de l'usuari o d'un altre recurs. Quan ja pot continuar, torna a l'estat de preparat.</p>
+<p>Si hi ha més processos preparats que nuclis disponibles, el sistema operatiu decideix quin s'executa en cada moment. Això és la <strong>planificació</strong>.</p>
+<p>Quan la CPU deixa una tasca i continua amb una altra, s'ha de guardar el context de la primera i recuperar el de la segona. És un <strong>canvi de context</strong>. Té un cost, de manera que crear més processos o més fils no fa necessàriament que un programa sigui més ràpid.</p>
+
+<h3>Tasques de càlcul i tasques d'espera</h3>
+<ul>
+<li><strong>CPU-bound</strong>: la major part del temps es dedica a calcular.</li>
+<li><strong>I/O-bound</strong>: la major part del temps es dedica a esperar disc, xarxa, base de dades o altres operacions d'entrada i sortida.</li>
+</ul>
+
+<p>La concurrència és especialment útil quan hi ha moltes tasques que passen una part del temps esperant. Mentre una espera, una altra pot avançar.</p>
+<p>En tasques molt intensives de càlcul, el nombre de nuclis disponibles té més importància. Crear cent fils en una màquina amb pocs nuclis no crea cent CPU.</p>
+</div>
+
+<div class="section" id="Unitat1_Bloc1_Seccio4">
+  <h2>4. Quan convé un procés i quan convé un fil?</h2>
+
+<table class="table">
+<thead><tr><th>Necessitat</th><th>Mecanisme que encaixa millor</th></tr></thead>
+<tbody>
+<tr><td>Executar una eina externa</td><td>Procés</td></tr>
+<tr><td>Aïllar una tasca de la resta de l'aplicació</td><td>Procés</td></tr>
+<tr><td>Compartir molts objectes dins de la mateixa aplicació</td><td>Fils</td></tr>
+<tr><td>Fer diverses tasques lleugeres dins de la mateixa JVM</td><td>Fils o un pool de fils</td></tr>
+<tr><td>Executar feina en altres màquines</td><td>Sistema distribuït</td></tr>
+</tbody>
+</table>
+
+<p>En aquesta unitat veurem els dos casos. Primer llançarem programes independents amb processos. Després executarem moltes tasques dins de la mateixa JVM amb fils.</p>
+
+<h3>Abans de continuar</h3>
+<p>Si aquestes frases tenen sentit, la base està clara:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Un programa no és un procés.
+Un procés pot tenir diversos fils.
+Dos processos estan aïllats.
+Dos fils del mateix procés comparteixen memòria.
+Concurrent no vol dir necessàriament paral·lel.</code></pre>
+  </div>
+</div>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 1: Entendre què passa quan hi ha diverses tasques",
+  "description": "Conceptes bàsics de processos, fils, concurrència i paral·lelisme",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Programació de serveis i processos — IOC",
+    "description": "Materials del mòdul DAM_0490 - Programació de serveis i processos"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                        
+                                        
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0490/unitat-1/bloc-2/" class="nav-button" aria-label="Bloc següent: Crear i controlar processos des de Java">Següent →</a>
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="1" data-total="1">(1/1)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="1" data-total="4">(1/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 25%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="4">(1/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 25%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/dam_0490/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/dam_0490",
+        title: "Programació de serveis i processos",
+        version: "v1.0",
+        cicle_modul: "DAM_0490"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/dam_0490/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/dam_0490/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>
