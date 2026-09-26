@@ -1,0 +1,72 @@
+# DA2_0487 static-site builder
+name: Build and publish DA2_0487 static site
+
+on:
+  push:
+    branches: ["master"]
+    paths:
+      - ".github/workflows/build-da2-0487.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-audit-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout target site repository
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - name: Checkout DA2_0487 source
+        uses: actions/checkout@v4
+        with:
+          repository: itrascastro/ioc-da2_0487
+          ref: main
+          path: _da20487_source
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.1"
+
+      - name: Install Jekyll dependencies
+        working-directory: _da20487_source/docs
+        run: |
+          bundle config set path vendor/bundle
+          bundle install
+
+      - name: Build DA2_0487
+        working-directory: _da20487_source/docs
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build
+
+      - name: Audit generated site
+        working-directory: _da20487_source
+        run: python3 tools/audit_site.py docs/_site
+
+      - name: Replace published DA2_0487 folder
+        run: |
+          rm -rf ioc/da2_0487
+          mkdir -p ioc/da2_0487
+          cp -a _da20487_source/docs/_site/. ioc/da2_0487/
+          rm -rf _da20487_source
+
+      - name: Commit generated site
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ioc/da2_0487
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+          else
+            git commit -m "Publica DA2_0487"
+            git fetch origin master
+            git rebase origin/master
+            git push origin master
+          fi
