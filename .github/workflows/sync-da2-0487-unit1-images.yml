@@ -1,0 +1,49 @@
+name: Sync DA2_0487 Unit 1 images
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - ".github/workflows/sync-da2-0487-unit1-images.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout published site
+        uses: actions/checkout@v4
+
+      - name: Download exact higher-resolution source images
+        run: |
+          set -euo pipefail
+          dest="ioc/da2_0487/assets/img/unitat-1"
+          mkdir -p "$dest"
+          base="https://raw.githubusercontent.com/itrascastro/ioc-da2_0487/main/docs/assets/img/unitat-1"
+          files=(
+            01_uml_visio_general.jpg
+            02_classe_atribut_operacio_objecte.jpg
+            03_relacions_entre_classes.jpg
+            04_agregacio_composicio_classe_associativa.jpg
+            05_diagrama_casos_us.jpg
+            06_diagrama_sequencia.jpg
+            07_diagrama_comunicacio.jpg
+            08_diagrama_activitats.jpg
+            09_diagrama_estats.jpg
+            10_papyrus_projecte_model_diagrama.jpg
+          )
+          for f in "${files[@]}"; do
+            curl -fL --retry 3 "$base/$f" -o "$dest/$f"
+          done
+          file "$dest"/*.jpg
+
+      - name: Commit synchronized images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ioc/da2_0487/assets/img/unitat-1/*.jpg
+          git commit -m "Sincronitza imatges d'alta resolució de DA2_0487 unitat 1"
+          git push
