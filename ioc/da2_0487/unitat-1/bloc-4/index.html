@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 4: Papyrus de principi a fi: del model al codi i del codi al model | Entorns de desenvolupament - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="1">
+    <meta name="page-bloc" content="4">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 4: Papyrus de principi a fi: del model al codi i del codi al model | Entorns de desenvolupament</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 4: Papyrus de principi a fi: del model al codi i del codi al model" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Flux de treball amb Papyrus, exportació, generació de Java, enginyeria inversa i revisió final" />
+<meta property="og:description" content="Flux de treball amb Papyrus, exportació, generació de Java, enginyeria inversa i revisió final" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-1/bloc-4/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/da2_0487/unitat-1/bloc-4/" />
+<meta property="og:site_name" content="Entorns de desenvolupament" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 4: Papyrus de principi a fi: del model al codi i del codi al model" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Flux de treball amb Papyrus, exportació, generació de Java, enginyeria inversa i revisió final","headline":"Bloc 4: Papyrus de principi a fi: del model al codi i del codi al model","url":"https://itrascastro.github.io/ioc/da2_0487/unitat-1/bloc-4/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-1/bloc-4/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/da2_0487/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/da2_0487/feed.xml" title="Entorns de desenvolupament" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/code-block.css">
+    <script src="/ioc/da2_0487/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/da2_0487">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/da2_0487/" class="logo-link" aria-label="Inici">
+                <img src="https://itrascastro.github.io/ioc/dam_0488/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="https://itrascastro.github.io/ioc/dam_0488/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/da2_0487/" class="title-link">
+                <h1>DA2_0487 - Entorns de desenvolupament</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/da2_0487/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Del problema al primer diagrama de classes
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Relacions entre classes i modelatge complet
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Diagrames de comportament i d'interacció
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-4/" class="nav-dropdown-item current">
+                        Unitat 1 - Bloc 4: Papyrus de principi a fi: del model al codi i del codi al model
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc4_Seccio1" class="nav-link" data-section="Unitat1_Bloc4_Seccio1">1. Projectes, models i diagrames a Papyrus</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc4_Seccio2" class="nav-link" data-section="Unitat1_Bloc4_Seccio2">2. Treballar i exportar diagrames</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc4_Seccio3" class="nav-link" data-section="Unitat1_Bloc4_Seccio3">3. Generar codi Java des d'un diagrama</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc4_Seccio4" class="nav-link" data-section="Unitat1_Bloc4_Seccio4">4. Enginyeria inversa: del Java al diagrama</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc4_Seccio5" class="nav-link" data-section="Unitat1_Bloc4_Seccio5">5. Circuit complet i errors habituals</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/da2_0487/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/da2_0487/unitat-1/" class="horizontal-nav-item">
+                                Unitat 1: Introducció al disseny orientat a objectes (modelatge UML) (RA5 i RA6)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 1.4: Papyrus de principi a fi: del model al codi i del codi al model
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<div class="section">
+  <h2 id="Unitat1_Bloc4_Seccio1">1. Projectes, models i diagrames a Papyrus</h2>
+
+<p>Ara que ja sabem <strong>què</strong> volem dibuixar, podem concentrar-nos en <strong>com</strong> treballar amb Papyrus. La primera dificultat no és cap símbol UML: és entendre la jerarquia de l'eina.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Projecte Papyrus
+|
++-- Model A (.di)
+|   |
+|   +-- Diagrama de classes
+|   +-- Diagrama de seqüència
+|
++-- Model B (.di)
+    |
+    +-- Diagrama d&#39;activitats</code></pre>
+  </div>
+</div>
+
+
+<table class="table">
+<thead><tr><th>Element</th><th>Què representa?</th></tr></thead>
+<tbody>
+<tr><td>Projecte</td><td>Contenidor de treball dins de l'espai de treball d'Eclipse/Papyrus.</td></tr>
+<tr><td>Model</td><td>Conjunt coherent d'elements UML relacionats.</td></tr>
+<tr><td>Diagrama</td><td>Una vista gràfica concreta sobre una part del model.</td></tr>
+</tbody>
+</table>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No poseu exercicis independents dins del mateix model només perquè pertanyen a la mateixa EAC.</strong> Si els elements no tenen relació conceptual, creeu models separats. Papyrus comprova la coherència interna del model i un model ple de diagrames inconnexos pot complicar i alentir el treball.</p>
+</div>
+
+
+<h3>Instal·lar Papyrus</h3>
+
+<p>Els materials complementaris proposen treballar amb la distribució de Papyrus integrada amb Eclipse. El flux habitual és:</p>
+<ol>
+<li>descarregar la versió de Papyrus/Eclipse indicada per al curs des de <a href="https://eclipse.dev/papyrus/download.html" target="_blank" rel="noopener noreferrer">la pàgina de descàrrega de Papyrus</a>;</li>
+<li>descomprimir-la o instal·lar-la segons la distribució;</li>
+<li>executar l'Eclipse que incorpora Papyrus.</li>
+</ol>
+
+<p>També és possible afegir Papyrus com a connector a una instal·lació d'Eclipse existent, però per a una activitat avaluable és preferible reduir variables i treballar amb una configuració coneguda.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Les captures poden no coincidir píxel a píxel amb la vostra versió.</strong></p><p>Els noms de menús o la disposició de les vistes poden canviar lleugerament. Centreu-vos en els conceptes estables: projecte, model, diagrama, paleta, Properties i Package Explorer.</p>
+    
+</div>
+
+
+<h3>Crear un projecte i un model</h3>
+
+<ol>
+<li><strong>File → New → Other...</strong></li>
+<li>Busqueu <strong>Papyrus Project</strong>.</li>
+<li>Seleccioneu UML com a tipus de model.</li>
+<li>Doneu un nom clar al projecte i al model.</li>
+<li>Seleccioneu el tipus de diagrama inicial o creeu-lo després.</li>
+</ol>
+
+<p>Si ja teniu un projecte i només voleu un model nou, utilitzeu l'opció de creació de <strong>Papyrus Model</strong> i deseu-lo dins del projecte corresponent.</p>
+
+<h3>Obrir un model i trobar les vistes</h3>
+
+<p>El <strong>Package Explorer</strong> mostra els projectes i els models. Els models Papyrus es reconeixen habitualment pel fitxer <code>.di</code>. En obrir un model, els seus diagrames apareixen com a pestanyes.</p>
+
+<p>Si tanqueu accidentalment una vista com <strong>Properties</strong>, <strong>Package Explorer</strong> o <strong>Palette</strong>, la podeu recuperar des de <strong>Window → Show View</strong>.</p>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Projecte net</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Creeu un projecte Papyrus anomenat LaboratoriUML, un model anomenat clients i un diagrama de classes buit. Creeu després un segon model independent anomenat comandes amb un altre diagrama buit.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">10 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>No poseu els dos exercicis dins del mateix model.</li>
+        
+        <li>Localitzeu els dos fitxers .di al Package Explorer.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat1_Bloc4_Seccio2">2. Treballar i exportar diagrames</h2>
+
+<p>La mecànica d'edició és semblant en gairebé tots els diagrames: la <strong>paleta</strong> aporta elements, el llenç els conté i la vista <strong>Properties</strong> permet configurar-ne les propietats.</p>
+
+<h3>Operacions que heu de dominar</h3>
+
+<table class="table">
+<thead><tr><th>Acció</th><th>Com fer-la habitualment</th></tr></thead>
+<tbody>
+<tr><td>Afegir un element</td><td>Seleccioneu-lo a la paleta i feu clic al llenç.</td></tr>
+<tr><td>Seleccionar</td><td>Feu clic a l'element; amb Ctrl podeu seleccionar-ne diversos.</td></tr>
+<tr><td>Moure</td><td>Arrossegueu l'element.</td></tr>
+<tr><td>Redimensionar</td><td>Seleccioneu-lo i arrossegueu els controls de mida.</td></tr>
+<tr><td>Eliminar</td><td>Seleccioneu-lo i premeu Supr/Delete.</td></tr>
+<tr><td>Canviar propietats</td><td>Seleccioneu l'element i utilitzeu la vista Properties.</td></tr>
+<tr><td>Cancel·lar una eina activa</td><td>Premeu Esc.</td></tr>
+</tbody>
+</table>
+
+<h3>Relacions: l'ordre dels clics importa</h3>
+
+<p>Quan creeu una relació amb fletxa, normalment seleccioneu primer l'eina i després feu clic als dos elements. L'ordre és important perquè determina origen i destinació.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Si una fletxa apunta al lloc equivocat, no la deixeu així perquè «s'entén».</strong> En UML la direcció forma part del significat: generalització, dependència, include i extend tenen una orientació concreta.</p>
+</div>
+
+
+<h3>Propietats importants en un diagrama de classes</h3>
+
+<ul>
+<li><strong>Visibility</strong>: <code>public</code>, <code>private</code>, <code>protected</code> o <code>package</code>.</li>
+<li><strong>Multiplicity</strong>: cardinalitat de cada extrem d'una associació.</li>
+<li><strong>Navigability</strong>: si des d'un extrem es pot navegar cap a l'altre.</li>
+<li><strong>Aggregation</strong>: habitualment <code>none</code>, <code>shared</code> o <code>composite</code>.</li>
+<li><strong>Type</strong>: tipus d'una propietat o d'un paràmetre.</li>
+<li><strong>Owned parameters</strong>: paràmetres i valor de retorn de les operacions.</li>
+</ul>
+
+<p>Per a un valor de retorn d'una operació, creeu un paràmetre amb direcció <code>return</code>. Per als paràmetres normals de Java, la direcció habitual és <code>in</code>.</p>
+
+<h3>Consells per tipus de diagrama</h3>
+
+<table class="table">
+<thead><tr><th>Diagrama</th><th>Comprovació pràctica</th></tr></thead>
+<tbody>
+<tr><td>Classes</td><td>Amplieu les caixes fins que atributs, paràmetres i retorns es vegin sencers.</td></tr>
+<tr><td>Casos d'ús</td><td>Reviseu la direcció de <code>include</code> i <code>extend</code> i que els actors siguin externs.</td></tr>
+<tr><td>Seqüència</td><td>Col·loqueu primer les línies de vida i després els missatges en ordre temporal.</td></tr>
+<tr><td>Comunicació</td><td>Numereu els missatges perquè l'ordre quedi explícit.</td></tr>
+<tr><td>Activitats</td><td>Etiqueteu les guardes de les decisions i no confongueu fork/join amb decisions.</td></tr>
+<tr><td>Estats</td><td>Poseu noms d'estat a les caixes i esdeveniments/condicions a les transicions.</td></tr>
+</tbody>
+</table>
+
+<h3>Exportar el resultat</h3>
+
+<p>Un lliurament acostuma a demanar una imatge del diagrama. A Papyrus podeu seleccionar una zona buida del diagrama i utilitzar l'opció d'exportació, habitualment <strong>File → Save As Image File...</strong>.</p>
+
+<p>Abans d'exportar:</p>
+<ol>
+<li>ordeneu els elements;</li>
+<li>eviteu línies creuades quan sigui possible;</li>
+<li>redimensioneu les classes i etiquetes;</li>
+<li>comproveu que no hi ha text tallat;</li>
+<li>feu un zoom que permeti llegir la imatge exportada.</li>
+</ol>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>El diagrama és una forma de comunicació.</strong></p><p>La correcció semàntica és imprescindible, però la llegibilitat també. Si el lector ha de perseguir fletxes entre creuaments o endevinar un text tallat, el model no està complint bé la seva funció.</p>
+    
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Auditoria visual</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Obriu un dels diagrames que heu fet en els blocs anteriors i prepareu-lo per exportar: alineeu elements, elimineu creuaments innecessaris, comproveu textos i genereu la imatge.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">8 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>No modifiqueu el significat només per fer-lo bonic.</li>
+        
+        <li>Llegiu la imatge exportada fora de Papyrus.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat1_Bloc4_Seccio3">3. Generar codi Java des d'un diagrama</h2>
+
+<p>Una de les idees importants de l'enginyeria del programari és que el model no sempre acaba en un dibuix. Algunes eines poden transformar una part del model en codi inicial.</p>
+
+<p>Per fer-ho, Papyrus necessita els components de generació de codi corresponents, habitualment proporcionats per <strong>Papyrus Software Designer</strong>.</p>
+
+<h3>Flux general</h3>
+
+<ol>
+<li>Obriu el <strong>diagrama de classes</strong>.</li>
+<li>Feu clic amb el botó secundari en una zona buida.</li>
+<li>Seleccioneu l'opció de generació, habitualment <strong>Designer → Generate code</strong>.</li>
+<li>Seleccioneu el generador de Java.</li>
+<li>Si l'eina ho proposa, creeu un projecte Java per al codi generat.</li>
+<li>Reviseu el resultat al Package Explorer.</li>
+</ol>
+
+<h3>Exemple mínim</h3>
+
+<p>Partim d'aquest model:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">+--------------------------------+
+|            Sensor              |
++--------------------------------+
+| - codi: String                 |
+| - actiu: boolean               |
++--------------------------------+
+| + llegirValor(): double        |
++--------------------------------+</code></pre>
+  </div>
+</div>
+
+
+<p>El codi generat serà una base semblant a:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">Sensor.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class Sensor {
+    private String codi;
+    private boolean actiu;
+
+    public double llegirValor() {
+        // Implementació pendent
+        return 0.0;
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>El generador pot crear signatures i estructura, però <strong>no pot inventar la lògica de negoci</strong> que no està expressada al model.</p>
+
+<h3>La navegabilitat i la multiplicitat poden aparèixer al codi</h3>
+
+<p>Suposem que una associació és navegable de <code>Client</code> cap a <code>Comanda</code> i la multiplicitat és <code>0..*</code>. El generador pot representar aquesta relació amb una col·lecció:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class Client {
+    private java.util.List&lt;Comanda&gt; comandes;
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Si la multiplicitat fos <code>0..1</code> o <code>1</code>, és més probable que aparegui una única referència:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class Comanda {
+    private Client client;
+}</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Si una relació no apareix al codi com esperàveu, reviseu abans el model.</strong> La multiplicitat i la navegabilitat són candidates evidents. Un generador només pot actuar sobre la informació que heu configurat.</p>
+</div>
+
+
+<h3>Noms de model i paquets</h3>
+
+<p>Algunes versions o configuracions utilitzen el nom del model per construir noms de paquet. Per evitar problemes, utilitzeu noms simples, sense espais ni caràcters estranys, quan sabeu que generareu codi.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Model → codi no significa model = codi.</strong></p><p>El diagrama captura estructura i contractes. El codi generat és un esquelet que encara necessita implementació, validacions, tractament d'errors i totes les decisions que no formen part del diagrama.</p>
+    
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Genera i compara</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Creeu un diagrama amb Client i Comanda, una associació navegable de Client cap a moltes Comandes, dos atributs per classe i una operació. Genereu Java i identifiqueu quina part del codi prové de cada element UML.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">20 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Fixeu-vos en camps, tipus i mètodes.</li>
+        
+        <li>Busqueu com s'ha representat la multiplicitat molts.</li>
+        
+        <li>No espereu lògica de negoci automàtica.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat1_Bloc4_Seccio4">4. Enginyeria inversa: del Java al diagrama</h2>
+
+<p>També podem fer el recorregut contrari: partir de codi Java existent i obtenir-ne una representació UML. Aquesta operació s'anomena habitualment <strong>enginyeria inversa</strong>.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Diagrama UML  ----------&gt;  Codi Java
+             generació
+
+Diagrama UML  &lt;----------  Codi Java
+          enginyeria inversa</code></pre>
+  </div>
+</div>
+
+
+<h3>Preparar Papyrus Software Designer</h3>
+
+<p>Si la vostra instal·lació no ofereix les funcions d'enginyeria inversa, el material complementari indica instal·lar <strong>Papyrus Software Designer</strong>. El procediment general és:</p>
+
+<ol>
+<li>executeu Papyrus Desktop/Eclipse amb Papyrus;</li>
+<li>obriu <a href="https://marketplace.eclipse.org/content/papyrus-software-designer" target="_blank" rel="noopener noreferrer"><strong>Papyrus Software Designer</strong> a Eclipse Marketplace</a>;</li>
+<li>inicieu la instal·lació des de l'opció <strong>Install</strong>;</li>
+<li>seleccioneu els components de transformació/disseny i de suport Java que necessita la generació de codi;</li>
+<li>accepteu els termes de llicència;</li>
+<li>confirmeu les autoritats o artefactes de confiança quan l'instal·lador ho demani;</li>
+<li>reinicieu Papyrus perquè els canvis s'apliquin.</li>
+</ol>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Instal·lar el complement forma part de preparar l'eina, no del model.</strong> Feu aquesta configuració abans de començar una activitat amb temps limitat i comproveu amb una classe petita que la importació funciona.</p>
+</div>
+
+
+<h3>Exemple: classe Java existent</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">Producte.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">package botiga;
+
+public class Producte {
+    private String codi;
+    private String nom;
+    private double preu;
+
+    public boolean esCar() {
+        return preu &gt; 100.0;
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<h3>Flux de treball</h3>
+
+<ol>
+<li>Creeu o obriu un <strong>projecte Java</strong> que contingui el codi.</li>
+<li>Comproveu que la classe compila i que el paquet és correcte.</li>
+<li>Creeu un projecte/model Papyrus amb un <strong>diagrama de classes buit</strong>.</li>
+<li>Utilitzeu la funció d'enginyeria inversa disponible a Software Designer o importeu/arrossegueu el paquet Java cap al model segons la configuració instal·lada.</li>
+<li>Feu visibles els atributs i operacions si l'eina els ha importat però els manté ocults.</li>
+<li>Redimensioneu i ordeneu la classe perquè tots els elements siguin llegibles.</li>
+</ol>
+
+<p>En algunes versions, per mostrar els membres d'una classe importada, podeu utilitzar opcions com <strong>Filters → Show/Hide contents</strong>.</p>
+
+<h3>Què no heu d'esperar de l'enginyeria inversa</h3>
+
+<p>La importació no és una reconstrucció perfecta de totes les decisions de disseny originals. A partir del codi és fàcil recuperar classes, atributs i operacions, però algunes relacions UML conceptuals poden no reconstruir-se automàticament tal com les hauríeu dibuixat a mà.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Una limitació important del material de Papyrus</strong></p><p>La importació de classes pot no recuperar automàticament totes les associacions entre elles. Si una activitat demana observar el resultat de l'enginyeria inversa, no «arregleu» el diagrama manualment tret que l'enunciat ho demani. L'objectiu pot ser precisament veure què és capaç de reconstruir l'eina.</p>
+    
+</div>
+
+
+<h3>Prova mínima abans d'un exercici real</h3>
+
+<p>Abans d'importar un projecte gran, utilitzeu una classe de prova amb dos atributs i un mètode. Si aquesta classe apareix correctament al diagrama, sabreu que el complement i el flux d'importació funcionen.</p>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Anada i tornada</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Creeu una classe Java Reserva amb codi, data i confirmada, i un mètode confirmar(). Importeu-la a un diagrama de classes buit, mostreu-ne tots els membres i exporteu el resultat.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">20 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Comproveu primer que el Java compila.</li>
+        
+        <li>Si els membres existeixen però no es veuen, reviseu Show/Hide contents.</li>
+        
+        <li>No afegiu relacions que no provenen del codi.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat1_Bloc4_Seccio5">5. Circuit complet i errors habituals</h2>
+
+<p>Ja hem recorregut totes les peces. Ara és el moment de convertir-les en un procediment reutilitzable per a qualsevol exercici similar.</p>
+
+<h3>Si l'enunciat demana un diagrama de classes</h3>
+
+<ol>
+<li>Subratlleu els conceptes candidats a classe.</li>
+<li>Separeu atributs i operacions.</li>
+<li>Poseu tipus i visibilitat.</li>
+<li>Identifiqueu relacions.</li>
+<li>Calculeu les multiplicitats llegint cada relació en les dues direccions.</li>
+<li>Busqueu frases «és un tipus de» per detectar generalitzacions.</li>
+<li>Busqueu relacions tot-part i decidiu si realment són agregació o composició.</li>
+<li>Busqueu dades que pertanyen a una relació per detectar classes associatives.</li>
+<li>Construïu el model a Papyrus.</li>
+<li>Reviseu la semàntica abans d'exportar.</li>
+</ol>
+
+<h3>Si l'enunciat demana un diagrama de casos d'ús</h3>
+
+<ul>
+<li>identifiqueu actors externs;</li>
+<li>convertiu objectius en casos d'ús;</li>
+<li>utilitzeu <code>include</code> per comportaments obligatoris/reutilitzats;</li>
+<li>utilitzeu <code>extend</code> per comportaments opcionals significatius;</li>
+<li>reviseu la direcció de les fletxes.</li>
+</ul>
+
+<h3>Si l'enunciat és una història ordenada</h3>
+
+<p>Si apareixen passos del tipus «A envia a B», «B consulta C», «C respon...», penseu en <strong>seqüència</strong> o <strong>comunicació</strong>. En seqüència l'ordre és vertical; en comunicació l'ordre l'explicita la numeració.</p>
+
+<h3>Si l'enunciat descriu un procediment</h3>
+
+<p>Si hi ha passos, decisions, repeticions i accions simultànies, el diagrama d'<strong>activitats</strong> és el candidat natural.</p>
+
+<h3>Si l'enunciat parla de situacions persistents d'un objecte</h3>
+
+<p>Expressions com «queda pendent», «passa a actiu», «entra en avaria», «torna a disponible» apunten a un diagrama d'<strong>estats</strong>.</p>
+
+<h3>Errors habituals abans de lliurar</h3>
+
+<table class="table">
+<thead><tr><th>Error</th><th>Com detectar-lo</th></tr></thead>
+<tbody>
+<tr><td>Noms de classe en plural.</td><td>Llegiu-los com a tipus: <code>Client</code>, no <code>Clients</code>.</td></tr>
+<tr><td>Atributs sense visibilitat o tipus.</td><td>Reviseu cada compartiment de classe.</td></tr>
+<tr><td>Getters/setters que l'enunciat demana ometre.</td><td>Compareu el diagrama amb les instruccions.</td></tr>
+<tr><td>Multiplicitat invertida.</td><td>Llegiu cada extrem amb «per a un X, quants Y?».</td></tr>
+<tr><td>Rombe al costat de la part.</td><td>El rombe va al costat del tot.</td></tr>
+<tr><td>Herència al revés.</td><td>La fletxa apunta cap a la classe general.</td></tr>
+<tr><td><code>include</code> o <code>extend</code> invertits.</td><td>Expliqueu la frase amb paraules abans de mirar la fletxa.</td></tr>
+<tr><td>Comunicació sense numeració.</td><td>Sense eix temporal, l'ordre ha de quedar explícit.</td></tr>
+<tr><td>Decisió utilitzada com a paral·lelisme.</td><td>Si passen les dues branques, necessiteu fork/join.</td></tr>
+<tr><td>Accions dibuixades com a estats.</td><td>Un estat descriu una situació; una acció descriu una activitat.</td></tr>
+<tr><td>Text tallat a la imatge exportada.</td><td>Obriu la imatge final i llegiu-la abans de comprimir el lliurament.</td></tr>
+</tbody>
+</table>
+
+<h3>Exercici integrador: centre de lloguer de patinets</h3>
+
+<blockquote>
+Un centre lloga patinets a usuaris. Hi ha patinets normals i patinets de llarg abast. Cada lloguer relaciona un usuari amb un patinet i en guarda inici, final i cost. Els patinets tenen revisions que només existeixen associades al patinet. L'usuari pot consultar patinets disponibles i iniciar un lloguer; abans d'iniciar-lo sempre s'ha d'identificar, i opcionalment pot contractar una assegurança. Quan inicia el lloguer, el sistema comprova el patinet, crea el lloguer i confirma l'operació. Durant la preparació es comproven en paral·lel bateria i frens. Un patinet pot estar DISPONIBLE, RESERVAT, EN ÚS, EN REVISIÓ o FORA DE SERVEI.
+</blockquote>
+
+<p>Amb aquest únic context podeu practicar:</p>
+<ul>
+<li>diagrama de classes;</li>
+<li>casos d'ús;</li>
+<li>seqüència;</li>
+<li>comunicació;</li>
+<li>activitats;</li>
+<li>estats;</li>
+<li>generació de Java;</li>
+<li>enginyeria inversa d'una de les classes.</li>
+</ul>
+
+
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Objectiu de la unitat</strong></p><p>No és que memoritzeu vuit tipus de dibuix. És que, quan rebeu un enunciat nou, sapigueu decidir què s'ha de representar, construir-ho amb una notació coherent i utilitzar l'eina sense que la interfície us faci perdre de vista el model.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Repte final de la unitat</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Utilitzeu el context del centre de patinets per crear un diagrama de classes i, com a mínim, tres diagrames de comportament diferents. Exporteu-los i justifiqueu en una frase què explica cadascun que els altres no expliquen.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Avançat</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">60-90 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>No comenceu per Papyrus: analitzeu primer el text.</li>
+        
+        <li>Aprofiteu el mateix context però no forceu les mateixes classes a aparèixer a tots els diagrames.</li>
+        
+        <li>Passeu la llista d'errors habituals abans d'exportar.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 4: Papyrus de principi a fi: del model al codi i del codi al model",
+  "description": "Flux de treball amb Papyrus, exportació, generació de Java, enginyeria inversa i revisió final",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Entorns de desenvolupament — IOC",
+    "description": "Materials del mòdul DA2_0487 - Entorns de desenvolupament"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                    
+                                        
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/da2_0487/unitat-1/bloc-3/" class="nav-button" aria-label="Bloc anterior: Diagrames de comportament i d'interacció">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="1" data-total="1">(1/1)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="4" data-total="4">(4/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="5">(1/5)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 20%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/da2_0487/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/da2_0487",
+        title: "Entorns de desenvolupament",
+        version: "v1.0",
+        cicle_modul: "DA2_0487"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/da2_0487/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/da2_0487/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

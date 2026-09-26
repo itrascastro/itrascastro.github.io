@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 3: Diagrames de comportament i d'interacció | Entorns de desenvolupament - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="1">
+    <meta name="page-bloc" content="3">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 3: Diagrames de comportament i d’interacció | Entorns de desenvolupament</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 3: Diagrames de comportament i d’interacció" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Casos d’ús, seqüència, comunicació, activitats i estats a partir d’exemples progressius" />
+<meta property="og:description" content="Casos d’ús, seqüència, comunicació, activitats i estats a partir d’exemples progressius" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-1/bloc-3/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/da2_0487/unitat-1/bloc-3/" />
+<meta property="og:site_name" content="Entorns de desenvolupament" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 3: Diagrames de comportament i d’interacció" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Casos d’ús, seqüència, comunicació, activitats i estats a partir d’exemples progressius","headline":"Bloc 3: Diagrames de comportament i d’interacció","url":"https://itrascastro.github.io/ioc/da2_0487/unitat-1/bloc-3/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-1/bloc-3/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/da2_0487/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/da2_0487/feed.xml" title="Entorns de desenvolupament" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/code-block.css">
+    <script src="/ioc/da2_0487/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/da2_0487">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/da2_0487/" class="logo-link" aria-label="Inici">
+                <img src="https://itrascastro.github.io/ioc/dam_0488/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="https://itrascastro.github.io/ioc/dam_0488/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/da2_0487/" class="title-link">
+                <h1>DA2_0487 - Entorns de desenvolupament</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/da2_0487/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Del problema al primer diagrama de classes
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Relacions entre classes i modelatge complet
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-3/" class="nav-dropdown-item current">
+                        Unitat 1 - Bloc 3: Diagrames de comportament i d'interacció
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Papyrus de principi a fi: del model al codi i del codi al model
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc3_Seccio1" class="nav-link" data-section="Unitat1_Bloc3_Seccio1">1. Casos d'ús: actors i funcionalitats</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc3_Seccio2" class="nav-link" data-section="Unitat1_Bloc3_Seccio2">2. include, extend i generalització</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc3_Seccio3" class="nav-link" data-section="Unitat1_Bloc3_Seccio3">3. Diagrama de seqüència</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc3_Seccio4" class="nav-link" data-section="Unitat1_Bloc3_Seccio4">4. Diagrama de comunicació</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc3_Seccio5" class="nav-link" data-section="Unitat1_Bloc3_Seccio5">5. Diagrama d'activitats</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc3_Seccio6" class="nav-link" data-section="Unitat1_Bloc3_Seccio6">6. Diagrama d'estats</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/da2_0487/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/da2_0487/unitat-1/" class="horizontal-nav-item">
+                                Unitat 1: Introducció al disseny orientat a objectes (modelatge UML) (RA5 i RA6)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 1.3: Diagrames de comportament i d'interacció
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<div class="section">
+  <h2 id="Unitat1_Bloc3_Seccio1">1. Casos d'ús: actors i funcionalitats</h2>
+
+<p>El diagrama de classes respon sobretot a <strong>què hi ha</strong> al sistema. Els diagrames de comportament expliquen <strong>què passa</strong>. Dins d'aquesta família, els diagrames d'interacció —seqüència, comunicació, visió general d'interacció i temporal— se centren especialment en la col·laboració entre participants.</p>
+
+<p>Treballarem de manera pràctica els cinc tipus que apareixen habitualment als exercicis del mòdul: casos d'ús, seqüència, comunicació, activitats i estats. Els diagrames de visió general d'interacció i temporal completen el mapa UML: el primer resumeix interaccions complexes i el segon posa el focus en com varien estats o valors al llarg del temps.</p>
+
+<p>Comencem pel diagrama que mira el sistema des de fora. Un diagrama de casos d'ús intenta explicar <strong>què ofereix el sistema a qui l'utilitza</strong>.</p>
+
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Actor:</strong> Rol extern que interactua amb el sistema. Pot ser una persona, un altre sistema o qualsevol entitat externa que inicia una interacció o en rep un resultat.</p>
+  </div>
+</div>
+
+
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Cas d'ús:</strong> Funcionalitat o objectiu que el sistema ofereix a un actor. S'acostuma a expressar amb un verb i un complement: Fer reserva, Consultar préstecs, Generar informe...</p>
+  </div>
+</div>
+
+
+<p>Comencem amb un exemple molt petit:</p>
+
+<blockquote>
+En una biblioteca, un usuari pot cercar un llibre i consultar els préstecs que té actius. Un bibliotecari pot enregistrar un préstec.
+</blockquote>
+
+<p>Primer identifiquem els actors:</p>
+<ul>
+<li><strong>Usuari</strong>;</li>
+<li><strong>Bibliotecari</strong>.</li>
+</ul>
+
+<p>Després convertim les funcionalitats en casos d'ús:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Usuari -------- (Cercar llibre)
+   |
+   +------------ (Consultar préstecs actius)
+
+Bibliotecari --- (Enregistrar préstec)</code></pre>
+  </div>
+</div>
+
+
+<h3>El límit del sistema</h3>
+
+<p>Els casos d'ús representen funcionalitats <strong>del sistema</strong>. Els actors queden fora del sistema i es connecten amb els casos d'ús mitjançant associacions.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Actor        +-------------------------------+
+   O           | Sistema de biblioteca         |
+  /|\ --------| (Consultar préstecs actius)   |
+  / \          |                               |
+               +-------------------------------+</code></pre>
+  </div>
+</div>
+
+
+<p>Algunes eines no representen explícitament el rectangle del límit. Això no canvia la idea conceptual: l'actor continua sent extern i el cas d'ús continua pertanyent al sistema.</p>
+
+<h3>Com detectar un bon cas d'ús</h3>
+
+<p>Una tècnica útil és preguntar: <em>quin objectiu intenta aconseguir l'actor?</em> «Fer clic al botó Acceptar» és massa proper a la interfície. «Confirmar reserva» descriu millor una funcionalitat del sistema.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No convertiu cada pas d'una pantalla en un cas d'ús.</strong> Un cas d'ús representa una funcionalitat significativa des del punt de vista de l'actor, no cada clic ni cada instrucció interna.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Actors o classes?</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">En un portal acadèmic, l'Estudiant consulta notes, el Professor publica qualificacions i un servei extern envia notificacions. Identifiqueu els actors i els casos d'ús sense afegir classes del domini.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">8 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Un actor és extern al sistema que estem modelant.</li>
+        
+        <li>Poseu els casos d'ús en forma de verb + complement.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat1_Bloc3_Seccio2">2. include, extend i generalització</h2>
+
+<p>Un diagrama de casos d'ús pot ser molt simple. Només convé separar parts d'un cas d'ús quan aquesta separació aporta informació: perquè una part és compartida, perquè és opcional i important, o perquè volem expressar una variant especialitzada.</p>
+
+<h3><code>&lt;&lt;include&gt;&gt;</code>: una part obligatòria i reutilitzable</h3>
+
+<p>Suposem que per <strong>enregistrar un préstec</strong> sempre cal cercar abans el llibre i l'usuari. Si aquestes cerques també són utilitzades per altres funcionalitats, té sentit separar-les:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">(Enregistrar préstec) - - - - &gt; (Cercar llibre)
+          &lt;&lt;include&gt;&gt;
+
+(Enregistrar préstec) - - - - &gt; (Cercar usuari)
+          &lt;&lt;include&gt;&gt;</code></pre>
+  </div>
+</div>
+
+
+<p>La fletxa d'<code>include</code> apunta cap al cas d'ús que <strong>s'inclou</strong>. La idea mental és: «per fer A, sempre faig també B».</p>
+
+<h3><code>&lt;&lt;extend&gt;&gt;</code>: comportament opcional</h3>
+
+<p>Imagineu ara una reserva d'hotel:</p>
+
+<blockquote>
+El client fa una reserva i, opcionalment, pot pagar-la en aquell moment.
+</blockquote>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">(Pagar reserva) - - - - &gt; (Fer reserva)
+       &lt;&lt;extend&gt;&gt;
+       [si el client vol pagar ara]</code></pre>
+  </div>
+</div>
+
+
+<p>La fletxa d'<code>extend</code> va des del comportament opcional cap al cas d'ús base. La pregunta mental és: «A pot completar-se sense B?». Si la resposta és sí i B només passa sota una condició, <code>extend</code> pot ser adequat.</p>
+
+<table class="table">
+<thead><tr><th>Relació</th><th>Pregunta útil</th><th>Comportament</th></tr></thead>
+<tbody>
+<tr><td><code>&lt;&lt;include&gt;&gt;</code></td><td>Per fer A, sempre cal fer B?</td><td>B és part obligatòria/reutilitzable.</td></tr>
+<tr><td><code>&lt;&lt;extend&gt;&gt;</code></td><td>A pot acabar sense B?</td><td>B apareix només en una situació concreta.</td></tr>
+</tbody>
+</table>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No feu un <code>extend</code> per cada <code>if</code> que imagineu al programa.</strong> Separeu un comportament opcional quan sigui rellevant per entendre el sistema o quan l'enunciat el destaqui explícitament.</p>
+</div>
+
+
+<h3>Generalització de casos d'ús o actors</h3>
+
+<p>La generalització expressa que un actor o cas d'ús especialitzat hereta el comportament general i l'especialitza. Per exemple, si <code>Administrador</code> és un tipus especial d'<code>Usuari</code>, podem representar aquesta especialització entre actors quan sigui útil per evitar repetir totes les associacions comunes.</p>
+
+<h3>Un cas habitual: autenticació</h3>
+
+<p>Si un enunciat diu que <strong>totes</strong> les operacions del portal requereixen autenticació, podem modelar <code>Autenticar-se</code> com una funcionalitat comuna inclosa pels casos d'ús que realment necessiten aquesta precondició. Abans de dibuixar desenes de fletxes, però, valoreu si el nivell de detall del diagrama ho justifica.</p>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Include o extend?</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Modeleu: «Per fer una compra sempre cal identificar-se. Durant la compra, el client pot aplicar opcionalment un cupó. Consultar disponibilitat també s'utilitza en la reserva de productes.» Decidiu quines relacions són include i quines extend.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">12 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Obligatori i compartit apunta a include.</li>
+        
+        <li>Opcional i condicionat apunta a extend.</li>
+        
+        <li>Comproveu la direcció de cada fletxa.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat1_Bloc3_Seccio3">3. Diagrama de seqüència</h2>
+
+<p>Un cas d'ús diu <strong>què</strong> pot fer el sistema. El diagrama de seqüència baixa un nivell i explica <strong>en quin ordre es comuniquen els participants</strong> durant una situació concreta.</p>
+
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Línia de vida:</strong> Participant d'una interacció representat al llarg del temps. Pot correspondre a un actor, un objecte o un sistema.</p>
+  </div>
+</div>
+
+
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Missatge:</strong> Comunicació entre dues línies de vida. L'ordre vertical del diagrama representa l'ordre temporal.</p>
+  </div>
+</div>
+
+
+<h3>Exemple mínim: consultar un producte</h3>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Client        Portal        Cataleg
+  |              |              |
+  |--consultar--&gt;|              |
+  |              |--buscar-----&gt;|
+  |              |&lt;--producte---|
+  |&lt;--mostrar----|              |
+  |              |              |
+  v              v              v
+             temps ↓</code></pre>
+  </div>
+</div>
+
+
+<p>La posició horitzontal diu <strong>qui</strong> participa. La posició vertical diu <strong>quan</strong> passa cada missatge.</p>
+
+<h3>Activacions</h3>
+
+<p>Quan un participant està executant una operació com a conseqüència d'un missatge, el diagrama pot mostrar una barra d'activació sobre la seva línia de vida. No cal convertir el diagrama en una representació exacta de cada instrucció; l'objectiu és entendre la interacció.</p>
+
+<h3>Missatge síncron, asíncron i retorn</h3>
+
+<ul>
+<li>en un <strong>missatge síncron</strong>, l'emissor espera que l'operació acabi abans de continuar;</li>
+<li>en un <strong>missatge asíncron</strong>, l'emissor pot continuar sense esperar la finalització;</li>
+<li>un <strong>retorn</strong> pot mostrar la dada o confirmació que torna al participant anterior.</li>
+</ul>
+
+<h3>Crear un objecte durant la interacció</h3>
+
+<p>Suposem que una reserva només existeix després que el client la confirmi:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Client          Sistema          reserva:Reserva
+  |                |                    X
+  |--confirmar----&gt;|                    |
+  |                |---- &lt;&lt;create&gt;&gt; ---&gt;|
+  |                |                    |
+  |                |--calcularTotal()--&gt;|
+  |                |&lt;------total--------|
+  |&lt;--confirmació--|                    |</code></pre>
+  </div>
+</div>
+
+
+<p>La línia de vida de <code>reserva:Reserva</code> comença en el moment de la creació. Aquesta és una diferència visual important respecte d'un objecte que ja existia abans de començar l'escenari.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Com construir-lo des d'un enunciat numerat</strong></p><p>Escriviu primer la llista de participants. Després, per cada frase de l'enunciat, identifiqueu emissor, receptor i missatge. Finalment col·loqueu els missatges de dalt a baix en el mateix ordre temporal.</p>
+    
+</div>
+
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No confongueu seqüència amb diagrama de classes.</strong> En una seqüència representem participants concrets d'un escenari i missatges entre ells. No intentem dibuixar totes les classes del sistema.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Reserva d'una pista</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Representeu aquesta seqüència: l'Usuari demana reservar una pista, el Portal consulta Disponibilitat, rep les hores lliures, l'Usuari tria una hora, el Portal crea una Reserva i retorna una confirmació.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Enumereu primer les línies de vida.</li>
+        
+        <li>Una de les línies de vida no existeix fins que es crea.</li>
+        
+        <li>Respecteu l'ordre temporal.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat1_Bloc3_Seccio4">4. Diagrama de comunicació</h2>
+
+<p>Un diagrama de comunicació explica una interacció molt semblant a la d'un diagrama de seqüència, però canvia l'èmfasi. En lloc d'utilitzar l'eix vertical per representar el temps, mostra la <strong>xarxa de participants i els missatges que circulen entre ells</strong>.</p>
+
+<p>Podem veure'l com una altra vista de la mateixa conversa.</p>
+
+<h3>El mateix exemple, una altra perspectiva</h3>
+
+<p>Per a la consulta d'un producte:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">1: consultar()
+Client -------------------- Portal
+  ^                           |
+  | 4: mostrar(producte)      | 2: buscar(codi)
+  |                           v
+  +------------------------ Cataleg
+                  3: producte</code></pre>
+  </div>
+</div>
+
+
+<p>Com que ja no tenim un eix temporal, l'ordre s'indica amb <strong>números davant dels missatges</strong>: 1, 2, 3, 4...</p>
+
+<table class="table">
+<thead><tr><th>Seqüència</th><th>Comunicació</th></tr></thead>
+<tbody>
+<tr><td>El temps es llegeix de dalt a baix.</td><td>L'ordre es llegeix amb la numeració dels missatges.</td></tr>
+<tr><td>Fa molt visible l'ordre temporal.</td><td>Fa molt visible qui està connectat amb qui.</td></tr>
+<tr><td>Línies de vida verticals.</td><td>Participants distribuïts lliurement.</td></tr>
+<tr><td>Ideal per seguir una cronologia.</td><td>Ideal per observar l'estructura de la col·laboració.</td></tr>
+</tbody>
+</table>
+
+<h3>Un exemple una mica més complet</h3>
+
+<blockquote>
+Un CentreControl inicia una inspecció. El SistemaNavegacio comprova els motors, confirma que el vehicle està preparat, el CentreControl ordena activar la càmera i la Camera envia imatges al TerminalOperador.
+</blockquote>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">1: iniciarInspeccio()
+CentreControl ---------------- SistemaNavegacio
+      ^                              |
+      | 3: operatiu()                | 2: comprovar()
+      |                              v
+      |                            Motors
+      |
+      | 4: activar()
+      +--------------------------- Camera
+                                    |
+                                    | 5: enviarImatges()
+                                    v
+                              TerminalOperador</code></pre>
+  </div>
+</div>
+
+
+<p>Observeu que els números conserven la història encara que els objectes estiguin repartits lliurement pel llenç.</p>
+
+<h3>Treballar-ho a Papyrus</h3>
+
+<p>En Papyrus es creen els participants i després els missatges entre ells. Quan entre els mateixos objectes hi ha molts missatges, la representació pot carregar-se de línies. En aquests casos convé prioritzar la llegibilitat i etiquetar clarament la numeració i el sentit dels missatges.</p>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Converteix seqüència en comunicació</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Agafeu el diagrama de seqüència de la reserva de pista de la secció anterior i representeu exactament la mateixa interacció com a diagrama de comunicació.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">12 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Han d'aparèixer els mateixos participants.</li>
+        
+        <li>No perdeu cap missatge.</li>
+        
+        <li>La numeració substitueix l'eix temporal.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat1_Bloc3_Seccio5">5. Diagrama d'activitats</h2>
+
+<p>Un diagrama d'activitats és útil quan volem explicar un <strong>flux de treball</strong>: passos, decisions, camins alternatius, repeticions i tasques que poden executar-se en paral·lel.</p>
+
+<h3>Un flux lineal</h3>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">[inici]
+   |
+   v
+Rebre comanda
+   |
+   v
+Preparar paquet
+   |
+   v
+Enviar paquet
+   |
+ [final]</code></pre>
+  </div>
+</div>
+
+
+<h3>Decisions i guardes</h3>
+
+<p>Quan el camí depèn d'una condició utilitzem un node de decisió. Les branques s'etiqueten amb <strong>guardes</strong>:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Comprovar estoc
+       |
+       v
+      &lt; &gt;
+     /   \
+[hi ha] [no hi ha]
+   |       |
+Preparar  Avisar client
+   |       |
+   +---&lt; &gt;-+
+       |
+     continuar</code></pre>
+  </div>
+</div>
+
+
+<p>Les guardes han de ser mútuament comprensibles: el lector ha de saber en quina condició es pren cada branca.</p>
+
+<h3>Fork i join: treball simultani</h3>
+
+<p>Suposem que, després d'acceptar una incidència, dos equips poden treballar al mateix temps: un aïlla la zona i l'altre avisa els usuaris. No volem que el procés continuï fins que <strong>totes dues tasques</strong> hagin acabat.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Acceptar incidència
+        |
+======== fork ========
+   |              |
+   v              v
+Aïllar zona    Avisar usuaris
+   |              |
+======== join ========
+        |
+        v
+Avaluar resultat</code></pre>
+  </div>
+</div>
+
+
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Fork:</strong> Node que divideix un flux en diverses activitats que poden avançar en paral·lel.</p>
+  </div>
+</div>
+
+
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Join:</strong> Node que sincronitza diversos fluxos i no deixa continuar fins que han arribat els fluxos requerits.</p>
+  </div>
+</div>
+
+
+<h3>Un bucle</h3>
+
+<p>Després d'avaluar el resultat, pot ser necessari repetir una operació:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Netejar zona
+     |
+     v
+Mesurar contaminació
+     |
+     v
+    &lt; &gt;
+   /   \
+[alta] [acceptable]
+  |         |
+  +----&gt; Netejar zona
+                         -&gt; Generar informe -&gt; [final]</code></pre>
+  </div>
+</div>
+
+
+<p>Un exercici complet pot combinar <strong>fork/join + decisió + bucle</strong>. La manera més segura de construir-lo és dibuixar primer el camí principal i afegir després el paral·lelisme i les branques.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Una decisió no és un fork.</strong> En una decisió es tria un camí segons una condició. En un fork es posen en marxa diversos camins que poden avançar alhora.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Protocol de còpies de seguretat</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Modeleu: iniciar còpia; en paral·lel, copiar base de dades i copiar fitxers; esperar totes dues; verificar integritat; si falla, repetir les còpies; si és correcta, generar informe i acabar.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Avançat</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">18 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Necessitareu fork i join.</li>
+        
+        <li>La verificació provoca una decisió.</li>
+        
+        <li>Una branca torna a un pas anterior.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat1_Bloc3_Seccio6">6. Diagrama d'estats</h2>
+
+<p>Un diagrama d'activitats explica el flux d'un procés. Un diagrama d'estats se centra en una altra pregunta: <strong>en quin estat pot trobar-se un objecte i quins esdeveniments el fan canviar?</strong></p>
+
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Estat:</strong> Situació significativa del cicle de vida d'un objecte durant la qual compleix una condició o respon d'una manera determinada als esdeveniments.</p>
+  </div>
+</div>
+
+
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Transició:</strong> Canvi d'un estat a un altre provocat per un esdeveniment i, si escau, condicionat per una guarda.</p>
+  </div>
+</div>
+
+
+<h3>Exemple mínim: una comanda</h3>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">[inici]
+   |
+   v
+OBERTA --pagar--&gt; PAGADA --enviar--&gt; ENVIADA --entregar--&gt; LLIURADA
+   |
+   +--cancel·lar--&gt; [final]</code></pre>
+  </div>
+</div>
+
+
+<p>Els noms en majúscules són <strong>estats</strong>. Els verbs sobre les fletxes són <strong>esdeveniments o transicions</strong>.</p>
+
+<h3>Una transició que torna al mateix estat</h3>
+
+<p>Mentre una compra és <code>OBERTA</code>, afegir un producte pot modificar-ne les dades sense deixar de ser oberta:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">afegirProducte
+       +-------------+
+       |             |
+       v             |
+     OBERTA ---------+</code></pre>
+  </div>
+</div>
+
+
+<h3>Guardes i recuperació</h3>
+
+<p>Un dispositiu pot tenir un estat d'error del qual només surt si una reparació és satisfactòria:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">OPERATIU --fallada--&gt; AVARIAT
+
+AVARIAT --reparar [correcte]--&gt; OPERATIU
+AVARIAT --reparar [irreparable]--&gt; FORA_DE_SERVEI --&gt; [final]</code></pre>
+  </div>
+</div>
+
+
+<table class="table">
+<thead><tr><th>Si l'enunciat parla de...</th><th>Penseu en...</th></tr></thead>
+<tbody>
+<tr><td>«està pendent», «està actiu», «queda bloquejat»...</td><td>Estats.</td></tr>
+<tr><td>«quan rep», «si falla», «quan expira»...</td><td>Esdeveniments/transicions.</td></tr>
+<tr><td>«si és recuperable»...</td><td>Guardes o camins condicionals.</td></tr>
+<tr><td>«torna a l'estat anterior»...</td><td>Transició de retorn.</td></tr>
+</tbody>
+</table>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>No dibuixeu accions com si fossin estats.</strong></p><p>«Validar pagament» és normalment una acció; «Pagament pendent» pot ser un estat. Un estat ha de descriure una situació que pot durar un cert temps, encara que sigui breu.</p>
+    
+</div>
+
+
+<h3>Quan acaba el diagrama?</h3>
+
+<p>Alguns objectes tenen un estat final clar; d'altres poden funcionar indefinidament i no necessiten un estat final. No afegiu un final només perquè sembli obligatori.</p>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Cicle de vida d'un tiquet</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Un tiquet de suport comença OBERT. Quan un tècnic el pren passa a EN CURS. Pot quedar EN ESPERA DEL CLIENT i tornar a EN CURS quan el client respon. Es pot RESOLDRE; si el client rebutja la solució torna a EN CURS i, si l'accepta, queda TANCAT. Modeleu el cicle.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Els estats són situacions, no verbs.</li>
+        
+        <li>Hi ha almenys una transició de retorn.</li>
+        
+        <li>Decidiu quin estat és final.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 3: Diagrames de comportament i d'interacció",
+  "description": "Casos d'ús, seqüència, comunicació, activitats i estats a partir d'exemples progressius",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Entorns de desenvolupament — IOC",
+    "description": "Materials del mòdul DA2_0487 - Entorns de desenvolupament"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                        
+                                        
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/da2_0487/unitat-1/bloc-2/" class="nav-button" aria-label="Bloc anterior: Relacions entre classes i modelatge complet">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/da2_0487/unitat-1/bloc-4/" class="nav-button" aria-label="Bloc següent: Papyrus de principi a fi: del model al codi i del codi al model">Següent →</a>
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="1" data-total="1">(1/1)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="3" data-total="4">(3/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 75%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="6">(1/6)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 16%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/da2_0487/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/da2_0487",
+        title: "Entorns de desenvolupament",
+        version: "v1.0",
+        cicle_modul: "DA2_0487"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/da2_0487/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/da2_0487/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

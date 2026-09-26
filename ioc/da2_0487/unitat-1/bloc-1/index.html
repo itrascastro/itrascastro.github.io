@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 1: Del problema al primer diagrama de classes | Entorns de desenvolupament - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="1">
+    <meta name="page-bloc" content="1">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 1: Del problema al primer diagrama de classes | Entorns de desenvolupament</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 1: Del problema al primer diagrama de classes" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="UML, classes, atributs, operacions, visibilitat, objectes i primer model amb Papyrus" />
+<meta property="og:description" content="UML, classes, atributs, operacions, visibilitat, objectes i primer model amb Papyrus" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-1/bloc-1/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/da2_0487/unitat-1/bloc-1/" />
+<meta property="og:site_name" content="Entorns de desenvolupament" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 1: Del problema al primer diagrama de classes" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"UML, classes, atributs, operacions, visibilitat, objectes i primer model amb Papyrus","headline":"Bloc 1: Del problema al primer diagrama de classes","url":"https://itrascastro.github.io/ioc/da2_0487/unitat-1/bloc-1/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-1/bloc-1/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/da2_0487/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/da2_0487/feed.xml" title="Entorns de desenvolupament" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/code-block.css">
+    <script src="/ioc/da2_0487/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/da2_0487">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/da2_0487/" class="logo-link" aria-label="Inici">
+                <img src="https://itrascastro.github.io/ioc/dam_0488/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="https://itrascastro.github.io/ioc/dam_0488/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/da2_0487/" class="title-link">
+                <h1>DA2_0487 - Entorns de desenvolupament</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/da2_0487/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-1/" class="nav-dropdown-item current">
+                        Unitat 1 - Bloc 1: Del problema al primer diagrama de classes
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Relacions entre classes i modelatge complet
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Diagrames de comportament i d'interacció
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Papyrus de principi a fi: del model al codi i del codi al model
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc1_Seccio1" class="nav-link" data-section="Unitat1_Bloc1_Seccio1">1. Modelar abans de programar</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc1_Seccio2" class="nav-link" data-section="Unitat1_Bloc1_Seccio2">2. Classe, atribut i operació</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc1_Seccio3" class="nav-link" data-section="Unitat1_Bloc1_Seccio3">3. Visibilitat, tipus i signatures</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc1_Seccio4" class="nav-link" data-section="Unitat1_Bloc1_Seccio4">4. Objectes i instàncies</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat1_Bloc1_Seccio5" class="nav-link" data-section="Unitat1_Bloc1_Seccio5">5. Primer diagrama de classes amb Papyrus</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/da2_0487/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/da2_0487/unitat-1/" class="horizontal-nav-item">
+                                Unitat 1: Introducció al disseny orientat a objectes (modelatge UML) (RA5 i RA6)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 1.1: Del problema al primer diagrama de classes
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<div class="section">
+  <h2 id="Unitat1_Bloc1_Seccio1">1. Modelar abans de programar</h2>
+
+<p>Quan rebem un enunciat, la temptació habitual és començar a escriure codi. En projectes petits pot funcionar, però quan hi ha moltes classes, regles i interaccions és fàcil descobrir massa tard que dues parts del sistema s'han entès de manera diferent.</p>
+
+<p>El <strong>disseny</strong> serveix precisament per decidir <em>com</em> representarem el sistema abans d'entrar en tots els detalls de la implementació. UML ens proporciona una notació gràfica comuna per descriure aquesta idea.</p>
+
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>UML:</strong> Unified Modeling Language. És una notació de modelatge que permet descriure l'estructura i el comportament d'un sistema mitjançant diferents tipus de diagrames.</p>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>UML no és un llenguatge de programació ni una metodologia.</strong> UML no decideix com heu de gestionar el projecte ni substitueix Java. És una forma estàndard de representar el model perquè altres persones el puguin entendre.</p>
+</div>
+
+
+<h3>Dues preguntes, dues famílies de diagrames</h3>
+
+<table class="table">
+<thead><tr><th>Pregunta</th><th>Visió UML</th><th>Exemples</th></tr></thead>
+<tbody>
+<tr><td>Què hi ha al sistema?</td><td>Estàtica o estructural</td><td>Classes, objectes, paquets, components...</td></tr>
+<tr><td>Què passa al sistema?</td><td>Dinàmica o de comportament</td><td>Casos d'ús, seqüències, activitats, estats...</td></tr>
+</tbody>
+</table>
+
+<h3>On encaixa el model dins d'un projecte?</h3>
+
+<p>De manera simplificada, un projecte passa per entendre el problema, analitzar els requisits, dissenyar la solució, desenvolupar-la i provar-la, i finalment posar-la en servei i mantenir-la. UML és especialment útil entre l'anàlisi i el disseny: permet convertir el que el sistema ha de fer en una representació que després es pot implementar.</p>
+
+<h3>Mapa ràpid dels diagrames UML</h3>
+
+<p>No tots els diagrames tindran el mateix pes en aquesta unitat, però convé saber què explica cadascun.</p>
+
+<table class="table">
+<thead><tr><th>Família</th><th>Diagrama</th><th>Pregunta principal</th></tr></thead>
+<tbody>
+<tr><td rowspan="7">Estructura</td><td>Classes</td><td>Quins tipus, dades i relacions formen el sistema?</td></tr>
+<tr><td>Objectes</td><td>Quines instàncies concretes existeixen en un exemple?</td></tr>
+<tr><td>Paquets</td><td>Com s'organitzen els elements del model en grups?</td></tr>
+<tr><td>Estructura composta</td><td>Quines parts internes col·laboren dins d'un element compost?</td></tr>
+<tr><td>Components</td><td>Quines peces de programari formen el sistema i quines interfícies ofereixen?</td></tr>
+<tr><td>Desplegament</td><td>On s'executen o s'allotgen les parts del programari?</td></tr>
+<tr><td>Perfil</td><td>Com s'adapta UML a un domini o plataforma específics?</td></tr>
+<tr><td rowspan="7">Comportament</td><td>Casos d'ús</td><td>Què ofereix el sistema als actors externs?</td></tr>
+<tr><td>Estats</td><td>Com canvia un objecte al llarg del seu cicle de vida?</td></tr>
+<tr><td>Activitats</td><td>Quin flux de treball, decisions i paral·lelisme hi ha?</td></tr>
+<tr><td>Seqüència</td><td>En quin ordre temporal es comuniquen els participants?</td></tr>
+<tr><td>Comunicació</td><td>Qui es comunica amb qui i en quin ordre?</td></tr>
+<tr><td>Visió general d'interacció</td><td>Com es resumeixen i connecten diverses interaccions?</td></tr>
+<tr><td>Temporal</td><td>Com evolucionen estats o valors posant l'èmfasi en el temps?</td></tr>
+</tbody>
+</table>
+
+<p>En aquesta unitat treballarem amb profunditat els diagrames que necessitareu per transformar enunciats textuals en models útils. El diagrama de classes serà la peça central de la part estructural. Per a la part de comportament practicarem casos d'ús, seqüència, comunicació, activitats i estats. La resta heu de saber situar-los i entendre quin problema de modelatge resolen.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Model mental</strong></p><p>Un diagrama de classes és com una fotografia de l'estructura del sistema. Un diagrama de comportament s'assembla més a una pel·lícula: explica què fan els elements i com canvien al llarg del temps.</p>
+    
+</div>
+
+
+<h3>Del text al model</h3>
+
+<p>Imagineu aquest enunciat:</p>
+
+<blockquote>
+Una botiga ven productes. De cada producte volem guardar el codi, el nom i el preu. La botiga necessita poder consultar si un producte és car.
+</blockquote>
+
+<p>Encara no dibuixem res. Primer separem la informació:</p>
+<ul>
+<li><strong>concepte principal:</strong> Producte;</li>
+<li><strong>dades:</strong> codi, nom i preu;</li>
+<li><strong>comportament:</strong> saber si és car.</li>
+</ul>
+
+<p>Aquesta separació ens porta directament a una classe amb atributs i una operació. Aquesta serà la tècnica que repetirem al llarg de tota la unitat.</p>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Subratlla abans de dibuixar</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">En l'enunciat «Un curs té un codi i un títol. Volem saber quants alumnes hi ha matriculats», identifiqueu el concepte principal, les dades i el comportament sense dibuixar encara cap diagrama.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">5 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Busqueu substantius per trobar conceptes.</li>
+        
+        <li>Les característiques acostumen a convertir-se en atributs.</li>
+        
+        <li>Els verbs o necessitats de càlcul acostumen a suggerir operacions.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat1_Bloc1_Seccio2">2. Classe, atribut i operació</h2>
+
+<p>Una <strong>classe</strong> descriu un conjunt d'objectes que comparteixen estructura i comportament. En UML es representa habitualment amb un rectangle dividit en compartiments.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">+-----------------------------+
+|          Producte           |
++-----------------------------+
+| - codi: int                 |
+| - nom: String               |
+| - preu: double              |
++-----------------------------+
+| + esCar(): boolean          |
++-----------------------------+</code></pre>
+  </div>
+</div>
+
+
+<p>La lectura és molt directa:</p>
+<ul>
+<li>el primer compartiment conté el <strong>nom de la classe</strong>;</li>
+<li>el segon conté els <strong>atributs</strong>;</li>
+<li>el tercer conté les <strong>operacions</strong> o mètodes.</li>
+</ul>
+
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Atribut:</strong> Dada que descriu l'estat d'un objecte. En UML s'acostuma a escriure com nom: Tipus.</p>
+  </div>
+</div>
+
+
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Operació:</strong> Comportament que ofereix la classe. En UML se'n representa la signatura: nom, paràmetres i tipus de retorn.</p>
+  </div>
+</div>
+
+
+<h3>Primer pas: només una classe</h3>
+
+<p>Abans d'afegir relacions, practiqueu una classe aïllada. Per exemple:</p>
+
+<blockquote>
+Una pel·lícula té un títol, una durada en minuts i una qualificació d'edat. Volem saber si és apta per a una edat concreta.
+</blockquote>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">+-----------------------------------+
+|            Pellicula              |
++-----------------------------------+
+| - titol: String                   |
+| - duradaMinuts: int               |
+| - edatMinima: int                 |
++-----------------------------------+
+| + esApta(edat: int): boolean      |
++-----------------------------------+</code></pre>
+  </div>
+</div>
+
+
+<p>Observeu que el mètode <code>esApta</code> necessita una dada d'entrada: l'edat que volem comprovar. Per això el paràmetre forma part de la signatura.</p>
+
+<h3>Com passar-ho a Java</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">Pellicula.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class Pellicula {
+    private String titol;
+    private int duradaMinuts;
+    private int edatMinima;
+
+    public boolean esApta(int edat) {
+        return edat &gt;= edatMinima;
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>El diagrama no és codi, però hi ha una correspondència clara: els atributs UML es converteixen habitualment en camps i les operacions UML en mètodes.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No convertiu cada frase en un atribut.</strong> Una dada ha de tenir sentit com a part de l'estat de l'objecte. Expressions com «és important» o «es fa ràpidament» no són automàticament atributs.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Dibuixa una classe</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Modeleu una classe Compte amb número, titular i saldo. Ha de permetre ingressar una quantitat i consultar si està en descobert.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">8 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Els tres valors descriuen l'estat.</li>
+        
+        <li>Ingressar necessita un paràmetre.</li>
+        
+        <li>Estar en descobert pot retornar boolean.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat1_Bloc1_Seccio3">3. Visibilitat, tipus i signatures</h2>
+
+<p>Un diagrama de classes no només diu quins membres existeixen. També pot indicar des d'on són accessibles.</p>
+
+<table class="table">
+<thead><tr><th>Símbol UML</th><th>Java habitual</th><th>Significat</th></tr></thead>
+<tbody>
+<tr><td><code>+</code></td><td><code>public</code></td><td>Accessible des d'altres classes.</td></tr>
+<tr><td><code>-</code></td><td><code>private</code></td><td>Accessible des de la mateixa classe.</td></tr>
+<tr><td><code>#</code></td><td><code>protected</code></td><td>Accessible des de la classe i les seves especialitzacions.</td></tr>
+<tr><td><code>~</code></td><td>visibilitat de paquet</td><td>Accessible dins del mateix paquet.</td></tr>
+</tbody>
+</table>
+
+<p>En molts exercicis de modelatge treballarem amb una regla simple: <strong>atributs privats i operacions públiques</strong>, tret que l'enunciat indiqui una altra cosa.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">- saldo: double
++ ingressar(import: double): void
++ saldoDisponible(): double</code></pre>
+  </div>
+</div>
+
+
+<h3>Tipus dels atributs</h3>
+
+<p>Els tipus ajuden a concretar què pot contenir cada atribut. Alguns exemples habituals són <code>String</code>, <code>int</code>, <code>double</code>, <code>boolean</code> o <code>Date</code>. El nom concret pot variar segons l'eina o el llenguatge, però el model ha de ser coherent.</p>
+
+<h3>Signatura d'una operació</h3>
+
+<p>Una operació UML pot incloure:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">+ calcularPreu(quantitat: int, descompte: double): double</code></pre>
+  </div>
+</div>
+
+
+<ul>
+<li><code>calcularPreu</code>: nom de l'operació;</li>
+<li><code>quantitat: int</code> i <code>descompte: double</code>: paràmetres;</li>
+<li><code>double</code>: tipus de retorn.</li>
+</ul>
+
+<p>En Papyrus, els paràmetres i el valor de retorn es gestionen com a <em>owned parameters</em>. Els paràmetres normals utilitzen direcció <code>in</code>; el valor de retorn utilitza direcció <code>return</code>.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Getter i setter no són el centre del model.</strong></p><p>Quan un exercici demana ometre getters i setters, no significa que el codi final no en pugui tenir. Significa que el diagrama s'ha de concentrar en la informació i el comportament rellevants, sense omplir-lo de mètodes trivials.</p>
+    
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Llegeix signatures</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Expliqueu què significa «+ reservar(data: Date, places: int): boolean» i proposeu la signatura UML d'un mètode que rebi un any i retorni el nombre de vendes.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">6 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Separeu nom, paràmetres i retorn.</li>
+        
+        <li>Penseu quin tipus pot representar un recompte.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat1_Bloc1_Seccio4">4. Objectes i instàncies</h2>
+
+<p>Una classe és una descripció. Un <strong>objecte</strong> és una instància concreta creada a partir d'aquesta classe.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Classe:
++----------------------+
+|       Pellicula      |
++----------------------+
+| - titol: String      |
+| - edatMinima: int    |
++----------------------+
+
+Objectes:
+p1:Pellicula
+titol = &quot;Arrival&quot;
+edatMinima = 7
+
+p2:Pellicula
+titol = &quot;Alien&quot;
+edatMinima = 18</code></pre>
+  </div>
+</div>
+
+
+<p>Els dos objectes comparteixen la mateixa estructura perquè són instàncies de <code>Pellicula</code>, però mantenen valors diferents.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Pellicula p1 = new Pellicula();
+Pellicula p2 = new Pellicula();</code></pre>
+  </div>
+</div>
+
+
+<p>Aquesta diferència és important quan llegim un diagrama: una caixa amb el nom <code>Pellicula</code> descriu un tipus. Una notació com <code>p1:Pellicula</code> representa una instància concreta.</p>
+
+<h3>Per què ens serveix un diagrama d'objectes?</h3>
+
+<p>Un diagrama d'objectes pot funcionar com una fotografia d'exemple d'un diagrama de classes. És útil per comprovar si les relacions i multiplicitats que hem definit admeten situacions reals.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Truc de validació</strong></p><p>Si dubteu d'una relació entre classes, inventeu dos o tres objectes concrets. Pregunteu-vos quins objectes poden quedar connectats i quants n'hi pot haver a cada costat. Sovint la multiplicitat correcta es veu molt més clara.</p>
+    
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Classe o objecte?</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Classifiqueu aquests elements: «Client», «joan:Client», «Comanda» i «comanda42:Comanda». Després inventeu dos valors d'atributs diferents per als dos objectes.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">5 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>El format nomObjecte:Classe identifica una instància.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat1_Bloc1_Seccio5">5. Primer diagrama de classes amb Papyrus</h2>
+
+<p>Un cop entenem què volem modelar, ja té sentit obrir l'eina. Papyrus és un entorn basat en Eclipse que permet construir models UML. La interfície pot variar lleugerament segons la versió, però el flux de treball és el mateix.</p>
+
+<h3>1. Crear un projecte</h3>
+<ol>
+<li>Obriu <strong>File → New → Other...</strong>.</li>
+<li>Busqueu <strong>Papyrus</strong> i seleccioneu <strong>Papyrus Project</strong>.</li>
+<li>Assegureu-vos que treballeu amb un model UML.</li>
+<li>Poseu un nom al projecte i al model.</li>
+<li>Afegiu un <strong>Class Diagram</strong>.</li>
+</ol>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Un model no és una carpeta per acumular exercicis inconnexos.</strong> Si esteu fent diagrames independents, és preferible utilitzar un model diferent per a cada exercici. Papyrus valida constantment la coherència del model i barrejar exercicis sense relació complica el treball i pot penalitzar el rendiment.</p>
+</div>
+
+
+<h3>2. Afegir una classe</h3>
+
+<p>A la paleta del diagrama trobareu els elements principals. Seleccioneu <strong>Class</strong>, feu clic al llenç i poseu un nom a la classe. Després, des de la vista <strong>Properties</strong>, podeu afegir propietats i operacions.</p>
+
+<p>Per a la classe <code>Pellicula</code> de l'exemple anterior:</p>
+
+<table class="table">
+<thead><tr><th>Element</th><th>Configuració</th></tr></thead>
+<tbody>
+<tr><td><code>titol</code></td><td>Property, tipus String, visibilitat private</td></tr>
+<tr><td><code>duradaMinuts</code></td><td>Property, tipus Integer/int, visibilitat private</td></tr>
+<tr><td><code>edatMinima</code></td><td>Property, tipus Integer/int, visibilitat private</td></tr>
+<tr><td><code>esApta</code></td><td>Operation, visibilitat public, paràmetre <code>edat</code>, retorn boolean</td></tr>
+</tbody>
+</table>
+
+<h3>3. Fer llegible el diagrama</h3>
+
+<p>Després d'afegir propietats o operacions, amplieu la caixa de la classe fins que els noms i les signatures es vegin sencers. Un diagrama correcte però il·legible continua sent un mal lliurament.</p>
+
+<h3>4. Desar-lo com a imatge</h3>
+
+<p>Quan hàgiu acabat, feu clic en una zona buida del diagrama i utilitzeu l'opció d'exportació d'imatge disponible a Papyrus, habitualment <strong>File → Save As Image File...</strong>.</p>
+
+
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Primer objectiu assolit</strong></p><p>Si podeu llegir un enunciat curt, separar classe, atributs i operacions, configurar-ne la visibilitat i reproduir-ho a Papyrus, ja teniu la base sobre la qual construirem tots els diagrames de classes de la unitat.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Primer model a Papyrus</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Creeu un model amb una classe Llibre que tingui isbn, titol i pagines, i una operació esLlarg(): boolean. Exporteu el diagrama a una imatge.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">20 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Atributs privats i operació pública.</li>
+        
+        <li>Comproveu que la signatura sencera es veu a la caixa.</li>
+        
+        <li>No afegiu relacions encara.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 1: Del problema al primer diagrama de classes",
+  "description": "UML, classes, atributs, operacions, visibilitat, objectes i primer model amb Papyrus",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Entorns de desenvolupament — IOC",
+    "description": "Materials del mòdul DA2_0487 - Entorns de desenvolupament"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                        
+                                        
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/da2_0487/unitat-1/bloc-2/" class="nav-button" aria-label="Bloc següent: Relacions entre classes i modelatge complet">Següent →</a>
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="1" data-total="1">(1/1)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="1" data-total="4">(1/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 25%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="5">(1/5)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 20%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/da2_0487/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/da2_0487",
+        title: "Entorns de desenvolupament",
+        version: "v1.0",
+        cicle_modul: "DA2_0487"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/da2_0487/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/da2_0487/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>
