@@ -62,5 +62,7 @@ jobs:
             echo "No generated changes to commit."
           else
             git commit -m "Publica DAM_0490"
+            git fetch origin master
+            git rebase origin/master
             git push origin master
           fi
