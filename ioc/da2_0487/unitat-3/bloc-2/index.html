@@ -5,34 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <title>Bloc 2: Paradigmes i cicle de desenvolupament | Entorns de desenvolupament - IOC</title>
+    <title>Bloc 2: JUnit 5 i depuració amb Eclipse | Entorns de desenvolupament - IOC</title>
     <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
-    <meta name="page-unitat" content="2">
+    <meta name="page-unitat" content="3">
     <meta name="page-bloc" content="2">
     
     <!-- SEO Tags -->
     <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Bloc 2: Paradigmes i cicle de desenvolupament | Entorns de desenvolupament</title>
+<title>Bloc 2: JUnit 5 i depuració amb Eclipse | Entorns de desenvolupament</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="Bloc 2: Paradigmes i cicle de desenvolupament" />
+<meta property="og:title" content="Bloc 2: JUnit 5 i depuració amb Eclipse" />
 <meta property="og:locale" content="ca_ES" />
-<meta name="description" content="Programació estructurada, orientació a objectes, paradigmes funcional i lògic, i fases de Mètrica 3" />
-<meta property="og:description" content="Programació estructurada, orientació a objectes, paradigmes funcional i lògic, i fases de Mètrica 3" />
-<link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-2/bloc-2/" />
-<meta property="og:url" content="https://itrascastro.github.io/ioc/da2_0487/unitat-2/bloc-2/" />
+<meta name="description" content="Proves unitàries automàtiques, assertions, execució d’una bateria, punts de ruptura i documentació d’incidències" />
+<meta property="og:description" content="Proves unitàries automàtiques, assertions, execució d’una bateria, punts de ruptura i documentació d’incidències" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-3/bloc-2/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/da2_0487/unitat-3/bloc-2/" />
 <meta property="og:site_name" content="Entorns de desenvolupament" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Bloc 2: Paradigmes i cicle de desenvolupament" />
+<meta property="twitter:title" content="Bloc 2: JUnit 5 i depuració amb Eclipse" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Programació estructurada, orientació a objectes, paradigmes funcional i lògic, i fases de Mètrica 3","headline":"Bloc 2: Paradigmes i cicle de desenvolupament","url":"https://itrascastro.github.io/ioc/da2_0487/unitat-2/bloc-2/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Proves unitàries automàtiques, assertions, execució d’una bateria, punts de ruptura i documentació d’incidències","headline":"Bloc 2: JUnit 5 i depuració amb Eclipse","url":"https://itrascastro.github.io/ioc/da2_0487/unitat-3/bloc-2/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/ioc/da2_0487/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-2/bloc-2/">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-3/bloc-2/">
     <!-- Rich editor styles (for embedded notes panel) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
     <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -129,7 +129,7 @@
                         Unitat 2 - Bloc 1: Del codi font a l'execució
                     </a>
                 
-                    <a href="/ioc/da2_0487/unitat-2/bloc-2/" class="nav-dropdown-item current">
+                    <a href="/ioc/da2_0487/unitat-2/bloc-2/" class="nav-dropdown-item ">
                         Unitat 2 - Bloc 2: Paradigmes i cicle de desenvolupament
                     </a>
                 
@@ -147,7 +147,7 @@
                         Unitat 3 - Bloc 1: Dissenyar proves que realment troben errors
                     </a>
                 
-                    <a href="/ioc/da2_0487/unitat-3/bloc-2/" class="nav-dropdown-item ">
+                    <a href="/ioc/da2_0487/unitat-3/bloc-2/" class="nav-dropdown-item current">
                         Unitat 3 - Bloc 2: JUnit 5 i depuració amb Eclipse
                     </a>
                 
@@ -190,28 +190,7 @@
         
         
         <div class="nav-item">
-            <a href="#Unitat2_Bloc2_Seccio1" class="nav-link" data-section="Unitat2_Bloc2_Seccio1">1. Programació estructurada</a>
-        </div>
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-        
-        
-        
-        
-        
-        
-        
-        <div class="nav-item">
-            <a href="#Unitat2_Bloc2_Seccio2" class="nav-link" data-section="Unitat2_Bloc2_Seccio2">2. POO: cinc idees clau</a>
+            <a href="#Unitat3_Bloc2_Seccio1" class="nav-link" data-section="Unitat3_Bloc2_Seccio1">1. Del cas de prova al test automàtic</a>
         </div>
     
 
@@ -227,23 +206,8 @@
         
         
         <div class="nav-item">
-            <a href="#Unitat2_Bloc2_Seccio3" class="nav-link" data-section="Unitat2_Bloc2_Seccio3">3. Herència, sobrecàrrega i sobreescriptura</a>
+            <a href="#Unitat3_Bloc2_Seccio2" class="nav-link" data-section="Unitat3_Bloc2_Seccio2">2. Crear una classe JUnit 5 a Eclipse</a>
         </div>
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
     
 
     
@@ -258,7 +222,7 @@
         
         
         <div class="nav-item">
-            <a href="#Unitat2_Bloc2_Seccio4" class="nav-link" data-section="Unitat2_Bloc2_Seccio4">4. Paradigmes funcional i lògic</a>
+            <a href="#Unitat3_Bloc2_Seccio3" class="nav-link" data-section="Unitat3_Bloc2_Seccio3">3. Assertions: comprovar resultats i excepcions</a>
         </div>
     
 
@@ -284,8 +248,50 @@
         
         
         <div class="nav-item">
-            <a href="#Unitat2_Bloc2_Seccio5" class="nav-link" data-section="Unitat2_Bloc2_Seccio5">5. Fases de desenvolupament amb Mètrica 3</a>
+            <a href="#Unitat3_Bloc2_Seccio4" class="nav-link" data-section="Unitat3_Bloc2_Seccio4">4. Una bateria de proves llegible</a>
         </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc2_Seccio5" class="nav-link" data-section="Unitat3_Bloc2_Seccio5">5. Depurar: aturar, observar i avançar</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc2_Seccio6" class="nav-link" data-section="Unitat3_Bloc2_Seccio6">6. De la fallada a una incidència reproduïble</a>
+        </div>
+    
+
+    
+    
+    
     
 
 
@@ -309,13 +315,15 @@
                             
                         
                             
+                        
+                            
                                 
                                 
                         
                         
                             <span class="horizontal-nav-separator"> &gt; </span>
-                            <a href="/ioc/da2_0487/unitat-2/" class="horizontal-nav-item">
-                                Unitat 2: Desenvolupament de programari i entorns de desenvolupament (RA1 i RA2)
+                            <a href="/ioc/da2_0487/unitat-3/" class="horizontal-nav-item">
+                                Unitat 3: Proves, optimització i documentació del programari (RA3 i RA4)
                             </a>
                         
                         
@@ -331,7 +339,7 @@
                             
                                 <span class="horizontal-nav-separator"> &gt; </span>
                                 <span class="horizontal-nav-item current">
-                                    Bloc 2.2: Paradigmes i cicle de desenvolupament
+                                    Bloc 3.2: JUnit 5 i depuració amb Eclipse
                                 </span>
                             
                         
@@ -350,30 +358,18 @@
 
 <!-- Contingut principal -->
 <div class="section">
-  <h2 id="Unitat2_Bloc2_Seccio1">1. Programació estructurada</h2>
+  <h2 id="Unitat3_Bloc2_Seccio1">1. Del cas de prova al test automàtic</h2>
 
-<p>La programació estructurada parteix d'una idea potent: podem construir programes complexos combinant tres estructures de control bàsiques i dividint els problemes grans en problemes més petits.</p>
+<p>Al bloc anterior hem decidit <strong>què</strong> provar. Ara farem que l'ordinador repeteixi aquestes comprovacions per nosaltres. Una prova automàtica executa el codi, compara el resultat amb el que esperàvem i ens avisa si el comportament ha canviat.</p>
 
-<figure class="teaching-figure">
-  <img src="/ioc/da2_0487/assets/img/unitat-2/03_programacio_estructurada.svg" alt="Seqüència, selecció, iteració i descomposició descendent d'un problema" loading="lazy">
-  <figcaption>Seqüència, selecció i iteració formen la base del flux estructurat; el disseny descendent redueix un problema gran a funcions petites.</figcaption>
-</figure>
-
-<table class="table">
-<thead><tr><th>Estructura</th><th>Pregunta</th><th>Java típic</th></tr></thead>
-<tbody>
-<tr><td>Seqüència</td><td>Què passa primer i què passa després?</td><td>Instruccions una darrere l'altra.</td></tr>
-<tr><td>Selecció</td><td>Quin camí segueixo segons una condició?</td><td><code>if / else</code>, <code>switch</code>.</td></tr>
-<tr><td>Iteració</td><td>Què he de repetir?</td><td><code>for</code>, <code>while</code>.</td></tr>
-</tbody>
-</table>
+<p>Recuperem un exemple semblant al que ja coneixem:</p>
 
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
     <div class="code-info">
       <span class="code-lang">JAVA</span>
-      
+      <span class="code-filename">ClassificadorPunts.java</span>
     </div>
     <div class="code-actions">
       <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
@@ -384,166 +380,26 @@
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">double preu = 100.0;                 // seqüència
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">package proves;
 
-if (preu &gt;= 100) {                    // selecció
-    preu = preu * 0.90;
-}
+public class ClassificadorPunts {
 
-for (int i = 0; i &lt; 3; i++) {         // iteració
-    System.out.println(preu);
-}</code></pre>
-  </div>
-</div>
-
-
-<h3>Disseny descendent: divideix i venceràs</h3>
-
-<p>En lloc d'escriure un mètode de cent línies, podem separar responsabilitats: <code>llegirDades()</code>, <code>validarDades()</code>, <code>calcularPreu()</code> i <code>mostrarResultat()</code>. Cada part resol un problema més petit i es pot provar de forma més clara.</p>
-
-
-<!-- Component: Caixa informativa -->
-<div class="info-box" role="note">
-    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
-    <p><strong>Què no forma part del teorema de l'estructura?</strong></p><p>Els salts incondicionals com <code>GOTO</code> no són una quarta estructura bàsica. El model estructurat es basa en seqüència, selecció i iteració.</p>
-    
-</div>
-
-
-<!-- Component: Exercici estàndard -->
-<div class="exercise-box" role="region" aria-label="Exercici">
-  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Tres peces</div>
-  <div class="component-content">
-    
-    <div class="exercise-description">Escriviu pseudocodi per llegir cinc notes, comptar quantes estan aprovades i mostrar «majoria aprovada» si el recompte és 3 o més. Marqueu on hi ha seqüència, selecció i iteració.</div>
-    
-
-    <div class="exercise-meta">
-      
-      <span class="badge" aria-label="Dificultat">Bàsic</span>
-      
-      
-      <span class="badge" aria-label="Temps estimat">8 min</span>
-      
-    </div>
-
-    
-    
-    <details class="exercise-hints">
-      <summary>Veure pistes</summary>
-      <ul>
-        
-        <li>Necessiteu un comptador.</li>
-        
-        <li>La repetició es fa cinc vegades.</li>
-        
-        <li>La decisió final només té dos camins.</li>
-        
-      </ul>
-    </details>
-    
-  </div>
-</div>
-
-</div>
-
-<div class="section">
-  <h2 id="Unitat2_Bloc2_Seccio2">2. POO: cinc idees clau</h2>
-
-<p>La programació orientada a objectes modela el programa com un conjunt d'objectes que combinen <strong>dades</strong> i <strong>comportament</strong>. El material agrupa els principis centrals en cinc idees.</p>
-
-<figure class="teaching-figure">
-  <img src="/ioc/da2_0487/assets/img/unitat-2/04_poo_cinc_idees.svg" alt="Mapa de cinc idees de la programació orientada a objectes: abstracció, encapsulació, modularitat, jerarquia i polimorfisme" loading="lazy">
-  <figcaption>Les cinc idees es reforcen entre si: cada classe representa una abstracció amb límits clars que pot relacionar-se i especialitzar-se.</figcaption>
-</figure>
-
-<table class="table">
-<thead><tr><th>Concepte</th><th>Pregunta útil</th><th>Exemple</th></tr></thead>
-<tbody>
-<tr><td>Abstracció</td><td>Quines característiques són essencials?</td><td>De <code>Client</code> ens interessen nom i correu, no el color dels ulls.</td></tr>
-<tr><td>Encapsulació</td><td>Què exposo i què amago?</td><td>Atributs <code>private</code>, mètodes públics.</td></tr>
-<tr><td>Modularitat</td><td>Quina responsabilitat té cada peça?</td><td>Classes separades que es poden modificar amb poc impacte.</td></tr>
-<tr><td>Jerarquia</td><td>Quin tipus és una especialització d'un altre?</td><td><code>Vehicle</code> → <code>Bicicleta</code>.</td></tr>
-<tr><td>Polimorfisme</td><td>Pot la mateixa operació tenir comportaments diferents?</td><td><code>calcularPreu()</code> implementat de manera diferent segons el tipus.</td></tr>
-</tbody>
-</table>
-
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      <span class="code-filename">Compte.java</span>
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class Compte {
-    private double saldo;          // encapsulat
-
-    public void ingressar(double import) {
-        if (import &gt; 0) {
-            saldo += import;
+    public static String etiqueta(int punts) {
+        if (punts &lt; 0 || punts &gt; 100) {
+            throw new IllegalArgumentException(&quot;Puntuació fora de rang&quot;);
         }
-    }
 
-    public double getSaldo() {
-        return saldo;
+        if (punts &lt;= 49) return &quot;Insuficient&quot;;
+        if (punts &lt;= 69) return &quot;Bé&quot;;
+        if (punts &lt;= 89) return &quot;Notable&quot;;
+        return &quot;Excel·lent&quot;;
     }
 }</code></pre>
   </div>
 </div>
 
 
-<p>Aquí <code>Compte</code> és una abstracció, <code>saldo</code> queda encapsulat i la classe forma un mòdul amb una responsabilitat clara.</p>
-
-<!-- Component: Exercici estàndard -->
-<div class="exercise-box" role="region" aria-label="Exercici">
-  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Quin principi estàs aplicant?</div>
-  <div class="component-content">
-    
-    <div class="exercise-description">Associeu cada situació a un concepte: fer saldo private; separar Factura i Client; crear Cotxe com a subclasse de Vehicle; definir només les dades rellevants d'un Producte.</div>
-    
-
-    <div class="exercise-meta">
-      
-      <span class="badge" aria-label="Dificultat">Bàsic</span>
-      
-      
-      <span class="badge" aria-label="Temps estimat">7 min</span>
-      
-    </div>
-
-    
-    
-    <details class="exercise-hints">
-      <summary>Veure pistes</summary>
-      <ul>
-        
-        <li>Penseu en ocultar, separar, especialitzar i simplificar.</li>
-        
-      </ul>
-    </details>
-    
-  </div>
-</div>
-
-</div>
-
-<div class="section">
-  <h2 id="Unitat2_Bloc2_Seccio3">3. Herència, sobrecàrrega i sobreescriptura</h2>
-
-<p>Aquests tres termes solen aparèixer junts i és fàcil barrejar-los. La clau és mirar <strong>què canvia</strong>.</p>
-
-<h3>Herència</h3>
-
-<p>Una classe filla rep atributs i mètodes accessibles de la classe pare i pot afegir o especialitzar comportament.</p>
+<p>Un cas de prova manual podria dir: «entrada 50 → resultat esperat “Bé”». Amb JUnit 5 ho podem expressar directament:</p>
 
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
@@ -561,253 +417,94 @@ for (int i = 0; i &lt; 3; i++) {         // iteració
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">class Vehicle {
-    public void arrencar() {
-        System.out.println(&quot;Vehicle en marxa&quot;);
-    }
-}
-
-class BicicletaElectrica extends Vehicle {
-    // hereta arrencar()
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">@Test
+void cinquantaEsBe() {
+    assertEquals(&quot;Bé&quot;, ClassificadorPunts.etiqueta(50));
 }</code></pre>
   </div>
 </div>
 
-
-<h3>Sobrecàrrega: mateix nom, paràmetres diferents</h3>
-
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">int sumar(int a, int b) {
-    return a + b;
-}
-
-double sumar(double a, double b) {
-    return a + b;
-}</code></pre>
-  </div>
-</div>
-
-
-<h3>Sobreescriptura: mateixa signatura heretada, nova implementació</h3>
-
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">class Vehicle {
-    public void descriure() {
-        System.out.println(&quot;Vehicle&quot;);
-    }
-}
-
-class Bicicleta extends Vehicle {
-    @Override
-    public void descriure() {
-        System.out.println(&quot;Bicicleta&quot;);
-    }
-}</code></pre>
-  </div>
-</div>
-
-
-<table class="table">
-<thead><tr><th>Concepte</th><th>Mateix nom?</th><th>Mateixos paràmetres?</th><th>Necessita herència?</th></tr></thead>
-<tbody>
-<tr><td>Herència</td><td>No és la pregunta principal.</td><td>No és la pregunta principal.</td><td>Sí, relaciona classe pare i filla.</td></tr>
-<tr><td>Sobrecàrrega</td><td>Sí.</td><td>No.</td><td>No necessàriament.</td></tr>
-<tr><td>Sobreescriptura</td><td>Sí.</td><td>Sí, mateixa signatura.</td><td>Sí, redefineix un mètode heretat.</td></tr>
-</tbody>
-</table>
-
-<!-- Component: Exercici estàndard -->
-<div class="exercise-box" role="region" aria-label="Exercici">
-  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Overload o override?</div>
-  <div class="component-content">
-    
-    <div class="exercise-description">Digueu si hi ha sobrecàrrega o sobreescriptura en dos casos: (1) imprimir(String) i imprimir(int); (2) una subclasse torna a definir mostrar() amb la mateixa signatura que la classe pare.</div>
-    
-
-    <div class="exercise-meta">
-      
-      <span class="badge" aria-label="Dificultat">Bàsic</span>
-      
-      
-      <span class="badge" aria-label="Temps estimat">8 min</span>
-      
-    </div>
-
-    
-    
-    <details class="exercise-hints">
-      <summary>Veure pistes</summary>
-      <ul>
-        
-        <li>Paràmetres diferents: penseu en overload.</li>
-        
-        <li>Mètode heretat amb la mateixa signatura: penseu en override.</li>
-        
-      </ul>
-    </details>
-    
-  </div>
-</div>
-
-</div>
-
-<div class="section">
-  <h2 id="Unitat2_Bloc2_Seccio4">4. Paradigmes funcional i lògic</h2>
-
-<p>No tots els programes s'organitzen al voltant de sentències imperatives o objectes. El material presenta també els paradigmes <strong>funcional</strong> i <strong>lògic</strong>.</p>
-
-<h3>Funcional: transformar valors</h3>
-
-<p>La idea és veure el càlcul com una composició de funcions: la sortida d'una operació es converteix en l'entrada de la següent. Lisp és un dels exemples clàssics que apareixen al material.</p>
-
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">// Mateixa idea expressada en Java amb funcions simples
-static int doble(int x) {
-    return x * 2;
-}
-
-static int sumaUn(int x) {
-    return x + 1;
-}
-
-// sumaUn(doble(3)) -&gt; 7</code></pre>
-  </div>
-</div>
-
-
-<h3>Lògic: fets + regles + consulta</h3>
-
-<p>En el paradigma lògic descrivim <strong>fets</strong> i <strong>regles</strong>; un motor d'inferència intenta deduir conclusions. Prolog és l'exemple típic del material.</p>
-
-<blockquote>
-Fet: la temperatura és 39 °C.<br>
-Regla: si la temperatura és superior a 37 °C, hi ha febre.<br>
-Consulta: hi ha febre?
-</blockquote>
-
-<p>Aquesta és la pista més directa per reconèixer el paradigma lògic: <strong>aplicar regles lògiques per inferir conclusions a partir de dades</strong>.</p>
-
-<!-- Component: Exercici estàndard -->
-<div class="exercise-box" role="region" aria-label="Exercici">
-  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Reconèixer el paradigma</div>
-  <div class="component-content">
-    
-    <div class="exercise-description">Expliqueu quin paradigma encaixa millor amb: (a) una cadena de funcions que transforma una llista; (b) una base de fets i regles que decideix si una incidència és prioritària.</div>
-    
-
-    <div class="exercise-meta">
-      
-      <span class="badge" aria-label="Dificultat">Bàsic</span>
-      
-      
-      <span class="badge" aria-label="Temps estimat">6 min</span>
-      
-    </div>
-
-    
-    
-    <details class="exercise-hints">
-      <summary>Veure pistes</summary>
-      <ul>
-        
-        <li>Transformació/composició apunta a funcional.</li>
-        
-        <li>Fets, regles i inferència apunten a lògic.</li>
-        
-      </ul>
-    </details>
-    
-  </div>
-</div>
-
-</div>
-
-<div class="section">
-  <h2 id="Unitat2_Bloc2_Seccio5">5. Fases de desenvolupament amb Mètrica 3</h2>
-
-<p>Programar és només una part del desenvolupament d'un sistema. El material utilitza <strong>Mètrica 3</strong> per presentar cinc fases seqüencials.</p>
 
 <figure class="teaching-figure">
-  <img src="/ioc/da2_0487/assets/img/unitat-2/05_metrica3_fases.svg" alt="Cinc fases de Mètrica 3: viabilitat, anàlisi, disseny, construcció i implantació/acceptació" loading="lazy">
-  <figcaption>La pregunta canvia a cada fase: convé fer-ho?, què necessita el sistema?, com serà?, com el construïm?, com el posem en servei?</figcaption>
+  <img src="/ioc/da2_0487/assets/img/unitat-3/05_junit_flux.svg" alt="Flux des d'un cas de prova fins a un mètode JUnit, una assertion i un resultat verd o vermell" loading="lazy">
+  <figcaption>JUnit automatitza la comparació entre el resultat esperat i el resultat real; el disseny del cas continua sent responsabilitat nostra.</figcaption>
 </figure>
-
-<table class="table">
-<thead><tr><th>Fase</th><th>Pregunta principal</th><th>Resultat que heu de retenir</th></tr></thead>
-<tbody>
-<tr><td>1. Estudi de viabilitat</td><td>Val la pena continuar?</td><td>Analitza necessitats i viabilitat econòmica, tècnica, legal i operativa.</td></tr>
-<tr><td>2. Anàlisi del sistema d'informació</td><td>Què ha de fer exactament?</td><td><strong>Especificació detallada</strong>, catàleg de requisits i models.</td></tr>
-<tr><td>3. Disseny del sistema d'informació</td><td>Com estarà construït?</td><td>Arquitectura, entorn tecnològic, components, proves i implantació.</td></tr>
-<tr><td>4. Construcció</td><td>Com el convertim en programari provat?</td><td>Codi, components, proves unitàries i d'integració, manuals i procediments.</td></tr>
-<tr><td>5. Implantació i acceptació</td><td>Com arriba a producció i s'accepta?</td><td>Implantació, proves d'acceptació, pas a producció i preparació del manteniment.</td></tr>
-</tbody>
-</table>
 
 
 <!-- Component: Caixa informativa -->
 <div class="info-box" role="note">
     <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
-    <p><strong>Truc per no confondre anàlisi i disseny</strong></p><p><strong>Anàlisi = què</strong> necessita el sistema. <strong>Disseny = com</strong> el construirem. Si la frase parla d'«especificació detallada del sistema» i catàleg de requisits, el material la situa a l'anàlisi.</p>
+    <p><strong>Automatitzar no substitueix dissenyar.</strong></p><p>Si els casos són dolents, JUnit els executarà molt ràpid... però continuaran sent dolents. Primer es decideixen classes, límits i comportaments; després es converteixen en mètodes <code>@Test</code>.</p>
     
 </div>
 
+</div>
+
+<div class="section">
+  <h2 id="Unitat3_Bloc2_Seccio2">2. Crear una classe JUnit 5 a Eclipse</h2>
+
+<p>JUnit 5 està integrat habitualment en els entorns Java moderns. En Eclipse podeu crear una classe de prova des de <strong>File → New → JUnit Test Case</strong>. Si aquesta opció no apareix directament, utilitzeu <strong>File → New → Other... → Java → JUnit → JUnit Test Case</strong>.</p>
+
+<p>Per als exercicis d'aquesta unitat ens interessa un esquema molt simple:</p>
+
+<ol>
+<li>Creeu el projecte Java i la classe que voleu provar.</li>
+<li>Creeu una classe JUnit 5 al <strong>mateix paquet</strong>.</li>
+<li>Poseu-li un nom que deixi clar què prova, per exemple <code>TestClassificadorPunts</code>.</li>
+<li>Afegiu un mètode precedit per <code>@Test</code> per a cada cas que vulgueu identificar per separat.</li>
+<li>Executeu la classe amb <strong>Run As → JUnit Test</strong>.</li>
+</ol>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">TestClassificadorPunts.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">package proves;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+class TestClassificadorPunts {
+
+    @Test
+    void zeroEsInsuficient() {
+        assertEquals(&quot;Insuficient&quot;, ClassificadorPunts.etiqueta(0));
+    }
+
+    @Test
+    void norantaEsExcellent() {
+        assertEquals(&quot;Excel·lent&quot;, ClassificadorPunts.etiqueta(90));
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Quan l'executeu, la vista de JUnit mostra quants tests s'han executat i quins han passat o fallat. Un resultat verd no significa que el programa sigui perfecte; significa que <strong>tots els casos que hem definit han produït el resultat esperat</strong>.</p>
 
 <!-- Component: Exercici estàndard -->
 <div class="exercise-box" role="region" aria-label="Exercici">
-  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Posa cada decisió a la seva fase</div>
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Primer test</div>
   <div class="component-content">
     
-    <div class="exercise-description">Classifiqueu cinc accions: decidir si el projecte és viable; recollir requisits; definir l'arquitectura; programar i fer proves unitàries; fer proves d'acceptació amb l'usuari.</div>
+    <div class="exercise-description">Creeu ClassificadorPunts i TestClassificadorPunts. Afegiu proves per als valors 49 i 50 i comproveu que totes dues passen.</div>
     
 
     <div class="exercise-meta">
       
-      <span class="badge" aria-label="Dificultat">Intermedi</span>
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
       
       
       <span class="badge" aria-label="Temps estimat">10 min</span>
@@ -820,9 +517,366 @@ Consulta: hi ha febre?
       <summary>Veure pistes</summary>
       <ul>
         
-        <li>Seguiu l'ordre de les cinc preguntes de la figura.</li>
+        <li>Cada valor està a un costat diferent del límit.</li>
         
-        <li>No confongueu requisits amb arquitectura.</li>
+        <li>Utilitzeu assertEquals amb el text esperat.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat3_Bloc2_Seccio3">3. Assertions: comprovar resultats i excepcions</h2>
+
+<p>Una <strong>assertion</strong> expressa una condició que ha de complir-se perquè la prova sigui correcta. JUnit 5 ofereix moltes assertions; per a aquesta unitat en necessitem poques però ben enteses.</p>
+
+<table class="table">
+<thead><tr><th>Assertion</th><th>Quan és útil?</th><th>Exemple</th></tr></thead>
+<tbody>
+<tr><td><code>assertEquals(esperat, real)</code></td><td>Quan sabem quin valor ha de retornar.</td><td><code>assertEquals("Bé", etiqueta(50))</code></td></tr>
+<tr><td><code>assertTrue(condicio)</code></td><td>Quan el que volem verificar és una condició booleana.</td><td><code>assertTrue(total &gt; 0)</code></td></tr>
+<tr><td><code>assertFalse(condicio)</code></td><td>Quan una condició ha de ser falsa.</td><td><code>assertFalse(llista.isEmpty())</code></td></tr>
+<tr><td><code>assertThrows(Tipus.class, ...)</code></td><td>Quan l'èxit consisteix precisament en llançar l'excepció prevista.</td><td>Entrada fora del rang permès.</td></tr>
+</tbody>
+</table>
+
+<h3>Una excepció també pot ser el resultat correcte</h3>
+
+<p>Si l'especificació diu que una entrada invàlida ha de produir una excepció, la prova no ha de «passar per alt» l'error. Ha de comprovar que es produeix exactament l'excepció esperada.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">@Test
+void menysUnEsInvalid() {
+    assertThrows(IllegalArgumentException.class,
+        () -&gt; ClassificadorPunts.etiqueta(-1));
+}
+
+@Test
+void centUEsInvalid() {
+    assertThrows(IllegalArgumentException.class,
+        () -&gt; ClassificadorPunts.etiqueta(101));
+}</code></pre>
+  </div>
+</div>
+
+
+<p>La part <code>() -> ...</code> és una expressió lambda que permet a JUnit executar el codi i observar si llança l'excepció. No cal dominar les lambdes per utilitzar aquest patró: llegiu-lo com «executa aquesta crida i comprova que acaba amb aquesta excepció».</p>
+
+<h3>També podem comprovar el missatge</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">@Test
+void elMissatgeExplicaElProblema() {
+    IllegalArgumentException error =
+        assertThrows(IllegalArgumentException.class,
+            () -&gt; ClassificadorPunts.etiqueta(120));
+
+    assertEquals(&quot;Puntuació fora de rang&quot;, error.getMessage());
+}</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No feu un test que només executi el mètode.</strong></p><p>Si no hi ha cap assertion, el test pot passar sense haver comprovat el resultat funcional. Cada mètode de prova ha de deixar clar què espera.</p>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat3_Bloc2_Seccio4">4. Una bateria de proves llegible</h2>
+
+<p>Quan hi ha diversos casos, el nom dels tests es converteix en documentació. Compareu <code>test1()</code> amb <code>cinquantaIniciaLaClasseBe()</code>: quan falla el segon, ja sabem quin comportament s'ha trencat.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">TestClassificadorPunts.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">class TestClassificadorPunts {
+
+    @Test
+    void menysUnEsInvalid() {
+        assertThrows(IllegalArgumentException.class,
+            () -&gt; ClassificadorPunts.etiqueta(-1));
+    }
+
+    @Test
+    void zeroEsInsuficient() {
+        assertEquals(&quot;Insuficient&quot;, ClassificadorPunts.etiqueta(0));
+    }
+
+    @Test
+    void quarantaNouEncaraEsInsuficient() {
+        assertEquals(&quot;Insuficient&quot;, ClassificadorPunts.etiqueta(49));
+    }
+
+    @Test
+    void cinquantaIniciaLaClasseBe() {
+        assertEquals(&quot;Bé&quot;, ClassificadorPunts.etiqueta(50));
+    }
+
+    @Test
+    void norantaIniciaExcellent() {
+        assertEquals(&quot;Excel·lent&quot;, ClassificadorPunts.etiqueta(90));
+    }
+
+    @Test
+    void centEsValid() {
+        assertEquals(&quot;Excel·lent&quot;, ClassificadorPunts.etiqueta(100));
+    }
+
+    @Test
+    void centUEsInvalid() {
+        assertThrows(IllegalArgumentException.class,
+            () -&gt; ClassificadorPunts.etiqueta(101));
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Aquesta bateria no pretén substituir el disseny complet del bloc anterior. Serveix per veure com els valors justificats passen del paper al codi. En un exercici de disseny, abans d'escriure JUnit hauríeu de poder indicar <strong>quina classe d'equivalència i quin camí cobreix cada cas</strong>.</p>
+
+
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Regressió gairebé gratis</strong></p><p>Quan aquests tests existeixen, després d'una refacció podem executar-los de nou en segons. Si un canvi intern altera el comportament, un test que abans era verd es tornarà vermell. Aquesta és la xarxa de seguretat que utilitzarem al bloc següent.</p>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat3_Bloc2_Seccio5">5. Depurar: aturar, observar i avançar</h2>
+
+<p>Quan un test falla, imprimir variables amb <code>System.out.println</code> pot ajudar, però l'IDE ens ofereix una eina molt més precisa: el <strong>depurador</strong>. El depurador executa el programa de manera controlada i permet aturar-nos en una línia per observar què està passant.</p>
+
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-3/06_debugger_passos.svg" alt="Flux de depuració amb breakpoint, execució pas a pas, inspecció de variables, hipòtesi i correcció" loading="lazy">
+  <figcaption>Depurar és observar una execució real, no endevinar. Aturem el programa, inspeccionem l'estat i avancem una instrucció cada vegada.</figcaption>
+</figure>
+
+<table class="table">
+<thead><tr><th>Acció</th><th>Per a què serveix?</th></tr></thead>
+<tbody>
+<tr><td>Breakpoint</td><td>Atura l'execució quan arriba a una línia concreta.</td></tr>
+<tr><td>Step Into</td><td>Entra dins del mètode que s'està cridant.</td></tr>
+<tr><td>Step Over</td><td>Executa la línia actual sense entrar dins dels mètodes cridats.</td></tr>
+<tr><td>Step Return</td><td>Continua fins que acaba el mètode actual i torna al mètode que l'havia cridat.</td></tr>
+<tr><td>Resume</td><td>Continua l'execució fins al següent breakpoint o fins al final.</td></tr>
+<tr><td>Variables</td><td>Mostra els valors que tenen les variables en aquell instant.</td></tr>
+</tbody>
+</table>
+
+<h3>Exemple: una frontera mal programada</h3>
+
+<p>Suposeu que per error hem escrit <code>if (punts &lt; 49)</code> en lloc de <code>&lt;= 49</code>. El test amb 49 fallarà. Poseu un breakpoint a la primera condició, executeu <strong>Debug As → JUnit Test</strong> i observeu:</p>
+
+<ol>
+<li><code>punts</code> val 49.</li>
+<li>La condició <code>punts &lt; 49</code> és falsa.</li>
+<li>El flux continua fins al següent <code>if</code>.</li>
+<li>El mètode retorna «Bé» quan la prova esperava «Insuficient».</li>
+</ol>
+
+<p>Ara ja no tenim una sospita: tenim una <strong>causa observada</strong>.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Modificar un valor en temps d'execució</strong></p><p>La vista de variables d'Eclipse també pot permetre canviar temporalment el valor d'una variable mentre el programa està aturat. És útil per explorar hipòtesis, però no substitueix modificar el codi i tornar a executar les proves: el canvi només afecta aquella sessió de depuració.</p>
+    
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Troba el límit trencat</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Canvieu temporalment punts <= 69 per punts < 69. Executeu els tests, identifiqueu quin falla i utilitzeu el depurador per explicar el recorregut exacte del valor 69.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Intermedi</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Poseu el breakpoint abans de la condició afectada.</li>
+        
+        <li>Mireu el valor de punts i avanceu amb Step Over.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat3_Bloc2_Seccio6">6. De la fallada a una incidència reproduïble</h2>
+
+<p>Detectar un error és només la meitat de la feina. Si el volem corregir o comunicar a una altra persona, hem de poder-lo <strong>reproduir</strong>. Una bona incidència evita frases com «a vegades no funciona» i conserva les dades necessàries per repetir exactament la fallada.</p>
+
+<table class="table">
+<thead><tr><th>Camp</th><th>Exemple útil</th></tr></thead>
+<tbody>
+<tr><td>Identificador</td><td><code>INC-014</code></td></tr>
+<tr><td>Versió / commit</td><td>Commit on s'ha observat l'error.</td></tr>
+<tr><td>Entorn</td><td>JDK, sistema operatiu o configuració rellevant.</td></tr>
+<tr><td>Passos</td><td>1. Executar test X. 2. Introduir 49. 3. Observar resultat.</td></tr>
+<tr><td>Esperat</td><td>«Insuficient».</td></tr>
+<tr><td>Obtingut</td><td>«Bé».</td></tr>
+<tr><td>Evidència</td><td>Nom del test fallit, captura o traça.</td></tr>
+<tr><td>Estat</td><td>Oberta, en curs, resolta, verificada.</td></tr>
+</tbody>
+</table>
+
+<p>Quan corregim la incidència, no eliminem el test que l'ha detectada. El mantenim. Així es converteix en una <strong>prova de regressió</strong>: si el mateix error reapareix en el futur, la bateria tornarà a avisar.</p>
+
+<h3>El circuit complet</h3>
+
+<ol>
+<li>Un cas de prova defineix què hauria de passar.</li>
+<li>JUnit l'executa automàticament.</li>
+<li>Si falla, el depurador permet observar el recorregut real.</li>
+<li>Documentem la incidència amb passos reproduïbles.</li>
+<li>Corregim el codi.</li>
+<li>Executem tota la bateria, no només el test que fallava.</li>
+</ol>
+
+<!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Ja podeu automatitzar una prova si...">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé convertir entrada i resultat esperat en un mètode @Test</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé quan utilitzar assertEquals i assertThrows</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc executar una classe com JUnit Test</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc interpretar quin test ha fallat</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé posar un breakpoint i avançar amb Step Into o Step Over</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc inspeccionar variables durant l'execució</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé descriure una incidència de manera reproduïble</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Simulació JUnit</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Implementeu el mètode de l'aparcament del bloc anterior i convertiu almenys sis casos de prova justificats en tests JUnit 5. Introduïu després un error en un dels límits, detecteu-lo amb la bateria i expliqueu amb el depurador per què falla.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Avançat</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">30-40 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Feu primer la versió correcta i deixeu tots els tests verds.</li>
+        
+        <li>Canvieu només un operador.</li>
+        
+        <li>No corregiu fins que pugueu descriure el recorregut erroni.</li>
         
       </ul>
     </details>
@@ -848,8 +902,8 @@ Consulta: hi ha febre?
 {
   "@context": "https://schema.org",
   "@type": "LearningResource",
-  "name": "Bloc 2: Paradigmes i cicle de desenvolupament",
-  "description": "Programació estructurada, orientació a objectes, paradigmes funcional i lògic, i fases de Mètrica 3",
+  "name": "Bloc 2: JUnit 5 i depuració amb Eclipse",
+  "description": "Proves unitàries automàtiques, assertions, execució d'una bateria, punts de ruptura i documentació d'incidències",
   "author": {
     "@type": "Organization",
     "name": "Institut Obert de Catalunya"
@@ -889,6 +943,8 @@ Consulta: hi ha febre?
                         
                     
                         
+                    
+                        
                             
                             
                     
@@ -926,13 +982,13 @@ Consulta: hi ha febre?
                     
                     <div class="nav-link-wrapper">
                         
-                        <a href="/ioc/da2_0487/unitat-2/bloc-1/" class="nav-button" aria-label="Bloc anterior: Del codi font a l'execució">← Anterior</a>
+                        <a href="/ioc/da2_0487/unitat-3/bloc-1/" class="nav-button" aria-label="Bloc anterior: Dissenyar proves que realment troben errors">← Anterior</a>
                         
                     </div>
                     
                     <div class="nav-link-wrapper">
                         
-                        <a href="/ioc/da2_0487/unitat-2/bloc-3/" class="nav-button" aria-label="Bloc següent: Eclipse i aplicacions d'escriptori amb Swing">Següent →</a>
+                        <a href="/ioc/da2_0487/unitat-3/bloc-3/" class="nav-button" aria-label="Bloc següent: Refacció, qualitat i documentació">Següent →</a>
                         
                     </div>
                 </div>
@@ -949,8 +1005,8 @@ Consulta: hi ha febre?
             </div>
             <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
                     <span class="progress-label">Unitat</span>
-                    <span class="progress-text" data-pos="2" data-total="3">(2/3)</span>
-                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 66%"></div></div>
+                    <span class="progress-text" data-pos="3" data-total="3">(3/3)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
                 </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
                         <span class="progress-label">Bloc</span>
                         <span class="progress-text" data-pos="2" data-total="4">(2/4)</span>
@@ -959,8 +1015,8 @@ Consulta: hi ha febre?
 
                     <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
                         <span class="progress-label">Secció</span>
-                        <span class="progress-text" data-pos="1" data-total="5">(1/5)</span>
-                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 20%"></div></div>
+                        <span class="progress-text" data-pos="1" data-total="6">(1/6)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 16%"></div></div>
                     </div></div>
             <div class="footer-actions" aria-label="Accions ràpides">
                 <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">

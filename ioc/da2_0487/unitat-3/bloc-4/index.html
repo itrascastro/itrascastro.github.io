@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 4: Git: historial, branques i conflictes | Entorns de desenvolupament - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="3">
+    <meta name="page-bloc" content="4">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 4: Git: historial, branques i conflictes | Entorns de desenvolupament</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 4: Git: historial, branques i conflictes" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Repositoris locals, staging, commits, HEAD, branques, merge, conflictes, .gitignore, GitHub i EGit" />
+<meta property="og:description" content="Repositoris locals, staging, commits, HEAD, branques, merge, conflictes, .gitignore, GitHub i EGit" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-3/bloc-4/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/da2_0487/unitat-3/bloc-4/" />
+<meta property="og:site_name" content="Entorns de desenvolupament" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 4: Git: historial, branques i conflictes" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Repositoris locals, staging, commits, HEAD, branques, merge, conflictes, .gitignore, GitHub i EGit","headline":"Bloc 4: Git: historial, branques i conflictes","url":"https://itrascastro.github.io/ioc/da2_0487/unitat-3/bloc-4/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-3/bloc-4/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/da2_0487/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/da2_0487/feed.xml" title="Entorns de desenvolupament" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/code-block.css">
+    <script src="/ioc/da2_0487/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/da2_0487">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/da2_0487/" class="logo-link" aria-label="Inici">
+                <img src="https://itrascastro.github.io/ioc/dam_0488/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="https://itrascastro.github.io/ioc/dam_0488/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/da2_0487/" class="title-link">
+                <h1>DA2_0487 - Entorns de desenvolupament</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/da2_0487/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Del problema al primer diagrama de classes
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Relacions entre classes i modelatge complet
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Diagrames de comportament i d'interacció
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Papyrus de principi a fi: del model al codi i del codi al model
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_0487/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Del codi font a l'execució
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Paradigmes i cicle de desenvolupament
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Eclipse i aplicacions d'escriptori amb Swing
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Spring i assistents d'IA dins l'IDE
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_0487/unitat-3/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 1: Dissenyar proves que realment troben errors
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-3/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 2: JUnit 5 i depuració amb Eclipse
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-3/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 3: Refacció, qualitat i documentació
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-3/bloc-4/" class="nav-dropdown-item current">
+                        Unitat 3 - Bloc 4: Git: historial, branques i conflictes
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc4_Seccio1" class="nav-link" data-section="Unitat3_Bloc4_Seccio1">1. El model mental de Git</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc4_Seccio2" class="nav-link" data-section="Unitat3_Bloc4_Seccio2">2. Inicialitzar, afegir, revisar i confirmar</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc4_Seccio3" class="nav-link" data-section="Unitat3_Bloc4_Seccio3">3. Branques i HEAD</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc4_Seccio4" class="nav-link" data-section="Unitat3_Bloc4_Seccio4">4. Fusionar: quan Git només avança el punter</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc4_Seccio5" class="nav-link" data-section="Unitat3_Bloc4_Seccio5">5. Conflictes: quan Git necessita una decisió humana</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc4_Seccio6" class="nav-link" data-section="Unitat3_Bloc4_Seccio6">6. .gitignore: què no ha d'entrar al repositori</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc4_Seccio7" class="nav-link" data-section="Unitat3_Bloc4_Seccio7">7. GitHub i Git des d'Eclipse</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc4_Seccio8" class="nav-link" data-section="Unitat3_Bloc4_Seccio8">8. Pràctica guiada de principi a fi</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/da2_0487/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/da2_0487/unitat-3/" class="horizontal-nav-item">
+                                Unitat 3: Proves, optimització i documentació del programari (RA3 i RA4)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 3.4: Git: historial, branques i conflictes
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<div class="section">
+  <h2 id="Unitat3_Bloc4_Seccio1">1. El model mental de Git</h2>
+
+<p>Git no és només una còpia de seguretat. És un sistema que conserva <strong>versions identificables del projecte</strong> i ens permet treballar en línies de desenvolupament diferents sense haver de duplicar carpetes manualment.</p>
+
+<p>Per entendre les ordres bàsiques, imagineu tres zones:</p>
+
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-3/09_git_model.svg" alt="Model de Git amb working tree, staging area, commits i les ordres git add i git commit" loading="lazy">
+  <figcaption><code>git add</code> prepara una fotografia; <code>git commit</code> la incorpora a l'historial del repositori.</figcaption>
+</figure>
+
+<table class="table">
+<thead><tr><th>Zona</th><th>Què conté?</th><th>Pregunta útil</th></tr></thead>
+<tbody>
+<tr><td>Working tree</td><td>Els fitxers tal com els esteu editant ara.</td><td>Què he modificat?</td></tr>
+<tr><td>Staging area</td><td>Els canvis que heu seleccionat per al pròxim commit.</td><td>Què vull incloure a la fotografia següent?</td></tr>
+<tr><td>Repositori local</td><td>L'historial de commits.</td><td>Quines versions he confirmat?</td></tr>
+</tbody>
+</table>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Una idea que evita moltes confusions</strong></p><p><code>git add</code> no «puja» res a Internet. <code>git commit</code> tampoc. Totes dues operacions treballen amb el repositori <strong>local</strong>. La comunicació amb un repositori remot arribarà després amb <code>push</code> i <code>pull</code>.</p>
+    
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat3_Bloc4_Seccio2">2. Inicialitzar, afegir, revisar i confirmar</h2>
+
+<p>Crearem un projecte mínim anomenat <code>reserves</code>. A la terminal, situeu-vos dins la carpeta del projecte abans d'executar les ordres.</p>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">mkdir reserves
+cd reserves
+git init -b main</code></pre>
+  </div>
+</div>
+
+
+<p><code>git init</code> crea el repositori local. L'opció <code>-b main</code> indica el nom de la branca inicial. Si la vostra instal·lació ja utilitza <code>main</code> per defecte, el resultat conceptual és el mateix.</p>
+
+<p>Suposeu que creeu aquest fitxer:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">Reserva.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class Reserva {
+    private String client;
+    private int durada;
+
+    public Reserva(String client, int durada) {
+        this.client = client;
+        this.durada = durada;
+    }
+
+    public int getDurada() {
+        return durada;
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Ara seguiu el recorregut:</p>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git status
+git add Reserva.java
+git status
+git commit -m &quot;versió inicial de Reserva&quot;
+git status
+git log --oneline</code></pre>
+  </div>
+</div>
+
+
+<table class="table">
+<thead><tr><th>Ordre</th><th>Què ens diu o fa?</th></tr></thead>
+<tbody>
+<tr><td><code>git status</code></td><td>Mostra branca actual, fitxers modificats, no seguits i canvis preparats per confirmar.</td></tr>
+<tr><td><code>git add</code></td><td>Passa l'estat actual del fitxer a la zona de preparació.</td></tr>
+<tr><td><code>git commit -m "..."</code></td><td>Crea un commit amb els canvis preparats.</td></tr>
+<tr><td><code>git log --oneline</code></td><td>Mostra l'historial de commits en format compacte.</td></tr>
+</tbody>
+</table>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No memoritzeu una seqüència a cegues.</strong></p><p>Executeu <code>git status</code> sovint. És l'ordre que millor explica en quin punt sou i què farà el pas següent.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Llegeix l'estat</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Creeu un fitxer, executeu git status, feu git add i torneu a executar git status. Expliqueu amb una frase què ha canviat entre les dues sortides.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">10 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>El fitxer passa de no preparat a preparat.</li>
+        
+        <li>Encara no hi ha cap nou commit fins que feu git commit.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat3_Bloc4_Seccio3">3. Branques i HEAD</h2>
+
+<p>Una <strong>branca</strong> és un nom que apunta a una línia de commits. Ens permet desenvolupar una modificació sense moure immediatament la branca principal.</p>
+
+<p><code>HEAD</code> ens indica on estem treballant ara. Habitualment apunta a la branca actual, i aquesta branca apunta al seu commit més recent.</p>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git branch
+git switch -c branca_tipus
+git branch</code></pre>
+  </div>
+</div>
+
+
+<p>L'asterisc que mostra <code>git branch</code> identifica la branca actual. Amb <code>git switch -c</code> hem creat una branca i ens hi hem situat en una sola operació.</p>
+
+<p>A <code>branca_tipus</code> canviem la durada perquè admeti fraccions d'hora:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">private double durada;
+
+public double getDurada() {
+    return durada;
+}</code></pre>
+  </div>
+</div>
+
+
+<p>I confirmem el canvi:</p>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git add Reserva.java
+git commit -m &quot;canvia durada a double&quot;
+git log --oneline --decorate</code></pre>
+  </div>
+</div>
+
+
+<p>Si ara fem <code>git switch main</code>, el fitxer torna a l'estat que tenia al commit de <code>main</code>: l'atribut torna a ser <code>int</code>. No s'ha perdut el canvi; continua guardat a la branca <code>branca_tipus</code>.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>HEAD no és una branca especial.</strong></p><p>És la referència que indica la posició actual. Quan canvieu de branca, HEAD passa a seguir aquella branca. Per això en missatges de conflicte veureu <code>HEAD</code> identificant la versió del costat on esteu situats.</p>
+    
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat3_Bloc4_Seccio4">4. Fusionar: quan Git només avança el punter</h2>
+
+<p>Tornem a <code>main</code>. Des que vam crear <code>branca_tipus</code>, <code>main</code> no ha rebut cap commit nou. L'historial té aquesta forma conceptual:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">A  ← main
+   B ← branca_tipus</code></pre>
+  </div>
+</div>
+
+
+<p>Si des de <code>main</code> executem:</p>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git switch main
+git merge branca_tipus</code></pre>
+  </div>
+</div>
+
+
+<p>Git no necessita combinar dos historials divergents. Simplement pot moure el punter de <code>main</code> de A fins a B. Això s'anomena <strong>fast-forward</strong>.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">A --- B
+      ↑
+      main
+      branca_tipus</code></pre>
+  </div>
+</div>
+
+
+<p>No ha desaparegut cap commit i no s'ha inventat cap versió intermèdia: <strong>main s'ha posat al dia fins al commit que ja existia</strong>.</p>
+
+
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Quan pot fer-se un fast-forward?</strong></p><p>Quan la branca de destí no ha avançat per un altre camí des del punt on es va crear la branca que fusionem. En altres paraules, el commit que tenia la branca de destí és avantpassat directe de l'altre.</p>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat3_Bloc4_Seccio5">5. Conflictes: quan Git necessita una decisió humana</h2>
+
+<p>Crearem ara una situació diferent. Tornem al punt inicial i imaginem que una segona branca havia canviat <strong>les mateixes línies</strong> amb una intenció distinta: reanomenar <code>durada</code> a <code>horesReserva</code>.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">private int horesReserva;
+
+public int getHoresReserva() {
+    return horesReserva;
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Si aquesta branca es va crear abans de fusionar <code>branca_tipus</code>, després del primer merge tenim dues idees incompatibles sobre la mateixa línia:</p>
+
+<ul>
+<li><code>main</code> ja conté <code>double durada</code>.</li>
+<li><code>branca_nom</code> conté <code>int horesReserva</code>.</li>
+</ul>
+
+<p>En intentar:</p>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git switch main
+git merge branca_nom</code></pre>
+  </div>
+</div>
+
+
+<p>Git pot detectar que no sap triar automàticament. El fitxer mostrarà marques semblants a aquestes:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+private double durada;
+=======
+private int horesReserva;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; branca_nom</code></pre>
+  </div>
+</div>
+
+
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-3/10_git_branques_conflicte.svg" alt="Historial Git amb main, una branca que canvia el tipus, una altra que reanomena el camp i una fusió manual que conserva tots dos objectius" loading="lazy">
+  <figcaption>Git detecta la col·lisió, però la decisió semàntica és nostra: el resultat correcte pot necessitar combinar la intenció de totes dues branques.</figcaption>
+</figure>
+
+<h3>Resoldre no vol dir escollir un costat a cegues</h3>
+
+<p>En aquest exemple volem conservar <strong>totes dues millores</strong>: el tipus <code>double</code> i el nom <code>horesReserva</code>. Editaríem manualment el fitxer perquè quedi així:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">private double horesReserva;
+
+public double getHoresReserva() {
+    return horesReserva;
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Després eliminem totes les marques del conflicte i confirmem la resolució:</p>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git add Reserva.java
+git status
+git commit -m &quot;resol conflicte de durada&quot;
+git log --oneline --graph --decorate --all</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No confirmeu un conflicte sense compilar i provar.</strong></p><p>Git només sap si el text ha quedat resolt. No sap si heu combinat correctament els significats. Després de resoldre una fusió, compileu i executeu les proves abans de considerar-la bona.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Resol els dos objectius</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">En una branca, un atribut int quantitat passa a double quantitat. En una altra, int quantitat passa a int unitats. Escriviu quin hauria de ser el resultat final si volem conservar les dues intencions.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Intermedi</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>No escolliu simplement HEAD o l'altra branca.</li>
+        
+        <li>Pregunteu-vos què volia aconseguir cada canvi.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat3_Bloc4_Seccio6">6. .gitignore: què no ha d'entrar al repositori</h2>
+
+<p>No tots els fitxers d'una carpeta formen part del projecte que volem versionar. Compilats, logs, credencials locals o directoris generats poden embrutar l'historial o, en el pitjor cas, exposar informació que no s'hauria d'haver confirmat.</p>
+
+<p>El fitxer <code>.gitignore</code> descriu patrons que Git ha d'ignorar quan encara no estan versionats.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      <span class="code-filename">.gitignore</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text"># Compilats Java
+*.class
+bin/
+target/
+
+# Fitxers temporals
+*.log
+*.tmp
+
+# Configuració local amb secrets
+.env</code></pre>
+  </div>
+</div>
+
+
+<p>Després de crear-lo, utilitzeu <code>git status</code> per comprovar que els fitxers generats ja no apareixen com a no seguits.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>.gitignore no esborra l'historial.</strong></p><p>Si un fitxer ja ha estat confirmat, afegir-lo després a <code>.gitignore</code> no fa desaparèixer les còpies anteriors. Per això és important decidir què no s'ha de versionar <strong>abans</strong> del primer commit, especialment quan hi ha credencials o secrets.</p>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat3_Bloc4_Seccio7">7. GitHub i Git des d'Eclipse</h2>
+
+<p>Git és el sistema de control de versions. GitHub és un servei que pot allotjar un <strong>repositori remot</strong>. El repositori local continua existint al vostre ordinador; el remot permet compartir canvis i sincronitzar-los.</p>
+
+<h3>Ordres bàsiques amb un remot</h3>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git remote add origin URL_DEL_REPOSITORI
+git push -u origin main
+
+# Més endavant
+git pull
+git push</code></pre>
+  </div>
+</div>
+
+
+<table class="table">
+<thead><tr><th>Operació</th><th>Idea simplificada</th></tr></thead>
+<tbody>
+<tr><td><code>push</code></td><td>Envia commits locals al repositori remot.</td></tr>
+<tr><td><code>pull</code></td><td>Recupera canvis del remot i els integra a la branca local corresponent.</td></tr>
+<tr><td><code>fetch</code></td><td>Actualitza la informació del remot sense integrar automàticament els canvis a la branca de treball.</td></tr>
+</tbody>
+</table>
+
+<p>Eclipse integra Git mitjançant <strong>EGit</strong>. Les mateixes idees apareixen en opcions com <strong>Team</strong>, la vista <strong>Git Staging</strong>, el canvi de branca, <strong>Merge</strong>, <strong>Pull</strong> i <strong>Push</strong>. La interfície pot canviar lleugerament entre versions, però el model mental és el mateix:</p>
+
+<ul>
+<li>seleccionem canvis per al staging;</li>
+<li>creem commits locals;</li>
+<li>canviem o creem branques;</li>
+<li>fusionem historials;</li>
+<li>sincronitzem amb el remot.</li>
+</ul>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Terminal i IDE no són dos Git diferents.</strong></p><p>Si feu <code>git status</code> a la terminal i després obriu Git Staging a Eclipse, totes dues eines estan mirant el mateix repositori. Aprendre les ordres ajuda a entendre què està fent la interfície gràfica.</p>
+    
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat3_Bloc4_Seccio8">8. Pràctica guiada de principi a fi</h2>
+
+<p>Aquesta pràctica està pensada perquè pugueu afrontar després un exercici semblant amb altres noms, atributs i missatges.</p>
+
+<h3>1. Creeu l'estat inicial</h3>
+
+<ol>
+<li>Creeu una carpeta <code>control_reserves</code>.</li>
+<li>Inicialitzeu Git amb una branca principal.</li>
+<li>Afegiu <code>Reserva.java</code> amb <code>int durada</code>.</li>
+<li>Consulteu <code>git status</code>, afegiu el fitxer i feu el primer commit.</li>
+</ol>
+
+<h3>2. Primera branca: canvi de tipus</h3>
+
+<ol>
+<li>Creeu <code>branca_tipus</code> i situeu-vos-hi.</li>
+<li>Canvieu <code>int durada</code> a <code>double durada</code>.</li>
+<li>Actualitzeu getter, setter o constructor si és necessari.</li>
+<li>Feu un commit descriptiu.</li>
+</ol>
+
+<h3>3. Segona branca: canvi de nom</h3>
+
+<p>La segona branca ha de partir de l'estat inicial, no de la primera modificació. El seu objectiu serà reanomenar <code>durada</code> a <code>horesReserva</code> mantenint encara el tipus original.</p>
+
+<h3>4. Fusioneu en l'ordre adequat</h3>
+
+<ol>
+<li>Torneu a <code>main</code> i fusioneu <code>branca_tipus</code>.</li>
+<li>Expliqueu per què Git pot fer un <em>fast-forward</em>.</li>
+<li>Intenteu fusionar <code>branca_nom</code>.</li>
+<li>Inspeccioneu les marques del conflicte.</li>
+<li>Resoleu-lo amb <code>double horesReserva</code>.</li>
+<li>Compileu, proveu i confirmeu la resolució.</li>
+</ol>
+
+<h3>5. Expliqueu l'historial</h3>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git log --oneline --graph --decorate --all</code></pre>
+  </div>
+</div>
+
+
+<p>No us limiteu a capturar la pantalla. Heu de poder explicar <strong>què representen les línies del gràfic, on es van separar les branques, per què la primera fusió era senzilla i per què la segona necessitava una decisió humana</strong>.</p>
+
+<!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Abans de donar Git per preparat">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé diferenciar working tree, staging i commit</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc explicar què fan git init, add, status i commit</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Entenc què representa HEAD</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc crear i canviar de branca</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé reconèixer un fast-forward</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Entenc per què apareix un conflicte</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé interpretar les marques <<<<<<<, ======= i >>>>>>></div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc resoldre un conflicte conservant idees de les dues branques</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé per a què serveix .gitignore</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Distingeixo commit local, push i pull</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Simulació final de Git</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Repetiu tota la pràctica amb una classe Producte: una branca canvia stock d'int a long i una altra reanomena stock a unitatsDisponibles. Feu els commits, les fusions, resoleu el conflicte i expliqueu l'historial amb git log --graph.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Avançat</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">35-45 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>La segona branca ha de néixer abans d'incorporar el canvi de la primera.</li>
+        
+        <li>Després del conflicte, el resultat ha de conservar el nou tipus i el nou nom.</li>
+        
+        <li>Useu git status en cada etapa.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 4: Git: historial, branques i conflictes",
+  "description": "Repositoris locals, staging, commits, HEAD, branques, merge, conflictes, .gitignore, GitHub i EGit",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Entorns de desenvolupament — IOC",
+    "description": "Materials del mòdul DA2_0487 - Entorns de desenvolupament"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                    
+                                        
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/da2_0487/unitat-3/bloc-3/" class="nav-button" aria-label="Bloc anterior: Refacció, qualitat i documentació">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="3" data-total="3">(3/3)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="4" data-total="4">(4/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="8">(1/8)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 12%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/da2_0487/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/da2_0487",
+        title: "Entorns de desenvolupament",
+        version: "v1.0",
+        cicle_modul: "DA2_0487"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/da2_0487/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/da2_0487/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

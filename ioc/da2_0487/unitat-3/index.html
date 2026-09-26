@@ -5,34 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <title>Unitat 2: Desenvolupament de programari i entorns de desenvolupament (RA1 i RA2) | Entorns de desenvolupament - IOC</title>
+    <title>Unitat 3: Proves, optimització i documentació del programari (RA3 i RA4) | Entorns de desenvolupament - IOC</title>
     <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
-    <meta name="page-unitat" content="2">
+    <meta name="page-unitat" content="3">
     
     
     <!-- SEO Tags -->
     <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Unitat 2: Desenvolupament de programari i entorns de desenvolupament (RA1 i RA2) | Entorns de desenvolupament</title>
+<title>Unitat 3: Proves, optimització i documentació del programari (RA3 i RA4) | Entorns de desenvolupament</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="Unitat 2: Desenvolupament de programari i entorns de desenvolupament (RA1 i RA2)" />
+<meta property="og:title" content="Unitat 3: Proves, optimització i documentació del programari (RA3 i RA4)" />
 <meta property="og:locale" content="ca_ES" />
-<meta name="description" content="Desenvolupament de programari, Eclipse, Swing, Spring i assistents d’IA" />
-<meta property="og:description" content="Desenvolupament de programari, Eclipse, Swing, Spring i assistents d’IA" />
-<link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-2/" />
-<meta property="og:url" content="https://itrascastro.github.io/ioc/da2_0487/unitat-2/" />
+<meta name="description" content="Disseny i automatització de proves, JUnit, depuració, refacció, Javadoc i Git" />
+<meta property="og:description" content="Disseny i automatització de proves, JUnit, depuració, refacció, Javadoc i Git" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-3/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/da2_0487/unitat-3/" />
 <meta property="og:site_name" content="Entorns de desenvolupament" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Unitat 2: Desenvolupament de programari i entorns de desenvolupament (RA1 i RA2)" />
+<meta property="twitter:title" content="Unitat 3: Proves, optimització i documentació del programari (RA3 i RA4)" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Desenvolupament de programari, Eclipse, Swing, Spring i assistents d’IA","headline":"Unitat 2: Desenvolupament de programari i entorns de desenvolupament (RA1 i RA2)","url":"https://itrascastro.github.io/ioc/da2_0487/unitat-2/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Disseny i automatització de proves, JUnit, depuració, refacció, Javadoc i Git","headline":"Unitat 3: Proves, optimització i documentació del programari (RA3 i RA4)","url":"https://itrascastro.github.io/ioc/da2_0487/unitat-3/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/ioc/da2_0487/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-2/">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-3/">
     <!-- Rich editor styles (for embedded notes panel) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
     <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -181,13 +181,15 @@
                             
                         
                             
+                        
+                            
                                 
                                 
                         
                         
                             <span class="horizontal-nav-separator"> &gt; </span>
-                            <a href="/ioc/da2_0487/unitat-2/" class="horizontal-nav-item">
-                                Unitat 2: Desenvolupament de programari i entorns de desenvolupament (RA1 i RA2)
+                            <a href="/ioc/da2_0487/unitat-3/" class="horizontal-nav-item">
+                                Unitat 3: Proves, optimització i documentació del programari (RA3 i RA4)
                             </a>
                         
                         
@@ -205,27 +207,31 @@
     
 
     
+
+    
         
         
 
 <div class="unit-page">
     <div class="unit-hero">
-        <div class="unit-badge">Unitat 2</div>
-        <h1 class="unit-title">Desenvolupament de programari i entorns de desenvolupament (RA1 i RA2)</h1>
+        <div class="unit-badge">Unitat 3</div>
+        <h1 class="unit-title">Proves, optimització i documentació del programari (RA3 i RA4)</h1>
     </div>
 
     <div class="unit-introduction">
         <h2>Descripció de la Unitat</h2>
         <div class="unit-description-content">
-            <p>Aquesta unitat explica el recorregut complet que hi ha entre una idea i un programa en funcionament. Començarem distingint <strong>codi font, codi objecte, codi executable, compilació, interpretació i màquina virtual</strong>; després situarem els principals paradigmes de programació i les fases de desenvolupament d'un sistema d'informació.</p>
+            <p>Aquesta unitat se centra en una idea molt concreta: <strong>un programa no està acabat quan compila</strong>. Cal saber demostrar que funciona, detectar per què falla, millorar-ne l'estructura sense canviar-ne el comportament, conservar l'historial dels canvis i deixar prou documentació perquè una altra persona el pugui entendre i mantenir.</p>
 
-<p>La segona meitat és pràctica. Treballarem amb <strong>Eclipse</strong>, instal·larem i entendrem els connectors que amplien l'IDE, construirem interfícies d'escriptori amb <strong>Java Swing i WindowBuilder</strong>, farem una aplicació web mínima amb <strong>Spring Boot</strong> i practicarem l'ús crític d'un assistent d'IA integrat a l'entorn. Els exemples comencen petits i van incorporant una sola dificultat cada vegada.</p>
+<p>Treballarem els <strong>RA3 i RA4</strong> a partir d'exemples Java petits i progressius. Primer dissenyarem proves amb classes d'equivalència, valors límit, flux de control i complexitat ciclomàtica; després convertirem aquests casos en proves automàtiques amb <strong>JUnit 5</strong> i aprendrem a depurar amb Eclipse. A continuació aplicarem <strong>refaccions</strong>, revisarem el codi amb eines d'anàlisi i generarem documentació amb <strong>Javadoc</strong>. Finalment, utilitzarem <strong>Git</strong> amb commits, branques, fusions i resolució de conflictes.</p>
+
+<p>Els exemples i resums complementaris de l'antiga unitat s'han integrat directament en aquests materials. Per tant, no cal anar saltant entre documents per entendre com es dissenya un cas de prova, com s'aplica una refacció o com es resol un conflicte de Git.</p>
 
 <p><strong>Resultats d'aprenentatge treballats</strong></p>
 <table class="table">
 <tbody>
-<tr><th>RA1</th><td>Reconeix els elements i les eines que intervenen en el desenvolupament d'un programa informàtic, analitzant-ne les característiques i les fases fins a la posada en funcionament.</td></tr>
-<tr><th>RA2</th><td>Avalua entorns integrats de desenvolupament analitzant-ne les característiques per editar codi font i generar o empaquetar programes executables.</td></tr>
+<tr><th>RA3</th><td>Verifica el funcionament de programes dissenyant i realitzant proves.</td></tr>
+<tr><th>RA4</th><td>Optimitza codi emprant les eines disponibles en l'entorn de desenvolupament.</td></tr>
 </tbody>
 </table>
 
@@ -233,7 +239,7 @@
 <!-- Component: Caixa informativa -->
 <div class="info-box" role="note">
     <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
-    <p><strong>Com estudiar aquesta unitat</strong></p><p>Feu sempre el recorregut complet: primer enteneu el concepte, després proveu l'exemple mínim i, finalment, canvieu una condició de l'exemple. Si només copieu pantalles o codi, qualsevol canvi de l'enunciat us bloquejarà. Si enteneu què entra, què es valida, què canvia d'estat i què surt, podreu construir una aplicació més gran sense haver-la memoritzat.</p>
+    <p><strong>Com estudiar aquesta unitat</strong></p><p>No memoritzeu llistes d'ordres ni tipus de prova. Seguiu sempre el mateix fil: <strong>què hauria de passar → amb quines dades ho puc comprovar → com automatitzo la comprovació → què faig si falla → com canvio el codi sense trencar-lo → com deixo constància del canvi</strong>. Si enteneu aquest recorregut, podreu adaptar-lo a qualsevol codi semblant al de l'EAC.</p>
     
 </div>
 
@@ -246,90 +252,88 @@
             
                 <div class="block-card">
                     <div class="block-card-header">
-                        <span class="block-number">2.1</span>
-                        <h3 class="block-title">Del codi font a l'execució</h3>
+                        <span class="block-number">3.1</span>
+                        <h3 class="block-title">Dissenyar proves que realment troben errors</h3>
                     </div>
                     <div class="block-summary">
                         <h4 class="summary-title">Què aprendreu:</h4>
                         <div class="block-description">
                             <ul>
-<li>Distingireu programa, procés d'execució i relació amb memòria, processador i perifèrics.</li>
-<li>Entendreu la diferència entre codi font, objecte, executable i biblioteques.</li>
-<li>Comparareu compilació, interpretació, enllaçament i execució sobre una màquina virtual.</li>
-<li>Seguireu pas a pas el recorregut d'un programa Java des del fitxer <code>.java</code> fins a la JVM.</li>
-<li>Situareu la classificació per generacions de llenguatges que utilitza el material del mòdul.</li>
+<li>Entendreu per què provar no és «executar unes quantes vegades», sinó dissenyar evidències.</li>
+<li>Distingireu proves unitàries, funcionals, d'integració, de càrrega, d'acceptació, de sistema, de regressió i de fum.</li>
+<li>Construireu classes d'equivalència i casos de prova amb valors límit i valors intermedis.</li>
+<li>Dibuixareu el flux de control, calculareu la complexitat ciclomàtica i identificareu camins independents.</li>
+<li>Relacionareu cada cas de prova amb el comportament o camí que realment comprova.</li>
 </ul>
                         </div>
                     </div>
-                    <a href="/ioc/da2_0487/unitat-2/bloc-1/" class="block-action">
+                    <a href="/ioc/da2_0487/unitat-3/bloc-1/" class="block-action">
                         <span class="block-link-text">Començar bloc →</span>
                     </a>
                 </div>
             
                 <div class="block-card">
                     <div class="block-card-header">
-                        <span class="block-number">2.2</span>
-                        <h3 class="block-title">Paradigmes i cicle de desenvolupament</h3>
+                        <span class="block-number">3.2</span>
+                        <h3 class="block-title">JUnit 5 i depuració amb Eclipse</h3>
                     </div>
                     <div class="block-summary">
                         <h4 class="summary-title">Què aprendreu:</h4>
                         <div class="block-description">
                             <ul>
-<li>Aplicareu seqüència, selecció i iteració i entendreu el disseny descendent.</li>
-<li>Relacionareu abstracció, encapsulació, modularitat, jerarquia i polimorfisme amb codi Java senzill.</li>
-<li>Diferenciareu herència, sobrecàrrega i sobreescriptura.</li>
-<li>Reconeixereu els paradigmes funcional i lògic sense memoritzar definicions aïllades.</li>
-<li>Ordenareu les cinc fases de Mètrica 3 i sabreu què es decideix en cadascuna.</li>
+<li>Convertireu casos de prova dissenyats en proves automàtiques amb JUnit 5.</li>
+<li>Utilitzareu <code>@Test</code>, <code>assertEquals</code>, <code>assertTrue</code> i <code>assertThrows</code> en exemples petits.</li>
+<li>Executareu i interpretareu una bateria de proves des d'Eclipse.</li>
+<li>Aprendreu a depurar amb punts de ruptura, execució pas a pas i inspecció de variables.</li>
+<li>Documentareu una incidència de manera que es pugui reproduir i corregir.</li>
 </ul>
                         </div>
                     </div>
-                    <a href="/ioc/da2_0487/unitat-2/bloc-2/" class="block-action">
+                    <a href="/ioc/da2_0487/unitat-3/bloc-2/" class="block-action">
                         <span class="block-link-text">Començar bloc →</span>
                     </a>
                 </div>
             
                 <div class="block-card">
                     <div class="block-card-header">
-                        <span class="block-number">2.3</span>
-                        <h3 class="block-title">Eclipse i aplicacions d'escriptori amb Swing</h3>
+                        <span class="block-number">3.3</span>
+                        <h3 class="block-title">Refacció, qualitat i documentació</h3>
                     </div>
                     <div class="block-summary">
                         <h4 class="summary-title">Què aprendreu:</h4>
                         <div class="block-description">
                             <ul>
-<li>Identificareu les funcions d'un IDE i les principals peces de l'entorn Eclipse.</li>
-<li>Relacionareu JDK, JRE i JVM i configurareu un entorn Java de desenvolupament.</li>
-<li>Treballareu amb projectes, perspectives, vistes, connectors i actualitzacions.</li>
-<li>Construireu una interfície Swing amb WindowBuilder a partir d'un exemple mínim.</li>
-<li>Validareu camps, gestionareu esdeveniments, focus, combos, tooltips i estats habilitat/deshabilitat.</li>
-<li>Diferenciareu fitxers <code>.class</code>, JAR, WAR i EAR.</li>
+<li>Entendreu què és una refacció i per què ha de conservar el comportament extern.</li>
+<li>Aplicareu patrons com reanomenar, extreure variable, constant i mètode, i sabreu quan té sentit extreure una interfície.</li>
+<li>Protegireu cada refacció amb proves abans i després del canvi.</li>
+<li>Utilitzareu avisos de l'IDE i eines d'anàlisi estàtica per detectar problemes de qualitat.</li>
+<li>Revisareu críticament suggeriments d'un assistent d'IA i documentareu classes i mètodes amb Javadoc.</li>
 </ul>
                         </div>
                     </div>
-                    <a href="/ioc/da2_0487/unitat-2/bloc-3/" class="block-action">
+                    <a href="/ioc/da2_0487/unitat-3/bloc-3/" class="block-action">
                         <span class="block-link-text">Començar bloc →</span>
                     </a>
                 </div>
             
                 <div class="block-card">
                     <div class="block-card-header">
-                        <span class="block-number">2.4</span>
-                        <h3 class="block-title">Spring i assistents d'IA dins l'IDE</h3>
+                        <span class="block-number">3.4</span>
+                        <h3 class="block-title">Git: historial, branques i conflictes</h3>
                     </div>
                     <div class="block-summary">
                         <h4 class="summary-title">Què aprendreu:</h4>
                         <div class="block-description">
                             <ul>
-<li>Entendreu el model client-servidor i el paper de Spring Boot, Spring Web i Tomcat.</li>
-<li>Creareu i executareu un projecte Spring senzill des d'Eclipse.</li>
-<li>Connectareu un formulari HTML amb rutes <code>GET</code> i paràmetres d'un controlador Java.</li>
-<li>Aprendreu a modificar un exemple existent sense reconstruir-lo de zero.</li>
-<li>Diagnosticareu el conflicte habitual del port 8080.</li>
-<li>Utilitzareu un assistent d'IA dins l'IDE com a eina de suggeriment, no com a font infal·lible.</li>
+<li>Entendreu el recorregut <em>working tree → staging area → commit</em> i les ordres bàsiques de Git.</li>
+<li>Creareu branques, identificareu <code>HEAD</code> i canviareu d'una branca a una altra sense perdre feina.</li>
+<li>Distingireu una fusió <em>fast-forward</em> d'una fusió amb historial divergent.</li>
+<li>Provocareu i resoldreu un conflicte conservant els canvis que interessen de totes dues branques.</li>
+<li>Utilitzareu <code>.gitignore</code>, repositoris remots i la integració de Git que ofereix Eclipse.</li>
 </ul>
                         </div>
                     </div>
-                    <a href="/ioc/da2_0487/unitat-2/bloc-4/" class="block-action">
+                    <a href="/ioc/da2_0487/unitat-3/bloc-4/" class="block-action">
                         <span class="block-link-text">Començar bloc →</span>
                     </a>
                 </div>
@@ -354,8 +358,8 @@
             </div>
             <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
                     <span class="progress-label">Unitat</span>
-                    <span class="progress-text" data-pos="2" data-total="3">(2/3)</span>
-                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 66%"></div></div>
+                    <span class="progress-text" data-pos="3" data-total="3">(3/3)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
                 </div></div>
             <div class="footer-actions" aria-label="Accions ràpides">
                 <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">

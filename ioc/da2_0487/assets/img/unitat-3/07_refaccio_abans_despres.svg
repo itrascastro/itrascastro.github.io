@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+<title id="title">Refacció abans i després</title><desc id="desc">Comparació de codi duplicat amb codi estructurat amb constants i mètodes</desc>
+<rect width="1200" height="680" rx="24" fill="#f8fafc"/><rect x="40" y="32" width="1120" height="72" rx="16" fill="#0f172a"/><text x="600" y="78" text-anchor="middle" font-family="Arial" font-size="30" font-weight="700" fill="#fff">Refacció: mateix comportament, estructura millor</text>
+<defs><marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#334155"/></marker></defs>
+<rect x="75" y="165" width="430" height="365" rx="18" fill="#fee2e2" stroke="#dc2626" stroke-width="3"/><text x="290" y="210" text-anchor="middle" font-family="Arial" font-size="24" font-weight="700" fill="#991b1b">ABANS</text>
+<g font-family="monospace" font-size="18" fill="#7f1d1d"><text x="115" y="260">if (unitats &gt;= 10) ... 0.10</text><text x="115" y="305">total = subtotal + subtotal * 0.21</text><text x="115" y="350">print(subtotal + subtotal * 0.21)</text></g>
+<g font-family="Arial" font-size="18" fill="#991b1b"><text x="115" y="415">• números màgics</text><text x="115" y="450">• expressió duplicada</text><text x="115" y="485">• intenció poc visible</text></g>
+<line x1="520" y1="350" x2="665" y2="350" stroke="#334155" stroke-width="5" marker-end="url(#a)"/><text x="593" y="325" text-anchor="middle" font-family="Arial" font-size="18" font-weight="700" fill="#334155">REFACCIONAR</text>
+<rect x="695" y="165" width="430" height="365" rx="18" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/><text x="910" y="210" text-anchor="middle" font-family="Arial" font-size="24" font-weight="700" fill="#14532d">DESPRÉS</text>
+<g font-family="monospace" font-size="18" fill="#14532d"><text x="735" y="260">static final double IVA = 0.21;</text><text x="735" y="305">aplicarDescompte(...)</text><text x="735" y="350">aplicarIva(...)</text></g>
+<g font-family="Arial" font-size="18" fill="#14532d"><text x="735" y="415">• constants amb significat</text><text x="735" y="450">• mètodes petits</text><text x="735" y="485">• una sola font de veritat</text></g>
+<rect x="250" y="570" width="700" height="65" rx="14" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/><text x="600" y="610" text-anchor="middle" font-family="Arial" font-size="22" font-weight="700" fill="#0f172a">Les mateixes entrades han de produir les mateixes sortides</text></svg>

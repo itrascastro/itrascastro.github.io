@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 1: Dissenyar proves que realment troben errors | Entorns de desenvolupament - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="3">
+    <meta name="page-bloc" content="1">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 1: Dissenyar proves que realment troben errors | Entorns de desenvolupament</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 1: Dissenyar proves que realment troben errors" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Tipus de proves, casos de prova, classes d’equivalència, valors límit, flux de control i complexitat ciclomàtica" />
+<meta property="og:description" content="Tipus de proves, casos de prova, classes d’equivalència, valors límit, flux de control i complexitat ciclomàtica" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-3/bloc-1/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/da2_0487/unitat-3/bloc-1/" />
+<meta property="og:site_name" content="Entorns de desenvolupament" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 1: Dissenyar proves que realment troben errors" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Tipus de proves, casos de prova, classes d’equivalència, valors límit, flux de control i complexitat ciclomàtica","headline":"Bloc 1: Dissenyar proves que realment troben errors","url":"https://itrascastro.github.io/ioc/da2_0487/unitat-3/bloc-1/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-3/bloc-1/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/da2_0487/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/da2_0487/feed.xml" title="Entorns de desenvolupament" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/code-block.css">
+    <script src="/ioc/da2_0487/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/da2_0487">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/da2_0487/" class="logo-link" aria-label="Inici">
+                <img src="https://itrascastro.github.io/ioc/dam_0488/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="https://itrascastro.github.io/ioc/dam_0488/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/da2_0487/" class="title-link">
+                <h1>DA2_0487 - Entorns de desenvolupament</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/da2_0487/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Del problema al primer diagrama de classes
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Relacions entre classes i modelatge complet
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Diagrames de comportament i d'interacció
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Papyrus de principi a fi: del model al codi i del codi al model
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_0487/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Del codi font a l'execució
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Paradigmes i cicle de desenvolupament
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Eclipse i aplicacions d'escriptori amb Swing
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Spring i assistents d'IA dins l'IDE
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_0487/unitat-3/bloc-1/" class="nav-dropdown-item current">
+                        Unitat 3 - Bloc 1: Dissenyar proves que realment troben errors
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-3/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 2: JUnit 5 i depuració amb Eclipse
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-3/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 3: Refacció, qualitat i documentació
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-3/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 4: Git: historial, branques i conflictes
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc1_Seccio1" class="nav-link" data-section="Unitat3_Bloc1_Seccio1">1. Provar és buscar evidències</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc1_Seccio2" class="nav-link" data-section="Unitat3_Bloc1_Seccio2">2. Mapa dels tipus de proves</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc1_Seccio3" class="nav-link" data-section="Unitat3_Bloc1_Seccio3">3. Què ha de contenir un cas de prova</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc1_Seccio4" class="nav-link" data-section="Unitat3_Bloc1_Seccio4">4. Classes d'equivalència</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc1_Seccio5" class="nav-link" data-section="Unitat3_Bloc1_Seccio5">5. Valors límit i casos representatius</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc1_Seccio6" class="nav-link" data-section="Unitat3_Bloc1_Seccio6">6. Capsa blanca, flux de control i McCabe</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/da2_0487/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/da2_0487/unitat-3/" class="horizontal-nav-item">
+                                Unitat 3: Proves, optimització i documentació del programari (RA3 i RA4)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 3.1: Dissenyar proves que realment troben errors
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<div class="section">
+  <h2 id="Unitat3_Bloc1_Seccio1">1. Provar és buscar evidències</h2>
+
+<p>Executar un programa una vegada i veure que «sembla funcionar» no és una prova suficient. Una prova ben dissenyada parteix d'una pregunta concreta: <strong>quin comportament vull comprovar i quines dades em permeten demostrar-lo?</strong></p>
+
+<p>Imagineu un mètode que classifica una puntuació de 0 a 100. Si només el provem amb <code>72</code> i retorna «Notable», encara no sabem què passa amb 0, 49, 50, 89, 90, 100 o amb un valor impossible com 130. El repte no és executar moltes vegades, sinó <strong>escollir bé els casos</strong>.</p>
+
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-3/01_cicle_proves.svg" alt="Cicle de proves: planificar, dissenyar, executar, comparar resultats, corregir i repetir" loading="lazy">
+  <figcaption>Les proves formen un cicle: planifiquem què comprovarem, dissenyem casos, els executem, comparem el resultat amb l'esperat i, si hi ha una fallada, corregim i tornem a provar.</figcaption>
+</figure>
+
+<table class="table">
+<thead><tr><th>Concepte</th><th>Pregunta que respon</th></tr></thead>
+<tbody>
+<tr><td>Verificació</td><td>Hem construït correctament el producte segons el disseny i les especificacions tècniques?</td></tr>
+<tr><td>Validació</td><td>El producte final compleix el que necessitava l'usuari o client?</td></tr>
+<tr><td>Cas de prova</td><td>Amb quina entrada, en quines condicions i amb quin resultat esperat comprovarem una funcionalitat?</td></tr>
+<tr><td>Depuració</td><td>Si una prova falla, on i per què es produeix el comportament incorrecte?</td></tr>
+</tbody>
+</table>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Idea clau</strong></p><p>Una prova no demostra que el programa no tingui cap error. El que fa és aportar evidència sobre comportaments concrets. Com millor escollits estan els casos, més probabilitats tenim de detectar errors importants amb un nombre raonable de proves.</p>
+    
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Provar o simplement executar?</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Un mètode calcula el preu d'una entrada: menors de 12 anys paguen 5 €, de 12 a 64 paguen 10 € i a partir de 65 paguen 6 €. Proposeu quatre valors d'entrada que donin informació realment diferent.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">6 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Busqueu canvis de comportament.</li>
+        
+        <li>Els valors propers als límits solen ser especialment útils.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat3_Bloc1_Seccio2">2. Mapa dels tipus de proves</h2>
+
+<p>No totes les proves busquen el mateix. Algunes miren una funció aïllada; d'altres comproven si diversos components encaixen, si el sistema resisteix càrrega o si el client accepta el producte. El resum següent concentra el que necessiteu per orientar-vos.</p>
+
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-3/02_tipus_proves.svg" alt="Mapa progressiu de proves unitàries, integració, sistema, càrrega, acceptació i regressió" loading="lazy">
+  <figcaption>Les proves passen de peces petites a comportaments complets; les proves de regressió reapareixen cada vegada que fem un canvi.</figcaption>
+</figure>
+
+<table class="table">
+<thead><tr><th>Tipus</th><th>Què comprova?</th><th>Moment o idea principal</th></tr></thead>
+<tbody>
+<tr><td>Unitàries</td><td>Classes, funcions, algorismes i dades aïllades.</td><td>Durant el desenvolupament; normalment les fa el programador.</td></tr>
+<tr><td>Funcionals</td><td>Que una funcionalitat implementa el requisit esperat.</td><td>Es mira el comportament observable, habitualment amb enfocament de capsa negra.</td></tr>
+<tr><td>Integració</td><td>Relacions i interfícies entre components.</td><td>Després de tenir peces provades individualment.</td></tr>
+<tr><td>De sistemes</td><td>Assoliment dels requeriments del sistema desenvolupat.</td><td>Comproven el sistema com un conjunt durant el desenvolupament.</td></tr>
+<tr><td>De càrrega</td><td>Rendiment i integritat amb volum o condicions semblants a les reals.</td><td>Quan el sistema ja està prou complet per sotmetre'l a càrrega.</td></tr>
+<tr><td>D'acceptació</td><td>Que el producte complet és acceptable per al client o usuari.</td><td>Alfa: entorn del desenvolupador. Beta: entorn del client.</td></tr>
+<tr><td>De sistema</td><td>Integració del sistema final en l'entorn de l'usuari.</td><td>Pot incloure rendiment, resistència, robustesa, seguretat, usabilitat i instal·lació.</td></tr>
+<tr><td>De regressió</td><td>Que un canvi no ha trencat comportaments que abans funcionaven.</td><td>Es repeteixen proves que ja havien passat.</td></tr>
+<tr><td>De fum</td><td>Que les funcions essencials continuen vives.</td><td>Conjunt ràpid abans de dedicar temps a proves més profundes.</td></tr>
+</tbody>
+</table>
+
+<h3>Capsa negra i capsa blanca no són nivells</h3>
+
+<p>Són <strong>enfocaments</strong>. En una prova de <strong>capsa negra</strong> decidim les entrades a partir de l'especificació i observem les sortides sense necessitar conèixer el codi intern. En una prova de <strong>capsa blanca</strong> sí que mirem la implementació i intentem recórrer les decisions i els camins interns.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No confongueu «prova de sistema» amb «prova de sistemes».</strong></p><p>Els materials del mòdul utilitzen totes dues expressions amb sentits diferents. Per a l'EAC, seguiu la classificació treballada aquí: «de sistemes» comprova l'assoliment dels requeriments durant el desenvolupament; «de sistema» comprova la integració final en l'entorn de l'usuari i pot incloure rendiment, robustesa, seguretat o instal·lació.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Quin tipus buscaria?</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Associeu cada situació a un tipus de prova: comprovar un mètode calculaIVA(); verificar que API i base de dades es comuniquen; repetir proves després de canviar el càlcul; comprovar el sistema amb 10.000 peticions; deixar que el client el provi al seu entorn.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">8 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Penseu en la mida de la peça que es prova.</li>
+        
+        <li>La regressió apareix després d'un canvi.</li>
+        
+        <li>Beta significa entorn del client.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat3_Bloc1_Seccio3">3. Què ha de contenir un cas de prova</h2>
+
+<p>Un cas de prova útil ha de poder-lo executar una altra persona i arribar a la mateixa conclusió. «Provar amb 50» és massa poc. Cal deixar clar <strong>què provem, amb quina entrada i què esperem obtenir</strong>.</p>
+
+<table class="table">
+<thead><tr><th>Camp</th><th>Exemple</th></tr></thead>
+<tbody>
+<tr><td>Identificador</td><td><code>CP-04</code></td></tr>
+<tr><td>Mètode o funcionalitat</td><td><code>ClassificadorPunts.etiqueta(int)</code></td></tr>
+<tr><td>Objectiu</td><td>Comprovar el canvi de «Insuficient» a «Bé».</td></tr>
+<tr><td>Precondicions</td><td>Aplicació iniciada; no cal cap dada prèvia.</td></tr>
+<tr><td>Entrada</td><td><code>50</code></td></tr>
+<tr><td>Resultat esperat</td><td><code>"Bé"</code></td></tr>
+<tr><td>Resultat obtingut</td><td>S'emplena després d'executar.</td></tr>
+<tr><td>Estat</td><td>Correcte / fallit / pendent.</td></tr>
+<tr><td>Observacions</td><td>Captura, error, versió o incidència relacionada.</td></tr>
+</tbody>
+</table>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Esperat abans d'executar</strong></p><p>El resultat esperat s'ha de decidir a partir de l'especificació, no després de veure què retorna el programa. Si primer executeu i després decidiu que «això devia ser el correcte», la prova deixa de ser una comprovació independent.</p>
+    
+</div>
+
+
+<p>En projectes reals el format pot ser més complet, però aquesta estructura ja obliga a pensar en les tres peces essencials: <strong>entrada, acció i resultat esperat</strong>.</p>
+</div>
+
+<div class="section">
+  <h2 id="Unitat3_Bloc1_Seccio4">4. Classes d'equivalència</h2>
+
+<p>Si un mètode tracta milers de valors de la mateixa manera, no té sentit provar-los tots. La tècnica de <strong>classes d'equivalència</strong> agrupa entrades que, segons l'especificació i el codi que analitzem, haurien de rebre el mateix tractament. Després triem representants de cada classe.</p>
+
+<p>Treballarem amb aquest exemple:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">ClassificadorPunts.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static String etiqueta(int punts) {
+    if (punts &lt; 0 || punts &gt; 100) {
+        throw new IllegalArgumentException(&quot;Puntuació fora de rang&quot;);
+    }
+
+    if (punts &lt;= 49) return &quot;Insuficient&quot;;
+    if (punts &lt;= 69) return &quot;Bé&quot;;
+    if (punts &lt;= 89) return &quot;Notable&quot;;
+    return &quot;Excel·lent&quot;;
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Primer identifiquem les <strong>condicions d'entrada i de sortida</strong>. L'entrada vàlida va de 0 a 100. Fora d'aquest interval s'ha de produir una excepció. Dins l'interval hi ha quatre tractaments diferents.</p>
+
+<table class="table">
+<thead><tr><th>Classe</th><th>Rang</th><th>Tipus</th><th>Tractament</th></tr></thead>
+<tbody>
+<tr><td>C1</td><td><code>punts &lt; 0</code></td><td>Invàlida</td><td>Excepció.</td></tr>
+<tr><td>C2</td><td><code>0..49</code></td><td>Vàlida</td><td>«Insuficient».</td></tr>
+<tr><td>C3</td><td><code>50..69</code></td><td>Vàlida</td><td>«Bé».</td></tr>
+<tr><td>C4</td><td><code>70..89</code></td><td>Vàlida</td><td>«Notable».</td></tr>
+<tr><td>C5</td><td><code>90..100</code></td><td>Vàlida</td><td>«Excel·lent».</td></tr>
+<tr><td>C6</td><td><code>punts &gt; 100</code></td><td>Invàlida</td><td>Excepció.</td></tr>
+</tbody>
+</table>
+
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-3/03_equivalencia_limits.svg" alt="Recta numèrica dividida en sis classes d'equivalència amb els límits -1, 0, 49, 50, 69, 70, 89, 90, 100 i 101" loading="lazy">
+  <figcaption>Els punts on canvia el tractament separen classes d'equivalència. Els seus voltants són candidats naturals a valors límit.</figcaption>
+</figure>
+
+
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Regla pràctica</strong></p><p>Si dos valors provoquen exactament el mateix recorregut i el mateix tipus de resultat, probablement poden pertànyer a la mateixa classe. Si en algun punt canvia la resposta, apareix una nova classe.</p>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat3_Bloc1_Seccio5">5. Valors límit i casos representatius</h2>
+
+<p>Els errors apareixen sovint a les fronteres: usar <code>&lt;</code> en lloc de <code>&lt;=</code>, començar un interval un valor massa tard o acceptar un valor que ja hauria de ser invàlid. Per això, després de definir les classes, busquem <strong>primer valor, últim valor i un valor intermedi</strong> quan tingui sentit.</p>
+
+<table class="table">
+<thead><tr><th>Classe</th><th>Valors especialment útils</th><th>Per què?</th></tr></thead>
+<tbody>
+<tr><td>C1: &lt; 0</td><td><code>-1</code> i, per exemple, <code>-50</code></td><td><code>-1</code> toca el límit; l'altre representa l'interior d'un interval sense límit inferior.</td></tr>
+<tr><td>C2: 0..49</td><td><code>0</code>, <code>25</code>, <code>49</code></td><td>Primer, intermedi i últim.</td></tr>
+<tr><td>C3: 50..69</td><td><code>50</code>, <code>60</code>, <code>69</code></td><td>Comproven els dos canvis de frontera.</td></tr>
+<tr><td>C4: 70..89</td><td><code>70</code>, <code>80</code>, <code>89</code></td><td>Mateixa idea.</td></tr>
+<tr><td>C5: 90..100</td><td><code>90</code>, <code>95</code>, <code>100</code></td><td>Inclou el màxim vàlid.</td></tr>
+<tr><td>C6: &gt; 100</td><td><code>101</code> i, per exemple, <code>150</code></td><td><code>101</code> és el primer valor invàlid superior.</td></tr>
+</tbody>
+</table>
+
+<p>No sempre necessitareu executar tots aquests valors. El disseny de proves busca un conjunt <strong>petit però justificat</strong> que representi totes les classes, cobreixi els límits importants i, si fem capsa blanca, recorri tots els camins independents que ens interessen.</p>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: De rangs a casos</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Un sensor accepta humitat de 0 a 100. De 0 a 29 retorna «seca», de 30 a 69 «correcta» i de 70 a 100 «alta»; fora de rang genera una excepció. Definiu classes d'equivalència i proposeu valors límit i intermedis.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Intermedi</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">12 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Comenceu per les condicions d'entrada i sortida.</li>
+        
+        <li>Hi ha dos rangs invàlids i tres tractaments vàlids.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat3_Bloc1_Seccio6">6. Capsa blanca, flux de control i McCabe</h2>
+
+<p>Les classes d'equivalència ens ajuden a escollir dades segons el comportament. Amb <strong>capsa blanca</strong> fem un pas més: mirem l'estructura interna i comprovem si els casos seleccionats recorren les decisions del codi.</p>
+
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-3/04_flux_complexitat.svg" alt="Graf de flux simplificat del classificador de punts amb nodes numerats, decisions i sortides" loading="lazy">
+  <figcaption>Un diagrama de flux transforma els <code>if</code> del codi en decisions visibles i permet raonar sobre camins independents.</figcaption>
+</figure>
+
+<h3>Complexitat ciclomàtica</h3>
+
+<p>En el material del mòdul s'utilitza la fórmula de McCabe:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">CC = nombre de branques - nombre de nodes + 2</code></pre>
+  </div>
+</div>
+
+
+<p>En un graf connectat, la complexitat ciclomàtica indica quants <strong>camins independents</strong> formen el conjunt bàsic. En codi estructurat senzill també podem fer servir com a comprovació ràpida la idea «nombre de decisions + 1», sempre que tractem cada decisió de la mateixa manera que al graf.</p>
+
+<p>Un <strong>camí independent</strong> és un recorregut que incorpora almenys una branca que encara no havia aparegut als camins seleccionats. L'objectiu no és memoritzar una seqüència concreta de números: és poder demostrar que el joc de proves fa passar el programa per totes les alternatives rellevants.</p>
+
+<h3>El procediment que heu de saber repetir</h3>
+
+<ol>
+<li>Llegiu l'especificació i identifiqueu entrades i sortides.</li>
+<li>Definiu les classes d'equivalència.</li>
+<li>Trieu representants, valors límit i intermedis.</li>
+<li>Dibuixeu el flux de control del mètode.</li>
+<li>Compteu nodes i branques i calculeu la complexitat ciclomàtica.</li>
+<li>Escriviu un conjunt de camins independents.</li>
+<li>Marqueu quin cas de prova cobreix cada camí.</li>
+<li>Si queda un camí sense cobrir, afegiu un cas.</li>
+</ol>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No forceu la fórmula sobre un dibuix ambigu.</strong></p><p>Primer decidiu com representeu cada decisió i dibuixeu totes les branques. Després compteu. Si canvieu la manera de representar una condició composta a mig càlcul, nodes, branques i resultat deixaran de ser coherents.</p>
+</div>
+
+
+<!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Abans de passar a JUnit">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé diferenciar capsa negra i capsa blanca</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc explicar unitàries, integració, acceptació, regressió i fum amb un exemple</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc identificar les classes d'equivalència d'un rang</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé buscar valors just abans i just després d'un límit</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc dibuixar el flux de control d'una cadena d'if</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé aplicar CC = branques - nodes + 2</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc justificar quin cas de prova cobreix cada comportament</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Mini simulació de disseny</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Dissenyeu les proves d'un mètode que rep el percentatge d'ocupació d'un aparcament (0..100) i retorna «lliure» fins a 49, «alt» fins a 89 i «complet» de 90 a 100; fora de rang genera excepció. Incloeu classes, límits, diagrama, complexitat i cobertura de camins.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Avançat</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">25-35 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>No programeu JUnit encara: primer dissenyeu.</li>
+        
+        <li>Els dos intervals invàlids també compten.</li>
+        
+        <li>Un bon disseny explica per què cada dada està al conjunt.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 1: Dissenyar proves que realment troben errors",
+  "description": "Tipus de proves, casos de prova, classes d'equivalència, valors límit, flux de control i complexitat ciclomàtica",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Entorns de desenvolupament — IOC",
+    "description": "Materials del mòdul DA2_0487 - Entorns de desenvolupament"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                        
+                                        
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/da2_0487/unitat-3/bloc-2/" class="nav-button" aria-label="Bloc següent: JUnit 5 i depuració amb Eclipse">Següent →</a>
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="3" data-total="3">(3/3)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="1" data-total="4">(1/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 25%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="6">(1/6)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 16%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/da2_0487/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/da2_0487",
+        title: "Entorns de desenvolupament",
+        version: "v1.0",
+        cicle_modul: "DA2_0487"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/da2_0487/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/da2_0487/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>
