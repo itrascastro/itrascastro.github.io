@@ -406,6 +406,11 @@
 </tbody>
 </table>
 
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/01_uml_visio_general.svg" alt="Mapa visual dels principals diagrames UML estructurals i de comportament" loading="lazy">
+  <figcaption>Mapa dels principals diagrames UML i la pregunta que ajuda a respondre cada família.</figcaption>
+</figure>
+
 <p>En aquesta unitat treballarem amb profunditat els diagrames que necessitareu per transformar enunciats textuals en models útils. El diagrama de classes serà la peça central de la part estructural. Per a la part de comportament practicarem casos d'ús, seqüència, comunicació, activitats i estats. La resta heu de saber situar-los i entendre quin problema de modelatge resolen.</p>
 
 
@@ -476,34 +481,10 @@ Una botiga ven productes. De cada producte volem guardar el codi, el nom i el pr
 
 <p>Una <strong>classe</strong> descriu un conjunt d'objectes que comparteixen estructura i comportament. En UML es representa habitualment amb un rectangle dividit en compartiments.</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">+-----------------------------+
-|          Producte           |
-+-----------------------------+
-| - codi: int                 |
-| - nom: String               |
-| - preu: double              |
-+-----------------------------+
-| + esCar(): boolean          |
-+-----------------------------+</code></pre>
-  </div>
-</div>
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/02_classe_objecte.svg" alt="Exemple visual d'una classe UML, els seus atributs i operacions, i dues instàncies" loading="lazy">
+  <figcaption>Una classe defineix estructura i comportament; els objectes són instàncies amb valors concrets.</figcaption>
+</figure>
 
 <p>La lectura és molt directa:</p>
 <ul>
@@ -773,40 +754,6 @@ Una pel·lícula té un títol, una durada en minuts i una qualificació d'edat.
 
 <p>Una classe és una descripció. Un <strong>objecte</strong> és una instància concreta creada a partir d'aquesta classe.</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Classe:
-+----------------------+
-|       Pellicula      |
-+----------------------+
-| - titol: String      |
-| - edatMinima: int    |
-+----------------------+
-
-Objectes:
-p1:Pellicula
-titol = &quot;Arrival&quot;
-edatMinima = 7
-
-p2:Pellicula
-titol = &quot;Alien&quot;
-edatMinima = 18</code></pre>
-  </div>
-</div>
 
 
 <p>Els dos objectes comparteixen la mateixa estructura perquè són instàncies de <code>Pellicula</code>, però mantenen valors diferents.</p>

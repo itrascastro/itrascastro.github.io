@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img">
+<style>
+  .bg{fill:#fff}.panel{fill:#f7fbff;stroke:#c7ddf4;stroke-width:2}.head{fill:#e9f4ff;stroke:#1870bd;stroke-width:3}
+  .box{fill:#fff;stroke:#174f86;stroke-width:2}.soft{fill:#eef6fd;stroke:#a8cbea;stroke-width:1.5}
+  .line{stroke:#355b7d;stroke-width:3;fill:none}.dash{stroke:#355b7d;stroke-width:2.5;fill:none;stroke-dasharray:8 7}
+  .blue{fill:#1769aa}.dark{fill:#102b4e}.muted{fill:#4e667c}.green{stroke:#2e8b57}.red{stroke:#c23b45}
+  text{font-family:Arial,Helvetica,sans-serif;fill:#102b4e}.title{font-size:34px;font-weight:700}.sub{font-size:18px;fill:#405b73}
+  .h{font-size:23px;font-weight:700}.m{font-size:18px}.s{font-size:15px}.b{font-weight:700}
+</style><rect class="bg" width="1200" height="720"/><defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#355b7d"/></marker><marker id="ag" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#2e8b57"/></marker><marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#c23b45"/></marker></defs>
+<rect class="head" x="210" y="20" rx="18" width="780" height="90"/><text class="title" x="600" y="62" text-anchor="middle">Diagrama de comunicació</text><text class="sub" x="600" y="91" text-anchor="middle">La mateixa interacció, destacant qui parla amb qui</text>
+<rect class="soft" x="70" y="220" rx="14" width="210" height="90"/><text class="h" x="175" y="275" text-anchor="middle">Usuari</text>
+<rect class="soft" x="470" y="200" rx="14" width="210" height="100"/><text class="h" x="575" y="260" text-anchor="middle">Portal</text>
+<rect class="soft" x="900" y="220" rx="14" width="230" height="90"/><text class="h" x="1015" y="275" text-anchor="middle">Disponibilitat</text>
+<rect class="soft" x="500" y="500" rx="14" width="250" height="100"/><text class="h" x="625" y="560" text-anchor="middle">reserva:Reserva</text>
+<path class="line" marker-end="url(#a)" d="M280 245 H470"/><text class="s" x="325" y="235">1: reservarPista()</text>
+<path class="line" marker-end="url(#a)" d="M680 235 H900"/><text class="s" x="705" y="225">2: consultarHoresLliures()</text>
+<path class="dash" marker-end="url(#a)" d="M900 285 H680"/><text class="s" x="745" y="315">3: horesLliures</text>
+<path class="line" marker-end="url(#a)" d="M280 285 L470 270"/><text class="s" x="305" y="330">4: triarHora(hora)</text>
+<path class="dash" marker-end="url(#a)" d="M575 300 V500"/><text class="s" x="590" y="410">5: &lt;&lt;create&gt;&gt;</text>
+<path class="line" marker-end="url(#a)" d="M650 300 L650 500"/><text class="s" x="665" y="450">6: confirmar(hora)</text>
+<path class="dash" marker-end="url(#a)" d="M715 500 L670 300"/><text class="s" x="735" y="415">7: confirmació</text>
+<rect class="soft" x="250" y="640" rx="12" width="700" height="50"/><text class="m" x="600" y="670" text-anchor="middle">Seqüència: ordre vertical · Comunicació: ordre numerat</text>
+</svg>

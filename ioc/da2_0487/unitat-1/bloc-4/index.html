@@ -410,35 +410,10 @@
 
 <p>Ara que ja sabem <strong>què</strong> volem dibuixar, podem concentrar-nos en <strong>com</strong> treballar amb Papyrus. La primera dificultat no és cap símbol UML: és entendre la jerarquia de l'eina.</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Projecte Papyrus
-|
-+-- Model A (.di)
-|   |
-|   +-- Diagrama de classes
-|   +-- Diagrama de seqüència
-|
-+-- Model B (.di)
-    |
-    +-- Diagrama d&#39;activitats</code></pre>
-  </div>
-</div>
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/10_papyrus_flux.svg" alt="Organització d'un projecte Papyrus i flux entre UML i Java" loading="lazy">
+  <figcaption>Papyrus organitza el treball en projectes, models i diagrames; Software Designer permet connectar el model amb el codi.</figcaption>
+</figure>
 
 <table class="table">
 <thead><tr><th>Element</th><th>Què representa?</th></tr></thead>
@@ -650,6 +625,7 @@
   <h2 id="Unitat1_Bloc4_Seccio3">3. Generar codi Java des d'un diagrama</h2>
 
 <p>Una de les idees importants de l'enginyeria del programari és que el model no sempre acaba en un dibuix. Algunes eines poden transformar una part del model en codi inicial.</p>
+<p>El flux visual model ↔ codi de la figura anterior és el que aplicarem ara de manera pràctica.</p>
 
 <p>Per fer-ho, Papyrus necessita els components de generació de codi corresponents, habitualment proporcionats per <strong>Papyrus Software Designer</strong>.</p>
 
@@ -844,29 +820,6 @@
 
 <p>També podem fer el recorregut contrari: partir de codi Java existent i obtenir-ne una representació UML. Aquesta operació s'anomena habitualment <strong>enginyeria inversa</strong>.</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Diagrama UML  ----------&gt;  Codi Java
-             generació
-
-Diagrama UML  &lt;----------  Codi Java
-          enginyeria inversa</code></pre>
-  </div>
-</div>
 
 
 <h3>Preparar Papyrus Software Designer</h3>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img">
+<style>
+  .bg{fill:#fff}.panel{fill:#f7fbff;stroke:#c7ddf4;stroke-width:2}.head{fill:#e9f4ff;stroke:#1870bd;stroke-width:3}
+  .box{fill:#fff;stroke:#174f86;stroke-width:2}.soft{fill:#eef6fd;stroke:#a8cbea;stroke-width:1.5}
+  .line{stroke:#355b7d;stroke-width:3;fill:none}.dash{stroke:#355b7d;stroke-width:2.5;fill:none;stroke-dasharray:8 7}
+  .blue{fill:#1769aa}.dark{fill:#102b4e}.muted{fill:#4e667c}.green{stroke:#2e8b57}.red{stroke:#c23b45}
+  text{font-family:Arial,Helvetica,sans-serif;fill:#102b4e}.title{font-size:34px;font-weight:700}.sub{font-size:18px;fill:#405b73}
+  .h{font-size:23px;font-weight:700}.m{font-size:18px}.s{font-size:15px}.b{font-weight:700}
+</style><rect class="bg" width="1200" height="720"/><defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#355b7d"/></marker><marker id="ag" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#2e8b57"/></marker><marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 Z" fill="#c23b45"/></marker></defs>
+<rect class="head" x="105" y="20" rx="18" width="990" height="90"/><text class="title" x="600" y="62" text-anchor="middle">Agregació, composició i classe associativa</text><text class="sub" x="600" y="91" text-anchor="middle">No totes les relacions expressen el mateix</text>
+<rect class="panel" x="35" y="145" rx="18" width="350" height="510"/><rect class="panel" x="425" y="145" rx="18" width="350" height="510"/><rect class="panel" x="815" y="145" rx="18" width="350" height="510"/>
+<text class="h" x="70" y="185">Agregació</text><rect class="box" x="115" y="225" width="190" height="65"/><text class="h" x="210" y="267" text-anchor="middle">Equip</text>
+<rect class="box" x="115" y="480" width="190" height="65"/><text class="h" x="210" y="522" text-anchor="middle">Jugador</text>
+<line class="line" x1="210" y1="315" x2="210" y2="480"/><path d="M210 290 l18 18 -18 18 -18 -18 z" fill="#fff" stroke="#355b7d" stroke-width="3"/><text class="m" x="235" y="342">1</text><text class="m" x="235" y="450">0..*</text>
+<text class="s" x="70" y="590">La part pot existir sense el tot.</text>
+<text class="h" x="460" y="185">Composició</text><rect class="box" x="505" y="225" width="190" height="65"/><text class="h" x="600" y="267" text-anchor="middle">Comanda</text>
+<rect class="box" x="495" y="480" width="210" height="65"/><text class="h" x="600" y="522" text-anchor="middle">LiniaComanda</text>
+<line class="line" x1="600" y1="315" x2="600" y2="480"/><path d="M600 290 l18 18 -18 18 -18 -18 z" fill="#174f86" stroke="#355b7d" stroke-width="3"/><text class="m" x="625" y="342">1</text><text class="m" x="625" y="450">1..*</text>
+<text class="s" x="460" y="590">La part depèn del tot.</text>
+<text class="h" x="850" y="185">Classe associativa</text><rect class="box" x="850" y="240" width="125" height="60"/><text class="m b" x="912" y="278" text-anchor="middle">Alumne</text>
+<rect class="box" x="1030" y="240" width="125" height="60"/><text class="m b" x="1092" y="278" text-anchor="middle">Assignatura</text><line class="line" x1="975" y1="270" x2="1030" y2="270"/>
+<text class="s" x="980" y="250">0..*</text><text class="s" x="1010" y="295">0..*</text>
+<line class="dash" x1="1002" y1="270" x2="1002" y2="380"/><rect class="box" x="900" y="380" width="205" height="130"/><text class="h" x="1002" y="418" text-anchor="middle">Matricula</text><line class="line" x1="900" y1="432" x2="1105" y2="432"/><text class="s" x="925" y="465">- nota: double</text><text class="s" x="925" y="490">- data: Date</text>
+<text class="s" x="850" y="590">Les dades pertanyen a la relació.</text>
+<rect class="soft" x="245" y="665" rx="10" width="710" height="40"/><text class="m b" x="600" y="691" text-anchor="middle">El rombe va al costat del «tot».</text>
+</svg>

@@ -379,26 +379,10 @@ Un client pot fer moltes comandes. Cada comanda pertany a un únic client.
 
 <p>Les dues classes són <code>Client</code> i <code>Comanda</code>. Entre elles hi ha una associació. El punt important és decidir <strong>quants objectes poden aparèixer a cada extrem</strong>.</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Client 1 ---------------- 0..* Comanda</code></pre>
-  </div>
-</div>
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/03_relacions_classes.svg" alt="Associacions UML, multiplicitats, relacions molts a molts i generalització" loading="lazy">
+  <figcaption>Les multiplicitats es llegeixen des de cada extrem; la generalització representa una relació «és un tipus de».</figcaption>
+</figure>
 
 <p>Aquesta línia s'ha de saber llegir en les dues direccions:</p>
 <ul>
@@ -440,25 +424,6 @@ Per a <strong>un objecte d'aquesta classe</strong>, quants objectes de l'altra c
 Una biblioteca pot tenir moltes publicacions i una publicació pot trobar-se en diverses biblioteques.
 </blockquote>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Biblioteca 0..* ---------------- 0..* Publicacio</code></pre>
-  </div>
-</div>
 
 
 <p>És una relació molts-a-molts. El fet que després una base de dades necessiti una taula intermèdia no canvia el model UML conceptual.</p>
@@ -521,30 +486,6 @@ Una biblioteca pot tenir moltes publicacions i una publicació pot trobar-se en 
 Una publicació pot ser un llibre o una revista. Totes les publicacions tenen títol. Els llibres tenen ISBN i autor; les revistes tenen ISSN i editorial.
 </blockquote>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Publicacio
-              - titol
-                  ^
-                 /                 /                Llibre  Revista
-             - isbn  - issn
-             - autor - editorial</code></pre>
-  </div>
-</div>
 
 
 <p>La fletxa de generalització apunta cap a la classe més general, és a dir, cap a la superclasse.</p>
@@ -697,52 +638,15 @@ public class Factura implements Pagable {
 
 <p>Imagineu un equip esportiu i els seus jugadors. L'equip agrupa jugadors, però si l'equip desapareix els jugadors continuen existint i poden anar a un altre equip.</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Equip ◇---------------- 0..* Jugador
-      rombe buit</code></pre>
-  </div>
-</div>
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/04_agregacio_composicio.svg" alt="Comparació visual entre agregació, composició i classe associativa" loading="lazy">
+  <figcaption>Agregació, composició i classe associativa expressen significats diferents: vida independent, dependència de vida i dades pròpies de la relació.</figcaption>
+</figure>
 
 <h3>Composició: la part depèn del tot</h3>
 
 <p>Una línia de comanda només té sentit dins de la seva comanda. Si la comanda desapareix del model, les seves línies també.</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Comanda ◆---------------- 1..* LiniaComanda
-        rombe ple</code></pre>
-  </div>
-</div>
 
 
 <table class="table">
@@ -825,31 +729,6 @@ Un alumne cursa diverses assignatures. Una assignatura té diversos alumnes. Per
 
 <p><code>nota</code> no és un atribut d'<code>Alumne</code>: l'alumne té moltes notes. Tampoc és un atribut d'<code>Assignatura</code>: hi ha una nota per alumne. Pertany a la unió concreta Alumne-Assignatura.</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Alumne 0..* -------- 0..* Assignatura
-              |
-              | classe associativa
-              v
-          Matricula
-          - nota: double
-          - data: Date</code></pre>
-  </div>
-</div>
 
 
 <!-- Component: Definició curta -->

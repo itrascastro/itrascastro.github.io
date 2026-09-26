@@ -431,6 +431,11 @@
 </div>
 
 
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/05_casos_us.svg" alt="Exemple de diagrama de casos d'ús amb actors, include i extend" loading="lazy">
+  <figcaption>Els actors són externs al sistema; include reutilitza comportament obligatori i extend afegeix comportament opcional.</figcaption>
+</figure>
+
 <p>Comencem amb un exemple molt petit:</p>
 
 <blockquote>
@@ -446,57 +451,11 @@ En una biblioteca, un usuari pot cercar un llibre i consultar els préstecs que 
 <p>Després convertim les funcionalitats en casos d'ús:</p>
 
 
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Usuari -------- (Cercar llibre)
-   |
-   +------------ (Consultar préstecs actius)
-
-Bibliotecari --- (Enregistrar préstec)</code></pre>
-  </div>
-</div>
-
 
 <h3>El límit del sistema</h3>
 
 <p>Els casos d'ús representen funcionalitats <strong>del sistema</strong>. Els actors queden fora del sistema i es connecten amb els casos d'ús mitjançant associacions.</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Actor        +-------------------------------+
-   O           | Sistema de biblioteca         |
-  /|\ --------| (Consultar préstecs actius)   |
-  / \          |                               |
-               +-------------------------------+</code></pre>
-  </div>
-</div>
 
 
 <p>Algunes eines no representen explícitament el rectangle del límit. Això no canvia la idea conceptual: l'actor continua sent extern i el cas d'ús continua pertanyent al sistema.</p>
@@ -558,29 +517,6 @@ Bibliotecari --- (Enregistrar préstec)</code></pre>
 <p>Suposem que per <strong>enregistrar un préstec</strong> sempre cal cercar abans el llibre i l'usuari. Si aquestes cerques també són utilitzades per altres funcionalitats, té sentit separar-les:</p>
 
 
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">(Enregistrar préstec) - - - - &gt; (Cercar llibre)
-          &lt;&lt;include&gt;&gt;
-
-(Enregistrar préstec) - - - - &gt; (Cercar usuari)
-          &lt;&lt;include&gt;&gt;</code></pre>
-  </div>
-</div>
-
 
 <p>La fletxa d'<code>include</code> apunta cap al cas d'ús que <strong>s'inclou</strong>. La idea mental és: «per fer A, sempre faig també B».</p>
 
@@ -592,27 +528,6 @@ Bibliotecari --- (Enregistrar préstec)</code></pre>
 El client fa una reserva i, opcionalment, pot pagar-la en aquell moment.
 </blockquote>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">(Pagar reserva) - - - - &gt; (Fer reserva)
-       &lt;&lt;extend&gt;&gt;
-       [si el client vol pagar ara]</code></pre>
-  </div>
-</div>
 
 
 <p>La fletxa d'<code>extend</code> va des del comportament opcional cap al cas d'ús base. La pregunta mental és: «A pot completar-se sense B?». Si la resposta és sí i B només passa sota una condició, <code>extend</code> pot ser adequat.</p>
@@ -702,34 +617,11 @@ El client fa una reserva i, opcionalment, pot pagar-la en aquell moment.
 
 
 <h3>Exemple mínim: consultar un producte</h3>
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/06_sequencia.svg" alt="Diagrama de seqüència d'una reserva de pista amb quatre participants" loading="lazy">
+  <figcaption>En un diagrama de seqüència, el temps avança de dalt a baix i els missatges connecten les línies de vida.</figcaption>
+</figure>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Client        Portal        Cataleg
-  |              |              |
-  |--consultar--&gt;|              |
-  |              |--buscar-----&gt;|
-  |              |&lt;--producte---|
-  |&lt;--mostrar----|              |
-  |              |              |
-  v              v              v
-             temps ↓</code></pre>
-  </div>
-</div>
 
 
 <p>La posició horitzontal diu <strong>qui</strong> participa. La posició vertical diu <strong>quan</strong> passa cada missatge.</p>
@@ -750,32 +642,6 @@ El client fa una reserva i, opcionalment, pot pagar-la en aquell moment.
 
 <p>Suposem que una reserva només existeix després que el client la confirmi:</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Client          Sistema          reserva:Reserva
-  |                |                    X
-  |--confirmar----&gt;|                    |
-  |                |---- &lt;&lt;create&gt;&gt; ---&gt;|
-  |                |                    |
-  |                |--calcularTotal()--&gt;|
-  |                |&lt;------total--------|
-  |&lt;--confirmació--|                    |</code></pre>
-  </div>
-</div>
 
 
 <p>La línia de vida de <code>reserva:Reserva</code> comença en el moment de la creació. Aquesta és una diferència visual important respecte d'un objecte que ja existia abans de començar l'escenari.</p>
@@ -840,36 +706,15 @@ El client fa una reserva i, opcionalment, pot pagar-la en aquell moment.
 <p>Un diagrama de comunicació explica una interacció molt semblant a la d'un diagrama de seqüència, però canvia l'èmfasi. En lloc d'utilitzar l'eix vertical per representar el temps, mostra la <strong>xarxa de participants i els missatges que circulen entre ells</strong>.</p>
 
 <p>Podem veure'l com una altra vista de la mateixa conversa.</p>
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/07_comunicacio.svg" alt="Diagrama de comunicació equivalent a una seqüència de reserva" loading="lazy">
+  <figcaption>En comunicació, la numeració dels missatges substitueix l'eix temporal vertical de la seqüència.</figcaption>
+</figure>
 
 <h3>El mateix exemple, una altra perspectiva</h3>
 
 <p>Per a la consulta d'un producte:</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">1: consultar()
-Client -------------------- Portal
-  ^                           |
-  | 4: mostrar(producte)      | 2: buscar(codi)
-  |                           v
-  +------------------------ Cataleg
-                  3: producte</code></pre>
-  </div>
-</div>
 
 
 <p>Com que ja no tenim un eix temporal, l'ordre s'indica amb <strong>números davant dels missatges</strong>: 1, 2, 3, 4...</p>
@@ -890,37 +735,6 @@ Client -------------------- Portal
 Un CentreControl inicia una inspecció. El SistemaNavegacio comprova els motors, confirma que el vehicle està preparat, el CentreControl ordena activar la càmera i la Camera envia imatges al TerminalOperador.
 </blockquote>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">1: iniciarInspeccio()
-CentreControl ---------------- SistemaNavegacio
-      ^                              |
-      | 3: operatiu()                | 2: comprovar()
-      |                              v
-      |                            Motors
-      |
-      | 4: activar()
-      +--------------------------- Camera
-                                    |
-                                    | 5: enviarImatges()
-                                    v
-                              TerminalOperador</code></pre>
-  </div>
-</div>
 
 
 <p>Observeu que els números conserven la història encara que els objectes estiguin repartits lliurement pel llenç.</p>
@@ -970,6 +784,10 @@ CentreControl ---------------- SistemaNavegacio
   <h2 id="Unitat1_Bloc3_Seccio5">5. Diagrama d'activitats</h2>
 
 <p>Un diagrama d'activitats és útil quan volem explicar un <strong>flux de treball</strong>: passos, decisions, camins alternatius, repeticions i tasques que poden executar-se en paral·lel.</p>
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/08_activitats.svg" alt="Diagrama d'activitats d'una còpia de seguretat amb fork, join, decisió i bucle" loading="lazy">
+  <figcaption>El fork obre activitats paral·leles, el join les sincronitza i la decisió tria el camí segons una guarda.</figcaption>
+</figure>
 
 <h3>Un flux lineal</h3>
 
@@ -1183,6 +1001,10 @@ Mesurar contaminació
   <h2 id="Unitat1_Bloc3_Seccio6">6. Diagrama d'estats</h2>
 
 <p>Un diagrama d'activitats explica el flux d'un procés. Un diagrama d'estats se centra en una altra pregunta: <strong>en quin estat pot trobar-se un objecte i quins esdeveniments el fan canviar?</strong></p>
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/09_estats.svg" alt="Diagrama d'estats del cicle de vida d'un tiquet de suport" loading="lazy">
+  <figcaption>Els estats descriuen situacions persistents; les fletxes indiquen els esdeveniments que provoquen els canvis.</figcaption>
+</figure>
 
 <!-- Component: Definició curta -->
 <div class="definition-box" role="definition" aria-label="Definició">
