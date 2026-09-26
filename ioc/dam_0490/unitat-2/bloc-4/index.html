@@ -1,0 +1,2379 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 4: Protocols reals: serveis i correu electrònic | Programació de serveis i processos - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="2">
+    <meta name="page-bloc" content="4">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 4: Protocols reals: serveis i correu electrònic | Programació de serveis i processos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 4: Protocols reals: serveis i correu electrònic" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Serveis estàndard, format dels missatges, SMTP, servidor i client propis i Jakarta Mail" />
+<meta property="og:description" content="Serveis estàndard, format dels missatges, SMTP, servidor i client propis i Jakarta Mail" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-2/bloc-4/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0490/unitat-2/bloc-4/" />
+<meta property="og:site_name" content="Programació de serveis i processos" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 4: Protocols reals: serveis i correu electrònic" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Serveis estàndard, format dels missatges, SMTP, servidor i client propis i Jakarta Mail","headline":"Bloc 4: Protocols reals: serveis i correu electrònic","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-2/bloc-4/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/dam_0490/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-2/bloc-4/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/dam_0490/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/dam_0490/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0490/feed.xml" title="Programació de serveis i processos" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/dam_0490/assets/css/code-block.css">
+    <script src="/ioc/dam_0490/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/dam_0490">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/dam_0490/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/dam_0490/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/dam_0490/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/dam_0490/" class="title-link">
+                <h1>DAM_0490 - Programació de serveis i processos</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/dam_0490/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Entendre la concurrència abans d'escriure codi
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Crear i controlar processos des de Java
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Fils, memòria compartida i sincronització
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: ExecutorService i aplicacions concurrents completes
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0490/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: De noms a sòcols: entendre la comunicació en xarxa
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Construir clients i servidors amb sòcols
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Servidors concurrents i serveis robustos
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-2/bloc-4/" class="nav-dropdown-item current">
+                        Unitat 2 - Bloc 4: Protocols reals: serveis i correu electrònic
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc4_Seccio1" class="nav-link" data-section="Unitat2_Bloc4_Seccio1">1. Serveis estàndard i arquitectura del correu</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc4_Seccio2" class="nav-link" data-section="Unitat2_Bloc4_Seccio2">2. Format d'un missatge: capçaleres i cos</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc4_Seccio3" class="nav-link" data-section="Unitat2_Bloc4_Seccio3">3. SMTP: comandes, respostes i estat de sessió</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc4_Seccio4" class="nav-link" data-section="Unitat2_Bloc4_Seccio4">4. Construir un servidor i un client SMTP senzills</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc4_Seccio5" class="nav-link" data-section="Unitat2_Bloc4_Seccio5">5. Jakarta Mail: del protocol manual a una API d'alt nivell</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/dam_0490/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/dam_0490/unitat-2/" class="horizontal-nav-item">
+                                Unitat 2: Sòcols i serveis (RA3, RA4)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 2.4: Protocols reals: serveis i correu electrònic
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<div class="section" id="Unitat2_Bloc4_Seccio1">
+  <h2 id="Unitat2_Bloc4_Seccio1">1. Serveis estàndard i arquitectura del correu</h2>
+
+<p>Fins ara hem inventat els nostres propis protocols. Internet funciona perquè moltes aplicacions comparteixen <strong>protocols estàndard</strong>. Això permet que programes creats per equips diferents puguin interoperar.</p>
+
+<table class="table">
+<thead><tr><th>Servei</th><th>Protocol o família</th><th>Transport habitual</th><th>Idea principal</th></tr></thead>
+<tbody>
+<tr><td>Web</td><td>HTTP / HTTPS</td><td>TCP o transports moderns equivalents</td><td>Peticions i respostes de recursos.</td></tr>
+<tr><td>Transferència de fitxers</td><td>FTP</td><td>TCP</td><td>Control de sessió i transferència de dades.</td></tr>
+<tr><td>Enviament de correu</td><td>SMTP</td><td>TCP</td><td>Transferir missatges cap a un servidor o entre servidors.</td></tr>
+<tr><td>Accés al correu</td><td>IMAP</td><td>TCP</td><td>Treballar amb la bústia mantinguda al servidor.</td></tr>
+<tr><td>Descàrrega de correu</td><td>POP3</td><td>TCP</td><td>Recuperar missatges d'una bústia.</td></tr>
+</tbody>
+</table>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>El patró es repeteix.</strong></p><p>Els protocols estàndard continuen sent una conversa entre processos. Defineixen comandes, respostes, formats i errors. Les llibreries d'alt nivell ens estalvien escriure manualment aquesta conversa, però per sota continuen utilitzant mecanismes de xarxa.</p>
+    
+</div>
+
+
+<h3>Veure HTTP sense cap llibreria web</h3>
+
+<p>Podem obrir un socket TCP contra un servidor HTTP i escriure una petició textual. Aquest exemple és només per observar el protocol; per programar clients web reals és preferible <code>java.net.http.HttpClient</code>.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">try (Socket socket = new Socket(&quot;example.org&quot;, 80);
+     BufferedReader in =
+             new BufferedReader(
+                     new InputStreamReader(
+                             socket.getInputStream(),
+                             StandardCharsets.US_ASCII));
+     PrintWriter out =
+             new PrintWriter(
+                     socket.getOutputStream(),
+                     true,
+                     StandardCharsets.US_ASCII)) {
+
+    out.print(&quot;GET / HTTP/1.1\r\n&quot;);
+    out.print(&quot;Host: example.org\r\n&quot;);
+    out.print(&quot;Connection: close\r\n&quot;);
+    out.print(&quot;\r\n&quot;);
+    out.flush();
+
+    in.lines().forEach(System.out::println);
+}</code></pre>
+  </div>
+</div>
+
+
+<p>El detall canvia, però la idea és exactament la que ja coneixem: connexió TCP, protocol d'aplicació, delimitadors, petició i resposta.</p>
+
+<h3>HTTP amb una API d'alt nivell</h3>
+
+<p>Quan l'objectiu ja no és estudiar el protocol, Java disposa de <code>HttpClient</code>. El mateix patró petició-resposta queda expressat amb objectes d'alt nivell:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">HttpClient client = HttpClient.newHttpClient();
+
+HttpRequest request = HttpRequest.newBuilder()
+        .uri(URI.create(&quot;https://example.org/&quot;))
+        .GET()
+        .build();
+
+HttpResponse&lt;String&gt; response =
+        client.send(
+                request,
+                HttpResponse.BodyHandlers.ofString()
+        );
+
+System.out.println(response.statusCode());
+System.out.println(response.body());</code></pre>
+  </div>
+</div>
+
+
+<p>La diferència és de nivell d'abstracció: ja no gestionem directament el <code>Socket</code>, els salts de línia ni el parser de la resposta HTTP.</p>
+
+<h3>FTP: control i dades en canals diferents</h3>
+
+<p>FTP també és un protocol client-servidor sobre TCP, però introdueix una idea interessant: <strong>separa el canal de control del canal de dades</strong>. Les comandes i respostes textuals mantenen una connexió de control, habitualment associada al port 21 del servidor, mentre que una transferència de fitxer utilitza una connexió de dades temporal.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Canal de control (persistent)
+Client  &lt;-----------------&gt;  Servidor
+        USER, PASS, PWD,
+        CWD, RETR, STOR...
+        respostes 220, 230...
+
+Canal de dades (temporal)
+Client  &lt;=================&gt;  Servidor
+        bytes del fitxer</code></pre>
+  </div>
+</div>
+
+
+<p>En <strong>mode actiu</strong>, el client indica on escoltarà i el servidor inicia la connexió de dades. En <strong>mode passiu</strong>, el servidor indica una adreça i un port i és el client qui inicia la connexió. El mode passiu acostuma a encaixar millor amb clients situats darrere de NAT o tallafocs.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Una mateixa idea, protocols diferents.</strong></p><p>HTTP, FTP i SMTP defineixen converses diferents, però tots necessiten adreçament, transport, framing, gestió d'errors i un estat de sessió més o menys complex. Entendre sockets us permet veure què hi ha sota les llibreries de protocol.</p>
+    
+</div>
+
+
+<h3>El correu no viatja directament del vostre programa a la bústia</h3>
+
+<p>En una arquitectura típica intervenen diversos rols:</p>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-2/09_arquitectura_correu.svg" alt="Un client envia un missatge per SMTP a un servidor, els servidors el transfereixen per SMTP i el destinatari accedeix a la bústia amb IMAP o POP3." class="figure-img"/>
+      
+      <figcaption class="figure-caption">SMTP s'utilitza per transferir correu. IMAP o POP3 s'utilitzen per accedir a la bústia del destinatari.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Aplicació de Maria
+      |
+      | SMTP
+      v
+Servidor de sortida
+      |
+      | SMTP
+      v
+Servidor del destinatari
+      |
+      | emmagatzema
+      v
+Bústia de Pau
+      ^
+      | IMAP / POP3
+      |
+Aplicació de Pau</code></pre>
+  </div>
+</div>
+
+
+<p>Això explica una confusió freqüent: <strong>SMTP no és el protocol per llegir la bústia</strong>. El seu objectiu principal és transferir missatges.</p>
+
+<h3>IMAP i POP3 no resolen exactament el mateix problema</h3>
+
+<table class="table">
+<thead><tr><th>Protocol</th><th>Model mental</th><th>Quan és útil</th></tr></thead>
+<tbody>
+<tr><td>IMAP</td><td>La bústia continua al servidor i el client sincronitza carpetes, missatges i estats.</td><td>Diversos dispositius que consulten la mateixa bústia.</td></tr>
+<tr><td>POP3</td><td>Model més simple orientat a recuperar missatges de la bústia.</td><td>Clients senzills o fluxos de descàrrega.</td></tr>
+</tbody>
+</table>
+
+<p>Les llibreries de correu acostumen a oferir una API comuna i un proveïdor específic per a SMTP, IMAP o POP3.</p>
+
+<h3>Ports estàndard i ports de pràctiques</h3>
+
+<p>Els serveis reals tenen ports convencionals. Per exemple, SMTP històricament utilitza el port 25 entre servidors i la submissió autenticada acostuma a utilitzar el 587. En els nostres programes de pràctiques utilitzarem ports no privilegiats com <code>2525</code> per no interferir amb serveis reals.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No implementeu un servidor de correu d'Internet complet amb els exemples d'aquesta unitat.</strong></p><p>Els protocols reals inclouen seguretat, autenticació, TLS, extensió ESMTP, polítiques antispam, DNS, cues persistents i molts altres detalls. El nostre objectiu és entendre el mecanisme de comunicació i l'estat de la sessió.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Dibuixeu el recorregut</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Expliqueu el recorregut d'un correu des que l'usuari prem Enviar fins que un destinatari el consulta des d'un altre dispositiu. Indiqueu en quin tram encaixa SMTP i en quin tram encaixa IMAP.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">8 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Separeu enviament de consulta de bústia.</li>
+        
+        <li>No cal que els dos usuaris utilitzin el mateix servidor.</li>
+        
+        <li>Penseu en diversos processos, no en una única aplicació.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat2_Bloc4_Seccio2">
+  <h2 id="Unitat2_Bloc4_Seccio2">2. Format d'un missatge: capçaleres i cos</h2>
+
+<p>El protocol SMTP transporta un missatge, però el <strong>format del missatge</strong> és una altra especificació. El model modern prové de la família RFC 822 / RFC 2822 i actualment queda recollit principalment a RFC 5322.</p>
+
+<p>La idea bàsica és molt fàcil de reconèixer:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Capçalera: valor
+Capçalera: valor
+Capçalera: valor
+
+Cos del missatge
+Segona línia del cos
+...</code></pre>
+  </div>
+</div>
+
+
+<p>Una <strong>línia en blanc</strong> separa les capçaleres del cos. Aquesta línia és estructural.</p>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-2/10_format_correu.svg" alt="Missatge de correu dividit en un bloc de capçaleres, una línia en blanc i el cos." class="figure-img"/>
+      
+      <figcaption class="figure-caption">Les capçaleres descriuen el missatge. Després d'una línia en blanc comença el cos.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+<h3>Exemple complet en text pla</h3>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Date: Tue, 10 Feb 2026 11:20:00 +0100
+From: Anna Serra &lt;anna@example.test&gt;
+To: Biel Roca &lt;biel@example.test&gt;
+Cc: equip@example.test
+Reply-To: suport@example.test
+Message-ID: &lt;20260210112000.42@example.test&gt;
+Subject: Prova del servei
+
+Bon dia Biel,
+
+Aquest és un missatge de prova.
+
+Salutacions,
+Anna</code></pre>
+  </div>
+</div>
+
+
+<table class="table">
+<thead><tr><th>Capçalera</th><th>Funció</th></tr></thead>
+<tbody>
+<tr><td><code>Date</code></td><td>Data i hora de creació del missatge, inclosa la zona horària.</td></tr>
+<tr><td><code>From</code></td><td>Autor o remitent indicat al missatge.</td></tr>
+<tr><td><code>To</code></td><td>Destinataris principals visibles.</td></tr>
+<tr><td><code>Cc</code></td><td>Destinataris en còpia visibles.</td></tr>
+<tr><td><code>Reply-To</code></td><td>Adreça suggerida per a les respostes.</td></tr>
+<tr><td><code>Message-ID</code></td><td>Identificador globalment únic del missatge.</td></tr>
+<tr><td><code>Subject</code></td><td>Assumpte.</td></tr>
+</tbody>
+</table>
+
+<h3>I Bcc?</h3>
+
+<p>La còpia oculta és especial. Els destinataris Bcc s'utilitzen durant l'enviament, però <strong>no s'ha de deixar una capçalera que reveli aquests destinataris a les còpies entregades</strong>. Aquesta és precisament la idea de la còpia oculta.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No confongueu sobre SMTP i capçaleres.</strong></p><p><code>MAIL FROM</code> i <code>RCPT TO</code> formen part de l'envolupant SMTP. <code>From:</code> i <code>To:</code> formen part del contingut del missatge. En un sistema real poden no coincidir exactament.</p>
+</div>
+
+
+<h3>MIME: quan el correu deixa de ser text pla simple</h3>
+
+<p>Per enviar HTML, adjunts o continguts de diferents tipus s'utilitzen extensions MIME. Apareixen capçaleres com:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable</code></pre>
+  </div>
+</div>
+
+
+<p>No implementarem un parser MIME complet a mà. El que ens interessa és entendre que una llibreria com Jakarta Mail construeix aquestes estructures per nosaltres.</p>
+
+<h3>Construir una data correcta amb Java</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">ZonedDateTime ara =
+        ZonedDateTime.now(
+                ZoneId.of(&quot;Europe/Madrid&quot;));
+
+DateTimeFormatter format =
+        DateTimeFormatter.ofPattern(
+                &quot;EEE, dd MMM uuuu HH:mm:ss xx&quot;,
+                Locale.ENGLISH
+        );
+
+System.out.println(format.format(ara));</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Separar formats ajuda.</strong></p><p>Un missatge té el seu format propi. SMTP és el protocol que el transporta. MIME amplia el format per representar continguts més rics. Pensar en aquestes capes evita barrejar conceptes.</p>
+    
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Escriviu el missatge cru</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Creeu manualment un missatge de text amb Date, From, To, Cc, Reply-To, Message-ID i Subject. Afegiu la línia en blanc obligatòria i un cos de tres línies. Expliqueu on aniria un destinatari Bcc durant l'enviament.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">12 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>No escriviu comandes SMTP encara.</li>
+        
+        <li>Capçaleres i cos són el contingut del missatge.</li>
+        
+        <li>La línia buida és el separador.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat2_Bloc4_Seccio3">
+  <h2 id="Unitat2_Bloc4_Seccio3">3. SMTP: comandes, respostes i estat de sessió</h2>
+
+<p>SMTP és un protocol textual de petició-resposta sobre TCP. El client envia una comanda i el servidor respon amb un <strong>codi numèric de tres dígits</strong> i, normalment, un text descriptiu.</p>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-2/11_sessio_smtp.svg" alt="Seqüència d'una sessió SMTP: connexió, 220, EHLO, MAIL FROM, RCPT TO, DATA, cos acabat amb un punt, 250 i QUIT." class="figure-img"/>
+      
+      <figcaption class="figure-caption">SMTP és un diàleg amb ordre. Algunes comandes només tenen sentit després d'haver completat passos anteriors.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+<h3>Una sessió mínima</h3>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">S: 220 localhost Simple SMTP ready
+C: EHLO client.local
+S: 250 Hello client.local
+
+C: MAIL FROM:&lt;anna@example.test&gt;
+S: 250 Sender OK
+
+C: RCPT TO:&lt;biel@example.test&gt;
+S: 250 Recipient OK
+
+C: DATA
+S: 354 End data with &lt;CRLF&gt;.&lt;CRLF&gt;
+
+C: From: anna@example.test
+C: To: biel@example.test
+C: Subject: Prova
+C:
+C: Hola Biel
+C: .
+S: 250 Message accepted
+
+C: QUIT
+S: 221 Bye</code></pre>
+  </div>
+</div>
+
+
+<p>Les marques <code>C:</code> i <code>S:</code> només serveixen per indicar qui parla; no formen part dels bytes enviats.</p>
+
+<h3>Comandes que convé conèixer</h3>
+
+<table class="table">
+<thead><tr><th>Comanda</th><th>Funció</th></tr></thead>
+<tbody>
+<tr><td><code>EHLO domini</code> / <code>HELO domini</code></td><td>El client inicia el diàleg SMTP i s'identifica.</td></tr>
+<tr><td><code>MAIL FROM:&lt;adreça&gt;</code></td><td>Defineix el remitent de l'envolupant.</td></tr>
+<tr><td><code>RCPT TO:&lt;adreça&gt;</code></td><td>Afegeix un destinatari de l'envolupant.</td></tr>
+<tr><td><code>DATA</code></td><td>Demana començar a enviar el contingut del missatge.</td></tr>
+<tr><td><code>RSET</code></td><td>Descarta l'envolupant actual i torna a començar una transacció.</td></tr>
+<tr><td><code>NOOP</code></td><td>No fa cap operació; el servidor només confirma que continua disponible.</td></tr>
+<tr><td><code>QUIT</code></td><td>Finalitza la sessió de manera ordenada.</td></tr>
+</tbody>
+</table>
+
+<h3>Alguns codis de resposta</h3>
+
+<table class="table">
+<thead><tr><th>Codi</th><th>Idea</th></tr></thead>
+<tbody>
+<tr><td><code>220</code></td><td>Servei preparat.</td></tr>
+<tr><td><code>221</code></td><td>El servidor tanca el canal.</td></tr>
+<tr><td><code>250</code></td><td>Operació completada correctament.</td></tr>
+<tr><td><code>354</code></td><td>Comenceu l'entrada del missatge.</td></tr>
+<tr><td><code>421</code></td><td>Servei no disponible; es tancarà.</td></tr>
+<tr><td><code>450</code></td><td>Error temporal sobre la bústia o destinatari.</td></tr>
+<tr><td><code>500</code></td><td>Comanda no reconeguda o error de sintaxi general.</td></tr>
+<tr><td><code>501</code></td><td>Error de sintaxi als paràmetres.</td></tr>
+<tr><td><code>503</code></td><td>Seqüència de comandes incorrecta.</td></tr>
+<tr><td><code>550</code></td><td>Operació no disponible, sovint destinatari rebutjat.</td></tr>
+</tbody>
+</table>
+
+<h3>Per què necessitem estat?</h3>
+
+<p>No podem acceptar <code>DATA</code> abans de saber qui envia i a qui. El servidor ha de recordar on es troba la sessió.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">enum Estat {
+    CONNECTED,
+    GREETED,
+    MAIL_FROM,
+    RCPT_TO,
+    DATA
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Una versió simplificada de les transicions podria ser:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">CONNECTED --EHLO--&gt; GREETED
+GREETED   --MAIL--&gt; MAIL_FROM
+MAIL_FROM --RCPT--&gt; RCPT_TO
+RCPT_TO   --RCPT--&gt; RCPT_TO
+RCPT_TO   --DATA--&gt; DATA
+DATA      --&quot;.&quot;----&gt; GREETED
+
+RSET pot tornar la transacció a GREETED
+QUIT pot aparèixer fora del mode DATA i tanca la sessió</code></pre>
+  </div>
+</div>
+
+
+<h3>DATA és un mode especial</h3>
+
+<p>Després de respondre <code>354</code>, les línies ja no són comandes SMTP: són el contingut del missatge. El final arriba quan el servidor rep una línia que conté només un punt.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>El punt final no forma part del missatge.</strong></p><p>En SMTP real també existeix el mecanisme de <em>dot-stuffing</em>: si una línia del contingut ha de començar literalment amb un punt, el client l'escapa. En el nostre servidor didàctic podem començar pel cas simple i afegir aquesta regla després.</p>
+</div>
+
+
+<h3>Llegir respostes multilínia</h3>
+
+<p>ESMTP pot respondre a <code>EHLO</code> amb diverses línies. El guió després del codi indica que encara en venen més; l'espai indica l'última.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">250-localhost Hello
+250-SIZE 10485760
+250-8BITMIME
+250 OK</code></pre>
+  </div>
+</div>
+
+
+<p>Un client robust no ha d'assumir que tota resposta és una única línia.</p>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: La màquina d'estats</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Sense sockets, programeu una classe que mantingui un Estat SMTP simplificat. Feu que accepti EHLO, MAIL, RCPT i DATA només quan toqui i retorni 503 quan l'ordre arriba fora de seqüència.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Primer feu les transicions amb un enum.</li>
+        
+        <li>No implementeu encara el cos DATA.</li>
+        
+        <li>Proveu DATA just després d'EHLO: ha de fallar.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat2_Bloc4_Seccio4">
+  <h2 id="Unitat2_Bloc4_Seccio4">4. Construir un servidor i un client SMTP senzills</h2>
+
+<p>Ara combinarem tot el que ja sabem: <code>ServerSocket</code>, una sessió concurrent, protocol de línies, estat i emmagatzematge local.</p>
+
+<h3>1. El missatge en memòria</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">SmtpMessage.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.ArrayList;
+import java.util.List;
+
+public class SmtpMessage {
+
+    private String from;
+    private final List&lt;String&gt; recipients =
+            new ArrayList&lt;&gt;();
+    private final StringBuilder data =
+            new StringBuilder();
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public List&lt;String&gt; getRecipients() {
+        return List.copyOf(recipients);
+    }
+
+    public void addRecipient(String recipient) {
+        recipients.add(recipient);
+    }
+
+    public void addDataLine(String line) {
+        data.append(line)
+            .append(System.lineSeparator());
+    }
+
+    public String getData() {
+        return data.toString();
+    }
+
+    public void reset() {
+        from = null;
+        recipients.clear();
+        data.setLength(0);
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<h3>2. Guardar un missatge</h3>
+
+<p>Per fer observable el servidor, podem desar cada missatge acceptat en una carpeta local. No és una bústia real, però ens permet verificar què ha rebut el servei.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">static Path desar(SmtpMessage message)
+        throws IOException {
+
+    Path carpeta = Path.of(&quot;mailbox&quot;);
+    Files.createDirectories(carpeta);
+
+    String nom =
+            &quot;mail-&quot; + System.currentTimeMillis()
+            + &quot;-&quot; + UUID.randomUUID()
+            + &quot;.txt&quot;;
+
+    Path fitxer = carpeta.resolve(nom);
+
+    String contingut =
+            &quot;Envelope-From: &quot; + message.getFrom()
+            + System.lineSeparator()
+            + &quot;Envelope-To: &quot;
+            + String.join(&quot;, &quot;, message.getRecipients())
+            + System.lineSeparator()
+            + System.lineSeparator()
+            + message.getData();
+
+    return Files.writeString(
+            fitxer,
+            contingut,
+            StandardCharsets.UTF_8
+    );
+}</code></pre>
+  </div>
+</div>
+
+
+<h3>3. La sessió SMTP</h3>
+
+<p>Aquesta implementació és deliberadament petita. Admet <code>EHLO/HELO</code>, <code>MAIL FROM</code>, <code>RCPT TO</code>, <code>DATA</code>, <code>RSET</code>, <code>NOOP</code> i <code>QUIT</code>.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">SmtpSession.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public final class SmtpSession implements Runnable {
+
+    private enum Estat {
+        CONNECTED, GREETED, MAIL_FROM, RCPT_TO
+    }
+
+    private final Socket socket;
+    private final SmtpMessage message =
+            new SmtpMessage();
+
+    private Estat estat = Estat.CONNECTED;
+
+    public SmtpSession(Socket socket) {
+        this.socket = socket;
+    }
+
+    @Override
+    public void run() {
+
+        try (socket;
+             BufferedReader in =
+                     new BufferedReader(
+                             new InputStreamReader(
+                                     socket.getInputStream(),
+                                     StandardCharsets.UTF_8));
+             PrintWriter out =
+                     new PrintWriter(
+                             socket.getOutputStream(),
+                             true,
+                             StandardCharsets.UTF_8)) {
+
+            out.println(
+                    &quot;220 localhost Simple SMTP ready&quot;
+            );
+
+            String line;
+
+            while ((line = in.readLine()) != null) {
+
+                if (line.regionMatches(
+                        true, 0, &quot;EHLO &quot;, 0, 5)
+                    || line.regionMatches(
+                        true, 0, &quot;HELO &quot;, 0, 5)) {
+
+                    message.reset();
+                    estat = Estat.GREETED;
+                    out.println(&quot;250 Hello&quot;);
+                    continue;
+                }
+
+                if (line.regionMatches(
+                        true, 0, &quot;MAIL FROM:&quot;, 0, 10)) {
+
+                    if (estat != Estat.GREETED) {
+                        out.println(
+                                &quot;503 Bad sequence of commands&quot;);
+                        continue;
+                    }
+
+                    String from =
+                            line.substring(10).trim();
+
+                    if (from.isEmpty()) {
+                        out.println(
+                                &quot;501 Missing sender&quot;);
+                        continue;
+                    }
+
+                    message.reset();
+                    message.setFrom(from);
+                    estat = Estat.MAIL_FROM;
+                    out.println(&quot;250 Sender OK&quot;);
+                    continue;
+                }
+
+                if (line.regionMatches(
+                        true, 0, &quot;RCPT TO:&quot;, 0, 8)) {
+
+                    if (estat != Estat.MAIL_FROM
+                            &amp;&amp; estat != Estat.RCPT_TO) {
+                        out.println(
+                                &quot;503 Bad sequence of commands&quot;);
+                        continue;
+                    }
+
+                    String to =
+                            line.substring(8).trim();
+
+                    if (to.isEmpty()) {
+                        out.println(
+                                &quot;501 Missing recipient&quot;);
+                        continue;
+                    }
+
+                    message.addRecipient(to);
+                    estat = Estat.RCPT_TO;
+                    out.println(&quot;250 Recipient OK&quot;);
+                    continue;
+                }
+
+                if (line.equalsIgnoreCase(&quot;DATA&quot;)) {
+
+                    if (estat != Estat.RCPT_TO) {
+                        out.println(
+                                &quot;503 Need MAIL and RCPT first&quot;);
+                        continue;
+                    }
+
+                    out.println(
+                            &quot;354 End data with &lt;CRLF&gt;.&lt;CRLF&gt;&quot;);
+
+                    llegirData(in);
+
+                    Path fitxer = desar(message);
+
+                    System.out.println(
+                            &quot;Desat: &quot; + fitxer
+                    );
+
+                    message.reset();
+                    estat = Estat.GREETED;
+
+                    out.println(&quot;250 Message accepted&quot;);
+                    continue;
+                }
+
+                if (line.equalsIgnoreCase(&quot;RSET&quot;)) {
+                    message.reset();
+
+                    if (estat != Estat.CONNECTED) {
+                        estat = Estat.GREETED;
+                    }
+
+                    out.println(&quot;250 Reset OK&quot;);
+                    continue;
+                }
+
+                if (line.equalsIgnoreCase(&quot;NOOP&quot;)) {
+                    out.println(&quot;250 OK&quot;);
+                    continue;
+                }
+
+                if (line.equalsIgnoreCase(&quot;QUIT&quot;)) {
+                    out.println(&quot;221 Bye&quot;);
+                    break;
+                }
+
+                out.println(&quot;500 Command unrecognized&quot;);
+            }
+
+        } catch (IOException e) {
+            System.err.println(
+                    &quot;Sessió SMTP: &quot; + e.getMessage()
+            );
+        }
+    }
+
+    private void llegirData(BufferedReader in)
+            throws IOException {
+
+        String line;
+
+        while ((line = in.readLine()) != null) {
+
+            if (line.equals(&quot;.&quot;)) {
+                return;
+            }
+
+            if (line.startsWith(&quot;..&quot;)) {
+                line = line.substring(1);
+            }
+
+            message.addDataLine(line);
+        }
+
+        throw new EOFException(
+                &quot;Connexió tancada durant DATA&quot;
+        );
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Fixeu-vos en l'estat.</strong></p><p>Després d'acceptar un missatge, la sessió torna a <code>GREETED</code>. Això permet enviar un segon correu dins de la mateixa connexió SMTP sense repetir obligatòriament tota la connexió TCP.</p>
+    
+</div>
+
+
+<h3>4. El servidor concurrent</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">SmtpServer.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class SmtpServer {
+
+    private static final int PORT = 2525;
+
+    public static void main(String[] args)
+            throws Exception {
+
+        ExecutorService pool =
+                Executors.newFixedThreadPool(8);
+
+        try (ServerSocket server =
+                     new ServerSocket(PORT)) {
+
+            System.out.println(
+                    &quot;SMTP escoltant al port &quot; + PORT
+            );
+
+            while (true) {
+                Socket client = server.accept();
+                pool.execute(
+                        new SmtpSession(client)
+                );
+            }
+
+        } finally {
+            pool.shutdown();
+        }
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<h3>5. Un client que parla SMTP</h3>
+
+<p>Per entendre el protocol és útil escriure un client que faci visible cada comanda i cada resposta.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">SmtpClient.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class SmtpClient {
+
+    public static void main(String[] args)
+            throws Exception {
+
+        try (Socket socket =
+                     new Socket(&quot;localhost&quot;, 2525);
+             BufferedReader in =
+                     new BufferedReader(
+                             new InputStreamReader(
+                                     socket.getInputStream(),
+                                     StandardCharsets.UTF_8));
+             PrintWriter out =
+                     new PrintWriter(
+                             socket.getOutputStream(),
+                             true,
+                             StandardCharsets.UTF_8)) {
+
+            llegir(in);
+
+            enviar(out, in, &quot;EHLO client.local&quot;);
+            enviar(out, in,
+                    &quot;MAIL FROM:&lt;anna@example.test&gt;&quot;);
+            enviar(out, in,
+                    &quot;RCPT TO:&lt;biel@example.test&gt;&quot;);
+
+            System.out.println(&quot;C: DATA&quot;);
+            out.println(&quot;DATA&quot;);
+
+            String resposta = llegir(in);
+
+            if (!resposta.startsWith(&quot;354&quot;)) {
+                throw new IOException(
+                        &quot;DATA rebutjat: &quot; + resposta
+                );
+            }
+
+            out.println(
+                    &quot;From: anna@example.test&quot;);
+            out.println(
+                    &quot;To: biel@example.test&quot;);
+            out.println(&quot;Subject: Prova&quot;);
+            out.println();
+            out.println(&quot;Hola des del client Java&quot;);
+            out.println(&quot;.&quot;);
+
+            llegir(in);
+
+            enviar(out, in, &quot;QUIT&quot;);
+        }
+    }
+
+    private static void enviar(
+            PrintWriter out,
+            BufferedReader in,
+            String ordre) throws IOException {
+
+        System.out.println(&quot;C: &quot; + ordre);
+        out.println(ordre);
+        llegir(in);
+    }
+
+    private static String llegir(
+            BufferedReader in) throws IOException {
+
+        String resposta = in.readLine();
+
+        if (resposta == null) {
+            throw new EOFException(
+                    &quot;El servidor ha tancat la connexió&quot;
+            );
+        }
+
+        System.out.println(&quot;S: &quot; + resposta);
+        return resposta;
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<h3>Proves importants</h3>
+
+<p>Abans de donar el servidor per bo, proveu també seqüències incorrectes:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">DATA
+-&gt; 503 ...
+
+EHLO client
+RCPT TO:&lt;biel@example.test&gt;
+-&gt; 503 ...
+
+EHLO client
+MAIL FROM:&lt;anna@example.test&gt;
+DATA
+-&gt; 503 ...
+
+EHLO client
+MAIL FROM:&lt;anna@example.test&gt;
+RCPT TO:&lt;biel@example.test&gt;
+RSET
+DATA
+-&gt; 503 ...</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Exemple didàctic, no servidor SMTP de producció.</strong></p><p>No valida completament les adreces, no implementa totes les extensions, no autentica, no xifra la connexió i simplifica moltes regles de les RFC. Precisament per això és útil: podem veure amb claredat sockets, estat i protocol.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Servidor SMTP local</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Construïu un servidor SMTP local al port 2525 amb sessions concurrents. Ha d'admetre EHLO/HELO, MAIL FROM, un o més RCPT TO, DATA, RSET, NOOP i QUIT, i desar els missatges acceptats en fitxers de text.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Avançat</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">45-60 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Feu funcionar primer una única sessió.</li>
+        
+        <li>Afegiu l'enum d'estat abans de la concurrència.</li>
+        
+        <li>DATA necessita un bucle propi fins a una línia amb un sol punt.</li>
+        
+        <li>Només després separeu cada connexió en una tasca concurrent.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat2_Bloc4_Seccio5">
+  <h2 id="Unitat2_Bloc4_Seccio5">5. Jakarta Mail: del protocol manual a una API d'alt nivell</h2>
+
+<p>Hem implementat SMTP a mà per entendre'l. En una aplicació real, repetir aquest codi seria mala idea. Una llibreria especialitzada ja coneix el protocol, els formats de missatge i moltes extensions.</p>
+
+<p>L'API moderna és <strong>Jakarta Mail</strong>. Una implementació habitual és <strong>Eclipse Angus Mail</strong>.</p>
+
+<h3>Dependència Maven</h3>
+
+
+<div class="code-block" data-lang="xml" role="region" aria-label="Bloc de codi xml">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">XML</span>
+      <span class="code-filename">pom.xml</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.eclipse.angus&lt;/groupId&gt;
+    &lt;artifactId&gt;angus-mail&lt;/artifactId&gt;
+    &lt;version&gt;2.0.3&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>API i implementació no són exactament el mateix.</strong></p><p>Afegir només unes interfícies de l'API no serveix si en temps d'execució no hi ha cap implementació capaç de parlar SMTP. Angus Mail aporta aquesta implementació per a Jakarta Mail.</p>
+    
+</div>
+
+
+<h3>Enviar al nostre servidor local</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">EnviarAmbJakartaMail.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import jakarta.mail.Message;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Properties;
+
+public class EnviarAmbJakartaMail {
+
+    public static void main(String[] args)
+            throws Exception {
+
+        Properties props = new Properties();
+
+        props.put(&quot;mail.smtp.host&quot;, &quot;localhost&quot;);
+        props.put(&quot;mail.smtp.port&quot;, &quot;2525&quot;);
+
+        props.put(&quot;mail.smtp.auth&quot;, &quot;false&quot;);
+        props.put(
+                &quot;mail.smtp.starttls.enable&quot;, &quot;false&quot;);
+
+        props.put(
+                &quot;mail.smtp.connectiontimeout&quot;, &quot;3000&quot;);
+        props.put(&quot;mail.smtp.timeout&quot;, &quot;3000&quot;);
+        props.put(&quot;mail.smtp.writetimeout&quot;, &quot;3000&quot;);
+
+        Session session =
+                Session.getInstance(props);
+
+        session.setDebug(true);
+
+        MimeMessage message =
+                new MimeMessage(session);
+
+        message.setFrom(
+                new InternetAddress(
+                        &quot;anna@example.test&quot;));
+
+        message.setRecipient(
+                Message.RecipientType.TO,
+                new InternetAddress(
+                        &quot;biel@example.test&quot;));
+
+        message.setSubject(
+                &quot;Prova amb Jakarta Mail&quot;,
+                StandardCharsets.UTF_8.name());
+
+        message.setText(
+                &quot;Hola des d&#39;una API d&#39;alt nivell.&quot;,
+                StandardCharsets.UTF_8.name());
+
+        Transport.send(message);
+
+        System.out.println(&quot;Missatge enviat&quot;);
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Si <code>session.setDebug(true)</code> està activat, podreu observar el diàleg SMTP que la llibreria genera. És un exercici molt útil: compareu les línies del debug amb el client manual de l'apartat anterior.</p>
+
+<h3>HTML i fitxers adjunts amb MIME</h3>
+
+<p>Quan un missatge té diverses parts, Jakarta Mail permet construir l'estructura MIME sense concatenar manualment fronteres i capçaleres.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">MimeBodyPart text = new MimeBodyPart();
+text.setText(
+        &quot;Trobareu l&#39;informe adjunt.&quot;,
+        StandardCharsets.UTF_8.name()
+);
+
+MimeBodyPart adjunt = new MimeBodyPart();
+adjunt.attachFile(Path.of(&quot;informe.pdf&quot;).toFile());
+
+MimeMultipart multipart = new MimeMultipart();
+multipart.addBodyPart(text);
+multipart.addBodyPart(adjunt);
+
+message.setContent(multipart);</code></pre>
+  </div>
+</div>
+
+
+<p>Per a un cos HTML, una part MIME pot declarar <code>text/html</code> i el charset corresponent. El principi és el mateix: la llibreria transforma objectes Java en el format MIME correcte.</p>
+
+<h3>Accedir a una bústia</h3>
+
+<p>Jakarta Mail no serveix només per SMTP. També pot obrir un <code>Store</code> IMAP o POP3 i accedir a carpetes i missatges. Aquest fragment mostra el patró general amb IMAP:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Session session = Session.getInstance(props);
+
+try (Store store = session.getStore(&quot;imap&quot;)) {
+
+    store.connect(
+            host,
+            usuari,
+            contrasenya
+    );
+
+    try (Folder inbox =
+                 store.getFolder(&quot;INBOX&quot;)) {
+
+        inbox.open(Folder.READ_ONLY);
+
+        System.out.println(
+                &quot;Missatges: &quot;
+                + inbox.getMessageCount()
+        );
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Contra servidors reals, la configuració depèn del proveïdor.</strong></p><p>Ports, TLS, autenticació i permisos poden variar. No poseu credencials literals al codi i consulteu sempre la documentació del servidor que utilitzeu.</p>
+</div>
+
+
+<h3>Què ha desaparegut del nostre codi?</h3>
+
+<table class="table">
+<thead><tr><th>Amb sockets manuals</th><th>Amb Jakarta Mail</th></tr></thead>
+<tbody>
+<tr><td>Obrir el <code>Socket</code></td><td>Ho fa la llibreria.</td></tr>
+<tr><td>Enviar <code>EHLO</code>, <code>MAIL FROM</code>, <code>RCPT TO</code>...</td><td>Ho fa la llibreria.</td></tr>
+<tr><td>Interpretar codis SMTP</td><td>Ho fa la llibreria i exposa excepcions.</td></tr>
+<tr><td>Construir capçaleres MIME</td><td><code>MimeMessage</code> ho resol.</td></tr>
+<tr><td>Gestionar charset</td><td>Es declara a les crides d'alt nivell.</td></tr>
+</tbody>
+</table>
+
+<p>El coneixement del protocol no sobra: ara podem entendre què significa un error de connexió, una resposta 550, un problema de TLS o una autenticació rebutjada.</p>
+
+<h3>Autenticació i STARTTLS</h3>
+
+<p>Contra un servidor real, és habitual necessitar autenticació i xifrat. Les propietats típiques canvien:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">props.put(&quot;mail.smtp.auth&quot;, &quot;true&quot;);
+props.put(&quot;mail.smtp.starttls.enable&quot;, &quot;true&quot;);
+
+Session session =
+        Session.getInstance(
+                props,
+                new Authenticator() {
+                    @Override
+                    protected PasswordAuthentication
+                    getPasswordAuthentication() {
+                        return new PasswordAuthentication(
+                                usuari, contrasenya);
+                    }
+                }
+        );</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No poseu credencials reals al codi font ni al repositori.</strong></p><p>En aplicacions reals s'han de carregar des de variables d'entorn, magatzems de secrets o mecanismes equivalents. El servidor local de pràctiques no necessita autenticació.</p>
+</div>
+
+
+<h3>Quan utilitzar cada nivell</h3>
+
+<ul>
+<li><strong>Sockets:</strong> quan esteu dissenyant un protocol propi o necessiteu entendre/controlar la comunicació de baix nivell.</li>
+<li><strong>Llibreria de protocol:</strong> quan el protocol ja és estàndard i existeix una implementació madura.</li>
+<li><strong>HTTP client, Jakarta Mail, clients FTP...</strong>: eviten reimplementar parsers, extensions i casos límit que ja estan resolts.</li>
+</ul>
+
+
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Objectiu final de la unitat</strong></p><p>Heu de poder mirar un servei de xarxa i separar-ne les peces: adreçament, transport, connexió o datagrames, protocol d'aplicació, concurrència, timeouts i llibreries d'alt nivell. Si podeu fer això, no depeneu de memoritzar un exemple concret.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Mateix correu, dos nivells</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Envieu un missatge al vostre servidor local primer amb el client SMTP manual i després amb Jakarta Mail. Activeu el debug de Jakarta Mail i identifiqueu EHLO, MAIL FROM, RCPT TO, DATA i QUIT a la conversa.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">25 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Manteniu el mateix host i port.</li>
+        
+        <li>No activeu auth ni STARTTLS contra el servidor local senzill.</li>
+        
+        <li>Comproveu els fitxers desats pel servidor.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+
+<!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="RA3 i RA4">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Entenc els rols de client i servidor i la funció d'un protocol</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé treballar amb InetAddress i resolució de noms</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc implementar clients i servidors TCP</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc implementar comunicació UDP i gestionar timeouts</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Distingeixo unicast i multicast</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc convertir un servidor seqüencial en concurrent</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé separar acceptació, sessió i lògica de protocol</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc utilitzar un pool de fils i raonar sobre límits de recursos</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé verificar funcionalment la disponibilitat d'un servei</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc explicar la diferència entre SMTP i IMAP/POP3</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Reconec l'estructura capçaleres-línia buida-cos d'un correu</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Distingeixo envolupant SMTP i capçaleres del missatge</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Entenc la seqüència EHLO, MAIL FROM, RCPT TO, DATA i QUIT</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc implementar un servidor SMTP didàctic amb estat</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc implementar un client SMTP amb sockets</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé utilitzar Jakarta Mail / Angus per enviar correu</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc explicar què encapsula una API d'alt nivell respecte dels sockets manuals</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé aplicar timeouts, gestionar errors i documentar el protocol</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 4: Protocols reals: serveis i correu electrònic",
+  "description": "Serveis estàndard, format dels missatges, SMTP, servidor i client propis i Jakarta Mail",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Programació de serveis i processos — IOC",
+    "description": "Materials del mòdul DAM_0490 - Programació de serveis i processos"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                    
+                                        
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0490/unitat-2/bloc-3/" class="nav-button" aria-label="Bloc anterior: Servidors concurrents i serveis robustos">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="2" data-total="2">(2/2)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="4" data-total="4">(4/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="5">(1/5)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 20%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/dam_0490/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/dam_0490",
+        title: "Programació de serveis i processos",
+        version: "v1.0",
+        cicle_modul: "DAM_0490"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/dam_0490/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/dam_0490/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 3: Servidors concurrents i serveis robustos | Programació de serveis i processos - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="2">
+    <meta name="page-bloc" content="3">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 3: Servidors concurrents i serveis robustos | Programació de serveis i processos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 3: Servidors concurrents i serveis robustos" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Acceptació de connexions, un fil per client, Runnable, pools de fils, límits, proves i disponibilitat" />
+<meta property="og:description" content="Acceptació de connexions, un fil per client, Runnable, pools de fils, límits, proves i disponibilitat" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-2/bloc-3/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0490/unitat-2/bloc-3/" />
+<meta property="og:site_name" content="Programació de serveis i processos" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 3: Servidors concurrents i serveis robustos" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Acceptació de connexions, un fil per client, Runnable, pools de fils, límits, proves i disponibilitat","headline":"Bloc 3: Servidors concurrents i serveis robustos","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-2/bloc-3/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/dam_0490/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-2/bloc-3/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/dam_0490/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/dam_0490/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0490/feed.xml" title="Programació de serveis i processos" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/dam_0490/assets/css/code-block.css">
+    <script src="/ioc/dam_0490/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/dam_0490">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/dam_0490/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/dam_0490/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/dam_0490/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/dam_0490/" class="title-link">
+                <h1>DAM_0490 - Programació de serveis i processos</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/dam_0490/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Entendre la concurrència abans d'escriure codi
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Crear i controlar processos des de Java
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Fils, memòria compartida i sincronització
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: ExecutorService i aplicacions concurrents completes
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0490/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: De noms a sòcols: entendre la comunicació en xarxa
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Construir clients i servidors amb sòcols
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-2/bloc-3/" class="nav-dropdown-item current">
+                        Unitat 2 - Bloc 3: Servidors concurrents i serveis robustos
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Protocols reals: serveis i correu electrònic
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc3_Seccio1" class="nav-link" data-section="Unitat2_Bloc3_Seccio1">1. Per què un servidor seqüencial no escala</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc3_Seccio2" class="nav-link" data-section="Unitat2_Bloc3_Seccio2">2. Un fil per client</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc3_Seccio3" class="nav-link" data-section="Unitat2_Bloc3_Seccio3">3. Separar acceptació i sessió amb Runnable</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc3_Seccio4" class="nav-link" data-section="Unitat2_Bloc3_Seccio4">4. Pools de fils, límits i tancament</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc3_Seccio5" class="nav-link" data-section="Unitat2_Bloc3_Seccio5">5. Provar, depurar i observar un servei de xarxa</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/dam_0490/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/dam_0490/unitat-2/" class="horizontal-nav-item">
+                                Unitat 2: Sòcols i serveis (RA3, RA4)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 2.3: Servidors concurrents i serveis robustos
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<div class="section" id="Unitat2_Bloc3_Seccio1">
+  <h2 id="Unitat2_Bloc3_Seccio1">1. Per què un servidor seqüencial no escala</h2>
+
+<p>El servidor TCP del bloc anterior tenia una limitació deliberada: acceptava un client i dedicava tot el fil principal a conversar amb ell. Mentre aquell client no acabava, el servidor no tornava a <code>accept()</code>.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">try (ServerSocket servidor = new ServerSocket(5000)) {
+
+    Socket client = servidor.accept();
+
+    // El fil principal queda aquí atenent el client.
+    atendre(client);
+
+    // Només després podria acceptar-ne un altre.
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Si el primer client està cinc minuts sense enviar res, el fil del servidor pot estar cinc minuts bloquejat a <code>readLine()</code>. El servidor continua tenint un port d'escolta, però el nostre codi no està acceptant i atenent noves sessions.</p>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-2/08_servidor_concurrent.svg" alt="Comparació entre un servidor seqüencial que dedica el fil principal a un client i un servidor concurrent on el fil principal accepta connexions i delega cada client." class="figure-img"/>
+      
+      <figcaption class="figure-caption">La idea clau és separar acceptar connexions d'atendre les converses.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+<h3>Primer intent: acceptar en un bucle</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">while (true) {
+    Socket client = servidor.accept();
+    atendre(client);
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Això permet atendre <em>molts clients al llarg del temps</em>, però encara no simultàniament. El segon <code>accept()</code> no s'executa fins que <code>atendre(client)</code> retorna.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Concurrència de xarxa</strong></p><p>Per atendre diversos clients que poden estar bloquejats en lectures independents necessitem que cada sessió pugui avançar sense ocupar l'únic fil que accepta connexions noves.</p>
+    
+</div>
+
+
+<h3>Què pot passar amb el segon client?</h3>
+
+<p>En TCP, el sistema operatiu disposa d'una cua de connexions pendents. Per això un segon client pot arribar a completar temporalment l'establiment de la connexió encara que el nostre programa no hagi cridat de nou <code>accept()</code>. Però això <strong>no significa que l'aplicació ja l'estigui atenent</strong>. Les dades poden quedar esperant fins que el servidor reculli aquella connexió.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Connectat no significa atès.</strong></p><p>Quan proveu un servidor seqüencial amb diversos clients, fixeu-vos en el moment en què cada client rep una resposta, no només en si el constructor de <code>Socket</code> ha retornat.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Veure el coll d'ampolla</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Modifiqueu el servidor TCP perquè accepti clients en un bucle però els atengui en el mateix fil. Obriu dos clients. Manteniu el primer connectat sense escriure fi i intenteu utilitzar el segon.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>No creeu fils encara.</li>
+        
+        <li>Observeu el servidor i els dos clients alhora.</li>
+        
+        <li>Distingiu entre establir la connexió i rebre resposta de l'aplicació.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat2_Bloc3_Seccio2">
+  <h2 id="Unitat2_Bloc3_Seccio2">2. Un fil per client</h2>
+
+<p>El patró més senzill per fer concurrent un servidor TCP és crear un fil independent per a cada connexió acceptada.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">try (ServerSocket servidor = new ServerSocket(PORT)) {
+
+    while (true) {
+        Socket client = servidor.accept();
+
+        Thread fil = new Thread(() -&gt; {
+            atendre(client);
+        });
+
+        fil.start();
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Ara el fil principal torna gairebé immediatament a <code>accept()</code>. La conversa amb cada client queda bloquejada, si cal, al seu propi fil.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Fil main:
+accept -&gt; client A -&gt; crea fil A -&gt; torna a accept
+accept -&gt; client B -&gt; crea fil B -&gt; torna a accept
+accept -&gt; client C -&gt; crea fil C -&gt; torna a accept
+
+Fil A: readLine -&gt; processa -&gt; println -&gt; ...
+Fil B: readLine -&gt; processa -&gt; println -&gt; ...
+Fil C: readLine -&gt; processa -&gt; println -&gt; ...</code></pre>
+  </div>
+</div>
+
+
+<h3>Una classe ClientHandler</h3>
+
+<p>Per no barrejar tota la lògica dins del <code>main</code>, podem encapsular la sessió d'un client en una classe.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">EchoTcpClientHandler.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.nio.charset.StandardCharsets;
+
+public class EchoTcpClientHandler extends Thread {
+
+    private final Socket socket;
+
+    public EchoTcpClientHandler(Socket socket) {
+        this.socket = socket;
+    }
+
+    @Override
+    public void run() {
+
+        String id = socket.getRemoteSocketAddress().toString();
+
+        try (socket;
+             BufferedReader entrada =
+                     new BufferedReader(
+                             new InputStreamReader(
+                                     socket.getInputStream(),
+                                     StandardCharsets.UTF_8));
+             PrintWriter sortida =
+                     new PrintWriter(
+                             socket.getOutputStream(),
+                             true,
+                             StandardCharsets.UTF_8)) {
+
+            System.out.println(&quot;Connectat &quot; + id);
+
+            String linia;
+
+            while ((linia = entrada.readLine()) != null) {
+
+                if (linia.equalsIgnoreCase(&quot;fi&quot;)) {
+                    sortida.println(&quot;ADEU&quot;);
+                    break;
+                }
+
+                sortida.println(linia.toUpperCase());
+            }
+
+        } catch (Exception e) {
+            System.err.println(
+                    &quot;Error amb &quot; + id + &quot;: &quot;
+                    + e.getMessage()
+            );
+        } finally {
+            System.out.println(&quot;Desconnectat &quot; + id);
+        }
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>I el servidor queda reduït a la seva responsabilitat principal:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">EchoTcpServer.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.net.ServerSocket;
+import java.net.Socket;
+
+public class EchoTcpServer {
+
+    private static final int PORT = 5000;
+
+    public static void main(String[] args) throws Exception {
+
+        try (ServerSocket servidor =
+                     new ServerSocket(PORT)) {
+
+            System.out.println(
+                    &quot;Servidor escoltant al port &quot; + PORT
+            );
+
+            while (true) {
+                Socket client = servidor.accept();
+                new EchoTcpClientHandler(client).start();
+            }
+        }
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Prova decisiva</strong></p><p>Obriu tres clients alhora. Escriviu una frase en cadascun abans de tancar-ne cap. Si tots obtenen resposta, ja no teniu el coll d'ampolla del servidor seqüencial.</p>
+</div>
+
+
+<h3>Qui tanca cada recurs?</h3>
+
+<p>El <code>ServerSocket</code> pertany al servidor principal i ha de continuar obert mentre el servei estigui disponible. Cada <code>Socket</code> de client pertany a la seva sessió i l'ha de tancar el <code>ClientHandler</code> quan aquella sessió acaba.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No tanqueu el ServerSocket des del handler.</strong></p><p>Si un client pogués tancar el sòcol d'escolta compartit, deixaria sense servei la resta. La propietat dels recursos ha de quedar clara en el disseny.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Tres clients reals</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Implementeu el patró un fil per client i proveu-lo amb tres instàncies del client TCP. Afegiu al log el nom del fil i l'endpoint remot a cada línia processada.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">20 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Mostreu Thread.currentThread().getName().</li>
+        
+        <li>Cada handler ha de tancar només el seu Socket.</li>
+        
+        <li>El main només accepta i delega.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat2_Bloc3_Seccio3">
+  <h2 id="Unitat2_Bloc3_Seccio3">3. Separar acceptació i sessió amb Runnable</h2>
+
+<p>Heretar de <code>Thread</code> és fàcil d'entendre, però barreja dues idees: <strong>la feina que cal fer</strong> i <strong>el mecanisme que l'executa</strong>. És més flexible descriure la sessió amb <code>Runnable</code>.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">EchoSession.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class EchoSession implements Runnable {
+
+    private final Socket socket;
+
+    public EchoSession(Socket socket) {
+        this.socket = socket;
+    }
+
+    @Override
+    public void run() {
+        // tota la conversa amb un client
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>El servidor decideix després com executar aquella tasca:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Socket client = servidor.accept();
+
+Runnable sessio = new EchoSession(client);
+
+Thread fil = new Thread(sessio);
+fil.start();</code></pre>
+  </div>
+</div>
+
+
+<p>A primera vista sembla el mateix, però la separació ens permet canviar l'estratègia d'execució sense tocar la lògica del protocol. Al següent apartat substituirem <code>new Thread(...)</code> per un <code>ExecutorService</code>.</p>
+
+<h3>Separar encara més: transport, sessió i protocol</h3>
+
+<p>Una estructura fàcil de provar és dividir responsabilitats:</p>
+
+<table class="table">
+<thead><tr><th>Peça</th><th>Responsabilitat</th></tr></thead>
+<tbody>
+<tr><td><code>Server</code></td><td>Escoltar, acceptar connexions i delegar-les.</td></tr>
+<tr><td><code>Session</code></td><td>Llegir/escriure al socket i controlar la vida de la conversa.</td></tr>
+<tr><td><code>Protocol</code></td><td>Interpretar una petició i construir una resposta.</td></tr>
+</tbody>
+</table>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">EchoProtocol.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class EchoProtocol {
+
+    public String respondre(String peticio) {
+
+        if (peticio.equalsIgnoreCase(&quot;fi&quot;)) {
+            return &quot;ADEU&quot;;
+        }
+
+        return peticio.toUpperCase();
+    }
+
+    public boolean finalitza(String peticio) {
+        return peticio.equalsIgnoreCase(&quot;fi&quot;);
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Ara aquesta lògica es pot provar sense obrir cap socket:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">EchoProtocol p = new EchoProtocol();
+
+System.out.println(p.respondre(&quot;hola&quot;));
+// HOLA
+
+System.out.println(p.finalitza(&quot;fi&quot;));
+// true</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Un protocol de xarxa és molt més fàcil de depurar si la seva lògica no depèn directament de la xarxa.</strong></p><p>Podeu provar centenars de peticions en memòria i deixar per a les proves d'integració només allò que realment necessita sockets.</p>
+    
+</div>
+
+
+<h3>Una sessió completa amb Runnable</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">EchoSession.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public final class EchoSession implements Runnable {
+
+    private final Socket socket;
+    private final EchoProtocol protocol =
+            new EchoProtocol();
+
+    public EchoSession(Socket socket) {
+        this.socket = socket;
+    }
+
+    @Override
+    public void run() {
+
+        try (socket;
+             BufferedReader in =
+                     new BufferedReader(
+                             new InputStreamReader(
+                                     socket.getInputStream(),
+                                     StandardCharsets.UTF_8));
+             PrintWriter out =
+                     new PrintWriter(
+                             socket.getOutputStream(),
+                             true,
+                             StandardCharsets.UTF_8)) {
+
+            String peticio;
+
+            while ((peticio = in.readLine()) != null) {
+
+                out.println(
+                        protocol.respondre(peticio)
+                );
+
+                if (protocol.finalitza(peticio)) {
+                    break;
+                }
+            }
+
+        } catch (IOException e) {
+            System.err.printf(
+                    &quot;[%s] %s%n&quot;,
+                    Thread.currentThread().getName(),
+                    e.getMessage()
+            );
+        }
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Protocol sense xarxa</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Extraieu la lògica del protocol de calculadora del bloc anterior a una classe independent. Proveu SUMA, RESTA, una ordre desconeguda i arguments incorrectes sense iniciar cap ServerSocket.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>El mètode de protocol rep String i retorna String.</li>
+        
+        <li>No captureu IOException dins del protocol: no hi ha xarxa.</li>
+        
+        <li>Reserveu la sessió per a lectura, escriptura i finalització.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat2_Bloc3_Seccio4">
+  <h2 id="Unitat2_Bloc3_Seccio4">4. Pools de fils, límits i tancament</h2>
+
+<p>El patró un fil per connexió funciona bé per entendre la concurrència i per a un nombre moderat de clients. Però té un problema evident: si arriben milers de connexions, crear un fil nou per a cadascuna pot consumir massa memòria i temps de planificació.</p>
+
+<p>Un <code>ExecutorService</code> permet limitar el nombre de sessions que s'executen simultàniament i reutilitzar els fils treballadors.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">EchoPoolServer.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class EchoPoolServer {
+
+    private static final int PORT = 5000;
+    private static final int FILS = 8;
+
+    public static void main(String[] args) throws Exception {
+
+        ExecutorService pool =
+                Executors.newFixedThreadPool(FILS);
+
+        try (ServerSocket servidor =
+                     new ServerSocket(PORT)) {
+
+            while (true) {
+                Socket client = servidor.accept();
+                pool.submit(new EchoSession(client));
+            }
+
+        } finally {
+            pool.shutdown();
+        }
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>La idea és senzilla:</p>
+<ul>
+<li>el <code>main</code> continua acceptant connexions;</li>
+<li>cada connexió es converteix en una tasca;</li>
+<li>el pool té un nombre limitat de fils;</li>
+<li>si hi ha més tasques que fils, algunes esperen a la cua.</li>
+</ul>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Un pool fixa els fils, no necessàriament la cua.</strong></p><p><code>Executors.newFixedThreadPool()</code> utilitza una cua que pot créixer molt. En serveis de producció, limitar només el nombre de fils pot no ser suficient: també cal pensar en el nombre màxim de connexions pendents i en polítiques de rebuig.</p>
+</div>
+
+
+<h3>Quan volem controlar també la cua</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">ThreadPoolExecutor pool =
+        new ThreadPoolExecutor(
+                4,                      // fils mínims
+                8,                      // fils màxims
+                60, TimeUnit.SECONDS,
+                new ArrayBlockingQueue&lt;&gt;(100),
+                new ThreadPoolExecutor.AbortPolicy()
+        );</code></pre>
+  </div>
+</div>
+
+
+<p>Aquest exemple explicita un límit de 100 tasques a la cua. Si el sistema arriba als seus límits, és millor tenir una política definida que deixar que el consum de recursos creixi sense control.</p>
+
+<h3>El cas subtil: què fem amb el Socket si submit falla?</h3>
+
+<p>Si una tasca és rebutjada, ningú atendrà aquell client. Per tant, el servidor ha de tancar el socket que acabava d'acceptar.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Socket client = servidor.accept();
+
+try {
+    pool.execute(new EchoSession(client));
+
+} catch (RejectedExecutionException e) {
+
+    try {
+        client.close();
+    } catch (IOException ignored) {
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<h3>Aturada ordenada</h3>
+
+<p>Quan el servei deixa d'acceptar clients, primer tanquem el <code>ServerSocket</code> o sortim del bucle d'acceptació. Després demanem al pool que acabi les sessions actives.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">pool.shutdown();
+
+try {
+    if (!pool.awaitTermination(
+            10, TimeUnit.SECONDS)) {
+
+        pool.shutdownNow();
+    }
+
+} catch (InterruptedException e) {
+    pool.shutdownNow();
+    Thread.currentThread().interrupt();
+}</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Disponibilitat no significa recursos infinits.</strong></p><p>Un servidor robust ha de continuar prestant servei sota càrrega raonable i ha de degradar-se de manera controlada quan arriba als seus límits.</p>
+    
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Del Thread al pool</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Substituïu la creació manual de fils del vostre servidor concurrent per un pool fix de quatre fils. Obriu sis clients i observeu quantes sessions poden estar treballant simultàniament.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">20 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>La classe de sessió no hauria de canviar si implementa Runnable.</li>
+        
+        <li>Mostreu el nom del fil del pool.</li>
+        
+        <li>Manteniu alguns clients ocupats per veure les sessions que esperen.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat2_Bloc3_Seccio5">
+  <h2 id="Unitat2_Bloc3_Seccio5">5. Provar, depurar i observar un servei de xarxa</h2>
+
+<p>Un servidor pot "estar en marxa" i, tot i així, funcionar malament. Per això no n'hi ha prou amb comprovar que el procés existeix. Hem de poder observar connexions, sessions, errors i temps d'espera.</p>
+
+<h3>Logs amb context</h3>
+
+<p>Un missatge com <code>Error de lectura</code> diu molt poc. En un servidor concurrent és millor afegir com a mínim client i fil:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">System.out.printf(
+        &quot;client=%s fil=%s event=%s%n&quot;,
+        socket.getRemoteSocketAddress(),
+        Thread.currentThread().getName(),
+        &quot;peticio_rebuda&quot;
+);</code></pre>
+  </div>
+</div>
+
+
+<h3>Proves que hauríeu de fer sempre</h3>
+
+<table class="table">
+<thead><tr><th>Prova</th><th>Què voleu descobrir?</th></tr></thead>
+<tbody>
+<tr><td>Client vàlid</td><td>El camí normal funciona.</td></tr>
+<tr><td>Client tanca sense enviar <code>fi</code></td><td>El servidor detecta EOF i allibera recursos.</td></tr>
+<tr><td>Ordre incorrecta</td><td>El protocol respon amb un error controlat.</td></tr>
+<tr><td>Diversos clients alhora</td><td>Una sessió no bloqueja les altres.</td></tr>
+<tr><td>Client molt lent</td><td>Entenem quant temps pot ocupar recursos.</td></tr>
+<tr><td>Servidor aturat</td><td>El client informa del problema i no queda en un estat confús.</td></tr>
+</tbody>
+</table>
+
+<h3>Un client de prova automàtic</h3>
+
+<p>No cal escriure a mà totes les proves. Podem crear un client que obri una connexió, enviï una petició coneguda i comprovi la resposta.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">static boolean comprovarServei()
+        throws IOException {
+
+    try (Socket socket =
+                 new Socket(&quot;localhost&quot;, 5000);
+         BufferedReader in =
+                 new BufferedReader(
+                         new InputStreamReader(
+                                 socket.getInputStream(),
+                                 StandardCharsets.UTF_8));
+         PrintWriter out =
+                 new PrintWriter(
+                         socket.getOutputStream(),
+                         true,
+                         StandardCharsets.UTF_8)) {
+
+        socket.setSoTimeout(2_000);
+
+        out.println(&quot;hola&quot;);
+        String resposta = in.readLine();
+
+        return &quot;HOLA&quot;.equals(resposta);
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Això és una verificació funcional mínima: no només mira si el port està obert, sinó si el protocol respon correctament.</p>
+
+<h3>Mesures útils</h3>
+
+<p>Quan el servei creix, és útil mantenir comptadors senzills:</p>
+<ul>
+<li>connexions acceptades;</li>
+<li>sessions actives;</li>
+<li>peticions processades;</li>
+<li>errors;</li>
+<li>temps de resposta;</li>
+<li>tasques en cua si utilitzem un pool.</li>
+</ul>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">AtomicInteger sessionsActives =
+        new AtomicInteger();
+
+sessionsActives.incrementAndGet();
+
+try {
+    // atendre la sessió
+} finally {
+    sessionsActives.decrementAndGet();
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Recordeu la unitat anterior: si diversos fils modifiquen el mateix estat, necessitem mecanismes segurs per concurrència. Un <code>AtomicInteger</code> és adequat per a un comptador simple.</p>
+
+<h3>Logs i monitoratge</h3>
+
+<p>Durant les pràctiques, <code>System.out</code> és suficient per veure què passa. En un servei mantingut convé utilitzar un sistema de logging que permeti nivells, format i destinacions configurables.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">private static final Logger LOG =
+        Logger.getLogger(
+                EchoPoolServer.class.getName());
+
+LOG.info(&quot;Servidor iniciat&quot;);
+
+LOG.log(
+        Level.WARNING,
+        &quot;Error atenent el client {0}&quot;,
+        socket.getRemoteSocketAddress()
+);</code></pre>
+  </div>
+</div>
+
+
+<p>Java també disposa de JMX per exposar mètriques i estat intern a eines de monitoratge. No cal implementar JMX per entendre la unitat, però sí retenir la idea: <strong>un servei observable ofereix informació sobre el seu estat sense obligar-nos a endevinar què passa des de fora</strong>.</p>
+
+<h3>Disponibilitat i fallades parcials</h3>
+
+<p>En una aplicació local, si una crida de mètode arriba al mètode, sabem que tots dos viuen al mateix procés. En xarxa apareix una dificultat nova: <strong>podem deixar de rebre resposta sense saber exactament què ha passat a l'altre costat</strong>.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Client envia petició
+        |
+        +-- es perd la connexió abans d&#39;arribar?
+        |
+Servidor processa la petició
+        |
+        +-- cau abans de respondre?
+        |
+Servidor envia resposta
+        |
+        +-- es perd la connexió durant la resposta?
+        |
+Client espera...</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Timeout no sempre significa "el servidor no ho ha fet".</strong></p><p>Pot significar que la petició no va arribar, que el servidor continua treballant o que la resposta es va perdre. Aquesta ambigüitat és una de les raons per les quals els protocols reals defineixen identificadors, operacions idempotents i estratègies de reintent.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Petita prova d'estrès</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Creeu 20 clients automàtics amb un ExecutorService. Cada client obre una connexió, envia una frase, comprova la resposta i tanca. Al servidor, compteu sessions actives i total de peticions.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Avançat</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">25 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Reutilitzeu el patró de pools de la unitat anterior.</li>
+        
+        <li>No compartiu un mateix Socket entre clients.</li>
+        
+        <li>Definiu un invariant final, per exemple: peticions correctes + errors = total intents.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+
+<!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Servidor concurrent">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Entenc per què un bucle accept-atendre continua sent seqüencial</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé implementar el patró un fil per client</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé què ha de tancar el main i què ha de tancar cada sessió</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc separar la sessió amb Runnable</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc separar protocol i transport</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé substituir fils manuals per ExecutorService</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Entenc que també cal limitar cues i recursos</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé gestionar una tasca rebutjada sense deixar un Socket obert</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé fer una aturada ordenada del pool</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc provar diversos clients i registrar informació útil del servei</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 3: Servidors concurrents i serveis robustos",
+  "description": "Acceptació de connexions, un fil per client, Runnable, pools de fils, límits, proves i disponibilitat",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Programació de serveis i processos — IOC",
+    "description": "Materials del mòdul DAM_0490 - Programació de serveis i processos"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                        
+                                        
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0490/unitat-2/bloc-2/" class="nav-button" aria-label="Bloc anterior: Construir clients i servidors amb sòcols">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0490/unitat-2/bloc-4/" class="nav-button" aria-label="Bloc següent: Protocols reals: serveis i correu electrònic">Següent →</a>
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="2" data-total="2">(2/2)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="3" data-total="4">(3/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 75%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="5">(1/5)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 20%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/dam_0490/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/dam_0490",
+        title: "Programació de serveis i processos",
+        version: "v1.0",
+        cicle_modul: "DAM_0490"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/dam_0490/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/dam_0490/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

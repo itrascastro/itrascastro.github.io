@@ -1,0 +1,14 @@
+<p>Aquesta unitat passa de la concurrència dins d'una màquina a la comunicació entre aplicacions a través d'una xarxa. Començarem pels conceptes que expliquen què identifica realment una connexió: adreces IP, ports, DNS, rols de client i servidor i diferències entre TCP i UDP. Després construirem clients i servidors amb Java, incorporarem concurrència per poder atendre diversos clients i acabarem implementant un servei real basat en un protocol de text: el correu electrònic.</p>
+
+<p>La progressió és la mateixa que a la unitat anterior: primer un exemple mínim que es pugui observar, després una petita variació i finalment una aplicació que combina diverses peces. L'objectiu no és memoritzar classes com <code>Socket</code>, <code>DatagramSocket</code> o <code>ServerSocket</code>, sinó entendre quin problema resol cadascuna i quin contracte de comunicació necessita l'aplicació.</p>
+
+<p><strong>Resultats d'aprenentatge treballats</strong></p>
+<table class="table">
+<tbody>
+<tr><th>RA3</th><td>Programa mecanismes de comunicació en xarxa emprant sòcols i analitzant l'escenari d'execució.</td></tr>
+<tr><th>RA4</th><td>Desenvolupa aplicacions que ofereixen serveis en xarxa, utilitzant llibreries de classes i aplicant criteris d'eficiència i disponibilitat.</td></tr>
+</tbody>
+</table>
+
+{% capture box_unitat2 %}<p><strong>Com estudiar aquesta unitat</strong></p><p>Executeu sempre servidor i client en terminals diferents i mireu què passa quan una de les dues parts no existeix, quan tanqueu una connexió inesperadament o quan envieu diversos missatges. En xarxa, entendre els errors és gairebé tan important com entendre el cas que funciona.</p>{% endcapture %}
+{% include info_box.html contingut=box_unitat2 %}
