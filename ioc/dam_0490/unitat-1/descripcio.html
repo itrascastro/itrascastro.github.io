@@ -1,6 +1,6 @@
-<p>Aquesta unitat parteix d'una idea molt simple: un programa modern gairebé mai no fa una sola cosa. Pot llegir dades, esperar una resposta de xarxa, processar informació, escriure fitxers i continuar atenent l'usuari. Per entendre com s'organitza tot això treballarem amb dos mecanismes: els processos i els fils.</p>
-<p>Els exemples comencen amb una sola idea i després les combinen. L'objectiu és que el codi es pugui provar, modificar i entendre abans de passar a un cas més gran.</p>
-{% include figura.html src="/assets/img/unitat-1/u1_00_mapa_unitat.svg" alt="Mapa general de la unitat amb quatre blocs: conceptes, processos, fils i ExecutorService." caption="Mapa general de la unitat." %}
+<p>Aquesta unitat introdueix la programació concurrent a partir d'exemples petits que es poden executar, modificar i entendre. Primer construirem un model mental clar de processos i fils. Després aprendrem a crear subprocessos amb Java, a treballar amb fils i recursos compartits, i finalment a organitzar moltes tasques amb <code>ExecutorService</code>.</p>
+
+<p>La idea és avançar de manera progressiva: una tècnica nova, un exemple mínim, una comprovació observable i només després una combinació més completa.</p>
 
 <p><strong>Resultats d'aprenentatge treballats</strong></p>
 <table class="table">
@@ -9,3 +9,6 @@
 <tr><th>RA2</th><td>Desenvolupa aplicacions compostes per diversos fils d'execució analitzant i aplicant llibreries específiques del llenguatge de programació.</td></tr>
 </tbody>
 </table>
+
+{% capture box_unitat %}<p><strong>Com estudiar aquesta unitat</strong></p><p>No memoritzeu les classes de Java com una llista. En cada exemple pregunteu-vos primer quin problema estem resolent: crear una tasca independent, esperar-ne el resultat, evitar un bloqueig, coordinar diversos fils o protegir dades compartides. Quan el problema és clar, l'API resulta molt més fàcil d'entendre.</p>{% endcapture %}
+{% include info_box.html contingut=box_unitat %}

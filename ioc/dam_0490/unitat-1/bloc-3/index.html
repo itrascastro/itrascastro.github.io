@@ -16,8 +16,8 @@
 <meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Bloc 3: Fils, memòria compartida i sincronització" />
 <meta property="og:locale" content="ca_ES" />
-<meta name="description" content="Materials pràctics i progressius de la unitat 1" />
-<meta property="og:description" content="Materials pràctics i progressius de la unitat 1" />
+<meta name="description" content="Creació de fils, cicle de vida, recursos compartits, condicions de cursa i mecanismes de sincronització" />
+<meta property="og:description" content="Creació de fils, cicle de vida, recursos compartits, condicions de cursa i mecanismes de sincronització" />
 <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-3/" />
 <meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-3/" />
 <meta property="og:site_name" content="Programació de serveis i processos" />
@@ -25,7 +25,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Bloc 3: Fils, memòria compartida i sincronització" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Materials pràctics i progressius de la unitat 1","headline":"Bloc 3: Fils, memòria compartida i sincronització","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-3/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Creació de fils, cicle de vida, recursos compartits, condicions de cursa i mecanismes de sincronització","headline":"Bloc 3: Fils, memòria compartida i sincronització","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-3/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
@@ -108,7 +108,7 @@
             
                 
                     <a href="/ioc/dam_0490/unitat-1/bloc-1/" class="nav-dropdown-item ">
-                        Unitat 1 - Bloc 1: Entendre què passa quan hi ha diverses tasques
+                        Unitat 1 - Bloc 1: Entendre la concurrència abans d'escriure codi
                     </a>
                 
                     <a href="/ioc/dam_0490/unitat-1/bloc-2/" class="nav-dropdown-item ">
@@ -120,7 +120,7 @@
                     </a>
                 
                     <a href="/ioc/dam_0490/unitat-1/bloc-4/" class="nav-dropdown-item ">
-                        Unitat 1 - Bloc 4: Gestionar moltes tasques amb ExecutorService
+                        Unitat 1 - Bloc 4: ExecutorService i aplicacions concurrents completes
                     </a>
                 
             
@@ -129,72 +129,6 @@
 
     <div class="container">
         <!-- Sidebar Navegació -->
-        
-        <aside class="sidebar">
-            <button class="sidebar-toggle" type="button" aria-expanded="false">
-                <span>Contingut del bloc</span>
-                <i class="bi bi-chevron-down" aria-hidden="true"></i>
-            </button>
-            <div class="sidebar-scroll">
-                <!-- Contingut d'aquest Bloc -->
-                <div class="sidebar-section">
-                    <h3>Contingut del Bloc</h3>
-                    
-
-
-
-  
-    
-    
-
-
-  
-    
-  
-    
-  
-    
-      
-      
-
-
-
-  
-    <div class="nav-item">
-      <a href="#Unitat1_Bloc3_Seccio1"
-         class="nav-link current"
-         data-section="Unitat1_Bloc3_Seccio1">1. Crear, esperar i entendre els fils</a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="#Unitat1_Bloc3_Seccio2"
-         class="nav-link"
-         data-section="Unitat1_Bloc3_Seccio2">2. Prioritat, fils dimoni i grups</a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="#Unitat1_Bloc3_Seccio3"
-         class="nav-link"
-         data-section="Unitat1_Bloc3_Seccio3">3. Compartir dades i sincronitzar</a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="#Unitat1_Bloc3_Seccio4"
-         class="nav-link"
-         data-section="Unitat1_Bloc3_Seccio4">4. Visibilitat i interbloqueig</a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="#Unitat1_Bloc3_Seccio5"
-         class="nav-link"
-         data-section="Unitat1_Bloc3_Seccio5">5. Coordinació i depuració</a>
-    </div>
-  
-
-
-                </div>
-            </div>
-        </aside>
         
 
         <main class="main-content" role="main" id="main-content">
@@ -252,15 +186,27 @@
 
 <!-- Contingut principal -->
 <div class="section" id="Unitat1_Bloc3_Seccio1">
-  <h2 id="Unitat1_Bloc3_Seccio1">1. Crear, esperar i entendre els fils</h2>
+  <h2 id="Unitat1_Bloc3_Seccio1">1. Crear, iniciar i esperar fils</h2>
 
-<p>La manera més simple d'entendre un fil és començar amb una tasca molt petita.</p>
+<p>Un procés Java comença amb un fil: <code>main</code>. A partir d'aquest fil podem crear-ne d'altres perquè diverses tasques estiguin en progrés dins de la mateixa JVM.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Recordeu la diferència</strong></p><p>Un fil nou no crea una JVM nova. Continua dins del mateix procés i comparteix els objectes del heap amb la resta de fils del procés.</p>
+    
+</div>
+
+
+<h3>La forma més simple: Runnable + Thread</h3>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
     <div class="code-info">
       <span class="code-lang">JAVA</span>
-      
+      <span class="code-filename">PrimerFil.java</span>
     </div>
     <div class="code-actions">
       <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
@@ -273,23 +219,48 @@
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class PrimerFil {
     public static void main(String[] args) throws InterruptedException {
-        Runnable tasca = () -&gt; {
-            System.out.println(
-                    &quot;Hola des de &quot; + Thread.currentThread().getName()
-            );
+
+        Runnable feina = () -&gt; {
+            String nom = Thread.currentThread().getName();
+            System.out.println(&quot;Treballant des de &quot; + nom);
         };
 
-        Thread fil = new Thread(tasca, &quot;fil-treballador&quot;);
+        Thread fil = new Thread(feina, &quot;treballador-1&quot;);
+
         fil.start();
 
+        System.out.println(&quot;El main continua&quot;);
         fil.join();
-        System.out.println(&quot;Programa acabat&quot;);
+
+        System.out.println(&quot;Tots dos han acabat&quot;);
     }
 }</code></pre>
   </div>
 </div>
 
-<p><code>start()</code> crea un nou flux d'execució. Cridar directament <code>run()</code> no ho fa.</p>
+
+<p><code>Runnable</code> descriu una tasca que no retorna un valor. <code>Thread</code> representa el fil que l'executarà. <code>start()</code> demana a la JVM que iniciï el nou fil.</p>
+
+
+<!-- Component: Problema -->
+<div class="problem-box" role="alert" aria-live="assertive">
+    <div class="component-header error-header" role="heading" aria-level="4"><i class="bi bi-x-circle" aria-hidden="true"></i> Problema</div>
+    <p><strong>Error típic:</strong> cridar <code>fil.run()</code> pensant que és equivalent a <code>fil.start()</code>.</p>
+</div>
+
+
+
+<!-- Component: Solució -->
+<div class="solution-box" role="region" aria-label="Solució">
+    <div class="component-header solution-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Solució</div>
+    <p><code>run()</code> és només un mètode normal. Si el crideu directament, s'executa en el fil actual. <code>start()</code> crea el nou camí d'execució i la JVM acaba invocant <code>run()</code> des d'aquest fil.</p>
+</div>
+
+
+<h3>Per què serveix join()?</h3>
+
+<p><code>join()</code> permet que un fil esperi la finalització d'un altre. No decideix en quin ordre s'executaran les instruccions anteriors. Només garanteix que, quan <code>join()</code> retorna, el fil esperat ja ha finalitzat.</p>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -306,102 +277,90 @@
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">fil.start(); // nou fil
-fil.run();   // crida normal de mètode</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Thread a = new Thread(() -&gt; System.out.println(&quot;A&quot;));
+Thread b = new Thread(() -&gt; System.out.println(&quot;B&quot;));
+
+a.start();
+b.start();
+
+a.join();
+b.join();
+
+System.out.println(&quot;FINAL&quot;);</code></pre>
   </div>
 </div>
 
-<p>També es pot heretar de <code>Thread</code>:</p>
 
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
+<p><code>A</code> i <code>B</code> poden aparèixer en qualsevol ordre. <code>FINAL</code>, en canvi, apareixerà després de tots dos.</p>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Ordre no determinista</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Creeu dos fils. Un imprimeix A1, A2, A3 i l'altre B1, B2, B3. Executeu el programa diverses vegades. Afegiu després un FINAL que només aparegui quan els dos fils hagin acabat.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">10 min</span>
       
     </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
 
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">class FilSalutacio extends Thread {
-    @Override
-    public void run() {
-        System.out.println(&quot;Hola des de &quot; + getName());
-    }
-}</code></pre>
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Useu start per iniciar els dos fils abans d'esperar.</li>
+        
+        <li>Useu join només després d'haver iniciat tots dos.</li>
+        
+        <li>No intenteu forçar un ordre entre A i B.</li>
+        
+      </ul>
+    </details>
+    
   </div>
 </div>
 
-<p>Per separar millor la tasca del mecanisme que l'executa, normalment és més flexible treballar amb <code>Runnable</code> o, més endavant, amb <code>Callable</code>.</p>
+</div>
 
-<h3>Esperar un fil amb <code>join()</code></h3>
+<div class="section" id="Unitat1_Bloc3_Seccio2">
+  <h2 id="Unitat1_Bloc3_Seccio2">2. Estats, context, prioritat i fils dimoni</h2>
 
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
+<p>Un fil canvia d'estat durant la seva vida. Java ho representa amb <code>Thread.State</code>.</p>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-1/07_estats_fil.svg" alt="Estats d'un fil Java: NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING i TERMINATED." class="figure-img"/>
       
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Thread f1 = new Thread(() -&gt; feina(&quot;A&quot;));
-Thread f2 = new Thread(() -&gt; feina(&quot;B&quot;));
-
-f1.start();
-f2.start();
-
-f1.join();
-f2.join();
-
-System.out.println(&quot;Totes les tasques han acabat&quot;);</code></pre>
-  </div>
-</div>
-
-<p><code>join()</code> fa que el fil actual esperi que un altre fil finalitzi.</p>
-<p>Hi ha un paral·lelisme conceptual amb els processos:</p>
-<table class="table"><thead><tr><th>Processos</th><th>Fils</th></tr></thead><tbody><tr><td><code>process.waitFor()</code></td><td><code>thread.join()</code></td></tr><tr><td>espera un procés</td><td>espera un fil</td></tr></tbody></table>
-
-<h3>Estats i context d'execució d'un fil</h3>
-<p>Java defineix aquests estats a <code>Thread.State</code>:</p>
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
+      <figcaption class="figure-caption">A Java, RUNNABLE agrupa tant un fil que està executant CPU com un fil preparat per executar-se.</figcaption>
       
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">NEW
-RUNNABLE
-BLOCKED
-WAITING
-TIMED_WAITING
-TERMINATED</code></pre>
+    </figure>
   </div>
 </div>
 
-<p>Una lectura pràctica és aquesta:</p>
-<ul><li><code>NEW</code>: l'objecte <code>Thread</code> existeix però encara no s'ha iniciat.</li><li><code>RUNNABLE</code>: està preparat o executant-se.</li><li><code>BLOCKED</code>: espera entrar en una secció protegida per un monitor.</li><li><code>WAITING</code>: espera sense límit de temps.</li><li><code>TIMED_WAITING</code>: espera amb un límit de temps, per exemple amb <code>sleep()</code>.</li><li><code>TERMINATED</code>: el mètode <code>run()</code> ja ha acabat.</li></ul>
+
+<table class="table">
+<thead><tr><th>Estat</th><th>Idea principal</th><th>Exemple</th></tr></thead>
+<tbody>
+<tr><td><code>NEW</code></td><td>Creat però encara no iniciat</td><td>Abans de <code>start()</code></td></tr>
+<tr><td><code>RUNNABLE</code></td><td>Pot executar-se o s'està executant</td><td>Treball normal</td></tr>
+<tr><td><code>BLOCKED</code></td><td>Espera entrar en una zona sincronitzada ocupada</td><td>Un altre fil té el monitor</td></tr>
+<tr><td><code>WAITING</code></td><td>Espera sense temps màxim</td><td><code>wait()</code>, <code>join()</code></td></tr>
+<tr><td><code>TIMED_WAITING</code></td><td>Espera amb límit temporal</td><td><code>sleep()</code>, <code>join(timeout)</code></td></tr>
+<tr><td><code>TERMINATED</code></td><td>Ha acabat</td><td>El mètode <code>run()</code> ha finalitzat</td></tr>
+</tbody>
+</table>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -420,21 +379,28 @@ TERMINATED</code></pre>
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Thread fil = new Thread(() -&gt; {
     try {
-        Thread.sleep(1000);
+        Thread.sleep(500);
     } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
     }
 });
 
-System.out.println(fil.getState());
+System.out.println(fil.getState()); // NEW
 fil.start();
+
+Thread.sleep(50);
+System.out.println(fil.getState()); // sovint TIMED_WAITING
+
 fil.join();
-System.out.println(fil.getState());</code></pre>
+System.out.println(fil.getState()); // TERMINATED</code></pre>
   </div>
 </div>
 
-<p>L'estat pot canviar entre dues instruccions. <code>getState()</code> serveix per observar i depurar, no per construir una coordinació fiable basada en sondejar contínuament el fil.</p>
-<p>Cada fil també té el seu propi context: pila de crides, variables locals, punt d'execució, nom, prioritat i estat.</p>
+
+<h3>Context d'execució</h3>
+
+<p>Cada fil té el seu propi context: pila de crides, variables locals de les seves crides, comptador d'instruccions i informació d'estat. En canvi, els objectes que hi ha al heap poden ser compartits.</p>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -452,31 +418,31 @@ System.out.println(fil.getState());</code></pre>
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Thread actual = Thread.currentThread();
-System.out.println(&quot;Nom: &quot; + actual.getName());
-System.out.println(&quot;Prioritat: &quot; + actual.getPriority());
-System.out.println(&quot;Estat: &quot; + actual.getState());</code></pre>
+
+System.out.println(actual.getName());
+System.out.println(actual.getId());
+System.out.println(actual.getState());
+System.out.println(actual.getPriority());</code></pre>
   </div>
 </div>
 
-<!-- Component: Figura amb peu -->
-<div class="figure-box" role="region" aria-label="Figura">
-  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
-  <div class="component-content">
-    <figure class="figure">
-      <img src="/ioc/dam_0490/assets/img/unitat-1/u1_04_estats_fil.svg" alt="Estats principals d'un fil Java." class="figure-img"/>
-      
-      <figcaption class="figure-caption">Estats principals d'un fil Java.</figcaption>
-      
-    </figure>
-  </div>
+
+<h3>Prioritat</h3>
+
+<p>La prioritat d'un fil és una <strong>pista per al planificador</strong>, no una ordre exacta. Java permet valors entre <code>Thread.MIN_PRIORITY</code> i <code>Thread.MAX_PRIORITY</code>, però el comportament concret depèn de la JVM i del sistema operatiu.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No utilitzeu la prioritat per garantir l'ordre d'un programa.</strong> Si necessiteu que una operació passi abans que una altra, feu servir mecanismes de sincronització.</p>
 </div>
 
-</div>
 
-<div class="section" id="Unitat1_Bloc3_Seccio2">
-  <h2 id="Unitat1_Bloc3_Seccio2">2. Prioritat, fils dimoni i grups</h2>
+<h3>Fils dimoni</h3>
 
-<p>La prioritat d'un fil va d'1 a 10:</p>
+<p>Un fil dimoni dona suport a altres tasques, però no manté la JVM viva per si sol. Quan només queden fils dimoni, la JVM pot finalitzar.</p>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -493,65 +459,32 @@ System.out.println(&quot;Estat: &quot; + actual.getState());</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Thread.MIN_PRIORITY
-Thread.NORM_PRIORITY
-Thread.MAX_PRIORITY</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Thread monitor = new Thread(() -&gt; {
+    while (true) {
+        // tasca auxiliar
+    }
+});
+
+monitor.setDaemon(true);
+monitor.start();</code></pre>
   </div>
 </div>
 
-<p>Podem canviar-la:</p>
 
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
 
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">fil.setPriority(Thread.MAX_PRIORITY);</code></pre>
-  </div>
+<!-- Component: Suggeriment d'ampliació simplificat -->
+<div class="suggestion-box" role="note">
+    <div class="component-header suggestion-header" role="heading" aria-level="4"><i class="bi bi-lightbulb" aria-hidden="true"></i> Suggeriment</div>
+    <p><strong>Per ampliar:</strong> <code>ThreadGroup</code> permet agrupar fils, consultar-los i aplicar algunes operacions conjuntes. És una API antiga i avui és més habitual estructurar la concurrència amb executors, però ajuda a entendre que els fils tenen context i organització pròpia dins de la JVM.</p>
 </div>
 
-<p>La prioritat és una indicació al planificador. No garanteix l'ordre d'execució. Un programa no ha de dependre de la idea que un fil amb prioritat 10 s'executarà abans que un fil amb prioritat 5.</p>
-<p>Un <strong>fil dimoni</strong> és un fil de suport que no impedeix que la JVM finalitzi quan ja no queden fils d'usuari.</p>
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Thread fil = new Thread(() -&gt; feinaEnSegonPla());
-fil.setDaemon(true);
-fil.start();</code></pre>
-  </div>
-</div>
-
-<p>No s'ha d'utilitzar per a una feina que s'hagi de completar obligatòriament.</p>
-<p>Java també té <code>ThreadGroup</code>. Forma part del model clàssic de fils, però avui és més habitual agrupar i gestionar tasques amb executors.</p>
 </div>
 
 <div class="section" id="Unitat1_Bloc3_Seccio3">
-  <h2 id="Unitat1_Bloc3_Seccio3">3. Compartir dades i sincronitzar</h2>
+  <h2 id="Unitat1_Bloc3_Seccio3">3. Recursos compartits i condicions de cursa</h2>
 
-<p>Mirem aquest comptador:</p>
+<p>La memòria compartida és útil perquè els fils poden treballar sobre els mateixos objectes. El problema apareix quan més d'un fil <strong>modifica</strong> el mateix estat.</p>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -569,16 +502,22 @@ fil.start();</code></pre>
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">class Comptador {
-    int valor = 0;
+    private int valor = 0;
 
-    void incrementar() {
+    public void incrementar() {
         valor++;
+    }
+
+    public int getValor() {
+        return valor;
     }
 }</code></pre>
   </div>
 </div>
 
-<p><code>valor++</code> sembla una sola acció, però conceptualment implica diverses operacions:</p>
+
+<p>A primera vista sembla impossible que <code>valor++</code> falli. Però aquesta expressió implica diversos passos conceptuals:</p>
+
 
 <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
   <div class="code-header">
@@ -595,56 +534,29 @@ fil.start();</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">llegir valor
-sumar 1
-escriure valor</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">1. llegir valor
+2. calcular valor + 1
+3. escriure el resultat</code></pre>
   </div>
 </div>
 
-<p>Dos fils poden intercalar-se així:</p>
 
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
+<p>Dos fils poden intercalar aquests passos:</p>
 
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">valor inicial = 10
-
-Fil A llegeix 10
-Fil B llegeix 10
-Fil A calcula 11
-Fil B calcula 11
-Fil A escriu 11
-Fil B escriu 11</code></pre>
-  </div>
-</div>
-
-<p>Esperàvem 12 i obtenim 11. S'ha perdut una actualització.</p>
-<p>Això és una <strong>condició de cursa</strong>: el resultat depèn de l'ordre imprevisible en què diversos fils accedeixen a un estat compartit.</p>
 <!-- Component: Figura amb peu -->
 <div class="figure-box" role="region" aria-label="Figura">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
   <div class="component-content">
     <figure class="figure">
-      <img src="/ioc/dam_0490/assets/img/unitat-1/u1_05_condicio_cursa.svg" alt="Dos fils perden un increment en un comptador compartit." class="figure-img"/>
+      <img src="/ioc/dam_0490/assets/img/unitat-1/08_condicio_cursa.svg" alt="Dos fils llegeixen el mateix valor 10, tots dos calculen 11 i tots dos escriuen 11, de manera que es perd un increment." class="figure-img"/>
       
-      <figcaption class="figure-caption">Dos fils perden un increment en un comptador compartit.</figcaption>
+      <figcaption class="figure-caption">Una actualització perduda és una forma clàssica de condició de cursa.</figcaption>
       
     </figure>
   </div>
 </div>
 
-<h3>Com provocar l'error</h3>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -661,46 +573,97 @@ Fil B escriu 11</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class ProvaCursa {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Comptador comptador = new Comptador();
 
-    static class Comptador {
-        int valor;
+int fils = 4;
+int incrementsPerFil = 100_000;
 
-        void incrementar() {
-            valor++;
+List&lt;Thread&gt; llista = new ArrayList&lt;&gt;();
+
+for (int i = 0; i &lt; fils; i++) {
+    Thread fil = new Thread(() -&gt; {
+        for (int j = 0; j &lt; incrementsPerFil; j++) {
+            comptador.incrementar();
         }
-    }
+    });
 
-    public static void main(String[] args) throws InterruptedException {
-        Comptador comptador = new Comptador();
+    llista.add(fil);
+    fil.start();
+}
 
-        Runnable tasca = () -&gt; {
-            for (int i = 0; i &lt; 100_000; i++) {
-                comptador.incrementar();
-            }
-        };
+for (Thread fil : llista) {
+    fil.join();
+}
 
-        Thread f1 = new Thread(tasca);
-        Thread f2 = new Thread(tasca);
-
-        f1.start();
-        f2.start();
-
-        f1.join();
-        f2.join();
-
-        System.out.println(&quot;Esperat: 200000&quot;);
-        System.out.println(&quot;Obtingut: &quot; + comptador.valor);
-    }
-}</code></pre>
+System.out.println(&quot;ESPERAT=&quot; + (fils * incrementsPerFil));
+System.out.println(&quot;OBTINGUT=&quot; + comptador.getValor());</code></pre>
   </div>
 </div>
 
-<p>L'error no ha d'aparèixer sempre. Aquesta és una de les dificultats de la concurrència: una execució correcta no demostra que el programa estigui ben sincronitzat.</p>
 
-<h3>Protegir una secció crítica amb <code>synchronized</code></h3>
-<p>Una <strong>secció crítica</strong> és una part del codi que accedeix a estat compartit i que ha d'estar coordinada amb altres accessos.</p>
-<p>Podem sincronitzar tot un mètode:</p>
+<p>És possible que el resultat sigui inferior a l'esperat. Potser una execució concreta surt bé, però això no demostra que el codi sigui segur.</p>
+
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Condició de cursa:</strong> Error en què el resultat depèn de l'ordre temporal amb què diversos fils accedeixen a dades compartides.</p>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Els errors de concurrència poden ser intermitents.</strong> Un programa que funciona cent vegades pot fallar a la cent una. Per això cal raonar sobre l'accés compartit i fer proves d'estrès.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Provoca l'error</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Executeu la prova del comptador diverses vegades. Augmenteu el nombre de fils o d'increments fins que observeu una pèrdua d'actualitzacions.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>No afegiu encara synchronized.</li>
+        
+        <li>Executeu la prova repetidament.</li>
+        
+        <li>Compareu sempre ESPERAT i OBTINGUT.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat1_Bloc3_Seccio4">
+  <h2 id="Unitat1_Bloc3_Seccio4">4. synchronized, volatile i atomicitat</h2>
+
+<h3>Protegir una secció crítica</h3>
+
+<p>Una <strong>secció crítica</strong> és una part del codi que accedeix a un recurs compartit i que no volem que sigui executada simultàniament per diversos fils.</p>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -718,7 +681,7 @@ Fil B escriu 11</code></pre>
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">class Comptador {
-    private int valor;
+    private int valor = 0;
 
     public synchronized void incrementar() {
         valor++;
@@ -731,31 +694,22 @@ Fil B escriu 11</code></pre>
   </div>
 </div>
 
-<p>O només un bloc:</p>
 
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
+<p>Quan un fil entra en un mètode <code>synchronized</code> d'un objecte, adquireix el monitor d'aquell objecte. Un altre fil que vulgui entrar en una zona sincronitzada protegida pel mateix monitor haurà d'esperar.</p>
 
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">synchronized (bloqueig) {
-    // secció crítica
-}</code></pre>
-  </div>
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>La pregunta correcta no és "hi ha synchronized?"</strong></p><p>La pregunta correcta és: totes les operacions que han de veure un estat coherent estan protegides pel mateix mecanisme? Sincronitzar només una part d'una operació composta pot continuar deixant inconsistències.</p>
+    
 </div>
 
-<p>La idea clau és que totes les operacions que s'han de coordinar utilitzin el mateix monitor o bloqueig.</p>
-<h3>Protegir diversos camps junts</h3>
+
+<h3>Bloc synchronized</h3>
+
+<p>No sempre cal sincronitzar tot el mètode:</p>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -772,48 +726,22 @@ Fil B escriu 11</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">class Estadistiques {
-    private int total;
-    private int correctes;
-    private int errors;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public void processar() {
+    ferCalculIndependent();
 
-    public synchronized void registrar(boolean correcte) {
-        total++;
-
-        if (correcte) {
-            correctes++;
-        } else {
-            errors++;
-        }
+    synchronized (this) {
+        totalProcessats++;
+        tempsAcumulat += 10;
     }
 }</code></pre>
   </div>
 </div>
 
-<p>Aquí hi ha una relació que volem conservar:</p>
 
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
+<p>La zona protegida convé que sigui tan petita com sigui possible, però prou gran per mantenir els invariants de l'objecte.</p>
 
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">total = correctes + errors</code></pre>
-  </div>
-</div>
+<h3>Mètodes estàtics sincronitzats</h3>
 
-<p>Aquesta relació és un <strong>invariant</strong>. Si el programa està ben sincronitzat, l'invariant s'ha de complir quan construïm el resultat final.</p>
-<h3><code>synchronized</code> en mètodes estàtics</h3>
-<p>Un mètode d'instància <code>synchronized</code> bloqueja l'objecte actual. Un mètode estàtic <code>synchronized</code> bloqueja l'objecte <code>Class</code>.</p>
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -830,19 +758,19 @@ Fil B escriu 11</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static synchronized void registrarGlobal() {
-    // bloqueig associat a LaClasse.class
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static synchronized void incrementarGlobal() {
+    totalGlobal++;
 }</code></pre>
   </div>
 </div>
 
-<p>No és el mateix bloqueig que el d'una instància concreta.</p>
-</div>
 
-<div class="section" id="Unitat1_Bloc3_Seccio4">
-  <h2 id="Unitat1_Bloc3_Seccio4">4. Visibilitat i interbloqueig</h2>
+<p>En un mètode estàtic, el monitor és l'objecte <code>Class</code> de la classe, no una instància concreta.</p>
 
-<p><code>volatile</code> serveix per fer visible entre fils el valor actual d'una variable.</p>
+<h3>Què resol volatile?</h3>
+
+<p><code>volatile</code> ajuda amb la <strong>visibilitat</strong>: una escriptura feta per un fil és visible per als altres fils que llegeixen aquella variable.</p>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -860,85 +788,36 @@ Fil B escriu 11</code></pre>
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">class Control {
-    volatile boolean actiu = true;
-}</code></pre>
-  </div>
-</div>
+    private volatile boolean aturar = false;
 
-<p>És útil per a un senyal simple com aquest. Però no converteix una operació composta en una operació indivisible.</p>
+    public void demanarAturada() {
+        aturar = true;
+    }
 
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">volatile int contador = 0;
-contador++;</code></pre>
-  </div>
-</div>
-
-<p>L'increment continua tenint lectura, càlcul i escriptura. Dos fils encara poden perdre actualitzacions.</p>
-<p>Per a un únic comptador podem utilitzar <code>synchronized</code> o classes com <code>AtomicInteger</code>. Si hem de modificar diversos camps mantenint una relació entre ells, protegir tota l'operació amb el mateix bloqueig acostuma a ser més clar.</p>
-
-<h3>Interbloqueig</h3>
-<p>Un <strong>interbloqueig</strong> o <em>deadlock</em> apareix quan diversos fils s'esperen mútuament i cap pot continuar.</p>
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Fil A té X i espera Y
-Fil B té Y i espera X</code></pre>
-  </div>
-</div>
-
-<p>Un exemple perillós és adquirir els mateixos bloquejos en ordres diferents.</p>
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">synchronized (compteA) {
-    synchronized (compteB) {
-        // ...
+    public void treballar() {
+        while (!aturar) {
+            // feina
+        }
     }
 }</code></pre>
   </div>
 </div>
 
-<p>I en un altre lloc:</p>
+
+<p>Aquí <code>volatile</code> és adequat perquè només ens interessa publicar un valor simple.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong><code>volatile</code> no converteix una operació composta en atòmica.</strong> Posar <code>volatile</code> a un enter no fa segur <code>contador++</code>, perquè l'increment continua implicant llegir, calcular i escriure.</p>
+</div>
+
+
+<h3>Atomicitat</h3>
+
+<p>Una operació és atòmica quan els altres fils no poden observar-la a mig fer. Per a comptadors simples, Java també ofereix classes com <code>AtomicInteger</code>:</p>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -955,35 +834,73 @@ Fil B té Y i espera X</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">synchronized (compteB) {
-    synchronized (compteA) {
-        // ...
-    }
-}</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">AtomicInteger comptador = new AtomicInteger();
+
+comptador.incrementAndGet();</code></pre>
   </div>
 </div>
 
-<p>Una mesura habitual és adquirir els bloquejos sempre en el mateix ordre. També ajuda reduir el nombre de bloquejos i mantenir petites les seccions crítiques.</p>
-<!-- Component: Figura amb peu -->
-<div class="figure-box" role="region" aria-label="Figura">
-  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+
+<p>Les classes atòmiques són molt útils per a operacions simples. Quan l'estat coherent depèn de diverses variables que s'han d'actualitzar juntes, un bloc <code>synchronized</code> acostuma a expressar millor la secció crítica.</p>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Repara el comptador</div>
   <div class="component-content">
-    <figure class="figure">
-      <img src="/ioc/dam_0490/assets/img/unitat-1/u1_06_deadlock.svg" alt="Dos fils bloquejats esperant dos recursos en ordre invers." class="figure-img"/>
+    
+    <div class="exercise-description">Afegiu sincronització al comptador de la secció anterior. Repetiu la prova d'estrès i comproveu que el resultat final compleix sempre l'invariant.</div>
+    
+
+    <div class="exercise-meta">
       
-      <figcaption class="figure-caption">Dos fils bloquejats esperant dos recursos en ordre invers.</figcaption>
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
       
-    </figure>
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Protegiu tant la modificació com les lectures que necessitin coherència.</li>
+        
+        <li>Feu moltes iteracions.</li>
+        
+        <li>No reduïu la prova fins que sigui massa fàcil.</li>
+        
+      </ul>
+    </details>
+    
   </div>
 </div>
 
 </div>
 
 <div class="section" id="Unitat1_Bloc3_Seccio5">
-  <h2 id="Unitat1_Bloc3_Seccio5">5. Coordinació i depuració</h2>
+  <h2 id="Unitat1_Bloc3_Seccio5">5. Coordinació: deadlock, wait/notify i semàfors</h2>
 
-<p>De vegades un fil no ha de continuar fins que es compleixi una condició.</p>
-<p>Un exemple és una bústia amb capacitat per a un sol missatge:</p>
+<h3>Deadlock</h3>
+
+<p>Sincronitzar evita unes errades, però pot crear-ne d'altres si diversos fils adquireixen bloquejos en ordres incompatibles.</p>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-1/09_deadlock.svg" alt="Fil A té el recurs X i espera Y, mentre Fil B té Y i espera X." class="figure-img"/>
+      
+      <figcaption class="figure-caption">En un deadlock, cada fil espera un recurs que no s'alliberarà perquè l'altre fil també està esperant.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -1000,10 +917,49 @@ Fil B té Y i espera X</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">class Bustia {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">synchronized (recursA) {
+    synchronized (recursB) {
+        // feina
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Si un altre lloc del programa adquireix primer <code>recursB</code> i després <code>recursA</code>, els dos fils es poden quedar esperant indefinidament.</p>
+
+
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Una prevenció molt efectiva:</strong> establiu un ordre global per adquirir els bloquejos i respecteu-lo a tot el programa.</p>
+</div>
+
+
+<h3>wait(), notify() i notifyAll()</h3>
+
+<p>Hi ha situacions en què un fil no ha d'avançar fins que una condició sigui certa. En lloc de consultar-la constantment, pot esperar sobre el monitor d'un objecte.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">Bústia.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">class Bústia {
     private String missatge;
 
-    public synchronized void posar(String text) {
+    public synchronized void posar(String nou) {
         while (missatge != null) {
             try {
                 wait();
@@ -1013,7 +969,7 @@ Fil B té Y i espera X</code></pre>
             }
         }
 
-        missatge = text;
+        missatge = nou;
         notifyAll();
     }
 
@@ -1036,12 +992,34 @@ Fil B té Y i espera X</code></pre>
   </div>
 </div>
 
-<p>Cal entendre quatre idees:</p>
-<ul><li><code>wait()</code> posa el fil en espera i allibera temporalment el monitor.</li><li><code>notify()</code> desperta un dels fils que espera aquell monitor.</li><li><code>notifyAll()</code> desperta tots els que hi esperen.</li><li>la condició s'ha de tornar a comprovar amb <code>while</code> quan el fil es desperta.</li></ul>
-<p>Aquest patró permet entendre el problema productor-consumidor. En aplicacions modernes també podem utilitzar estructures de nivell més alt, com <code>BlockingQueue</code>.</p>
 
-<h3>Semàfors i monitors</h3>
-<p>Un <strong>semàfor</strong> controla quantes tasques poden accedir a un recurs al mateix temps. El podem imaginar com un comptador de permisos.</p>
+<p><code>wait()</code> allibera temporalment el monitor i posa el fil en espera. <code>notifyAll()</code> desperta els fils que esperen aquell mateix monitor perquè tornin a comprovar la condició.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Comproveu la condició amb <code>while</code>, no amb <code>if</code>.</strong> Quan un fil es desperta, la condició pot haver deixat de ser certa abans que recuperi el monitor.</p>
+</div>
+
+
+<h3>Productor-consumidor</h3>
+
+<p>El patró productor-consumidor apareix quan unes tasques generen dades i unes altres les processen. El repte és coordinar els dos ritmes: el consumidor no ha d'intentar agafar dades inexistents i el productor no ha d'escriure sobre un espai ple.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Idea moderna</strong></p><p>Amb Java actual, una <code>BlockingQueue</code> resol molts casos de productor-consumidor sense haver de programar manualment <code>wait()</code> i <code>notifyAll()</code>. Entendre el mecanisme manual ajuda a entendre què està fent la cua per vosaltres.</p>
+    
+</div>
+
+
+<h3>Semàfors</h3>
+
+<p>Un semàfor limita quants fils poden accedir simultàniament a un recurs. Java ofereix <code>Semaphore</code> dins de <code>java.util.concurrent</code>.</p>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -1062,66 +1040,82 @@ Fil B té Y i espera X</code></pre>
 
 places.acquire();
 try {
-    utilitzarRecurs();
+    utilitzarRecursLimitat();
 } finally {
     places.release();
 }</code></pre>
   </div>
 </div>
 
-<p>Amb tres permisos, poden entrar com a màxim tres fils alhora.</p>
-<p>Un monitor associa dades, exclusió mútua i operacions d'espera i notificació. En Java, <code>synchronized</code>, <code>wait()</code> i <code>notifyAll()</code> permeten construir aquest tipus de coordinació.</p>
-<p>Per a l'EAC no cal implementar un semàfor propi. El que sí cal és entendre per què existeixen aquests mecanismes: evitar col·lisions i coordinar l'accés a recursos compartits.</p>
 
-<h3>Depurar un programa multifil</h3>
-<p>Un bon missatge de depuració ha d'indicar quina tasca s'està executant i quin fil la processa.</p>
+<p>Un semàfor amb tres permisos deixa entrar fins a tres fils al mateix temps. És útil quan el recurs admet una concurrència limitada, per exemple un conjunt petit de connexions.</p>
 
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
 
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">System.out.printf(
-        &quot;[%s] processant %s%n&quot;,
-        Thread.currentThread().getName(),
-        idTasca
-);</code></pre>
-  </div>
+<!-- Component: Suggeriment d'ampliació simplificat -->
+<div class="suggestion-box" role="note">
+    <div class="component-header suggestion-header" role="heading" aria-level="4"><i class="bi bi-lightbulb" aria-hidden="true"></i> Suggeriment</div>
+    <p><strong>Monitors, locks i cues concurrents</strong></p><p><code>synchronized</code>, <code>wait()</code> i <code>notifyAll()</code> es basen en monitors. Java també ofereix eines de més alt nivell com <code>Lock</code>, <code>Condition</code>, <code>BlockingQueue</code> i col·leccions concurrents. En molts problemes reals és millor reutilitzar aquestes abstraccions que implementar la coordinació manualment.</p>
 </div>
 
-<p>Amb un JDK podem obtenir un <em>thread dump</em>:</p>
 
-<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
+<p><strong>Comprovació abans de continuar</strong></p>
+<!-- Component: Checklist (sense contenidor extern) -->
 
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">jstack &lt;PID&gt;</code></pre>
+<div class="checklist-list" role="group" aria-label="Bloc 3">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé crear un fil amb Runnable i iniciar-lo amb start</div>
   </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé quan he d'utilitzar join</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Reconec els estats principals de Thread.State</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Entenc què comparteixen els fils i què pertany al context de cada fil</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc explicar una condició de cursa amb un exemple</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé protegir una secció crítica amb synchronized</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc explicar la diferència entre visibilitat i atomicitat</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé per què volatile no arregla un increment compost</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Entenc com es produeix un deadlock</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Entenc la idea de wait, notifyAll i Semaphore</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
 </div>
 
-<p>Això permet veure els fils, els seus estats i la seva pila de crides. És especialment útil quan sospitem que hi ha fils bloquejats o un interbloqueig.</p>
-<p>Per provar sincronització, no n'hi ha prou amb una execució petita. Convé repetir proves, augmentar el nombre d'operacions i comprovar invariants.</p>
 </div>
 
 
@@ -1141,7 +1135,7 @@ try {
   "@context": "https://schema.org",
   "@type": "LearningResource",
   "name": "Bloc 3: Fils, memòria compartida i sincronització",
-  "description": "Materials pràctics i progressius de la unitat 1",
+  "description": "Creació de fils, cicle de vida, recursos compartits, condicions de cursa i mecanismes de sincronització",
   "author": {
     "@type": "Organization",
     "name": "Institut Obert de Catalunya"
@@ -1228,7 +1222,7 @@ try {
                     
                     <div class="nav-link-wrapper">
                         
-                        <a href="/ioc/dam_0490/unitat-1/bloc-4/" class="nav-button" aria-label="Bloc següent: Gestionar moltes tasques amb ExecutorService">Següent →</a>
+                        <a href="/ioc/dam_0490/unitat-1/bloc-4/" class="nav-button" aria-label="Bloc següent: ExecutorService i aplicacions concurrents completes">Següent →</a>
                         
                     </div>
                 </div>
@@ -1286,7 +1280,7 @@ try {
       };
     </script>
     <!-- Scripts del lloc -->
-    <script src="/ioc/dam_0490/assets/js/site.js?v=1790418418" defer></script>
+    <script src="/ioc/dam_0490/assets/js/site.js" defer></script>
     <!-- Quadern Notes v2 (nou sistema) -->
     <script src="/ioc/dam_0490/assets/js/quadern-app/constants.js" defer></script>
     <script src="/ioc/dam_0490/assets/js/quadern-app/utils.js" defer></script>

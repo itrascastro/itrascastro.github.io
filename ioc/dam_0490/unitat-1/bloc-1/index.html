@@ -5,27 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <title>Bloc 1: Entendre què passa quan hi ha diverses tasques | Programació de serveis i processos - IOC</title>
+    <title>Bloc 1: Entendre la concurrència abans d'escriure codi | Programació de serveis i processos - IOC</title>
     <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
     <meta name="page-unitat" content="1">
     <meta name="page-bloc" content="1">
     
     <!-- SEO Tags -->
     <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Bloc 1: Entendre què passa quan hi ha diverses tasques | Programació de serveis i processos</title>
+<title>Bloc 1: Entendre la concurrència abans d’escriure codi | Programació de serveis i processos</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="Bloc 1: Entendre què passa quan hi ha diverses tasques" />
+<meta property="og:title" content="Bloc 1: Entendre la concurrència abans d’escriure codi" />
 <meta property="og:locale" content="ca_ES" />
-<meta name="description" content="Conceptes bàsics de processos, fils, concurrència i paral·lelisme" />
-<meta property="og:description" content="Conceptes bàsics de processos, fils, concurrència i paral·lelisme" />
+<meta name="description" content="Programa, procés i fil, concurrència, paral·lelisme, distribució i gestió del sistema operatiu" />
+<meta property="og:description" content="Programa, procés i fil, concurrència, paral·lelisme, distribució i gestió del sistema operatiu" />
 <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-1/" />
 <meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-1/" />
 <meta property="og:site_name" content="Programació de serveis i processos" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Bloc 1: Entendre què passa quan hi ha diverses tasques" />
+<meta property="twitter:title" content="Bloc 1: Entendre la concurrència abans d’escriure codi" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Conceptes bàsics de processos, fils, concurrència i paral·lelisme","headline":"Bloc 1: Entendre què passa quan hi ha diverses tasques","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-1/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Programa, procés i fil, concurrència, paral·lelisme, distribució i gestió del sistema operatiu","headline":"Bloc 1: Entendre la concurrència abans d’escriure codi","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-1/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
@@ -108,7 +108,7 @@
             
                 
                     <a href="/ioc/dam_0490/unitat-1/bloc-1/" class="nav-dropdown-item current">
-                        Unitat 1 - Bloc 1: Entendre què passa quan hi ha diverses tasques
+                        Unitat 1 - Bloc 1: Entendre la concurrència abans d'escriure codi
                     </a>
                 
                     <a href="/ioc/dam_0490/unitat-1/bloc-2/" class="nav-dropdown-item ">
@@ -120,7 +120,7 @@
                     </a>
                 
                     <a href="/ioc/dam_0490/unitat-1/bloc-4/" class="nav-dropdown-item ">
-                        Unitat 1 - Bloc 4: Gestionar moltes tasques amb ExecutorService
+                        Unitat 1 - Bloc 4: ExecutorService i aplicacions concurrents completes
                     </a>
                 
             
@@ -129,62 +129,6 @@
 
     <div class="container">
         <!-- Sidebar Navegació -->
-        
-        <aside class="sidebar">
-            <button class="sidebar-toggle" type="button" aria-expanded="false">
-                <span>Contingut del bloc</span>
-                <i class="bi bi-chevron-down" aria-hidden="true"></i>
-            </button>
-            <div class="sidebar-scroll">
-                <!-- Contingut d'aquest Bloc -->
-                <div class="sidebar-section">
-                    <h3>Contingut del Bloc</h3>
-                    
-
-
-
-  
-    
-    
-
-
-  
-    
-      
-      
-
-
-
-  
-    <div class="nav-item">
-      <a href="#Unitat1_Bloc1_Seccio1"
-         class="nav-link current"
-         data-section="Unitat1_Bloc1_Seccio1">1. Programa, procés i fil</a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="#Unitat1_Bloc1_Seccio2"
-         class="nav-link"
-         data-section="Unitat1_Bloc1_Seccio2">2. Concurrència, paral·lelisme i distribució</a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="#Unitat1_Bloc1_Seccio3"
-         class="nav-link"
-         data-section="Unitat1_Bloc1_Seccio3">3. Processos, planificació i tipus de tasques</a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="#Unitat1_Bloc1_Seccio4"
-         class="nav-link"
-         data-section="Unitat1_Bloc1_Seccio4">4. Quan convé un procés i quan convé un fil?</a>
-    </div>
-  
-
-
-                </div>
-            </div>
-        </aside>
         
 
         <main class="main-content" role="main" id="main-content">
@@ -219,7 +163,7 @@
                             
                                 <span class="horizontal-nav-separator"> &gt; </span>
                                 <span class="horizontal-nav-item current">
-                                    Bloc 1.1: Entendre què passa quan hi ha diverses tasques
+                                    Bloc 1.1: Entendre la concurrència abans d'escriure codi
                                 </span>
                             
                         
@@ -240,106 +184,195 @@
 <div class="section" id="Unitat1_Bloc1_Seccio1">
   <h2 id="Unitat1_Bloc1_Seccio1">1. Programa, procés i fil</h2>
 
-<p>Un <strong>programa</strong> és un conjunt d'instruccions. Mentre està guardat al disc és una cosa estàtica.</p>
-<p>Quan l'executem, el sistema operatiu crea un <strong>procés</strong>. El procés és la instància del programa que està funcionant en aquell moment.</p>
+<p>Abans de programar concurrència cal tenir molt clara una idea: <strong>programa, procés i fil no són sinònims</strong>. Si aquesta diferència queda clara, la resta de la unitat és molt més fàcil.</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">programa Java
-    |
-    | executar
-    v
-procés Java</code></pre>
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Programa:</strong> Conjunt d'instruccions guardades en un fitxer o conjunt de fitxers. És una descripció del que s'ha de fer, però encara no s'està executant.</p>
   </div>
 </div>
 
 
-<p>Si obrim dues vegades la mateixa aplicació, normalment obtenim dos processos diferents. Cada procés té els seus propis recursos i el seu propi espai de memòria.</p>
-<p>Dins d'un procés hi pot haver un o més <strong>fils</strong>. Un fil és un camí d'execució.</p>
-
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">PROCÉS
-|
-+-- fil main
-+-- fil treballador 1
-+-- fil treballador 2</code></pre>
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Procés:</strong> Instància d'un programa que està en execució. Té recursos propis, memòria pròpia i un estat que el sistema operatiu controla.</p>
   </div>
 </div>
 
 
-<p>Els fils d'un mateix procés comparteixen objectes i memòria del procés. Cada fil, però, manté el seu propi context d'execució, com ara la pila de crides i el punt del programa on es troba.</p>
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Fil:</strong> Camí d'execució dins d'un procés. Diversos fils del mateix procés comparteixen la memòria del procés, però cadascun manté el seu propi context d'execució.</p>
+  </div>
+</div>
 
-<table class="table">
-<thead><tr><th></th><th>Processos diferents</th><th>Fils del mateix procés</th></tr></thead>
-<tbody>
-<tr><td>Memòria</td><td>Separada</td><td>Compartida</td></tr>
-<tr><td>Aïllament</td><td>Alt</td><td>Baix</td></tr>
-<tr><td>Comunicació</td><td>Necessita un mecanisme específic</td><td>Poden compartir objectes</td></tr>
-<tr><td>Cost de creació</td><td>Més alt</td><td>Més baix</td></tr>
-<tr><td>Risc de condicions de cursa sobre objectes Java</td><td>No directament entre JVM independents</td><td>Sí</td></tr>
-</tbody>
-</table>
+
+<h3>Executable i servei</h3>
+
+<p>En documentació tècnica també apareixen dos termes relacionats:</p>
+<ul>
+<li>un <strong>executable</strong> és allò que el sistema pot iniciar com a programa;</li>
+<li>un <strong>servei</strong> és un procés pensat per mantenir-se actiu durant molt de temps i oferir una funció a altres parts del sistema.</li>
+</ul>
+
+<p>Un servidor web, per exemple, acostuma a executar-se com un servei: queda actiu esperant peticions i les va atenent a mesura que arriben.</p>
+
+<p>Penseu en una recepta de cuina. La recepta escrita és el <strong>programa</strong>. Quan algú comença a cuinar-la tenim un <strong>procés</strong>. Si dins de la cuina hi ha diverses persones fent parts diferents de la recepta al mateix temps, podem imaginar-les com a <strong>fils</strong> dins del mateix procés.</p>
 
 <!-- Component: Figura amb peu -->
 <div class="figure-box" role="region" aria-label="Figura">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
   <div class="component-content">
     <figure class="figure">
-      <img src="/ioc/dam_0490/assets/img/unitat-1/u1_01_programa_proces_fil.svg" alt="Diferència entre programa, processos i fils." class="figure-img"/>
+      <img src="/ioc/dam_0490/assets/img/unitat-1/01_programa_proces_fil.svg" alt="Relació entre un programa, dos processos independents i diversos fils dins d'un procés." class="figure-img"/>
       
-      <figcaption class="figure-caption">Els processos tenen memòria separada. Els fils d'un mateix procés comparteixen el heap.</figcaption>
+      <figcaption class="figure-caption">Un mateix programa pot originar diversos processos. Els fils d'un mateix procés comparteixen memòria.</figcaption>
       
     </figure>
   </div>
 </div>
 
 
-<h3>Executable, procés i servei</h3>
-<p>També convé distingir tres termes habituals:</p>
-<ul>
-<li>Un <strong>executable</strong> és allò que el sistema pot iniciar. En Java, la JVM executa el bytecode de les classes.</li>
-<li>Un <strong>procés</strong> és una execució concreta d'un programa.</li>
-<li>Un <strong>servei</strong> és un procés pensat per mantenir-se actiu i oferir una funció durant un període llarg, sovint en segon pla.</li>
-</ul>
-<p>Un servidor web és un bon exemple de servei: queda actiu esperant peticions i les va atenent quan arriben.</p>
+<p>Si executem dues vegades el mateix programa, normalment obtenim dos processos independents:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Programa Calculadora.class
+        |
+        +---- executar ----&gt; Procés A
+        |
+        +---- executar ----&gt; Procés B</code></pre>
+  </div>
+</div>
+
+
+<p>Els processos A i B poden executar exactament el mateix codi, però les seves variables no són les mateixes. Si A modifica una variable, B no veu aquest canvi perquè cada procés té el seu propi espai de memòria.</p>
+
+<p>En canvi, dins d'un procés amb diversos fils:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Procés Java
+|
++-- fil main
++-- fil treballador-1
++-- fil treballador-2
+|
++-- objectes compartits al heap</code></pre>
+  </div>
+</div>
+
+
+<p>Els tres fils poden accedir als mateixos objectes del heap. Aquesta possibilitat és molt potent, però també és l'origen de problemes que veurem més endavant, com les <strong>condicions de cursa</strong>.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Idea clau</strong></p><p>Els processos estan més aïllats. Els fils comparteixen més coses. Per això comunicar processos acostuma a requerir mecanismes explícits, mentre que comunicar fils pot ser tan simple com compartir un objecte. Precisament aquesta facilitat obliga a sincronitzar l'accés quan diversos fils poden modificar les mateixes dades.</p>
+    
+</div>
+
+
+<table class="table">
+<thead>
+<tr><th>Aspecte</th><th>Processos diferents</th><th>Fils del mateix procés</th></tr>
+</thead>
+<tbody>
+<tr><td>Memòria</td><td>Separada</td><td>Compartida</td></tr>
+<tr><td>Aïllament</td><td>Alt</td><td>Baix</td></tr>
+<tr><td>Comunicació</td><td>Arguments, streams, fitxers, sockets...</td><td>Objectes compartits, cues, estructures concurrents...</td></tr>
+<tr><td>Cost de creació</td><td>Normalment més alt</td><td>Normalment més baix</td></tr>
+<tr><td>Fallada d'una tasca</td><td>Pot quedar més aïllada</td><td>Pot afectar l'estat compartit del procés</td></tr>
+</tbody>
+</table>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Explica-ho sense codi</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Expliqueu amb les vostres paraules què passa si executeu dues vegades un mateix programa Java i compareu-ho amb un únic programa Java que crea tres fils.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">5 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Quants processos hi ha en cada cas?</li>
+        
+        <li>Quina memòria es comparteix?</li>
+        
+        <li>Què passa si una variable canvia en un dels processos?</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
 </div>
 
 <div class="section" id="Unitat1_Bloc1_Seccio2">
   <h2 id="Unitat1_Bloc1_Seccio2">2. Concurrència, paral·lelisme i distribució</h2>
 
-<p>Són conceptes relacionats, però no volen dir el mateix.</p>
+<p>Quan diverses tasques avancen durant el mateix interval de temps parlem de <strong>concurrència</strong>. No implica necessàriament que estiguin executant una instrucció exactament al mateix instant.</p>
 
-<h3>Concurrència</h3>
-<p>Hi ha diverses tasques en progrés durant el mateix interval de temps. En un únic nucli, el sistema pot alternar-les.</p>
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Concurrència:</strong> Organització d'un sistema en què diverses tasques poden estar en progrés durant el mateix interval de temps.</p>
+  </div>
+</div>
+
+
+<p>En un únic nucli, el sistema operatiu pot alternar ràpidament dues tasques:</p>
 
 
 <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
@@ -357,18 +390,23 @@ procés Java</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">temps ---&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">temps  --------------------------------------------------&gt;
 
-Tasca A: AAAA      AAAA       AAA
-Tasca B:     BBBBBB    BBBBBBB</code></pre>
+CPU     A A A | B B | A A | B B B | A | B B</code></pre>
   </div>
 </div>
 
 
-<p>Les dues avancen, encara que no estiguin executant instruccions exactament al mateix instant.</p>
+<p>Això és concurrència. A i B avancen, encara que la CPU només executi una d'elles en cada instant.</p>
 
-<h3>Paral·lelisme</h3>
-<p>Dues o més tasques s'executen realment al mateix temps, per exemple en nuclis diferents.</p>
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Paral·lelisme:</strong> Execució real de dues o més tasques al mateix temps, habitualment aprofitant diversos nuclis o processadors.</p>
+  </div>
+</div>
+
 
 
 <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
@@ -386,67 +424,136 @@ Tasca B:     BBBBBB    BBBBBBB</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Nucli 1: AAAAAAAAAAAAA
-Nucli 2: BBBBBBBBBBBBB</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">temps  ----------------------------------------&gt;
+
+Nucli 1  A A A A A A A A
+Nucli 2  B B B B B B B B</code></pre>
   </div>
 </div>
 
 
-<h3>Programació distribuïda</h3>
-<p>Les parts del sistema s'executen en màquines diferents i es comuniquen per xarxa.</p>
-
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Ordinador A  &lt;---- xarxa ----&gt;  Ordinador B</code></pre>
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Programació distribuïda:</strong> Execució coordinada de parts d'una aplicació en ordinadors diferents que es comuniquen a través d'una xarxa.</p>
   </div>
 </div>
 
-
-<p>Un programa pot ser concurrent sense ser paral·lel. També pot ser concurrent i paral·lel al mateix temps.</p>
 
 <!-- Component: Figura amb peu -->
 <div class="figure-box" role="region" aria-label="Figura">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
   <div class="component-content">
     <figure class="figure">
-      <img src="/ioc/dam_0490/assets/img/unitat-1/u1_02_concurrencia_paralelisme_distribucio.svg" alt="Comparació de concurrència, paral·lelisme i distribució." class="figure-img"/>
+      <img src="/ioc/dam_0490/assets/img/unitat-1/02_concurrencia_paralelisme_distribucio.svg" alt="Comparació visual entre concurrència, paral·lelisme i distribució." class="figure-img"/>
       
-      <figcaption class="figure-caption">Concurrència, paral·lelisme i distribució són conceptes relacionats, però diferents.</figcaption>
+      <figcaption class="figure-caption">Concurrent no vol dir necessàriament paral·lel. Distribuït implica màquines diferents.</figcaption>
       
     </figure>
+  </div>
+</div>
+
+
+<table class="table">
+<thead><tr><th>Pregunta</th><th>Concurrència</th><th>Paral·lelisme</th><th>Distribució</th></tr></thead>
+<tbody>
+<tr><td>Hi ha diverses tasques en progrés?</td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
+<tr><td>Han d'executar-se exactament al mateix instant?</td><td>No</td><td>Sí</td><td>No necessàriament</td></tr>
+<tr><td>Necessita diversos nuclis?</td><td>No</td><td>Normalment sí</td><td>No és el criteri principal</td></tr>
+<tr><td>Necessita diversos ordinadors?</td><td>No</td><td>No</td><td>Sí</td></tr>
+</tbody>
+</table>
+
+<h3>Avantatges i costos</h3>
+
+<table class="table">
+<thead><tr><th>Model</th><th>Avantatge habitual</th><th>Cost o dificultat</th></tr></thead>
+<tbody>
+<tr><td>Concurrència</td><td>Permet avançar altres tasques mentre una espera.</td><td>Cal coordinar tasques i gestionar possibles intercalats.</td></tr>
+<tr><td>Paral·lelisme</td><td>Pot reduir el temps de càlcul aprofitant diversos nuclis.</td><td>Només ajuda si el problema es pot dividir i el cost de coordinar no és excessiu.</td></tr>
+<tr><td>Distribució</td><td>Permet repartir càrrega i recursos entre màquines.</td><td>Apareixen latència de xarxa, fallades parcials i més complexitat de comunicació.</td></tr>
+</tbody>
+</table>
+
+<h3>Tasques CPU-bound i I/O-bound</h3>
+
+<p>No totes les tasques aprofiten igual la concurrència. Una tasca <strong>CPU-bound</strong> passa la major part del temps calculant. Una tasca <strong>I/O-bound</strong> passa molta estona esperant disc, xarxa, base de dades o altres operacions d'entrada i sortida.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Exemple</strong></p><p>Si una tasca espera dos segons una resposta de xarxa, la CPU podria aprofitar aquest temps per avançar una altra tasca. Si totes les tasques només fan càlcul intensiu, crear molts més fils que nuclis pot augmentar els canvis de context sense aportar més potència de càlcul.</p>
+    
+</div>
+
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Més fils no significa automàticament més velocitat.</strong> Un nombre excessiu de fils pot provocar més memòria utilitzada, més canvis de context i més competència pels recursos.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Classifica situacions</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Classifiqueu aquests casos: reproduir música mentre es descarrega un fitxer, dividir una imatge en quatre zones i processar-ne una a cada nucli, i una aplicació amb un servidor a Barcelona i un altre a Frankfurt.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">8 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>La primera pregunta és si hi ha diverses tasques en progrés.</li>
+        
+        <li>Per parlar de paral·lelisme cal execució simultània real.</li>
+        
+        <li>Per parlar de distribució calen màquines diferents.</li>
+        
+      </ul>
+    </details>
+    
   </div>
 </div>
 
 </div>
 
 <div class="section" id="Unitat1_Bloc1_Seccio3">
-  <h2 id="Unitat1_Bloc1_Seccio3">3. Processos, planificació i tipus de tasques</h2>
+  <h2 id="Unitat1_Bloc1_Seccio3">3. Estats, planificació i canvis de context</h2>
 
-<p>Quan s'inicia un procés, el sistema operatiu li assigna recursos i guarda informació necessària per controlar-lo. Aquesta informació forma part del <strong>bloc de control del procés</strong>, sovint anomenat BCP o PCB.</p>
-<p>Entre altres dades, el sistema necessita saber:</p>
-<ul>
-<li>quin procés és;</li>
-<li>en quin estat es troba;</li>
-<li>quin punt del programa estava executant;</li>
-<li>quins recursos té assignats;</li>
-<li>quina informació necessita recuperar quan torni a executar-se.</li>
-</ul>
+<p>Un procés no està sempre executant instruccions. Pot estar preparat per executar-se, pot estar esperant una operació d'entrada i sortida o pot haver finalitzat.</p>
 
-<p>Un model simplificat dels estats d'un procés és aquest:</p>
+<p>Un model simplificat és:</p>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-1/03_estats_proces.svg" alt="Diagrama simplificat dels estats d'un procés: nou, preparat, execució, espera i finalitzat." class="figure-img"/>
+      
+      <figcaption class="figure-caption">El sistema operatiu mou els processos entre estats segons els recursos disponibles i els esdeveniments que es produeixen.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
 
 
 <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
@@ -464,69 +571,182 @@ Nucli 2: BBBBBBBBBBBBB</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">NOU -&gt; PREPARAT -&gt; EXECUCIÓ -&gt; FINALITZAT
-          ^           |
-          |           v
-          +-------- ESPERA</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">NOU
+ |
+ v
+PREPARAT -----&gt; EXECUCIÓ -----&gt; FINALITZAT
+   ^              |
+   |              v
+   +----------- ESPERA</code></pre>
   </div>
 </div>
 
 
-<p>Un procés pot passar a espera perquè necessita dades del disc, de la xarxa, de l'usuari o d'un altre recurs. Quan ja pot continuar, torna a l'estat de preparat.</p>
-<p>Si hi ha més processos preparats que nuclis disponibles, el sistema operatiu decideix quin s'executa en cada moment. Això és la <strong>planificació</strong>.</p>
-<p>Quan la CPU deixa una tasca i continua amb una altra, s'ha de guardar el context de la primera i recuperar el de la segona. És un <strong>canvi de context</strong>. Té un cost, de manera que crear més processos o més fils no fa necessàriament que un programa sigui més ràpid.</p>
+<p>Quan un procés està <strong>preparat</strong>, podria executar-se però està esperant que el planificador li assigni CPU. Quan està en <strong>espera</strong>, no pot continuar fins que passi alguna cosa, com ara que arribin dades del disc.</p>
 
-<h3>Tasques de càlcul i tasques d'espera</h3>
-<ul>
-<li><strong>CPU-bound</strong>: la major part del temps es dedica a calcular.</li>
-<li><strong>I/O-bound</strong>: la major part del temps es dedica a esperar disc, xarxa, base de dades o altres operacions d'entrada i sortida.</li>
-</ul>
+<h3>Què necessita recordar el sistema operatiu?</h3>
 
-<p>La concurrència és especialment útil quan hi ha moltes tasques que passen una part del temps esperant. Mentre una espera, una altra pot avançar.</p>
-<p>En tasques molt intensives de càlcul, el nombre de nuclis disponibles té més importància. Crear cent fils en una màquina amb pocs nuclis no crea cent CPU.</p>
+<p>Per poder aturar temporalment un procés i reprendre'l més tard, el sistema operatiu manté informació de control. Aquesta informació acostuma a incloure l'identificador del procés, l'estat, registres, informació de memòria i recursos assignats. Sovint es parla del <strong>bloc de control del procés</strong> o PCB.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Canvi de context</strong></p><p>Quan la CPU deixa d'executar una tasca i passa a una altra, cal guardar l'estat de la primera i recuperar l'estat de la segona. Aquesta operació té un cost. La concurrència no és gratuïta.</p>
+    
+</div>
+
+
+<h3>Planificació</h3>
+
+<p>Si hi ha més tasques preparades que nuclis disponibles, el sistema operatiu decideix quina s'executa en cada moment. Aquesta decisió forma part de la <strong>planificació</strong>. El programador pot donar pistes, com la prioritat d'un fil, però no ha de suposar que controla exactament l'ordre d'execució.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No baseu mai la correcció d'un programa concurrent en un ordre accidental.</strong> Que una prova mostri sempre A abans que B al vostre ordinador no garanteix que això passi en una altra execució o en una altra màquina.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Prediu l'estat</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Imagineu un procés que demana dades al disc i no les rep immediatament. En quin estat té sentit que quedi? Què ha de passar perquè pugui tornar a competir per la CPU?</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">7 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Mentre espera el disc no pot avançar.</li>
+        
+        <li>Quan arriba la dada encara no implica que la CPU estigui lliure.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
 </div>
 
 <div class="section" id="Unitat1_Bloc1_Seccio4">
-  <h2 id="Unitat1_Bloc1_Seccio4">4. Quan convé un procés i quan convé un fil?</h2>
+  <h2 id="Unitat1_Bloc1_Seccio4">4. Comunicació, sincronització i elecció del model</h2>
+
+<p>Quan dividim una feina en diverses parts apareixen dues preguntes:</p>
+<ol>
+<li><strong>Com s'intercanvien informació?</strong></li>
+<li><strong>Com sabem quan poden continuar?</strong></li>
+</ol>
+
+<h3>Comunicació entre processos</h3>
+
+<p>Com que els processos tenen memòria separada, necessiten mecanismes explícits per intercanviar informació. En aquesta unitat treballarem especialment amb:</p>
+<ul>
+<li>arguments de línia de comandes;</li>
+<li>entrada estàndard, sortida estàndard i sortida d'error;</li>
+<li>fitxers;</li>
+<li>codis de sortida;</li>
+<li>espera de la finalització d'un procés.</li>
+</ul>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-1/04_comunicacio_processos.svg" alt="Procés pare que envia arguments i entrada a un procés fill i rep sortides i codi de finalització." class="figure-img"/>
+      
+      <figcaption class="figure-caption">Un procés pare i un procés fill no comparteixen directament els objectes Java.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+<h3>Compartició entre fils</h3>
+
+<p>Els fils d'un mateix procés poden accedir als mateixos objectes. Això simplifica la comunicació, però obliga a pensar en la <strong>sincronització</strong>. Si dos fils modifiquen el mateix objecte alhora, el resultat pot dependre de l'ordre exacte en què s'intercalen les instruccions.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Una regla útil</strong></p><p>Compartir dades és fàcil. Compartir dades correctament és la part difícil. Cada vegada que vegeu un objecte que serà modificat per més d'un fil, pregunteu-vos quin mecanisme garanteix la coherència.</p>
+</div>
+
+
+<h3>Quan convé un procés i quan convé un fil?</h3>
 
 <table class="table">
-<thead><tr><th>Necessitat</th><th>Mecanisme que encaixa millor</th></tr></thead>
+<thead><tr><th>Necessitat</th><th>Opció habitual</th><th>Per què?</th></tr></thead>
 <tbody>
-<tr><td>Executar una eina externa</td><td>Procés</td></tr>
-<tr><td>Aïllar una tasca de la resta de l'aplicació</td><td>Procés</td></tr>
-<tr><td>Compartir molts objectes dins de la mateixa aplicació</td><td>Fils</td></tr>
-<tr><td>Fer diverses tasques lleugeres dins de la mateixa JVM</td><td>Fils o un pool de fils</td></tr>
-<tr><td>Executar feina en altres màquines</td><td>Sistema distribuït</td></tr>
+<tr><td>Executar una eina externa</td><td>Procés</td><td>És un programa independent.</td></tr>
+<tr><td>Aïllar una tasca de la resta</td><td>Procés</td><td>La memòria queda separada.</td></tr>
+<tr><td>Compartir molts objectes Java</td><td>Fils</td><td>Treballen dins de la mateixa JVM.</td></tr>
+<tr><td>Executar moltes tasques petites semblants</td><td>Pool de fils</td><td>Evita crear i destruir un fil per cada tasca.</td></tr>
+<tr><td>Treballar en ordinadors diferents</td><td>Sistema distribuït</td><td>La comunicació es fa per xarxa.</td></tr>
 </tbody>
 </table>
 
-<p>En aquesta unitat veurem els dos casos. Primer llançarem programes independents amb processos. Després executarem moltes tasques dins de la mateixa JVM amb fils.</p>
 
-<h3>Abans de continuar</h3>
-<p>Si aquestes frases tenen sentit, la base està clara:</p>
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Model mental complet</strong></p><p>Un programa pot originar processos. Un procés pot contenir diversos fils. Els processos estan aïllats i es comuniquen amb mecanismes explícits. Els fils comparteixen memòria i per això necessiten sincronització quan modifiquen estat compartit.</p>
+</div>
 
 
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
+<p><strong>Comprovació abans de continuar</strong></p>
+<!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Bloc 1">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc distingir programa, procés i fil</div>
   </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Un programa no és un procés.
-Un procés pot tenir diversos fils.
-Dos processos estan aïllats.
-Dos fils del mateix procés comparteixen memòria.
-Concurrent no vol dir necessàriament paral·lel.</code></pre>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc explicar concurrència sense confondre-la amb paral·lelisme</div>
   </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc explicar què fa el sistema operatiu quan hi ha més tasques que CPU disponibles</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Entenc què és un canvi de context</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé per què dos processos necessiten un mecanisme explícit per comunicar-se</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé per què compartir memòria entre fils pot provocar problemes</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
 </div>
 
 </div>
@@ -547,8 +767,8 @@ Concurrent no vol dir necessàriament paral·lel.</code></pre>
 {
   "@context": "https://schema.org",
   "@type": "LearningResource",
-  "name": "Bloc 1: Entendre què passa quan hi ha diverses tasques",
-  "description": "Conceptes bàsics de processos, fils, concurrència i paral·lelisme",
+  "name": "Bloc 1: Entendre la concurrència abans d'escriure codi",
+  "description": "Programa, procés i fil, concurrència, paral·lelisme, distribució i gestió del sistema operatiu",
   "author": {
     "@type": "Organization",
     "name": "Institut Obert de Catalunya"
@@ -675,7 +895,7 @@ Concurrent no vol dir necessàriament paral·lel.</code></pre>
       };
     </script>
     <!-- Scripts del lloc -->
-    <script src="/ioc/dam_0490/assets/js/site.js?v=1790418418" defer></script>
+    <script src="/ioc/dam_0490/assets/js/site.js" defer></script>
     <!-- Quadern Notes v2 (nou sistema) -->
     <script src="/ioc/dam_0490/assets/js/quadern-app/constants.js" defer></script>
     <script src="/ioc/dam_0490/assets/js/quadern-app/utils.js" defer></script>

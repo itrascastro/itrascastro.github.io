@@ -16,8 +16,8 @@
 <meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Unitat 1: Processos i fils (RA1, RA2)" />
 <meta property="og:locale" content="ca_ES" />
-<meta name="description" content="Programació multiprocés, programació multifil, sincronització i gestió de tasques concurrents amb Java" />
-<meta property="og:description" content="Programació multiprocés, programació multifil, sincronització i gestió de tasques concurrents amb Java" />
+<meta name="description" content="Programació multiprocés i multifil amb Java" />
+<meta property="og:description" content="Programació multiprocés i multifil amb Java" />
 <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-1/" />
 <meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0490/unitat-1/" />
 <meta property="og:site_name" content="Programació de serveis i processos" />
@@ -25,7 +25,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Unitat 1: Processos i fils (RA1, RA2)" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Programació multiprocés, programació multifil, sincronització i gestió de tasques concurrents amb Java","headline":"Unitat 1: Processos i fils (RA1, RA2)","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-1/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Programació multiprocés i multifil amb Java","headline":"Unitat 1: Processos i fils (RA1, RA2)","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-1/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
@@ -108,7 +108,7 @@
             
                 
                     <a href="/ioc/dam_0490/unitat-1/bloc-1/" class="nav-dropdown-item ">
-                        Unitat 1 - Bloc 1: Entendre què passa quan hi ha diverses tasques
+                        Unitat 1 - Bloc 1: Entendre la concurrència abans d'escriure codi
                     </a>
                 
                     <a href="/ioc/dam_0490/unitat-1/bloc-2/" class="nav-dropdown-item ">
@@ -120,7 +120,7 @@
                     </a>
                 
                     <a href="/ioc/dam_0490/unitat-1/bloc-4/" class="nav-dropdown-item ">
-                        Unitat 1 - Bloc 4: Gestionar moltes tasques amb ExecutorService
+                        Unitat 1 - Bloc 4: ExecutorService i aplicacions concurrents completes
                     </a>
                 
             
@@ -177,21 +177,9 @@
     <div class="unit-introduction">
         <h2>Descripció de la Unitat</h2>
         <div class="unit-description-content">
-            <p>Aquesta unitat parteix d'una idea molt simple: un programa modern gairebé mai no fa una sola cosa. Pot llegir dades, esperar una resposta de xarxa, processar informació, escriure fitxers i continuar atenent l'usuari. Per entendre com s'organitza tot això treballarem amb dos mecanismes: els processos i els fils.</p>
-<p>Els exemples comencen amb una sola idea i després les combinen. L'objectiu és que el codi es pugui provar, modificar i entendre abans de passar a un cas més gran.</p>
-<!-- Component: Figura amb peu -->
-<div class="figure-box" role="region" aria-label="Figura">
-  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
-  <div class="component-content">
-    <figure class="figure">
-      <img src="/ioc/dam_0490/assets/img/unitat-1/u1_00_mapa_unitat.svg" alt="Mapa general de la unitat amb quatre blocs: conceptes, processos, fils i ExecutorService." class="figure-img"/>
-      
-      <figcaption class="figure-caption">Mapa general de la unitat.</figcaption>
-      
-    </figure>
-  </div>
-</div>
+            <p>Aquesta unitat introdueix la programació concurrent a partir d'exemples petits que es poden executar, modificar i entendre. Primer construirem un model mental clar de processos i fils. Després aprendrem a crear subprocessos amb Java, a treballar amb fils i recursos compartits, i finalment a organitzar moltes tasques amb <code>ExecutorService</code>.</p>
 
+<p>La idea és avançar de manera progressiva: una tècnica nova, un exemple mínim, una comprovació observable i només després una combinació més completa.</p>
 
 <p><strong>Resultats d'aprenentatge treballats</strong></p>
 <table class="table">
@@ -200,6 +188,15 @@
 <tr><th>RA2</th><td>Desenvolupa aplicacions compostes per diversos fils d'execució analitzant i aplicant llibreries específiques del llenguatge de programació.</td></tr>
 </tbody>
 </table>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Com estudiar aquesta unitat</strong></p><p>No memoritzeu les classes de Java com una llista. En cada exemple pregunteu-vos primer quin problema estem resolent: crear una tasca independent, esperar-ne el resultat, evitar un bloqueig, coordinar diversos fils o protegir dades compartides. Quan el problema és clar, l'API resulta molt més fàcil d'entendre.</p>
+    
+</div>
+
 
         </div>
     </div>
@@ -210,14 +207,13 @@
                 <div class="block-card">
                     <div class="block-card-header">
                         <span class="block-number">1.1</span>
-                        <h3 class="block-title">Entendre què passa quan hi ha diverses tasques</h3>
+                        <h3 class="block-title">Entendre la concurrència abans d'escriure codi</h3>
                     </div>
                     <div class="block-summary">
                         <h4 class="summary-title">Què aprendreu:</h4>
                         <div class="block-description">
-                            <p>Conceptes bàsics per entendre què passa quan una aplicació fa diverses coses alhora.</p>
-<ul><li>Programa, procés i fil</li><li>Concurrència, paral·lelisme i distribució</li><li>Gestió dels processos pel sistema operatiu</li><li>Tasques de càlcul i d'espera</li><li>Quan convé un procés i quan convé un fil</li></ul>
-
+                            <p>Construireu el model mental necessari per entendre la resta de la unitat.</p>
+<ul><li>Diferència entre programa, procés i fil.</li><li>Concurrència, paral·lelisme i distribució.</li><li>Estats dels processos, planificació i canvis de context.</li><li>Comunicació, sincronització i criteris per escollir processos o fils.</li></ul>
                         </div>
                     </div>
                     <a href="/ioc/dam_0490/unitat-1/bloc-1/" class="block-action">
@@ -233,9 +229,8 @@
                     <div class="block-summary">
                         <h4 class="summary-title">Què aprendreu:</h4>
                         <div class="block-description">
-                            <p>Creació i control de processos externs des de Java.</p>
-<ul><li>El primer procés fill amb <code>ProcessBuilder</code></li><li>Executar una altra classe Java</li><li>Arguments, sortides i codis de retorn</li><li>Timeouts i processos concurrents</li><li>Fitxers, validació i monitoratge</li></ul>
-
+                            <p>Aprendreu a executar i controlar programes independents des d'una aplicació Java.</p>
+<ul><li><code>ProcessBuilder</code> i processos pare i fill.</li><li>Arguments, entrada i sortida, fitxers i codis de retorn.</li><li>Timeouts i finalització segura.</li><li>Llançament concurrent de diversos processos.</li><li>Monitoratge i depuració amb <code>Process</code> i <code>ProcessHandle</code>.</li></ul>
                         </div>
                     </div>
                     <a href="/ioc/dam_0490/unitat-1/bloc-2/" class="block-action">
@@ -251,9 +246,8 @@
                     <div class="block-summary">
                         <h4 class="summary-title">Què aprendreu:</h4>
                         <div class="block-description">
-                            <p>Fils, memòria compartida i problemes que apareixen quan diverses tasques accedeixen a les mateixes dades.</p>
-<ul><li>Crear i esperar fils</li><li>Estats i context d'execució</li><li>Dades compartides i condicions de cursa</li><li><code>synchronized</code>, <code>volatile</code> i visibilitat</li><li>Interbloqueig, wait/notify i semàfors</li></ul>
-
+                            <p>Treballareu amb diversos camins d'execució dins de la mateixa JVM i veureu per què compartir memòria exigeix coordinació.</p>
+<ul><li><code>Thread</code>, <code>Runnable</code>, <code>start()</code> i <code>join()</code>.</li><li>Estats, context, prioritat i fils dimoni.</li><li>Condicions de cursa i seccions crítiques.</li><li><code>synchronized</code>, <code>volatile</code> i atomicitat.</li><li>Deadlock, <code>wait()</code>, <code>notifyAll()</code> i semàfors.</li></ul>
                         </div>
                     </div>
                     <a href="/ioc/dam_0490/unitat-1/bloc-3/" class="block-action">
@@ -264,14 +258,13 @@
                 <div class="block-card">
                     <div class="block-card-header">
                         <span class="block-number">1.4</span>
-                        <h3 class="block-title">Gestionar moltes tasques amb ExecutorService</h3>
+                        <h3 class="block-title">ExecutorService i aplicacions concurrents completes</h3>
                     </div>
                     <div class="block-summary">
                         <h4 class="summary-title">Què aprendreu:</h4>
                         <div class="block-description">
-                            <p>Gestió de moltes tasques concurrents sense haver de crear i controlar manualment cada fil.</p>
-<ul><li><code>ExecutorService</code> i pools de fils</li><li><code>Runnable</code>, <code>Callable</code> i <code>Future</code></li><li>Timeouts, cancel·lació i interrupció</li><li>Estat compartit i resultats coherents</li><li>Pràctiques progressives de consolidació</li></ul>
-
+                            <p>Passareu de crear fils manualment a gestionar tasques concurrents amb eines de més alt nivell.</p>
+<ul><li><code>ExecutorService</code> i pools de fils.</li><li><code>Runnable</code>, <code>Callable</code> i <code>Future</code>.</li><li>Timeouts, cancel·lació i tancament correcte.</li><li>Estat compartit, invariants i mesura del temps.</li><li>Disseny i prova d'una aplicació concurrent completa.</li></ul>
                         </div>
                     </div>
                     <a href="/ioc/dam_0490/unitat-1/bloc-4/" class="block-action">
@@ -330,7 +323,7 @@
       };
     </script>
     <!-- Scripts del lloc -->
-    <script src="/ioc/dam_0490/assets/js/site.js?v=1790418418" defer></script>
+    <script src="/ioc/dam_0490/assets/js/site.js" defer></script>
     <!-- Quadern Notes v2 (nou sistema) -->
     <script src="/ioc/dam_0490/assets/js/quadern-app/constants.js" defer></script>
     <script src="/ioc/dam_0490/assets/js/quadern-app/utils.js" defer></script>

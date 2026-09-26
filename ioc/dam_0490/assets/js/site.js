@@ -560,110 +560,37 @@ function initializeBookmark(){
 
 // Resaltat de la secció actual al TOC del sidebar (H2)
 function initializeTocActive() {
-  const tocLinks = Array.from(document.querySelectorAll('.sidebar .nav-link[data-section]'));
+  const tocLinks = Array.from(document.querySelectorAll('.sidebar .nav-link'));
   if (tocLinks.length === 0) return;
+  const headerEl = document.querySelector('.header');
+  const headerOffset = (headerEl ? headerEl.offsetHeight : 0) + 20;
 
-  const entries = tocLinks.map(link => {
-    const id = link.getAttribute('data-section') || '';
-    // La secció és el contenidor estable del contingut. Evitem dependre de l'H2.
-    const section = id ? document.querySelector('.content-body .section#' + CSS.escape(id)) : null;
-    return { link, id, section };
-  }).filter(entry => entry.section);
-
-  if (entries.length === 0) return;
-
-  let activeId = '';
-  let rafPending = false;
-
-  const setActive = (id) => {
-    if (!id) id = entries[0].id;
-    activeId = id;
-    entries.forEach(entry => {
-      const isCurrent = entry.id === id;
-      entry.link.classList.toggle('current', isCurrent);
-      if (isCurrent) entry.link.setAttribute('aria-current', 'location');
-      else entry.link.removeAttribute('aria-current');
-    });
-  };
-
-  const chooseVisibleSection = () => {
-    const header = document.querySelector('.header');
-    const headerBottom = (header ? header.getBoundingClientRect().bottom : 0) + 12;
-    const footer = document.querySelector('.footer');
-    const footerTop = footer ? Math.min(window.innerHeight, footer.getBoundingClientRect().top) : window.innerHeight;
-    const viewportBottom = Math.max(headerBottom + 1, footerTop);
-
-    // A la part superior de la pàgina, la primera secció sempre és l'activa.
-    if (window.scrollY <= 2) return entries[0].id;
-
-    // Al final de la pàgina, la darrera secció sempre és l'activa.
-    const docBottom = Math.ceil(window.innerHeight + window.scrollY);
-    const fullHeight = Math.ceil(Math.max(document.documentElement.scrollHeight, document.body.scrollHeight));
-    if (docBottom >= fullHeight - 2) return entries[entries.length - 1].id;
-
-    // Triem la secció amb més superfície visible. Això funciona també
-    // quan hi ha seccions curtes que no arriben a creuar una línia fixa.
-    let best = entries[0];
-    let bestVisible = -1;
-
-    entries.forEach(entry => {
-      const rect = entry.section.getBoundingClientRect();
-      const visibleTop = Math.max(rect.top, headerBottom);
-      const visibleBottom = Math.min(rect.bottom, viewportBottom);
-      const visible = Math.max(0, visibleBottom - visibleTop);
-
-      if (visible > bestVisible) {
-        bestVisible = visible;
-        best = entry;
-      }
-    });
-
-    // Si cap secció ocupa encara l'àrea visible, usem l'última que ja ha començat.
-    if (bestVisible <= 0) {
-      best = entries[0];
-      for (const entry of entries) {
-        if (entry.section.getBoundingClientRect().top <= headerBottom + 1) best = entry;
-        else break;
-      }
-    }
-
-    return best.id;
-  };
+  const getHeaders = () => Array.from(document.querySelectorAll('.content-body h2'));
 
   const updateActive = () => {
-    rafPending = false;
-    setActive(chooseVisibleSection());
-  };
+    const headers = getHeaders();
+    if (headers.length === 0) return;
+    const yRef = window.scrollY + headerOffset + (window.innerHeight - headerOffset) * 0.25;
+    let idx = 0;
+    for (let i = 0; i < headers.length; i++) {
+      const top = headers[i].getBoundingClientRect().top + window.scrollY;
+      if (top <= yRef) idx = i; else break;
+    }
+    const docBottom = Math.ceil(window.innerHeight + window.scrollY);
+    const fullHeight = Math.ceil(document.documentElement.scrollHeight || document.body.scrollHeight);
+    if (docBottom >= fullHeight - 2) idx = headers.length - 1;
 
-  const requestUpdate = () => {
-    if (rafPending) return;
-    rafPending = true;
-    requestAnimationFrame(updateActive);
-  };
-
-  // Resposta immediata al clic, abans que acabi l'scroll suau.
-  entries.forEach(entry => {
-    entry.link.addEventListener('click', () => {
-      setActive(entry.id);
-      // L'scroll suau pot durar uns centenars de ms. Recalculem al final.
-      window.setTimeout(requestUpdate, 450);
+    const currentId = headers[idx]?.id || '';
+    tocLinks.forEach(a => {
+      if (a.getAttribute('data-section') === currentId) a.classList.add('current');
+      else a.classList.remove('current');
     });
-  });
+  };
 
-  // Estat inicial. Si hi ha hash, el respectem.
-  const hashId = decodeURIComponent((window.location.hash || '').replace(/^#/, ''));
-  if (hashId && entries.some(entry => entry.id === hashId)) setActive(hashId);
-  else setActive(entries[0].id);
-
-  requestAnimationFrame(updateActive);
-  window.addEventListener('load', updateActive);
-  window.addEventListener('scroll', requestUpdate, { passive: true });
-  window.addEventListener('resize', requestUpdate);
-  window.addEventListener('hashchange', () => {
-    const id = decodeURIComponent((window.location.hash || '').replace(/^#/, ''));
-    if (id && entries.some(entry => entry.id === id)) setActive(id);
-    requestUpdate();
-  });
+  updateActive();
+  window.addEventListener('scroll', updateActive, { passive: true });
+  window.addEventListener('resize', updateActive);
+  window.addEventListener('hashchange', updateActive);
 }
 
 // Copiar prompt d'IA des d'una textarea amb botó copy

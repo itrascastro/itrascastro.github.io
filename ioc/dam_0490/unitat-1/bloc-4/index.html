@@ -5,27 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <title>Bloc 4: Gestionar moltes tasques amb ExecutorService | Programació de serveis i processos - IOC</title>
+    <title>Bloc 4: ExecutorService i aplicacions concurrents completes | Programació de serveis i processos - IOC</title>
     <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
     <meta name="page-unitat" content="1">
     <meta name="page-bloc" content="4">
     
     <!-- SEO Tags -->
     <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Bloc 4: Gestionar moltes tasques amb ExecutorService | Programació de serveis i processos</title>
+<title>Bloc 4: ExecutorService i aplicacions concurrents completes | Programació de serveis i processos</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="Bloc 4: Gestionar moltes tasques amb ExecutorService" />
+<meta property="og:title" content="Bloc 4: ExecutorService i aplicacions concurrents completes" />
 <meta property="og:locale" content="ca_ES" />
-<meta name="description" content="Materials pràctics i progressius de la unitat 1" />
-<meta property="og:description" content="Materials pràctics i progressius de la unitat 1" />
+<meta name="description" content="Pools de fils, tasques, Future, timeouts, cancel·lació, estat compartit i disseny d’aplicacions concurrents" />
+<meta property="og:description" content="Pools de fils, tasques, Future, timeouts, cancel·lació, estat compartit i disseny d’aplicacions concurrents" />
 <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-4/" />
 <meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-4/" />
 <meta property="og:site_name" content="Programació de serveis i processos" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Bloc 4: Gestionar moltes tasques amb ExecutorService" />
+<meta property="twitter:title" content="Bloc 4: ExecutorService i aplicacions concurrents completes" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Materials pràctics i progressius de la unitat 1","headline":"Bloc 4: Gestionar moltes tasques amb ExecutorService","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-4/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Pools de fils, tasques, Future, timeouts, cancel·lació, estat compartit i disseny d’aplicacions concurrents","headline":"Bloc 4: ExecutorService i aplicacions concurrents completes","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-4/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
@@ -108,7 +108,7 @@
             
                 
                     <a href="/ioc/dam_0490/unitat-1/bloc-1/" class="nav-dropdown-item ">
-                        Unitat 1 - Bloc 1: Entendre què passa quan hi ha diverses tasques
+                        Unitat 1 - Bloc 1: Entendre la concurrència abans d'escriure codi
                     </a>
                 
                     <a href="/ioc/dam_0490/unitat-1/bloc-2/" class="nav-dropdown-item ">
@@ -120,7 +120,7 @@
                     </a>
                 
                     <a href="/ioc/dam_0490/unitat-1/bloc-4/" class="nav-dropdown-item current">
-                        Unitat 1 - Bloc 4: Gestionar moltes tasques amb ExecutorService
+                        Unitat 1 - Bloc 4: ExecutorService i aplicacions concurrents completes
                     </a>
                 
             
@@ -129,74 +129,6 @@
 
     <div class="container">
         <!-- Sidebar Navegació -->
-        
-        <aside class="sidebar">
-            <button class="sidebar-toggle" type="button" aria-expanded="false">
-                <span>Contingut del bloc</span>
-                <i class="bi bi-chevron-down" aria-hidden="true"></i>
-            </button>
-            <div class="sidebar-scroll">
-                <!-- Contingut d'aquest Bloc -->
-                <div class="sidebar-section">
-                    <h3>Contingut del Bloc</h3>
-                    
-
-
-
-  
-    
-    
-
-
-  
-    
-  
-    
-  
-    
-  
-    
-      
-      
-
-
-
-  
-    <div class="nav-item">
-      <a href="#Unitat1_Bloc4_Seccio1"
-         class="nav-link current"
-         data-section="Unitat1_Bloc4_Seccio1">1. Per què utilitzar un pool de fils?</a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="#Unitat1_Bloc4_Seccio2"
-         class="nav-link"
-         data-section="Unitat1_Bloc4_Seccio2">2. Runnable, Callable i Future</a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="#Unitat1_Bloc4_Seccio3"
-         class="nav-link"
-         data-section="Unitat1_Bloc4_Seccio3">3. Timeout, cancel·lació i tancament</a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="#Unitat1_Bloc4_Seccio4"
-         class="nav-link"
-         data-section="Unitat1_Bloc4_Seccio4">4. Construir una aplicació concurrent completa</a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="#Unitat1_Bloc4_Seccio5"
-         class="nav-link"
-         data-section="Unitat1_Bloc4_Seccio5">5. Preparació de l'EAC i síntesi final</a>
-    </div>
-  
-
-
-                </div>
-            </div>
-        </aside>
         
 
         <main class="main-content" role="main" id="main-content">
@@ -237,7 +169,7 @@
                             
                                 <span class="horizontal-nav-separator"> &gt; </span>
                                 <span class="horizontal-nav-item current">
-                                    Bloc 1.4: Gestionar moltes tasques amb ExecutorService
+                                    Bloc 1.4: ExecutorService i aplicacions concurrents completes
                                 </span>
                             
                         
@@ -256,87 +188,126 @@
 
 <!-- Contingut principal -->
 <div class="section" id="Unitat1_Bloc4_Seccio1">
-  <h2 id="Unitat1_Bloc4_Seccio1">1. Per què utilitzar un pool de fils?</h2>
+  <h2 id="Unitat1_Bloc4_Seccio1">1. De Thread a ExecutorService</h2>
 
-<p>Aquest codi crea un fil nou per cada element:</p>
+<p>Crear fils manualment és útil per entendre el mecanisme, però no és la millor opció quan tenim moltes tasques semblants. Si arriben cent tasques, crear cent objectes <code>Thread</code> pot ser innecessari i difícil de controlar.</p>
 
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
+<p>La idea d'un <strong>pool de fils</strong> és separar dues coses:</p>
+<ul>
+<li>les <strong>tasques</strong> que volem executar;</li>
+<li>els <strong>fils treballadors</strong> que les executaran.</li>
+</ul>
 
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">for (Tasca tasca : tasques) {
-    new Thread(() -&gt; processar(tasca)).start();
-}</code></pre>
-  </div>
-</div>
-
-<p>Amb deu tasques pot semblar raonable. Amb milers de tasques, no.</p>
-<p>Cada fil consumeix recursos. Massa fils impliquen més memòria, més canvis de context i més dificultat per controlar la finalització.</p>
-<p>Un <strong>pool de fils</strong> reutilitza un nombre limitat de treballadors.</p>
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">ExecutorService executor = Executors.newFixedThreadPool(3);</code></pre>
-  </div>
-</div>
-
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">+-- fil 1
-TASQUES -----&gt; +-- fil 2
-   cua         +-- fil 3</code></pre>
-  </div>
-</div>
-
-<p>Si enviem deu tasques, els tres fils van agafant feina de la cua.</p>
 <!-- Component: Figura amb peu -->
 <div class="figure-box" role="region" aria-label="Figura">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
   <div class="component-content">
     <figure class="figure">
-      <img src="/ioc/dam_0490/assets/img/unitat-1/u1_07_thread_pool.svg" alt="Cua de tasques distribuïda entre tres fils d'un ExecutorService." class="figure-img"/>
+      <img src="/ioc/dam_0490/assets/img/unitat-1/10_executor_pool.svg" alt="Cua de tasques que alimenta un ExecutorService amb tres fils treballadors reutilitzables." class="figure-img"/>
       
-      <figcaption class="figure-caption">Cua de tasques distribuïda entre tres fils d'un ExecutorService.</figcaption>
+      <figcaption class="figure-caption">Pot haver-hi moltes més tasques que fils. Les tasques esperen a la cua fins que un treballador queda lliure.</figcaption>
       
     </figure>
+  </div>
+</div>
+
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">ExecutorService executor =
+        Executors.newFixedThreadPool(3);
+
+executor.submit(() -&gt; System.out.println(
+        Thread.currentThread().getName()
+));
+
+executor.shutdown();</code></pre>
+  </div>
+</div>
+
+
+<p><code>newFixedThreadPool(3)</code> crea un executor amb tres fils treballadors. Podem enviar-hi deu, cent o mil tasques. No cal crear un fil nou per a cadascuna.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>ExecutorService no és un fil.</strong></p><p>És un gestor de tasques i fils. Rep feina, la posa en una cua quan cal i reutilitza els fils del pool per executar-la.</p>
+    
+</div>
+
+
+<h3>Quina mida ha de tenir el pool?</h3>
+
+<p>No existeix un número universal. Depèn del tipus de feina i de la màquina:</p>
+<ul>
+<li>en tasques molt intensives de CPU, un valor proper al nombre de nuclis sol ser un bon punt de partida;</li>
+<li>en tasques que passen molta estona esperant entrada i sortida, pot ser raonable tenir més fils que nuclis;</li>
+<li>en qualsevol cas, cal mesurar i evitar crear més concurrència de la que el sistema pot aprofitar.</li>
+</ul>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Un pool més gran no garanteix més rendiment.</strong> Si tots els fils competeixen per la mateixa CPU, el mateix disc o el mateix bloqueig, afegir-ne més pot empitjorar el temps total.</p>
+</div>
+
+
+
+<!-- Component: Suggeriment d'ampliació simplificat -->
+<div class="suggestion-box" role="note">
+    <div class="component-header suggestion-header" role="heading" aria-level="4"><i class="bi bi-lightbulb" aria-hidden="true"></i> Suggeriment</div>
+    <p><strong>Altres executors que convé conèixer:</strong> <code>ScheduledExecutorService</code> permet programar tasques retardades o periòdiques. <code>ForkJoinPool</code> està pensat per problemes que es divideixen recursivament en subtasques i utilitza tècniques com el work-stealing. No sempre calen, però formen part de l'ecosistema de concurrència de Java.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Veure la reutilització</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Creeu un pool de tres fils i envieu-hi deu tasques que només imprimeixin el número de tasca i el nom del fil actual. Observeu quants noms de fil diferents apareixen.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">10 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Useu Executors.newFixedThreadPool(3).</li>
+        
+        <li>Mostreu Thread.currentThread().getName().</li>
+        
+        <li>No oblideu shutdown.</li>
+        
+      </ul>
+    </details>
+    
   </div>
 </div>
 
@@ -345,7 +316,8 @@ TASQUES -----&gt; +-- fil 2
 <div class="section" id="Unitat1_Bloc4_Seccio2">
   <h2 id="Unitat1_Bloc4_Seccio2">2. Runnable, Callable i Future</h2>
 
-<p><code>Runnable</code> representa una tasca que no retorna un resultat.</p>
+<h3>Runnable: una acció sense resultat directe</h3>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -363,14 +335,19 @@ TASQUES -----&gt; +-- fil 2
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Runnable tasca = () -&gt; {
-    System.out.println(&quot;Processant...&quot;);
+    int suma = 2 + 3;
+    System.out.println(&quot;Suma=&quot; + suma);
 };
 
 executor.submit(tasca);</code></pre>
   </div>
 </div>
 
-<p><code>Callable&lt;T&gt;</code> representa una tasca que retorna un valor.</p>
+
+<p><code>Runnable</code> és adequat quan volem executar una acció i no necessitem que la tasca retorni un valor directament.</p>
+
+<h3>Callable: una tasca que retorna un resultat</h3>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -387,12 +364,26 @@ executor.submit(tasca);</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Callable&lt;Integer&gt; tasca = () -&gt; 6 * 7;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Callable&lt;Integer&gt; tasca = () -&gt; {
+    return 12 * 12;
+};
+
 Future&lt;Integer&gt; futur = executor.submit(tasca);</code></pre>
   </div>
 </div>
 
-<p>El <code>Future</code> representa un resultat que potser encara no està disponible.</p>
+
+<p><code>Callable&lt;T&gt;</code> retorna un valor de tipus <code>T</code>. Quan enviem la tasca a l'executor, obtenim immediatament un <code>Future&lt;T&gt;</code>.</p>
+
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Future:</strong> Representa un resultat que potser encara no està disponible. Permet esperar-lo, consultar si ha acabat, obtenir-lo o intentar cancel·lar la tasca.</p>
+  </div>
+</div>
+
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -409,61 +400,16 @@ Future&lt;Integer&gt; futur = executor.submit(tasca);</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">int resultat = futur.get();</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Integer resultat = futur.get();
+System.out.println(resultat);</code></pre>
   </div>
 </div>
 
-<p>El fil que crida <code>get()</code> espera fins que la tasca acaba.</p>
-<p>Podem posar un límit:</p>
 
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
+<p><code>get()</code> bloqueja el fil que el crida fins que el resultat està preparat. Això és útil, però també pot eliminar la concurrència si s'utilitza massa aviat.</p>
 
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">int resultat = futur.get(3, TimeUnit.SECONDS);</code></pre>
-  </div>
-</div>
+<h3>Patró important: enviar primer, recollir després</h3>
 
-<p>Aquesta família de classes es troba a <code>java.util.concurrent</code>, que proporciona abstraccions de nivell més alt que la gestió manual de fils. També hi trobem eines com <code>Semaphore</code>, <code>BlockingQueue</code>, <code>AtomicInteger</code> o <code>ScheduledExecutorService</code>.</p>
-
-<h3>Enviar primer i recollir després</h3>
-<p>Aquest codi utilitza un executor, però pràcticament serialitza el treball:</p>
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">for (int n : numeros) {
-    Future&lt;Integer&gt; futur = executor.submit(() -&gt; calcular(n));
-    System.out.println(futur.get());
-}</code></pre>
-  </div>
-</div>
-
-<p>Cada iteració espera abans d'enviar la següent tasca.</p>
-<p>La versió concurrent separa l'enviament de la recollida:</p>
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -482,45 +428,86 @@ Future&lt;Integer&gt; futur = executor.submit(tasca);</code></pre>
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">List&lt;Future&lt;Integer&gt;&gt; futurs = new ArrayList&lt;&gt;();
 
-for (int n : numeros) {
-    futurs.add(executor.submit(() -&gt; calcular(n)));
+// Fase 1: enviem totes les tasques
+for (int n : nombres) {
+    futurs.add(executor.submit(() -&gt; n * n));
 }
 
+// Fase 2: recollim els resultats
 for (Future&lt;Integer&gt; futur : futurs) {
     System.out.println(futur.get());
 }</code></pre>
   </div>
 </div>
 
-<p>És el mateix patró que hem vist amb processos.</p>
 
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
+
+<!-- Component: Problema -->
+<div class="problem-box" role="alert" aria-live="assertive">
+    <div class="component-header error-header" role="heading" aria-level="4"><i class="bi bi-x-circle" aria-hidden="true"></i> Problema</div>
+    <p><strong>Antipatró freqüent:</strong> fer <code>submit()</code> i immediatament <code>get()</code> dins del mateix bucle. Això pot convertir una execució que podria ser concurrent en una cadena pràcticament seqüencial.</p>
+</div>
+
+
+
+<!-- Component: Solució -->
+<div class="solution-box" role="region" aria-label="Solució">
+    <div class="component-header solution-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Solució</div>
+    <p>Separeu l'enviament de la recollida quan les tasques siguin independents. Així el pool pot començar a treballar en moltes tasques abans que el fil principal esperi els resultats.</p>
+</div>
+
+
+<h3>Què pot passar quan fem get()?</h3>
+
+<p>Cal tenir presents tres situacions:</p>
+<ul>
+<li><code>InterruptedException</code>: el fil que esperava ha estat interromput;</li>
+<li><code>ExecutionException</code>: la tasca ha llançat una excepció;</li>
+<li><code>TimeoutException</code>: hem establert un temps màxim i s'ha superat.</li>
+</ul>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Quadrats en paral·lel</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Envieu vint Callable<Integer> a un pool de quatre fils. Cada tasca calcula el quadrat d'un nombre. Deseu tots els Future i recolliu els resultats només després d'haver enviat les vint tasques.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
       
     </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
 
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">1. crear o enviar totes les tasques
-2. deixar que avancin
-3. esperar i recollir els resultats</code></pre>
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Utilitzeu una List<Future<Integer>>.</li>
+        
+        <li>No feu get al mateix bucle que submit.</li>
+        
+        <li>Tanqueu l'executor quan ja no accepteu més tasques.</li>
+        
+      </ul>
+    </details>
+    
   </div>
 </div>
 
 </div>
 
 <div class="section" id="Unitat1_Bloc4_Seccio3">
-  <h2 id="Unitat1_Bloc4_Seccio3">3. Timeout, cancel·lació i tancament</h2>
+  <h2 id="Unitat1_Bloc4_Seccio3">3. Timeouts, cancel·lació i tancament del pool</h2>
 
-<p>Un <code>Future</code> també pot quedar esperant massa temps.</p>
+<h3>Esperar un Future amb temps màxim</h3>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -538,25 +525,21 @@ for (Future&lt;Integer&gt; futur : futurs) {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">try {
-    String resultat = futur.get(3, TimeUnit.SECONDS);
-    System.out.println(resultat);
+    String resultat = futur.get(2, TimeUnit.SECONDS);
+    processar(resultat);
 
 } catch (TimeoutException e) {
     futur.cancel(true);
-    System.out.println(&quot;Tasca cancel·lada per timeout&quot;);
-
-} catch (ExecutionException e) {
-    System.out.println(&quot;La tasca ha fallat: &quot; + e.getCause());
-
-} catch (InterruptedException e) {
-    Thread.currentThread().interrupt();
+    System.out.println(&quot;La tasca ha superat el temps màxim&quot;);
 }</code></pre>
   </div>
 </div>
 
-<p>Les tres situacions són diferents:</p>
-<ul><li><code>TimeoutException</code>: no tenim resultat dins del temps permès.</li><li><code>ExecutionException</code>: la tasca ha acabat amb una excepció.</li><li><code>InterruptedException</code>: el fil que estava esperant ha estat interromput.</li></ul>
-<p><code>cancel(true)</code> intenta interrompre la tasca, però la cancel·lació és cooperativa. El codi de la tasca ha de reaccionar a la interrupció.</p>
+
+<p><code>cancel(true)</code> intenta interrompre la tasca si està en execució. La paraula important és <strong>intenta</strong>. La cancel·lació és cooperativa.</p>
+
+<h3>Respondre correctament a una interrupció</h3>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -573,18 +556,33 @@ for (Future&lt;Integer&gt; futur : futurs) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">try {
-    Thread.sleep(10_000);
-} catch (InterruptedException e) {
-    Thread.currentThread().interrupt();
-    return;
-}</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Callable&lt;String&gt; tasca = () -&gt; {
+    try {
+        Thread.sleep(10_000);
+        return &quot;acabat&quot;;
+    } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+        return &quot;interromput&quot;;
+    }
+};</code></pre>
   </div>
 </div>
 
 
-<h3>Tancar correctament l'executor</h3>
-<p>Un <code>ExecutorService</code> manté fils vius. S'ha de tancar de forma explícita.</p>
+<p>Quan capturem <code>InterruptedException</code>, una pràctica habitual és restaurar l'estat d'interrupció amb <code>Thread.currentThread().interrupt()</code> si no podem completar la tasca de manera normal.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Cancel·lar un Future no és matar màgicament un fil.</strong> Si el codi ignora les interrupcions i continua treballant, la cancel·lació pot no aturar-lo immediatament.</p>
+</div>
+
+
+<h3>Tancar correctament l'ExecutorService</h3>
+
+<p>Un patró robust és:</p>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -606,6 +604,10 @@ for (Future&lt;Integer&gt; futur : futurs) {
 try {
     if (!executor.awaitTermination(5, TimeUnit.SECONDS)) {
         executor.shutdownNow();
+
+        if (!executor.awaitTermination(2, TimeUnit.SECONDS)) {
+            System.err.println(&quot;El pool no ha finalitzat&quot;);
+        }
     }
 } catch (InterruptedException e) {
     executor.shutdownNow();
@@ -614,22 +616,68 @@ try {
   </div>
 </div>
 
-<p><code>shutdown()</code> deixa d'acceptar tasques noves i permet acabar les pendents.</p>
-<p><code>awaitTermination(...)</code> espera un temps màxim.</p>
-<p><code>shutdownNow()</code> intenta interrompre la feina que encara continua. No és una garantia de finalització instantània.</p>
+
+<p><code>shutdown()</code> deixa d'acceptar tasques noves però permet acabar les que ja s'han enviat. <code>shutdownNow()</code> intenta interrompre les tasques en execució i retorna les que encara no havien començat.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Ordre mental</strong></p><p>Primer deixem d'acceptar feina nova. Després donem temps perquè acabi la feina pendent. Només si no finalitza dins del límit passem a una cancel·lació més agressiva.</p>
+    
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Una tasca que es passa de temps</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Envieu una tasca ràpida i una tasca que dormi deu segons. Intenteu obtenir els dos resultats amb un timeout de dos segons. Cancel·leu la tasca lenta i tanqueu correctament el pool.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Captureu TimeoutException.</li>
+        
+        <li>Comproveu isCancelled i isDone.</li>
+        
+        <li>Feu que la tasca lenta gestioni InterruptedException.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
 </div>
 
 <div class="section" id="Unitat1_Bloc4_Seccio4">
-  <h2 id="Unitat1_Bloc4_Seccio4">4. Construir una aplicació concurrent completa</h2>
+  <h2 id="Unitat1_Bloc4_Seccio4">4. Estat compartit, coherència i mesura del temps</h2>
 
-<p>Aquest exemple utilitza un context diferent del de l'EAC. Volem processar diversos fitxers i obtenir un resultat per a cadascun.</p>
-<h3>Les dades</h3>
+<p>Un executor no elimina els problemes de memòria compartida. Si diverses tasques modifiquen el mateix objecte, l'objecte continua necessitant una estratègia de sincronització.</p>
+
+<h3>Un acumulador coherent</h3>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
     <div class="code-info">
       <span class="code-lang">JAVA</span>
-      
+      <span class="code-filename">Estadistiques.java</span>
     </div>
     <div class="code-actions">
       <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
@@ -640,126 +688,29 @@ try {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">record FitxerTreball(String nom, long tempsMs) {}</code></pre>
-  </div>
-</div>
-
-<h3>El resultat</h3>
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">record ResultatFitxer(
-        String nom,
-        boolean correcte,
-        long tempsMs,
-        String fil
-) {}</code></pre>
-  </div>
-</div>
-
-<h3>La tasca</h3>
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.concurrent.Callable;
-
-class ProcessarFitxer implements Callable&lt;ResultatFitxer&gt; {
-
-    private final FitxerTreball fitxer;
-
-    ProcessarFitxer(FitxerTreball fitxer) {
-        this.fitxer = fitxer;
-    }
-
-    @Override
-    public ResultatFitxer call() throws Exception {
-        long inici = System.nanoTime();
-
-        Thread.sleep(fitxer.tempsMs());
-
-        boolean correcte = !fitxer.nom().contains(&quot;corrupt&quot;);
-        long temps = (System.nanoTime() - inici) / 1_000_000;
-
-        return new ResultatFitxer(
-                fitxer.nom(),
-                correcte,
-                temps,
-                Thread.currentThread().getName()
-        );
-    }
-}</code></pre>
-  </div>
-</div>
-
-<p>Cada tasca pot executar-se de manera independent i retorna el seu propi resultat.</p>
-<h3>Estat compartit</h3>
-<p>Ara volem acumular estadístiques globals:</p>
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">class EstadistiquesFitxers {
-    private int total;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">class Estadistiques {
+    private int processats;
     private int correctes;
     private int errors;
     private long tempsAcumulatMs;
 
-    public synchronized void registrar(ResultatFitxer resultat) {
-        if (resultat == null) {
-            throw new IllegalArgumentException(&quot;El resultat no pot ser null&quot;);
-        }
+    public synchronized void registrar(
+            boolean correcte,
+            long tempsMs) {
 
-        total++;
+        processats++;
 
-        if (resultat.correcte()) {
+        if (correcte) {
             correctes++;
         } else {
             errors++;
         }
 
-        tempsAcumulatMs += resultat.tempsMs();
+        tempsAcumulatMs += tempsMs;
     }
 
     public synchronized String resum() {
-        return &quot;total=&quot; + total
+        return &quot;processats=&quot; + processats
                 + &quot;, correctes=&quot; + correctes
                 + &quot;, errors=&quot; + errors
                 + &quot;, tempsAcumulatMs=&quot; + tempsAcumulatMs;
@@ -768,84 +719,22 @@ class ProcessarFitxer implements Callable&lt;ResultatFitxer&gt; {
   </div>
 </div>
 
-<p>La sincronització és necessària perquè moltes tasques poden cridar <code>registrar()</code> sobre el mateix objecte.</p>
-<h3>Crear el pool i enviar tasques</h3>
 
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
+<p>La modificació dels quatre camps forma una única operació lògica. Protegir-la amb el mateix monitor evita que els fils deixin l'objecte en un estat impossible.</p>
 
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">ExecutorService executor = Executors.newFixedThreadPool(4);
-List&lt;Future&lt;ResultatFitxer&gt;&gt; futurs = new ArrayList&lt;&gt;();
+<h3>Invariants</h3>
 
-for (FitxerTreball fitxer : fitxers) {
-    futurs.add(executor.submit(new ProcessarFitxer(fitxer)));
-}</code></pre>
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Invariant:</strong> Propietat que ha de continuar sent certa si l'estat de l'objecte és coherent.</p>
   </div>
 </div>
 
-<h3>Recollir resultats</h3>
 
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
+<p>En l'exemple anterior, una propietat natural és:</p>
 
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">EstadistiquesFitxers estadistiques = new EstadistiquesFitxers();
-
-for (Future&lt;ResultatFitxer&gt; futur : futurs) {
-    try {
-        ResultatFitxer resultat = futur.get(3, TimeUnit.SECONDS);
-        estadistiques.registrar(resultat);
-
-        System.out.printf(
-                &quot;%s -&gt; %s (%s)%n&quot;,
-                resultat.nom(),
-                resultat.correcte() ? &quot;OK&quot; : &quot;ERROR&quot;,
-                resultat.fil()
-        );
-
-    } catch (TimeoutException e) {
-        futur.cancel(true);
-        System.out.println(&quot;TIMEOUT&quot;);
-
-    } catch (ExecutionException e) {
-        System.out.println(&quot;ERROR TASCA: &quot; + e.getCause());
-
-    } catch (InterruptedException e) {
-        Thread.currentThread().interrupt();
-        break;
-    }
-}</code></pre>
-  </div>
-</div>
-
-<p>Quan no queden tasques pendents, podem construir el resum final.</p>
-
-<h3>Temps real i temps acumulat</h3>
-<p>Suposem quatre tasques de dos segons.</p>
-<p>En seqüencial:</p>
 
 <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
   <div class="code-header">
@@ -862,51 +751,63 @@ for (Future&lt;ResultatFitxer&gt; futur : futurs) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">temps acumulat = 2 + 2 + 2 + 2 = 8 s
-temps real aproximat = 8 s</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">processats == correctes + errors</code></pre>
   </div>
 </div>
 
-<p>Amb quatre tasques executant-se alhora:</p>
 
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
+<p>Els invariants són excel·lents per provar concurrència. No només comprovem que el programa "no peta"; comprovem que les dades finals tenen sentit.</p>
 
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">temps acumulat = 2 + 2 + 2 + 2 = 8 s
-temps real aproximat = 2 s</code></pre>
-  </div>
-</div>
+<h3>Temps acumulat i temps real</h3>
 
-<p>El temps acumulat suma el temps dedicat a totes les tasques. El temps real mesura quant ha trigat el programa vist des de fora.</p>
-<p>Aquesta diferència és molt útil per comprovar si hi ha hagut concurrència real en el nostre disseny.</p>
+<p>Suposem quatre tasques que triguen dos segons cadascuna. El <strong>temps acumulat de treball</strong> és d'uns vuit segons. Si s'executen en paral·lel amb quatre treballadors, el <strong>temps real transcorregut</strong> pot ser d'uns dos segons.</p>
+
 <!-- Component: Figura amb peu -->
 <div class="figure-box" role="region" aria-label="Figura">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
   <div class="component-content">
     <figure class="figure">
-      <img src="/ioc/dam_0490/assets/img/unitat-1/u1_08_temps.svg" alt="Comparació entre temps acumulat i temps real." class="figure-img"/>
+      <img src="/ioc/dam_0490/assets/img/unitat-1/11_temps_real_acumulat.svg" alt="Quatre tasques de dos segons mostren vuit segons acumulats però aproximadament dos segons de temps real quan s'executen simultàniament." class="figure-img"/>
       
-      <figcaption class="figure-caption">Comparació entre temps acumulat i temps real.</figcaption>
+      <figcaption class="figure-caption">El temps acumulat suma el treball de totes les tasques. El temps real mesura quant ha esperat l'usuari.</figcaption>
       
     </figure>
   </div>
 </div>
 
 
-<h3>Comprovar que l'estat compartit és coherent</h3>
-<p>Una prova petita pot no mostrar cap error. Per això és útil una prova d'estrès.</p>
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">long inici = System.nanoTime();
+
+// enviament i recollida de tasques
+
+long fi = System.nanoTime();
+
+long tempsRealMs =
+        TimeUnit.NANOSECONDS.toMillis(fi - inici);</code></pre>
+  </div>
+</div>
+
+
+<h3>Prova d'estrès</h3>
+
+<p>Per detectar errors de sincronització, utilitzeu moltes tasques i repetiu la prova. Un cas petit pot no produir l'intercalat que fa visible l'error.</p>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -924,103 +825,60 @@ temps real aproximat = 2 s</code></pre>
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">int total = 100_000;
-Comptador marcador = new Comptador();
-ExecutorService executor = Executors.newFixedThreadPool(10);
+
+ExecutorService executor =
+        Executors.newFixedThreadPool(10);
+
+Estadistiques estadistiques = new Estadistiques();
 
 for (int i = 0; i &lt; total; i++) {
-    executor.submit(marcador::incrementar);
+    executor.submit(() -&gt; {
+        estadistiques.registrar(true, 1);
+    });
 }
 
 executor.shutdown();
 executor.awaitTermination(30, TimeUnit.SECONDS);
 
-System.out.println(&quot;ESPERAT=&quot; + total);
-System.out.println(&quot;OBTINGUT=&quot; + marcador.getValor());</code></pre>
+System.out.println(estadistiques.resum());</code></pre>
   </div>
 </div>
 
-<p>Sense sincronització podem perdre actualitzacions. Amb una protecció correcta, el resultat final ha de respectar els invariants.</p>
-<p>En un marcador amb totals, per exemple:</p>
 
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
 
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">totalProcessats = totalCorrectes + totalErrors</code></pre>
-  </div>
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Una prova concurrent bona té una afirmació verificable.</strong> Per exemple: s'han enviat 100.000 elements, s'han processat exactament 100.000 i la suma de categories coincideix amb el total.</p>
 </div>
 
-<p>També és important construir l'informe final quan totes les tasques que poden modificar el marcador ja han acabat. Un marcador ben sincronitzat no evita que llegim un resultat massa aviat.</p>
 </div>
 
 <div class="section" id="Unitat1_Bloc4_Seccio5">
-  <h2 id="Unitat1_Bloc4_Seccio5">5. Preparació de l'EAC i síntesi final</h2>
+  <h2 id="Unitat1_Bloc4_Seccio5">5. Construir i provar una aplicació concurrent completa</h2>
 
-<p>La fase amb fils segueix aquest esquema:</p>
+<p>Arribats aquí ja tenim totes les peces. Ara les combinarem en un exemple complet, però encara senzill: un simulador que processa peticions independents.</p>
 
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
+<p>La responsabilitat de cada classe serà clara:</p>
+<ul>
+<li><code>Peticio</code>: dades d'entrada;</li>
+<li><code>ResultatPeticio</code>: dades de sortida d'una tasca;</li>
+<li><code>TascaPeticio</code>: feina concurrent;</li>
+<li><code>Estadistiques</code>: estat compartit protegit;</li>
+<li><code>SimuladorConcurrent</code>: crea el pool, envia tasques, recull resultats i tanca recursos.</li>
+</ul>
 
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">CarregadorLliuraments
-    |
-    v
-List&lt;Lliurament&gt;
-    |
-    v
-CorrectorExecutor
-    |
-    | envia una TascaCorreccio per lliurament
-    v
-ExecutorService
-    |
-    +-- fil 1 -&gt; TascaCorreccio -&gt; ResultatCorreccio
-    +-- fil 2 -&gt; TascaCorreccio -&gt; ResultatCorreccio
-    +-- fil 3 -&gt; TascaCorreccio -&gt; ResultatCorreccio
-    |
-    v
-MarcadorCorreccions compartit
-    |
-    v
-informe final coherent</code></pre>
-  </div>
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Aquesta separació és intencionada.</strong></p><p>La concurrència és més fàcil de raonar quan les dades, la tasca, l'estat compartit i l'orquestració no estan barrejats en un únic mètode enorme.</p>
+    
 </div>
 
-<p>Per arribar-hi, cal dominar aquestes peces:</p>
-<table class="table"><thead><tr><th>Part de l'EAC</th><th>Coneixement necessari</th></tr></thead><tbody><tr><td><code>CorrectorLliurament</code></td><td><code>Path</code>, <code>Files</code>, validació, excepcions, separació de responsabilitats</td></tr><tr><td><code>CorrectorProcessos</code></td><td><code>ProcessBuilder</code>, procés pare i fill, arguments, redirecció, codis de retorn, timeout, llançament abans de recollida</td></tr><tr><td><code>CorrectorExecutor</code></td><td><code>ExecutorService</code>, pool fix, <code>Callable</code>, <code>Future</code>, timeout, cancel·lació, tancament</td></tr><tr><td><code>MarcadorCorreccions</code></td><td>estat compartit, condició de cursa, <code>synchronized</code>, lectura coherent, invariants</td></tr><tr><td>sistema concurrent propi</td><td>model de dades, tasques, pool, resultats, estat compartit, sincronització, comprovació final</td></tr></tbody></table>
 
-<h3>Una seqüència de pràctiques que prepara l'EAC</h3>
-<h3>Dos fils i un ordre imprevisible</h3>
-<p>Creeu dos fils. Un imprimeix <code>A1</code>, <code>A2</code>, <code>A3</code> i l'altre <code>B1</code>, <code>B2</code>, <code>B3</code>. Executeu el programa diverses vegades.</p>
-<p>La sortida no ha de tenir sempre el mateix ordre.</p>
-<h3>Esperar amb <code>join()</code></h3>
-<p>Afegiu un <code>FINAL</code> que només aparegui quan hagin acabat els dos fils.</p>
-<h3>Provocar una condició de cursa</h3>
-<p>Creeu quatre fils que incrementin 100.000 vegades el mateix comptador. Proveu-lo sense <code>synchronized</code> i després amb <code>synchronized</code>.</p>
-<h3>Pool de tres fils</h3>
-<p>Creeu deu tasques i executeu-les amb:</p>
+<h3>1. Dades d'entrada i resultat</h3>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -1037,13 +895,20 @@ informe final coherent</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Executors.newFixedThreadPool(3)</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">record Peticio(int id, int duradaMs) {}
+
+record ResultatPeticio(
+        int id,
+        boolean correcte,
+        long tempsMs,
+        String nomFil
+) {}</code></pre>
   </div>
 </div>
 
-<p>Cada tasca ha d'imprimir el nom del fil. Hauríeu de veure que el pool reutilitza els mateixos treballadors.</p>
-<h3>Timeout d'una tasca</h3>
-<p>Creeu una tasca que trigui deu segons i proveu:</p>
+
+<h3>2. Estat compartit</h3>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -1060,18 +925,256 @@ informe final coherent</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">futur.get(1, TimeUnit.SECONDS)</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">class Estadistiques {
+    private int processats;
+    private int correctes;
+    private int errors;
+    private long tempsAcumulatMs;
+
+    public synchronized void registrar(ResultatPeticio resultat) {
+        if (resultat == null) {
+            throw new IllegalArgumentException(&quot;El resultat no pot ser null&quot;);
+        }
+
+        processats++;
+
+        if (resultat.correcte()) {
+            correctes++;
+        } else {
+            errors++;
+        }
+
+        tempsAcumulatMs += resultat.tempsMs();
+    }
+
+    public synchronized int getProcessats() {
+        return processats;
+    }
+
+    public synchronized int getCorrectes() {
+        return correctes;
+    }
+
+    public synchronized int getErrors() {
+        return errors;
+    }
+
+    public synchronized boolean esCoherent() {
+        return processats == correctes + errors;
+    }
+}</code></pre>
   </div>
 </div>
 
-<p>Quan es produeixi el timeout, cancel·leu la tasca.</p>
-<h3>Procés fill</h3>
-<p>Creeu una classe que rebi arguments i finalitzi amb tres codis diferents:</p>
 
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+<h3>3. Tasca concurrent</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
     <div class="code-info">
-      <span class="code-lang">TEXT</span>
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">TascaPeticio.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">class TascaPeticio implements Callable&lt;ResultatPeticio&gt; {
+
+    private final Peticio peticio;
+    private final Estadistiques estadistiques;
+
+    TascaPeticio(Peticio peticio, Estadistiques estadistiques) {
+        this.peticio = peticio;
+        this.estadistiques = estadistiques;
+    }
+
+    @Override
+    public ResultatPeticio call() throws Exception {
+        long inici = System.nanoTime();
+
+        Thread.sleep(peticio.duradaMs());
+
+        boolean correcte = peticio.id() % 7 != 0;
+
+        long tempsMs = TimeUnit.NANOSECONDS.toMillis(
+                System.nanoTime() - inici
+        );
+
+        ResultatPeticio resultat = new ResultatPeticio(
+                peticio.id(),
+                correcte,
+                tempsMs,
+                Thread.currentThread().getName()
+        );
+
+        estadistiques.registrar(resultat);
+        return resultat;
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>La tasca calcula un resultat local i només entra a l'objecte compartit per registrar-lo. Aquesta separació redueix el temps dins de la secció crítica.</p>
+
+<h3>4. Orquestració</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">SimuladorConcurrent.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class SimuladorConcurrent {
+
+    public static void main(String[] args) throws Exception {
+
+        int total = 200;
+        int midaPool = 4;
+
+        ExecutorService executor =
+                Executors.newFixedThreadPool(midaPool);
+
+        Estadistiques estadistiques = new Estadistiques();
+        List&lt;Future&lt;ResultatPeticio&gt;&gt; futurs = new ArrayList&lt;&gt;();
+
+        long inici = System.nanoTime();
+
+        // Fase 1: crear i enviar
+        for (int i = 1; i &lt;= total; i++) {
+            Peticio peticio = new Peticio(i, 20 + (i % 30));
+
+            futurs.add(
+                executor.submit(
+                    new TascaPeticio(peticio, estadistiques)
+                )
+            );
+        }
+
+        // Fase 2: recollir
+        List&lt;ResultatPeticio&gt; resultats = new ArrayList&lt;&gt;();
+
+        for (Future&lt;ResultatPeticio&gt; futur : futurs) {
+            try {
+                resultats.add(
+                    futur.get(2, TimeUnit.SECONDS)
+                );
+            } catch (TimeoutException e) {
+                futur.cancel(true);
+            }
+        }
+
+        // Fase 3: tancar
+        executor.shutdown();
+
+        if (!executor.awaitTermination(5, TimeUnit.SECONDS)) {
+            executor.shutdownNow();
+        }
+
+        long tempsRealMs = TimeUnit.NANOSECONDS.toMillis(
+                System.nanoTime() - inici
+        );
+
+        System.out.println(&quot;TOTAL=&quot; + total);
+        System.out.println(&quot;RESULTATS=&quot; + resultats.size());
+        System.out.println(&quot;PROCESSATS=&quot; + estadistiques.getProcessats());
+        System.out.println(&quot;CORRECTES=&quot; + estadistiques.getCorrectes());
+        System.out.println(&quot;ERRORS=&quot; + estadistiques.getErrors());
+        System.out.println(&quot;POOL=&quot; + midaPool);
+        System.out.println(&quot;TEMPS_REAL_MS=&quot; + tempsRealMs);
+        System.out.println(&quot;COHERENT=&quot; + estadistiques.esCoherent());
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<h3>Què heu de ser capaços d'explicar d'aquest programa?</h3>
+
+<p>No n'hi ha prou amb fer-lo funcionar. Heu d'entendre el paper de cada peça:</p>
+<ul>
+<li>per què les tasques són independents i es poden enviar al pool;</li>
+<li>per què <code>Callable</code> encaixa quan volem un resultat;</li>
+<li>per què els <code>Future</code> es guarden abans de recollir-los;</li>
+<li>què passa si una tasca excedeix el timeout;</li>
+<li>per què <code>Estadistiques</code> necessita sincronització;</li>
+<li>per què l'informe final s'ha de construir quan les tasques ja no poden modificar l'estat;</li>
+<li>com sabem que el resultat és coherent;</li>
+<li>per què temps acumulat i temps real són mesures diferents.</li>
+</ul>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Projecte de consolidació</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Creeu un sistema concurrent propi amb almenys 100 elements, un pool de quatre o més fils, una tasca Runnable o Callable, un objecte d'estat compartit que realment necessiti sincronització i una comprovació final de coherència. El context pot ser comandes, reserves, paquets, imatges, simulacions o qualsevol altre domini.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Avançat</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">45-60 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Comenceu modelant només un element de dades.</li>
+        
+        <li>Feu funcionar una sola tasca abans d'afegir l'executor.</li>
+        
+        <li>Afegiu l'estat compartit després que les tasques ja funcionin.</li>
+        
+        <li>Feu una prova d'estrès final i definiu un invariant clar.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Si podeu construir aquest patró sense copiar-lo mecànicament, heu arribat a l'objectiu de la unitat.</strong> Heu de poder canviar el context del problema i continuar sabent quines peces necessiteu i per què.</p>
+</div>
+
+
+<h3>Depurar i documentar concurrència</h3>
+
+<p>La concurrència és molt més fàcil de depurar si cada tasca deixa rastres clars. Poseu noms útils als fils quan sigui possible i incloeu l'identificador de la tasca als missatges de diagnòstic.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
       
     </div>
     <div class="code-actions">
@@ -1083,75 +1186,135 @@ informe final coherent</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">0: operació correcta
-2: dades no vàlides
-10: arguments incorrectes</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">System.out.printf(
+        &quot;tasca=%d fil=%s estat=%s%n&quot;,
+        peticio.id(),
+        Thread.currentThread().getName(),
+        Thread.currentThread().getState()
+);</code></pre>
   </div>
 </div>
 
-<p>Executeu-la des d'un altre programa amb <code>ProcessBuilder</code>. Després llanceu cinc processos abans d'esperar-ne cap.</p>
 
-<h3>Què s'ha de saber al final de la unitat</h3>
-<h3>RA1: processos</h3>
-<p>Heu de poder explicar i aplicar:</p>
-<ul><li>programació concurrent i àmbits d'aplicació;</li><li>diferència entre concurrència, paral·lelisme i distribució;</li><li>procés, estats, planificació i relació amb el sistema operatiu;</li><li>relació entre processos i fils;</li><li>creació de subprocessos des de Java;</li><li>comunicació bàsica amb arguments, streams, fitxers i codis de sortida;</li><li>sincronització amb la finalització d'un procés;</li><li>execució de diverses tasques amb processos;</li><li>timeout, monitoratge, depuració i documentació.</li></ul>
-<h3>RA2: fils</h3>
-<p>Heu de poder explicar i aplicar:</p>
-<ul><li>situacions on és útil treballar amb diversos fils;</li><li>creació, inici, espera i finalització de fils;</li><li>estats i context d'execució;</li><li>memòria compartida entre fils;</li><li>prioritat i fils dimoni;</li><li>condicions de cursa;</li><li>seccions crítiques i <code>synchronized</code>;</li><li>visibilitat amb <code>volatile</code> i diferència amb l'atomicitat;</li><li>interbloqueig;</li><li>espera i notificació amb <code>wait()</code> i <code>notifyAll()</code>;</li><li>concepte de semàfor i monitor;</li><li><code>ExecutorService</code>, <code>Runnable</code>, <code>Callable</code> i <code>Future</code>;</li><li>timeout, cancel·lació, interrupció i tancament del pool;</li><li>proves d'estrès, invariants, depuració i documentació.</li></ul>
+<p>Els IDE permeten inspeccionar diversos fils durant una sessió de depuració. També és útil revisar thread dumps quan sospitem un bloqueig. En la documentació de classes compartides, expliqueu quin estat es comparteix i quin mecanisme el protegeix. Aquest contracte és tan important com explicar què retorna un mètode.</p>
 
-<h3>Mapa final</h3>
 
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">CONCURRÈNCIA
-|
-+-- PROCESSOS
-|   |
-|   +-- memòria separada
-|   +-- ProcessBuilder
-|   +-- procés pare i fill
-|   +-- arguments, stdout, stderr i fitxers
-|   +-- codi de sortida
-|   +-- waitFor i timeout
-|   +-- iniciar primer, recollir després
-|
-+-- FILS
-    |
-    +-- memòria compartida
-    +-- Thread i Runnable
-    +-- join
-    +-- estats i context
-    +-- condició de cursa
-    +-- synchronized
-    +-- volatile
-    +-- deadlock
-    +-- wait i notifyAll
-    |
-    +-- ExecutorService
-        +-- pool de fils
-        +-- Callable
-        +-- Future
-        +-- timeout i cancel·lació
-        +-- estat compartit
-        +-- shutdown</code></pre>
-  </div>
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Compte amb el depurador.</strong> Aturar un sol fil amb un breakpoint pot canviar completament l'ordre temporal del programa. Els logs, les proves repetides i els invariants complementen el debugging tradicional.</p>
 </div>
 
-<p>Quan mireu un programa concurrent, quatre preguntes acostumen a aclarir gairebé tot:</p>
-<ol><li>Quines tasques existeixen?</li><li>Què comparteixen?</li><li>Qui ha d'esperar a qui?</li><li>Com comprovem que el resultat final és coherent?</li></ol>
+
+<h3>Checklist final de la unitat</h3>
+
+<!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="RA1 i RA2">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Distingeixo concurrència, paral·lelisme i distribució</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Entenc com el sistema operatiu gestiona processos i fils</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé crear subprocessos amb ProcessBuilder</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé passar arguments i gestionar stdout, stderr i codis de sortida</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé aplicar un timeout a un procés i finalitzar-lo</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé llançar diversos processos abans de recollir-ne els resultats</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé crear fils amb Runnable i esperar-los amb join</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Reconec els estats principals d'un fil</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc detectar i explicar una condició de cursa</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé protegir estat compartit amb synchronized</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc explicar per què volatile no substitueix l'atomicitat</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Entenc deadlock, wait/notifyAll i semàfors</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé crear un pool amb ExecutorService</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Distingeixo Runnable, Callable i Future</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé aplicar timeouts i cancel·lació a Future</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé tancar correctament un ExecutorService</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc dissenyar un objecte d'estat compartit coherent</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc mesurar temps real i temps acumulat</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc crear proves d'estrès i invariants</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc dissenyar una aplicació concurrent completa en un context nou</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
 </div>
 
 
@@ -1170,8 +1333,8 @@ informe final coherent</code></pre>
 {
   "@context": "https://schema.org",
   "@type": "LearningResource",
-  "name": "Bloc 4: Gestionar moltes tasques amb ExecutorService",
-  "description": "Materials pràctics i progressius de la unitat 1",
+  "name": "Bloc 4: ExecutorService i aplicacions concurrents completes",
+  "description": "Pools de fils, tasques, Future, timeouts, cancel·lació, estat compartit i disseny d'aplicacions concurrents",
   "author": {
     "@type": "Organization",
     "name": "Institut Obert de Catalunya"
@@ -1317,7 +1480,7 @@ informe final coherent</code></pre>
       };
     </script>
     <!-- Scripts del lloc -->
-    <script src="/ioc/dam_0490/assets/js/site.js?v=1790418418" defer></script>
+    <script src="/ioc/dam_0490/assets/js/site.js" defer></script>
     <!-- Quadern Notes v2 (nou sistema) -->
     <script src="/ioc/dam_0490/assets/js/quadern-app/constants.js" defer></script>
     <script src="/ioc/dam_0490/assets/js/quadern-app/utils.js" defer></script>

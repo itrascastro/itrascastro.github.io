@@ -16,8 +16,8 @@
 <meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Bloc 2: Crear i controlar processos des de Java" />
 <meta property="og:locale" content="ca_ES" />
-<meta name="description" content="Materials pràctics i progressius de la unitat 1" />
-<meta property="og:description" content="Materials pràctics i progressius de la unitat 1" />
+<meta name="description" content="ProcessBuilder, arguments, streams, codis de sortida, timeouts i execució concurrent de subprocessos" />
+<meta property="og:description" content="ProcessBuilder, arguments, streams, codis de sortida, timeouts i execució concurrent de subprocessos" />
 <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-2/" />
 <meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-2/" />
 <meta property="og:site_name" content="Programació de serveis i processos" />
@@ -25,7 +25,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Bloc 2: Crear i controlar processos des de Java" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Materials pràctics i progressius de la unitat 1","headline":"Bloc 2: Crear i controlar processos des de Java","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-2/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"ProcessBuilder, arguments, streams, codis de sortida, timeouts i execució concurrent de subprocessos","headline":"Bloc 2: Crear i controlar processos des de Java","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-2/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
@@ -108,7 +108,7 @@
             
                 
                     <a href="/ioc/dam_0490/unitat-1/bloc-1/" class="nav-dropdown-item ">
-                        Unitat 1 - Bloc 1: Entendre què passa quan hi ha diverses tasques
+                        Unitat 1 - Bloc 1: Entendre la concurrència abans d'escriure codi
                     </a>
                 
                     <a href="/ioc/dam_0490/unitat-1/bloc-2/" class="nav-dropdown-item current">
@@ -120,7 +120,7 @@
                     </a>
                 
                     <a href="/ioc/dam_0490/unitat-1/bloc-4/" class="nav-dropdown-item ">
-                        Unitat 1 - Bloc 4: Gestionar moltes tasques amb ExecutorService
+                        Unitat 1 - Bloc 4: ExecutorService i aplicacions concurrents completes
                     </a>
                 
             
@@ -129,70 +129,6 @@
 
     <div class="container">
         <!-- Sidebar Navegació -->
-        
-        <aside class="sidebar">
-            <button class="sidebar-toggle" type="button" aria-expanded="false">
-                <span>Contingut del bloc</span>
-                <i class="bi bi-chevron-down" aria-hidden="true"></i>
-            </button>
-            <div class="sidebar-scroll">
-                <!-- Contingut d'aquest Bloc -->
-                <div class="sidebar-section">
-                    <h3>Contingut del Bloc</h3>
-                    
-
-
-
-  
-    
-    
-
-
-  
-    
-  
-    
-      
-      
-
-
-
-  
-    <div class="nav-item">
-      <a href="#Unitat1_Bloc2_Seccio1"
-         class="nav-link current"
-         data-section="Unitat1_Bloc2_Seccio1">1. Crear processos amb ProcessBuilder</a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="#Unitat1_Bloc2_Seccio2"
-         class="nav-link"
-         data-section="Unitat1_Bloc2_Seccio2">2. Comunicació amb processos</a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="#Unitat1_Bloc2_Seccio3"
-         class="nav-link"
-         data-section="Unitat1_Bloc2_Seccio3">3. Espera, timeout i execució concurrent</a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="#Unitat1_Bloc2_Seccio4"
-         class="nav-link"
-         data-section="Unitat1_Bloc2_Seccio4">4. Laboratori, fitxers i monitoratge</a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="#Unitat1_Bloc2_Seccio5"
-         class="nav-link"
-         data-section="Unitat1_Bloc2_Seccio5">5. Connexió amb l'EAC</a>
-    </div>
-  
-
-
-                </div>
-            </div>
-        </aside>
         
 
         <main class="main-content" role="main" id="main-content">
@@ -248,15 +184,29 @@
 
 <!-- Contingut principal -->
 <div class="section" id="Unitat1_Bloc2_Seccio1">
-  <h2 id="Unitat1_Bloc2_Seccio1">1. Crear processos amb ProcessBuilder</h2>
+  <h2 id="Unitat1_Bloc2_Seccio1">1. Primer procés fill amb ProcessBuilder</h2>
 
-<p>Java pot iniciar un altre programa. La classe principal és <code>ProcessBuilder</code>.</p>
+<p>Java pot iniciar altres programes. La classe principal per preparar l'ordre és <code>ProcessBuilder</code> i l'objecte que representa el programa ja iniciat és <code>Process</code>.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Model mental</strong></p><p><code>ProcessBuilder</code> prepara com s'executarà el programa. <code>start()</code> el posa en marxa. A partir d'aquell moment, <code>Process</code> representa el procés fill i ens permet esperar-lo, consultar si continua viu, llegir-ne la sortida o finalitzar-lo.</p>
+    
+</div>
+
+
+<h3>Exemple mínim: executar el Java instal·lat</h3>
+
+<p>Comencem amb una ordre que no depèn del sistema operatiu: executar el mateix Java que està utilitzant l'aplicació.</p>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
     <div class="code-info">
       <span class="code-lang">JAVA</span>
-      
+      <span class="code-filename">PrimerProces.java</span>
     </div>
     <div class="code-actions">
       <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
@@ -267,14 +217,22 @@
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.io.IOException;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.nio.file.Path;
 
-public class ExempleProces {
-    public static void main(String[] args)
-            throws IOException, InterruptedException {
+public class PrimerProces {
+    public static void main(String[] args) throws Exception {
+        String java = Path.of(
+                System.getProperty(&quot;java.home&quot;),
+                &quot;bin&quot;,
+                &quot;java&quot;
+        ).toString();
 
-        ProcessBuilder pb = new ProcessBuilder(&quot;java&quot;, &quot;-version&quot;);
+        ProcessBuilder pb = new ProcessBuilder(java, &quot;-version&quot;);
+        pb.redirectErrorStream(true);
+
         Process proces = pb.start();
+
+        proces.getInputStream().transferTo(System.out);
 
         int codi = proces.waitFor();
         System.out.println(&quot;Codi de sortida: &quot; + codi);
@@ -283,38 +241,27 @@ public class ExempleProces {
   </div>
 </div>
 
-<p>Aquí hi ha dues execucions diferents:</p>
 
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
+<p>Hi ha quatre passos importants:</p>
+<ol>
+<li>Construïm l'ordre.</li>
+<li>Creem el <code>ProcessBuilder</code>.</li>
+<li>Cridem <code>start()</code>.</li>
+<li>Esperem el final i obtenim el codi de sortida.</li>
+</ol>
 
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">procés pare
-    |
-    | pb.start()
-    v
-procés fill</code></pre>
-  </div>
+
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Observeu-ho</strong></p><p>El programa principal no executa les instruccions de l'altre programa dins de la seva JVM. El sistema operatiu crea un procés independent.</p>
 </div>
 
-<p>El programa que crea el <code>ProcessBuilder</code> és el procés pare. El programa iniciat és el procés fill.</p>
-<p><code>start()</code> inicia el fill. <code>waitFor()</code> fa que el fil actual del pare esperi fins que el fill acabi.</p>
 
 <h3>Executar una altra classe Java</h3>
-<p>En l'EAC, el procés fill també és un programa Java. Per llançar-lo necessitem tres coses:</p>
-<ol><li>l'executable de Java;</li><li>el classpath;</li><li>la classe amb el seu <code>main()</code> i els arguments.</li></ol>
-<p>Podem obtenir el Java i el classpath de la JVM actual:</p>
+
+<p>Per executar una classe del mateix projecte com un programa independent necessitem indicar el Java actual, el classpath actual i el nom complet de la classe que conté <code>main</code>.</p>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -334,198 +281,280 @@ procés fill</code></pre>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.nio.file.Path;
 import java.util.List;
 
-String javaActual = Path.of(
-        System.getProperty(&quot;java.home&quot;),
-        &quot;bin&quot;,
-        &quot;java&quot;
-).toString();
+public static List&lt;String&gt; ordreJava(Class&lt;?&gt; classe, String... arguments) {
+    String java = Path.of(
+            System.getProperty(&quot;java.home&quot;),
+            &quot;bin&quot;,
+            &quot;java&quot;
+    ).toString();
 
-String classpathActual = System.getProperty(&quot;java.class.path&quot;);
+    String classpath = System.getProperty(&quot;java.class.path&quot;);
 
-List&lt;String&gt; ordre = List.of(
-        javaActual,
-        &quot;-cp&quot;,
-        classpathActual,
-        &quot;demo.Validador&quot;,
-        &quot;alumne01&quot;,
-        &quot;dades/alumne01&quot;
-);
+    List&lt;String&gt; ordre = new java.util.ArrayList&lt;&gt;();
+    ordre.add(java);
+    ordre.add(&quot;-cp&quot;);
+    ordre.add(classpath);
+    ordre.add(classe.getName());
+    ordre.addAll(List.of(arguments));
 
-ProcessBuilder pb = new ProcessBuilder(ordre);</code></pre>
+    return ordre;
+}</code></pre>
   </div>
 </div>
 
-<p>És preferible construir la comanda com una llista. Així cada element és un argument i no hem de muntar manualment una cadena amb espais i cometes.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No construïu tota l'ordre en una única cadena si no és necessari.</strong> <code>ProcessBuilder</code> accepta cada argument com un element separat. Això evita molts problemes amb espais, cometes i rutes.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Un fill molt petit</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Creeu una classe Salutador amb main(String[] args) que rebi un nom i mostri Hola, nom. Des d'una altra classe, executeu-la com a procés independent.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Primer feu que Salutador funcioni directament.</li>
+        
+        <li>Després construïu l'ordre amb java.home i java.class.path.</li>
+        
+        <li>No oblideu esperar la finalització.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
 </div>
 
 <div class="section" id="Unitat1_Bloc2_Seccio2">
-  <h2 id="Unitat1_Bloc2_Seccio2">2. Comunicació amb processos</h2>
+  <h2 id="Unitat1_Bloc2_Seccio2">2. Arguments, sortides i codis de retorn</h2>
 
-<p>Un procés independent no pot llegir directament les variables locals d'un altre procés. Necessitem algun mecanisme de comunicació.</p>
-<p>Els més habituals en aquest nivell són:</p>
-<ul><li>arguments de línia de comandes;</li><li>entrada estàndard, <code>stdin</code>;</li><li>sortida estàndard, <code>stdout</code>;</li><li>sortida d'error, <code>stderr</code>;</li><li>fitxers;</li><li>codi de sortida.</li></ul>
-<p>Més endavant al mòdul apareixeran altres mecanismes, com els sockets.</p>
-<h3>Codis de sortida</h3>
-<p>Un procés pot acabar amb un valor enter.</p>
-<p>Per convenció, el <code>0</code> acostuma a indicar que tot ha anat bé. Altres valors permeten diferenciar errors o resultats.</p>
+<p>Un procés fill necessita una manera d'entrar dades i una manera de comunicar el resultat. Tres mecanismes molt útils són els <strong>arguments</strong>, els <strong>streams</strong> i el <strong>codi de sortida</strong>.</p>
 
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class ComprovaNumero {
-    public static void main(String[] args) {
-        if (args.length != 1) {
-            System.err.println(&quot;Cal indicar un número&quot;);
-            System.exit(10);
-        }
-
-        int numero = Integer.parseInt(args[0]);
-
-        if (numero &gt;= 0) {
-            System.out.println(&quot;Número vàlid&quot;);
-            System.exit(0);
-        }
-
-        System.out.println(&quot;Número negatiu&quot;);
-        System.exit(2);
-    }
-}</code></pre>
-  </div>
-</div>
-
-<p>El pare pot recuperar aquest valor:</p>
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">int codi = proces.waitFor();
-
-if (codi == 0) {
-    System.out.println(&quot;Tot correcte&quot;);
-} else {
-    System.out.println(&quot;El procés ha acabat amb codi &quot; + codi);
-}</code></pre>
-  </div>
-</div>
-
-<h3>Redirigir la sortida a un fitxer</h3>
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Path fitxerSortida = Path.of(&quot;resultats&quot;, &quot;alumne01.txt&quot;);
-
-ProcessBuilder pb = new ProcessBuilder(ordre);
-pb.redirectErrorStream(true);
-pb.redirectOutput(fitxerSortida.toFile());
-
-Process proces = pb.start();</code></pre>
-  </div>
-</div>
-
-<p><code>redirectErrorStream(true)</code> uneix <code>stderr</code> amb <code>stdout</code>. La redirecció s'ha de configurar abans de <code>start()</code>.</p>
-<h3>Llegir la sortida des del programa pare</h3>
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Process proces = pb.start();
-
-try (var lector = proces.inputReader()) {
-    lector.lines().forEach(System.out::println);
-}</code></pre>
-  </div>
-</div>
-
-<p>Si un procés escriu molta informació i el pare no consumeix la sortida ni la redirigeix, el buffer es pot omplir i el fill pot quedar bloquejat. Per això, en una aplicació real, la sortida s'ha de gestionar.</p>
 <!-- Component: Figura amb peu -->
 <div class="figure-box" role="region" aria-label="Figura">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
   <div class="component-content">
     <figure class="figure">
-      <img src="/ioc/dam_0490/assets/img/unitat-1/u1_03_comunicacio_processos.svg" alt="Comunicació entre procés pare i fill." class="figure-img"/>
+      <img src="/ioc/dam_0490/assets/img/unitat-1/05_proces_pare_fill.svg" alt="Procés pare que envia arguments i entrada a un procés fill i rep sortida, errors i codi de retorn." class="figure-img"/>
       
-      <figcaption class="figure-caption">Comunicació entre procés pare i fill.</figcaption>
+      <figcaption class="figure-caption">Arguments i streams transporten dades. El codi de sortida resumeix com ha acabat el procés.</figcaption>
       
     </figure>
+  </div>
+</div>
+
+
+<h3>Un programa fill amb codis de sortida</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">ClassificadorNumero.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class ClassificadorNumero {
+
+    public static void main(String[] args) {
+        if (args.length != 1) {
+            System.err.println(&quot;Cal indicar un enter&quot;);
+            System.exit(10);
+        }
+
+        try {
+            int numero = Integer.parseInt(args[0]);
+
+            if (numero &gt;= 0) {
+                System.out.println(&quot;RESULTAT=NO_NEGATIU&quot;);
+                System.exit(0);
+            } else {
+                System.out.println(&quot;RESULTAT=NEGATIU&quot;);
+                System.exit(2);
+            }
+
+        } catch (NumberFormatException e) {
+            System.err.println(&quot;L&#39;argument no és un enter&quot;);
+            System.exit(10);
+        }
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>El text de la sortida pot contenir informació detallada. El codi de sortida permet al procés pare prendre una decisió senzilla:</p>
+
+<table class="table">
+<thead><tr><th>Codi</th><th>Significat en aquest exemple</th></tr></thead>
+<tbody>
+<tr><td><code>0</code></td><td>El programa ha acabat correctament i el nombre no és negatiu.</td></tr>
+<tr><td><code>2</code></td><td>El programa ha acabat correctament, però el resultat és negatiu.</td></tr>
+<tr><td><code>10</code></td><td>Hi ha un problema amb els arguments.</td></tr>
+</tbody>
+</table>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Important</strong></p><p>El significat dels codis és un contracte de l'aplicació. El sistema operatiu només veu un enter. El vostre programa decideix què significa cada valor.</p>
+    
+</div>
+
+
+<h3>Capturar la sortida</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">ProcessBuilder pb = new ProcessBuilder(ordre);
+pb.redirectErrorStream(true);
+
+Process proces = pb.start();
+
+String sortida;
+try (var lector = proces.inputReader()) {
+    sortida = lector.lines()
+            .collect(java.util.stream.Collectors.joining(System.lineSeparator()));
+}
+
+int codi = proces.waitFor();
+
+System.out.println(&quot;CODI=&quot; + codi);
+System.out.println(sortida);</code></pre>
+  </div>
+</div>
+
+
+<p>Amb <code>redirectErrorStream(true)</code> la sortida d'error es combina amb la sortida estàndard. Això simplifica molts casos on només necessitem un únic registre del procés.</p>
+
+<h3>Redirigir la sortida a un fitxer</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Path directori = Path.of(&quot;logs&quot;);
+Files.createDirectories(directori);
+
+Path log = directori.resolve(&quot;proces-01.txt&quot;);
+
+ProcessBuilder pb = new ProcessBuilder(ordre);
+pb.redirectErrorStream(true);
+pb.redirectOutput(log.toFile());
+
+Process proces = pb.start();</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p>Si un procés genera molta sortida i ningú consumeix els seus streams, el buffer es pot omplir i el procés es pot bloquejar. Llegir la sortida o redirigir-la a un fitxer evita aquest problema.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Tres resultats observables</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Executeu ClassificadorNumero amb 7, -3 i text. Per a cada execució, mostreu el codi de sortida i el text produït.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">20 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Feu primer una funció que construeixi l'ordre.</li>
+        
+        <li>Executeu cada cas per separat.</li>
+        
+        <li>Comproveu que el procés pare no necessita interpretar el text per saber com ha acabat.</li>
+        
+      </ul>
+    </details>
+    
   </div>
 </div>
 
 </div>
 
 <div class="section" id="Unitat1_Bloc2_Seccio3">
-  <h2 id="Unitat1_Bloc2_Seccio3">3. Espera, timeout i execució concurrent</h2>
+  <h2 id="Unitat1_Bloc2_Seccio3">3. Esperar sense bloquejar-se: timeout i finalització</h2>
 
-<p>Aquest codi pot esperar indefinidament:</p>
+<p><code>waitFor()</code> sense límit espera fins que el procés acabi. Això és correcte si tenim la garantia que el fill finalitzarà. En programes robustos sovint és millor establir un <strong>temps màxim</strong>.</p>
 
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">proces.waitFor();</code></pre>
-  </div>
-</div>
-
-<p>Quan no controlem completament el procés fill, és millor posar un límit.</p>
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -544,50 +573,101 @@ try (var lector = proces.inputReader()) {
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.concurrent.TimeUnit;
 
-boolean haAcabat = proces.waitFor(5, TimeUnit.SECONDS);
+boolean haAcabat = proces.waitFor(3, TimeUnit.SECONDS);
 
 if (haAcabat) {
     int codi = proces.exitValue();
-    System.out.println(&quot;Codi: &quot; + codi);
+    System.out.println(&quot;Ha acabat amb codi &quot; + codi);
 } else {
     proces.destroyForcibly();
-    System.out.println(&quot;Procés cancel·lat per timeout&quot;);
+    proces.waitFor();
+    System.out.println(&quot;Procés finalitzat per timeout&quot;);
 }</code></pre>
   </div>
 </div>
 
-<p>La idea és senzilla:</p>
 
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
+<p>La seqüència és important:</p>
+<ol>
+<li>esperem com a màxim el temps permès;</li>
+<li>si ha acabat, llegim <code>exitValue()</code>;</li>
+<li>si no ha acabat, demanem o forcem la finalització;</li>
+<li>tornem a esperar perquè el sistema operatiu confirmi que el procés ja ha acabat.</li>
+</ol>
+
+
+<!-- Component: Problema -->
+<div class="problem-box" role="alert" aria-live="assertive">
+    <div class="component-header error-header" role="heading" aria-level="4"><i class="bi bi-x-circle" aria-hidden="true"></i> Problema</div>
+    <p><strong>Problema típic:</strong> cridar <code>exitValue()</code> abans que el procés hagi acabat.</p>
+</div>
+
+
+
+<!-- Component: Solució -->
+<div class="solution-box" role="region" aria-label="Solució">
+    <div class="component-header solution-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Solució</div>
+    <p>Comproveu primer el resultat de <code>waitFor(timeout, unitat)</code>. Només si retorna <code>true</code> és segur obtenir el codi amb <code>exitValue()</code>.</p>
+</div>
+
+
+<h3>Finalització suau o forçada</h3>
+
+<p><code>destroy()</code> demana la finalització del procés. <code>destroyForcibly()</code> és més contundent. En general és millor donar una oportunitat a una finalització ordenada quan el programa fill la pugui gestionar.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Disseny robust</strong></p><p>Un timeout no és només una tècnica de rendiment. És una garantia que una tasca defectuosa no deixarà tota l'aplicació bloquejada indefinidament.</p>
+    
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Procés lent</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Creeu un programa fill que dormi cinc segons. Executeu-lo des d'un pare que només estigui disposat a esperar-ne dos. Comproveu que el pare recupera el control.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
       
     </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
 
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">iniciar
-  |
-esperar amb límit
-  |
-  +-- acaba -&gt; obtenir el resultat
-  |
-  +-- no acaba -&gt; cancel·lar</code></pre>
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Useu Thread.sleep al fill.</li>
+        
+        <li>Useu waitFor amb TimeUnit.SECONDS al pare.</li>
+        
+        <li>Després de destroyForcibly, espereu de nou el procés.</li>
+        
+      </ul>
+    </details>
+    
   </div>
 </div>
 
-<p><code>waitFor()</code> també és un mecanisme de sincronització. El procés pare pot necessitar esperar que el fill acabi abans de llegir un fitxer que aquest està generant o abans de considerar definitiu el seu resultat.</p>
+</div>
 
-<h3>Llançar diversos processos de manera concurrent</h3>
-<p>Suposem que tenim diverses tasques.</p>
-<p>Aquesta versió les converteix, en la pràctica, en una seqüència:</p>
+<div class="section" id="Unitat1_Bloc2_Seccio4">
+  <h2 id="Unitat1_Bloc2_Seccio4">4. Llançar diversos processos concurrentment</h2>
+
+<p>Hi ha una diferència decisiva entre <strong>crear diversos processos</strong> i <strong>permetre que estiguin actius alhora</strong>.</p>
+
+<h3>Patró seqüencial</h3>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -604,15 +684,18 @@ esperar amb límit
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">for (Tasca tasca : tasques) {
-    Process p = crearProces(tasca).start();
-    p.waitFor();
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">for (String valor : valors) {
+    Process proces = crearProces(valor).start();
+    proces.waitFor();       // esperem immediatament
 }</code></pre>
   </div>
 </div>
 
-<p>El segon procés no comença fins que el primer ha acabat.</p>
-<p>Si volem que puguin coexistir, primer els iniciem:</p>
+
+<p>Aquí només hi ha un procés fill actiu cada vegada. El següent no comença fins que l'anterior ha acabat.</p>
+
+<h3>Patró concurrent: primer llançar, després recollir</h3>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -631,106 +714,39 @@ esperar amb límit
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">List&lt;Process&gt; processos = new ArrayList&lt;&gt;();
 
-for (Tasca tasca : tasques) {
-    processos.add(crearProces(tasca).start());
+// Fase 1: llançament
+for (String valor : valors) {
+    Process proces = crearProces(valor).start();
+    processos.add(proces);
 }
 
-for (Process p : processos) {
-    p.waitFor();
-}</code></pre>
-  </div>
-</div>
+// Fase 2: recollida
+for (Process proces : processos) {
+    boolean acabat = proces.waitFor(3, TimeUnit.SECONDS);
 
-<p>La diferència important és quan esperem.</p>
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Seqüencial
-P1 ----------
-            P2 ----------
-                        P3 ----------
-
-Concurrent
-P1 ----------------
-P2 ------------
-P3 ----------------------</code></pre>
-  </div>
-</div>
-
-<p>Aquest patró tornarà a aparèixer amb <code>Future</code>: primer enviem feina, després recollim els resultats.</p>
-</div>
-
-<div class="section" id="Unitat1_Bloc2_Seccio4">
-  <h2 id="Unitat1_Bloc2_Seccio4">4. Laboratori, fitxers i monitoratge</h2>
-
-<p>Creem un programa fill que només espera un temps.</p>
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class TascaLenta {
-    public static void main(String[] args) throws Exception {
-        String nom = args[0];
-        long ms = Long.parseLong(args[1]);
-
-        System.out.println(&quot;INICI &quot; + nom);
-        Thread.sleep(ms);
-        System.out.println(&quot;FI &quot; + nom);
+    if (acabat) {
+        System.out.println(proces.exitValue());
+    } else {
+        proces.destroyForcibly();
+        proces.waitFor();
     }
 }</code></pre>
   </div>
 </div>
 
-<p>El programa pare ha de llançar:</p>
 
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
 
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">A: 3000 ms
-B: 1000 ms
-C: 2000 ms</code></pre>
-  </div>
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Aquesta separació és fonamental:</strong> iniciar totes les tasques abans d'esperar-ne cap permet que diversos processos avancin durant el mateix interval de temps.</p>
 </div>
 
-<p>Feu dues versions. A la primera, espereu cada procés abans de crear el següent. A la segona, inicieu els tres abans d'esperar.</p>
-<p>Mesureu el temps real:</p>
+
+<h3>Conservar la informació de cada procés</h3>
+
+<p>En aplicacions reals normalment necessitem recordar quin procés correspon a quina entrada i on s'ha desat la seva sortida. Un <code>record</code> petit és una solució clara:</p>
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -747,193 +763,82 @@ C: 2000 ms</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">long inici = System.nanoTime();
-
-// feina
-
-long fi = System.nanoTime();
-double segons = (fi - inici) / 1_000_000_000.0;</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">record ProcesEnCurs(
+        String identificador,
+        Process proces,
+        Path fitxerSortida
+) {}</code></pre>
   </div>
 </div>
 
-<p>En la versió seqüencial, el temps s'aproxima a la suma de les tres durades. En la concurrent, pot acostar-se a la durada de la tasca més lenta.</p>
 
-<h3>Fitxers i validació d'entrada</h3>
-<p>L'EAC utilitza <code>Path</code> i <code>Files</code> abans d'entrar en la part concurrent. És important separar la lògica de validació de la lògica que crea processos o fils.</p>
+<p>Així podem crear una <code>List&lt;ProcesEnCurs&gt;</code>, llançar totes les tasques i després recollir els resultats sense perdre la relació entre entrada, procés i log.</p>
 
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
+<h3>Temps real i suma de temps</h3>
+
+<p>Si cinc processos triguen aproximadament dos segons cadascun, la suma dels temps de treball és d'uns deu segons. Però si poden avançar alhora, el temps real observat per l'usuari pot acostar-se molt més a dos segons que a deu.</p>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-1/06_sequencial_concurrent.svg" alt="Comparació temporal entre cinc tasques seqüencials i cinc tasques que se solapen en el temps." class="figure-img"/>
+      
+      <figcaption class="figure-caption">La suma del temps de treball no és el mateix que el temps real transcorregut.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Mesura abans de creure</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Feu que quatre processos fills dormin aproximadament un segon. Mesureu el temps real quan els executeu seqüencialment i quan els llanceu tots abans de començar a esperar.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">20 min</span>
       
     </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
 
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Locale;
-
-public static String llegirContingut(Path ruta) throws IOException {
-    if (ruta == null) {
-        throw new IllegalArgumentException(&quot;La ruta no pot ser null&quot;);
-    }
-
-    if (!Files.isRegularFile(ruta) || !Files.isReadable(ruta)) {
-        throw new IOException(&quot;No es pot llegir: &quot; + ruta);
-    }
-
-    return Files.readString(ruta)
-            .trim()
-            .toLowerCase(Locale.ROOT);
-}</code></pre>
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Useu System.nanoTime abans i després.</li>
+        
+        <li>Manteniu exactament la mateixa feina en els dos casos.</li>
+        
+        <li>Compareu els temps, no només la sortida.</li>
+        
+      </ul>
+    </details>
+    
   </div>
 </div>
 
-<p>Operacions que convé dominar:</p>
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">ruta.resolve(&quot;lliurament.txt&quot;)
-Files.isDirectory(ruta)
-Files.isRegularFile(ruta)
-Files.isReadable(ruta)
-Files.readString(ruta)</code></pre>
-  </div>
-</div>
-
-<p>També cal validar les precondicions dels mètodes públics.</p>
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static void processar(String id, Path ruta) {
-    if (id == null || id.isBlank()) {
-        throw new IllegalArgumentException(&quot;L&#39;identificador és obligatori&quot;);
-    }
-
-    if (ruta == null) {
-        throw new IllegalArgumentException(&quot;La ruta és obligatòria&quot;);
-    }
-
-    // ...
-}</code></pre>
-  </div>
-</div>
-
-<p>Un error detectat al principi és molt més fàcil de localitzar que un <code>NullPointerException</code> que apareix moltes instruccions després.</p>
-
-<h3>Monitorar i depurar processos</h3>
-<p>El sistema operatiu permet veure els processos en execució. En Linux i macOS són habituals eines com:</p>
-
-<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">ps
-ps aux
-top</code></pre>
-  </div>
-</div>
-
-<p>Amb un JDK també podem utilitzar:</p>
-
-<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">BASH</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">jps</code></pre>
-  </div>
-</div>
-
-<p>Des de Java, <code>Process</code> i <code>ProcessHandle</code> permeten consultar informació del procés. Per exemple:</p>
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">long pid = proces.pid();
-System.out.println(&quot;PID=&quot; + pid);</code></pre>
-  </div>
-</div>
-
-<p>Per depurar una aplicació multiprocés convé registrar, com a mínim, la tasca que s'està executant, el PID o identificador del procés, el codi de sortida i qualsevol timeout.</p>
 </div>
 
 <div class="section" id="Unitat1_Bloc2_Seccio5">
-  <h2 id="Unitat1_Bloc2_Seccio5">5. Connexió amb l'EAC</h2>
+  <h2 id="Unitat1_Bloc2_Seccio5">5. Monitoratge, fitxers i depuració</h2>
 
-<p>La primera part de l'EAC combina exactament aquests conceptes:</p>
+<p>Treballar amb processos exigeix observar què està passant. Java ofereix informació útil tant des de <code>Process</code> com des de <code>ProcessHandle</code>.</p>
 
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
     <div class="code-info">
-      <span class="code-lang">TEXT</span>
+      <span class="code-lang">JAVA</span>
       
     </div>
     <div class="code-actions">
@@ -945,25 +850,169 @@ System.out.println(&quot;PID=&quot; + pid);</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">CorrectorLliurament
-    |
-    | lògica comuna de validació
-    v
-ValidadorLliurament
-    |
-    | s&#39;executa com un procés Java independent
-    v
-CorrectorProcessos
-    |
-    | crea diversos processos amb ProcessBuilder
-    | espera amb timeout
-    | recull codis de sortida
-    v
-resum final</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Process proces = pb.start();
+
+System.out.println(&quot;PID=&quot; + proces.pid());
+System.out.println(&quot;VIU=&quot; + proces.isAlive());
+
+ProcessHandle handle = proces.toHandle();
+
+handle.info().command().ifPresent(
+        cmd -&gt; System.out.println(&quot;ORDRE=&quot; + cmd)
+);</code></pre>
   </div>
 </div>
 
-<p>Per resoldre aquesta part cal entendre <code>Path</code>, <code>Files</code>, precondicions, <code>ProcessBuilder</code>, arguments, redirecció de sortida, codis de retorn, timeout i el patró de llançar tots els processos abans de recollir-los.</p>
+
+<h3>Una caixa d'eines mínima amb Path i Files</h3>
+
+<p>Moltes aplicacions multiprocés necessiten preparar directoris, llegir entrades o escriure resultats. Aquestes operacions no són concurrència, però formen part del codi robust que envolta els processos.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Path carpeta = Path.of(&quot;dades&quot;);
+Path fitxer = carpeta.resolve(&quot;entrada.txt&quot;);
+
+if (!Files.isDirectory(carpeta)) {
+    throw new IllegalArgumentException(&quot;La carpeta no existeix&quot;);
+}
+
+if (!Files.isRegularFile(fitxer)) {
+    throw new IllegalArgumentException(&quot;Falta el fitxer d&#39;entrada&quot;);
+}
+
+String contingut = Files.readString(fitxer).trim();
+
+Path resultats = Path.of(&quot;resultats&quot;);
+Files.createDirectories(resultats);</code></pre>
+  </div>
+</div>
+
+
+<h3>Validar precondicions</h3>
+
+<p>Els mètodes públics han de fallar de manera clara quan reben dades que no poden processar.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static ProcessBuilder prepararProces(
+        List&lt;String&gt; ordre,
+        Path sortida) {
+
+    if (ordre == null || ordre.isEmpty()) {
+        throw new IllegalArgumentException(&quot;L&#39;ordre no pot ser buida&quot;);
+    }
+
+    if (ordre.stream().anyMatch(s -&gt; s == null || s.isBlank())) {
+        throw new IllegalArgumentException(&quot;L&#39;ordre conté arguments invàlids&quot;);
+    }
+
+    if (sortida == null) {
+        throw new IllegalArgumentException(&quot;La sortida no pot ser null&quot;);
+    }
+
+    ProcessBuilder pb = new ProcessBuilder(ordre);
+    pb.redirectErrorStream(true);
+    pb.redirectOutput(sortida.toFile());
+    return pb;
+}</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No amagueu excepcions sense entendre-les.</strong> Un <code>catch (Exception e) {}</code> pot convertir un error clar en un resultat misteriós. Durant el desenvolupament, conserveu informació suficient per saber quin procés, quina entrada i quina operació han fallat.</p>
+</div>
+
+
+<h3>Checklist d'una aplicació multiprocés robusta</h3>
+
+<!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Processos">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Construeixo les ordres amb arguments separats</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Valido les precondicions dels mètodes públics</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Gestiono stdout i stderr perquè cap buffer bloquegi el procés</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Interpreto el codi de sortida només quan el procés ha acabat</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Tinc un timeout quan un procés podria quedar penjat</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Si vull concurrència, llanço diverses tasques abans de començar a esperar-les</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Conservo la relació entre cada procés i les seves dades</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc observar PID, estat i logs quan depuro</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+
+<!-- Component: Suggeriment d'ampliació simplificat -->
+<div class="suggestion-box" role="note">
+    <div class="component-header suggestion-header" role="heading" aria-level="4"><i class="bi bi-lightbulb" aria-hidden="true"></i> Suggeriment</div>
+    <p><strong>Per ampliar:</strong> <code>ProcessHandle.allProcesses()</code> permet inspeccionar processos visibles per a la JVM. És útil per entendre les eines de monitoratge, però una aplicació normalment ha de controlar sobretot els processos que ella mateixa ha creat.</p>
+</div>
+
 </div>
 
 
@@ -983,7 +1032,7 @@ resum final</code></pre>
   "@context": "https://schema.org",
   "@type": "LearningResource",
   "name": "Bloc 2: Crear i controlar processos des de Java",
-  "description": "Materials pràctics i progressius de la unitat 1",
+  "description": "ProcessBuilder, arguments, streams, codis de sortida, timeouts i execució concurrent de subprocessos",
   "author": {
     "@type": "Organization",
     "name": "Institut Obert de Catalunya"
@@ -1058,7 +1107,7 @@ resum final</code></pre>
                     
                     <div class="nav-link-wrapper">
                         
-                        <a href="/ioc/dam_0490/unitat-1/bloc-1/" class="nav-button" aria-label="Bloc anterior: Entendre què passa quan hi ha diverses tasques">← Anterior</a>
+                        <a href="/ioc/dam_0490/unitat-1/bloc-1/" class="nav-button" aria-label="Bloc anterior: Entendre la concurrència abans d'escriure codi">← Anterior</a>
                         
                     </div>
                     
@@ -1122,7 +1171,7 @@ resum final</code></pre>
       };
     </script>
     <!-- Scripts del lloc -->
-    <script src="/ioc/dam_0490/assets/js/site.js?v=1790418418" defer></script>
+    <script src="/ioc/dam_0490/assets/js/site.js" defer></script>
     <!-- Quadern Notes v2 (nou sistema) -->
     <script src="/ioc/dam_0490/assets/js/quadern-app/constants.js" defer></script>
     <script src="/ioc/dam_0490/assets/js/quadern-app/utils.js" defer></script>
