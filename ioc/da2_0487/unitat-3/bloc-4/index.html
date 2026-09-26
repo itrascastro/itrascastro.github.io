@@ -608,14 +608,15 @@ git log --oneline</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git branch
-git switch -c branca_tipus
-git branch</code></pre>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">git branch branca_tipus   # crea la branca
+git branch                 # mostra les branques; encara som a main
+git switch branca_tipus    # ens hi situem
+git branch                 # ara l&#39;asterisc apareix a branca_tipus</code></pre>
   </div>
 </div>
 
 
-<p>L'asterisc que mostra <code>git branch</code> identifica la branca actual. Amb <code>git switch -c</code> hem creat una branca i ens hi hem situat en una sola operació.</p>
+<p>L'asterisc que mostra <code>git branch</code> identifica la branca actual. Hem separat expressament els dos passos perquè quedi clar que <strong>crear una branca</strong> i <strong>situar-s'hi</strong> són accions diferents. Quan vulgueu fer-les en una sola ordre, podeu utilitzar <code>git switch -c branca_tipus</code>. En materials antics també podeu trobar <code>git checkout</code>; <code>git switch</code> és l'ordre moderna i més específica per canviar de branca.</p>
 
 <p>A <code>branca_tipus</code> canviem la durada perquè admeti fraccions d'hora:</p>
 

@@ -289,6 +289,11 @@
     
     
 
+    
+    
+    
+    
+
 
 
                 </div>
@@ -677,6 +682,57 @@
 
 
 <p>En un graf connectat, la complexitat ciclomàtica indica quants <strong>camins independents</strong> formen el conjunt bàsic. En codi estructurat senzill també podem fer servir com a comprovació ràpida la idea «nombre de decisions + 1», sempre que tractem cada decisió de la mateixa manera que al graf.</p>
+
+<h3>Exemple complet amb el nostre graf</h3>
+
+<p>A la figura hem simplificat la primera condició composta (<code>punts &lt; 0 || punts &gt; 100</code>) com <strong>un únic node de decisió</strong> i hem afegit un node final comú. Amb aquesta representació tenim <strong>11 nodes</strong> i <strong>14 branques</strong>:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">CC = 14 - 11 + 2 = 5</code></pre>
+  </div>
+</div>
+
+
+<p>Per tant, el conjunt bàsic necessita cinc camins independents. Podem pensar-los com cinc resultats estructurals: error, Insuficient, Bé, Notable i Excel·lent. Les dues classes invàlides (<code>&lt; 0</code> i <code>&gt; 100</code>) són importants per als valors límit, encara que en aquest graf simplificat comparteixen el mateix camí després d'avaluar la condició composta.</p>
+
+<p>Un conjunt bàsic possible és:</p>
+
+<table class="table">
+<thead><tr><th>Camí</th><th>Seqüència de nodes</th><th>Un cas que el cobreix</th></tr></thead>
+<tbody>
+<tr><td>P1</td><td><code>1-2-6-11</code></td><td><code>-1</code> (també <code>101</code> segueix aquest camí simplificat)</td></tr>
+<tr><td>P2</td><td><code>1-2-3-7-11</code></td><td><code>0</code></td></tr>
+<tr><td>P3</td><td><code>1-2-3-4-8-11</code></td><td><code>50</code></td></tr>
+<tr><td>P4</td><td><code>1-2-3-4-5-9-11</code></td><td><code>70</code></td></tr>
+<tr><td>P5</td><td><code>1-2-3-4-5-10-11</code></td><td><code>90</code></td></tr>
+</tbody>
+</table>
+
+<p>Això mostra una idea important: <strong>classes d'equivalència, valors límit i camins independents no són tres exercicis separats</strong>. El conjunt final de casos s'ha de revisar amb les tres mirades. Per exemple, el camí P1 queda cobert amb <code>-1</code>, però encara ens interessa provar <code>101</code> perquè és el límit de l'altra classe invàlida.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Si descomponeu una condició composta, redibuixeu i recompteu.</strong></p><p>També és possible representar cada operand de <code>||</code> com una decisió pròpia. En aquest cas canvien nodes, branques i complexitat. El que no es pot fer és dibuixar d'una manera i comptar com si haguéssiu dibuixat una altra.</p>
+    
+</div>
+
 
 <p>Un <strong>camí independent</strong> és un recorregut que incorpora almenys una branca que encara no havia aparegut als camins seleccionats. L'objectiu no és memoritzar una seqüència concreta de números: és poder demostrar que el joc de proves fa passar el programa per totes les alternatives rellevants.</p>
 
