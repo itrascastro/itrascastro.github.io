@@ -503,27 +503,7 @@ Una publicació pot ser un llibre o una revista. Totes les publicacions tenen t�
 
 <p>Una dependència és una relació més feble. Una classe necessita una altra per fer alguna operació, però no la manté necessàriament com una part estable del seu estat.</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Informe - - - - - - &gt; Impressora
-        utilitza</code></pre>
-  </div>
-</div>
-
+<p>Per exemple, si <code>Informe</code> utilitza temporalment una <code>Impressora</code>, podem representar una dependència des d'<code>Informe</code> cap a <code>Impressora</code>.</p>
 
 <p>Si un mètode d'<code>Informe</code> rep una <code>Impressora</code> com a paràmetre per imprimir-se, hi ha una dependència clara. Un canvi important a <code>Impressora</code> pot obligar a modificar <code>Informe</code>.</p>
 
@@ -531,33 +511,7 @@ Una publicació pot ser un llibre o una revista. Totes les publicacions tenen t�
 
 <p>Una interfície declara operacions que altres classes hauran d'implementar. En UML es pot representar amb l'estereotip <code>&lt;&lt;interface&gt;&gt;</code>.</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">+-----------------------------+
-| &lt;&lt;interface&gt;&gt;               |
-| Pagable                     |
-+-----------------------------+
-| + calcularImport(): double  |
-+-----------------------------+
-
-Factura --------▷ Pagable</code></pre>
-  </div>
-</div>
-
+<p>La classe <code>Factura</code> pot realitzar la interfície <code>Pagable</code>, que declara l'operació <code>calcularImport(): double</code>.</p>
 
 <p>En Java, la idea correspon a:</p>
 
@@ -840,25 +794,6 @@ Una empresa lloga bicicletes. De cada bicicleta es guarda el codi, la marca i el
 <p><code>BicicletaElectrica</code> <strong>és una</strong> <code>Bicicleta</code>. Per tant:</p>
 
 
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">BicicletaElectrica --------▷ Bicicleta</code></pre>
-  </div>
-</div>
-
 
 <h3>Pas 4. Associacions i multiplicitats</h3>
 
@@ -873,25 +808,6 @@ Una empresa lloga bicicletes. De cada bicicleta es guarda el codi, la marca i el
 
 <p>L'enunciat diu que una revisió només té sentit vinculada a la bicicleta revisada. Si volem reflectir aquesta dependència de vida al model:</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Bicicleta ◆---------------- 0..* Revisio</code></pre>
-  </div>
-</div>
 
 
 <h3>Pas 6. Revisió final</h3>

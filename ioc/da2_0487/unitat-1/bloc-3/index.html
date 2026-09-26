@@ -792,71 +792,11 @@ Un CentreControl inicia una inspecció. El SistemaNavegacio comprova els motors,
 <h3>Un flux lineal</h3>
 
 
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">[inici]
-   |
-   v
-Rebre comanda
-   |
-   v
-Preparar paquet
-   |
-   v
-Enviar paquet
-   |
- [final]</code></pre>
-  </div>
-</div>
-
 
 <h3>Decisions i guardes</h3>
 
 <p>Quan el camí depèn d'una condició utilitzem un node de decisió. Les branques s'etiqueten amb <strong>guardes</strong>:</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Comprovar estoc
-       |
-       v
-      &lt; &gt;
-     /   \
-[hi ha] [no hi ha]
-   |       |
-Preparar  Avisar client
-   |       |
-   +---&lt; &gt;-+
-       |
-     continuar</code></pre>
-  </div>
-</div>
 
 
 <p>Les guardes han de ser mútuament comprensibles: el lector ha de saber en quina condició es pren cada branca.</p>
@@ -865,35 +805,6 @@ Preparar  Avisar client
 
 <p>Suposem que, després d'acceptar una incidència, dos equips poden treballar al mateix temps: un aïlla la zona i l'altre avisa els usuaris. No volem que el procés continuï fins que <strong>totes dues tasques</strong> hagin acabat.</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Acceptar incidència
-        |
-======== fork ========
-   |              |
-   v              v
-Aïllar zona    Avisar usuaris
-   |              |
-======== join ========
-        |
-        v
-Avaluar resultat</code></pre>
-  </div>
-</div>
 
 
 <!-- Component: Definició curta -->
@@ -918,36 +829,6 @@ Avaluar resultat</code></pre>
 
 <p>Després d'avaluar el resultat, pot ser necessari repetir una operació:</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Netejar zona
-     |
-     v
-Mesurar contaminació
-     |
-     v
-    &lt; &gt;
-   /   \
-[alta] [acceptable]
-  |         |
-  +----&gt; Netejar zona
-                         -&gt; Generar informe -&gt; [final]</code></pre>
-  </div>
-</div>
 
 
 <p>Un exercici complet pot combinar <strong>fork/join + decisió + bucle</strong>. La manera més segura de construir-lo és dibuixar primer el camí principal i afegir després el paral·lelisme i les branques.</p>
@@ -1027,30 +908,6 @@ Mesurar contaminació
 <h3>Exemple mínim: una comanda</h3>
 
 
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">[inici]
-   |
-   v
-OBERTA --pagar--&gt; PAGADA --enviar--&gt; ENVIADA --entregar--&gt; LLIURADA
-   |
-   +--cancel·lar--&gt; [final]</code></pre>
-  </div>
-</div>
-
 
 <p>Els noms en majúscules són <strong>estats</strong>. Els verbs sobre les fletxes són <strong>esdeveniments o transicions</strong>.</p>
 
@@ -1059,56 +916,11 @@ OBERTA --pagar--&gt; PAGADA --enviar--&gt; ENVIADA --entregar--&gt; LLIURADA
 <p>Mentre una compra és <code>OBERTA</code>, afegir un producte pot modificar-ne les dades sense deixar de ser oberta:</p>
 
 
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">afegirProducte
-       +-------------+
-       |             |
-       v             |
-     OBERTA ---------+</code></pre>
-  </div>
-</div>
-
 
 <h3>Guardes i recuperació</h3>
 
 <p>Un dispositiu pot tenir un estat d'error del qual només surt si una reparació és satisfactòria:</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">OPERATIU --fallada--&gt; AVARIAT
-
-AVARIAT --reparar [correcte]--&gt; OPERATIU
-AVARIAT --reparar [irreparable]--&gt; FORA_DE_SERVEI --&gt; [final]</code></pre>
-  </div>
-</div>
 
 
 <table class="table">

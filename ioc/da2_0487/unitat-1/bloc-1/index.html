@@ -520,33 +520,6 @@ Una pel·lícula té un títol, una durada en minuts i una qualificació d'edat.
 </blockquote>
 
 
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">+-----------------------------------+
-|            Pellicula              |
-+-----------------------------------+
-| - titol: String                   |
-| - duradaMinuts: int               |
-| - edatMinima: int                 |
-+-----------------------------------+
-| + esApta(edat: int): boolean      |
-+-----------------------------------+</code></pre>
-  </div>
-</div>
-
 
 <p>Observeu que el mètode <code>esApta</code> necessita una dada d'entrada: l'edat que volem comprovar. Per això el paràmetre forma part de la signatura.</p>
 
@@ -645,28 +618,7 @@ Una pel·lícula té un títol, una durada en minuts i una qualificació d'edat.
 
 <p>En molts exercicis de modelatge treballarem amb una regla simple: <strong>atributs privats i operacions públiques</strong>, tret que l'enunciat indiqui una altra cosa.</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">- saldo: double
-+ ingressar(import: double): void
-+ saldoDisponible(): double</code></pre>
-  </div>
-</div>
-
+<p>En notació UML, per exemple: <code>- saldo: double</code>, <code>+ ingressar(import: double): void</code> i <code>+ saldoDisponible(): double</code>.</p>
 
 <h3>Tipus dels atributs</h3>
 
@@ -676,26 +628,7 @@ Una pel·lícula té un títol, una durada en minuts i una qualificació d'edat.
 
 <p>Una operació UML pot incloure:</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">+ calcularPreu(quantitat: int, descompte: double): double</code></pre>
-  </div>
-</div>
-
+<p>Una signatura completa podria ser <code>+ calcularPreu(quantitat: int, descompte: double): double</code>.</p>
 
 <ul>
 <li><code>calcularPreu</code>: nom de l'operació;</li>
