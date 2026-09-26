@@ -45,7 +45,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/ioc/dam_0490/assets/images/favicon.ico">
+    <link rel="icon" type="image/png" href="/ioc/dam_0490/assets/images/logo_IOC_dark.png">
     
     <!-- RSS Feed -->
     <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0490/feed.xml" title="Programació de serveis i processos" />
@@ -396,7 +396,7 @@
 
 
 <!-- Contingut principal -->
-<div class="section" id="Unitat2_Bloc3_Seccio1">
+<div class="section">
   <h2 id="Unitat2_Bloc3_Seccio1">1. Per què un servidor seqüencial no escala</h2>
 
 <p>El servidor TCP del bloc anterior tenia una limitació deliberada: acceptava un client i dedicava tot el fil principal a conversar amb ell. Mentre aquell client no acabava, el servidor no tornava a <code>accept()</code>.</p>
@@ -532,7 +532,7 @@
 
 </div>
 
-<div class="section" id="Unitat2_Bloc3_Seccio2">
+<div class="section">
   <h2 id="Unitat2_Bloc3_Seccio2">2. Un fil per client</h2>
 
 <p>El patró més senzill per fer concurrent un servidor TCP és crear un fil independent per a cada connexió acceptada.</p>
@@ -681,6 +681,15 @@ public class EchoTcpClientHandler extends Thread {
 <p>I el servidor queda reduït a la seva responsabilitat principal:</p>
 
 
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Projecte de dos fitxers.</strong></p><p>Deseu <code>EchoTcpClientHandler.java</code> i <code>EchoTcpServer.java</code> a la mateixa carpeta abans de compilar.</p>
+    
+</div>
+
+
+
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
     <div class="code-info">
@@ -780,7 +789,7 @@ public class EchoTcpServer {
 
 </div>
 
-<div class="section" id="Unitat2_Bloc3_Seccio3">
+<div class="section">
   <h2 id="Unitat2_Bloc3_Seccio3">3. Separar acceptació i sessió amb Runnable</h2>
 
 <p>Heretar de <code>Thread</code> és fàcil d'entendre, però barreja dues idees: <strong>la feina que cal fer</strong> i <strong>el mecanisme que l'executa</strong>. És més flexible descriure la sessió amb <code>Runnable</code>.</p>
@@ -790,7 +799,7 @@ public class EchoTcpServer {
   <div class="code-header">
     <div class="code-info">
       <span class="code-lang">JAVA</span>
-      <span class="code-filename">EchoSession.java</span>
+      
     </div>
     <div class="code-actions">
       <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
@@ -801,7 +810,9 @@ public class EchoTcpServer {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class EchoSession implements Runnable {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.net.Socket;
+
+public class EchoSession implements Runnable {
 
     private final Socket socket;
 
@@ -952,7 +963,14 @@ System.out.println(p.finalitza(&quot;fi&quot;));
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public final class EchoSession implements Runnable {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.nio.charset.StandardCharsets;
+
+public final class EchoSession implements Runnable {
 
     private final Socket socket;
     private final EchoProtocol protocol =
@@ -1003,6 +1021,15 @@ System.out.println(p.finalitza(&quot;fi&quot;));
 </div>
 
 
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Projecte reutilitzable.</strong></p><p>Deseu <code>EchoProtocol.java</code> i la versió completa d'<code>EchoSession.java</code> a la mateixa carpeta. El servidor amb pool de l'apartat següent reutilitza aquests dos fitxers.</p>
+    
+</div>
+
+
 <!-- Component: Exercici estàndard -->
 <div class="exercise-box" role="region" aria-label="Exercici">
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Protocol sense xarxa</div>
@@ -1040,7 +1067,7 @@ System.out.println(p.finalitza(&quot;fi&quot;));
 
 </div>
 
-<div class="section" id="Unitat2_Bloc3_Seccio4">
+<div class="section">
   <h2 id="Unitat2_Bloc3_Seccio4">4. Pools de fils, límits i tancament</h2>
 
 <p>El patró un fil per connexió funciona bé per entendre la concurrència i per a un nombre moderat de clients. Però té un problema evident: si arriben milers de connexions, crear un fil nou per a cadascuna pot consumir massa memòria i temps de planificació.</p>
@@ -1262,7 +1289,7 @@ try {
 
 </div>
 
-<div class="section" id="Unitat2_Bloc3_Seccio5">
+<div class="section">
   <h2 id="Unitat2_Bloc3_Seccio5">5. Provar, depurar i observar un servei de xarxa</h2>
 
 <p>Un servidor pot "estar en marxa" i, tot i així, funcionar malament. Per això no n'hi ha prou amb comprovar que el procés existeix. Hem de poder observar connexions, sessions, errors i temps d'espera.</p>

@@ -45,7 +45,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/ioc/dam_0490/assets/images/favicon.ico">
+    <link rel="icon" type="image/png" href="/ioc/dam_0490/assets/images/logo_IOC_dark.png">
     
     <!-- RSS Feed -->
     <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0490/feed.xml" title="Programació de serveis i processos" />
@@ -518,7 +518,7 @@
 
 
 <!-- Contingut principal -->
-<div class="section" id="Unitat2_Bloc4_Seccio1">
+<div class="section">
   <h2 id="Unitat2_Bloc4_Seccio1">1. Serveis estàndard i arquitectura del correu</h2>
 
 <p>Fins ara hem inventat els nostres propis protocols. Internet funciona perquè moltes aplicacions comparteixen <strong>protocols estàndard</strong>. Això permet que programes creats per equips diferents puguin interoperar.</p>
@@ -805,40 +805,47 @@ import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-String body =
-        &quot;nom=&quot;
-        + URLEncoder.encode(
-                &quot;Anna Serra&quot;,
-                StandardCharsets.UTF_8)
-        + &quot;&amp;modul=0490&quot;;
+public class EnviarPost {
 
-byte[] dades =
-        body.getBytes(StandardCharsets.UTF_8);
+    public static void main(String[] args)
+            throws Exception {
 
-HttpURLConnection con =
-        (HttpURLConnection)
-        URI.create(&quot;https://example.org/form&quot;)
-           .toURL()
-           .openConnection();
+        String body =
+                &quot;nom=&quot;
+                + URLEncoder.encode(
+                        &quot;Anna Serra&quot;,
+                        StandardCharsets.UTF_8)
+                + &quot;&amp;modul=0490&quot;;
 
-con.setRequestMethod(&quot;POST&quot;);
-con.setDoOutput(true);
-con.setRequestProperty(
-        &quot;Content-Type&quot;,
-        &quot;application/x-www-form-urlencoded; charset=UTF-8&quot;
-);
-con.setFixedLengthStreamingMode(dades.length);
+        byte[] dades =
+                body.getBytes(StandardCharsets.UTF_8);
 
-try (OutputStream out =
-             con.getOutputStream()) {
-    out.write(dades);
-}
+        HttpURLConnection con =
+                (HttpURLConnection)
+                URI.create(&quot;https://example.org/form&quot;)
+                   .toURL()
+                   .openConnection();
 
-System.out.println(
-        &quot;Estat: &quot; + con.getResponseCode()
-);
+        con.setRequestMethod(&quot;POST&quot;);
+        con.setDoOutput(true);
+        con.setRequestProperty(
+                &quot;Content-Type&quot;,
+                &quot;application/x-www-form-urlencoded; charset=UTF-8&quot;
+        );
+        con.setFixedLengthStreamingMode(dades.length);
 
-con.disconnect();</code></pre>
+        try (OutputStream out =
+                     con.getOutputStream()) {
+            out.write(dades);
+        }
+
+        System.out.println(
+                &quot;Estat: &quot; + con.getResponseCode()
+        );
+
+        con.disconnect();
+    }
+}</code></pre>
   </div>
 </div>
 
@@ -1309,7 +1316,7 @@ Aplicació de Pau</code></pre>
 
 </div>
 
-<div class="section" id="Unitat2_Bloc4_Seccio2">
+<div class="section">
   <h2 id="Unitat2_Bloc4_Seccio2">2. Format d'un missatge: capçaleres i cos</h2>
 
 <p>El protocol SMTP transporta un missatge, però el <strong>format del missatge</strong> és una altra especificació. El model modern prové de la família RFC 822 / RFC 2822 i actualment queda recollit principalment a RFC 5322.</p>
@@ -1528,7 +1535,7 @@ System.out.println(format.format(ara));</code></pre>
 
 </div>
 
-<div class="section" id="Unitat2_Bloc4_Seccio3">
+<div class="section">
   <h2 id="Unitat2_Bloc4_Seccio3">3. SMTP: comandes, respostes i estat de sessió</h2>
 
 <p>SMTP és un protocol textual de petició-resposta sobre TCP. El client envia una comanda i el servidor respon amb un <strong>codi numèric de tres dígits</strong> i, normalment, un text descriptiu.</p>
@@ -1768,10 +1775,19 @@ QUIT pot aparèixer fora del mode DATA i tanca la sessió</code></pre>
 
 </div>
 
-<div class="section" id="Unitat2_Bloc4_Seccio4">
+<div class="section">
   <h2 id="Unitat2_Bloc4_Seccio4">4. Construir un servidor i un client SMTP senzills</h2>
 
 <p>Ara combinarem tot el que ja sabem: <code>ServerSocket</code>, una sessió concurrent, protocol de línies, estat i emmagatzematge local.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Projecte de cinc fitxers.</strong></p><p>Deseu <code>SmtpMessage.java</code>, <code>MailboxStore.java</code>, <code>SmtpSession.java</code>, <code>SmtpServer.java</code> i <code>SmtpClient.java</code> a la mateixa carpeta. El conjunt compila amb JDK 17 o posterior.</p>
+    
+</div>
+
 
 <h3>1. El missatge en memòria</h3>
 
@@ -1846,7 +1862,7 @@ public class SmtpMessage {
   <div class="code-header">
     <div class="code-info">
       <span class="code-lang">JAVA</span>
-      
+      <span class="code-filename">MailboxStore.java</span>
     </div>
     <div class="code-actions">
       <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
@@ -1857,33 +1873,45 @@ public class SmtpMessage {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">static Path desar(SmtpMessage message)
-        throws IOException {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.UUID;
 
-    Path carpeta = Path.of(&quot;mailbox&quot;);
-    Files.createDirectories(carpeta);
+public final class MailboxStore {
 
-    String nom =
-            &quot;mail-&quot; + System.currentTimeMillis()
-            + &quot;-&quot; + UUID.randomUUID()
-            + &quot;.txt&quot;;
+    private MailboxStore() {
+    }
 
-    Path fitxer = carpeta.resolve(nom);
+    public static Path desar(SmtpMessage message)
+            throws IOException {
 
-    String contingut =
-            &quot;Envelope-From: &quot; + message.getFrom()
-            + System.lineSeparator()
-            + &quot;Envelope-To: &quot;
-            + String.join(&quot;, &quot;, message.getRecipients())
-            + System.lineSeparator()
-            + System.lineSeparator()
-            + message.getData();
+        Path carpeta = Path.of(&quot;mailbox&quot;);
+        Files.createDirectories(carpeta);
 
-    return Files.writeString(
-            fitxer,
-            contingut,
-            StandardCharsets.UTF_8
-    );
+        String nom =
+                &quot;mail-&quot; + System.currentTimeMillis()
+                + &quot;-&quot; + UUID.randomUUID()
+                + &quot;.txt&quot;;
+
+        Path fitxer = carpeta.resolve(nom);
+
+        String contingut =
+                &quot;Envelope-From: &quot; + message.getFrom()
+                + System.lineSeparator()
+                + &quot;Envelope-To: &quot;
+                + String.join(&quot;, &quot;, message.getRecipients())
+                + System.lineSeparator()
+                + System.lineSeparator()
+                + message.getData();
+
+        return Files.writeString(
+                fitxer,
+                contingut,
+                StandardCharsets.UTF_8
+        );
+    }
 }</code></pre>
   </div>
 </div>
@@ -1909,7 +1937,16 @@ public class SmtpMessage {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public final class SmtpSession implements Runnable {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.io.BufferedReader;
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+
+public final class SmtpSession implements Runnable {
 
     private enum Estat {
         CONNECTED, GREETED, MAIL_FROM, RCPT_TO
@@ -2022,7 +2059,7 @@ public class SmtpMessage {
 
                     llegirData(in);
 
-                    Path fitxer = desar(message);
+                    Path fitxer = MailboxStore.desar(message);
 
                     System.out.println(
                             &quot;Desat: &quot; + fitxer
@@ -2120,7 +2157,12 @@ public class SmtpMessage {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class SmtpServer {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class SmtpServer {
 
     private static final int PORT = 2525;
 
@@ -2173,7 +2215,15 @@ public class SmtpMessage {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class SmtpClient {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.io.BufferedReader;
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.nio.charset.StandardCharsets;
+
+public class SmtpClient {
 
     public static void main(String[] args)
             throws Exception {
@@ -2343,7 +2393,7 @@ DATA
 
 </div>
 
-<div class="section" id="Unitat2_Bloc4_Seccio5">
+<div class="section">
   <h2 id="Unitat2_Bloc4_Seccio5">5. Jakarta Mail: del protocol manual a una API d'alt nivell</h2>
 
 <p>Hem implementat SMTP a mà per entendre'l. En una aplicació real, repetir aquest codi seria mala idea. Una llibreria especialitzada ja coneix el protocol, els formats de missatge i moltes extensions.</p>
@@ -2371,7 +2421,7 @@ DATA
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-xml">&lt;dependency&gt;
     &lt;groupId&gt;org.eclipse.angus&lt;/groupId&gt;
     &lt;artifactId&gt;angus-mail&lt;/artifactId&gt;
-    &lt;version&gt;2.0.3&lt;/version&gt;
+    &lt;version&gt;2.0.5&lt;/version&gt;
 &lt;/dependency&gt;</code></pre>
   </div>
 </div>

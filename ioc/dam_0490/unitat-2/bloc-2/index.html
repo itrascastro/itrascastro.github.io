@@ -45,7 +45,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/ioc/dam_0490/assets/images/favicon.ico">
+    <link rel="icon" type="image/png" href="/ioc/dam_0490/assets/images/logo_IOC_dark.png">
     
     <!-- RSS Feed -->
     <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0490/feed.xml" title="Programació de serveis i processos" />
@@ -394,7 +394,7 @@
 
 
 <!-- Contingut principal -->
-<div class="section" id="Unitat2_Bloc2_Seccio1">
+<div class="section">
   <h2 id="Unitat2_Bloc2_Seccio1">1. Primer eco TCP: ServerSocket i Socket</h2>
 
 <p>Ja tenim el model mental. Ara construirem la comunicació més petita possible: un servidor rep una línia de text i retorna la mateixa línia en majúscules.</p>
@@ -651,7 +651,7 @@ public class EchoTcpClient {
 
 </div>
 
-<div class="section" id="Unitat2_Bloc2_Seccio2">
+<div class="section">
   <h2 id="Unitat2_Bloc2_Seccio2">2. Fluxos de text i protocol d'aplicació</h2>
 
 <p>Un <code>Socket</code> TCP ens dona dos fluxos:</p>
@@ -859,7 +859,7 @@ out.flush();</code></pre>
 
 </div>
 
-<div class="section" id="Unitat2_Bloc2_Seccio3">
+<div class="section">
   <h2 id="Unitat2_Bloc2_Seccio3">3. Primer eco UDP: DatagramSocket i DatagramPacket</h2>
 
 <p>Amb UDP no establim una connexió TCP. Treballem amb <strong>datagrames independents</strong>. Cada paquet rebut porta la dada i també l'adreça i el port de l'emissor.</p>
@@ -1103,7 +1103,7 @@ public class EchoUdpClient {
 
 </div>
 
-<div class="section" id="Unitat2_Bloc2_Seccio4">
+<div class="section">
   <h2 id="Unitat2_Bloc2_Seccio4">4. Pèrdues, duplicats, ordre i timeout en UDP</h2>
 
 <p>L'exemple anterior té una fragilitat: després d'enviar, el client fa <code>receive()</code> i pot quedar-se esperant indefinidament. Si el servidor no està en marxa o la resposta es perd, no hi ha ningú que desbloquegi aquella lectura.</p>
@@ -1297,7 +1297,7 @@ while (true) {
 
 </div>
 
-<div class="section" id="Unitat2_Bloc2_Seccio5">
+<div class="section">
   <h2 id="Unitat2_Bloc2_Seccio5">5. Unicast i multicast amb MulticastSocket</h2>
 
 <p>Fins ara cada missatge tenia un únic destí. Això és <strong>unicast</strong>. Amb <strong>multicast</strong>, un emissor envia un datagrama a una adreça de grup i diversos receptors que s'hi han unit poden rebre'l.</p>

@@ -45,7 +45,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/ioc/dam_0490/assets/images/favicon.ico">
+    <link rel="icon" type="image/png" href="/ioc/dam_0490/assets/images/logo_IOC_dark.png">
     
     <!-- RSS Feed -->
     <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0490/feed.xml" title="Programació de serveis i processos" />
@@ -385,7 +385,7 @@
 
 
 <!-- Contingut principal -->
-<div class="section" id="Unitat3_Bloc4_Seccio1">
+<div class="section">
   <h2 id="Unitat3_Bloc4_Seccio1">1. Clau simètrica i clau asimètrica</h2>
 
 <p>Fins ara hem utilitzat hashes i TLS com a eines. Ara mirarem una de les peces criptogràfiques que ens ajuda a entendre com es construeixen sistemes més complets: la <strong>criptografia asimètrica</strong>.</p>
@@ -569,7 +569,7 @@ System.out.println(
 
 </div>
 
-<div class="section" id="Unitat3_Bloc4_Seccio2">
+<div class="section">
   <h2 id="Unitat3_Bloc4_Seccio2">2. Generar un parell de claus RSA</h2>
 
 <p>Les claus RSA han de complir propietats matemàtiques concretes. No les construirem a mà. Java ens proporciona <code>KeyPairGenerator</code>.</p>
@@ -712,7 +712,7 @@ System.out.println(
 
 </div>
 
-<div class="section" id="Unitat3_Bloc4_Seccio3">
+<div class="section">
   <h2 id="Unitat3_Bloc4_Seccio3">3. Xifrar amb la pública i desxifrar amb la privada</h2>
 
 <p>La classe central del JCE per xifrar i desxifrar és <code>Cipher</code>. Farem un exemple complet amb un missatge curt.</p>
@@ -873,7 +873,7 @@ System.out.println(
 
 </div>
 
-<div class="section" id="Unitat3_Bloc4_Seccio4">
+<div class="section">
   <h2 id="Unitat3_Bloc4_Seccio4">4. Padding, límits de RSA i xifrat híbrid</h2>
 
 <p>RSA no està pensat per xifrar un fitxer gran directament. Amb una clau RSA de 2048 bits, el bloc criptogràfic ocupa 256 bytes. Amb <code>PKCS1Padding</code>, una part d'aquests bytes es reserva per al padding, de manera que el missatge directe queda limitat aproximadament a <strong>245 bytes</strong>.</p>
@@ -1043,7 +1043,7 @@ cipher.doFinal(
 
 </div>
 
-<div class="section" id="Unitat3_Bloc4_Seccio5">
+<div class="section">
   <h2 id="Unitat3_Bloc4_Seccio5">5. Signatures, certificats i com encaixa tot dins TLS</h2>
 
 <p>Una parella RSA no només es pot utilitzar per a confidencialitat. També pot participar en <strong>signatures digitals</strong>. El propòsit canvia:</p>

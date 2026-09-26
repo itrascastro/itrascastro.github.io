@@ -45,7 +45,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/ioc/dam_0490/assets/images/favicon.ico">
+    <link rel="icon" type="image/png" href="/ioc/dam_0490/assets/images/logo_IOC_dark.png">
     
     <!-- RSS Feed -->
     <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0490/feed.xml" title="Programació de serveis i processos" />
@@ -371,7 +371,7 @@
 
 
 <!-- Contingut principal -->
-<div class="section" id="Unitat3_Bloc2_Seccio1">
+<div class="section">
   <h2 id="Unitat3_Bloc2_Seccio1">1. Autenticació, autorització i estat de sessió</h2>
 
 <p>Un servidor pot acceptar una connexió TCP sense saber encara qui hi ha a l'altre extrem. La connexió respon a una pregunta de transport: <strong>"amb quin procés estic parlant?"</strong>. L'autenticació respon a una pregunta diferent: <strong>"quina identitat diu ser i ho pot demostrar?"</strong>.</p>
@@ -546,7 +546,7 @@ private String authenticatedUser = null;</code></pre>
 
 </div>
 
-<div class="section" id="Unitat3_Bloc2_Seccio2">
+<div class="section">
   <h2 id="Unitat3_Bloc2_Seccio2">2. AUTH PLAIN: format, NUL i Base64</h2>
 
 <p>Molts protocols defineixen exactament com s'han de representar les credencials. Un exemple senzill és el mecanisme <code>AUTH PLAIN</code> de SMTP. La informació abans de codificar té aquesta forma:</p>
@@ -711,7 +711,7 @@ String contrasenya = parts[2];</code></pre>
 
 </div>
 
-<div class="section" id="Unitat3_Bloc2_Seccio3">
+<div class="section">
   <h2 id="Unitat3_Bloc2_Seccio3">3. Verificar credencials al servidor</h2>
 
 <p>Un cop hem extret l'usuari i la contrasenya, el servidor ha de decidir si són correctes. Per mantenir l'exemple petit, podem representar els usuaris amb un <code>Map&lt;String, String&gt;</code> que associa cada nom amb un resum.</p>
@@ -886,7 +886,7 @@ String contrasenya = parts[2];</code></pre>
 
 </div>
 
-<div class="section" id="Unitat3_Bloc2_Seccio4">
+<div class="section">
   <h2 id="Unitat3_Bloc2_Seccio4">4. Bloquejar operacions fins que l'usuari s'autentiqui</h2>
 
 <p>Autenticar correctament no serveix de res si després oblidem comprovar l'estat abans d'una operació sensible. La política s'ha d'aplicar <strong>al servidor</strong>, perquè el client no és una font de confiança.</p>
@@ -1037,7 +1037,7 @@ sendCommand(&quot;MAIL FROM:&lt;&quot; + from + &quot;&gt;&quot;);</code></pre>
 
 </div>
 
-<div class="section" id="Unitat3_Bloc2_Seccio5">
+<div class="section">
   <h2 id="Unitat3_Bloc2_Seccio5">5. Rols, polítiques d'accés i proves negatives</h2>
 
 <p>Un booleà respon "està autenticat?". En moltes aplicacions necessitem una pregunta més precisa: <strong>"què pot fer aquest usuari?"</strong>. Un model senzill és associar un rol a cada identitat.</p>
