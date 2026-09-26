@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 4: Criptografia asimètrica amb RSA | Programació de serveis i processos - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="3">
+    <meta name="page-bloc" content="4">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 4: Criptografia asimètrica amb RSA | Programació de serveis i processos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 4: Criptografia asimètrica amb RSA" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Parells de claus, RSA, Cipher, Base64, padding, xifrat híbrid, signatures i relació amb TLS" />
+<meta property="og:description" content="Parells de claus, RSA, Cipher, Base64, padding, xifrat híbrid, signatures i relació amb TLS" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-4/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-4/" />
+<meta property="og:site_name" content="Programació de serveis i processos" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 4: Criptografia asimètrica amb RSA" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Parells de claus, RSA, Cipher, Base64, padding, xifrat híbrid, signatures i relació amb TLS","headline":"Bloc 4: Criptografia asimètrica amb RSA","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-4/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/dam_0490/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-4/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/dam_0490/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/dam_0490/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0490/feed.xml" title="Programació de serveis i processos" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/dam_0490/assets/css/code-block.css">
+    <script src="/ioc/dam_0490/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/dam_0490">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/dam_0490/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/dam_0490/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/dam_0490/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/dam_0490/" class="title-link">
+                <h1>DAM_0490 - Programació de serveis i processos</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/dam_0490/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Entendre la concurrència abans d'escriure codi
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Crear i controlar processos des de Java
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Fils, memòria compartida i sincronització
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: ExecutorService i aplicacions concurrents completes
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0490/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: De noms a sòcols: entendre la comunicació en xarxa
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Construir clients i servidors amb sòcols
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Servidors concurrents i serveis robustos
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Protocols reals: serveis i correu electrònic
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0490/unitat-3/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 1: Integritat, hashes i credencials
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-3/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 2: Autenticació i control d'accés en serveis
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-3/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 3: TLS, certificats i sòcols segurs
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-3/bloc-4/" class="nav-dropdown-item current">
+                        Unitat 3 - Bloc 4: Criptografia asimètrica amb RSA
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc4_Seccio1" class="nav-link" data-section="Unitat3_Bloc4_Seccio1">1. Clau simètrica i clau asimètrica</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc4_Seccio2" class="nav-link" data-section="Unitat3_Bloc4_Seccio2">2. Generar un parell de claus RSA</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc4_Seccio3" class="nav-link" data-section="Unitat3_Bloc4_Seccio3">3. Xifrar amb la pública i desxifrar amb la privada</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc4_Seccio4" class="nav-link" data-section="Unitat3_Bloc4_Seccio4">4. Padding, límits de RSA i xifrat híbrid</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc4_Seccio5" class="nav-link" data-section="Unitat3_Bloc4_Seccio5">5. Signatures, certificats i com encaixa tot dins TLS</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/dam_0490/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/dam_0490/unitat-3/" class="horizontal-nav-item">
+                                Unitat 3: Seguretat i criptografia (RA5)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 3.4: Criptografia asimètrica amb RSA
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<div class="section" id="Unitat3_Bloc4_Seccio1">
+  <h2 id="Unitat3_Bloc4_Seccio1">1. Clau simètrica i clau asimètrica</h2>
+
+<p>Fins ara hem utilitzat hashes i TLS com a eines. Ara mirarem una de les peces criptogràfiques que ens ajuda a entendre com es construeixen sistemes més complets: la <strong>criptografia asimètrica</strong>.</p>
+
+<h3>Clau simètrica</h3>
+
+<p>En un sistema simètric, la mateixa clau secreta permet xifrar i desxifrar. És molt eficient, però totes les parts que necessiten llegir les dades han de disposar del secret.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">clau secreta K
+                  |
+missatge -&gt; [ xifrar ] -&gt; dades xifrades
+                  |
+             clau secreta K
+                  |
+          [ desxifrar ] -&gt; missatge</code></pre>
+  </div>
+</div>
+
+
+<h3>Clau asimètrica</h3>
+
+<p>En un sistema asimètric hi ha dues claus matemàticament relacionades:</p>
+
+<ul>
+<li><strong>clau pública</strong>: es pot distribuir;</li>
+<li><strong>clau privada</strong>: l'ha de conservar només el propietari.</li>
+</ul>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-3/13_rsa_parell_claus.svg" alt="Un missatge es xifra amb la clau pública del destinatari i només la clau privada corresponent permet recuperar-lo." class="figure-img"/>
+      
+      <figcaption class="figure-caption">La clau pública es pot repartir. La clau privada no surt del seu propietari.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+<p>Per protegir confidencialitat amb RSA, el patró conceptual és:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Emissor:
+  missatge + clau pública del receptor
+           -&gt; xifrat
+
+Receptor:
+  dades xifrades + clau privada pròpia
+           -&gt; missatge</code></pre>
+  </div>
+</div>
+
+
+<table class="table">
+<thead><tr><th>Aspecte</th><th>Simètrica</th><th>Asimètrica</th></tr></thead>
+<tbody>
+<tr><td>Claus</td><td>Un secret compartit</td><td>Parella pública + privada</td></tr>
+<tr><td>Velocitat</td><td>Molt alta</td><td>Més costosa</td></tr>
+<tr><td>Distribució</td><td>Cal compartir el secret de forma segura</td><td>La pública es pot distribuir</td></tr>
+<tr><td>Ús habitual</td><td>Xifrar grans quantitats de dades</td><td>Intercanvi de claus, signatures, autenticació i dades petites</td></tr>
+</tbody>
+</table>
+
+<h3>Un tast de criptografia simètrica amb AES</h3>
+
+<p>A Java, una clau simètrica es representa amb <code>SecretKey</code>. Aquest exemple només genera una clau AES; ja permet veure la diferència essencial amb RSA: aquí hi ha <strong>una sola clau secreta</strong>.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+
+KeyGenerator generador =
+        KeyGenerator.getInstance(&quot;AES&quot;);
+
+generador.init(256);
+
+SecretKey clau =
+        generador.generateKey();
+
+System.out.println(
+        &quot;Algorisme: &quot; + clau.getAlgorithm()
+);</code></pre>
+  </div>
+</div>
+
+
+<p>Per xifrar dades reals amb AES no n'hi ha prou amb indicar l'algorisme: també cal triar correctament el mode i gestionar valors addicionals com un nonce o vector d'inicialització. En codi nou, un mode autenticat com <code>AES/GCM/NoPadding</code> és una opció habitual. El mode ECB, encara que aparegui en exemples antics perquè és simple, revela patrons i no s'ha d'utilitzar per protegir dades reals.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>No hi ha un "guanyador".</strong></p><p>Els sistemes reals combinen les dues famílies. La criptografia asimètrica resol problemes de distribució i identitat, mentre que la simètrica xifra grans volums de dades amb molta eficiència.</p>
+    
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Quina clau necessito?</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Per a cada situació, indiqueu quina clau ha d'utilitzar cada part: enviar un secret a Bob coneixent la seva clau pública, recuperar aquest secret, i verificar una signatura de Bob.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">8 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Per confidencialitat, el receptor protegeix la seva privada.</li>
+        
+        <li>La clau pública es pot compartir.</li>
+        
+        <li>Una signatura inverteix el propòsit: es crea amb la privada i es verifica amb la pública.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat3_Bloc4_Seccio2">
+  <h2 id="Unitat3_Bloc4_Seccio2">2. Generar un parell de claus RSA</h2>
+
+<p>Les claus RSA han de complir propietats matemàtiques concretes. No les construirem a mà. Java ens proporciona <code>KeyPairGenerator</code>.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+
+KeyPairGenerator generador =
+        KeyPairGenerator.getInstance(&quot;RSA&quot;);
+
+generador.initialize(2048);
+
+KeyPair parell =
+        generador.generateKeyPair();
+
+PublicKey publica =
+        parell.getPublic();
+
+PrivateKey privada =
+        parell.getPrivate();</code></pre>
+  </div>
+</div>
+
+
+<p>La mida de 2048 bits descriu el mòdul RSA. La generació necessita aleatorietat criptogràfica i pot trigar perceptiblement més que crear un objecte Java normal.</p>
+
+<h3>Inspeccionar la clau pública</h3>
+
+<p>Si volem observar els components matemàtics de la clau pública, podem convertir-la a <code>RSAPublicKey</code>:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.security.interfaces.RSAPublicKey;
+
+RSAPublicKey rsa =
+        (RSAPublicKey) publica;
+
+String modulHex =
+        rsa.getModulus().toString(16);
+
+String exponentHex =
+        rsa.getPublicExponent().toString(16);
+
+System.out.println(
+    &quot;Mòdul: &quot;
+    + modulHex.substring(0, 16)
+    + &quot;...&quot;
+    + modulHex.substring(
+        modulHex.length() - 16
+      )
+);
+
+System.out.println(
+    &quot;Exponent: &quot; + exponentHex
+);</code></pre>
+  </div>
+</div>
+
+
+<p>L'exponent públic habitual és 65537, que en hexadecimal és <code>10001</code>. No cal memoritzar-ne la matemàtica per utilitzar correctament l'API.</p>
+
+<h3>Les claus canvien a cada execució</h3>
+
+<p>Si executeu el programa dues vegades, obtindreu parells diferents. Això és el comportament esperat. Si necessiteu mantenir la mateixa identitat entre execucions, les claus s'han de desar de forma segura, per exemple en un keystore.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No imprimiu mai la clau privada en una aplicació real.</strong> Als exemples podem inspeccionar objectes per entendre'ls, però el secret criptogràfic perd el seu valor si apareix en logs, captures o repositoris.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Observeu un parell RSA</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Genereu dos parells RSA de 2048 bits en la mateixa execució. Mostreu només els primers i últims 16 dígits hexadecimals del mòdul públic i l'exponent. Comproveu que els mòduls són diferents.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">12 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Useu RSAPublicKey.</li>
+        
+        <li>No mostreu la clau privada.</li>
+        
+        <li>La longitud hexadecimal pot variar lleugerament en la representació, però el mòdul correspon a una clau de 2048 bits.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat3_Bloc4_Seccio3">
+  <h2 id="Unitat3_Bloc4_Seccio3">3. Xifrar amb la pública i desxifrar amb la privada</h2>
+
+<p>La classe central del JCE per xifrar i desxifrar és <code>Cipher</code>. Farem un exemple complet amb un missatge curt.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+import javax.crypto.Cipher;
+
+String missatge =
+        &quot;Missatge secret de prova&quot;;
+
+Cipher cipher =
+        Cipher.getInstance(
+                &quot;RSA/ECB/PKCS1Padding&quot;
+        );
+
+cipher.init(
+        Cipher.ENCRYPT_MODE,
+        publica
+);
+
+byte[] xifrat = cipher.doFinal(
+        missatge.getBytes(
+                StandardCharsets.UTF_8
+        )
+);
+
+String xifratBase64 =
+        Base64.getEncoder()
+              .encodeToString(xifrat);
+
+System.out.println(xifratBase64);</code></pre>
+  </div>
+</div>
+
+
+<p>El resultat és binari. Base64 només ens permet mostrar-lo i transportar-lo com a text. Per recuperar el missatge:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">cipher.init(
+        Cipher.DECRYPT_MODE,
+        privada
+);
+
+byte[] bytesXifrats =
+        Base64.getDecoder()
+              .decode(xifratBase64);
+
+byte[] desxifrat =
+        cipher.doFinal(bytesXifrats);
+
+String recuperat = new String(
+        desxifrat,
+        StandardCharsets.UTF_8
+);
+
+System.out.println(recuperat);
+
+System.out.println(
+        missatge.equals(recuperat)
+);</code></pre>
+  </div>
+</div>
+
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-3/14_rsa_xifrar_desxifrar.svg" alt="El text es converteix a bytes, RSA el xifra amb la clau pública, Base64 el representa i el receptor desfa Base64 i RSA amb la clau privada." class="figure-img"/>
+      
+      <figcaption class="figure-caption">Base64 envolta el resultat binari. La confidencialitat la proporciona RSA, no Base64.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+<h3>Una prova que ha de fallar</h3>
+
+<p>Genereu un segon parell de claus i intenteu desxifrar amb una clau privada que no correspon a la pública usada per xifrar. El procés ha de fallar. Aquesta prova és útil perquè confirma que no estem confonent la representació Base64 amb la protecció criptogràfica.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Patró mental</strong></p><p><code>String -> bytes -> Cipher -> bytes xifrats -> Base64</code>. Per tornar: <code>Base64 -> bytes xifrats -> Cipher -> bytes -> String</code>. Si teniu clar aquest recorregut, la major part del codi deixa de semblar màgia.</p>
+    
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: RsaDemo mínim</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Genereu un parell RSA, xifreu un text curt amb la clau pública, mostreu el resultat en Base64, desxifreu-lo amb la privada i verifiqueu amb equals que el text recuperat coincideix amb l'original.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">20 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Treballareu sempre amb UTF-8.</li>
+        
+        <li>Reutilitzeu el mateix Cipher reinicialitzant-lo.</li>
+        
+        <li>El text Base64 no ha de coincidir entre execucions.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat3_Bloc4_Seccio4">
+  <h2 id="Unitat3_Bloc4_Seccio4">4. Padding, límits de RSA i xifrat híbrid</h2>
+
+<p>RSA no està pensat per xifrar un fitxer gran directament. Amb una clau RSA de 2048 bits, el bloc criptogràfic ocupa 256 bytes. Amb <code>PKCS1Padding</code>, una part d'aquests bytes es reserva per al padding, de manera que el missatge directe queda limitat aproximadament a <strong>245 bytes</strong>.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">2048 bits / 8 = 256 bytes de mòdul
+
+PKCS#1 v1.5:
+256 - 11 = 245 bytes màxims de dades</code></pre>
+  </div>
+</div>
+
+
+<h3>Per què hi ha padding?</h3>
+
+<p>El padding no és un farciment decoratiu. Forma part de l'esquema criptogràfic i evita propietats insegures del RSA "nu". En els exemples seguim <code>RSA/ECB/PKCS1Padding</code> perquè permet veure el mecanisme de manera directa.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>En dissenys moderns, no trieu padding RSA a cegues.</strong> OAEP és l'esquema habitual per a nou codi de xifrat RSA. <code>PKCS1Padding</code> apareix en molts sistemes i és útil per entendre APIs i compatibilitat, però la selecció criptogràfica real depèn del protocol i de les biblioteques utilitzades.</p>
+</div>
+
+
+<h3>Xifrat híbrid</h3>
+
+<p>La solució habitual combina criptografia simètrica i asimètrica:</p>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-3/15_xifrat_hibrid.svg" alt="Es genera una clau AES aleatòria, les dades es xifren amb AES i només la clau AES es protegeix amb la clau pública RSA del destinatari." class="figure-img"/>
+      
+      <figcaption class="figure-caption">RSA protegeix una clau petita. AES protegeix les dades grans. Així aprofitem els punts forts de cada família.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Emissor:
+1. genera una clau AES aleatòria
+2. xifra les dades amb AES
+3. xifra la clau AES amb RSA pública
+4. envia:
+   - dades xifrades
+   - clau AES xifrada
+
+Receptor:
+1. desxifra la clau AES amb RSA privada
+2. usa la clau AES per desxifrar les dades</code></pre>
+  </div>
+</div>
+
+
+<p>Aquest patró explica per què "TLS utilitza criptografia asimètrica" no significa que xifri cada byte de la connexió amb RSA. Els protocols moderns negocien secrets i després protegeixen el trànsit amb criptografia simètrica eficient.</p>
+
+<h3>Una prova pràctica del límit</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">StringBuilder gran = new StringBuilder();
+
+while (gran.toString()
+           .getBytes(StandardCharsets.UTF_8)
+           .length &lt; 300) {
+    gran.append(&quot;A&quot;);
+}
+
+cipher.init(
+    Cipher.ENCRYPT_MODE,
+    publica
+);
+
+cipher.doFinal(
+    gran.toString()
+        .getBytes(StandardCharsets.UTF_8)
+);</code></pre>
+  </div>
+</div>
+
+
+<p>Amb la configuració indicada, aquest missatge és massa gran. L'error ens ajuda a recordar que RSA directe serveix per a dades petites, no com a substitut d'AES.</p>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Trobeu el límit</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Amb RSA de 2048 bits i PKCS1Padding, proveu textos de mides creixents fins que el xifrat falli. Relacioneu el resultat amb el límit teòric de 245 bytes.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Mesureu bytes UTF-8, no només caràcters.</li>
+        
+        <li>Comenceu amb caràcters ASCII per simplificar.</li>
+        
+        <li>Captureu l'excepció i mostreu la mida que ha fallat.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat3_Bloc4_Seccio5">
+  <h2 id="Unitat3_Bloc4_Seccio5">5. Signatures, certificats i com encaixa tot dins TLS</h2>
+
+<p>Una parella RSA no només es pot utilitzar per a confidencialitat. També pot participar en <strong>signatures digitals</strong>. El propòsit canvia:</p>
+
+<ul>
+<li>per confidencialitat, xifrem per al propietari de la clau privada;</li>
+<li>per signar, el propietari utilitza la seva clau privada i els altres verifiquen amb la pública.</li>
+</ul>
+
+<h3>Signar i verificar amb Java</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.security.Signature;
+
+byte[] dades =
+        &quot;document important&quot;
+        .getBytes(StandardCharsets.UTF_8);
+
+Signature signador =
+        Signature.getInstance(
+                &quot;SHA256withRSA&quot;
+        );
+
+signador.initSign(privada);
+signador.update(dades);
+
+byte[] signatura =
+        signador.sign();</code></pre>
+  </div>
+</div>
+
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Signature verificador =
+        Signature.getInstance(
+                &quot;SHA256withRSA&quot;
+        );
+
+verificador.initVerify(publica);
+verificador.update(dades);
+
+boolean valida =
+        verificador.verify(signatura);
+
+System.out.println(valida);</code></pre>
+  </div>
+</div>
+
+
+<p>Si modifiqueu un sol byte de <code>dades</code>, la verificació ha de fallar.</p>
+
+<h3>On entra el certificat?</h3>
+
+<p>Una clau pública sola no ens diu a qui pertany. Un certificat associa una identitat amb una clau pública i incorpora una signatura de l'emissor. Això permet construir una cadena de confiança.</p>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-3/16_certificat_tls.svg" alt="Un certificat associa la identitat del servidor amb la seva clau pública i està signat per un emissor. El client valida aquesta relació abans de confiar en el servidor TLS." class="figure-img"/>
+      
+      <figcaption class="figure-caption">TLS combina identitat, claus, algoritmes i secrets de sessió. El certificat és la peça que relaciona una clau pública amb una identitat.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+<h3>Mapa final de la unitat</h3>
+
+<table class="table">
+<thead><tr><th>Problema</th><th>Mecanisme principal</th></tr></thead>
+<tbody>
+<tr><td>Detectar si unes dades han canviat</td><td>Hash criptogràfic, per exemple SHA-256</td></tr>
+<tr><td>Representar bytes en text</td><td>Base64</td></tr>
+<tr><td>Comprovar una identitat d'usuari</td><td>Autenticació i verificació de credencials</td></tr>
+<tr><td>Decidir què pot fer l'usuari</td><td>Autorització, rols i polítiques</td></tr>
+<tr><td>Protegir dades durant el transport</td><td>TLS</td></tr>
+<tr><td>Associar identitat i clau pública</td><td>Certificat digital</td></tr>
+<tr><td>Protegir un secret petit per a un destinatari</td><td>Criptografia asimètrica</td></tr>
+<tr><td>Demostrar autoria i integritat</td><td>Signatura digital</td></tr>
+</tbody>
+</table>
+
+
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Ja no són peces aïllades.</strong></p><p>El hash us permet entendre integritat, l'autenticació us dona una identitat de sessió, TLS protegeix la transmissió, el certificat associa identitat i clau pública i RSA mostra com treballen les claus asimètriques. Quan aquestes peces es combinen, podeu raonar sobre un servei segur de principi a fi.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Expliqueu el sistema complet</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Descriviu el recorregut d'un client que es connecta a un servei TLS, valida el certificat del servidor, envia unes credencials, queda autenticat i executa una operació autoritzada. Indiqueu en cada pas quin mecanisme de la unitat està actuant.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Avançat</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">20 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Separeu canal, identitat i permisos.</li>
+        
+        <li>Base64 no aporta seguretat.</li>
+        
+        <li>El certificat identifica el servidor, no l'usuari de l'aplicació.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 4: Criptografia asimètrica amb RSA",
+  "description": "Parells de claus, RSA, Cipher, Base64, padding, xifrat híbrid, signatures i relació amb TLS",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Programació de serveis i processos — IOC",
+    "description": "Materials del mòdul DAM_0490 - Programació de serveis i processos"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                    
+                                        
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0490/unitat-3/bloc-3/" class="nav-button" aria-label="Bloc anterior: TLS, certificats i sòcols segurs">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="3" data-total="3">(3/3)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="4" data-total="4">(4/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="5">(1/5)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 20%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/dam_0490/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/dam_0490",
+        title: "Programació de serveis i processos",
+        version: "v1.0",
+        cicle_modul: "DAM_0490"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/dam_0490/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/dam_0490/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

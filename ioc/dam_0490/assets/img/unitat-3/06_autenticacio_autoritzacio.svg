@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+<title id="t">Primer identitat, després permisos</title><desc id="d">La connexió comença anònima, l'autenticació estableix una identitat i l'autorització decideix les operacions.</desc>
+<rect width="1600" height="900" fill="#fff"/>
+<style>
+text{font-family:Arial,sans-serif;fill:#17324f}.title{font-size:54px;font-weight:700}.h{font-size:31px;font-weight:700}.t{font-size:24px}.s{font-size:20px}.box{fill:#f4f8fb;stroke:#17324f;stroke-width:4}.accent{fill:#e8f1f8;stroke:#17324f;stroke-width:4}.good{fill:#eef6ee;stroke:#17324f;stroke-width:4}.warn{fill:#fff5e8;stroke:#17324f;stroke-width:4}.line{stroke:#17324f;stroke-width:5;fill:none}
+</style>
+<defs><marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#17324f"/></marker></defs>
+<text x="800" y="75" text-anchor="middle" class="title">Primer identitat, després permisos</text>
+<rect x="80" y="300" width="360" height="190" rx="22" class="box"/><text x="260" y="365" text-anchor="middle" class="h">Sessió anònima</text><text x="260" y="425" text-anchor="middle" class="s">authenticated = false</text>
+  <path d="M440 395L620 395" class="line" marker-end="url(#a)"/><text x="530" y="355" text-anchor="middle" class="s">AUTH</text>
+  <rect x="620" y="300" width="360" height="190" rx="22" class="accent"/><text x="800" y="365" text-anchor="middle" class="h">Sessió autenticada</text><text x="800" y="425" text-anchor="middle" class="s">usuari = anna</text>
+  <path d="M980 395L1160 395" class="line" marker-end="url(#a)"/><text x="1070" y="355" text-anchor="middle" class="s">política</text>
+  <rect x="1160" y="230" width="360" height="150" rx="22" class="good"/><text x="1340" y="290" text-anchor="middle" class="h">Permès</text><text x="1340" y="340" text-anchor="middle" class="s">ENVIAR</text>
+  <rect x="1160" y="500" width="360" height="150" rx="22" class="warn"/><text x="1340" y="560" text-anchor="middle" class="h">Denegat</text><text x="1340" y="610" text-anchor="middle" class="s">ELIMINAR</text>
+  <path d="M980 410L1160 560" class="line" marker-end="url(#a)"/>
+  <text x="800" y="760" text-anchor="middle" class="t">Autenticació respon «qui?». Autorització respon «què pot fer?».</text>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+<title id="t">Del text a RSA i tornar</title><desc id="d">El text es converteix en bytes, RSA el xifra, Base64 el representa i el receptor desfà els passos amb la clau privada.</desc>
+<rect width="1600" height="900" fill="#fff"/>
+<style>
+text{font-family:Arial,sans-serif;fill:#17324f}.title{font-size:54px;font-weight:700}.h{font-size:31px;font-weight:700}.t{font-size:24px}.s{font-size:20px}.box{fill:#f4f8fb;stroke:#17324f;stroke-width:4}.accent{fill:#e8f1f8;stroke:#17324f;stroke-width:4}.good{fill:#eef6ee;stroke:#17324f;stroke-width:4}.warn{fill:#fff5e8;stroke:#17324f;stroke-width:4}.line{stroke:#17324f;stroke-width:5;fill:none}
+</style>
+<defs><marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#17324f"/></marker></defs>
+<text x="800" y="75" text-anchor="middle" class="title">Del text a RSA i tornar</text>
+<rect x="35" y="330" width="230" height="140" rx="22" class="box"/><text x="150" y="390" text-anchor="middle" class="h">String</text><text x="150" y="435" text-anchor="middle" class="s">UTF-8</text>
+  <path d="M265 400L385 400" class="line" marker-end="url(#a)"/>
+  <rect x="385" y="330" width="230" height="140" rx="22" class="box"/><text x="500" y="390" text-anchor="middle" class="h">bytes</text>
+  <path d="M615 400L735 400" class="line" marker-end="url(#a)"/>
+  <rect x="735" y="300" width="260" height="200" rx="22" class="accent"/><text x="865" y="370" text-anchor="middle" class="h">RSA</text><text x="865" y="425" text-anchor="middle" class="t">pública</text>
+  <path d="M995 400L1115 400" class="line" marker-end="url(#a)"/>
+  <rect x="1115" y="330" width="230" height="140" rx="22" class="warn"/><text x="1230" y="390" text-anchor="middle" class="h">bytes xifrats</text>
+  <path d="M1345 400L1465 400" class="line" marker-end="url(#a)"/>
+  <rect x="1465" y="330" width="110" height="140" rx="22" class="good"/><text x="1520" y="390" text-anchor="middle" class="h">B64</text>
+  <text x="800" y="610" text-anchor="middle" class="t">Camí de tornada: Base64 decode → RSA amb privada → bytes → String</text>
+  <text x="800" y="720" text-anchor="middle" class="s">Base64 és només l'embolcall textual del resultat binari.</text>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+<title id="t">Xifrat híbrid: RSA + AES</title><desc id="d">Les dades grans es xifren amb una clau AES aleatòria i RSA protegeix només aquesta clau.</desc>
+<rect width="1600" height="900" fill="#fff"/>
+<style>
+text{font-family:Arial,sans-serif;fill:#17324f}.title{font-size:54px;font-weight:700}.h{font-size:31px;font-weight:700}.t{font-size:24px}.s{font-size:20px}.box{fill:#f4f8fb;stroke:#17324f;stroke-width:4}.accent{fill:#e8f1f8;stroke:#17324f;stroke-width:4}.good{fill:#eef6ee;stroke:#17324f;stroke-width:4}.warn{fill:#fff5e8;stroke:#17324f;stroke-width:4}.line{stroke:#17324f;stroke-width:5;fill:none}
+</style>
+<defs><marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#17324f"/></marker></defs>
+<text x="800" y="75" text-anchor="middle" class="title">Xifrat híbrid: RSA + AES</text>
+<rect x="70" y="210" width="360" height="170" rx="22" class="box"/><text x="250" y="270" text-anchor="middle" class="h">Dades grans</text><text x="250" y="325" text-anchor="middle" class="t">fitxer / missatge</text>
+  <rect x="70" y="545" width="360" height="170" rx="22" class="accent"/><text x="250" y="605" text-anchor="middle" class="h">Clau AES</text><text x="250" y="660" text-anchor="middle" class="t">aleatòria</text>
+  <path d="M430 295L650 295" class="line" marker-end="url(#a)"/><path d="M430 630L650 630" class="line" marker-end="url(#a)"/>
+  <rect x="650" y="210" width="300" height="170" rx="22" class="good"/><text x="800" y="270" text-anchor="middle" class="h">AES</text><text x="800" y="325" text-anchor="middle" class="t">xifra dades</text>
+  <rect x="650" y="545" width="300" height="170" rx="22" class="accent"/><text x="800" y="605" text-anchor="middle" class="h">RSA pública</text><text x="800" y="660" text-anchor="middle" class="t">xifra clau AES</text>
+  <path d="M950 295L1180 295" class="line" marker-end="url(#a)"/><path d="M950 630L1180 630" class="line" marker-end="url(#a)"/>
+  <rect x="1180" y="210" width="350" height="170" rx="22" class="warn"/><text x="1355" y="270" text-anchor="middle" class="h">Dades xifrades</text><text x="1355" y="325" text-anchor="middle" class="t">amb AES</text>
+  <rect x="1180" y="545" width="350" height="170" rx="22" class="warn"/><text x="1355" y="605" text-anchor="middle" class="h">Clau xifrada</text><text x="1355" y="660" text-anchor="middle" class="t">amb RSA</text>
+  <text x="800" y="810" text-anchor="middle" class="h">RSA protegeix una clau petita; AES fa el treball pesant.</text>
+</svg>

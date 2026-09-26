@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+<title id="t">Una ordre protegida passa per dues portes</title><desc id="d">El servidor comprova autenticació i estat del protocol abans d'executar una operació.</desc>
+<rect width="1600" height="900" fill="#fff"/>
+<style>
+text{font-family:Arial,sans-serif;fill:#17324f}.title{font-size:54px;font-weight:700}.h{font-size:31px;font-weight:700}.t{font-size:24px}.s{font-size:20px}.box{fill:#f4f8fb;stroke:#17324f;stroke-width:4}.accent{fill:#e8f1f8;stroke:#17324f;stroke-width:4}.good{fill:#eef6ee;stroke:#17324f;stroke-width:4}.warn{fill:#fff5e8;stroke:#17324f;stroke-width:4}.line{stroke:#17324f;stroke-width:5;fill:none}
+</style>
+<defs><marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#17324f"/></marker></defs>
+<text x="800" y="75" text-anchor="middle" class="title">Una ordre protegida passa per dues portes</text>
+<rect x="70" y="320" width="310" height="170" rx="22" class="box"/><text x="225" y="385" text-anchor="middle" class="h">MAIL FROM</text><text x="225" y="440" text-anchor="middle" class="s">ordre rebuda</text>
+  <path d="M380 405L570 405" class="line" marker-end="url(#a)"/>
+  <rect x="570" y="270" width="350" height="270" rx="22" class="accent"/><text x="745" y="340" text-anchor="middle" class="h">Porta 1</text><text x="745" y="395" text-anchor="middle" class="t">Autenticat?</text><text x="745" y="455" text-anchor="middle" class="s">no → 530</text><text x="745" y="495" text-anchor="middle" class="s">sí → continuar</text>
+  <path d="M920 405L1080 405" class="line" marker-end="url(#a)"/>
+  <rect x="1080" y="270" width="350" height="270" rx="22" class="accent"/><text x="1255" y="340" text-anchor="middle" class="h">Porta 2</text><text x="1255" y="395" text-anchor="middle" class="t">Estat correcte?</text><text x="1255" y="455" text-anchor="middle" class="s">no → 503</text><text x="1255" y="495" text-anchor="middle" class="s">sí → executar</text>
+  <path d="M1255 540L1255 680" class="line" marker-end="url(#a)"/>
+  <rect x="1080" y="680" width="350" height="110" rx="22" class="good"/><text x="1255" y="750" text-anchor="middle" class="h">Operació acceptada</text>
+  <text x="800" y="170" text-anchor="middle" class="t">Sintaxi correcta no significa permís concedit.</text>
+</svg>

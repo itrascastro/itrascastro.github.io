@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+<title id="t">El protocol comença després del handshake</title><desc id="d">Client i servidor negocien TLS i validen identitat abans d'intercanviar dades de l'aplicació.</desc>
+<rect width="1600" height="900" fill="#fff"/>
+<style>
+text{font-family:Arial,sans-serif;fill:#17324f}.title{font-size:54px;font-weight:700}.h{font-size:31px;font-weight:700}.t{font-size:24px}.s{font-size:20px}.box{fill:#f4f8fb;stroke:#17324f;stroke-width:4}.accent{fill:#e8f1f8;stroke:#17324f;stroke-width:4}.good{fill:#eef6ee;stroke:#17324f;stroke-width:4}.warn{fill:#fff5e8;stroke:#17324f;stroke-width:4}.line{stroke:#17324f;stroke-width:5;fill:none}
+</style>
+<defs><marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#17324f"/></marker></defs>
+<text x="800" y="75" text-anchor="middle" class="title">El protocol comença després del handshake</text>
+<text x="300" y="150" text-anchor="middle" class="h">Client</text><text x="1300" y="150" text-anchor="middle" class="h">Servidor</text>
+  <line x1="300" y1="180" x2="300" y2="790" class="line"/><line x1="1300" y1="180" x2="1300" y2="790" class="line"/>
+  <path d="M320 250L1280 250" class="line" marker-end="url(#a)"/><text x="800" y="225" text-anchor="middle" class="t">ClientHello</text>
+  <path d="M1280 340L320 340" class="line" marker-end="url(#a)"/><text x="800" y="315" text-anchor="middle" class="t">ServerHello + certificat</text>
+  <path d="M320 430L1280 430" class="line" marker-end="url(#a)"/><text x="800" y="405" text-anchor="middle" class="t">validació + establiment de claus</text>
+  <rect x="610" y="500" width="380" height="95" rx="22" class="good"/><text x="800" y="560" text-anchor="middle" class="h">Canal TLS establert</text>
+  <path d="M320 680L1280 680" class="line" marker-end="url(#a)"/><text x="800" y="650" text-anchor="middle" class="t">AUTH / MAIL / DATA ...</text>
+  <text x="800" y="815" text-anchor="middle" class="s">Si la confiança falla, les dades de l'aplicació no haurien de començar.</text>
+</svg>

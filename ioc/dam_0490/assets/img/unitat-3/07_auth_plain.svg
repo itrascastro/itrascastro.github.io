@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+<title id="t">AUTH PLAIN: del client al servidor</title><desc id="d">El client concatena NUL, usuari, NUL i contrasenya, ho codifica en Base64 i el servidor desfà el procés.</desc>
+<rect width="1600" height="900" fill="#fff"/>
+<style>
+text{font-family:Arial,sans-serif;fill:#17324f}.title{font-size:54px;font-weight:700}.h{font-size:31px;font-weight:700}.t{font-size:24px}.s{font-size:20px}.box{fill:#f4f8fb;stroke:#17324f;stroke-width:4}.accent{fill:#e8f1f8;stroke:#17324f;stroke-width:4}.good{fill:#eef6ee;stroke:#17324f;stroke-width:4}.warn{fill:#fff5e8;stroke:#17324f;stroke-width:4}.line{stroke:#17324f;stroke-width:5;fill:none}
+</style>
+<defs><marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#17324f"/></marker></defs>
+<text x="800" y="75" text-anchor="middle" class="title">AUTH PLAIN: del client al servidor</text>
+<rect x="80" y="180" width="410" height="170" rx="22" class="box"/><text x="285" y="240" text-anchor="middle" class="h">Credencials</text><text x="285" y="300" text-anchor="middle" class="s">NUL + alice + NUL + s3cr3t</text>
+  <path d="M490 265L690 265" class="line" marker-end="url(#a)"/>
+  <rect x="690" y="180" width="300" height="170" rx="22" class="accent"/><text x="840" y="240" text-anchor="middle" class="h">Base64</text><text x="840" y="300" text-anchor="middle" class="s">token de text</text>
+  <path d="M990 265L1200 265" class="line" marker-end="url(#a)"/>
+  <rect x="1200" y="180" width="320" height="170" rx="22" class="good"/><text x="1360" y="240" text-anchor="middle" class="h">AUTH PLAIN</text><text x="1360" y="300" text-anchor="middle" class="s">&lt;token&gt;</text>
+  <path d="M1360 350L1360 520" class="line" marker-end="url(#a)"/>
+  <rect x="1110" y="520" width="410" height="180" rx="22" class="accent"/><text x="1315" y="580" text-anchor="middle" class="h">Servidor</text><text x="1315" y="635" text-anchor="middle" class="s">decodifica + separa camps</text>
+  <path d="M1110 610L880 610" class="line" marker-end="url(#a)"/>
+  <rect x="510" y="520" width="370" height="180" rx="22" class="box"/><text x="695" y="580" text-anchor="middle" class="h">Verificar</text><text x="695" y="635" text-anchor="middle" class="s">usuari + hash</text>
+  <text x="800" y="800" text-anchor="middle" class="s">Base64 permet transportar els bytes; TLS és qui ha de protegir les credencials en trànsit.</text>
+</svg>

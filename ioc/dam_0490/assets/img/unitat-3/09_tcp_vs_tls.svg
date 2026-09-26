@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+<title id="t">TCP transporta; TLS protegeix</title><desc id="d">Sense TLS un observador pot llegir el protocol; amb TLS veu trànsit xifrat.</desc>
+<rect width="1600" height="900" fill="#fff"/>
+<style>
+text{font-family:Arial,sans-serif;fill:#17324f}.title{font-size:54px;font-weight:700}.h{font-size:31px;font-weight:700}.t{font-size:24px}.s{font-size:20px}.box{fill:#f4f8fb;stroke:#17324f;stroke-width:4}.accent{fill:#e8f1f8;stroke:#17324f;stroke-width:4}.good{fill:#eef6ee;stroke:#17324f;stroke-width:4}.warn{fill:#fff5e8;stroke:#17324f;stroke-width:4}.line{stroke:#17324f;stroke-width:5;fill:none}
+</style>
+<defs><marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#17324f"/></marker></defs>
+<text x="800" y="75" text-anchor="middle" class="title">TCP transporta; TLS protegeix</text>
+<text x="400" y="150" text-anchor="middle" class="h">TCP sense TLS</text><text x="1200" y="150" text-anchor="middle" class="h">TCP + TLS</text>
+  <rect x="80" y="250" width="250" height="140" rx="22" class="box"/><text x="205" y="315" text-anchor="middle" class="h">Client</text>
+  <rect x="470" y="250" width="250" height="140" rx="22" class="box"/><text x="595" y="315" text-anchor="middle" class="h">Servidor</text>
+  <path d="M330 320L470 320" class="line" marker-end="url(#a)"/><text x="400" y="275" text-anchor="middle" class="s">AUTH / DATA</text>
+  <rect x="285" y="520" width="230" height="130" rx="22" class="warn"/><text x="400" y="575" text-anchor="middle" class="h">Observador</text><text x="400" y="620" text-anchor="middle" class="s">pot llegir</text>
+  <path d="M400 520L400 350" class="line"/>
+  <rect x="880" y="250" width="250" height="140" rx="22" class="box"/><text x="1005" y="315" text-anchor="middle" class="h">Client</text>
+  <rect x="1270" y="250" width="250" height="140" rx="22" class="box"/><text x="1395" y="315" text-anchor="middle" class="h">Servidor</text>
+  <path d="M1130 320L1270 320" class="line" marker-end="url(#a)"/><text x="1200" y="275" text-anchor="middle" class="s">bytes xifrats</text>
+  <rect x="1085" y="520" width="230" height="130" rx="22" class="good"/><text x="1200" y="575" text-anchor="middle" class="h">Observador</text><text x="1200" y="620" text-anchor="middle" class="s">no pot llegir</text>
+  <path d="M1200 520L1200 350" class="line" stroke-dasharray="15 12"/>
+  <text x="800" y="770" text-anchor="middle" class="t">El protocol d'aplicació és el mateix; canvia la protecció del canal.</text>
+</svg>

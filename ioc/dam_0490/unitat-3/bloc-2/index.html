@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 2: Autenticació i control d'accés en serveis | Programació de serveis i processos - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="3">
+    <meta name="page-bloc" content="2">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 2: Autenticació i control d’accés en serveis | Programació de serveis i processos</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 2: Autenticació i control d’accés en serveis" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Identitat, autorització, estat de sessió, AUTH PLAIN, verificació de credencials, rols i polítiques d’accés" />
+<meta property="og:description" content="Identitat, autorització, estat de sessió, AUTH PLAIN, verificació de credencials, rols i polítiques d’accés" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-2/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-2/" />
+<meta property="og:site_name" content="Programació de serveis i processos" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 2: Autenticació i control d’accés en serveis" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Identitat, autorització, estat de sessió, AUTH PLAIN, verificació de credencials, rols i polítiques d’accés","headline":"Bloc 2: Autenticació i control d’accés en serveis","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-2/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/dam_0490/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-2/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/dam_0490/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/dam_0490/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0490/feed.xml" title="Programació de serveis i processos" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/dam_0490/assets/css/code-block.css">
+    <script src="/ioc/dam_0490/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/dam_0490">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/dam_0490/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/dam_0490/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/dam_0490/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/dam_0490/" class="title-link">
+                <h1>DAM_0490 - Programació de serveis i processos</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/dam_0490/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Entendre la concurrència abans d'escriure codi
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Crear i controlar processos des de Java
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Fils, memòria compartida i sincronització
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: ExecutorService i aplicacions concurrents completes
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0490/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: De noms a sòcols: entendre la comunicació en xarxa
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Construir clients i servidors amb sòcols
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Servidors concurrents i serveis robustos
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Protocols reals: serveis i correu electrònic
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0490/unitat-3/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 1: Integritat, hashes i credencials
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-3/bloc-2/" class="nav-dropdown-item current">
+                        Unitat 3 - Bloc 2: Autenticació i control d'accés en serveis
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-3/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 3: TLS, certificats i sòcols segurs
+                    </a>
+                
+                    <a href="/ioc/dam_0490/unitat-3/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 4: Criptografia asimètrica amb RSA
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc2_Seccio1" class="nav-link" data-section="Unitat3_Bloc2_Seccio1">1. Autenticació, autorització i estat de sessió</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc2_Seccio2" class="nav-link" data-section="Unitat3_Bloc2_Seccio2">2. AUTH PLAIN: format, NUL i Base64</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc2_Seccio3" class="nav-link" data-section="Unitat3_Bloc2_Seccio3">3. Verificar credencials al servidor</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc2_Seccio4" class="nav-link" data-section="Unitat3_Bloc2_Seccio4">4. Bloquejar operacions fins que l'usuari s'autentiqui</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc2_Seccio5" class="nav-link" data-section="Unitat3_Bloc2_Seccio5">5. Rols, polítiques d'accés i proves negatives</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/dam_0490/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/dam_0490/unitat-3/" class="horizontal-nav-item">
+                                Unitat 3: Seguretat i criptografia (RA5)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 3.2: Autenticació i control d'accés en serveis
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<div class="section" id="Unitat3_Bloc2_Seccio1">
+  <h2 id="Unitat3_Bloc2_Seccio1">1. Autenticació, autorització i estat de sessió</h2>
+
+<p>Un servidor pot acceptar una connexió TCP sense saber encara qui hi ha a l'altre extrem. La connexió respon a una pregunta de transport: <strong>"amb quin procés estic parlant?"</strong>. L'autenticació respon a una pregunta diferent: <strong>"quina identitat diu ser i ho pot demostrar?"</strong>.</p>
+
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Autenticació:</strong> Procés de verificar la identitat d'un usuari, client o servei.</p>
+  </div>
+</div>
+
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Autorització:</strong> Decisió sobre quines operacions pot executar una identitat que ja coneixem.</p>
+  </div>
+</div>
+
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-3/06_autenticacio_autoritzacio.svg" alt="Una connexió passa d'anònima a autenticada i després una política decideix quines operacions estan autoritzades." class="figure-img"/>
+      
+      <figcaption class="figure-caption">Primer identifiquem la sessió. Després decidim què pot fer.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+<h3>La sessió necessita memòria</h3>
+
+<p>En un protocol de text, cada línia arriba per separat, però el significat d'una ordre pot dependre de les ordres anteriors. Una variable booleana ja permet representar el cas més senzill:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">private boolean authenticated = false;
+
+void processar(String ordre) {
+
+    if (ordre.startsWith(&quot;AUTH &quot;)) {
+        // verificar credencials...
+        authenticated = true;
+        return;
+    }
+
+    if (ordre.startsWith(&quot;ENVIAR &quot;)) {
+
+        if (!authenticated) {
+            respondre(&quot;530 Authentication required&quot;);
+            return;
+        }
+
+        // executar operació protegida
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>La variable pertany a <strong>una sessió concreta</strong>. Si el servidor crea un objecte sessió per cada client, cada client ha de tenir el seu propi estat d'autenticació.</p>
+
+
+<!-- Component: Problema -->
+<div class="problem-box" role="alert" aria-live="assertive">
+    <div class="component-header error-header" role="heading" aria-level="4"><i class="bi bi-x-circle" aria-hidden="true"></i> Problema</div>
+    <p><strong>Error de disseny:</strong> declarar <code>authenticated</code> com a <code>static</code>. Si un client s'autentica, tots els objectes de sessió compartirien el mateix valor i altres clients podrien quedar autenticats sense haver presentat credencials.</p>
+</div>
+
+
+<h3>Un estat una mica més expressiu</h3>
+
+<p>Quan el protocol creix, un booleà pot quedar curt. Podem combinar l'estat del diàleg amb la identitat autenticada:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">enum SessionState {
+    CONNECTED,
+    GREETED,
+    MAIL_FROM,
+    RCPT_TO,
+    DATA
+}
+
+private SessionState state =
+        SessionState.CONNECTED;
+
+private boolean authenticated = false;
+private String authenticatedUser = null;</code></pre>
+  </div>
+</div>
+
+
+<p>Ara podem distingir dues condicions independents: haver seguit correctament el protocol i haver demostrat una identitat.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Idea clau</strong></p><p>L'autenticació no és una ordre aïllada. És un canvi d'estat de la sessió. A partir d'aquell moment, les decisions del servidor poden tenir en compte la identitat.</p>
+    
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Una porta abans de l'ordre</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Partiu d'un protocol amb les ordres PING, SECRET i QUIT. PING ha de ser pública, SECRET només pot funcionar després d'autenticar-se i QUIT sempre ha de funcionar. Dibuixeu primer l'estat i després implementeu-lo.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">12 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>No cal xarxa per provar la lògica.</li>
+        
+        <li>Feu una funció que rebi una línia i retorni una resposta.</li>
+        
+        <li>Proveu SECRET abans i després d'autenticar.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat3_Bloc2_Seccio2">
+  <h2 id="Unitat3_Bloc2_Seccio2">2. AUTH PLAIN: format, NUL i Base64</h2>
+
+<p>Molts protocols defineixen exactament com s'han de representar les credencials. Un exemple senzill és el mecanisme <code>AUTH PLAIN</code> de SMTP. La informació abans de codificar té aquesta forma:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">[NUL]usuari[NUL]contrasenya
+
+Exemple conceptual:
+\0alice\0s3cr3t</code></pre>
+  </div>
+</div>
+
+
+<p>El byte NUL no és el text <code>\</code> seguit del número <code>0</code>. És un caràcter amb valor zero. A Java el podem construir així:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">String tokenPlain =
+        &quot;\0&quot; + usuari + &quot;\0&quot; + contrasenya;
+
+String tokenBase64 =
+        Base64.getEncoder().encodeToString(
+                tokenPlain.getBytes(
+                        StandardCharsets.UTF_8
+                )
+        );
+
+out.println(&quot;AUTH PLAIN &quot; + tokenBase64);</code></pre>
+  </div>
+</div>
+
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-3/07_auth_plain.svg" alt="Client concatena NUL, usuari, NUL i contrasenya, ho codifica en Base64 i envia AUTH PLAIN. El servidor fa el procés invers." class="figure-img"/>
+      
+      <figcaption class="figure-caption">Base64 permet transportar els bytes dins d'una línia SMTP, però no protegeix el secret.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+<h3>El servidor fa el camí invers</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">byte[] decoded =
+        Base64.getDecoder().decode(token);
+
+String contingut = new String(
+        decoded,
+        StandardCharsets.UTF_8
+);
+
+String[] parts =
+        contingut.split(&quot;\0&quot;, -1);
+
+if (parts.length != 3
+        || !parts[0].isEmpty()) {
+    // format incorrecte
+}
+
+String usuari = parts[1];
+String contrasenya = parts[2];</code></pre>
+  </div>
+</div>
+
+
+<p>El segon paràmetre <code>-1</code> fa que <code>split</code> conservi els camps buits. Això és útil perquè el primer camp ha de quedar buit a causa del NUL inicial.</p>
+
+<h3>Base64 no protegeix AUTH PLAIN</h3>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>AUTH PLAIN només és raonable sobre un canal protegit.</strong> Qualsevol observador que capturi el token Base64 el pot decodificar i recuperar usuari i contrasenya. La protecció real del trànsit arribarà amb TLS.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Construïu i desmunteu el token</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Feu dues funcions: una que rebi usuari i contrasenya i retorni el token Base64, i una altra que rebi el token i mostri els tres camps resultants. Proveu també un token Base64 invàlid.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">12 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Captureu IllegalArgumentException en decodificar.</li>
+        
+        <li>No imprimiu contrasenyes en una aplicació real; aquí només és una prova local.</li>
+        
+        <li>Comproveu el nombre de camps abans d'accedir-hi.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat3_Bloc2_Seccio3">
+  <h2 id="Unitat3_Bloc2_Seccio3">3. Verificar credencials al servidor</h2>
+
+<p>Un cop hem extret l'usuari i la contrasenya, el servidor ha de decidir si són correctes. Per mantenir l'exemple petit, podem representar els usuaris amb un <code>Map&lt;String, String&gt;</code> que associa cada nom amb un resum.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">private static final Map&lt;String, String&gt;
+        USERS = Map.of(
+    &quot;alice&quot;, sha256(&quot;s3cr3t&quot;),
+    &quot;bob&quot;,   sha256(&quot;java2026&quot;)
+);</code></pre>
+  </div>
+</div>
+
+
+<p>La verificació té quatre passos:</p>
+<ol>
+<li>Comprovar que l'usuari existeix.</li>
+<li>Calcular el resum de la contrasenya rebuda.</li>
+<li>Comparar-lo amb el valor guardat.</li>
+<li>Canviar l'estat de la sessió només si coincideix.</li>
+</ol>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">private boolean autenticar(
+        String usuari,
+        String contrasenya) throws Exception {
+
+    String esperat = USERS.get(usuari);
+
+    if (esperat == null) {
+        return false;
+    }
+
+    String rebut = sha256(contrasenya);
+
+    return rebut.equals(esperat);
+}</code></pre>
+  </div>
+</div>
+
+
+<h3>Processar AUTH sense trencar la sessió</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">if (linia.startsWith(&quot;AUTH PLAIN &quot;)) {
+
+    String token =
+            linia.substring(&quot;AUTH PLAIN &quot;.length())
+                 .trim();
+
+    try {
+        Credencial c = decodeAuthPlain(token);
+
+        if (autenticar(c.usuari(), c.contrasenya())) {
+            authenticated = true;
+            authenticatedUser = c.usuari();
+            out.println(
+                &quot;235 2.7.0 Authentication successful&quot;
+            );
+        } else {
+            out.println(
+                &quot;535 5.7.8 Authentication credentials invalid&quot;
+            );
+        }
+
+    } catch (Exception e) {
+        out.println(
+            &quot;535 5.7.8 Authentication credentials invalid&quot;
+        );
+    }
+
+    continue;
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Fixeu-vos que un token mal format i unes credencials incorrectes generen una resposta d'error controlada. El servidor no ha de caure perquè un client enviï una entrada incorrecta.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Separar funcions simplifica la depuració.</strong></p><p>Una funció decodifica el token, una altra calcula SHA-256, una altra verifica l'usuari i el bucle de sessió només decideix quina resposta del protocol ha d'enviar. Quan tot queda dins d'un únic <code>if</code>, és molt més difícil saber on falla.</p>
+    
+</div>
+
+
+<h3>No reveleu més informació de la necessària</h3>
+
+<p>Una resposta com "l'usuari existeix però la contrasenya és incorrecta" ajuda un atacant a descobrir noms d'usuari vàlids. És millor que els errors d'autenticació externs siguin genèrics, encara que internament disposem de logs de diagnòstic adequats.</p>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Autenticació resistent a entrades incorrectes</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Implementeu una funció que processi AUTH PLAIN i retorni 235 o 535. Proveu usuari correcte, contrasenya incorrecta, usuari desconegut, token Base64 invàlid i token amb un nombre de camps incorrecte.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">20 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Cada prova ha d'acabar amb una resposta, no amb una excepció no controlada.</li>
+        
+        <li>Canvieu authenticated només després d'una verificació correcta.</li>
+        
+        <li>Manteniu la resposta externa genèrica.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat3_Bloc2_Seccio4">
+  <h2 id="Unitat3_Bloc2_Seccio4">4. Bloquejar operacions fins que l'usuari s'autentiqui</h2>
+
+<p>Autenticar correctament no serveix de res si després oblidem comprovar l'estat abans d'una operació sensible. La política s'ha d'aplicar <strong>al servidor</strong>, perquè el client no és una font de confiança.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">if (linia.startsWith(&quot;MAIL FROM:&quot;)) {
+
+    if (!authenticated) {
+        out.println(&quot;530 Authentication required&quot;);
+        continue;
+    }
+
+    if (state != SessionState.GREETED) {
+        out.println(&quot;503 Bad sequence of commands&quot;);
+        continue;
+    }
+
+    // Ara sí: processar MAIL FROM
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Aquí hi ha dues portes diferents:</p>
+<ul>
+<li>la <strong>porta de seguretat</strong>: la sessió està autenticada?</li>
+<li>la <strong>porta del protocol</strong>: l'ordre arriba en l'estat correcte?</li>
+</ul>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-3/08_portes_sessio.svg" alt="Una ordre protegida passa primer per la comprovació d'autenticació i després per la comprovació de l'estat del protocol." class="figure-img"/>
+      
+      <figcaption class="figure-caption">Una ordre pot ser vàlida sintàcticament i, tot i així, estar prohibida per l'estat de seguretat o per la seqüència del protocol.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+<h3>El client també ha d'entendre la resposta</h3>
+
+<p>El client pot facilitar l'experiència de l'usuari, però no substitueix el control del servidor:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">sendCommand(
+        &quot;AUTH PLAIN &quot; + tokenBase64
+);
+
+String resposta = in.readLine();
+
+if (resposta == null
+        || !resposta.startsWith(&quot;235&quot;)) {
+
+    System.out.println(
+            &quot;Autenticació fallida&quot;
+    );
+
+    socket.close();
+    return;
+}
+
+// Només ara continua la seqüència normal
+sendCommand(&quot;MAIL FROM:&lt;&quot; + from + &quot;&gt;&quot;);</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Problema -->
+<div class="problem-box" role="alert" aria-live="assertive">
+    <div class="component-header error-header" role="heading" aria-level="4"><i class="bi bi-x-circle" aria-hidden="true"></i> Problema</div>
+    <p><strong>No confieu en "el meu client mai faria això".</strong> Qualsevol persona pot escriure un altre client, usar <code>nc</code> o enviar bytes manualment. Les regles de seguretat han d'estar al costat que protegeix el recurs.</p>
+</div>
+
+
+<h3>Tancar o permetre reintents?</h3>
+
+<p>Un protocol pot decidir tancar la connexió després d'un error d'autenticació o permetre un nombre limitat de reintents. Les dues opcions són decisions de disseny. El més important és que el comportament sigui explícit i que un error no deixi la sessió en un estat ambigu.</p>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Proveu de saltar-vos la porta</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Amb el vostre protocol de prova, intenteu executar l'ordre protegida abans d'AUTH, després d'un AUTH incorrecte i després d'un AUTH correcte. Escriviu el resultat esperat abans d'executar cada prova.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>La primera i la segona prova no poden modificar l'estat protegit.</li>
+        
+        <li>Una autenticació fallida no ha de posar authenticated a true.</li>
+        
+        <li>Comproveu també una seqüència d'ordres incorrecta.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat3_Bloc2_Seccio5">
+  <h2 id="Unitat3_Bloc2_Seccio5">5. Rols, polítiques d'accés i proves negatives</h2>
+
+<p>Un booleà respon "està autenticat?". En moltes aplicacions necessitem una pregunta més precisa: <strong>"què pot fer aquest usuari?"</strong>. Un model senzill és associar un rol a cada identitat.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">enum Rol {
+    LECTOR,
+    OPERADOR,
+    ADMIN
+}
+
+record Usuari(
+        String hashContrasenya,
+        Rol rol) {}
+
+Map&lt;String, Usuari&gt; usuaris = Map.of(
+    &quot;anna&quot;,
+    new Usuari(
+        sha256(&quot;demo1&quot;),
+        Rol.OPERADOR
+    ),
+    &quot;pol&quot;,
+    new Usuari(
+        sha256(&quot;demo2&quot;),
+        Rol.LECTOR
+    )
+);</code></pre>
+  </div>
+</div>
+
+
+<h3>La política és una regla explícita</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">boolean potEliminar(Rol rol) {
+    return rol == Rol.ADMIN;
+}
+
+boolean potEnviar(Rol rol) {
+    return rol == Rol.OPERADOR
+        || rol == Rol.ADMIN;
+}
+
+boolean potConsultar(Rol rol) {
+    return true;
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Això és preferible a repartir condicions improvisades per tot el codi. Quan la política canvia, sabem on mirar.</p>
+
+<table class="table">
+<thead><tr><th>Acció</th><th>LECTOR</th><th>OPERADOR</th><th>ADMIN</th></tr></thead>
+<tbody>
+<tr><td>Consultar</td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
+<tr><td>Enviar</td><td>No</td><td>Sí</td><td>Sí</td></tr>
+<tr><td>Eliminar</td><td>No</td><td>No</td><td>Sí</td></tr>
+</tbody>
+</table>
+
+<h3>Les proves negatives són obligatòries en seguretat</h3>
+
+<p>Si només comprovem que el cas correcte funciona, no sabem si la protecció funciona. Hem de provar deliberadament intents que s'han de rebutjar.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Cas 1: sense autenticar -&gt; ENVIAR      -&gt; rebutjat
+Cas 2: LECTOR autenticat -&gt; ENVIAR     -&gt; rebutjat
+Cas 3: OPERADOR -&gt; ENVIAR              -&gt; acceptat
+Cas 4: OPERADOR -&gt; ELIMINAR            -&gt; rebutjat
+Cas 5: ADMIN -&gt; ELIMINAR               -&gt; acceptat
+Cas 6: credencial incorrecta -&gt; acció  -&gt; rebutjat</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Una bona prova de seguretat intenta fer allò que no s'hauria de poder fer.</strong></p><p>El resultat interessant no és només veure un <code>235</code>. També és comprovar que una sessió anònima o un rol insuficient no pot arribar al codi que modifica el recurs.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Matriu de permisos</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Definiu tres rols i quatre operacions per a un servei inventat. Escriviu primer una taula de permisos i després implementeu una única funció autoritzat(rol, operacio). Prepareu com a mínim sis proves, tres de les quals han de ser negatives.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">20 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>No barregeu verificació de contrasenya amb autorització.</li>
+        
+        <li>La política ha de ser fàcil de llegir.</li>
+        
+        <li>Una operació desconeguda s'ha de rebutjar per defecte.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 2: Autenticació i control d'accés en serveis",
+  "description": "Identitat, autorització, estat de sessió, AUTH PLAIN, verificació de credencials, rols i polítiques d'accés",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Programació de serveis i processos — IOC",
+    "description": "Materials del mòdul DAM_0490 - Programació de serveis i processos"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                        
+                                        
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0490/unitat-3/bloc-1/" class="nav-button" aria-label="Bloc anterior: Integritat, hashes i credencials">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0490/unitat-3/bloc-3/" class="nav-button" aria-label="Bloc següent: TLS, certificats i sòcols segurs">Següent →</a>
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="3" data-total="3">(3/3)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="2" data-total="4">(2/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 50%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="5">(1/5)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 20%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/dam_0490/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/dam_0490",
+        title: "Programació de serveis i processos",
+        version: "v1.0",
+        cicle_modul: "DAM_0490"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/dam_0490/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/dam_0490/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/dam_0490/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+<title id="t">Verificar una credencial sense desar-la en clar</title><desc id="d">El servidor transforma la contrasenya rebuda i compara el resultat amb el valor emmagatzemat.</desc>
+<rect width="1600" height="900" fill="#fff"/>
+<style>
+text{font-family:Arial,sans-serif;fill:#17324f}.title{font-size:54px;font-weight:700}.h{font-size:31px;font-weight:700}.t{font-size:24px}.s{font-size:20px}.box{fill:#f4f8fb;stroke:#17324f;stroke-width:4}.accent{fill:#e8f1f8;stroke:#17324f;stroke-width:4}.good{fill:#eef6ee;stroke:#17324f;stroke-width:4}.warn{fill:#fff5e8;stroke:#17324f;stroke-width:4}.line{stroke:#17324f;stroke-width:5;fill:none}
+</style>
+<defs><marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#17324f"/></marker></defs>
+<text x="800" y="75" text-anchor="middle" class="title">Verificar una credencial sense desar-la en clar</text>
+<rect x="80" y="250" width="370" height="190" rx="22" class="box"/><text x="265" y="315" text-anchor="middle" class="h">Client</text><text x="265" y="375" text-anchor="middle" class="t">usuari + contrasenya</text>
+  <path d="M450 345L650 345" class="line" marker-end="url(#a)"/>
+  <rect x="650" y="250" width="300" height="190" rx="22" class="accent"/><text x="800" y="315" text-anchor="middle" class="h">Servidor</text><text x="800" y="375" text-anchor="middle" class="t">SHA-256</text>
+  <path d="M950 345L1130 345" class="line" marker-end="url(#a)"/>
+  <rect x="1130" y="190" width="390" height="150" rx="22" class="good"/><text x="1325" y="250" text-anchor="middle" class="h">Hash rebut</text><text x="1325" y="300" text-anchor="middle" class="s">calcular ara</text>
+  <rect x="1130" y="510" width="390" height="150" rx="22" class="box"/><text x="1325" y="570" text-anchor="middle" class="h">Hash guardat</text><text x="1325" y="620" text-anchor="middle" class="s">mai la contrasenya</text>
+  <path d="M1325 340L1325 500" class="line" marker-end="url(#a)"/>
+  <text x="1325" y="430" text-anchor="middle" class="t">comparar</text>
+  <text x="800" y="760" text-anchor="middle" class="s">Per a contrasenyes reals: salt + funció lenta específica (Argon2, bcrypt, scrypt, PBKDF2).</text>
+</svg>

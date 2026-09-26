@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+<title id="t">El certificat associa identitat i clau pública</title><desc id="d">Un certificat signat presenta la identitat del servidor i la seva clau pública; el client valida l'emissor abans de confiar.</desc>
+<rect width="1600" height="900" fill="#fff"/>
+<style>
+text{font-family:Arial,sans-serif;fill:#17324f}.title{font-size:54px;font-weight:700}.h{font-size:31px;font-weight:700}.t{font-size:24px}.s{font-size:20px}.box{fill:#f4f8fb;stroke:#17324f;stroke-width:4}.accent{fill:#e8f1f8;stroke:#17324f;stroke-width:4}.good{fill:#eef6ee;stroke:#17324f;stroke-width:4}.warn{fill:#fff5e8;stroke:#17324f;stroke-width:4}.line{stroke:#17324f;stroke-width:5;fill:none}
+</style>
+<defs><marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#17324f"/></marker></defs>
+<text x="800" y="75" text-anchor="middle" class="title">El certificat associa identitat i clau pública</text>
+<rect x="80" y="230" width="400" height="300" rx="22" class="accent"/><text x="280" y="295" text-anchor="middle" class="h">Certificat</text><text x="280" y="355" text-anchor="middle" class="t">Subject: servidor</text><text x="280" y="410" text-anchor="middle" class="t">Clau pública</text><text x="280" y="465" text-anchor="middle" class="t">Emissor + signatura</text>
+  <path d="M480 380L700 380" class="line" marker-end="url(#a)"/>
+  <rect x="700" y="230" width="300" height="300" rx="22" class="box"/><text x="850" y="295" text-anchor="middle" class="h">Client</text><text x="850" y="355" text-anchor="middle" class="t">valida</text><text x="850" y="410" text-anchor="middle" class="t">emissor</text><text x="850" y="465" text-anchor="middle" class="t">+ signatura</text>
+  <path d="M1000 380L1220 380" class="line" marker-end="url(#a)"/>
+  <rect x="1220" y="210" width="300" height="160" rx="22" class="good"/><text x="1370" y="270" text-anchor="middle" class="h">Confiança</text><text x="1370" y="325" text-anchor="middle" class="s">identitat acceptada</text>
+  <rect x="1220" y="535" width="300" height="160" rx="22" class="warn"/><text x="1370" y="595" text-anchor="middle" class="h">Rebuig</text><text x="1370" y="650" text-anchor="middle" class="s">handshake falla</text>
+  <path d="M850 530L1220 615" class="line" marker-end="url(#a)"/>
+  <text x="800" y="790" text-anchor="middle" class="h">Una clau pública sola no diu a qui pertany.</text>
+</svg>

@@ -1,0 +1,13 @@
+<p>Aquesta unitat introdueix la seguretat des del punt de vista d'un desenvolupador. No començarem per fórmules ni per teoria abstracta, sinó per problemes que apareixen de seguida en una aplicació real: com detectar si un fitxer ha canviat, com evitar guardar contrasenyes en text pla, com saber qui s'ha autenticat, com impedir una operació a qui no té permís i com evitar que una credencial viatgi llegible per la xarxa.</p>
+
+<p>La progressió serà incremental. Primer treballarem amb bytes, Base64 i funcions hash. Després afegirem autenticació i control d'accés a un protocol de text. A continuació protegirem el canal amb TLS i aprendrem a gestionar certificats i keystores. Finalment treballarem directament amb criptografia asimètrica i RSA per entendre què hi ha darrere de moltes de les eines anteriors.</p>
+
+<p><strong>Resultat d'aprenentatge treballat</strong></p>
+<table class="table">
+<tbody>
+<tr><th>RA5</th><td>Protegeix les aplicacions i les dades definint i aplicant criteris de seguretat en l'accés, emmagatzematge i transmissió de la informació.</td></tr>
+</tbody>
+</table>
+
+{% capture box_unitat3 %}<p><strong>Com estudiar aquesta unitat</strong></p><p>Executeu els exemples i modifiqueu una sola cosa cada vegada. Canvieu un byte d'un fitxer, proveu una contrasenya incorrecta, intenteu enviar una ordre abans d'autenticar-vos o connecteu un client TLS amb una configuració de confiança incorrecta. La seguretat s'entén molt millor observant què falla i per què.</p>{% endcapture %}
+{% include info_box.html contingut=box_unitat3 %}

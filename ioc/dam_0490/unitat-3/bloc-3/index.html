@@ -5,34 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <title>Bloc 2: Crear i controlar processos des de Java | Programació de serveis i processos - IOC</title>
+    <title>Bloc 3: TLS, certificats i sòcols segurs | Programació de serveis i processos - IOC</title>
     <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
-    <meta name="page-unitat" content="1">
-    <meta name="page-bloc" content="2">
+    <meta name="page-unitat" content="3">
+    <meta name="page-bloc" content="3">
     
     <!-- SEO Tags -->
     <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Bloc 2: Crear i controlar processos des de Java | Programació de serveis i processos</title>
+<title>Bloc 3: TLS, certificats i sòcols segurs | Programació de serveis i processos</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="Bloc 2: Crear i controlar processos des de Java" />
+<meta property="og:title" content="Bloc 3: TLS, certificats i sòcols segurs" />
 <meta property="og:locale" content="ca_ES" />
-<meta name="description" content="ProcessBuilder, arguments, streams, codis de sortida, timeouts i execució concurrent de subprocessos" />
-<meta property="og:description" content="ProcessBuilder, arguments, streams, codis de sortida, timeouts i execució concurrent de subprocessos" />
-<link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-2/" />
-<meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-2/" />
+<meta name="description" content="Confidencialitat en trànsit, certificats, keystores, keytool, SSLContext, SSLServerSocket i SSLSocket" />
+<meta property="og:description" content="Confidencialitat en trànsit, certificats, keystores, keytool, SSLContext, SSLServerSocket i SSLSocket" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-3/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-3/" />
 <meta property="og:site_name" content="Programació de serveis i processos" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Bloc 2: Crear i controlar processos des de Java" />
+<meta property="twitter:title" content="Bloc 3: TLS, certificats i sòcols segurs" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"ProcessBuilder, arguments, streams, codis de sortida, timeouts i execució concurrent de subprocessos","headline":"Bloc 2: Crear i controlar processos des de Java","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-2/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Confidencialitat en trànsit, certificats, keystores, keytool, SSLContext, SSLServerSocket i SSLSocket","headline":"Bloc 3: TLS, certificats i sòcols segurs","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-3/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/ioc/dam_0490/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-1/bloc-2/">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-3/">
     <!-- Rich editor styles (for embedded notes panel) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
     <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -111,7 +111,7 @@
                         Unitat 1 - Bloc 1: Entendre la concurrència abans d'escriure codi
                     </a>
                 
-                    <a href="/ioc/dam_0490/unitat-1/bloc-2/" class="nav-dropdown-item current">
+                    <a href="/ioc/dam_0490/unitat-1/bloc-2/" class="nav-dropdown-item ">
                         Unitat 1 - Bloc 2: Crear i controlar processos des de Java
                     </a>
                 
@@ -151,7 +151,7 @@
                         Unitat 3 - Bloc 2: Autenticació i control d'accés en serveis
                     </a>
                 
-                    <a href="/ioc/dam_0490/unitat-3/bloc-3/" class="nav-dropdown-item ">
+                    <a href="/ioc/dam_0490/unitat-3/bloc-3/" class="nav-dropdown-item current">
                         Unitat 3 - Bloc 3: TLS, certificats i sòcols segurs
                     </a>
                 
@@ -190,7 +190,28 @@
         
         
         <div class="nav-item">
-            <a href="#Unitat1_Bloc2_Seccio1" class="nav-link" data-section="Unitat1_Bloc2_Seccio1">1. Primer procés fill amb ProcessBuilder</a>
+            <a href="#Unitat3_Bloc3_Seccio1" class="nav-link" data-section="Unitat3_Bloc3_Seccio1">1. Per què un Socket normal no protegeix les dades</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc3_Seccio2" class="nav-link" data-section="Unitat3_Bloc3_Seccio2">2. Certificat, clau privada, keystore i truststore</a>
         </div>
     
 
@@ -216,18 +237,8 @@
         
         
         <div class="nav-item">
-            <a href="#Unitat1_Bloc2_Seccio2" class="nav-link" data-section="Unitat1_Bloc2_Seccio2">2. Arguments, sortides i codis de retorn</a>
+            <a href="#Unitat3_Bloc3_Seccio3" class="nav-link" data-section="Unitat3_Bloc3_Seccio3">3. Crear i inspeccionar un certificat amb keytool</a>
         </div>
-    
-
-    
-    
-    
-    
-
-    
-    
-    
     
 
     
@@ -252,28 +263,7 @@
         
         
         <div class="nav-item">
-            <a href="#Unitat1_Bloc2_Seccio3" class="nav-link" data-section="Unitat1_Bloc2_Seccio3">3. Esperar sense bloquejar-se: timeout i finalització</a>
-        </div>
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-        
-        
-        
-        
-        
-        
-        
-        <div class="nav-item">
-            <a href="#Unitat1_Bloc2_Seccio4" class="nav-link" data-section="Unitat1_Bloc2_Seccio4">4. Llançar diversos processos concurrentment</a>
+            <a href="#Unitat3_Bloc3_Seccio4" class="nav-link" data-section="Unitat3_Bloc3_Seccio4">4. Servidor TLS amb KeyStore i SSLServerSocket</a>
         </div>
     
 
@@ -309,7 +299,7 @@
         
         
         <div class="nav-item">
-            <a href="#Unitat1_Bloc2_Seccio5" class="nav-link" data-section="Unitat1_Bloc2_Seccio5">5. Monitoratge, fitxers i depuració</a>
+            <a href="#Unitat3_Bloc3_Seccio5" class="nav-link" data-section="Unitat3_Bloc3_Seccio5">5. Client TLS, confiança i depuració del handshake</a>
         </div>
     
 
@@ -352,18 +342,24 @@
                         
                         
                             
+                        
+                            
+                        
+                            
                                 
                                 
                         
                         
                             <span class="horizontal-nav-separator"> &gt; </span>
-                            <a href="/ioc/dam_0490/unitat-1/" class="horizontal-nav-item">
-                                Unitat 1: Processos i fils (RA1, RA2)
+                            <a href="/ioc/dam_0490/unitat-3/" class="horizontal-nav-item">
+                                Unitat 3: Seguretat i criptografia (RA5)
                             </a>
                         
                         
                         
                             
+                            
+                                
                             
                                 
                             
@@ -374,7 +370,7 @@
                             
                                 <span class="horizontal-nav-separator"> &gt; </span>
                                 <span class="horizontal-nav-item current">
-                                    Bloc 1.2: Crear i controlar processos des de Java
+                                    Bloc 3.3: TLS, certificats i sòcols segurs
                                 </span>
                             
                         
@@ -392,90 +388,16 @@
 
 
 <!-- Contingut principal -->
-<div class="section" id="Unitat1_Bloc2_Seccio1">
-  <h2 id="Unitat1_Bloc2_Seccio1">1. Primer procés fill amb ProcessBuilder</h2>
+<div class="section" id="Unitat3_Bloc3_Seccio1">
+  <h2 id="Unitat3_Bloc3_Seccio1">1. Per què un Socket normal no protegeix les dades</h2>
 
-<p>Java pot iniciar altres programes. La classe principal per preparar l'ordre és <code>ProcessBuilder</code> i l'objecte que representa el programa ja iniciat és <code>Process</code>.</p>
-
-
-<!-- Component: Caixa informativa -->
-<div class="info-box" role="note">
-    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
-    <p><strong>Model mental</strong></p><p><code>ProcessBuilder</code> prepara com s'executarà el programa. <code>start()</code> el posa en marxa. A partir d'aquell moment, <code>Process</code> representa el procés fill i ens permet esperar-lo, consultar si continua viu, llegir-ne la sortida o finalitzar-lo.</p>
-    
-</div>
+<p>Un <code>Socket</code> TCP ens dona un canal fiable i ordenat, però <strong>no xifra automàticament el contingut</strong>. Si el protocol envia una línia amb usuari, contrasenya o dades privades, aquests bytes poden circular llegibles per la xarxa.</p>
 
 
-<h3>Exemple mínim: executar el Java instal·lat</h3>
-
-<p>Comencem amb una ordre que no depèn del sistema operatiu: executar el mateix Java que està utilitzant l'aplicació.</p>
-
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
   <div class="code-header">
     <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      <span class="code-filename">PrimerProces.java</span>
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.nio.file.Path;
-
-public class PrimerProces {
-    public static void main(String[] args) throws Exception {
-        String java = Path.of(
-                System.getProperty(&quot;java.home&quot;),
-                &quot;bin&quot;,
-                &quot;java&quot;
-        ).toString();
-
-        ProcessBuilder pb = new ProcessBuilder(java, &quot;-version&quot;);
-        pb.redirectErrorStream(true);
-
-        Process proces = pb.start();
-
-        proces.getInputStream().transferTo(System.out);
-
-        int codi = proces.waitFor();
-        System.out.println(&quot;Codi de sortida: &quot; + codi);
-    }
-}</code></pre>
-  </div>
-</div>
-
-
-<p>Hi ha quatre passos importants:</p>
-<ol>
-<li>Construïm l'ordre.</li>
-<li>Creem el <code>ProcessBuilder</code>.</li>
-<li>Cridem <code>start()</code>.</li>
-<li>Esperem el final i obtenim el codi de sortida.</li>
-</ol>
-
-
-<!-- Component: Caixa d'èxit -->
-<div class="success-box" role="status" aria-live="polite">
-    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <p><strong>Observeu-ho</strong></p><p>El programa principal no executa les instruccions de l'altre programa dins de la seva JVM. El sistema operatiu crea un procés independent.</p>
-</div>
-
-
-<h3>Executar una altra classe Java</h3>
-
-<p>Per executar una classe del mateix projecte com un programa independent necessitem indicar el Java actual, el classpath actual i el nom complet de la classe que conté <code>main</code>.</p>
-
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
+      <span class="code-lang">TEXT</span>
       
     </div>
     <div class="code-actions">
@@ -487,27 +409,201 @@ public class PrimerProces {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.nio.file.Path;
-import java.util.List;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">C: AUTH PLAIN AGFsaWNlAHMzY3IzdA==
+S: 235 Authentication successful
+C: MAIL FROM:&lt;alice@example.org&gt;
+C: RCPT TO:&lt;bob@example.org&gt;
+C: DATA
+C: Missatge confidencial...</code></pre>
+  </div>
+</div>
 
-public static List&lt;String&gt; ordreJava(Class&lt;?&gt; classe, String... arguments) {
-    String java = Path.of(
-            System.getProperty(&quot;java.home&quot;),
-            &quot;bin&quot;,
-            &quot;java&quot;
-    ).toString();
 
-    String classpath = System.getProperty(&quot;java.class.path&quot;);
+<p>Encara que el token d'autenticació estigui en Base64, continua sent reversible. Si el canal és en text pla, un observador pot capturar els bytes i reconstruir la conversa.</p>
 
-    List&lt;String&gt; ordre = new java.util.ArrayList&lt;&gt;();
-    ordre.add(java);
-    ordre.add(&quot;-cp&quot;);
-    ordre.add(classpath);
-    ordre.add(classe.getName());
-    ordre.addAll(List.of(arguments));
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-3/09_tcp_vs_tls.svg" alt="En TCP sense TLS un observador pot llegir les dades; amb TLS observa trànsit xifrat entre client i servidor." class="figure-img"/>
+      
+      <figcaption class="figure-caption">TLS afegeix una capa de protecció sobre el transport. L'aplicació continua parlant el mateix protocol, però els bytes viatgen xifrats.</figcaption>
+      
+    </figure>
+  </div>
+</div>
 
-    return ordre;
-}</code></pre>
+
+<h3>Què aporta TLS?</h3>
+
+<ul>
+<li><strong>Confidencialitat:</strong> el trànsit queda xifrat.</li>
+<li><strong>Integritat:</strong> les alteracions del trànsit es detecten.</li>
+<li><strong>Autenticació del servidor:</strong> habitualment el client valida la identitat del servidor mitjançant un certificat.</li>
+<li><strong>Autenticació del client opcional:</strong> TLS també pot treballar amb certificats de client.</li>
+</ul>
+
+<p>TLS no substitueix el protocol d'aplicació. Si abans teníem SMTP, HTTP o un protocol propi, després de crear el canal TLS continuem enviant les mateixes ordres i respostes.</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Abans:
+Socket -&gt; streams -&gt; protocol
+
+Amb TLS:
+SSLSocket -&gt; streams -&gt; mateix protocol
+          ^
+          |
+      xifrat TLS</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Idea clau</strong></p><p>TLS protegeix el canal. L'autenticació de l'aplicació continua sent útil perquè respon a una altra pregunta: quin usuari està operant dins del servei?</p>
+    
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Què protegeix cada capa?</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Per a un client que envia AUTH, MAIL FROM i DATA, indiqueu què resol TCP, què resol TLS i què resol l'autenticació de l'aplicació. Identifiqueu també una cosa que TLS no pugui decidir per si sol.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">8 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>TCP parla de transport.</li>
+        
+        <li>TLS protegeix el canal.</li>
+        
+        <li>Els permisos d'un usuari pertanyen a l'aplicació.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat3_Bloc3_Seccio2">
+  <h2 id="Unitat3_Bloc3_Seccio2">2. Certificat, clau privada, keystore i truststore</h2>
+
+<p>Perquè un servidor TLS pugui demostrar la seva identitat necessita una <strong>clau privada</strong> i un <strong>certificat</strong> associat. El certificat conté informació pública, inclosa la clau pública. La clau privada no s'ha de distribuir.</p>
+
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Certificat digital:</strong> Document signat que associa una identitat amb una clau pública i inclou informació com el subjecte, l'emissor i el període de validesa.</p>
+  </div>
+</div>
+
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Keystore:</strong> Magatzem que pot contenir claus privades i certificats protegits per contrasenya.</p>
+  </div>
+</div>
+
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Truststore:</strong> Magatzem de certificats o autoritats que una aplicació considera de confiança per validar l'altre extrem.</p>
+  </div>
+</div>
+
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-3/10_keystore_truststore.svg" alt="El servidor conserva certificat i clau privada al keystore. El client conserva certificats de confiança al truststore." class="figure-img"/>
+      
+      <figcaption class="figure-caption">El keystore respon 'quina identitat i clau privada tinc?'. El truststore respon 'en quins emissors o certificats confio?'.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+<h3>Certificat autosignat</h3>
+
+<p>En desenvolupament podem generar un certificat en què el subjecte i l'emissor són la mateixa entitat. És útil per fer proves locals, però un client real no l'ha de considerar de confiança només perquè existeixi.</p>
+
+<table class="table">
+<thead><tr><th>Element</th><th>Es pot compartir?</th><th>Funció</th></tr></thead>
+<tbody>
+<tr><td>Clau pública</td><td>Sí</td><td>Forma part del certificat i permet operacions criptogràfiques públiques.</td></tr>
+<tr><td>Certificat</td><td>Sí</td><td>Presenta la identitat i la clau pública.</td></tr>
+<tr><td>Clau privada</td><td>No</td><td>Demostra possessió de la identitat criptogràfica i permet operacions privades.</td></tr>
+<tr><td>Contrasenya del keystore</td><td>No</td><td>Protegeix l'accés al magatzem.</td></tr>
+</tbody>
+</table>
+
+<h3>Què passa durant el handshake?</h3>
+
+<p>Quan el client obre una connexió TLS, abans de transmetre les dades de l'aplicació hi ha una negociació. De manera simplificada:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">1. Client -&gt; proposa paràmetres TLS
+2. Servidor -&gt; respon amb els paràmetres triats
+3. Servidor -&gt; presenta el certificat
+4. Client -&gt; valida la confiança i la identitat
+5. Les parts estableixen claus de sessió
+6. Comença el trànsit de l&#39;aplicació protegit</code></pre>
   </div>
 </div>
 
@@ -516,16 +612,168 @@ public static List&lt;String&gt; ordreJava(Class&lt;?&gt; classe, String... argu
 <!-- Component: Caixa d'advertiment -->
 <div class="warning-box" role="alert" aria-live="assertive">
     <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
-    <p><strong>No construïu tota l'ordre en una única cadena si no és necessari.</strong> <code>ProcessBuilder</code> accepta cada argument com un element separat. Això evita molts problemes amb espais, cometes i rutes.</p>
+    <p><strong>Xifrar sense validar la identitat pot ser insuficient.</strong> Si el client accepta qualsevol certificat sense comprovar-lo, pot establir un canal xifrat amb un servidor impostor. Més endavant utilitzarem temporalment un <em>trust-all</em> per a proves locals i deixarem clar per què no és una configuració de producció.</p>
 </div>
 
 
 <!-- Component: Exercici estàndard -->
 <div class="exercise-box" role="region" aria-label="Exercici">
-  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Un fill molt petit</div>
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Classifiqueu els fitxers</div>
   <div class="component-content">
     
-    <div class="exercise-description">Creeu una classe Salutador amb main(String[] args) que rebi un nom i mostri Hola, nom. Des d'una altra classe, executeu-la com a procés independent.</div>
+    <div class="exercise-description">Per a quatre elements, indiqueu si han d'estar al servidor, al client o es poden distribuir: clau privada del servidor, certificat del servidor, contrasenya del keystore i certificat d'una CA de confiança.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">10 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>La clau privada mai no s'ha de distribuir.</li>
+        
+        <li>Un certificat conté informació pública.</li>
+        
+        <li>La confiança del client no és el mateix que la identitat privada del servidor.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat3_Bloc3_Seccio3">
+  <h2 id="Unitat3_Bloc3_Seccio3">3. Crear i inspeccionar un certificat amb keytool</h2>
+
+<p>El JDK inclou <code>keytool</code>, una eina de línia d'ordres per gestionar claus i certificats. Per a una prova local podem generar un parell RSA i un certificat autosignat dins d'un keystore.</p>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">keytool -genkeypair   -alias smtp-server   -keyalg RSA   -keysize 2048   -validity 365   -storetype JKS   -keystore smtp.keystore   -storepass smtp1234   -dname &quot;CN=localhost, O=Exemple, C=ES&quot;</code></pre>
+  </div>
+</div>
+
+
+<p>Hem indicat explícitament <code>-storetype JKS</code> perquè després carregarem el fitxer amb <code>KeyStore.getInstance("JKS")</code>. En JDK moderns el tipus per defecte pot ser diferent, així que és millor que la comanda i el codi coincideixin.</p>
+
+<h3>Inspeccionar el contingut</h3>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">keytool -list -v   -keystore smtp.keystore   -storepass smtp1234</code></pre>
+  </div>
+</div>
+
+
+<p>Busqueu, com a mínim:</p>
+<ul>
+<li>l'àlies <code>smtp-server</code>;</li>
+<li>el tipus d'entrada, que ha de contenir una clau privada;</li>
+<li>l'algorisme RSA i la mida de clau;</li>
+<li>el subjecte i l'emissor;</li>
+<li>les dates de validesa.</li>
+</ul>
+
+<h3>Exportar el certificat públic</h3>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">keytool -exportcert   -alias smtp-server   -keystore smtp.keystore   -storepass smtp1234   -rfc   -file smtp-server.crt</code></pre>
+  </div>
+</div>
+
+
+<p>El fitxer exportat conté el certificat, no la clau privada. Es podria importar en un truststore de client:</p>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">keytool -importcert   -alias smtp-server   -file smtp-server.crt   -keystore client-truststore.jks   -storetype JKS</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Eviteu la màgia.</strong></p><p>Abans de programar TLS, comproveu amb <code>keytool -list -v</code> que el fitxer existeix, que l'àlies és el que espereu i que la contrasenya és correcta. Molts errors atribuïts a "SSL" són simplement una ruta, un tipus de magatzem o una contrasenya incorrectes.</p>
+    
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Creeu el vostre keystore de proves</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Genereu un keystore JKS amb un certificat autosignat RSA de 2048 bits, llisteu-ne el contingut i exporteu només el certificat a un fitxer .crt. Anoteu la diferència entre el fitxer del keystore i el certificat exportat.</div>
     
 
     <div class="exercise-meta">
@@ -543,258 +791,11 @@ public static List&lt;String&gt; ordreJava(Class&lt;?&gt; classe, String... argu
       <summary>Veure pistes</summary>
       <ul>
         
-        <li>Primer feu que Salutador funcioni directament.</li>
+        <li>Useu un àlies fàcil de reconèixer.</li>
         
-        <li>Després construïu l'ordre amb java.home i java.class.path.</li>
+        <li>Comproveu el tipus d'entrada amb keytool -list -v.</li>
         
-        <li>No oblideu esperar la finalització.</li>
-        
-      </ul>
-    </details>
-    
-  </div>
-</div>
-
-</div>
-
-<div class="section" id="Unitat1_Bloc2_Seccio2">
-  <h2 id="Unitat1_Bloc2_Seccio2">2. Arguments, sortides i codis de retorn</h2>
-
-<p>Un procés fill necessita una manera d'entrar dades i una manera de comunicar el resultat. Tres mecanismes molt útils són els <strong>arguments</strong>, els <strong>streams</strong> i el <strong>codi de sortida</strong>.</p>
-
-<!-- Component: Figura amb peu -->
-<div class="figure-box" role="region" aria-label="Figura">
-  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
-  <div class="component-content">
-    <figure class="figure">
-      <img src="/ioc/dam_0490/assets/img/unitat-1/05_proces_pare_fill.svg" alt="Procés pare que envia arguments i entrada a un procés fill i rep sortida, errors i codi de retorn." class="figure-img"/>
-      
-      <figcaption class="figure-caption">Arguments i streams transporten dades. El codi de sortida resumeix com ha acabat el procés.</figcaption>
-      
-    </figure>
-  </div>
-</div>
-
-
-<h3>Un programa fill amb codis de sortida</h3>
-
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      <span class="code-filename">ClassificadorNumero.java</span>
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class ClassificadorNumero {
-
-    public static void main(String[] args) {
-        if (args.length != 1) {
-            System.err.println(&quot;Cal indicar un enter&quot;);
-            System.exit(10);
-        }
-
-        try {
-            int numero = Integer.parseInt(args[0]);
-
-            if (numero &gt;= 0) {
-                System.out.println(&quot;RESULTAT=NO_NEGATIU&quot;);
-                System.exit(0);
-            } else {
-                System.out.println(&quot;RESULTAT=NEGATIU&quot;);
-                System.exit(2);
-            }
-
-        } catch (NumberFormatException e) {
-            System.err.println(&quot;L&#39;argument no és un enter&quot;);
-            System.exit(10);
-        }
-    }
-}</code></pre>
-  </div>
-</div>
-
-
-<p>El text de la sortida pot contenir informació detallada. El codi de sortida permet al procés pare prendre una decisió senzilla:</p>
-
-<table class="table">
-<thead><tr><th>Codi</th><th>Significat en aquest exemple</th></tr></thead>
-<tbody>
-<tr><td><code>0</code></td><td>El programa ha acabat correctament i el nombre no és negatiu.</td></tr>
-<tr><td><code>2</code></td><td>El programa ha acabat correctament, però el resultat és negatiu.</td></tr>
-<tr><td><code>10</code></td><td>Hi ha un problema amb els arguments.</td></tr>
-</tbody>
-</table>
-
-
-<!-- Component: Caixa informativa -->
-<div class="info-box" role="note">
-    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
-    <p><strong>Important</strong></p><p>El significat dels codis és un contracte de l'aplicació. El sistema operatiu només veu un enter. El vostre programa decideix què significa cada valor.</p>
-    
-</div>
-
-
-<h3>Capturar la sortida</h3>
-
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">ProcessBuilder pb = new ProcessBuilder(ordre);
-pb.redirectErrorStream(true);
-
-Process proces = pb.start();
-
-String sortida;
-try (var lector = proces.inputReader()) {
-    sortida = lector.lines()
-            .collect(java.util.stream.Collectors.joining(System.lineSeparator()));
-}
-
-int codi = proces.waitFor();
-
-System.out.println(&quot;CODI=&quot; + codi);
-System.out.println(sortida);</code></pre>
-  </div>
-</div>
-
-
-<p>Amb <code>redirectErrorStream(true)</code> la sortida d'error es combina amb la sortida estàndard. Això simplifica molts casos on només necessitem un únic registre del procés.</p>
-
-<h3>Enviar dades per l'entrada estàndard</h3>
-
-<p>També podem escriure a l'entrada estàndard del procés fill. Des del punt de vista del procés pare, escrivim al seu <code>OutputStream</code> perquè aquest flux entra cap al procés fill.</p>
-
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Process proces = pb.start();
-
-try (var escriptor = proces.outputWriter()) {
-    escriptor.write(&quot;42&quot;);
-    escriptor.newLine();
-}
-
-try (var lector = proces.inputReader()) {
-    lector.lines().forEach(System.out::println);
-}
-
-int codi = proces.waitFor();</code></pre>
-  </div>
-</div>
-
-
-
-<!-- Component: Caixa informativa -->
-<div class="info-box" role="note">
-    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
-    <p><strong>Els noms poden confondre al principi.</strong></p><p><code>proces.getInputStream()</code> és el flux que el procés pare <em>llegeix</em>, és a dir, la sortida estàndard del fill. <code>proces.getOutputStream()</code> és el flux que el pare <em>escriu</em>, és a dir, l'entrada estàndard del fill.</p>
-    
-</div>
-
-
-<h3>Redirigir la sortida a un fitxer</h3>
-
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Path directori = Path.of(&quot;logs&quot;);
-Files.createDirectories(directori);
-
-Path log = directori.resolve(&quot;proces-01.txt&quot;);
-
-ProcessBuilder pb = new ProcessBuilder(ordre);
-pb.redirectErrorStream(true);
-pb.redirectOutput(log.toFile());
-
-Process proces = pb.start();</code></pre>
-  </div>
-</div>
-
-
-
-<!-- Component: Caixa d'advertiment -->
-<div class="warning-box" role="alert" aria-live="assertive">
-    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
-    <p>Si un procés genera molta sortida i ningú consumeix els seus streams, el buffer es pot omplir i el procés es pot bloquejar. Llegir la sortida o redirigir-la a un fitxer evita aquest problema.</p>
-</div>
-
-
-<!-- Component: Exercici estàndard -->
-<div class="exercise-box" role="region" aria-label="Exercici">
-  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Tres resultats observables</div>
-  <div class="component-content">
-    
-    <div class="exercise-description">Executeu ClassificadorNumero amb 7, -3 i text. Per a cada execució, mostreu el codi de sortida i el text produït.</div>
-    
-
-    <div class="exercise-meta">
-      
-      <span class="badge" aria-label="Dificultat">Mitjà</span>
-      
-      
-      <span class="badge" aria-label="Temps estimat">20 min</span>
-      
-    </div>
-
-    
-    
-    <details class="exercise-hints">
-      <summary>Veure pistes</summary>
-      <ul>
-        
-        <li>Feu primer una funció que construeixi l'ordre.</li>
-        
-        <li>Executeu cada cas per separat.</li>
-        
-        <li>Comproveu que el procés pare no necessita interpretar el text per saber com ha acabat.</li>
+        <li>No compartiu la contrasenya en projectes reals.</li>
         
       </ul>
     </details>
@@ -804,10 +805,12 @@ Process proces = pb.start();</code></pre>
 
 </div>
 
-<div class="section" id="Unitat1_Bloc2_Seccio3">
-  <h2 id="Unitat1_Bloc2_Seccio3">3. Esperar sense bloquejar-se: timeout i finalització</h2>
+<div class="section" id="Unitat3_Bloc3_Seccio4">
+  <h2 id="Unitat3_Bloc3_Seccio4">4. Servidor TLS amb KeyStore i SSLServerSocket</h2>
 
-<p><code>waitFor()</code> sense límit espera fins que el procés acabi. Això és correcte si tenim la garantia que el fill finalitzarà. En programes robustos sovint és millor establir un <strong>temps màxim</strong>.</p>
+<p>Construirem el servidor en capes. Primer carreguem el keystore, després preparem les claus que usarà TLS, creem un <code>SSLContext</code> i finalment obtenim un <code>SSLServerSocket</code>.</p>
+
+<h3>1. Carregar el keystore</h3>
 
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
@@ -825,102 +828,21 @@ Process proces = pb.start();</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.concurrent.TimeUnit;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">KeyStore ks = KeyStore.getInstance(&quot;JKS&quot;);
 
-boolean haAcabat = proces.waitFor(3, TimeUnit.SECONDS);
+try (FileInputStream in =
+        new FileInputStream(&quot;smtp.keystore&quot;)) {
 
-if (haAcabat) {
-    int codi = proces.exitValue();
-    System.out.println(&quot;Ha acabat amb codi &quot; + codi);
-} else {
-    proces.destroyForcibly();
-    proces.waitFor();
-    System.out.println(&quot;Procés finalitzat per timeout&quot;);
+    ks.load(
+        in,
+        &quot;smtp1234&quot;.toCharArray()
+    );
 }</code></pre>
   </div>
 </div>
 
 
-<p>La seqüència és important:</p>
-<ol>
-<li>esperem com a màxim el temps permès;</li>
-<li>si ha acabat, llegim <code>exitValue()</code>;</li>
-<li>si no ha acabat, demanem o forcem la finalització;</li>
-<li>tornem a esperar perquè el sistema operatiu confirmi que el procés ja ha acabat.</li>
-</ol>
-
-
-<!-- Component: Problema -->
-<div class="problem-box" role="alert" aria-live="assertive">
-    <div class="component-header error-header" role="heading" aria-level="4"><i class="bi bi-x-circle" aria-hidden="true"></i> Problema</div>
-    <p><strong>Problema típic:</strong> cridar <code>exitValue()</code> abans que el procés hagi acabat.</p>
-</div>
-
-
-
-<!-- Component: Solució -->
-<div class="solution-box" role="region" aria-label="Solució">
-    <div class="component-header solution-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Solució</div>
-    <p>Comproveu primer el resultat de <code>waitFor(timeout, unitat)</code>. Només si retorna <code>true</code> és segur obtenir el codi amb <code>exitValue()</code>.</p>
-</div>
-
-
-<h3>Finalització suau o forçada</h3>
-
-<p><code>destroy()</code> demana la finalització del procés. <code>destroyForcibly()</code> és més contundent. En general és millor donar una oportunitat a una finalització ordenada quan el programa fill la pugui gestionar.</p>
-
-
-<!-- Component: Caixa informativa -->
-<div class="info-box" role="note">
-    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
-    <p><strong>Disseny robust</strong></p><p>Un timeout no és només una tècnica de rendiment. És una garantia que una tasca defectuosa no deixarà tota l'aplicació bloquejada indefinidament.</p>
-    
-</div>
-
-
-<!-- Component: Exercici estàndard -->
-<div class="exercise-box" role="region" aria-label="Exercici">
-  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Procés lent</div>
-  <div class="component-content">
-    
-    <div class="exercise-description">Creeu un programa fill que dormi cinc segons. Executeu-lo des d'un pare que només estigui disposat a esperar-ne dos. Comproveu que el pare recupera el control.</div>
-    
-
-    <div class="exercise-meta">
-      
-      <span class="badge" aria-label="Dificultat">Mitjà</span>
-      
-      
-      <span class="badge" aria-label="Temps estimat">15 min</span>
-      
-    </div>
-
-    
-    
-    <details class="exercise-hints">
-      <summary>Veure pistes</summary>
-      <ul>
-        
-        <li>Useu Thread.sleep al fill.</li>
-        
-        <li>Useu waitFor amb TimeUnit.SECONDS al pare.</li>
-        
-        <li>Després de destroyForcibly, espereu de nou el procés.</li>
-        
-      </ul>
-    </details>
-    
-  </div>
-</div>
-
-</div>
-
-<div class="section" id="Unitat1_Bloc2_Seccio4">
-  <h2 id="Unitat1_Bloc2_Seccio4">4. Llançar diversos processos concurrentment</h2>
-
-<p>Hi ha una diferència decisiva entre <strong>crear diversos processos</strong> i <strong>permetre que estiguin actius alhora</strong>.</p>
-
-<h3>Patró seqüencial</h3>
+<h3>2. Preparar el KeyManagerFactory</h3>
 
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
@@ -938,189 +860,21 @@ if (haAcabat) {
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">for (String valor : valors) {
-    Process proces = crearProces(valor).start();
-    proces.waitFor();       // esperem immediatament
-}</code></pre>
-  </div>
-</div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">KeyManagerFactory kmf =
+        KeyManagerFactory.getInstance(
+                KeyManagerFactory
+                        .getDefaultAlgorithm()
+        );
 
-
-<p>Aquí només hi ha un procés fill actiu cada vegada. El següent no comença fins que l'anterior ha acabat.</p>
-
-<h3>Patró concurrent: primer llançar, després recollir</h3>
-
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">List&lt;Process&gt; processos = new ArrayList&lt;&gt;();
-
-// Fase 1: llançament
-for (String valor : valors) {
-    Process proces = crearProces(valor).start();
-    processos.add(proces);
-}
-
-// Fase 2: recollida
-for (Process proces : processos) {
-    boolean acabat = proces.waitFor(3, TimeUnit.SECONDS);
-
-    if (acabat) {
-        System.out.println(proces.exitValue());
-    } else {
-        proces.destroyForcibly();
-        proces.waitFor();
-    }
-}</code></pre>
-  </div>
-</div>
-
-
-
-<!-- Component: Caixa d'èxit -->
-<div class="success-box" role="status" aria-live="polite">
-    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
-    <p><strong>Aquesta separació és fonamental:</strong> iniciar totes les tasques abans d'esperar-ne cap permet que diversos processos avancin durant el mateix interval de temps.</p>
-</div>
-
-
-<h3>Conservar la informació de cada procés</h3>
-
-<p>En aplicacions reals normalment necessitem recordar quin procés correspon a quina entrada i on s'ha desat la seva sortida. Un <code>record</code> petit és una solució clara:</p>
-
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">record ProcesEnCurs(
-        String identificador,
-        Process proces,
-        Path fitxerSortida
-) {}</code></pre>
-  </div>
-</div>
-
-
-<p>Així podem crear una <code>List&lt;ProcesEnCurs&gt;</code>, llançar totes les tasques i després recollir els resultats sense perdre la relació entre entrada, procés i log.</p>
-
-<h3>Temps real i suma de temps</h3>
-
-<p>Si cinc processos triguen aproximadament dos segons cadascun, la suma dels temps de treball és d'uns deu segons. Però si poden avançar alhora, el temps real observat per l'usuari pot acostar-se molt més a dos segons que a deu.</p>
-
-<!-- Component: Figura amb peu -->
-<div class="figure-box" role="region" aria-label="Figura">
-  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
-  <div class="component-content">
-    <figure class="figure">
-      <img src="/ioc/dam_0490/assets/img/unitat-1/06_sequencial_concurrent.svg" alt="Comparació temporal entre cinc tasques seqüencials i cinc tasques que se solapen en el temps." class="figure-img"/>
-      
-      <figcaption class="figure-caption">La suma del temps de treball no és el mateix que el temps real transcorregut.</figcaption>
-      
-    </figure>
-  </div>
-</div>
-
-
-<!-- Component: Exercici estàndard -->
-<div class="exercise-box" role="region" aria-label="Exercici">
-  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Mesura abans de creure</div>
-  <div class="component-content">
-    
-    <div class="exercise-description">Feu que quatre processos fills dormin aproximadament un segon. Mesureu el temps real quan els executeu seqüencialment i quan els llanceu tots abans de començar a esperar.</div>
-    
-
-    <div class="exercise-meta">
-      
-      <span class="badge" aria-label="Dificultat">Mitjà</span>
-      
-      
-      <span class="badge" aria-label="Temps estimat">20 min</span>
-      
-    </div>
-
-    
-    
-    <details class="exercise-hints">
-      <summary>Veure pistes</summary>
-      <ul>
-        
-        <li>Useu System.nanoTime abans i després.</li>
-        
-        <li>Manteniu exactament la mateixa feina en els dos casos.</li>
-        
-        <li>Compareu els temps, no només la sortida.</li>
-        
-      </ul>
-    </details>
-    
-  </div>
-</div>
-
-</div>
-
-<div class="section" id="Unitat1_Bloc2_Seccio5">
-  <h2 id="Unitat1_Bloc2_Seccio5">5. Monitoratge, fitxers i depuració</h2>
-
-<p>Treballar amb processos exigeix observar què està passant. Java ofereix informació útil tant des de <code>Process</code> com des de <code>ProcessHandle</code>.</p>
-
-
-<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">JAVA</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Process proces = pb.start();
-
-System.out.println(&quot;PID=&quot; + proces.pid());
-System.out.println(&quot;VIU=&quot; + proces.isAlive());
-
-ProcessHandle handle = proces.toHandle();
-
-handle.info().command().ifPresent(
-        cmd -&gt; System.out.println(&quot;ORDRE=&quot; + cmd)
+kmf.init(
+        ks,
+        &quot;smtp1234&quot;.toCharArray()
 );</code></pre>
   </div>
 </div>
 
 
-<h3>Una caixa d'eines mínima amb Path i Files</h3>
-
-<p>Moltes aplicacions multiprocés necessiten preparar directoris, llegir entrades o escriure resultats. Aquestes operacions no són concurrència, però formen part del codi robust que envolta els processos.</p>
+<h3>3. Crear el context TLS</h3>
 
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
@@ -1138,37 +892,26 @@ handle.info().command().ifPresent(
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">Path carpeta = Path.of(&quot;dades&quot;);
-Path fitxer = carpeta.resolve(&quot;entrada.txt&quot;);
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">SSLContext sslContext =
+        SSLContext.getInstance(&quot;TLS&quot;);
 
-if (!Files.isDirectory(carpeta)) {
-    throw new IllegalArgumentException(&quot;La carpeta no existeix&quot;);
-}
-
-if (!Files.isRegularFile(fitxer)) {
-    throw new IllegalArgumentException(&quot;Falta el fitxer d&#39;entrada&quot;);
-}
-
-String contingut = Files.readString(fitxer)
-        .trim()
-        .toLowerCase(java.util.Locale.ROOT);
-
-Path resultats = Path.of(&quot;resultats&quot;);
-Files.createDirectories(resultats);</code></pre>
+sslContext.init(
+        kmf.getKeyManagers(),
+        null,
+        null
+);</code></pre>
   </div>
 </div>
 
 
-<h3>Acceptar una ruta de manera robusta</h3>
-
-<p>De vegades un mètode pot acceptar una carpeta o directament un fitxer. En lloc de repartir aquesta decisió per tot el programa, podem centralitzar-la:</p>
+<h3>4. Obrir el sòcol d'escolta</h3>
 
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
     <div class="code-info">
       <span class="code-lang">JAVA</span>
-      
+      <span class="code-filename">SmtpServerSSL.java</span>
     </div>
     <div class="code-actions">
       <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
@@ -1179,50 +922,100 @@ Files.createDirectories(resultats);</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static Path resoldreFitxer(
-        Path entrada,
-        String nomPerDefecte) throws IOException {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">SSLServerSocketFactory factory =
+        sslContext.getServerSocketFactory();
 
-    if (entrada == null) {
-        throw new IllegalArgumentException(
-                &quot;L&#39;entrada no pot ser null&quot;);
+try (SSLServerSocket serverSocket =
+        (SSLServerSocket)
+        factory.createServerSocket(2526)) {
+
+    System.out.println(
+            &quot;Servidor TLS al port 2526&quot;
+    );
+
+    while (true) {
+
+        SSLSocket socket =
+                (SSLSocket) serverSocket.accept();
+
+        new Thread(
+            new SmtpSession(socket)
+        ).start();
     }
-
-    if (nomPerDefecte == null || nomPerDefecte.isBlank()) {
-        throw new IllegalArgumentException(
-                &quot;Cal indicar un nom de fitxer&quot;);
-    }
-
-    Path fitxer;
-
-    if (Files.isDirectory(entrada)) {
-        fitxer = entrada.resolve(nomPerDefecte);
-
-    } else if (Files.isRegularFile(entrada)) {
-        fitxer = entrada;
-
-    } else {
-        throw new IllegalArgumentException(
-                &quot;La ruta no és un fitxer ni una carpeta&quot;);
-    }
-
-    if (!Files.isRegularFile(fitxer)
-            || !Files.isReadable(fitxer)) {
-        throw new IOException(
-                &quot;No es pot llegir el fitxer: &quot; + fitxer);
-    }
-
-    return fitxer;
 }</code></pre>
   </div>
 </div>
 
 
-<p>Aquest patró té dues virtuts: les precondicions queden explícites i la resta del programa pot treballar amb una ruta ja validada.</p>
+<p>La part més interessant és l'última línia del bucle: <code>SSLSocket</code> hereta de <code>Socket</code>. Si la lògica de sessió ja treballa amb un <code>Socket</code>, podem reutilitzar-la. Això separa molt bé dues responsabilitats:</p>
 
-<h3>Validar precondicions</h3>
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-3/11_servidor_tls_capes.svg" alt="El servidor TLS carrega KeyStore, inicialitza KeyManagerFactory i SSLContext, crea SSLServerSocket i lliura cada SSLSocket a la mateixa lògica de sessió." class="figure-img"/>
+      
+      <figcaption class="figure-caption">La seguretat del transport es configura abans de la sessió. El protocol d'aplicació pot continuar en una classe separada.</figcaption>
+      
+    </figure>
+  </div>
+</div>
 
-<p>Els mètodes públics han de fallar de manera clara quan reben dades que no poden processar.</p>
+
+
+<!-- Component: Problema -->
+<div class="problem-box" role="alert" aria-live="assertive">
+    <div class="component-header error-header" role="heading" aria-level="4"><i class="bi bi-x-circle" aria-hidden="true"></i> Problema</div>
+    <p><strong>Si el servidor falla abans d'acceptar connexions</strong>, reviseu primer la ruta del keystore, el tipus <code>JKS</code>, la contrasenya del magatzem i la contrasenya de la clau. Si falla quan connecta el client, llavors investigueu el handshake.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Eco TLS al servidor</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Creeu un servidor TLS al port 2526 que accepti una connexió, llegeixi una línia i la retorni en majúscules. Manteniu la configuració TLS separada del codi que processa la línia.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">25 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Comproveu primer que el keystore es carrega.</li>
+        
+        <li>SSLSocket es pot tractar com un Socket per obtenir streams.</li>
+        
+        <li>No intenteu resoldre encara la confiança del client dins del servidor.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat3_Bloc3_Seccio5">
+  <h2 id="Unitat3_Bloc3_Seccio5">5. Client TLS, confiança i depuració del handshake</h2>
+
+<p>El client també necessita un <code>SSLContext</code>. La diferència principal és que ha de decidir <strong>quins certificats accepta</strong>.</p>
+
+<h3>Opció de desenvolupament: acceptar qualsevol certificat</h3>
+
+<p>Per a una prova local controlada podem crear temporalment un <code>TrustManager</code> que no rebutgi cap certificat:</p>
 
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
@@ -1240,27 +1033,26 @@ Files.createDirectories(resultats);</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public static ProcessBuilder prepararProces(
-        List&lt;String&gt; ordre,
-        Path sortida) {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">TrustManager[] trustAll =
+        new TrustManager[] {
+    new X509TrustManager() {
 
-    if (ordre == null || ordre.isEmpty()) {
-        throw new IllegalArgumentException(&quot;L&#39;ordre no pot ser buida&quot;);
+        public X509Certificate[]
+        getAcceptedIssuers() {
+            return new X509Certificate[0];
+        }
+
+        public void checkClientTrusted(
+                X509Certificate[] chain,
+                String authType) {
+        }
+
+        public void checkServerTrusted(
+                X509Certificate[] chain,
+                String authType) {
+        }
     }
-
-    if (ordre.stream().anyMatch(s -&gt; s == null || s.isBlank())) {
-        throw new IllegalArgumentException(&quot;L&#39;ordre conté arguments invàlids&quot;);
-    }
-
-    if (sortida == null) {
-        throw new IllegalArgumentException(&quot;La sortida no pot ser null&quot;);
-    }
-
-    ProcessBuilder pb = new ProcessBuilder(ordre);
-    pb.redirectErrorStream(true);
-    pb.redirectOutput(sortida.toFile());
-    return pb;
-}</code></pre>
+};</code></pre>
   </div>
 </div>
 
@@ -1269,65 +1061,181 @@ Files.createDirectories(resultats);</code></pre>
 <!-- Component: Caixa d'advertiment -->
 <div class="warning-box" role="alert" aria-live="assertive">
     <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
-    <p><strong>No amagueu excepcions sense entendre-les.</strong> Un <code>catch (Exception e) {}</code> pot convertir un error clar en un resultat misteriós. Durant el desenvolupament, conserveu informació suficient per saber quin procés, quina entrada i quina operació han fallat.</p>
+    <p><strong>Aquesta configuració és només per a desenvolupament.</strong></p><p>Un <em>trust-all</em> elimina la validació de la identitat del servidor. La connexió pot quedar xifrada, però el client acceptaria també un certificat presentat per un servidor impostor. En producció s'ha d'utilitzar la validació normal o un truststore controlat.</p>
 </div>
 
 
-<h3>Checklist d'una aplicació multiprocés robusta</h3>
+<h3>Crear i connectar l'SSLSocket</h3>
 
-<!-- Component: Checklist (sense contenidor extern) -->
 
-<div class="checklist-list" role="group" aria-label="Processos">
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Construeixo les ordres amb arguments separats</div>
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">ClientTLS.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
   </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Valido les precondicions dels mètodes públics</div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">SSLContext sslContext =
+        SSLContext.getInstance(&quot;TLS&quot;);
+
+sslContext.init(
+        null,
+        trustAll,
+        new SecureRandom()
+);
+
+SSLSocketFactory factory =
+        sslContext.getSocketFactory();
+
+try (SSLSocket socket =
+        (SSLSocket)
+        factory.createSocket(
+                &quot;localhost&quot;,
+                2526
+        )) {
+
+    socket.startHandshake();
+
+    // A partir d&#39;aquí:
+    // mateixos streams i mateix protocol
+}</code></pre>
   </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Gestiono stdout i stderr perquè cap buffer bloquegi el procés</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Interpreto el codi de sortida només quan el procés ha acabat</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Tinc un timeout quan un procés podria quedar penjat</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Si vull concurrència, llanço diverses tasques abans de començar a esperar-les</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Conservo la relació entre cada procés i les seves dades</div>
-  </div>
-  
-  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
-    <div class="checklist-checkbox" aria-hidden="true"></div>
-    <div class="checklist-text">Puc observar PID, estat i logs quan depuro</div>
-  </div>
-  
-  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
 </div>
 
 
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-3/12_handshake_tls.svg" alt="Client i servidor fan handshake TLS, validen certificat i estableixen claus abans d'enviar ordres de l'aplicació." class="figure-img"/>
+      
+      <figcaption class="figure-caption">Les ordres del protocol només comencen quan el handshake TLS ha acabat correctament.</figcaption>
+      
+    </figure>
+  </div>
+</div>
 
-<!-- Component: Suggeriment d'ampliació simplificat -->
-<div class="suggestion-box" role="note">
-    <div class="component-header suggestion-header" role="heading" aria-level="4"><i class="bi bi-lightbulb" aria-hidden="true"></i> Suggeriment</div>
-    <p><strong>Per ampliar:</strong> <code>ProcessHandle.allProcesses()</code> permet inspeccionar processos visibles per a la JVM. És útil per entendre les eines de monitoratge, però una aplicació normalment ha de controlar sobretot els processos que ella mateixa ha creat.</p>
+
+<h3>Client amb truststore</h3>
+
+<p>Una alternativa més propera a un entorn real és importar el certificat de prova en un truststore i deixar que Java faci la validació. Es pot configurar amb propietats del sistema abans d'obrir la connexió:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">System.setProperty(
+    &quot;javax.net.ssl.trustStore&quot;,
+    &quot;client-truststore.jks&quot;
+);
+
+System.setProperty(
+    &quot;javax.net.ssl.trustStorePassword&quot;,
+    &quot;contrasenya-del-truststore&quot;
+);
+
+System.setProperty(
+    &quot;javax.net.ssl.trustStoreType&quot;,
+    &quot;JKS&quot;
+);</code></pre>
+  </div>
+</div>
+
+
+<h3>Quan el handshake falla</h3>
+
+<p>Els errors TLS poden semblar opacs. Per a una sessió de depuració local, Java pot mostrar informació del handshake:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">System.setProperty(
+    &quot;javax.net.debug&quot;,
+    &quot;ssl,handshake&quot;
+);</code></pre>
+  </div>
+</div>
+
+
+<p>Activeu-ho només quan ho necessiteu: la sortida és molt extensa. Abans de llegir centenars de línies, reviseu els errors més habituals:</p>
+
+<table class="table">
+<thead><tr><th>Símptoma</th><th>Primera comprovació</th></tr></thead>
+<tbody>
+<tr><td><code>Connection refused</code></td><td>El servidor escolta al host i port correctes?</td></tr>
+<tr><td>Error carregant keystore</td><td>Ruta, tipus de magatzem i contrasenya.</td></tr>
+<tr><td><code>SSLHandshakeException</code> al client</td><td>El certificat és de confiança i encara és vàlid?</td></tr>
+<tr><td>El servidor rep connexió però no dades</td><td>Ha acabat el handshake? Les dues parts parlen TLS?</td></tr>
+</tbody>
+</table>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Trenqueu el handshake expressament</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Feu funcionar un client TLS contra el servidor de la secció anterior. Després proveu tres errors per separat: port incorrecte, truststore que no confia en el certificat i servidor normal TCP al port esperat. Anoteu com canvia l'error.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">20 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Canvieu una sola cosa cada vegada.</li>
+        
+        <li>No activeu javax.net.debug fins que hàgiu llegit l'excepció principal.</li>
+        
+        <li>Distingiu un error TCP d'un error de confiança TLS.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
 </div>
 
 </div>
@@ -1348,8 +1256,8 @@ Files.createDirectories(resultats);</code></pre>
 {
   "@context": "https://schema.org",
   "@type": "LearningResource",
-  "name": "Bloc 2: Crear i controlar processos des de Java",
-  "description": "ProcessBuilder, arguments, streams, codis de sortida, timeouts i execució concurrent de subprocessos",
+  "name": "Bloc 3: TLS, certificats i sòcols segurs",
+  "description": "Confidencialitat en trànsit, certificats, keystores, keytool, SSLContext, SSLServerSocket i SSLSocket",
   "author": {
     "@type": "Organization",
     "name": "Institut Obert de Catalunya"
@@ -1387,11 +1295,17 @@ Files.createDirectories(resultats);</code></pre>
                     
                     
                         
+                    
+                        
+                    
+                        
                             
                             
                     
                     
                     
+                        
+                            
                         
                             
                         
@@ -1404,12 +1318,16 @@ Files.createDirectories(resultats);</code></pre>
                                     
                                     
                                         
+                                    
+                                        
                                             
                                             
                                 
                                 
                                 
                                 
+                                
+                                    
                                 
                                     
                                 
@@ -1424,13 +1342,13 @@ Files.createDirectories(resultats);</code></pre>
                     
                     <div class="nav-link-wrapper">
                         
-                        <a href="/ioc/dam_0490/unitat-1/bloc-1/" class="nav-button" aria-label="Bloc anterior: Entendre la concurrència abans d'escriure codi">← Anterior</a>
+                        <a href="/ioc/dam_0490/unitat-3/bloc-2/" class="nav-button" aria-label="Bloc anterior: Autenticació i control d'accés en serveis">← Anterior</a>
                         
                     </div>
                     
                     <div class="nav-link-wrapper">
                         
-                        <a href="/ioc/dam_0490/unitat-1/bloc-3/" class="nav-button" aria-label="Bloc següent: Fils, memòria compartida i sincronització">Següent →</a>
+                        <a href="/ioc/dam_0490/unitat-3/bloc-4/" class="nav-button" aria-label="Bloc següent: Criptografia asimètrica amb RSA">Següent →</a>
                         
                     </div>
                 </div>
@@ -1447,12 +1365,12 @@ Files.createDirectories(resultats);</code></pre>
             </div>
             <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
                     <span class="progress-label">Unitat</span>
-                    <span class="progress-text" data-pos="1" data-total="3">(1/3)</span>
-                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 33%"></div></div>
+                    <span class="progress-text" data-pos="3" data-total="3">(3/3)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
                 </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
                         <span class="progress-label">Bloc</span>
-                        <span class="progress-text" data-pos="2" data-total="4">(2/4)</span>
-                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 50%"></div></div>
+                        <span class="progress-text" data-pos="3" data-total="4">(3/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 75%"></div></div>
                     </div>
 
                     <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
