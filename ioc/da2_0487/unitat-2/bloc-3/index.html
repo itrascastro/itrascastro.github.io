@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 3: Eclipse i aplicacions d'escriptori amb Swing | Entorns de desenvolupament - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="2">
+    <meta name="page-bloc" content="3">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 3: Eclipse i aplicacions d’escriptori amb Swing | Entorns de desenvolupament</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 3: Eclipse i aplicacions d’escriptori amb Swing" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="IDE, Java a Eclipse, WindowBuilder, Swing, esdeveniments, validació i empaquetament" />
+<meta property="og:description" content="IDE, Java a Eclipse, WindowBuilder, Swing, esdeveniments, validació i empaquetament" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-2/bloc-3/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/da2_0487/unitat-2/bloc-3/" />
+<meta property="og:site_name" content="Entorns de desenvolupament" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 3: Eclipse i aplicacions d’escriptori amb Swing" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"IDE, Java a Eclipse, WindowBuilder, Swing, esdeveniments, validació i empaquetament","headline":"Bloc 3: Eclipse i aplicacions d’escriptori amb Swing","url":"https://itrascastro.github.io/ioc/da2_0487/unitat-2/bloc-3/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-2/bloc-3/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/da2_0487/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/da2_0487/feed.xml" title="Entorns de desenvolupament" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/code-block.css">
+    <script src="/ioc/da2_0487/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/da2_0487">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/da2_0487/" class="logo-link" aria-label="Inici">
+                <img src="https://itrascastro.github.io/ioc/dam_0488/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="https://itrascastro.github.io/ioc/dam_0488/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/da2_0487/" class="title-link">
+                <h1>DA2_0487 - Entorns de desenvolupament</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/da2_0487/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Del problema al primer diagrama de classes
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Relacions entre classes i modelatge complet
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Diagrames de comportament i d'interacció
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Papyrus de principi a fi: del model al codi i del codi al model
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_0487/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Del codi font a l'execució
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Paradigmes i cicle de desenvolupament
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-2/bloc-3/" class="nav-dropdown-item current">
+                        Unitat 2 - Bloc 3: Eclipse i aplicacions d'escriptori amb Swing
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Spring i assistents d'IA dins l'IDE
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc3_Seccio1" class="nav-link" data-section="Unitat2_Bloc3_Seccio1">1. Què és un IDE i què aporta Eclipse</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc3_Seccio2" class="nav-link" data-section="Unitat2_Bloc3_Seccio2">2. JDK, JRE, JVM i configuració</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc3_Seccio3" class="nav-link" data-section="Unitat2_Bloc3_Seccio3">3. Projectes, perspectives, vistes i connectors</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc3_Seccio4" class="nav-link" data-section="Unitat2_Bloc3_Seccio4">4. Primera finestra amb WindowBuilder i Swing</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc3_Seccio5" class="nav-link" data-section="Unitat2_Bloc3_Seccio5">5. Esdeveniments, validació i errors</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc3_Seccio6" class="nav-link" data-section="Unitat2_Bloc3_Seccio6">6. Construir una interfície per etapes</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc3_Seccio7" class="nav-link" data-section="Unitat2_Bloc3_Seccio7">7. Empaquetar i executar: CLASS, JAR, WAR i EAR</a>
+        </div>
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/da2_0487/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/da2_0487/unitat-2/" class="horizontal-nav-item">
+                                Unitat 2: Desenvolupament de programari i entorns de desenvolupament (RA1 i RA2)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 2.3: Eclipse i aplicacions d'escriptori amb Swing
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<div class="section">
+  <h2 id="Unitat2_Bloc3_Seccio1">1. Què és un IDE i què aporta Eclipse</h2>
+
+<p>Podríem programar Java amb un editor de text i una terminal. Un <strong>IDE</strong> integra en una sola eina les operacions que repetim contínuament: editar, compilar, executar, depurar, navegar pel projecte i gestionar extensions.</p>
+
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-2/06_ide_anatomia.svg" alt="Anatomia conceptual d'un IDE amb editor, compilador, depurador, control de versions, refactorització i connectors" loading="lazy">
+  <figcaption>Un IDE no és només un editor: coordina eines que intervenen en diferents moments del desenvolupament.</figcaption>
+</figure>
+
+<table class="table">
+<thead><tr><th>Funció</th><th>Què aporta?</th></tr></thead>
+<tbody>
+<tr><td>Editor</td><td>Coloració, compleció, navegació i detecció primerenca d'errors.</td></tr>
+<tr><td>Compilador/intèrpret</td><td>Construeix o executa el projecte segons el llenguatge.</td></tr>
+<tr><td>Depurador</td><td>Permet aturar el programa, avançar pas a pas i inspeccionar variables.</td></tr>
+<tr><td>GUI designer</td><td>Ajuda a construir interfícies gràfiques.</td></tr>
+<tr><td>Control de versions</td><td>Integra l'historial de canvis i operacions amb repositoris.</td></tr>
+<tr><td>Refactorització</td><td>Reestructura el codi mantenint el comportament extern.</td></tr>
+<tr><td>Documentació i ajuda</td><td>Accés a informació contextual i documentació.</td></tr>
+<tr><td>Connectors</td><td>Afegeixen suport per noves tecnologies o funcions.</td></tr>
+</tbody>
+</table>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Eclipse és extensible.</strong></p><p>La instal·lació base no ha de contenir totes les eines possibles. El suport Java, WindowBuilder, Spring o un assistent d'IA poden aparèixer com a components o connectors que amplien l'entorn.</p>
+    
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Editor o IDE?</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Expliqueu quines quatre funcions addicionals espereu d'un IDE respecte d'un editor de text simple quan desenvolupeu una aplicació Java.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">6 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Penseu en construir, provar, depurar i ampliar l'entorn.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat2_Bloc3_Seccio2">2. JDK, JRE, JVM i configuració</h2>
+
+<p>Per desenvolupar Java necessitem el <strong>JDK</strong>. Eclipse ha de saber quin JDK utilitzar per compilar i executar el projecte.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Entorn recomanat per al curs 2026-27</strong></p><p>Treballarem amb <strong>JDK 25 LTS</strong> i una versió actual d'<strong>Eclipse</strong> (<strong>Eclipse 2026-09</strong> en el moment de preparar aquests materials). Java 27 és més recent, però el JDK 25 és la versió LTS i ofereix una base més estable per al curs.</p>
+    
+</div>
+
+
+<h3>Comproveu Java abans d'obrir l'IDE</h3>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">java -version
+javac -version</code></pre>
+  </div>
+</div>
+
+
+<p>Si <code>java</code> funciona però <code>javac</code> no, probablement disposeu d'un entorn d'execució però no d'un JDK complet o el <code>PATH</code> no apunta a les eines correctes.</p>
+
+<table class="table">
+<thead><tr><th>Element</th><th>Funció pràctica</th></tr></thead>
+<tbody>
+<tr><td><code>JAVA_HOME</code></td><td>Indica la carpeta arrel del JDK a eines que necessiten localitzar-lo.</td></tr>
+<tr><td><code>PATH</code></td><td>Permet executar ordres com <code>java</code> i <code>javac</code> des de la terminal.</td></tr>
+<tr><td>JDK configurat a Eclipse</td><td>Determina amb quin conjunt d'eines es construeix el projecte.</td></tr>
+</tbody>
+</table>
+
+<h3>Flux de preparació</h3>
+<ol>
+<li>Instal·leu <strong>JDK 25 LTS</strong>, que és la versió recomanada per al curs.</li>
+<li>Verifiqueu <code>java</code> i <code>javac</code>.</li>
+<li>Instal·leu o descomprimiu Eclipse.</li>
+<li>Obriu un <em>workspace</em>.</li>
+<li>Comproveu a les preferències de Java que Eclipse detecta el JDK correcte.</li>
+</ol>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No instal·leu coses a cegues.</strong></p><p>Si Eclipse ja compila un projecte Java senzill, el JDK està operatiu. Afegir versions noves o canviar variables sense una necessitat concreta pot crear més problemes que no pas resoldre'n.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Diagnosi mínima</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Imagineu que Eclipse s'obre però un projecte Java no troba el compilador. Escriviu tres comprovacions, en ordre, abans de reinstal·lar res.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">8 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Primer comproveu la terminal.</li>
+        
+        <li>Després la versió del JDK.</li>
+        
+        <li>Finalment la configuració de l'IDE.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat2_Bloc3_Seccio3">3. Projectes, perspectives, vistes i connectors</h2>
+
+<p>Eclipse organitza el treball en <strong>projectes</strong>. Un projecte agrupa codi font, recursos, configuració i altres fitxers relacionats. A sobre d'aquesta estructura, l'IDE presenta diferents finestres.</p>
+
+<table class="table">
+<thead><tr><th>Concepte</th><th>Imatge mental</th></tr></thead>
+<tbody>
+<tr><td>Editor</td><td>La zona on modifiqueu un fitxer.</td></tr>
+<tr><td>Vista</td><td>Una finestra auxiliar: explorador de projecte, consola, problemes...</td></tr>
+<tr><td>Perspectiva</td><td>Un conjunt de vistes i editors organitzat per a una tasca concreta.</td></tr>
+<tr><td>Connector</td><td>Una extensió que afegeix capacitats a Eclipse.</td></tr>
+</tbody>
+</table>
+
+<p>Si desapareix una finestra, normalment no cal reinstal·lar res: proveu <strong>Window → Show View</strong>. Per canviar la disposició orientada a una tasca, utilitzeu <strong>Window → Perspective</strong>.</p>
+
+<h3>Instal·lar connectors</h3>
+<p>Segons el connector, el camí habitual és <strong>Help → Eclipse Marketplace...</strong> o <strong>Help → Install New Software...</strong>. El procés general és el mateix: localitzar el component, revisar què s'instal·larà, acceptar les condicions necessàries i reiniciar Eclipse.</p>
+
+<p>Aquesta unitat utilitzarà dos exemples d'extensió:</p>
+<ul>
+<li><strong>WindowBuilder</strong> per dissenyar interfícies Swing;</li>
+<li><strong>Spring Tools</strong> per treballar còmodament amb projectes Spring.</li>
+</ul>
+
+<h3>Si WindowBuilder encara no està instal·lat</h3>
+<ol>
+<li>Obriu <strong>Help → Install New Software...</strong>.</li>
+<li>Afegiu un lloc nou amb el nom <strong>WindowBuilder</strong> i l'adreça <code>https://download.eclipse.org/windowbuilder/updates/release/latest</code>.</li>
+<li>Seleccioneu els components de WindowBuilder, continueu l'assistent i reinicieu Eclipse.</li>
+</ol>
+
+<p>Utilitzeu el canal <code>release/latest</code>: apunta a l'última versió estable de WindowBuilder. Eviteu els canals <code>milestone</code> i <code>nightly</code> per a les pràctiques del curs. En el moment de preparar aquests materials, la versió estable és <strong>WindowBuilder 1.25.x</strong>.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>RA2 no és «saber on és un menú».</strong></p><p>El que heu d'entendre és que un IDE es pot personalitzar, ampliar i actualitzar. Els noms exactes dels menús poden variar lleugerament entre versions; la funció que busqueu és la mateixa.</p>
+    
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Recupera el teu entorn</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Expliqueu què faríeu si (a) no veieu la consola, (b) voleu tornar a la disposició Java i (c) necessiteu afegir suport per una eina nova.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">7 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Show View, Perspective i Marketplace/Install New Software són tres pistes diferents.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat2_Bloc3_Seccio4">4. Primera finestra amb WindowBuilder i Swing</h2>
+
+<p>Començarem amb el mateix tipus d'exemple mínim del material complementari: una finestra que llegeix un enter, calcula el doble i mostra el resultat. Només hi ha <strong>dos camps de text i un botó</strong>.</p>
+
+<h3>1. Crear el projecte i la finestra</h3>
+<ol>
+<li>Creeu un <strong>Java Project</strong>.</li>
+<li>Amb WindowBuilder instal·lat, feu <strong>New → Other... → WindowBuilder → Swing Designer → Application Window</strong>.</li>
+<li>Poseu un nom a la classe, per exemple <code>CalculaDoble</code>.</li>
+<li>Obriu la pestanya <strong>Design</strong>.</li>
+</ol>
+
+<p>Per a una pràctica petita de mida fixa, podeu utilitzar <strong>Absolute Layout</strong>, com fa el material complementari. En aplicacions reals més grans són preferibles gestors de disposició adaptables, però aquí l'objectiu és aprendre els components i els esdeveniments sense afegir una dificultat nova.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Trieu components Swing, no SWT.</strong></p><p>WindowBuilder pot oferir assistents per a tecnologies diferents. En aquesta unitat treballarem amb <strong>Swing Designer</strong> i components de <code>javax.swing</code>.</p>
+</div>
+
+
+<h3>2. Afegir components</h3>
+
+<table class="table">
+<thead><tr><th>Component Swing</th><th>Paper</th><th>Variable d'exemple</th></tr></thead>
+<tbody>
+<tr><td><code>JLabel</code></td><td>Text fix.</td><td><code>lblTitol</code></td></tr>
+<tr><td><code>JTextField</code></td><td>Entrada o sortida de text.</td><td><code>textEntrada</code>, <code>textResultat</code></td></tr>
+<tr><td><code>JButton</code></td><td>Acció de l'usuari.</td><td><code>btnDobla</code></td></tr>
+</tbody>
+</table>
+
+<p>El camp de resultat no l'ha de modificar l'usuari:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">textResultat.setEditable(false);</code></pre>
+  </div>
+</div>
+
+
+<h3>3. Afegir el comportament</h3>
+
+<p>En fer doble clic al botó, WindowBuilder pot generar l'esquelet de l'<code>ActionListener</code>. El nostre codi va dins d'<code>actionPerformed</code>.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">btnDobla.addActionListener(new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+        try {
+            int entrada = Integer.parseInt(textEntrada.getText().trim());
+            int resultat = entrada * 2;
+            textResultat.setText(String.valueOf(resultat));
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, &quot;Introdueix un nombre enter.&quot;);
+        }
+    }
+});</code></pre>
+  </div>
+</div>
+
+
+<p>Aquest exemple ja conté el patró que repetirem: <strong>llegir → validar/convertir → calcular → mostrar</strong>.</p>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Del doble al triple</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Reproduïu l'exemple i modifiqueu-lo perquè calculi el triple. Afegiu un tooltip al camp d'entrada i feu que el camp de sortida no sigui editable.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>setToolTipText defineix l'ajuda.</li>
+        
+        <li>setEditable(false) protegeix la sortida.</li>
+        
+        <li>Només canvia una operació aritmètica.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat2_Bloc3_Seccio5">5. Esdeveniments, validació i errors</h2>
+
+<p>Una interfície gràfica espera accions de l'usuari. El botó és l'objecte que genera un esdeveniment i l'<code>ActionListener</code> és el codi que reacciona al clic.</p>
+
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-2/07_swing_validacio.svg" alt="Flux d'un clic en un botó Swing: llegir camps, validar, mostrar error o continuar amb el càlcul" loading="lazy">
+  <figcaption>Una validació bona talla el flux tan aviat com detecta la primera dada incorrecta i indica a l'usuari on corregir-la.</figcaption>
+</figure>
+
+<h3>Validar un enter amb rang</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">try {
+    int antiguitat = Integer.parseInt(textAntiguitat.getText().trim());
+
+    if (antiguitat &lt; 0 || antiguitat &gt; 150) {
+        textErrors.setText(&quot;Introdueix un enter entre 0 i 150.&quot;);
+        textAntiguitat.requestFocus();
+        textAntiguitat.selectAll();
+        return;
+    }
+
+    textErrors.setText(&quot;&quot;);
+    // continuar...
+} catch (NumberFormatException ex) {
+    textErrors.setText(&quot;Introdueix un enter entre 0 i 150.&quot;);
+    textAntiguitat.requestFocus();
+    textAntiguitat.selectAll();
+    return;
+}</code></pre>
+  </div>
+</div>
+
+
+<h3>Validar un combo</h3>
+
+<p>Una tècnica senzilla és reservar l'índex 0 per al text «-- Selecciona --». Aleshores:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">if (comboTipus.getSelectedIndex() == 0) {
+    textErrors.setText(&quot;Selecciona un tipus.&quot;);
+    comboTipus.requestFocus();
+    return;
+}</code></pre>
+  </div>
+</div>
+
+
+<h3>Canviar l'estat de la interfície</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">textAntiguitat.setEnabled(false);
+comboTipus.setEnabled(false);
+
+comboOpcio.setEnabled(true);
+textDescompte.setEnabled(true);
+btnCalcular.setEnabled(true);</code></pre>
+  </div>
+</div>
+
+
+<p>Aquesta tècnica evita que l'usuari canviï dades que ja hem validat mentre calcula la segona part del formulari.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Validar no és només convertir.</strong></p><p><code>Integer.parseInt("200")</code> és correcte sintàcticament, però si el domini només permet valors fins a 150, la dada continua sent invàlida. Primer comprovem el format i després les regles del problema.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Primer error, primer focus</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Creeu dos camps: edat (0..120) i tipus de client (combo). En prémer Validar, mostreu només el primer error, doneu focus al component corresponent i no continueu fins que sigui correcte.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Intermedi</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Useu return després de cada error.</li>
+        
+        <li>Per al JTextField combineu requestFocus() i selectAll().</li>
+        
+        <li>Reserveu l'índex 0 del combo.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat2_Bloc3_Seccio6">6. Construir una interfície per etapes</h2>
+
+<p>Una aplicació amb molts camps deixa de ser complicada si la pensem com una <strong>màquina d'estats senzilla</strong>. En lloc de voler programar-ho tot alhora, dividim la interacció en etapes.</p>
+
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-2/08_formulari_etapes.svg" alt="Flux d'un formulari per etapes: dades inicials, validació, opcions, càlcul i resultat o error" loading="lazy">
+  <figcaption>El formulari gran es converteix en quatre passos petits: validar dades inicials, habilitar opcions, validar opcions i calcular.</figcaption>
+</figure>
+
+<h3>Mapa de components que heu de dominar</h3>
+
+<table class="table">
+<thead><tr><th>Necessitat</th><th>Component/mètode</th></tr></thead>
+<tbody>
+<tr><td>Entrada de text</td><td><code>JTextField</code>, <code>getText()</code>, <code>setText()</code></td></tr>
+<tr><td>Selecció tancada</td><td><code>JComboBox</code>, <code>addItem(...)</code>, <code>getSelectedIndex()</code>, <code>getSelectedItem()</code>, <code>getItemCount()</code></td></tr>
+<tr><td>Bloquejar/desbloquejar</td><td><code>setEnabled(boolean)</code></td></tr>
+<tr><td>Sortida no editable</td><td><code>setEditable(false)</code></td></tr>
+<tr><td>Ajuda contextual</td><td><code>setToolTipText(...)</code></td></tr>
+<tr><td>Marcar un error de text</td><td><code>requestFocus()</code> + <code>selectAll()</code></td></tr>
+<tr><td>Reiniciar</td><td><code>setText("")</code>, <code>setSelectedIndex(0)</code> i reposar els estats habilitat/deshabilitat.</td></tr>
+</tbody>
+</table>
+
+<h3>Un càlcul per capes</h3>
+
+<p>Eviteu una fórmula gegant. Calculeu variables intermèdies que pugueu inspeccionar:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">double base = 80.0;
+double factorClient = 0.90;
+double extres = 25.0;
+double descompte = 10.0;
+
+double abansImpostos = base * factorClient + extres - descompte;
+double iva = abansImpostos * 0.21;
+double total = abansImpostos + iva;</code></pre>
+  </div>
+</div>
+
+
+<p>Amb variables separades podeu provar cada regla de negoci de forma independent i detectar molt més ràpidament on hi ha un error.</p>
+
+
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Estratègia recomanada</strong></p><ol><li>Feu que la finestra tingui l'aspecte correcte.</li><li>Implementeu només la validació del primer bloc.</li><li>Activeu/desactiveu la segona etapa.</li><li>Valideu la segona etapa.</li><li>Feu els càlculs.</li><li>Implementeu «esborrar/reiniciar» al final.</li></ol>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Quota mensual</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Creeu una mini aplicació amb tipus de quota (Bàsica 20 €, Plus 35 €), un extra Sí/No de 5 € i un descompte numèric. Valideu primer la quota, després l'extra i el descompte, i mostreu base, IVA del 21 % i total.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Intermedi</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">25 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>No programeu totes les validacions a la vegada.</li>
+        
+        <li>Reserveu un valor «-- Selecciona --» als combos.</li>
+        
+        <li>Calculeu base, abansImpostos, iva i total en variables diferents.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat2_Bloc3_Seccio7">7. Empaquetar i executar: CLASS, JAR, WAR i EAR</h2>
+
+<p>En Java, Eclipse genera <strong>bytecode</strong> en fitxers <code>.class</code>. Per distribuir una aplicació, és habitual encapsular diversos fitxers en un paquet.</p>
+
+<table class="table">
+<thead><tr><th>Format</th><th>Ús principal</th></tr></thead>
+<tbody>
+<tr><td><code>.class</code></td><td>Bytecode d'una classe Java.</td></tr>
+<tr><td>JAR</td><td>Java Archive: agrupa classes i recursos; pot representar una aplicació Java distribuïble.</td></tr>
+<tr><td>WAR</td><td>Web Application Archive: empaqueta una aplicació web Java per al seu desplegament.</td></tr>
+<tr><td>EAR</td><td>Enterprise Archive: agrupa diversos mòduls d'una aplicació empresarial.</td></tr>
+</tbody>
+</table>
+
+<p>Per a una aplicació d'escriptori senzilla, el format que més us interessa és el <strong>JAR</strong>. L'IDE pot automatitzar l'exportació, però el JAR continua necessitant una JVM compatible per executar el bytecode.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>No confongueu «executar des d'Eclipse» amb «tenir un .exe».</strong></p><p>En Java, l'objectiu habitual és generar bytecode i empaquetar-lo. La JVM és qui proporciona la capa d'execució sobre cada plataforma.</p>
+    
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Quin paquet faries servir?</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Trieu entre class, JAR, WAR o EAR per a: una única classe compilada, una aplicació Java d'escriptori, una aplicació web Java i un paquet empresarial amb diversos mòduls.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">6 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Penseu en classe, aplicació d'escriptori, web i conjunt de mòduls.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 3: Eclipse i aplicacions d'escriptori amb Swing",
+  "description": "IDE, Java a Eclipse, WindowBuilder, Swing, esdeveniments, validació i empaquetament",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Entorns de desenvolupament — IOC",
+    "description": "Materials del mòdul DA2_0487 - Entorns de desenvolupament"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                        
+                                        
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/da2_0487/unitat-2/bloc-2/" class="nav-button" aria-label="Bloc anterior: Paradigmes i cicle de desenvolupament">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/da2_0487/unitat-2/bloc-4/" class="nav-button" aria-label="Bloc següent: Spring i assistents d'IA dins l'IDE">Següent →</a>
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="2" data-total="2">(2/2)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="3" data-total="4">(3/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 75%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="7">(1/7)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 14%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/da2_0487/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/da2_0487",
+        title: "Entorns de desenvolupament",
+        version: "v1.0",
+        cicle_modul: "DA2_0487"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/da2_0487/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/da2_0487/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

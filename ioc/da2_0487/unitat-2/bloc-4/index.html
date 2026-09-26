@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 4: Spring i assistents d'IA dins l'IDE | Entorns de desenvolupament - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="2">
+    <meta name="page-bloc" content="4">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 4: Spring i assistents d’IA dins l’IDE | Entorns de desenvolupament</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 4: Spring i assistents d’IA dins l’IDE" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Aplicacions client-servidor amb Spring Boot i ús crític d’un assistent d’IA integrat a Eclipse" />
+<meta property="og:description" content="Aplicacions client-servidor amb Spring Boot i ús crític d’un assistent d’IA integrat a Eclipse" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-2/bloc-4/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/da2_0487/unitat-2/bloc-4/" />
+<meta property="og:site_name" content="Entorns de desenvolupament" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 4: Spring i assistents d’IA dins l’IDE" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Aplicacions client-servidor amb Spring Boot i ús crític d’un assistent d’IA integrat a Eclipse","headline":"Bloc 4: Spring i assistents d’IA dins l’IDE","url":"https://itrascastro.github.io/ioc/da2_0487/unitat-2/bloc-4/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-2/bloc-4/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/da2_0487/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/da2_0487/feed.xml" title="Entorns de desenvolupament" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/code-block.css">
+    <script src="/ioc/da2_0487/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/da2_0487">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/da2_0487/" class="logo-link" aria-label="Inici">
+                <img src="https://itrascastro.github.io/ioc/dam_0488/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="https://itrascastro.github.io/ioc/dam_0488/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/da2_0487/" class="title-link">
+                <h1>DA2_0487 - Entorns de desenvolupament</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/da2_0487/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Del problema al primer diagrama de classes
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Relacions entre classes i modelatge complet
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Diagrames de comportament i d'interacció
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Papyrus de principi a fi: del model al codi i del codi al model
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_0487/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Del codi font a l'execució
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Paradigmes i cicle de desenvolupament
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Eclipse i aplicacions d'escriptori amb Swing
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-2/bloc-4/" class="nav-dropdown-item current">
+                        Unitat 2 - Bloc 4: Spring i assistents d'IA dins l'IDE
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc4_Seccio1" class="nav-link" data-section="Unitat2_Bloc4_Seccio1">1. Client-servidor i Spring Boot</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc4_Seccio2" class="nav-link" data-section="Unitat2_Bloc4_Seccio2">2. Crear un projecte Spring a Eclipse</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc4_Seccio3" class="nav-link" data-section="Unitat2_Bloc4_Seccio3">3. Formulari, rutes i controlador</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc4_Seccio4" class="nav-link" data-section="Unitat2_Bloc4_Seccio4">4. Adaptar l'exemple a un nou requisit</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc4_Seccio5" class="nav-link" data-section="Unitat2_Bloc4_Seccio5">5. Execució, Tomcat i port 8080</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc4_Seccio6" class="nav-link" data-section="Unitat2_Bloc4_Seccio6">6. Windsurf Plugin (abans Codeium): suggeriments, xat i revisió</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc4_Seccio7" class="nav-link" data-section="Unitat2_Bloc4_Seccio7">7. De l'exemple a l'EAC</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/da2_0487/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/da2_0487/unitat-2/" class="horizontal-nav-item">
+                                Unitat 2: Desenvolupament de programari i entorns de desenvolupament (RA1 i RA2)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 2.4: Spring i assistents d'IA dins l'IDE
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<div class="section">
+  <h2 id="Unitat2_Bloc4_Seccio1">1. Client-servidor i Spring Boot</h2>
+
+<p>Una aplicació web senzilla té, com a mínim, dues peces: un <strong>client</strong> que envia una petició i un <strong>servidor</strong> que la rep, executa codi i retorna una resposta.</p>
+
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-2/09_spring_flux.svg" alt="Flux client servidor amb navegador, petició HTTP, controlador Spring i resposta HTML" loading="lazy">
+  <figcaption>El navegador no executa el controlador Java: envia una petició HTTP i Spring decideix quin mètode ha d'atendre aquella ruta.</figcaption>
+</figure>
+
+<p><strong>Spring</strong> és un framework modular. En aquesta unitat utilitzarem Spring Boot per reduir configuració i Spring Web per atendre peticions HTTP.</p>
+
+<table class="table">
+<thead><tr><th>Peça</th><th>Paper</th></tr></thead>
+<tbody>
+<tr><td>Navegador</td><td>Client: envia peticions i mostra HTML.</td></tr>
+<tr><td>HTTP</td><td>Protocol de comunicació.</td></tr>
+<tr><td>Spring Boot</td><td>Arrenca i configura l'aplicació amb convencions útils.</td></tr>
+<tr><td>Spring Web</td><td>Permet mapar rutes HTTP a mètodes Java.</td></tr>
+<tr><td>Tomcat</td><td>Servidor web/aplicacions. Spring Boot en pot portar un d'integrat per executar el projecte.</td></tr>
+</tbody>
+</table>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Model mental</strong></p><p>Una ruta és com una porta. <code>/</code> pot mostrar el formulari i <code>/dobla</code> pot rebre el valor enviat pel formulari. Les anotacions de Spring indiquen quin mètode Java hi ha darrere de cada porta.</p>
+    
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Dibuixa una petició</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Dibuixeu quatre caixes per representar què passa quan el navegador demana http://localhost:8080/saluda?nom=Laia: navegador, HTTP, controlador Spring i resposta.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">6 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>La petició va cap al servidor.</li>
+        
+        <li>La resposta torna al navegador.</li>
+        
+        <li>El controlador llegeix el paràmetre.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat2_Bloc4_Seccio2">2. Crear un projecte Spring a Eclipse</h2>
+
+<p>El material complementari utilitza <strong>Spring Tools</strong> dins Eclipse. El procediment pot canviar lleugerament de nom entre versions, però el flux és estable.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Versions recomanades per al curs 2026-27</strong></p><p>Utilitzeu <strong>Spring Tools 5.4.x</strong>, <strong>Spring Boot 4.1.x</strong> estable i <strong>JDK 25 LTS</strong>. Spring Boot 4.1.x és compatible amb Java 17-26, de manera que JDK 25 és una opció adequada. Si l'assistent ofereix versions amb sufixos <code>M</code> (Milestone), <code>RC</code> o <code>SNAPSHOT</code>, no les trieu per a les pràctiques: utilitzeu una versió estable.</p>
+    
+</div>
+
+
+<h3>1. Instal·lar les eines</h3>
+<ol>
+<li>Obriu <strong>Help → Eclipse Marketplace...</strong>.</li>
+<li>Busqueu <strong>Spring Tools</strong>.</li>
+<li>Instal·leu la versió estable compatible amb el vostre Eclipse (<strong>Spring Tools 5.4.x</strong> per a Eclipse 2026-09) i reinicieu l'IDE.</li>
+</ol>
+
+<h3>2. Crear el projecte</h3>
+<ol>
+<li><strong>File → New → Other...</strong>.</li>
+<li>Busqueu <strong>Spring Starter Project</strong>.</li>
+<li>Poseu un nom al projecte i un paquet base.</li>
+<li>Seleccioneu Java i <strong>Maven</strong> com a gestor de dependències si l'assistent us ofereix l'opció.</li>
+<li>Afegiu <strong>Spring Web</strong>. Si el material del curs ho indica, podeu afegir també les eines de serveis web.</li>
+<li>Finalitzeu l'assistent i espereu que Maven descarregui les dependències.</li>
+</ol>
+
+<p>L'assistent crea una classe principal amb <code>@SpringBootApplication</code> i un mètode <code>main</code>. Aquesta classe és el punt d'entrada de l'aplicació.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Respecteu el paquet base.</strong></p><p>Poseu els controladors al mateix paquet o en un subpaquet de la classe principal. Així Spring els detectarà automàticament durant l'escaneig de components.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Projecte que arrenca</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Creeu un Spring Starter Project mínim amb Spring Web i executeu-lo sense afegir encara cap controlador. L'objectiu és aconseguir que l'aplicació arrenqui sense errors.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>No programeu res fins que el projecte base arrenqui.</li>
+        
+        <li>Reviseu la consola per comprovar que el servidor s'ha iniciat.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat2_Bloc4_Seccio3">3. Formulari, rutes i controlador</h2>
+
+<p>Construirem un exemple molt petit: la ruta <code>/</code> mostra un formulari i la ruta <code>/dobla</code> rep un enter i retorna el doble.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">Controlador.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class Controlador {
+
+    @GetMapping(&quot;/&quot;)
+    public String index() {
+        return &quot;&lt;html&gt;&lt;body&gt;&quot;
+             + &quot;&lt;h1&gt;Dobla el valor&lt;/h1&gt;&quot;
+             + &quot;&lt;form action=\&quot;/dobla\&quot; method=\&quot;GET\&quot;&gt;&quot;
+             + &quot;&lt;input type=\&quot;text\&quot; name=\&quot;enter\&quot;/&gt;&quot;
+             + &quot;&lt;/form&gt;&quot;
+             + &quot;&lt;/body&gt;&lt;/html&gt;&quot;;
+    }
+
+    @GetMapping(&quot;/dobla&quot;)
+    public String resultat(@RequestParam(&quot;enter&quot;) String enter) {
+        try {
+            int resultat = Integer.parseInt(enter) * 2;
+            return &quot;&lt;html&gt;&lt;body&gt;&quot;
+                 + &quot;&lt;h1&gt;Dobla el valor&lt;/h1&gt;&quot;
+                 + &quot;&lt;strong&gt;Resultat: &quot; + resultat + &quot;&lt;/strong&gt;&quot;
+                 + &quot;&lt;/body&gt;&lt;/html&gt;&quot;;
+        } catch (NumberFormatException e) {
+            return &quot;&lt;html&gt;&lt;body&gt;&quot;
+                 + &quot;&lt;h1&gt;El valor introduït no és un enter&lt;/h1&gt;&quot;
+                 + &quot;&lt;/body&gt;&lt;/html&gt;&quot;;
+        }
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<h3>Llegiu el codi com una conversa</h3>
+
+<table class="table">
+<thead><tr><th>Fragment</th><th>Què diu?</th></tr></thead>
+<tbody>
+<tr><td><code>@RestController</code></td><td>Aquesta classe atendrà peticions web i retornarà dades/contingut en la resposta.</td></tr>
+<tr><td><code>@GetMapping("/")</code></td><td>Aquest mètode respon a un GET a l'arrel.</td></tr>
+<tr><td><code>action="/dobla"</code></td><td>En enviar el formulari, el navegador demana la ruta <code>/dobla</code>.</td></tr>
+<tr><td><code>name="enter"</code></td><td>El paràmetre de la URL s'anomena <code>enter</code>.</td></tr>
+<tr><td><code>@RequestParam("enter")</code></td><td>Spring copia aquell paràmetre a l'argument del mètode.</td></tr>
+</tbody>
+</table>
+
+<p>Si escriviu 12, el navegador acabarà demanant una URL semblant a <code>/dobla?enter=12</code>. El mètode <code>resultat</code> rep el text, el converteix i calcula.</p>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Del doble al quadrat</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Copieu l'exemple i adapteu-lo perquè la segona ruta sigui /quadrat i mostri el quadrat del nombre introduït. Canvieu també els textos visibles del formulari.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Intermedi</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Heu de mantenir coherents @GetMapping i action.</li>
+        
+        <li>El nom del paràmetre pot continuar sent enter.</li>
+        
+        <li>Canvieu primer la ruta, després el càlcul i al final els textos.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat2_Bloc4_Seccio4">4. Adaptar l'exemple a un nou requisit</h2>
+
+<p>La competència important no és copiar l'exemple anterior, sinó <strong>saber què canviar quan canvia l'enunciat</strong>. Suposem que ara ens demanen calcular el quíntuple i mostrar una dada identificativa sota el títol.</p>
+
+<h3>Feu una llista de canvis abans de tocar el codi</h3>
+
+<ol>
+<li>Canviar el text del títol.</li>
+<li>Afegir una línia HTML per mostrar la dada identificativa.</li>
+<li>Canviar la ruta del formulari si l'enunciat exigeix una ruta nova.</li>
+<li>Mantenir coherent l'<code>action</code> del formulari i el <code>@GetMapping</code>.</li>
+<li>Canviar l'operació aritmètica de <code>* 2</code> a <code>* 5</code>.</li>
+<li>Provar un valor correcte i un valor incorrecte.</li>
+</ol>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Regla d'or quan adapteu exemples</strong></p><p>Canvieu una cosa cada vegada i executeu. Si modifiqueu ruta, nom del paràmetre, HTML i càlcul alhora, qualsevol error us obligarà a revisar quatre llocs. Si ho feu per passos, sabreu exactament quin canvi ha trencat l'aplicació.</p>
+    
+</div>
+
+
+<h3>Proves mínimes</h3>
+
+<table class="table">
+<thead><tr><th>Entrada</th><th>Què hauríeu de comprovar?</th></tr></thead>
+<tbody>
+<tr><td><code>25</code></td><td>El resultat numèric és 125 i es veu la dada identificativa demanada.</td></tr>
+<tr><td><code>0</code></td><td>El resultat és coherent.</td></tr>
+<tr><td><code>hola</code></td><td>Es mostra un missatge d'error i l'aplicació continua funcionant.</td></tr>
+</tbody>
+</table>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Canvi controlat</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Partiu de l'exercici del quadrat i convertiu-lo en una aplicació que calculi el triple. Afegiu el vostre nom sota el títol. Feu un canvi, executeu i només després feu el següent.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Intermedi</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>El procés importa tant com el resultat.</li>
+        
+        <li>Anoteu quin fitxer i quina línia conceptual heu canviat en cada pas.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat2_Bloc4_Seccio5">5. Execució, Tomcat i port 8080</h2>
+
+<p>Per executar el projecte, seleccioneu-lo i utilitzeu <strong>Run As → Spring Boot App</strong>. Spring Boot pot arrencar un <strong>Tomcat integrat</strong>, de manera que per a aquest exemple no cal desplegar manualment el projecte en un servidor extern.</p>
+
+<p>Quan la consola indiqui que l'aplicació està en marxa, obriu:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">http://localhost:8080</code></pre>
+  </div>
+</div>
+
+
+<h3>Error típic: el port 8080 ja està ocupat</h3>
+
+<p>El primer que heu de comprovar és si ja teniu una execució anterior de Spring oberta dins Eclipse. Atureu-la i torneu-ho a provar.</p>
+
+<p>En Linux, si necessiteu identificar quin procés escolta al port, el material complementari mostra una consulta com:</p>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">sudo netstat -lnp | grep 8080</code></pre>
+  </div>
+</div>
+
+
+<p>La sortida indica el PID del procés. Només si esteu segurs que és el procés que voleu acabar, el podeu aturar. L'important no és memoritzar l'ordre: és entendre que <strong>dos servidors no poden escoltar alhora el mateix port i adreça</strong>.</p>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No mateu processos a l'atzar.</strong></p><p>Abans d'acabar un procés del sistema, identifiqueu-lo. En la majoria de pràctiques, el problema es resol aturant l'execució anterior des de la mateixa consola d'Eclipse.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Diagnostica el 8080</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Escriviu una seqüència de diagnosi per al missatge «Port 8080 was already in use», començant per la solució menys invasiva.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">7 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Primer mireu Eclipse.</li>
+        
+        <li>Després identifiqueu el procés.</li>
+        
+        <li>No atureu res que no hàgiu identificat.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat2_Bloc4_Seccio6">6. Windsurf Plugin (abans Codeium): suggeriments, xat i revisió</h2>
+
+<p>El material complementari i l'EAC utilitzen el nom <strong>Codeium</strong>. Actualment el connector es distribueix com a <strong>Windsurf Plugin</strong> (anteriorment Codeium). És la mateixa línia d'eina amb el nom actualitzat; per tant, si l'enunciat parla de Codeium, heu de buscar el connector <strong>Windsurf Plugin</strong> per a Eclipse.</p>
+
+<p>Les dues formes d'ajuda que ens interessen són:</p>
+
+<ul>
+<li><strong>suggeriments de compleció</strong> mentre escrivim codi;</li>
+<li><strong>xat</strong> per preguntar, explicar o generar fragments.</li>
+</ul>
+
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-2/10_ia_flux.svg" alt="Flux responsable amb un assistent d'IA: descriure, obtenir suggeriment, revisar, provar i acceptar o corregir" loading="lazy">
+  <figcaption>L'assistent proposa; el programador continua sent responsable d'entendre, provar i validar el resultat.</figcaption>
+</figure>
+
+<h3>Instal·lació i accés</h3>
+<ol>
+<li>Busqueu i instal·leu <strong>Windsurf Plugin</strong> des del Marketplace d'Eclipse. El connector és compatible amb versions modernes d'Eclipse; el nostre entorn 2026-09 queda dins del rang suportat.</li>
+<li>Autentiqueu-vos si l'eina ho requereix.</li>
+<li>Obriu la vista del xat des de la integració del connector o amb <strong>Window → Show View → Other...</strong>.</li>
+</ol>
+
+<h3>Un bon comentari pot convertir-se en una especificació</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">/*
+ * Rep una cadena sense accents.
+ * Retorna quants caràcters són vocals: a, e, i, o, u.
+ * No ha de modificar la cadena original.
+ */
+public static int comptaVocals(String text) {
+    // demaneu un suggeriment i reviseu-lo abans d&#39;acceptar-lo
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Com més precisa sigui la descripció, més fàcil és avaluar si el suggeriment compleix el que demanàveu.</p>
+
+<p>Per a una segona operació sobre cadenes, prepareu primer una prova amb resultat conegut. Per exemple, si l'objectiu és substituir espais per guions baixos, <code>Entorns de Desenvolupament</code> hauria de produir <code>Entorns_de_Desenvolupament</code>. Això us permet comprovar el suggeriment de l'assistent sense haver de confiar-hi a cegues.</p>
+
+<table class="table">
+<thead><tr><th>Abans d'acceptar</th><th>Pregunta</th></tr></thead>
+<tbody>
+<tr><td>Correcció</td><td>Fa exactament el que diu el comentari?</td></tr>
+<tr><td>Casos límit</td><td>Què passa amb una cadena buida?</td></tr>
+<tr><td>Tipus</td><td>Retorna el tipus demanat?</td></tr>
+<tr><td>Claredat</td><td>Podríeu explicar cada línia?</td></tr>
+<tr><td>Prova</td><td>Heu executat casos que coneixeu d'entrada?</td></tr>
+</tbody>
+</table>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No doneu per bona una resposta perquè compila.</strong></p><p>Un programa pot compilar i continuar sent incorrecte. L'assistent pot produir una solució plausible que no compleixi algun detall de l'enunciat. La verificació és part de la feina.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Demana, revisa, prova</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Escriviu un comentari que demani un mètode estàtic que compti dígits en una cadena. Feu que l'assistent proposi codi, expliqueu què heu escrit vosaltres i què ha completat l'eina, i proveu-lo amb «A1B22» i amb una cadena buida.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Intermedi</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">15 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>El resultat esperat per A1B22 és 3.</li>
+        
+        <li>No accepteu el suggeriment fins que pugueu explicar-lo.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat2_Bloc4_Seccio7">7. De l'exemple a l'EAC</h2>
+
+<p>Ja disposeu de totes les peces. El secret per afrontar una activitat més gran és <strong>no intentar construir-la d'una sola vegada</strong>.</p>
+
+<h3>Aplicació Swing</h3>
+<ol>
+<li>Dibuixeu els blocs de la finestra sense comportament.</li>
+<li>Configureu camps editables, no editables, tooltips i estat inicial.</li>
+<li>Implementeu la validació del primer bloc i proveu errors un per un.</li>
+<li>Implementeu el canvi d'estat: deshabilitar la primera etapa i habilitar la segona.</li>
+<li>Valideu els combos i el valor numèric de la segona etapa.</li>
+<li>Calculeu primer base i factors, després extres/descompte, després IVA i total.</li>
+<li>Implementeu l'acció de reinici al final.</li>
+</ol>
+
+<h3>Aplicació Spring</h3>
+<ol>
+<li>Feu funcionar l'exemple mínim.</li>
+<li>Canvieu el càlcul.</li>
+<li>Afegiu el text identificatiu.</li>
+<li>Executeu una entrada correcta i una d'errònia.</li>
+<li>Només després feu la captura demanada.</li>
+</ol>
+
+<h3>Assistent d'IA</h3>
+<ol>
+<li>Escriviu vosaltres els comentaris que descriuen els mètodes.</li>
+<li>Deixeu que l'assistent proposi codi.</li>
+<li>Reviseu i proveu cada mètode.</li>
+<li>Conserveu prou evidència per poder explicar què heu escrit i què ha suggerit l'eina.</li>
+</ol>
+
+
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Si podeu fer els exemples d'aquesta unitat sense copiar-los literalment, teniu les eines necessàries per afrontar una activitat de dificultat equivalent a l'EAC.</strong></p><p>El salt no és aprendre nous components: és combinar validació, estat de la interfície, càlculs i execució en un únic programa.</p>
+</div>
+
+
+<!-- Component: Checklist (sense contenidor extern) -->
+
+<div class="checklist-list" role="group" aria-label="Abans de donar la unitat per preparada">
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé explicar font, objecte, executable, compilador, intèrpret i JVM</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Distingeixo seqüència, selecció, iteració, herència, sobrecàrrega i sobreescriptura</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc ordenar les cinc fases de Mètrica 3</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc crear un projecte Java i una finestra Swing amb WindowBuilder</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé validar un JTextField i un JComboBox i gestionar focus i estats enabled</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Puc executar un projecte Spring i explicar una ruta GET amb RequestParam</div>
+  </div>
+  
+  <div class="checklist-item" role="checkbox" tabindex="0" aria-checked="false">
+    <div class="checklist-checkbox" aria-hidden="true"></div>
+    <div class="checklist-text">Sé usar un assistent d'IA revisant i provant el codi que proposa</div>
+  </div>
+  
+  <!-- Interacció via JS en assets/js/site.js: click/teclat actualitza aria-checked -->
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Simulació final</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Sense mirar els exemples, creeu una aplicació Swing petita que validi dues dades, activi una segona etapa i calculi un total amb IVA. Després expliqueu en cinc frases com convertiríeu un exemple Spring que calcula el doble en un altre que calcula una operació diferent.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Avançat</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">45-60 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Treballeu per etapes.</li>
+        
+        <li>No passeu al càlcul fins que la validació sigui estable.</li>
+        
+        <li>A Spring, identifiqueu ruta, paràmetre, operació i HTML.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 4: Spring i assistents d'IA dins l'IDE",
+  "description": "Aplicacions client-servidor amb Spring Boot i ús crític d'un assistent d'IA integrat a Eclipse",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Entorns de desenvolupament — IOC",
+    "description": "Materials del mòdul DA2_0487 - Entorns de desenvolupament"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                    
+                                        
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/da2_0487/unitat-2/bloc-3/" class="nav-button" aria-label="Bloc anterior: Eclipse i aplicacions d'escriptori amb Swing">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="2" data-total="2">(2/2)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="4" data-total="4">(4/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="7">(1/7)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 14%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/da2_0487/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/da2_0487",
+        title: "Entorns de desenvolupament",
+        version: "v1.0",
+        cicle_modul: "DA2_0487"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/da2_0487/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/da2_0487/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

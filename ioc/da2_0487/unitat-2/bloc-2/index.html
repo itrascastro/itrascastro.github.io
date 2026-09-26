@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 2: Paradigmes i cicle de desenvolupament | Entorns de desenvolupament - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="2">
+    <meta name="page-bloc" content="2">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 2: Paradigmes i cicle de desenvolupament | Entorns de desenvolupament</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 2: Paradigmes i cicle de desenvolupament" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Programació estructurada, orientació a objectes, paradigmes funcional i lògic, i fases de Mètrica 3" />
+<meta property="og:description" content="Programació estructurada, orientació a objectes, paradigmes funcional i lògic, i fases de Mètrica 3" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-2/bloc-2/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/da2_0487/unitat-2/bloc-2/" />
+<meta property="og:site_name" content="Entorns de desenvolupament" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 2: Paradigmes i cicle de desenvolupament" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Programació estructurada, orientació a objectes, paradigmes funcional i lògic, i fases de Mètrica 3","headline":"Bloc 2: Paradigmes i cicle de desenvolupament","url":"https://itrascastro.github.io/ioc/da2_0487/unitat-2/bloc-2/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/da2_0487/unitat-2/bloc-2/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/da2_0487/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/da2_0487/feed.xml" title="Entorns de desenvolupament" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-html.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/da2_0487/assets/css/code-block.css">
+    <script src="/ioc/da2_0487/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/da2_0487">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/da2_0487/" class="logo-link" aria-label="Inici">
+                <img src="https://itrascastro.github.io/ioc/dam_0488/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="https://itrascastro.github.io/ioc/dam_0488/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/da2_0487/" class="title-link">
+                <h1>DA2_0487 - Entorns de desenvolupament</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/da2_0487/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Del problema al primer diagrama de classes
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Relacions entre classes i modelatge complet
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Diagrames de comportament i d'interacció
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Papyrus de principi a fi: del model al codi i del codi al model
+                    </a>
+                
+            
+                
+                    <a href="/ioc/da2_0487/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Del codi font a l'execució
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-2/bloc-2/" class="nav-dropdown-item current">
+                        Unitat 2 - Bloc 2: Paradigmes i cicle de desenvolupament
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Eclipse i aplicacions d'escriptori amb Swing
+                    </a>
+                
+                    <a href="/ioc/da2_0487/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Spring i assistents d'IA dins l'IDE
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc2_Seccio1" class="nav-link" data-section="Unitat2_Bloc2_Seccio1">1. Programació estructurada</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc2_Seccio2" class="nav-link" data-section="Unitat2_Bloc2_Seccio2">2. POO: cinc idees clau</a>
+        </div>
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc2_Seccio3" class="nav-link" data-section="Unitat2_Bloc2_Seccio3">3. Herència, sobrecàrrega i sobreescriptura</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc2_Seccio4" class="nav-link" data-section="Unitat2_Bloc2_Seccio4">4. Paradigmes funcional i lògic</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat2_Bloc2_Seccio5" class="nav-link" data-section="Unitat2_Bloc2_Seccio5">5. Fases de desenvolupament amb Mètrica 3</a>
+        </div>
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/da2_0487/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/da2_0487/unitat-2/" class="horizontal-nav-item">
+                                Unitat 2: Desenvolupament de programari i entorns de desenvolupament (RA1 i RA2)
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 2.2: Paradigmes i cicle de desenvolupament
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<div class="section">
+  <h2 id="Unitat2_Bloc2_Seccio1">1. Programació estructurada</h2>
+
+<p>La programació estructurada parteix d'una idea potent: podem construir programes complexos combinant tres estructures de control bàsiques i dividint els problemes grans en problemes més petits.</p>
+
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-2/03_programacio_estructurada.svg" alt="Seqüència, selecció, iteració i descomposició descendent d'un problema" loading="lazy">
+  <figcaption>Seqüència, selecció i iteració formen la base del flux estructurat; el disseny descendent redueix un problema gran a funcions petites.</figcaption>
+</figure>
+
+<table class="table">
+<thead><tr><th>Estructura</th><th>Pregunta</th><th>Java típic</th></tr></thead>
+<tbody>
+<tr><td>Seqüència</td><td>Què passa primer i què passa després?</td><td>Instruccions una darrere l'altra.</td></tr>
+<tr><td>Selecció</td><td>Quin camí segueixo segons una condició?</td><td><code>if / else</code>, <code>switch</code>.</td></tr>
+<tr><td>Iteració</td><td>Què he de repetir?</td><td><code>for</code>, <code>while</code>.</td></tr>
+</tbody>
+</table>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">double preu = 100.0;                 // seqüència
+
+if (preu &gt;= 100) {                    // selecció
+    preu = preu * 0.90;
+}
+
+for (int i = 0; i &lt; 3; i++) {         // iteració
+    System.out.println(preu);
+}</code></pre>
+  </div>
+</div>
+
+
+<h3>Disseny descendent: divideix i venceràs</h3>
+
+<p>En lloc d'escriure un mètode de cent línies, podem separar responsabilitats: <code>llegirDades()</code>, <code>validarDades()</code>, <code>calcularPreu()</code> i <code>mostrarResultat()</code>. Cada part resol un problema més petit i es pot provar de forma més clara.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Què no forma part del teorema de l'estructura?</strong></p><p>Els salts incondicionals com <code>GOTO</code> no són una quarta estructura bàsica. El model estructurat es basa en seqüència, selecció i iteració.</p>
+    
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Tres peces</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Escriviu pseudocodi per llegir cinc notes, comptar quantes estan aprovades i mostrar «majoria aprovada» si el recompte és 3 o més. Marqueu on hi ha seqüència, selecció i iteració.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">8 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Necessiteu un comptador.</li>
+        
+        <li>La repetició es fa cinc vegades.</li>
+        
+        <li>La decisió final només té dos camins.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat2_Bloc2_Seccio2">2. POO: cinc idees clau</h2>
+
+<p>La programació orientada a objectes modela el programa com un conjunt d'objectes que combinen <strong>dades</strong> i <strong>comportament</strong>. El material agrupa els principis centrals en cinc idees.</p>
+
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-2/04_poo_cinc_idees.svg" alt="Mapa de cinc idees de la programació orientada a objectes: abstracció, encapsulació, modularitat, jerarquia i polimorfisme" loading="lazy">
+  <figcaption>Les cinc idees es reforcen entre si: cada classe representa una abstracció amb límits clars que pot relacionar-se i especialitzar-se.</figcaption>
+</figure>
+
+<table class="table">
+<thead><tr><th>Concepte</th><th>Pregunta útil</th><th>Exemple</th></tr></thead>
+<tbody>
+<tr><td>Abstracció</td><td>Quines característiques són essencials?</td><td>De <code>Client</code> ens interessen nom i correu, no el color dels ulls.</td></tr>
+<tr><td>Encapsulació</td><td>Què exposo i què amago?</td><td>Atributs <code>private</code>, mètodes públics.</td></tr>
+<tr><td>Modularitat</td><td>Quina responsabilitat té cada peça?</td><td>Classes separades que es poden modificar amb poc impacte.</td></tr>
+<tr><td>Jerarquia</td><td>Quin tipus és una especialització d'un altre?</td><td><code>Vehicle</code> → <code>Bicicleta</code>.</td></tr>
+<tr><td>Polimorfisme</td><td>Pot la mateixa operació tenir comportaments diferents?</td><td><code>calcularPreu()</code> implementat de manera diferent segons el tipus.</td></tr>
+</tbody>
+</table>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">Compte.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">public class Compte {
+    private double saldo;          // encapsulat
+
+    public void ingressar(double import) {
+        if (import &gt; 0) {
+            saldo += import;
+        }
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Aquí <code>Compte</code> és una abstracció, <code>saldo</code> queda encapsulat i la classe forma un mòdul amb una responsabilitat clara.</p>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Quin principi estàs aplicant?</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Associeu cada situació a un concepte: fer saldo private; separar Factura i Client; crear Cotxe com a subclasse de Vehicle; definir només les dades rellevants d'un Producte.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">7 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Penseu en ocultar, separar, especialitzar i simplificar.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat2_Bloc2_Seccio3">3. Herència, sobrecàrrega i sobreescriptura</h2>
+
+<p>Aquests tres termes solen aparèixer junts i és fàcil barrejar-los. La clau és mirar <strong>què canvia</strong>.</p>
+
+<h3>Herència</h3>
+
+<p>Una classe filla rep atributs i mètodes accessibles de la classe pare i pot afegir o especialitzar comportament.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">class Vehicle {
+    public void arrencar() {
+        System.out.println(&quot;Vehicle en marxa&quot;);
+    }
+}
+
+class BicicletaElectrica extends Vehicle {
+    // hereta arrencar()
+}</code></pre>
+  </div>
+</div>
+
+
+<h3>Sobrecàrrega: mateix nom, paràmetres diferents</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">int sumar(int a, int b) {
+    return a + b;
+}
+
+double sumar(double a, double b) {
+    return a + b;
+}</code></pre>
+  </div>
+</div>
+
+
+<h3>Sobreescriptura: mateixa signatura heretada, nova implementació</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">class Vehicle {
+    public void descriure() {
+        System.out.println(&quot;Vehicle&quot;);
+    }
+}
+
+class Bicicleta extends Vehicle {
+    @Override
+    public void descriure() {
+        System.out.println(&quot;Bicicleta&quot;);
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<table class="table">
+<thead><tr><th>Concepte</th><th>Mateix nom?</th><th>Mateixos paràmetres?</th><th>Necessita herència?</th></tr></thead>
+<tbody>
+<tr><td>Herència</td><td>No és la pregunta principal.</td><td>No és la pregunta principal.</td><td>Sí, relaciona classe pare i filla.</td></tr>
+<tr><td>Sobrecàrrega</td><td>Sí.</td><td>No.</td><td>No necessàriament.</td></tr>
+<tr><td>Sobreescriptura</td><td>Sí.</td><td>Sí, mateixa signatura.</td><td>Sí, redefineix un mètode heretat.</td></tr>
+</tbody>
+</table>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Overload o override?</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Digueu si hi ha sobrecàrrega o sobreescriptura en dos casos: (1) imprimir(String) i imprimir(int); (2) una subclasse torna a definir mostrar() amb la mateixa signatura que la classe pare.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">8 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Paràmetres diferents: penseu en overload.</li>
+        
+        <li>Mètode heretat amb la mateixa signatura: penseu en override.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat2_Bloc2_Seccio4">4. Paradigmes funcional i lògic</h2>
+
+<p>No tots els programes s'organitzen al voltant de sentències imperatives o objectes. El material presenta també els paradigmes <strong>funcional</strong> i <strong>lògic</strong>.</p>
+
+<h3>Funcional: transformar valors</h3>
+
+<p>La idea és veure el càlcul com una composició de funcions: la sortida d'una operació es converteix en l'entrada de la següent. Lisp és un dels exemples clàssics que apareixen al material.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">// Mateixa idea expressada en Java amb funcions simples
+static int doble(int x) {
+    return x * 2;
+}
+
+static int sumaUn(int x) {
+    return x + 1;
+}
+
+// sumaUn(doble(3)) -&gt; 7</code></pre>
+  </div>
+</div>
+
+
+<h3>Lògic: fets + regles + consulta</h3>
+
+<p>En el paradigma lògic descrivim <strong>fets</strong> i <strong>regles</strong>; un motor d'inferència intenta deduir conclusions. Prolog és l'exemple típic del material.</p>
+
+<blockquote>
+Fet: la temperatura és 39 °C.<br>
+Regla: si la temperatura és superior a 37 °C, hi ha febre.<br>
+Consulta: hi ha febre?
+</blockquote>
+
+<p>Aquesta és la pista més directa per reconèixer el paradigma lògic: <strong>aplicar regles lògiques per inferir conclusions a partir de dades</strong>.</p>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Reconèixer el paradigma</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Expliqueu quin paradigma encaixa millor amb: (a) una cadena de funcions que transforma una llista; (b) una base de fets i regles que decideix si una incidència és prioritària.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">6 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Transformació/composició apunta a funcional.</li>
+        
+        <li>Fets, regles i inferència apunten a lògic.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat2_Bloc2_Seccio5">5. Fases de desenvolupament amb Mètrica 3</h2>
+
+<p>Programar és només una part del desenvolupament d'un sistema. El material utilitza <strong>Mètrica 3</strong> per presentar cinc fases seqüencials.</p>
+
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-2/05_metrica3_fases.svg" alt="Cinc fases de Mètrica 3: viabilitat, anàlisi, disseny, construcció i implantació/acceptació" loading="lazy">
+  <figcaption>La pregunta canvia a cada fase: convé fer-ho?, què necessita el sistema?, com serà?, com el construïm?, com el posem en servei?</figcaption>
+</figure>
+
+<table class="table">
+<thead><tr><th>Fase</th><th>Pregunta principal</th><th>Resultat que heu de retenir</th></tr></thead>
+<tbody>
+<tr><td>1. Estudi de viabilitat</td><td>Val la pena continuar?</td><td>Analitza necessitats i viabilitat econòmica, tècnica, legal i operativa.</td></tr>
+<tr><td>2. Anàlisi del sistema d'informació</td><td>Què ha de fer exactament?</td><td><strong>Especificació detallada</strong>, catàleg de requisits i models.</td></tr>
+<tr><td>3. Disseny del sistema d'informació</td><td>Com estarà construït?</td><td>Arquitectura, entorn tecnològic, components, proves i implantació.</td></tr>
+<tr><td>4. Construcció</td><td>Com el convertim en programari provat?</td><td>Codi, components, proves unitàries i d'integració, manuals i procediments.</td></tr>
+<tr><td>5. Implantació i acceptació</td><td>Com arriba a producció i s'accepta?</td><td>Implantació, proves d'acceptació, pas a producció i preparació del manteniment.</td></tr>
+</tbody>
+</table>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Truc per no confondre anàlisi i disseny</strong></p><p><strong>Anàlisi = què</strong> necessita el sistema. <strong>Disseny = com</strong> el construirem. Si la frase parla d'«especificació detallada del sistema» i catàleg de requisits, el material la situa a l'anàlisi.</p>
+    
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Posa cada decisió a la seva fase</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Classifiqueu cinc accions: decidir si el projecte és viable; recollir requisits; definir l'arquitectura; programar i fer proves unitàries; fer proves d'acceptació amb l'usuari.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Intermedi</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">10 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Seguiu l'ordre de les cinc preguntes de la figura.</li>
+        
+        <li>No confongueu requisits amb arquitectura.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 2: Paradigmes i cicle de desenvolupament",
+  "description": "Programació estructurada, orientació a objectes, paradigmes funcional i lògic, i fases de Mètrica 3",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Entorns de desenvolupament — IOC",
+    "description": "Materials del mòdul DA2_0487 - Entorns de desenvolupament"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                        
+                                        
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/da2_0487/unitat-2/bloc-1/" class="nav-button" aria-label="Bloc anterior: Del codi font a l'execució">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/da2_0487/unitat-2/bloc-3/" class="nav-button" aria-label="Bloc següent: Eclipse i aplicacions d'escriptori amb Swing">Següent →</a>
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="2" data-total="2">(2/2)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="2" data-total="4">(2/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 50%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="5">(1/5)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 20%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/da2_0487/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/da2_0487",
+        title: "Entorns de desenvolupament",
+        version: "v1.0",
+        cicle_modul: "DA2_0487"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/da2_0487/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/da2_0487/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/da2_0487/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>
