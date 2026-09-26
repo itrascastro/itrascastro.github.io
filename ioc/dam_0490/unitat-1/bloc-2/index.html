@@ -895,7 +895,9 @@ if (!Files.isRegularFile(fitxer)) {
     throw new IllegalArgumentException(&quot;Falta el fitxer d&#39;entrada&quot;);
 }
 
-String contingut = Files.readString(fitxer).trim();
+String contingut = Files.readString(fitxer)
+        .trim()
+        .toLowerCase(java.util.Locale.ROOT);
 
 Path resultats = Path.of(&quot;resultats&quot;);
 Files.createDirectories(resultats);</code></pre>

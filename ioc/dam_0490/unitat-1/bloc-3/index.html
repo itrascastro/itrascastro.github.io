@@ -664,6 +664,15 @@ System.out.println(&quot;OBTINGUT=&quot; + comptador.getValor());</code></pre>
 
 <p>Una <strong>secció crítica</strong> és una part del codi que accedeix a un recurs compartit i que no volem que sigui executada simultàniament per diversos fils.</p>
 
+<!-- Component: Definició curta -->
+<div class="definition-box" role="definition" aria-label="Definició">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-journal-text" aria-hidden="true"></i> Definició</div>
+  <div class="component-content">
+    <p><strong>Exclusió mútua:</strong> Propietat que garanteix que només un fil pot executar una determinada secció crítica en cada moment.</p>
+  </div>
+</div>
+
+
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
   <div class="code-header">
@@ -945,7 +954,7 @@ comptador.incrementAndGet();</code></pre>
   <div class="code-header">
     <div class="code-info">
       <span class="code-lang">JAVA</span>
-      <span class="code-filename">Bústia.java</span>
+      <span class="code-filename">Bustia.java</span>
     </div>
     <div class="code-actions">
       <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
@@ -956,7 +965,7 @@ comptador.incrementAndGet();</code></pre>
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">class Bústia {
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">class Bustia {
     private String missatge;
 
     public synchronized void posar(String nou) {
@@ -1054,7 +1063,7 @@ try {
 <!-- Component: Suggeriment d'ampliació simplificat -->
 <div class="suggestion-box" role="note">
     <div class="component-header suggestion-header" role="heading" aria-level="4"><i class="bi bi-lightbulb" aria-hidden="true"></i> Suggeriment</div>
-    <p><strong>Monitors, locks i cues concurrents</strong></p><p><code>synchronized</code>, <code>wait()</code> i <code>notifyAll()</code> es basen en monitors. Java també ofereix eines de més alt nivell com <code>Lock</code>, <code>Condition</code>, <code>BlockingQueue</code> i col·leccions concurrents. En molts problemes reals és millor reutilitzar aquestes abstraccions que implementar la coordinació manualment.</p>
+    <p><strong>Altres problemes i eines que convé reconèixer</strong></p><p>El problema de lectors i escriptors estudia com permetre moltes lectures simultànies però protegir les escriptures. La inanició apareix quan un fil podria esperar indefinidament perquè altres obtenen sempre el recurs abans que ell. <code>synchronized</code>, <code>wait()</code> i <code>notifyAll()</code> es basen en monitors, i Java també ofereix eines de més alt nivell com <code>Lock</code>, <code>Condition</code>, <code>BlockingQueue</code> i col·leccions concurrents.</p>
 </div>
 
 
