@@ -1,1 +1,91 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img"><rect width="1600" height="900" fill="#fff"/><style>text{font-family:Arial,sans-serif;fill:#17324f}.title{font-size:56px;font-weight:700}.h{font-size:34px;font-weight:700}.t{font-size:25px}.box{stroke:#17324f;stroke-width:4;rx:22}</style><text x="800" y="80" text-anchor="middle" class="title">Condició de cursa: actualització perduda</text><text x="800" y="170" text-anchor="middle" class="h">Valor inicial compartit: 10</text><rect x="100" y="230" width="620" height="430" class="box" fill="#e7f4ff"/><text x="410" y="300" text-anchor="middle" class="h">Fil A</text><text x="410" y="390" text-anchor="middle" class="t">llegeix 10</text><text x="410" y="470" text-anchor="middle" class="t">calcula 11</text><text x="410" y="550" text-anchor="middle" class="t">escriu 11</text><rect x="880" y="230" width="620" height="430" class="box" fill="#fff0f0"/><text x="1190" y="300" text-anchor="middle" class="h">Fil B</text><text x="1190" y="390" text-anchor="middle" class="t">llegeix 10</text><text x="1190" y="470" text-anchor="middle" class="t">calcula 11</text><text x="1190" y="550" text-anchor="middle" class="t">escriu 11</text><text x="500" y="760" text-anchor="middle" class="h" fill="#15803d">Esperat: 12</text><text x="1100" y="760" text-anchor="middle" class="h" fill="#b91c1c">Obtingut: 11</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Condició de cursa: actualització perduda</title>
+  <desc id="desc">Dos fils executen contador++ sobre el mateix contador compartit. Tots dos llegeixen 10, calculen 11 i escriuen 11. El resultat esperat és 12 però l'obtingut és 11.</desc>
+  <rect width="1600" height="1200" fill="#ffffff"/>
+  <style>
+    text{font-family:Arial,Helvetica,sans-serif;fill:#17324f}
+    .title{font-size:62px;font-weight:700}.subtitle{font-size:34px;font-weight:700}
+    .h{font-size:38px;font-weight:700}.t{font-size:28px;font-weight:600}.small{font-size:24px}
+    .box{stroke:#17324f;stroke-width:4}.step{stroke-width:3}
+  </style>
+  <defs>
+    <marker id="ab" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2463c5"/></marker>
+    <marker id="ar" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#dc3f4f"/></marker>
+    <marker id="ag" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6b7b8c"/></marker>
+  </defs>
+
+  <text x="800" y="78" text-anchor="middle" class="title">Condició de cursa: actualització perduda</text>
+  <text x="800" y="132" text-anchor="middle" class="subtitle">Dos fils executen contador++ sobre el mateix contador compartit</text>
+
+  <rect x="535" y="175" width="530" height="130" rx="24" fill="#fff3cc" stroke="#d99a19" stroke-width="4"/>
+  <text x="800" y="225" text-anchor="middle" class="h">Contador compartit</text>
+  <text x="760" y="275" text-anchor="end" class="t">Valor inicial =</text>
+  <rect x="785" y="235" width="90" height="58" rx="12" fill="#dbeafe"/>
+  <text x="830" y="274" text-anchor="middle" class="h">10</text>
+
+  <path d="M650 305V340H410V390" stroke="#2463c5" stroke-width="7" fill="none" marker-end="url(#ab)"/>
+  <path d="M950 305V340H1190V390" stroke="#dc3f4f" stroke-width="7" fill="none" marker-end="url(#ar)"/>
+
+  <text x="105" y="390" text-anchor="middle" class="h">Temps</text>
+  <path d="M105 415V940" stroke="#6b7b8c" stroke-width="5" marker-end="url(#ag)"/>
+
+  <rect x="170" y="390" width="610" height="590" rx="28" fill="#eaf5ff" class="box"/>
+  <rect x="820" y="390" width="610" height="590" rx="28" fill="#fff0f0" class="box"/>
+  <rect x="170" y="390" width="610" height="76" rx="28" fill="#cfe9ff" stroke="#17324f" stroke-width="4"/>
+  <rect x="820" y="390" width="610" height="76" rx="28" fill="#ffd8dc" stroke="#17324f" stroke-width="4"/>
+  <text x="475" y="442" text-anchor="middle" class="h">Fil A</text>
+  <text x="1125" y="442" text-anchor="middle" class="h">Fil B</text>
+
+  <g stroke="#9bb0c4" stroke-width="2" stroke-dasharray="6 8">
+    <line x1="130" y1="510" x2="1430" y2="510"/><line x1="130" y1="590" x2="1430" y2="590"/>
+    <line x1="130" y1="670" x2="1430" y2="670"/><line x1="130" y1="750" x2="1430" y2="750"/>
+    <line x1="130" y1="830" x2="1430" y2="830"/><line x1="130" y1="910" x2="1430" y2="910"/>
+  </g>
+
+  <g>
+    <circle cx="105" cy="510" r="28" fill="#d9ecff"/><text x="105" y="520" text-anchor="middle" class="t">1</text>
+    <circle cx="105" cy="590" r="28" fill="#d9ecff"/><text x="105" y="600" text-anchor="middle" class="t">2</text>
+    <circle cx="105" cy="670" r="28" fill="#d9ecff"/><text x="105" y="680" text-anchor="middle" class="t">3</text>
+    <circle cx="105" cy="750" r="28" fill="#d9ecff"/><text x="105" y="760" text-anchor="middle" class="t">4</text>
+    <circle cx="105" cy="830" r="28" fill="#d9ecff"/><text x="105" y="840" text-anchor="middle" class="t">5</text>
+    <circle cx="105" cy="910" r="28" fill="#d9ecff"/><text x="105" y="920" text-anchor="middle" class="t">6</text>
+  </g>
+
+  <rect x="230" y="478" width="480" height="64" rx="14" fill="#cfe9ff" stroke="#66afe9" class="step"/>
+  <text x="445" y="520" text-anchor="middle" class="t">llegeix contador =</text>
+  <rect x="585" y="490" width="82" height="42" rx="10" fill="#9fd0ff"/><text x="626" y="520" text-anchor="middle" class="t">10</text>
+
+  <rect x="880" y="558" width="480" height="64" rx="14" fill="#ffd8dc" stroke="#ef7a87" class="step"/>
+  <text x="1095" y="600" text-anchor="middle" class="t">llegeix contador =</text>
+  <rect x="1235" y="570" width="82" height="42" rx="10" fill="#ffb2bb"/><text x="1276" y="600" text-anchor="middle" class="t">10</text>
+
+  <rect x="230" y="638" width="480" height="64" rx="14" fill="#cfe9ff" stroke="#66afe9" class="step"/>
+  <text x="440" y="680" text-anchor="middle" class="t">calcula 10 + 1 =</text>
+  <rect x="585" y="650" width="82" height="42" rx="10" fill="#9fd0ff"/><text x="626" y="680" text-anchor="middle" class="t">11</text>
+
+  <rect x="880" y="718" width="480" height="64" rx="14" fill="#ffd8dc" stroke="#ef7a87" class="step"/>
+  <text x="1090" y="760" text-anchor="middle" class="t">calcula 10 + 1 =</text>
+  <rect x="1235" y="730" width="82" height="42" rx="10" fill="#ffb2bb"/><text x="1276" y="760" text-anchor="middle" class="t">11</text>
+
+  <rect x="230" y="798" width="480" height="64" rx="14" fill="#cfe9ff" stroke="#66afe9" class="step"/>
+  <text x="438" y="840" text-anchor="middle" class="t">escriu contador =</text>
+  <rect x="585" y="810" width="82" height="42" rx="10" fill="#9fd0ff"/><text x="626" y="840" text-anchor="middle" class="t">11</text>
+
+  <rect x="880" y="878" width="480" height="64" rx="14" fill="#ffd8dc" stroke="#ef7a87" class="step"/>
+  <text x="1088" y="920" text-anchor="middle" class="t">escriu contador =</text>
+  <rect x="1235" y="890" width="82" height="42" rx="10" fill="#ffb2bb"/><text x="1276" y="920" text-anchor="middle" class="t">11</text>
+
+  <path d="M475 542V638" stroke="#2463c5" stroke-width="5" marker-end="url(#ab)"/>
+  <path d="M475 702V798" stroke="#2463c5" stroke-width="5" marker-end="url(#ab)"/>
+  <path d="M1125 622V718" stroke="#dc3f4f" stroke-width="5" marker-end="url(#ar)"/>
+  <path d="M1125 782V878" stroke="#dc3f4f" stroke-width="5" marker-end="url(#ar)"/>
+
+  <rect x="75" y="1010" width="1450" height="125" rx="24" fill="#eefaf0" stroke="#46a866" stroke-width="4"/>
+  <text x="800" y="1053" text-anchor="middle" class="h">Cada fil incrementa en 1 una vegada</text>
+  <rect x="120" y="1070" width="610" height="65" rx="18" fill="#e6f8eb" stroke="#46a866" stroke-width="3"/>
+  <text x="425" y="1114" text-anchor="middle" class="h">Esperat: 12</text>
+  <rect x="870" y="1070" width="610" height="65" rx="18" fill="#fff0f2" stroke="#dc3f4f" stroke-width="3"/>
+  <text x="1175" y="1114" text-anchor="middle" class="h">Obtingut: 11</text>
+
+  <text x="800" y="1178" text-anchor="middle" class="small">Es perd un increment perquè els dos fils llegeixen 10, calculen 11 i acaben escrivint el mateix valor final.</text>
+</svg>
