@@ -486,13 +486,14 @@ En una biblioteca, un usuari pot cercar un llibre i consultar els préstecs que 
 
 <p>Després convertim les funcionalitats en casos d'ús:</p>
 
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/16_casos_us_biblioteca.png" alt="Diagrama de casos d'ús amb els actors Usuari i Bibliotecari a la biblioteca" loading="lazy">
+  <figcaption>Diagrama de casos d'ús de la biblioteca amb els actors <code>Usuari</code> i <code>Bibliotecari</code>.</figcaption>
+</figure>
 
 <h3>El límit del sistema</h3>
 
 <p>Els casos d'ús representen funcionalitats <strong>del sistema</strong>. Els actors queden fora del sistema i es connecten amb els casos d'ús mitjançant associacions.</p>
-
-
 
 <p>Algunes eines no representen explícitament el rectangle del límit. Això no canvia la idea conceptual: l'actor continua sent extern i el cas d'ús continua pertanyent al sistema.</p>
 
@@ -552,7 +553,10 @@ En una biblioteca, un usuari pot cercar un llibre i consultar els préstecs que 
 
 <p>Suposem que per <strong>enregistrar un préstec</strong> sempre cal cercar abans el llibre i l'usuari. Si aquestes cerques també són utilitzades per altres funcionalitats, té sentit separar-les:</p>
 
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/17_cas_us_include.png" alt="Relació include entre Enregistrar préstec i les cerques de llibre i usuari" loading="lazy">
+  <figcaption>Relació <code>&lt;&lt;include&gt;&gt;</code>: enregistrar un préstec sempre inclou cercar el llibre i l'usuari.</figcaption>
+</figure>
 
 <p>La fletxa d'<code>include</code> apunta cap al cas d'ús que <strong>s'inclou</strong>. La idea mental és: «per fer A, sempre faig també B».</p>
 
@@ -564,7 +568,10 @@ En una biblioteca, un usuari pot cercar un llibre i consultar els préstecs que 
 El client fa una reserva i, opcionalment, pot pagar-la en aquell moment.
 </blockquote>
 
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/18_cas_us_extend.png" alt="Relació extend entre Pagar reserva i Fer reserva" loading="lazy">
+  <figcaption>Relació <code>&lt;&lt;extend&gt;&gt;</code>: pagar la reserva és un comportament opcional que amplia Fer reserva.</figcaption>
+</figure>
 
 <p>La fletxa d'<code>extend</code> va des del comportament opcional cap al cas d'ús base. La pregunta mental és: «A pot completar-se sense B?». Si la resposta és sí i B només passa sota una condició, <code>extend</code> pot ser adequat.</p>
 
@@ -678,7 +685,10 @@ El client fa una reserva i, opcionalment, pot pagar-la en aquell moment.
 
 <p>Suposem que una reserva només existeix després que el client la confirmi:</p>
 
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/19_sequencia_creacio_objecte.png" alt="Diagrama de seqüència amb creació d'un objecte reserva:Reserva a mig escenari" loading="lazy">
+  <figcaption>La línia de vida de <code>reserva:Reserva</code> comença en el punt on el missatge la crea, no des de l'inici del diagrama.</figcaption>
+</figure>
 
 <p>La línia de vida de <code>reserva:Reserva</code> comença en el moment de la creació. Aquesta és una diferència visual important respecte d'un objecte que ja existia abans de començar l'escenari.</p>
 
@@ -751,7 +761,10 @@ El client fa una reserva i, opcionalment, pot pagar-la en aquell moment.
 
 <p>Per a la consulta d'un producte:</p>
 
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/20_comunicacio_consulta_producte.png" alt="Diagrama de comunicació de la consulta d'un producte, mateix escenari que la seqüència anterior" loading="lazy">
+  <figcaption>El mateix escenari de consulta d'un producte representat com a diagrama de comunicació.</figcaption>
+</figure>
 
 <p>Com que ja no tenim un eix temporal, l'ordre s'indica amb <strong>números davant dels missatges</strong>: 1, 2, 3, 4...</p>
 
@@ -771,7 +784,10 @@ El client fa una reserva i, opcionalment, pot pagar-la en aquell moment.
 Un CentreControl inicia una inspecció. El SistemaNavegacio comprova els motors, confirma que el vehicle està preparat, el CentreControl ordena activar la càmera i la Camera envia imatges al TerminalOperador.
 </blockquote>
 
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/21_comunicacio_exemple_complet.png" alt="Diagrama de comunicació amb CentreControl, SistemaNavegacio, Camera i TerminalOperador" loading="lazy">
+  <figcaption>Diagrama de comunicació de la inspecció: <code>CentreControl</code>, <code>SistemaNavegacio</code>, <code>Camera</code> i <code>TerminalOperador</code>.</figcaption>
+</figure>
 
 <p>Observeu que els números conserven la història encara que els objectes estiguin repartits lliurement pel llenç.</p>
 
@@ -827,13 +843,19 @@ Un CentreControl inicia una inspecció. El SistemaNavegacio comprova els motors,
 
 <h3>Un flux lineal</h3>
 
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/22_activitats_flux_lineal.png" alt="Diagrama d'activitats amb un flux lineal: seleccionar producte, afegir al carretó, confirmar compra, mostrar resum" loading="lazy">
+  <figcaption>Un flux lineal encadena activitats una darrere l'altra sense decisions ni paral·lelisme.</figcaption>
+</figure>
 
 <h3>Decisions i guardes</h3>
 
 <p>Quan el camí depèn d'una condició utilitzem un node de decisió. Les branques s'etiqueten amb <strong>guardes</strong>:</p>
 
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/23_activitats_decisio_guarda.png" alt="Diagrama d'activitats amb una decisió de renovar préstec, branques sí i no" loading="lazy">
+  <figcaption>Node de decisió amb les guardes <code>[sí]</code> i <code>[no]</code> per renovar un préstec.</figcaption>
+</figure>
 
 <p>Les guardes han de ser mútuament comprensibles: el lector ha de saber en quina condició es pren cada branca.</p>
 
@@ -841,7 +863,10 @@ Un CentreControl inicia una inspecció. El SistemaNavegacio comprova els motors,
 
 <p>Suposem que, després d'acceptar una incidència, dos equips poden treballar al mateix temps: un aïlla la zona i l'altre avisa els usuaris. No volem que el procés continuï fins que <strong>totes dues tasques</strong> hagin acabat.</p>
 
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/24_activitats_fork_join.png" alt="Diagrama d'activitats amb fork i join: aïllar zona i avisar usuaris en paral·lel" loading="lazy">
+  <figcaption>El fork llança <em>aïllar la zona</em> i <em>avisar els usuaris</em> en paral·lel; el join espera que acabin totes dues.</figcaption>
+</figure>
 
 <!-- Component: Definició curta -->
 <div class="definition-box" role="definition" aria-label="Definició">
@@ -865,7 +890,10 @@ Un CentreControl inicia una inspecció. El SistemaNavegacio comprova els motors,
 
 <p>Després d'avaluar el resultat, pot ser necessari repetir una operació:</p>
 
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/25_activitats_bucle.png" alt="Diagrama d'activitats amb un bucle de validació de codi" loading="lazy">
+  <figcaption>Un bucle torna a l'activitat anterior mentre la guarda de repetició es compleixi, com validar un codi.</figcaption>
+</figure>
 
 <p>Un exercici complet pot combinar <strong>fork/join + decisió + bucle</strong>. La manera més segura de construir-lo és dibuixar primer el camí principal i afegir després el paral·lelisme i les branques.</p>
 
@@ -943,7 +971,10 @@ Un CentreControl inicia una inspecció. El SistemaNavegacio comprova els motors,
 
 <h3>Exemple mínim: una comanda</h3>
 
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/26_estats_comanda.png" alt="Diagrama d'estats d'una comanda: pendent, confirmada, enviada, entregada o cancel·lada" loading="lazy">
+  <figcaption>Cicle de vida d'una comanda: <code>PENDENT</code> → <code>CONFIRMADA</code> → <code>ENVIADA</code> → <code>ENTREGADA</code>, amb la branca <code>CANCEL·LADA</code>.</figcaption>
+</figure>
 
 <p>Els noms en majúscules són <strong>estats</strong>. Els verbs sobre les fletxes són <strong>esdeveniments o transicions</strong>.</p>
 
@@ -951,13 +982,19 @@ Un CentreControl inicia una inspecció. El SistemaNavegacio comprova els motors,
 
 <p>Mentre una compra és <code>OBERTA</code>, afegir un producte pot modificar-ne les dades sense deixar de ser oberta:</p>
 
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/27_estats_autotransicio.png" alt="Diagrama d'estats amb una autotransició sobre l'estat OBERTA en afegir un producte" loading="lazy">
+  <figcaption>Una autotransició torna al mateix estat: afegir un producte manté la compra <code>OBERTA</code>.</figcaption>
+</figure>
 
 <h3>Guardes i recuperació</h3>
 
 <p>Un dispositiu pot tenir un estat d'error del qual només surt si una reparació és satisfactòria:</p>
 
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/28_estats_error_recuperacio.png" alt="Diagrama d'estats amb un estat ERROR, autotransició de reparació fracassada i transició de recuperació" loading="lazy">
+  <figcaption>Des de l'estat <code>ERROR</code>, una reparació fracassada torna a l'estat <code>ERROR</code> i una reparació amb èxit permet recuperar el funcionament normal.</figcaption>
+</figure>
 
 <table class="table">
 <thead><tr><th>Si l'enunciat parla de...</th><th>Penseu en...</th></tr></thead>

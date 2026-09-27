@@ -460,7 +460,10 @@ Per a <strong>un objecte d'aquesta classe</strong>, quants objectes de l'altra c
 Una biblioteca pot tenir moltes publicacions i una publicació pot trobar-se en diverses biblioteques.
 </blockquote>
 
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/12_associacio_multiplicitat_biblioteca.png" alt="Associació molts-a-molts entre Biblioteca i Publicació amb multiplicitat 0..* a cada extrem" loading="lazy">
+  <figcaption>Relació molts-a-molts entre <code>Biblioteca</code> i <code>Publicacio</code>: una biblioteca conté diverses publicacions i una publicació es pot trobar en diverses biblioteques.</figcaption>
+</figure>
 
 <p>És una relació molts-a-molts. El fet que després una base de dades necessiti una taula intermèdia no canvia el model UML conceptual.</p>
 
@@ -522,7 +525,10 @@ Una biblioteca pot tenir moltes publicacions i una publicació pot trobar-se en 
 Una publicació pot ser un llibre o una revista. Totes les publicacions tenen títol. Els llibres tenen ISBN i autor; les revistes tenen ISSN i editorial.
 </blockquote>
 
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/13_generalitzacio_publicacio.png" alt="Generalització amb Publicacio com a superclasse i Llibre i Revista com a subclasses" loading="lazy">
+  <figcaption>Generalització de <code>Publicacio</code> en <code>Llibre</code> i <code>Revista</code>.</figcaption>
+</figure>
 
 <p>La fletxa de generalització apunta cap a la classe més general, és a dir, cap a la superclasse.</p>
 
@@ -829,7 +835,10 @@ Una empresa lloga bicicletes. De cada bicicleta es guarda el codi, la marca i el
 
 <p><code>BicicletaElectrica</code> <strong>és una</strong> <code>Bicicleta</code>. Per tant:</p>
 
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/14_generalitzacio_bicicleta.png" alt="Generalització de Bicicleta en BicicletaElectrica amb un exemple d'objecte" loading="lazy">
+  <figcaption>Generalització de <code>Bicicleta</code> en <code>BicicletaElectrica</code>, amb un exemple d'objecte instanciat.</figcaption>
+</figure>
 
 <h3>Pas 4. Associacions i multiplicitats</h3>
 
@@ -844,7 +853,10 @@ Una empresa lloga bicicletes. De cada bicicleta es guarda el codi, la marca i el
 
 <p>L'enunciat diu que una revisió només té sentit vinculada a la bicicleta revisada. Si volem reflectir aquesta dependència de vida al model:</p>
 
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/15_composicio_bicicleta_revisio.png" alt="Composició entre Bicicleta i Revisio amb un exemple d'objecte" loading="lazy">
+  <figcaption>Composició entre <code>Bicicleta</code> i <code>Revisio</code>: la revisió no existeix sense la bicicleta.</figcaption>
+</figure>
 
 <h3>Pas 6. Revisió final</h3>
 

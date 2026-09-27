@@ -555,6 +555,33 @@ Una botiga ven productes. De cada producte volem guardar el codi, el nom i el pr
 Una pel·lícula té un títol, una durada en minuts i una qualificació d'edat. Volem saber si és apta per a una edat concreta.
 </blockquote>
 
+<p>Separant-ho pels tres compartiments que acabem de veure:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Pellicula
+----------------------------
+- titol: String
+- duradaMinuts: int
+- edatMinima: int
+----------------------------
++ esApta(edat: int): boolean</code></pre>
+  </div>
+</div>
 
 
 <p>Observeu que el mètode <code>esApta</code> necessita una dada d'entrada: l'edat que volem comprovar. Per això el paràmetre forma part de la signatura.</p>
@@ -723,7 +750,10 @@ Una pel·lícula té un títol, una durada en minuts i una qualificació d'edat.
 
 <p>Una classe és una descripció. Un <strong>objecte</strong> és una instància concreta creada a partir d'aquesta classe.</p>
 
-
+<figure class="teaching-figure">
+  <img src="/ioc/da2_0487/assets/img/unitat-1/11_objectes_instancia_pellicula.png" alt="Dos objectes p1:Pellicula i p2:Pellicula amb els mateixos atributs i valors diferents" loading="lazy">
+  <figcaption>Dos objectes instanciats a partir de la mateixa classe <code>Pellicula</code>, cadascun amb els seus propis valors.</figcaption>
+</figure>
 
 <p>Els dos objectes comparteixen la mateixa estructura perquè són instàncies de <code>Pellicula</code>, però mantenen valors diferents.</p>
 
