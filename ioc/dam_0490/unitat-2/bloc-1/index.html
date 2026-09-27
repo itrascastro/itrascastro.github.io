@@ -623,29 +623,13 @@ però continuen comunicant-se mitjançant la pila de xarxa.</code></pre>
 
 <p>Una connexió TCP queda identificada per quatre valors:</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">IP client : port client  &lt;----&gt;  IP servidor : port servidor
-
-127.0.0.1 : 53142       &lt;----&gt;  127.0.0.1 : 5000
-127.0.0.1 : 53143       &lt;----&gt;  127.0.0.1 : 5000</code></pre>
-  </div>
-</div>
-
+<table class="table">
+<thead><tr><th>IP client : port client</th><th>IP servidor : port servidor</th></tr></thead>
+<tbody>
+<tr><td>127.0.0.1 : 53142</td><td>127.0.0.1 : 5000</td></tr>
+<tr><td>127.0.0.1 : 53143</td><td>127.0.0.1 : 5000</td></tr>
+</tbody>
+</table>
 
 <p>Els dos clients poden utilitzar el mateix servidor perquè el seu port local és diferent.</p>
 

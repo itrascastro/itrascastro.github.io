@@ -444,35 +444,7 @@ C: Missatge confidencial...</code></pre>
 <li><strong>Autenticació del client opcional:</strong> TLS també pot treballar amb certificats de client.</li>
 </ul>
 
-<p>TLS no substitueix el protocol d'aplicació. Si abans teníem SMTP, HTTP o un protocol propi, després de crear el canal TLS continuem enviant les mateixes ordres i respostes.</p>
-
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Abans:
-Socket -&gt; streams -&gt; protocol
-
-Amb TLS:
-SSLSocket -&gt; streams -&gt; mateix protocol
-          ^
-          |
-      xifrat TLS</code></pre>
-  </div>
-</div>
-
+<p>TLS no substitueix el protocol d'aplicació. Abans, el codi feia servir un <code>Socket</code> per obtenir els seus fluxos i parlar el protocol directament. Amb TLS, <code>SSLSocket</code> ocupa exactament el mateix lloc que abans ocupava <code>Socket</code>: continuem obtenint-ne els fluxos i parlant el mateix protocol, amb l'única diferència que aquests fluxos ara viatgen xifrats.</p>
 
 
 <!-- Component: Caixa informativa -->

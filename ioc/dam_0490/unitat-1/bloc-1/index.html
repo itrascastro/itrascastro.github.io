@@ -406,65 +406,9 @@
 </div>
 
 
-<p>Si executem dues vegades el mateix programa, normalment obtenim dos processos independents:</p>
+<p>Si executem dues vegades el mateix programa, normalment obtenim dos processos independents. Els processos A i B poden executar exactament el mateix codi, però les seves variables no són les mateixes: si A modifica una variable, B no veu aquest canvi perquè cada procés té el seu propi espai de memòria.</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Programa Calculadora.class
-        |
-        +---- executar ----&gt; Procés A
-        |
-        +---- executar ----&gt; Procés B</code></pre>
-  </div>
-</div>
-
-
-<p>Els processos A i B poden executar exactament el mateix codi, però les seves variables no són les mateixes. Si A modifica una variable, B no veu aquest canvi perquè cada procés té el seu propi espai de memòria.</p>
-
-<p>En canvi, dins d'un procés amb diversos fils:</p>
-
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Procés Java
-|
-+-- fil main
-+-- fil treballador-1
-+-- fil treballador-2
-|
-+-- objectes compartits al heap</code></pre>
-  </div>
-</div>
-
-
-<p>Els tres fils poden accedir als mateixos objectes del heap. Aquesta possibilitat és molt potent, però també és l'origen de problemes que veurem més endavant, com les <strong>condicions de cursa</strong>.</p>
+<p>En canvi, dins d'un procés amb diversos fils, els tres fils poden accedir als mateixos objectes del heap. Aquesta possibilitat és molt potent, però també és l'origen de problemes que veurem més endavant, com les <strong>condicions de cursa</strong>.</p>
 
 
 <!-- Component: Caixa informativa -->
