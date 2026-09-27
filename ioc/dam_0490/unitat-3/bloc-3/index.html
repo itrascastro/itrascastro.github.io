@@ -444,7 +444,21 @@ C: Missatge confidencial...</code></pre>
 <li><strong>Autenticació del client opcional:</strong> TLS també pot treballar amb certificats de client.</li>
 </ul>
 
-<p>TLS no substitueix el protocol d'aplicació. Abans, el codi feia servir un <code>Socket</code> per obtenir els seus fluxos i parlar el protocol directament. Amb TLS, <code>SSLSocket</code> ocupa exactament el mateix lloc que abans ocupava <code>Socket</code>: continuem obtenint-ne els fluxos i parlant el mateix protocol, amb l'única diferència que aquests fluxos ara viatgen xifrats.</p>
+<p>TLS no substitueix el protocol d'aplicació. Abans, el codi feia servir un <code>Socket</code> per obtenir els seus fluxos i parlar el protocol directament.</p>
+
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-3/18_socket_vs_sslsocket.png" alt="Abans, Socket dona pas als streams i al protocol. Amb TLS, SSLSocket ocupa el mateix lloc i afegeix xifrat, mantenint els mateixos streams i el mateix protocol." class="figure-img"/>
+      
+      <figcaption class="figure-caption">Canvia el tipus de socket, però el programa continua obtenint fluxos i parlant el mateix protocol.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
 
 
 <!-- Component: Caixa informativa -->
