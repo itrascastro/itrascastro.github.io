@@ -953,35 +953,26 @@ System.out.println(a.isMulticastAddress());</code></pre>
 
 <p>Aquesta idea és fonamental. TCP conserva l'ordre dels <strong>bytes</strong>, però no sap on acaba un missatge del nostre protocol i comença el següent.</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-2/18_framing_tcp.png" alt="El client escriu HOLA i MÓN per separat, però TCP els transporta com un únic flux de bytes continu HOLAMÓN sense fronteres de missatge." class="figure-img"/>
       
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">El client escriu:
-&quot;HOLA&quot; + &quot;MÓN&quot;
-
-TCP transporta un flux:
-H O L A M Ó N
-
-El receptor necessita una regla pròpia:
-- una línia acaba amb \n
-- o primer enviem la longitud
-- o usem un format que permeti detectar el final</code></pre>
+      <figcaption class="figure-caption">TCP no conserva els missatges: el receptor rep HOLAMÓN sense saber on acaba un i comença l'altre.</figcaption>
+      
+    </figure>
   </div>
 </div>
 
+
+<p>El receptor necessita una regla pròpia per saber on acaba un missatge:</p>
+<ul>
+<li>una línia acaba amb <code>\n</code>;</li>
+<li>o primer enviem la longitud;</li>
+<li>o usem un format que permeti detectar el final.</li>
+</ul>
 
 <p>Als primers exemples utilitzarem un protocol de <strong>línies de text</strong>. Això permet treballar amb <code>readLine()</code>: cada salt de línia marca el final d'un missatge.</p>
 

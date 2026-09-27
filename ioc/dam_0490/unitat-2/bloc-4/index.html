@@ -546,7 +546,7 @@
 
 <h3>Localitzar un recurs: URL i URLConnection</h3>
 
-<p>Abans d'obrir un sòcol manualment, convé entendre com es representa un <strong>recurs remot</strong>. Una URL combina el protocol, l'autoritat, el port, el camí i, si n'hi ha, els paràmetres de consulta. Aquesta idea apareix al material oficial perquè permet passar d'una cadena com <code>https://servidor/cami?x=1</code> a objectes Java que saben extreure'n cada part.</p>
+<p>Abans d'obrir un sòcol manualment, convé entendre com es representa un <strong>recurs remot</strong>. Una URL combina el protocol, l'autoritat, el port, el camí i, si n'hi ha, els paràmetres de consulta. Aquesta representació és útil perquè permet passar d'una cadena com <code>https://servidor/cami?x=1</code> a objectes Java que saben extreure'n cada part.</p>
 
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
@@ -702,7 +702,7 @@ public class LlegirRecurs {
 
 <h3>HTTP amb HttpURLConnection</h3>
 
-<p>El material oficial treballa amb <code>HttpURLConnection</code>, una especialització de <code>URLConnection</code> que fa visibles conceptes propis d'HTTP: mètode, capçaleres, codi d'estat i cos de la resposta. Encara és útil per entendre aquests conceptes, tot i que en codi modern sovint preferirem <code>HttpClient</code>.</p>
+<p>Treballarem amb <code>HttpURLConnection</code>, una especialització de <code>URLConnection</code> que fa visibles conceptes propis d'HTTP: mètode, capçaleres, codi d'estat i cos de la resposta. Encara és útil per entendre aquests conceptes, tot i que en codi modern sovint preferirem <code>HttpClient</code>.</p>
 
 
 <div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
@@ -1017,35 +1017,6 @@ public class MiniHttpServer {
 
 <p>FTP també és un protocol client-servidor sobre TCP, però introdueix una idea interessant: <strong>separa el canal de control del canal de dades</strong>. Les comandes i respostes textuals mantenen una connexió de control, habitualment associada al port 21 del servidor, mentre que una transferència de fitxer utilitza una connexió de dades temporal.</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Canal de control (persistent)
-Client  &lt;-----------------&gt;  Servidor
-        USER, PASS, PWD,
-        CWD, RETR, STOR...
-        respostes 220, 230...
-
-Canal de dades (temporal)
-Client  &lt;=================&gt;  Servidor
-        bytes del fitxer</code></pre>
-  </div>
-</div>
-
-
 <p>En <strong>mode actiu</strong>, el client indica on escoltarà i el servidor inicia la connexió de dades. En <strong>mode passiu</strong>, el servidor indica una adreça i un port i és el client qui inicia la connexió. El mode passiu acostuma a encaixar millor amb clients situats darrere de NAT o tallafocs.</p>
 
 
@@ -1212,43 +1183,6 @@ public class FtpControlClient {
       <figcaption class="figure-caption">SMTP s'utilitza per transferir correu. IMAP o POP3 s'utilitzen per accedir a la bústia del destinatari.</figcaption>
       
     </figure>
-  </div>
-</div>
-
-
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Aplicació de Maria
-      |
-      | SMTP
-      v
-Servidor de sortida
-      |
-      | SMTP
-      v
-Servidor del destinatari
-      |
-      | emmagatzema
-      v
-Bústia de Pau
-      ^
-      | IMAP / POP3
-      |
-Aplicació de Pau</code></pre>
   </div>
 </div>
 
@@ -1667,31 +1601,16 @@ S: 221 Bye</code></pre>
 
 <p>Una versió simplificada de les transicions podria ser:</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-2/17_maquina_estats_smtp.png" alt="Màquina d'estats SMTP simplificada: CONNECTED, GREETED, MAIL_FROM, RCPT_TO i DATA, amb RSET tornant a GREETED i QUIT sortint des de qualsevol estat." class="figure-img"/>
       
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">CONNECTED --EHLO--&gt; GREETED
-GREETED   --MAIL--&gt; MAIL_FROM
-MAIL_FROM --RCPT--&gt; RCPT_TO
-RCPT_TO   --RCPT--&gt; RCPT_TO
-RCPT_TO   --DATA--&gt; DATA
-DATA      --&quot;.&quot;----&gt; GREETED
-
-RSET pot tornar la transacció a GREETED
-QUIT pot aparèixer fora del mode DATA i tanca la sessió</code></pre>
+      <figcaption class="figure-caption">RSET torna la transacció a GREETED. QUIT pot arribar des de qualsevol estat i tanca la sessió.</figcaption>
+      
+    </figure>
   </div>
 </div>
 

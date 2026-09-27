@@ -571,34 +571,6 @@
 
 <p>Ara el fil principal torna gairebé immediatament a <code>accept()</code>. La conversa amb cada client queda bloquejada, si cal, al seu propi fil.</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Fil main:
-accept -&gt; client A -&gt; crea fil A -&gt; torna a accept
-accept -&gt; client B -&gt; crea fil B -&gt; torna a accept
-accept -&gt; client C -&gt; crea fil C -&gt; torna a accept
-
-Fil A: readLine -&gt; processa -&gt; println -&gt; ...
-Fil B: readLine -&gt; processa -&gt; println -&gt; ...
-Fil C: readLine -&gt; processa -&gt; println -&gt; ...</code></pre>
-  </div>
-</div>
-
-
 <h3>Una classe ClientHandler</h3>
 
 <p>Per no barrejar tota la lògica dins del <code>main</code>, podem encapsular la sessió d'un client en una classe.</p>
@@ -1473,35 +1445,16 @@ LOG.log(
 
 <p>En una aplicació local, si una crida de mètode arriba al mètode, sabem que tots dos viuen al mateix procés. En xarxa apareix una dificultat nova: <strong>podem deixar de rebre resposta sense saber exactament què ha passat a l'altre costat</strong>.</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-2/16_punts_fallada_peticio.png" alt="Quatre passos d'una petició client-servidor amb un possible punt de fallada al costat de cadascun: la petició es pot perdre, el servidor pot caure, la resposta es pot perdre." class="figure-img"/>
       
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Client envia petició
-        |
-        +-- es perd la connexió abans d&#39;arribar?
-        |
-Servidor processa la petició
-        |
-        +-- cau abans de respondre?
-        |
-Servidor envia resposta
-        |
-        +-- es perd la connexió durant la resposta?
-        |
-Client espera...</code></pre>
+      <figcaption class="figure-caption">Cada pas de la comunicació té el seu propi punt de fallada possible. Un timeout no diu per si sol quin d'ells ha fallat.</figcaption>
+      
+    </figure>
   </div>
 </div>
 

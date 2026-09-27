@@ -394,29 +394,16 @@
 
 <p>En un sistema simètric, la mateixa clau secreta permet xifrar i desxifrar. És molt eficient, però totes les parts que necessiten llegir les dades han de disposar del secret.</p>
 
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
+<!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <img src="/ioc/dam_0490/assets/img/unitat-3/17_xifrat_simetric.png" alt="Un missatge es xifra amb la clau secreta K i les dades xifrades es desxifren amb la mateixa clau K per recuperar el missatge." class="figure-img"/>
       
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">clau secreta K
-                  |
-missatge -&gt; [ xifrar ] -&gt; dades xifrades
-                  |
-             clau secreta K
-                  |
-          [ desxifrar ] -&gt; missatge</code></pre>
+      <figcaption class="figure-caption">La mateixa clau secreta K s'utilitza per xifrar i per desxifrar.</figcaption>
+      
+    </figure>
   </div>
 </div>
 
@@ -440,35 +427,6 @@ missatge -&gt; [ xifrar ] -&gt; dades xifrades
       <figcaption class="figure-caption">La clau pública es pot repartir. La clau privada no surt del seu propietari.</figcaption>
       
     </figure>
-  </div>
-</div>
-
-
-<p>Per protegir confidencialitat amb RSA, el patró conceptual és:</p>
-
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Emissor:
-  missatge + clau pública del receptor
-           -&gt; xifrat
-
-Receptor:
-  dades xifrades + clau privada pròpia
-           -&gt; missatge</code></pre>
   </div>
 </div>
 
@@ -928,37 +886,6 @@ PKCS#1 v1.5:
       <figcaption class="figure-caption">RSA protegeix una clau petita. AES protegeix les dades grans. Així aprofitem els punts forts de cada família.</figcaption>
       
     </figure>
-  </div>
-</div>
-
-
-
-<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
-  <div class="code-header">
-    <div class="code-info">
-      <span class="code-lang">TEXT</span>
-      
-    </div>
-    <div class="code-actions">
-      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
-      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
-      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
-    </div>
-  </div>
-
-  <div class="code-container">
-    <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Emissor:
-1. genera una clau AES aleatòria
-2. xifra les dades amb AES
-3. xifra la clau AES amb RSA pública
-4. envia:
-   - dades xifrades
-   - clau AES xifrada
-
-Receptor:
-1. desxifra la clau AES amb RSA privada
-2. usa la clau AES per desxifrar les dades</code></pre>
   </div>
 </div>
 
