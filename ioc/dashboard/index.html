@@ -218,6 +218,9 @@
         function setupAjaxClickHandlers() {
             document.querySelectorAll('.local-course-overview-item').forEach(item => {
                 item.addEventListener('click', function(e) {
+                    // Els comptadors de tasques tenen un enllaç propi a Moodle;
+                    // només interceptem els indicadors de fòrums.
+                    if (this.querySelector('a[href]')) return;
                     e.preventDefault(); e.stopPropagation();
                     const courseContainer = this.closest('[id*="local-course-overview-container-"]');
                     if (courseContainer) {
