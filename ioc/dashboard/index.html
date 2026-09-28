@@ -199,7 +199,7 @@
 </div>
 
 <script>
-        // === VERSIÓ ESTÁTICA GENERADA EL 28/09/2026 23:08:05 ===
+        // === VERSIÓ ESTÁTICA GENERADA EL 28/09/2026 23:11:42 ===
         
         const moodleStatusEl = document.getElementById('moodle-status');
         const refreshButton = document.getElementById('refresh-moodle');
@@ -207,7 +207,7 @@
         
         function disableAjaxFeatures() {
             if (refreshButton) { refreshButton.style.display = 'none'; }
-            if (moodleStatusEl) { moodleStatusEl.textContent = 'Versió estàtica - Última actualització: 28/09/2026 23:08'; }
+            if (moodleStatusEl) { moodleStatusEl.textContent = 'Versió estàtica - Última actualització: 28/09/2026 23:11'; }
             if (countdownEl) { countdownEl.style.display = 'none'; }
         }
         
@@ -218,9 +218,6 @@
         function setupAjaxClickHandlers() {
             document.querySelectorAll('.local-course-overview-item').forEach(item => {
                 item.addEventListener('click', function(e) {
-                    // Els comptadors de tasques tenen un enllaç propi a Moodle;
-                    // només interceptem els indicadors de fòrums.
-                    if (this.querySelector('a[href]')) return;
                     e.preventDefault(); e.stopPropagation();
                     const courseContainer = this.closest('[id*="local-course-overview-container-"]');
                     if (courseContainer) {
