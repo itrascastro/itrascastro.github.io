@@ -68,6 +68,12 @@
         .dark-mode .course-container a:hover { background-color: #666; }
         .course-container .ajax-notification-wrapper { background-color: rgba(59, 74, 121, 0.05); border-radius: 6px; padding: 15px; margin-top: 10px; }
         .dark-mode .course-container .ajax-notification-wrapper { background-color: rgba(211, 211, 211, 0.1); }
+        .compact-links { display: grid; gap: 8px; }
+        .compact-links-row { display: flex; flex-wrap: wrap; gap: 8px; }
+        .compact-links a { flex: 1 1 120px; display: block; padding: 8px 10px; background-color: #f8f9fa; color: #3b4a79; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 0.9em; line-height: 1.25; text-align: center; border: 1px solid #e9ecef; box-shadow: none; }
+        .compact-links a:hover { background-color: #f1f3f4; box-shadow: none; }
+        .dark-mode .compact-links a { background-color: #3a3a3a; color: #d3d3d3; border-color: #555; }
+        .dark-mode .compact-links a:hover { background-color: #404040; }
         .ajax-notification-wrapper { position: relative; }
         .mark-read-btn { position: absolute; top: 6px; right: 6px; width: 20px; height: 20px; padding: 0; font-size: 0.7em; cursor: pointer; border: 1px solid #3b4a79; background-color: transparent; color: #3b4a79; border-radius: 50%; line-height: 18px; text-align: center; opacity: 0.45; transition: opacity 0.2s, background-color 0.2s, color 0.2s; }
         .mark-read-btn:hover:not(:disabled) { opacity: 1; background-color: #3b4a79; color: #fff; }
@@ -131,6 +137,21 @@
 </ul>
 </div>
 <div class="category">
+<h2>Exempcions FCT i EE</h2>
+<div class="compact-links">
+<div aria-label="Fulls per cicle" class="compact-links-row">
+<a href="https://docs.google.com/spreadsheets/d/1fPABGnh2dfHyeZgEM6BbT3AfrNKl2av5VNKXGEV8wmk/edit?gid=0#gid=0" target="_blank">SMX</a>
+<a href="https://docs.google.com/spreadsheets/d/1E4LqDpQs0Bsafuk3gTRnUo1y4CeeaQp3FiAEbc3Ffow/edit?gid=0#gid=0" target="_blank">ASX</a>
+<a href="https://docs.google.com/spreadsheets/d/14z7yTz_gA6gvBCBSyA1t5zP3gsMz52ssaqerb5PYo4s/edit?gid=0#gid=0" target="_blank">DAM</a>
+<a href="https://docs.google.com/spreadsheets/d/1qESX-cRngjBFU8PPXxL6Gf051LPkA9iE3w8ow_NI-Gk/edit?gid=0#gid=0" target="_blank">DAW</a>
+</div>
+<div aria-label="Instruccions i recuent" class="compact-links-row">
+<a href="https://docs.google.com/document/d/1Ir6sHJjgZABO87IaLD3CbSY-ZguKjnwk/edit" target="_blank">Instruccions</a>
+<a href="https://docs.google.com/spreadsheets/d/1USf0ugbyJG3ab3hCJ1iebCJQMs3NfqG2cYe-srYwg0U/edit?gid=1734918800#gid=1734918800" target="_blank">Recompte</a>
+</div>
+</div>
+</div>
+<div class="category">
 <h2>FCT</h2>
 <ul>
 <li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=1576" target="_blank">Coordinació d'FCT</a><div class="ajax-notification-wrapper content-updated"><div class="local-course-overview-container" data-loaded="true" id="local-course-overview-container-1576"> <span class="local-course-overview-item"> <a href="https://ioc.xtec.cat/campus/mod/assign/index.php?id=1576" target="_blank"> <img alt="Tasques pendents d'avaluar" class="icon" src="https://ioc.xtec.cat/campus/mod/assign/pix/monologo.svg" title="Tasques pendents d'avaluar"/> <span>32</span> </a> </span> <div id="local-course-overview-forum-1576" style="display:none;"> </div> </div> </div></div></li>
@@ -172,7 +193,7 @@
 </div>
 
 <script>
-        // === VERSIÓ ESTÁTICA GENERADA EL 28/09/2026 20:59:38 ===
+        // === VERSIÓ ESTÁTICA GENERADA EL 28/09/2026 21:04:41 ===
         
         const moodleStatusEl = document.getElementById('moodle-status');
         const refreshButton = document.getElementById('refresh-moodle');
@@ -180,7 +201,7 @@
         
         function disableAjaxFeatures() {
             if (refreshButton) { refreshButton.style.display = 'none'; }
-            if (moodleStatusEl) { moodleStatusEl.textContent = 'Versió estàtica - Última actualització: 28/09/2026 20:59'; }
+            if (moodleStatusEl) { moodleStatusEl.textContent = 'Versió estàtica - Última actualització: 28/09/2026 21:04'; }
             if (countdownEl) { countdownEl.style.display = 'none'; }
         }
         
