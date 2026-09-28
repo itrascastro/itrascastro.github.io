@@ -69,8 +69,10 @@
         .course-container .ajax-notification-wrapper { background-color: rgba(59, 74, 121, 0.05); border-radius: 6px; padding: 15px; margin-top: 10px; }
         .dark-mode .course-container .ajax-notification-wrapper { background-color: rgba(211, 211, 211, 0.1); }
         .compact-links { display: grid; gap: 8px; }
-        .compact-links-row { display: flex; flex-wrap: wrap; gap: 8px; }
-        .compact-links a { flex: 1 1 120px; display: block; padding: 8px 10px; background-color: #f8f9fa; color: #3b4a79; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 0.9em; line-height: 1.25; text-align: center; border: 1px solid #e9ecef; box-shadow: none; }
+        .compact-links-row { display: grid; gap: 4px; }
+        .compact-links-row.cycles { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        .compact-links-row.support { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .compact-links a { display: block; padding: 6px 4px; background-color: #f8f9fa; color: #3b4a79; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 0.78em; line-height: 1.2; text-align: center; border: 1px solid #e9ecef; box-shadow: none; }
         .compact-links a:hover { background-color: #f1f3f4; box-shadow: none; }
         .dark-mode .compact-links a { background-color: #3a3a3a; color: #d3d3d3; border-color: #555; }
         .dark-mode .compact-links a:hover { background-color: #404040; }
@@ -135,17 +137,15 @@
 <li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=18979" target="_blank">0490 Programació de serveis i processos</a></div></li>
 <li><div class="course-container"><a href="https://ioc.xtec.cat/campus/course/view.php?id=18666" target="_blank">DAM/DAW 0A01 Programació avançada</a><div class="ajax-notification-wrapper content-updated"><div class="local-course-overview-container" data-loaded="true" id="local-course-overview-container-18666"> <span class="local-course-overview-item"> <a href="https://ioc.xtec.cat/campus/mod/assign/index.php?id=18666" target="_blank"> <img alt="Tasques pendents d'avaluar" class="icon" src="https://ioc.xtec.cat/campus/mod/assign/pix/monologo.svg" title="Tasques pendents d'avaluar"/> <span>5</span> </a> </span> <div id="local-course-overview-forum-18666" style="display:none;"> </div> </div> </div></div></li>
 </ul>
-</div>
-<div class="category">
-<h2>Exempcions FCT i EE</h2>
 <div class="compact-links">
-<div aria-label="Fulls per cicle" class="compact-links-row">
+<h2>Exempcions EE</h2>
+<div aria-label="Fulls per cicle" class="compact-links-row cycles">
 <a href="https://docs.google.com/spreadsheets/d/1fPABGnh2dfHyeZgEM6BbT3AfrNKl2av5VNKXGEV8wmk/edit?gid=0#gid=0" target="_blank">SMX</a>
 <a href="https://docs.google.com/spreadsheets/d/1E4LqDpQs0Bsafuk3gTRnUo1y4CeeaQp3FiAEbc3Ffow/edit?gid=0#gid=0" target="_blank">ASX</a>
 <a href="https://docs.google.com/spreadsheets/d/14z7yTz_gA6gvBCBSyA1t5zP3gsMz52ssaqerb5PYo4s/edit?gid=0#gid=0" target="_blank">DAM</a>
 <a href="https://docs.google.com/spreadsheets/d/1qESX-cRngjBFU8PPXxL6Gf051LPkA9iE3w8ow_NI-Gk/edit?gid=0#gid=0" target="_blank">DAW</a>
 </div>
-<div aria-label="Instruccions i recuent" class="compact-links-row">
+<div aria-label="Instruccions i recuent" class="compact-links-row support">
 <a href="https://docs.google.com/document/d/1Ir6sHJjgZABO87IaLD3CbSY-ZguKjnwk/edit" target="_blank">Instruccions</a>
 <a href="https://docs.google.com/spreadsheets/d/1USf0ugbyJG3ab3hCJ1iebCJQMs3NfqG2cYe-srYwg0U/edit?gid=1734918800#gid=1734918800" target="_blank">Recompte</a>
 </div>
