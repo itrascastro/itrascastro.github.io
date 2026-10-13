@@ -300,8 +300,13 @@
         
         
         <div class="nav-item">
-            <a href="#Unitat2_Bloc4_Seccio6" class="nav-link" data-section="Unitat2_Bloc4_Seccio6">6. Windsurf Plugin: suggeriments, xat i revisió</a>
+            <a href="#Unitat2_Bloc4_Seccio6" class="nav-link" data-section="Unitat2_Bloc4_Seccio6">6. GitHub Copilot: suggeriments, xat i revisió</a>
         </div>
+    
+
+    
+    
+    
     
 
     
@@ -838,15 +843,15 @@ public class Controlador {
 </div>
 
 <div class="section">
-  <h2 id="Unitat2_Bloc4_Seccio6">6. Windsurf Plugin: suggeriments, xat i revisió</h2>
+  <h2 id="Unitat2_Bloc4_Seccio6">6. GitHub Copilot: suggeriments, xat i revisió</h2>
 
-<p>L'EAC utilitza el nom actual <strong>Windsurf Plugin</strong>. El connector es coneixia anteriorment com a <strong>Codeium</strong>; si trobeu aquest nom en material complementari o documentació antiga, es refereix a la mateixa línia d'eina. Al Marketplace d'Eclipse heu de buscar <strong>Windsurf Plugin</strong>.</p>
+<p>L'EAC2 utilitza <strong>GitHub Copilot</strong>, un assistent de programació integrat a Eclipse. Copilot pot proposar codi a partir del que escriviu i també pot respondre preguntes sobre el projecte. La proposta és una ajuda per raonar i provar, no una resposta que es pugui acceptar sense revisar.</p>
 
-<p>Les dues formes d'ajuda que ens interessen són:</p>
+<p>En aquesta activitat ens interessen dues formes d'ajuda:</p>
 
 <ul>
 <li><strong>suggeriments de compleció</strong> mentre escrivim codi;</li>
-<li><strong>xat</strong> per preguntar, explicar o generar fragments.</li>
+<li><strong>Copilot Chat</strong> per preguntar, demanar una explicació o comparar alternatives.</li>
 </ul>
 
 <figure class="teaching-figure">
@@ -856,9 +861,28 @@ public class Controlador {
 
 <h3>Instal·lació i accés</h3>
 <ol>
-<li>Busqueu i instal·leu <strong>Windsurf Plugin</strong> des del Marketplace d'Eclipse. El connector és compatible amb versions modernes d'Eclipse (2026-09 hi quedava dins del rang suportat en el moment de preparar aquests materials).</li>
-<li>Autentiqueu-vos si l'eina ho requereix.</li>
-<li>Obriu la vista del xat des de la integració del connector o amb <strong>Window → Show View → Other...</strong>.</li>
+<li>Obriu <strong>Help → Eclipse Marketplace...</strong>, cerqueu <strong>GitHub Copilot</strong> i instal·leu el connector oficial.</li>
+<li>Reinicieu Eclipse quan l'assistent ho demani.</li>
+<li>Feu clic a <strong>Copilot</strong> a la barra inferior, trieu l'opció d'iniciar sessió i completeu l'autorització al navegador amb el vostre compte de GitHub.</li>
+<li>Obriu <strong>Copilot Chat</strong> des de la vista del connector o amb <strong>Window → Show View → Other...</strong>.</li>
+</ol>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Si Copilot no apareix.</strong></p><p>Comproveu que Eclipse s'ha reiniciat i que heu iniciat sessió amb el compte de GitHub correcte. El pla gratuït té límits d'ús i les opcions disponibles poden canviar; això no modifica l'activitat: cal poder obtenir i revisar una proposta per als dos mètodes.</p>
+    
+</div>
+
+
+<h3>Com treballar sense deixar que l'assistent faci l'exercici</h3>
+<ol>
+<li>Escriviu vosaltres el comentari que descriu el comportament que necessiteu.</li>
+<li>Demaneu una proposta concreta, amb el tipus de retorn i les restriccions del problema.</li>
+<li>Compareu la proposta amb el comentari abans d'acceptar-la.</li>
+<li>Executeu proves amb casos coneguts i reviseu també els casos límit.</li>
+<li>Anoteu què heu escrit vosaltres, què ha suggerit Copilot i quins canvis heu fet.</li>
 </ol>
 
 <h3>Un bon comentari pot convertir-se en una especificació</h3>
@@ -880,20 +904,20 @@ public class Controlador {
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">/*
- * Rep una cadena sense accents.
- * Retorna quants caràcters són vocals: a, e, i, o, u.
+ * Rep una cadena que pot contenir vocals amb accent.
+ * Retorna una còpia amb cada vocal substituïda per un asterisc.
  * No ha de modificar la cadena original.
  */
-public static int comptaVocals(String text) {
+public static String marcaVocals(String text) {
     // demaneu un suggeriment i reviseu-lo abans d&#39;acceptar-lo
 }</code></pre>
   </div>
 </div>
 
 
-<p>Com més precisa sigui la descripció, més fàcil és avaluar si el suggeriment compleix el que demanàveu.</p>
+<p>Com més precisa sigui la descripció, més fàcil és avaluar si el suggeriment compleix el que demanàveu. No demaneu "fes-me l'exercici". Demaneu una operació petita i verificable.</p>
 
-<p>Per a una segona operació sobre cadenes, prepareu primer una prova amb resultat conegut. Per exemple, si l'objectiu és substituir espais per guions baixos, <code>Entorns de Desenvolupament</code> hauria de produir <code>Entorns_de_Desenvolupament</code>. Això us permet comprovar el suggeriment de l'assistent sense haver de confiar-hi a cegues.</p>
+<p>Per a una segona operació sobre cadenes, prepareu primer una prova amb resultat conegut. En el segon mètode de l'EAC, una cadena com <code>Entorns de Desenvolupament</code> ha de donar <code>3</code> paraules. Això us permet comprovar el suggeriment de l'assistent sense haver de confiar-hi a cegues.</p>
 
 <table class="table">
 <thead><tr><th>Abans d'acceptar</th><th>Pregunta</th></tr></thead>
@@ -919,7 +943,7 @@ public static int comptaVocals(String text) {
   <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Demana, revisa, prova</div>
   <div class="component-content">
     
-    <div class="exercise-description">Escriviu un comentari que demani un mètode estàtic que compti dígits en una cadena. Feu que l'assistent proposi codi, expliqueu què heu escrit vosaltres i què ha completat l'eina, i proveu-lo amb «A1B22» i amb una cadena buida.</div>
+    <div class="exercise-description">Escriviu vosaltres el comentari d'un mètode estàtic que substitueixi les vocals, incloses les vocals amb accent, per asteriscs. Feu que Copilot proposi el codi, expliqueu què heu escrit vosaltres i què ha completat l'eina, i proveu-lo amb «Entorns de Desenvolupament» i amb una cadena buida.</div>
     
 
     <div class="exercise-meta">
@@ -937,9 +961,11 @@ public static int comptaVocals(String text) {
       <summary>Veure pistes</summary>
       <ul>
         
-        <li>El resultat esperat per A1B22 és 3.</li>
+        <li>El resultat esperat per «Entorns de Desenvolupament» és «*nt*rns d* D*s*nv*l*p*m*nt».</li>
         
         <li>No accepteu el suggeriment fins que pugueu explicar-lo.</li>
+        
+        <li>Per al segon mètode de l'EAC, feu una prova separada que compti les paraules de la mateixa cadena.</li>
         
       </ul>
     </details>
