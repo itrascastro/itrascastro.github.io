@@ -17,7 +17,7 @@
 <meta property="og:title" content="A3. Windows Forms i programació per esdeveniments · Annex de C#" />
 <meta property="og:locale" content="ca_ES" />
 <meta name="description" content="Materials del mòdul DAM_0488 - Desenvolupament d’interfícies (C# i Windows Forms)" />
-<meta property="og:description" content="Materials del mòdul DAM_0488 - Desenvolupament d’interfícies (C# i Windows Forms)" />
+<meta property="og:description" content="Annex introductori de C#, classes i programació per esdeveniments per al mòdul DAM_0488." />
 <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/annex-csharp/bloc-3/" />
 <meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0488/annex-csharp/bloc-3/" />
 <meta property="og:site_name" content="Desenvolupament d’interfícies" />
@@ -31,7 +31,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/ioc/dam_0488/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/">
+    
     <!-- Rich editor styles (for embedded notes panel) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
     <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -198,7 +198,7 @@
             
             
             <!-- Contingut de la Pàgina -->
-            <article class="page-content"><div class="content-body"><div class="annex-breadcrumb"><a href="/ioc/dam_0488/">Índex del mòdul</a> / <a href="/ioc/dam_0488/annex-csharp/">Annex de C#</a> / Bloc A3</div><div class="annex-lead"><div class="annex-kicker">Annex de reforç · Bloc A3</div><h1>A3. Windows Forms i programació per esdeveniments</h1><p>Del programa seqüencial als botons i formularis</p><strong>En acabar sabreu:</strong><ul><li>Identificar formularis, controls i propietats.</li><li>Explicar el flux d'un esdeveniment Click.</li><li>Escriure i connectar un gestor d'esdeveniment.</li><li>Separar el codi de pantalla del codi de negoci.</li></ul></div><h2 id="a3-1">1. Un programa que espera l'usuari</h2>
+            <article class="page-content"><div class="content-body"><div class="section"><div class="annex-breadcrumb"><a href="/ioc/dam_0488/">Índex del mòdul</a> / <a href="/ioc/dam_0488/annex-csharp/">Annex de C#</a> / Bloc A3</div><div class="annex-lead"><div class="annex-kicker">Annex de reforç · Bloc A3</div><h1>A3. Windows Forms i programació per esdeveniments</h1><p>Del programa seqüencial als botons i formularis</p><strong>En acabar sabreu:</strong><ul><li>Identificar formularis, controls i propietats.</li><li>Explicar el flux d'un esdeveniment Click.</li><li>Escriure i connectar un gestor d'esdeveniment.</li><li>Separar el codi de pantalla del codi de negoci.</li></ul></div><h2 id="a3-1">1. Un programa que espera l'usuari</h2>
 <p>En una aplicació de consola, les instruccions es van executant una rere l'altra. En una aplicació gràfica, la finestra queda oberta mentre l'usuari <strong>prem botons, escriu o selecciona elements</strong>. Cadascuna d'aquestes accions pot generar un <strong>esdeveniment</strong>.</p>
 <div class="annex-flow" aria-label="Flux dels esdeveniments"><span>Usuari fa clic</span><b>→</b><span>Botó genera Click</span><b>→</b><span>Gestor d'esdeveniment</span><b>→</b><span>S'actualitza la pantalla</span></div>
 <div class="info-box" role="note"><div class="component-header info-header" role="heading" aria-level="4">Model mental</div><div class="component-content"><p><strong>Un esdeveniment és un avís que ha passat alguna cosa.</strong> Un gestor d'esdeveniment és el mètode que nosaltres escrivim perquè l'aplicació respongui a aquest avís. No cal un bucle que consulti contínuament si s'ha premut el botó.</p></div></div>
@@ -245,7 +245,7 @@ Producte producte = new Producte(nom, 5);
 lblResultat.Text = producte.Nom;</code></pre></div></div>
 <p>Aquesta estructura serà clau per entendre el projecte <code>GestorEstocBotiga</code> i els components visuals propis.</p>
 <div class="exercise-box" role="region" aria-label="Exercici"><div class="component-header info-header" role="heading" aria-level="4">Practiqueu: Comptador amb dos botons</div><div class="component-content"><p>Afegiu un segon botó <code>btnReiniciar</code> que torni el comptador a zero i actualitzi el Label. Comproveu que la pantalla canvia només després de prémer un botó, i que el valor del camp <code>clics</code> es conserva entre clics.</p></div></div>
-<div class="success-box" role="note"><div class="component-header info-header" role="heading" aria-level="4">Comprovació abans de continuar</div><div class="component-content"><ul><li>Puc crear un Button i un Label al dissenyador.</li><li>Sé diferenciar <code>Name</code> i <code>Text</code>.</li><li>Entenc la línia <code>btnSumar.Click += BtnSumar_Click;</code>.</li><li>Sé què és un mètode gestor d'esdeveniment.</li><li>Sé per què convé separar la lògica del formulari.</li></ul></div></div><nav class="annex-bottom-nav" aria-label="Navegació de l'annex"><a href="/ioc/dam_0488/annex-csharp/bloc-2/">← Bloc anterior</a><a href="/ioc/dam_0488/annex-csharp/bloc-4/">Bloc següent →</a></nav></div></article>
+<div class="success-box" role="note"><div class="component-header info-header" role="heading" aria-level="4">Comprovació abans de continuar</div><div class="component-content"><ul><li>Puc crear un Button i un Label al dissenyador.</li><li>Sé diferenciar <code>Name</code> i <code>Text</code>.</li><li>Entenc la línia <code>btnSumar.Click += BtnSumar_Click;</code>.</li><li>Sé què és un mètode gestor d'esdeveniment.</li><li>Sé per què convé separar la lògica del formulari.</li></ul></div></div><nav class="annex-bottom-nav" aria-label="Navegació de l'annex"><a href="/ioc/dam_0488/annex-csharp/bloc-2/">← Bloc anterior</a><a href="/ioc/dam_0488/annex-csharp/bloc-4/">Bloc següent →</a></nav></div></div></article>
             
             <!-- Navegació entre pàgines -->
             
