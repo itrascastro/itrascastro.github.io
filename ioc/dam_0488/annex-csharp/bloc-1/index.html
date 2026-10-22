@@ -17,7 +17,7 @@
 <meta property="og:title" content="A1. Primers passos amb C# · Annex de C#" />
 <meta property="og:locale" content="ca_ES" />
 <meta name="description" content="Materials del mòdul DAM_0488 - Desenvolupament d’interfícies (C# i Windows Forms)" />
-<meta property="og:description" content="Materials del mòdul DAM_0488 - Desenvolupament d’interfícies (C# i Windows Forms)" />
+<meta property="og:description" content="Annex introductori de C#, classes i programació per esdeveniments per al mòdul DAM_0488." />
 <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/annex-csharp/bloc-1/" />
 <meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0488/annex-csharp/bloc-1/" />
 <meta property="og:site_name" content="Desenvolupament d’interfícies" />
@@ -31,7 +31,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/ioc/dam_0488/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/">
+    
     <!-- Rich editor styles (for embedded notes panel) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
     <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -198,7 +198,7 @@
             
             
             <!-- Contingut de la Pàgina -->
-            <article class="page-content"><div class="content-body"><div class="annex-breadcrumb"><a href="/ioc/dam_0488/">Índex del mòdul</a> / <a href="/ioc/dam_0488/annex-csharp/">Annex de C#</a> / Bloc A1</div><div class="annex-lead"><div class="annex-kicker">Annex de reforç · Bloc A1</div><h1>A1. Primers passos amb C#</h1><p>Variables, condicions, bucles i entrada de dades</p><strong>En acabar sabreu:</strong><ul><li>Executar un programa senzill de consola.</li><li>Entendre variables, tipus, condicions i bucles.</li><li>Identificar la diferència entre una instrucció i un bloc de codi.</li></ul></div><h2 id="a1-1">1. Per què necessitem aquest annex?</h2>
+            <article class="page-content"><div class="content-body"><div class="section"><div class="annex-breadcrumb"><a href="/ioc/dam_0488/">Índex del mòdul</a> / <a href="/ioc/dam_0488/annex-csharp/">Annex de C#</a> / Bloc A1</div><div class="annex-lead"><div class="annex-kicker">Annex de reforç · Bloc A1</div><h1>A1. Primers passos amb C#</h1><p>Variables, condicions, bucles i entrada de dades</p><strong>En acabar sabreu:</strong><ul><li>Executar un programa senzill de consola.</li><li>Entendre variables, tipus, condicions i bucles.</li><li>Identificar la diferència entre una instrucció i un bloc de codi.</li></ul></div><h2 id="a1-1">1. Per què necessitem aquest annex?</h2>
 <p>Als materials de DAM_0488 treballareu amb <strong>C#, .NET i Windows Forms</strong>. Si veniu d'un altre llenguatge, o no heu fet programació orientada a objectes ni per esdeveniments, aquest annex us permet adquirir les bases abans de començar el projecte <code>GestorEstocBotiga</code> de la unitat 1.</p>
 <div class="info-box" role="note"><div class="component-header info-header" role="heading" aria-level="4">Què NO és aquest annex</div><div class="component-content"><p>No és un curs exhaustiu de C#. És una <strong>introducció pràctica</strong> per llegir, entendre i modificar els exemples del mòdul. No substitueix les tres unitats ni afegeix cap resultat d'aprenentatge nou.</p></div></div>
 <h2 id="a1-2">2. Preparar C# i crear el primer programa</h2>
@@ -260,7 +260,7 @@ else
 }</code></pre></div></div>
 <p>L'operador <code>&amp;&amp;</code> significa «i». L'operador <code>?</code> a <code>string?</code> indica que el valor podria ser <code>null</code>, és a dir, que podria no haver-hi cap text.</p>
 <div class="exercise-box" role="region" aria-label="Exercici"><div class="component-header info-header" role="heading" aria-level="4">Practiqueu: Primer classificador d'estoc</div><div class="component-content"><p>Feu un programa que demani una quantitat i mostri «Esgotat» si és 0, «Estoc baix» si és entre 1 i 4, i «Disponible» si és 5 o més. Si la dada no és vàlida, mostreu un missatge clar. Proveu les entrades <code>0</code>, <code>3</code>, <code>8</code>, <code>-1</code> i <code>hola</code>.</p></div></div>
-<div class="success-box" role="note"><div class="component-header info-header" role="heading" aria-level="4">Comprovació abans de continuar</div><div class="component-content"><ul><li>Entenc què fan <code>string</code>, <code>int</code> i <code>bool</code>.</li><li>Sé diferenciar <code>=</code> i <code>==</code>.</li><li>Sé explicar què fa un <code>if</code> i què fa un <code>for</code>.</li><li>Sé validar un número amb <code>int.TryParse</code>.</li></ul></div></div><nav class="annex-bottom-nav" aria-label="Navegació de l'annex"><a href="/ioc/dam_0488/annex-csharp/">← Índex de l'annex</a><a href="/ioc/dam_0488/annex-csharp/bloc-2/">Bloc següent →</a></nav></div></article>
+<div class="success-box" role="note"><div class="component-header info-header" role="heading" aria-level="4">Comprovació abans de continuar</div><div class="component-content"><ul><li>Entenc què fan <code>string</code>, <code>int</code> i <code>bool</code>.</li><li>Sé diferenciar <code>=</code> i <code>==</code>.</li><li>Sé explicar què fa un <code>if</code> i què fa un <code>for</code>.</li><li>Sé validar un número amb <code>int.TryParse</code>.</li></ul></div></div><nav class="annex-bottom-nav" aria-label="Navegació de l'annex"><a href="/ioc/dam_0488/annex-csharp/">← Índex de l'annex</a><a href="/ioc/dam_0488/annex-csharp/bloc-2/">Bloc següent →</a></nav></div></div></article>
             
             <!-- Navegació entre pàgines -->
             
