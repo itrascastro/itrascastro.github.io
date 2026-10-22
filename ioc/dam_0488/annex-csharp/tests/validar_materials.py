@@ -8,7 +8,7 @@ import sys
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
-SITE = ROOT.parents[1]
+SITE = ROOT.parent
 ANNEX = ROOT
 PAGES = [ANNEX / "index.html"] + [ANNEX / f"bloc-{n}" / "index.html" for n in range(1, 5)]
 
