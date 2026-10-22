@@ -87,6 +87,15 @@
 </style>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js"></script>
 <script>document.addEventListener('DOMContentLoaded',function(){if(window.Prism){Prism.highlightAll();}});</script>
+<style>
+.annex-visual { margin: 1.6rem 0 2.2rem; width: 100%; }
+.annex-visual a { display:block; border-radius: 12px; border: 1px solid #d8e2ef; background: #fff; overflow: hidden; }
+.annex-visual .figure-img { display:block; width:100%; max-width:100%; height:auto; object-fit:contain; }
+.annex-visual .figure-caption { margin:.6rem 0 0; font-size:.91rem; color:var(--text-secondary,#536276); line-height:1.55; }
+.annex-visual .annex-img-hint {font-size:.77rem;white-space:normal;}
+.annex-visual-lead{margin:1rem 0;font-size:1.03rem;}
+@media(max-width:600px){.annex-visual .figure-caption{font-size:.85rem}.annex-visual{margin:1.1rem 0 1.4rem}}
+</style>
 </head>
 
 <body class="home-layout" data-baseurl="/ioc/dam_0488">
@@ -204,18 +213,19 @@
 <h2 id="a1-2">2. Preparar C# i crear el primer programa</h2>
 <p>Per als exercicis de consola podeu utilitzar el <strong>.NET SDK 8 o posterior</strong> a Windows, Linux o macOS. Els exercicis de <strong>Windows Forms</strong> dels blocs A3 i A4 requereixen Windows i Visual Studio amb la càrrega <em>.NET desktop development</em>.</p>
 <p>Obriu un terminal i executeu aquestes ordres. L'última inicia el programa:</p>
-<div class="code-block" data-lang="bash" role="region" aria-label="Exemple de codi TERMINAL"><div class="code-header"><div class="code-info"><span class="code-lang">TERMINAL</span><span class="code-filename">Terminal</span></div></div><div class="code-container"><pre role="textbox" aria-readonly="true"><code class="language-bash">dotnet --version
+<div class="code-block" data-lang="bash" role="region" aria-label="Exemple de codi TERMINAL"><div class="code-header"><div class="code-info"><span class="code-lang">TERMINAL</span><span class="code-filename">Terminal</span></div><div class="code-actions"><button type="button" class="toggle-lines" title="Mostrar o ocultar números de línia" aria-label="Mostrar o ocultar números de línia" aria-pressed="true">#</button><button type="button" class="copy-btn" title="Copiar codi" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button></div></div><div class="code-container"><div class="line-numbers" aria-hidden="true"></div><pre role="textbox" aria-readonly="true"><code class="language-bash">dotnet --version
 dotnet new console -n PrimerCSharp
 cd PrimerCSharp
 dotnet run</code></pre></div></div>
 <p>En aquest projecte trobareu un fitxer <code>Program.cs</code>. Substituïu-ne el contingut per:</p>
-<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Program.cs</span></div></div><div class="code-container"><pre role="textbox" aria-readonly="true"><code class="language-csharp">Console.WriteLine(&quot;Hola, DAM_0488!&quot;);
+<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Program.cs</span></div><div class="code-actions"><button type="button" class="toggle-lines" title="Mostrar o ocultar números de línia" aria-label="Mostrar o ocultar números de línia" aria-pressed="true">#</button><button type="button" class="copy-btn" title="Copiar codi" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button></div></div><div class="code-container"><div class="line-numbers" aria-hidden="true"></div><pre role="textbox" aria-readonly="true"><code class="language-csharp">Console.WriteLine(&quot;Hola, DAM_0488!&quot;);
 Console.WriteLine(&quot;Estic aprenent C#.&quot;);</code></pre></div></div>
 <p>Executeu <code>dotnet run</code> una altra vegada. <code>Console.WriteLine</code> mostra text. El símbol <code>;</code> acaba la instrucció, i les cometes delimiten text literal.</p>
 <div class="info-box" role="note"><div class="component-header info-header" role="heading" aria-level="4">On s'executa aquest codi?</div><div class="component-content"><p>Una aplicació de consola comença per les instruccions de <code>Program.cs</code> i s'acaba quan arriba al final. En Windows Forms, en canvi, es mostra una finestra i el programa <strong>espera esdeveniments de l'usuari</strong>. Veureu aquest canvi al bloc A3.</p></div></div>
 <h2 id="a1-3">3. Variables i tipus de dades</h2>
+<figure class="figure annex-visual"><a href="/ioc/dam_0488/assets/img/annex-csharp/variables.svg" target="_blank" rel="noopener" title="Obre la imatge a mida completa"><img class="figure-img" src="/ioc/dam_0488/assets/img/annex-csharp/variables.svg" alt="Esquema d'una variable int unitats igual a dotze, amb els conceptes de tipus, nom i valor, i assignació posterior" loading="lazy" decoding="async"></a><figcaption class="figure-caption"><strong>Figura A1.1.</strong> Una declaració de C# conté tres idees diferents: tipus, identificador i valor. <span class="annex-img-hint">(Feu clic per ampliar-la.)</span></figcaption></figure>
 <p>Una variable té un <strong>nom</strong>, un <strong>tipus</strong> i un <strong>valor</strong>. Els tipus més habituals són <code>int</code> (enter), <code>double</code> (decimal), <code>bool</code> (cert/fals) i <code>string</code> (text).</p>
-<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Program.cs</span></div></div><div class="code-container"><pre role="textbox" aria-readonly="true"><code class="language-csharp">string nom = &quot;Teclat&quot;;
+<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Program.cs</span></div><div class="code-actions"><button type="button" class="toggle-lines" title="Mostrar o ocultar números de línia" aria-label="Mostrar o ocultar números de línia" aria-pressed="true">#</button><button type="button" class="copy-btn" title="Copiar codi" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button></div></div><div class="code-container"><div class="line-numbers" aria-hidden="true"></div><pre role="textbox" aria-readonly="true"><code class="language-csharp">string nom = &quot;Teclat&quot;;
 int unitats = 12;
 double preu = 19.95;
 bool disponible = unitats &gt; 0;
@@ -225,7 +235,7 @@ Console.WriteLine(unitats * preu);
 Console.WriteLine(disponible);</code></pre></div></div>
 <p><code>var</code> deixa que el compilador dedueixi el tipus: <code>var total = 3;</code> és un enter. C# continua sent un llenguatge <strong>fortament tipat</strong>; no podeu posar un text en una variable <code>int</code>.</p>
 <h2 id="a1-4">4. Decisions i repeticions</h2>
-<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Program.cs</span></div></div><div class="code-container"><pre role="textbox" aria-readonly="true"><code class="language-csharp">int estoc = 4;
+<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Program.cs</span></div><div class="code-actions"><button type="button" class="toggle-lines" title="Mostrar o ocultar números de línia" aria-label="Mostrar o ocultar números de línia" aria-pressed="true">#</button><button type="button" class="copy-btn" title="Copiar codi" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button></div></div><div class="code-container"><div class="line-numbers" aria-hidden="true"></div><pre role="textbox" aria-readonly="true"><code class="language-csharp">int estoc = 4;
 
 if (estoc == 0)
 {
@@ -247,7 +257,7 @@ for (int i = 0; i &lt; 3; i++)
 <p>Fixeu-vos en <code>=</code> (assignació) i <code>==</code> (comparació). Amb <code>if</code> decidim què executar; amb <code>for</code> repetim una tasca mentre la condició sigui certa. Les claus <code>{ }</code> delimiten cada bloc.</p>
 <h2 id="a1-5">5. Llegir dades sense fer fallar el programa</h2>
 <p>Un camp de formulari i <code>Console.ReadLine()</code> retornen text. Per convertir-lo a enter és millor utilitzar <code>int.TryParse</code> i comprovar si és vàlid:</p>
-<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Program.cs</span></div></div><div class="code-container"><pre role="textbox" aria-readonly="true"><code class="language-csharp">Console.Write(&quot;Quantes unitats hi ha? &quot;);
+<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Program.cs</span></div><div class="code-actions"><button type="button" class="toggle-lines" title="Mostrar o ocultar números de línia" aria-label="Mostrar o ocultar números de línia" aria-pressed="true">#</button><button type="button" class="copy-btn" title="Copiar codi" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button></div></div><div class="code-container"><div class="line-numbers" aria-hidden="true"></div><pre role="textbox" aria-readonly="true"><code class="language-csharp">Console.Write(&quot;Quantes unitats hi ha? &quot;);
 string? entrada = Console.ReadLine();
 
 if (int.TryParse(entrada, out int quantitat) &amp;&amp; quantitat &gt;= 0)
