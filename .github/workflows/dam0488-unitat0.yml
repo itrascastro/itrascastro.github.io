@@ -40,5 +40,7 @@ jobs:
           dotnet-version: "10.0.x"
       - name: Compilar l'exemple de Windows Forms
         run: dotnet build ioc/dam_0488/annex-csharp/exemples/MiniCataleg/MiniCataleg.csproj --configuration Release --nologo
+      - name: Compilar tots els fragments de les lliçons A1, A2 i A3
+        run: python ioc/dam_0488/annex-csharp/tests/compilar_fragments.py
       - name: Executar les proves de model i gestor
         run: dotnet run --project ioc/dam_0488/annex-csharp/tests/MiniCataleg.Verificacio/MiniCataleg.Verificacio.csproj --configuration Release --no-launch-profile
