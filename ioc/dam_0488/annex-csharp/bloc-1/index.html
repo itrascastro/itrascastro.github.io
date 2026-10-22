@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>A1. Primers passos amb C# · Annex de C# | DAM_0488 - IOC</title>
+    <meta name="description" content="Annex C#: Variables, condicions, bucles i entrada de dades">
+    
+    
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Desenvolupament d’interfícies | Materials del mòdul DAM_0488 - Desenvolupament d’interfícies (C# i Windows Forms)</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="A1. Primers passos amb C# · Annex de C#" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Materials del mòdul DAM_0488 - Desenvolupament d’interfícies (C# i Windows Forms)" />
+<meta property="og:description" content="Annex introductori de C#, classes i programació per esdeveniments per al mòdul DAM_0488." />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/annex-csharp/bloc-1/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0488/annex-csharp/bloc-1/" />
+<meta property="og:site_name" content="Desenvolupament d’interfícies" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Desenvolupament d’interfícies" />
+
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/dam_0488/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0488/feed.xml" title="Desenvolupament d&apos;interfícies" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-ini.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/code-block.css">
+    <script src="/ioc/dam_0488/assets/js/code-block.js"></script>
+
+<style>
+.annex-lead{padding:1.1rem 1.3rem;border-left:4px solid #2e6bb6;background:rgba(55,115,182,.07);border-radius:6px;margin-bottom:1.4rem}
+.annex-kicker{font-size:.8rem;font-weight:700;letter-spacing:.055em;text-transform:uppercase;color:#3767a3;margin-bottom:.4rem}
+.annex-breadcrumb{font-size:.92rem;margin:1rem 0 1.4rem}
+.annex-flow{display:flex;align-items:center;justify-content:center;gap:.65rem;flex-wrap:wrap;margin:1.3rem 0}
+.annex-flow span{background:#eef4fc;color:#183b6b;padding:.55rem .8rem;border-radius:6px;font-weight:600}
+.annex-flow b{color:#64748b}
+.annex-summary{padding:.8rem 1rem;background:rgba(25,110,100,.06);border-left:3px solid #368c80;margin:1rem 0}
+.annex-bottom-nav{display:flex;justify-content:space-between;gap:1rem;margin:2rem 0 1rem;flex-wrap:wrap}
+.annex-bottom-nav a{font-weight:600}
+.annex-toc li{margin-bottom:.35rem}
+.annex-figure{display:block;max-width:100%}
+.annex-step{font-weight:700;color:#245b9b}
+.code-block pre{white-space:pre;overflow-x:auto;tab-size:4}
+@media(max-width:650px){.annex-flow{align-items:stretch;flex-direction:column}.annex-flow b{text-align:center}}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded',function(){if(window.Prism){Prism.highlightAll();}});</script>
+<style>
+.annex-visual { margin: 1.6rem 0 2.2rem; width: 100%; }
+.annex-visual a { display:block; border-radius: 12px; border: 1px solid #d8e2ef; background: #fff; overflow: hidden; }
+.annex-visual .figure-img { display:block; width:100%; max-width:100%; height:auto; object-fit:contain; }
+.annex-visual .figure-caption { margin:.6rem 0 0; font-size:.91rem; color:var(--text-secondary,#536276); line-height:1.55; }
+.annex-visual .annex-img-hint {font-size:.77rem;white-space:normal;}
+.annex-visual-lead{margin:1rem 0;font-size:1.03rem;}
+@media(max-width:600px){.annex-visual .figure-caption{font-size:.85rem}.annex-visual{margin:1.1rem 0 1.4rem}}
+</style>
+</head>
+
+<body class="home-layout" data-baseurl="/ioc/dam_0488">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/dam_0488/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/dam_0488/" class="title-link">
+                <h1>DAM_0488 - Desenvolupament d'interfícies</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/dam_0488/" class="nav-dropdown-item">Índex del Curs</a>
+<a href="/ioc/dam_0488/annex-csharp/" class="nav-dropdown-item ">Annex C# · Guia d'iniciació</a>
+<a href="/ioc/dam_0488/annex-csharp/bloc-1/" class="nav-dropdown-item current">A1 · Primers passos i llenguatge</a>
+<a href="/ioc/dam_0488/annex-csharp/bloc-2/" class="nav-dropdown-item ">A2 · Mètodes i classes</a>
+<a href="/ioc/dam_0488/annex-csharp/bloc-3/" class="nav-dropdown-item ">A3 · Formularis i esdeveniments</a>
+<a href="/ioc/dam_0488/annex-csharp/bloc-4/" class="nav-dropdown-item ">A4 · Miniaplicació guiada</a>
+            
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Entorn de treball i projecte base
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Disseny del formulari: controls, propietats i esdeveniments
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Components visuals propis
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Persistència, proves, documentació i revisió
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Usabilitat i accessibilitat
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Disseny de pantalles i pautes d'interfície
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Informes
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Manuals i documentació
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 1: Interfícies naturals i reconeixement de veu
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 2: Síntesi de veu i integració
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 3: Distribució i instal·lació
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 4: Proves
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content"><div class="content-body"><div class="section"><div class="annex-breadcrumb"><a href="/ioc/dam_0488/">Índex del mòdul</a> / <a href="/ioc/dam_0488/annex-csharp/">Unitat 0 · C#</a> / Bloc A1</div><div class="annex-lead"><div class="annex-kicker">Unitat 0 · Annex de reforç · Bloc A1</div><h1>A1. Primers passos amb C#</h1><p>Variables, condicions, bucles i entrada de dades</p><strong>En acabar sabreu:</strong><ul><li>Executar un programa senzill de consola.</li><li>Entendre variables, tipus, condicions i bucles.</li><li>Identificar la diferència entre una instrucció i un bloc de codi.</li></ul></div><h2 id="a1-1">1. Per què necessitem aquest annex?</h2>
+<p>Als materials de DAM_0488 treballareu amb <strong>C#, .NET i Windows Forms</strong>. Si veniu d'un altre llenguatge, o no heu fet programació orientada a objectes ni per esdeveniments, aquest annex us permet adquirir les bases abans de començar el projecte <code>GestorEstocBotiga</code> de la unitat 1.</p>
+<div class="info-box" role="note"><div class="component-header info-header" role="heading" aria-level="4">Què NO és aquest annex</div><div class="component-content"><p>No és un curs exhaustiu de C#. És una <strong>introducció pràctica</strong> per llegir, entendre i modificar els exemples del mòdul. No substitueix les tres unitats ni afegeix cap resultat d'aprenentatge nou.</p></div></div>
+<h2 id="a1-2">2. Preparar C# i crear el primer programa</h2>
+<p>Per als exercicis de consola podeu utilitzar el <strong>.NET SDK 8 o posterior</strong> a Windows, Linux o macOS. Els exercicis de <strong>Windows Forms</strong> dels blocs A3 i A4 requereixen Windows i Visual Studio amb la càrrega <em>.NET desktop development</em>.</p>
+<p>Obriu un terminal i executeu aquestes ordres. L'última inicia el programa:</p>
+<div class="code-block" data-lang="bash" role="region" aria-label="Exemple de codi TERMINAL"><div class="code-header"><div class="code-info"><span class="code-lang">TERMINAL</span><span class="code-filename">Terminal</span></div><div class="code-actions"><button type="button" class="toggle-lines" title="Mostrar o ocultar números de línia" aria-label="Mostrar o ocultar números de línia" aria-pressed="true">#</button><button type="button" class="copy-btn" title="Copiar codi" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button></div></div><div class="code-container"><div class="line-numbers" aria-hidden="true"></div><pre role="textbox" aria-readonly="true"><code class="language-bash">dotnet --version
+dotnet new console -n PrimerCSharp
+cd PrimerCSharp
+dotnet run</code></pre></div></div>
+<p>En aquest projecte trobareu un fitxer <code>Program.cs</code>. Substituïu-ne el contingut per:</p>
+<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Program.cs</span></div><div class="code-actions"><button type="button" class="toggle-lines" title="Mostrar o ocultar números de línia" aria-label="Mostrar o ocultar números de línia" aria-pressed="true">#</button><button type="button" class="copy-btn" title="Copiar codi" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button></div></div><div class="code-container"><div class="line-numbers" aria-hidden="true"></div><pre role="textbox" aria-readonly="true"><code class="language-csharp">Console.WriteLine(&quot;Hola, DAM_0488!&quot;);
+Console.WriteLine(&quot;Estic aprenent C#.&quot;);</code></pre></div></div>
+<p>Executeu <code>dotnet run</code> una altra vegada. <code>Console.WriteLine</code> mostra text. El símbol <code>;</code> acaba la instrucció, i les cometes delimiten text literal.</p>
+<div class="info-box" role="note"><div class="component-header info-header" role="heading" aria-level="4">On s'executa aquest codi?</div><div class="component-content"><p>Una aplicació de consola comença per les instruccions de <code>Program.cs</code> i s'acaba quan arriba al final. En Windows Forms, en canvi, es mostra una finestra i el programa <strong>espera esdeveniments de l'usuari</strong>. Veureu aquest canvi al bloc A3.</p></div></div>
+<h2 id="a1-3">3. Variables i tipus de dades</h2>
+<figure class="figure annex-visual annex-infographic"><a href="/ioc/dam_0488/assets/img/annex-csharp/infografies/A1_variables.png" target="_blank" rel="noopener" aria-label="Ampliar la infografia"><img class="figure-img" src="/ioc/dam_0488/assets/img/annex-csharp/infografies/A1_variables.png" alt="Esquema en català: int unitats igual a 12, amb fletxes que identifiquen el tipus, el nom de la variable i el valor, i una assignació posterior." loading="lazy" decoding="async" width="1536"></a><figcaption class="figure-caption"><strong>Infografia.</strong> Les parts d'una declaració de variable i l'efecte de canviar-ne el valor. <span class="annex-img-hint">(Feu clic per veure-la a mida completa.)</span></figcaption></figure>
+<p>Una variable té un <strong>nom</strong>, un <strong>tipus</strong> i un <strong>valor</strong>. Els tipus més habituals són <code>int</code> (enter), <code>double</code> (decimal), <code>bool</code> (cert/fals) i <code>string</code> (text).</p>
+<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Program.cs</span></div><div class="code-actions"><button type="button" class="toggle-lines" title="Mostrar o ocultar números de línia" aria-label="Mostrar o ocultar números de línia" aria-pressed="true">#</button><button type="button" class="copy-btn" title="Copiar codi" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button></div></div><div class="code-container"><div class="line-numbers" aria-hidden="true"></div><pre role="textbox" aria-readonly="true"><code class="language-csharp">string nom = &quot;Teclat&quot;;
+int unitats = 12;
+double preu = 19.95;
+bool disponible = unitats &gt; 0;
+
+Console.WriteLine(nom);
+Console.WriteLine(unitats * preu);
+Console.WriteLine(disponible);</code></pre></div></div>
+<p><code>var</code> deixa que el compilador dedueixi el tipus: <code>var total = 3;</code> és un enter. C# continua sent un llenguatge <strong>fortament tipat</strong>; no podeu posar un text en una variable <code>int</code>.</p>
+<h2 id="a1-4">4. Decisions i repeticions</h2>
+<figure class="figure annex-visual annex-infographic"><a href="/ioc/dam_0488/assets/img/annex-csharp/infografies/A1_condicions_bucles.png" target="_blank" rel="noopener" aria-label="Ampliar la infografia"><img class="figure-img" src="/ioc/dam_0488/assets/img/annex-csharp/infografies/A1_condicions_bucles.png" alt="Làmina de C# en català que contrasta if i else amb for i foreach, amb fluxos de decisió, iteració i exemples d'estoc." loading="lazy" decoding="async" width="1536"></a><figcaption class="figure-caption"><strong>Infografia.</strong> Compareu un <code>if</code> (decisió) amb <code>for</code> (repetició) i <code>foreach</code> (recorregut d'una col·lecció). <span class="annex-img-hint">(Feu clic per veure-la a mida completa.)</span></figcaption></figure>
+<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Program.cs</span></div><div class="code-actions"><button type="button" class="toggle-lines" title="Mostrar o ocultar números de línia" aria-label="Mostrar o ocultar números de línia" aria-pressed="true">#</button><button type="button" class="copy-btn" title="Copiar codi" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button></div></div><div class="code-container"><div class="line-numbers" aria-hidden="true"></div><pre role="textbox" aria-readonly="true"><code class="language-csharp">int estoc = 4;
+
+if (estoc == 0)
+{
+    Console.WriteLine(&quot;Esgotat&quot;);
+}
+else if (estoc &lt; 5)
+{
+    Console.WriteLine(&quot;Estoc baix&quot;);
+}
+else
+{
+    Console.WriteLine(&quot;Disponible&quot;);
+}
+
+for (int i = 0; i &lt; 3; i++)
+{
+    Console.WriteLine(&quot;Revisió &quot; + i);
+}</code></pre></div></div>
+<p>Fixeu-vos en <code>=</code> (assignació) i <code>==</code> (comparació). Amb <code>if</code> decidim què executar; amb <code>for</code> repetim una tasca mentre la condició sigui certa. Les claus <code>{ }</code> delimiten cada bloc.</p>
+<h2 id="a1-5">5. Llegir dades sense fer fallar el programa</h2>
+<div class="annex-summary"><strong>Abans de continuar:</strong> expliqueu amb paraules vostres per què <code>int.Parse("hola")</code> falla i <code>int.TryParse("hola", out int valor)</code> permet detectar una dada incorrecta sense llançar una excepció.</div>
+<p>Un camp de formulari i <code>Console.ReadLine()</code> retornen text. Per convertir-lo a enter és millor utilitzar <code>int.TryParse</code> i comprovar si és vàlid:</p>
+<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Program.cs</span></div><div class="code-actions"><button type="button" class="toggle-lines" title="Mostrar o ocultar números de línia" aria-label="Mostrar o ocultar números de línia" aria-pressed="true">#</button><button type="button" class="copy-btn" title="Copiar codi" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button></div></div><div class="code-container"><div class="line-numbers" aria-hidden="true"></div><pre role="textbox" aria-readonly="true"><code class="language-csharp">Console.Write(&quot;Quantes unitats hi ha? &quot;);
+string? entrada = Console.ReadLine();
+
+if (int.TryParse(entrada, out int quantitat) &amp;&amp; quantitat &gt;= 0)
+{
+    Console.WriteLine(&quot;Quantitat correcta: &quot; + quantitat);
+}
+else
+{
+    Console.WriteLine(&quot;Introduïu un enter no negatiu.&quot;);
+}</code></pre></div></div>
+<p>L'operador <code>&amp;&amp;</code> significa «i». L'operador <code>?</code> a <code>string?</code> indica que el valor podria ser <code>null</code>, és a dir, que podria no haver-hi cap text.</p>
+<div class="exercise-box" role="region" aria-label="Exercici"><div class="component-header info-header" role="heading" aria-level="4">Practiqueu: Primer classificador d'estoc</div><div class="component-content"><p>Feu un programa que demani una quantitat i mostri «Esgotat» si és 0, «Estoc baix» si és entre 1 i 4, i «Disponible» si és 5 o més. Si la dada no és vàlida, mostreu un missatge clar. Proveu les entrades <code>0</code>, <code>3</code>, <code>8</code>, <code>-1</code> i <code>hola</code>.</p></div></div>
+<div class="success-box" role="note"><div class="component-header info-header" role="heading" aria-level="4">Comprovació abans de continuar</div><div class="component-content"><ul><li>Entenc què fan <code>string</code>, <code>int</code> i <code>bool</code>.</li><li>Sé diferenciar <code>=</code> i <code>==</code>.</li><li>Sé explicar què fa un <code>if</code> i què fa un <code>for</code>.</li><li>Sé validar un número amb <code>int.TryParse</code>.</li></ul></div></div><nav class="annex-bottom-nav" aria-label="Navegació de l'annex"><a href="/ioc/dam_0488/annex-csharp/">← Índex de l'annex</a><a href="/ioc/dam_0488/annex-csharp/bloc-2/">Bloc següent →</a></nav></div></div></article>
+            
+            <!-- Navegació entre pàgines -->
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="0" data-total="3">(0/3)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 0%"></div></div>
+                </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/dam_0488/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/dam_0488",
+        title: "Desenvolupament d'interfícies",
+        version: "v1.0",
+        cicle_modul: "DAM_0488"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/dam_0488/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/dam_0488/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>
