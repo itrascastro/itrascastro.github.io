@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 3: Formularis, controls, esdeveniments i depuració | Desenvolupament d'interfícies - IOC</title>
+    <meta name="description" content="Fonaments de C# i Windows Forms per a principiants">
+    <meta name="page-unitat" content="0">
+    <meta name="page-bloc" content="3">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 3: Formularis, controls, esdeveniments i depuració | Desenvolupament d’interfícies</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 3: Formularis, controls, esdeveniments i depuració" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Visual Studio, .NET SDK i creació del projecte Windows Forms des de zero" />
+<meta property="og:description" content="Visual Studio, .NET SDK i creació del projecte Windows Forms des de zero" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-0/bloc-3/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0488/unitat-0/bloc-3/" />
+<meta property="og:site_name" content="Desenvolupament d’interfícies" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 3: Formularis, controls, esdeveniments i depuració" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Visual Studio, .NET SDK i creació del projecte Windows Forms des de zero","headline":"Bloc 3: Formularis, controls, esdeveniments i depuració","url":"https://itrascastro.github.io/ioc/dam_0488/unitat-0/bloc-3/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-0/bloc-3/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/dam_0488/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0488/feed.xml" title="Desenvolupament d&apos;interfícies" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-ini.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/code-block.css">
+    <script src="/ioc/dam_0488/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/dam_0488">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/dam_0488/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/dam_0488/" class="title-link">
+                <h1>DAM_0488 - Desenvolupament d'interfícies</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/dam_0488/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/dam_0488/unitat-0/bloc-1/" class="nav-dropdown-item ">Unitat 0 - Bloc 1: Els primers passos amb C#</a>
+<a href="/ioc/dam_0488/unitat-0/bloc-2/" class="nav-dropdown-item ">Unitat 0 - Bloc 2: Classes, objectes i col·leccions</a>
+<a href="/ioc/dam_0488/unitat-0/bloc-3/" class="nav-dropdown-item current">Unitat 0 - Bloc 3: Formularis, controls, esdeveniments i depuració</a>
+<a href="/ioc/dam_0488/unitat-0/bloc-4/" class="nav-dropdown-item ">Unitat 0 - Bloc 4: Cas pràctic complet: MiniInventari</a>
+<a href="/ioc/dam_0488/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Entorn de treball i projecte base
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Disseny del formulari: controls, propietats i esdeveniments
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Components visuals propis
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Persistència, proves, documentació i revisió
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Usabilitat i accessibilitat
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Disseny de pantalles i pautes d'interfície
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Informes
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Manuals i documentació
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 1: Interfícies naturals i reconeixement de veu
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 2: Síntesi de veu i integració
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 3: Distribució i instal·lació
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 4: Proves
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section"><h3>Contingut del Bloc</h3><div class="nav-item"><a href="#Unitat0_Bloc3_Seccio1" class="nav-link" data-section="Unitat0_Bloc3_Seccio1">1. Com funciona una aplicació Windows Forms?</a></div>
+<div class="nav-item"><a href="#Unitat0_Bloc3_Seccio2" class="nav-link" data-section="Unitat0_Bloc3_Seccio2">2. Dissenyador: controls, noms, textos i propietats</a></div>
+<div class="nav-item"><a href="#Unitat0_Bloc3_Seccio3" class="nav-link" data-section="Unitat0_Bloc3_Seccio3">3. Esdeveniments: com es connecta Click a un mètode?</a></div>
+<div class="nav-item"><a href="#Unitat0_Bloc3_Seccio4" class="nav-link" data-section="Unitat0_Bloc3_Seccio4">4. Validar abans d'utilitzar: Trim i TryParse</a></div>
+<div class="nav-item"><a href="#Unitat0_Bloc3_Seccio5" class="nav-link" data-section="Unitat0_Bloc3_Seccio5">5. Mostrar, seleccionar i cercar files en un DataGridView</a></div>
+<div class="nav-item"><a href="#Unitat0_Bloc3_Seccio6" class="nav-link" data-section="Unitat0_Bloc3_Seccio6">6. Executar, depurar i entendre tres tipus d'error</a></div>
+<div class="nav-item"><a href="#Unitat0_Bloc3_Seccio7" class="nav-link" data-section="Unitat0_Bloc3_Seccio7">7. Preparació per al cas pràctic</a></div></div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta"><div class="horizontal-nav-list"><a href="/ioc/dam_0488/" class="horizontal-nav-item">Inici</a><span class="horizontal-nav-separator"> &gt; </span><a href="/ioc/dam_0488/unitat-0/" class="horizontal-nav-item">Unitat 0: Fonaments de C# i Windows Forms (annex)</a><span class="horizontal-nav-separator"> &gt; </span><span class="horizontal-nav-item current">Bloc 0.3: Formularis, controls, esdeveniments i depuració</span></div></nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+<div class="section" id="Unitat0_Bloc3_Seccio1">
+<h2>1. Com funciona una aplicació Windows Forms?</h2>
+<p>Una aplicació de consola executa instruccions en un ordre fins a acabar. Una aplicació de finestres, en canvi, crea una finestra i <strong>espera esdeveniments</strong>: clics, tecles, canvis de selecció, tancament, etc. Això s'anomena <em>programació orientada a esdeveniments</em>. No escrivim un <code>while</code> infinit per preguntar si s'ha clicat un botó: Windows Forms gestiona l'espera i ens crida quan passa alguna cosa.</p>
+<div class="figure-box" role="region" aria-label="Figura"><div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div><div class="component-content"><figure class="figure"><img src="/ioc/dam_0488/assets/img/unitat-0/11-cicle-esdeveniment.svg" alt="Cadena que comença amb un clic, passa per l&#39;esdeveniment Click, executa una funció i actualitza la pantalla" class="figure-img"><figcaption class="figure-caption">Un esdeveniment connecta una acció de l&#39;usuari amb un mètode de C#.</figcaption></figure></div></div>
+<p>El formulari és una classe derivada de <code>Form</code>. Els fitxers <code>Form1.cs</code> i <code>Form1.Designer.cs</code> en defineixen dues parts gràcies a <code>partial</code>. El constructor crida <code>InitializeComponent()</code>, el mètode generat que crea i col·loca els controls. <strong>No esborreu aquesta crida.</strong></p>
+
+<div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp"><div class="code-header"><div class="code-info"><span class="code-lang">CSHARP</span></div><div class="code-actions"><button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button><button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button><button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button></div></div><div class="code-container"><div class="line-numbers" aria-hidden="true"></div><pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">namespace MiniInventari;
+
+public partial class Form1 : Form
+{
+    public Form1()
+    {
+        InitializeComponent(); // crea els controls dissenyats visualment
+    }
+}</code></pre></div></div>
+
+</div>
+
+<div class="section" id="Unitat0_Bloc3_Seccio2">
+<h2>2. Dissenyador: controls, noms, textos i propietats</h2>
+<p>Obriu el dissenyador de <code>Form1</code>. Des de <em>View → Toolbox</em>, arrossegueu controls sobre la finestra. Per cada control, obriu <em>Properties</em> (F4). <strong><code>(Name)</code> és l'identificador que farem servir en C#; <code>Text</code> és el que veu l'usuari</strong>. No són intercanviables.</p>
+<div class="figure-box" role="region" aria-label="Figura"><div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div><div class="component-content"><figure class="figure"><img src="/ioc/dam_0488/assets/img/unitat-0/12-dissenyador.svg" alt="Exemple de formulari amb TextBox, Button, Label i DataGridView, propietats Name i Text" class="figure-img"><figcaption class="figure-caption">El nom tècnic d&#39;un control pot ser txtNom i el text visible Nom del producte.</figcaption></figure></div></div>
+<table class="table"><tr><th>Control</th><th>Exemple de nom</th><th>Funció</th></tr>
+<tr><td><code>Label</code></td><td><code>lblNom</code></td><td>Explica què cal introduir (propietat <code>Text</code>).</td></tr>
+<tr><td><code>TextBox</code></td><td><code>txtNom</code></td><td>Llegeix o mostra text (<code>.Text</code>).</td></tr>
+<tr><td><code>Button</code></td><td><code>btnAfegir</code></td><td>Executa una acció quan es produeix <code>Click</code>.</td></tr>
+<tr><td><code>DataGridView</code></td><td><code>dgvProductes</code></td><td>Mostra dades en files i columnes.</td></tr>
+<tr><td><code>NumericUpDown</code></td><td><code>nudEstoc</code></td><td>Entra nombres dins d'un interval. La propietat <code>Value</code> és numèrica.</td></tr>
+<tr><td><code>Panel</code> / <code>TableLayoutPanel</code></td><td><code>pnlDades</code></td><td>Agrupa i distribueix controls.</td></tr></table>
+<p><strong>Propietats útils:</strong> <code>Text</code>, <code>Enabled</code>, <code>ReadOnly</code> (caixes), <code>Visible</code>, <code>Anchor</code>, <code>Dock</code>, <code>TabIndex</code>, <code>AutoSize</code> i <code>AccessibleName</code>. Ordeneu la navegació amb tabulador: <code>TabIndex</code> 0, 1, 2... segons l'ordre de lectura. Apliqueu <code>Anchor</code> o <code>Dock</code> perquè la taula s'adapti en redimensionar la finestra.</p>
+<p><strong>Pràctica:</strong> creeu una etiqueta «Nom», un <code>TextBox</code> anomenat <code>txtNom</code> i un <code>Button</code> anomenat <code>btnSaludar</code> amb text «Saluda». No cal escriure codi encara. Executeu l'aplicació i comproveu que podeu escriure al quadre de text.</p>
+</div>
+
+<div class="section" id="Unitat0_Bloc3_Seccio3">
+<h2>3. Esdeveniments: com es connecta <code>Click</code> a un mètode?</h2>
+<ol>
+<li>Al dissenyador, seleccioneu <code>btnSaludar</code>.</li>
+<li>A <em>Properties</em>, cliqueu el <strong>llamp</strong> i busqueu <code>Click</code>. Feu doble clic a la casella buida; Visual Studio crea un mètode de controlador i connecta l'esdeveniment.</li>
+<li>Al mètode nou, escriviu les dues instruccions següents.</li>
+</ol>
+
+<div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp"><div class="code-header"><div class="code-info"><span class="code-lang">CSHARP</span></div><div class="code-actions"><button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button><button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button><button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button></div></div><div class="code-container"><div class="line-numbers" aria-hidden="true"></div><pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private void btnSaludar_Click(object sender, EventArgs e)
+{
+    string nom = txtNom.Text.Trim();
+    MessageBox.Show($&quot;Hola, {nom}!&quot;);
+}</code></pre></div></div>
+
+<p>La signatura <code>(object sender, EventArgs e)</code> és la del controlador de l'esdeveniment; <code>sender</code> és el control que el provoca, i <code>e</code> inclou informació de l'esdeveniment (en un clic ordinari no hi ha dades addicionals). No cal invocar manualment <code>btnSaludar_Click</code>: el formulari l'invoca quan toca.</p>
+<div class="figure-box" role="region" aria-label="Figura"><div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div><div class="component-content"><figure class="figure"><img src="/ioc/dam_0488/assets/img/unitat-0/13-click.svg" alt="Editor de propietats amb l&#39;esdeveniment Click enllaçat al mètode btnSaludar_Click" class="figure-img"><figcaption class="figure-caption">El llamp del dissenyador connecta l&#39;acció visible amb el codi del controlador.</figcaption></figure></div></div>
+<p><strong>Eviteu duplicats:</strong> no afegiu també <code>btnSaludar.Click += btnSaludar_Click;</code> si ja heu connectat l'esdeveniment des del dissenyador, perquè el controlador es podria executar dues vegades. Si al clicar no passa res, comproveu la casella <code>Click</code> a Properties i el nom real del botó.</p>
+</div>
+
+<div class="section" id="Unitat0_Bloc3_Seccio4">
+<h2>4. Validar abans d'utilitzar: <code>Trim</code> i <code>TryParse</code></h2>
+<p>El text que una persona escriu no és necessàriament correcte. <code>TextBox.Text</code> <strong>sempre retorna text</strong>; per obtenir un <code>int</code> o un <code>decimal</code> cal convertir-lo. <code>int.Parse</code> i <code>decimal.Parse</code> fallen amb una excepció si la cadena és invàlida. En un formulari és millor <code>TryParse</code>, que retorna <code>false</code> i permet mostrar una indicació clara.</p>
+
+<div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp"><div class="code-header"><div class="code-info"><span class="code-lang">CSHARP</span></div><div class="code-actions"><button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button><button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button><button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button></div></div><div class="code-container"><div class="line-numbers" aria-hidden="true"></div><pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">string nom = txtNom.Text.Trim();
+if (string.IsNullOrWhiteSpace(nom))
+{
+    MessageBox.Show(&quot;Introduïu un nom.&quot;);
+    txtNom.Focus();
+    return; // surt només d&#39;aquest mètode
+}
+
+if (!decimal.TryParse(txtPreu.Text, out decimal preu) || preu &lt; 0m)
+{
+    MessageBox.Show(&quot;Introduïu un preu vàlid (0 o superior).&quot;);
+    txtPreu.Focus();
+    return;
+}
+
+if (!int.TryParse(txtEstoc.Text, out int estoc) || estoc &lt; 0)
+{
+    MessageBox.Show(&quot;Introduïu un estoc enter no negatiu.&quot;);
+    txtEstoc.Focus();
+    return;
+}</code></pre></div></div>
+
+<p>El prefix <code>!</code> nega una condició. El símbol <code>||</code> significa «o». <code>out decimal preu</code> crea una variable amb el valor convertit <strong>quan</strong> l'operació és correcta. <code>return</code> talla el controlador per no continuar afegint dades incorrectes. <strong>Aquest fragment pressuposa tres caixes de text amb els noms indicats</strong>; no funcionarà si no les heu creat abans.</p>
+<div class="figure-box" role="region" aria-label="Figura"><div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div><div class="component-content"><figure class="figure"><img src="/ioc/dam_0488/assets/img/unitat-0/14-validacio.svg" alt="Pas de lectura de text a validació TryParse i a dada numèrica o missatge d&#39;error" class="figure-img"><figcaption class="figure-caption">Mai s&#39;ha de fer servir un valor numèric obtingut d&#39;un TextBox sense comprovar-lo.</figcaption></figure></div></div>
+<p><strong>Quatre proves imprescindibles:</strong> cadena buida, lletres en un nombre, un número negatiu i el valor límit zero. Per als preus amb coma o punt, proveu el separador decimal propi de la configuració regional de Windows; <code>decimal.TryParse</code> segueix la cultura actual.</p>
+</div>
+
+<div class="section" id="Unitat0_Bloc3_Seccio5">
+<h2>5. Mostrar, seleccionar i cercar files en un <code>DataGridView</code></h2>
+<p>El <code>DataGridView</code> és una <strong>vista</strong> dels objectes, no el lloc on haurien de viure les dades originals. Quan volem mostrar una llista, l'assignem a <code>DataSource</code>. Quan seleccionem una fila, obtenim l'objecte que representa, si n'hi ha. La llista continua sent responsabilitat del gestor.</p>
+
+<div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp"><div class="code-header"><div class="code-info"><span class="code-lang">CSHARP</span></div><div class="code-actions"><button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button><button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button><button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button></div></div><div class="code-container"><div class="line-numbers" aria-hidden="true"></div><pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">// Després de crear els controls al dissenyador:
+dgvProductes.AutoGenerateColumns = true;
+dgvProductes.ReadOnly = true;
+dgvProductes.AllowUserToAddRows = false;
+dgvProductes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+dgvProductes.MultiSelect = false;
+
+// Després de modificar les dades del gestor:
+dgvProductes.DataSource = null;
+dgvProductes.DataSource = gestor.Llistar();</code></pre></div></div>
+
+<p>Aquest fragment és un <strong>patró</strong> que utilitzarem al bloc 4; no és un programa independent. <code>gestor</code> serà un camp declarat com <code>GestorProductes</code>, i <code>Llistar()</code> retornarà una nova llista de productes.</p>
+<p>Quan la fila seleccionada canvia, s'executa <code>SelectionChanged</code>, si l'heu connectat al dissenyador. Llegim el producte amb <code>DataBoundItem</code>, no copiant cèl·lules arbitràriament:</p>
+
+<div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp"><div class="code-header"><div class="code-info"><span class="code-lang">CSHARP</span></div><div class="code-actions"><button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button><button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button><button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button></div></div><div class="code-container"><div class="line-numbers" aria-hidden="true"></div><pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">if (dgvProductes.CurrentRow?.DataBoundItem is Producte p)
+{
+    txtNom.Text = p.Nom;
+    txtPreu.Text = p.Preu.ToString();
+    txtEstoc.Text = p.Estoc.ToString();
+}</code></pre></div></div>
+
+<p>El signe <code>?.</code> evita accedir a una fila nul·la. <code>is Producte p</code> comprova el tipus i crea <code>p</code> només si coincideix. Al bloc 4 també incorporarem una bandera <code>actualitzantTaula</code> per evitar que un canvi automàtic de selecció ompli els camps mentre es refresca la graella.</p>
+<div class="figure-box" role="region" aria-label="Figura"><div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div><div class="component-content"><figure class="figure"><img src="/ioc/dam_0488/assets/img/unitat-0/15-taula-filtre.svg" alt="Una taula de productes mostra una selecció i un camp de cerca que filtra per nom o codi" class="figure-img"><figcaption class="figure-caption">La cerca canvia les files visibles; no ha d&#39;esborrar els objectes de la col·lecció original.</figcaption></figure></div></div>
+<p><strong>Error molt habitual:</strong> fer <code>productes = productes.Where(...).ToList()</code> per filtrar i després conservar només aquest resultat. Això perd els productes que no coincideixen. El filtre ha de crear una <em>vista</em> temporal, sense substituir la col·lecció mestra.</p>
+</div>
+
+<div class="section" id="Unitat0_Bloc3_Seccio6">
+<h2>6. Executar, depurar i entendre tres tipus d'error</h2>
+<table class="table"><tr><th>Tipus</th><th>Exemple</th><th>Com es detecta</th></tr>
+<tr><td>Compilació</td><td><code>MessageBox.Show("Hola"</code> sense tancar parèntesi.</td><td>Llista d'errors; no s'arriba a executar.</td></tr>
+<tr><td>Execució</td><td>Accedir a <code>CurrentRow</code> sense tenir cap fila.</td><td>Excepció durant l'execució o depuració.</td></tr>
+<tr><td>Lògic</td><td>Aplicar un descompte del 15 % quan tocava 10 %.</td><td>El programa funciona, però els resultats no són correctes.</td></tr></table>
+<div class="figure-box" role="region" aria-label="Figura"><div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div><div class="component-content"><figure class="figure"><img src="/ioc/dam_0488/assets/img/unitat-0/16-depuracio.svg" alt="Punt d&#39;interrupció de Visual Studio, pas a pas amb F10 i finestra Locals" class="figure-img"><figcaption class="figure-caption">La depuració permet observar els valors abans i després de cada instrucció.</figcaption></figure></div></div>
+<ol>
+<li>Poseu un <strong>punt d'interrupció</strong> (F9) a la línia que converteix el preu.</li>
+<li>Executeu amb F5 i cliqueu el botó que fa la validació; Visual Studio s'aturarà allà.</li>
+<li>Passeu el cursor sobre variables i mireu <em>Locals</em>; premeu <strong>F10</strong> per avançar una instrucció i <strong>F11</strong> per entrar en una crida.</li>
+<li>Premeu F5 per continuar, o <strong>Shift+F5</strong> per aturar la depuració.</li>
+</ol>
+<p><strong>No ignoreu la primera línia rellevant del missatge d'error.</strong> Si un programa «no fa res», comproveu primer si l'esdeveniment està connectat, després si arriba al punt d'interrupció, i finalment quines condicions fan sortir amb <code>return</code>.</p>
+</div>
+
+<div class="section" id="Unitat0_Bloc3_Seccio7">
+<h2>7. Preparació per al cas pràctic</h2>
+<p>Construïu un formulari de prova amb <code>txtNom</code>, <code>txtPreu</code>, <code>btnSaludar</code> i un <code>DataGridView</code>. Connecteu el <code>Click</code>, mostreu un missatge amb el valor de la caixa de text i impediu que s'accepti el nom buit. Després mostreu una llista de dos objectes <code>Producte</code> a la taula.</p>
+<p><strong>Comproveu-ho sense copiar:</strong> sabeu diferenciar <code>(Name)</code> i <code>Text</code>, explicar <code>InitializeComponent</code>, identificar el mètode <code>Click</code>, detectar un error amb F9/F10 i utilitzar <code>TryParse</code>. Amb això ja es pot abordar el projecte complet del bloc 4.</p>
+</div>
+</div>
+            </article>
+            
+            <!-- Navegació entre pàgines --><nav class="page-navigation" aria-label="Navegació entre blocs"><div class="nav-link-wrapper"><a href="/ioc/dam_0488/unitat-0/bloc-2/" class="nav-button">← Anterior</a></div><div class="nav-link-wrapper"><a href="/ioc/dam_0488/unitat-0/bloc-4/" class="nav-button">Següent →</a></div></nav>
+</main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="1" data-total="3">(1/3)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 33%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="1" data-total="4">(1/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 25%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="3">(1/3)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 33%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/dam_0488/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/dam_0488",
+        title: "Desenvolupament d'interfícies",
+        version: "v1.0",
+        cicle_modul: "DAM_0488"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/dam_0488/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/dam_0488/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>
