@@ -17,7 +17,7 @@
 <meta property="og:title" content="A4. Miniaplicació guiada: catàleg de productes · Annex de C#" />
 <meta property="og:locale" content="ca_ES" />
 <meta name="description" content="Materials del mòdul DAM_0488 - Desenvolupament d’interfícies (C# i Windows Forms)" />
-<meta property="og:description" content="Materials del mòdul DAM_0488 - Desenvolupament d’interfícies (C# i Windows Forms)" />
+<meta property="og:description" content="Annex introductori de C#, classes i programació per esdeveniments per al mòdul DAM_0488." />
 <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/annex-csharp/bloc-4/" />
 <meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0488/annex-csharp/bloc-4/" />
 <meta property="og:site_name" content="Desenvolupament d’interfícies" />
@@ -31,7 +31,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/ioc/dam_0488/assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/">
+    
     <!-- Rich editor styles (for embedded notes panel) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
     <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -198,7 +198,7 @@
             
             
             <!-- Contingut de la Pàgina -->
-            <article class="page-content"><div class="content-body"><div class="annex-breadcrumb"><a href="/ioc/dam_0488/">Índex del mòdul</a> / <a href="/ioc/dam_0488/annex-csharp/">Annex de C#</a> / Bloc A4</div><div class="annex-lead"><div class="annex-kicker">Annex de reforç · Bloc A4</div><h1>A4. Miniaplicació guiada: catàleg de productes</h1><p>Una primera aplicació completa amb C# i Windows Forms</p><strong>En acabar sabreu:</strong><ul><li>Crear una classe Producte i un formulari senzill.</li><li>Validar dades i respondre als clics d'un botó.</li><li>Afegir productes a una llista i mostrar-los.</li><li>Comprovar errors habituals abans d'entrar a la unitat 1.</li></ul></div><h2 id="a4-1">1. Què construirem?</h2>
+            <article class="page-content"><div class="content-body"><div class="section"><div class="annex-breadcrumb"><a href="/ioc/dam_0488/">Índex del mòdul</a> / <a href="/ioc/dam_0488/annex-csharp/">Annex de C#</a> / Bloc A4</div><div class="annex-lead"><div class="annex-kicker">Annex de reforç · Bloc A4</div><h1>A4. Miniaplicació guiada: catàleg de productes</h1><p>Una primera aplicació completa amb C# i Windows Forms</p><strong>En acabar sabreu:</strong><ul><li>Crear una classe Producte i un formulari senzill.</li><li>Validar dades i respondre als clics d'un botó.</li><li>Afegir productes a una llista i mostrar-los.</li><li>Comprovar errors habituals abans d'entrar a la unitat 1.</li></ul></div><h2 id="a4-1">1. Què construirem?</h2>
 <p>Ara ajuntarem les idees anteriors en una aplicació Windows Forms molt senzilla. Podreu <strong>escriure un nom i una quantitat</strong>, prémer <strong>Afegir</strong> i veure els productes en una llista. És un exercici introductori, <strong>no</strong> el projecte complet de la unitat 1.</p>
 <div class="annex-flow"><span>TextBox</span><b>→</b><span>Click</span><b>→</b><span>Validació</span><b>→</b><span>Producte</span><b>→</b><span>ListBox</span></div>
 <h2 id="a4-2">2. Crear el projecte i els controls</h2>
@@ -279,7 +279,7 @@ public partial class Form1 : Form
 <div class="exercise-box" role="region" aria-label="Exercici"><div class="component-header info-header" role="heading" aria-level="4">Practiqueu: Nivell 3 · Eliminar l'element seleccionat</div><div class="component-content"><p>Afegiu un botó <code>btnEliminar</code>. Si <code>lstProductes.SelectedItem</code> és un <code>Producte</code>, elimineu-lo de la llista <code>productes</code> i del ListBox. Actualitzeu el Label. Si no hi ha cap selecció, aviseu l'usuari.</p></div></div>
 <h2 id="a4-7">7. Errors freqüents i com detectar-los</h2>
 <table class="table"><thead><tr><th>Símptoma</th><th>Què revisar</th></tr></thead><tbody><tr><td>«btnAfegir no existeix»</td><td>Comproveu la propietat <code>Name</code> del botó al dissenyador</td></tr><tr><td>El clic no fa res</td><td>Confirmeu que <code>Click</code> apunta a <code>BtnAfegir_Click</code></td></tr><tr><td>S'afegeix dues vegades</td><td>No subscriviu el mateix esdeveniment al Designer i al constructor alhora</td></tr><tr><td>«Producte no existeix»</td><td>Comproveu el fitxer <code>Producte.cs</code> i el namespace</td></tr><tr><td>El programa falla amb quantitats no numèriques</td><td>Feu servir <code>int.TryParse</code>, no una conversió directa sense validació</td></tr><tr><td>En tancar, es perden els productes</td><td>És normal: encara no hem implementat persistència en fitxers</td></tr></tbody></table>
-<div class="success-box" role="note"><div class="component-header info-header" role="heading" aria-level="4">Ja podeu començar la unitat 1</div><div class="component-content"><p>Si enteneu què és una classe, com es crea un objecte, què fa el constructor de <code>Form1</code>, com es connecta un esdeveniment i com es valida un TextBox, ja teniu la base per seguir el <strong>bloc 1.1 del mòdul</strong> i el projecte <code>GestorEstocBotiga</code>. <a href="/ioc/dam_0488/unitat-1/bloc-1/">Continueu amb la unitat 1 →</a></p></div></div><nav class="annex-bottom-nav" aria-label="Navegació de l'annex"><a href="/ioc/dam_0488/annex-csharp/bloc-3/">← Bloc anterior</a><a href="/ioc/dam_0488/annex-csharp/">Índex de l'annex →</a></nav></div></article>
+<div class="success-box" role="note"><div class="component-header info-header" role="heading" aria-level="4">Ja podeu començar la unitat 1</div><div class="component-content"><p>Si enteneu què és una classe, com es crea un objecte, què fa el constructor de <code>Form1</code>, com es connecta un esdeveniment i com es valida un TextBox, ja teniu la base per seguir el <strong>bloc 1.1 del mòdul</strong> i el projecte <code>GestorEstocBotiga</code>. <a href="/ioc/dam_0488/unitat-1/bloc-1/">Continueu amb la unitat 1 →</a></p></div></div><nav class="annex-bottom-nav" aria-label="Navegació de l'annex"><a href="/ioc/dam_0488/annex-csharp/bloc-3/">← Bloc anterior</a><a href="/ioc/dam_0488/annex-csharp/">Índex de l'annex →</a></nav></div></div></article>
             
             <!-- Navegació entre pàgines -->
             
