@@ -87,6 +87,15 @@
 </style>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js"></script>
 <script>document.addEventListener('DOMContentLoaded',function(){if(window.Prism){Prism.highlightAll();}});</script>
+<style>
+.annex-visual { margin: 1.6rem 0 2.2rem; width: 100%; }
+.annex-visual a { display:block; border-radius: 12px; border: 1px solid #d8e2ef; background: #fff; overflow: hidden; }
+.annex-visual .figure-img { display:block; width:100%; max-width:100%; height:auto; object-fit:contain; }
+.annex-visual .figure-caption { margin:.6rem 0 0; font-size:.91rem; color:var(--text-secondary,#536276); line-height:1.55; }
+.annex-visual .annex-img-hint {font-size:.77rem;white-space:normal;}
+.annex-visual-lead{margin:1rem 0;font-size:1.03rem;}
+@media(max-width:600px){.annex-visual .figure-caption{font-size:.85rem}.annex-visual{margin:1.1rem 0 1.4rem}}
+</style>
 </head>
 
 <body class="home-layout" data-baseurl="/ioc/dam_0488">
@@ -200,7 +209,7 @@
             <!-- Contingut de la Pàgina -->
             <article class="page-content"><div class="content-body"><div class="section"><div class="annex-breadcrumb"><a href="/ioc/dam_0488/">Índex del mòdul</a> / <a href="/ioc/dam_0488/annex-csharp/">Annex de C#</a> / Bloc A2</div><div class="annex-lead"><div class="annex-kicker">Annex de reforç · Bloc A2</div><h1>A2. Mètodes, objectes i classes</h1><p>Organitzar el codi amb mètodes, classes i objectes</p><strong>En acabar sabreu:</strong><ul><li>Crear i cridar mètodes amb paràmetres i retorn.</li><li>Entendre què és una classe i què és un objecte.</li><li>Utilitzar constructors, propietats i llistes.</li></ul></div><h2 id="a2-1">1. Mètodes: dividir un problema</h2>
 <p>Un mètode és una operació amb nom que podeu executar des de diversos llocs. Rep <strong>paràmetres</strong> i pot <strong>retornar</strong> un resultat. Això evita repetir instruccions.</p>
-<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Program.cs</span></div></div><div class="code-container"><pre role="textbox" aria-readonly="true"><code class="language-csharp">int stockFinal = SumarUnitats(5, 3);
+<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Program.cs</span></div><div class="code-actions"><button type="button" class="toggle-lines" title="Mostrar o ocultar números de línia" aria-label="Mostrar o ocultar números de línia" aria-pressed="true">#</button><button type="button" class="copy-btn" title="Copiar codi" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button></div></div><div class="code-container"><div class="line-numbers" aria-hidden="true"></div><pre role="textbox" aria-readonly="true"><code class="language-csharp">int stockFinal = SumarUnitats(5, 3);
 Console.WriteLine(stockFinal);
 
 static int SumarUnitats(int actuals, int noves)
@@ -208,7 +217,7 @@ static int SumarUnitats(int actuals, int noves)
     return actuals + noves;
 }</code></pre></div></div>
 <p><code>static</code> significa que el mètode no necessita una instància d'una classe. Més endavant utilitzarem mètodes que pertanyen a un <strong>objecte concret</strong>. Si un mètode no retorna cap valor, el seu tipus de retorn és <code>void</code>.</p>
-<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Program.cs</span></div></div><div class="code-container"><pre role="textbox" aria-readonly="true"><code class="language-csharp">MostrarEstat(3);
+<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Program.cs</span></div><div class="code-actions"><button type="button" class="toggle-lines" title="Mostrar o ocultar números de línia" aria-label="Mostrar o ocultar números de línia" aria-pressed="true">#</button><button type="button" class="copy-btn" title="Copiar codi" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button></div></div><div class="code-container"><div class="line-numbers" aria-hidden="true"></div><pre role="textbox" aria-readonly="true"><code class="language-csharp">MostrarEstat(3);
 
 static void MostrarEstat(int unitats)
 {
@@ -218,8 +227,9 @@ static void MostrarEstat(int unitats)
     }
 }</code></pre></div></div>
 <h2 id="a2-2">2. Què és una classe? I un objecte?</h2>
+<figure class="figure annex-visual"><a href="/ioc/dam_0488/assets/img/annex-csharp/classe-i-objectes.svg" target="_blank" rel="noopener" title="Obre la imatge a mida completa"><img class="figure-img" src="/ioc/dam_0488/assets/img/annex-csharp/classe-i-objectes.svg" alt="Esquema de la classe Producte i dos objectes independents teclat i ratolí, amb mètode Afegir que modifica només el teclat" loading="lazy" decoding="async"></a><figcaption class="figure-caption"><strong>Figura A2.1.</strong> La classe és una plantilla; els objectes guarden valors independents. Cridar un mètode sobre un objecte no canvia els altres. <span class="annex-img-hint">(Feu clic per ampliar-la.)</span></figcaption></figure>
 <p>Una <strong>classe</strong> és una definició o plantilla: indica quines dades i comportaments tindran els seus objectes. Un <strong>objecte</strong> és un exemplar concret creat a partir d'aquesta classe. Un producte real té nom i unitats i pot rebre noves unitats.</p>
-<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Producte.cs</span></div></div><div class="code-container"><pre role="textbox" aria-readonly="true"><code class="language-csharp">public class Producte
+<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Producte.cs</span></div><div class="code-actions"><button type="button" class="toggle-lines" title="Mostrar o ocultar números de línia" aria-label="Mostrar o ocultar números de línia" aria-pressed="true">#</button><button type="button" class="copy-btn" title="Copiar codi" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button></div></div><div class="code-container"><div class="line-numbers" aria-hidden="true"></div><pre role="textbox" aria-readonly="true"><code class="language-csharp">public class Producte
 {
     public string Nom { get; }
     public int Unitats { get; private set; }
@@ -240,7 +250,7 @@ static void MostrarEstat(int unitats)
 }</code></pre></div></div>
 <p>En aquest exemple <code>Producte</code> és la classe; <code>Nom</code> i <code>Unitats</code> són <strong>propietats</strong>; <code>Producte(...)</code> és el <strong>constructor</strong>; <code>Afegir</code> és un mètode d'instància. <code>private set</code> impedeix que una altra part del programa canviï directament <code>Unitats</code>.</p>
 <p>Ara creeu un fitxer <code>Producte.cs</code> al mateix projecte de consola i escriviu a <code>Program.cs</code>:</p>
-<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Program.cs</span></div></div><div class="code-container"><pre role="textbox" aria-readonly="true"><code class="language-csharp">Producte teclat = new Producte(&quot;Teclat&quot;, 5);
+<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Program.cs</span></div><div class="code-actions"><button type="button" class="toggle-lines" title="Mostrar o ocultar números de línia" aria-label="Mostrar o ocultar números de línia" aria-pressed="true">#</button><button type="button" class="copy-btn" title="Copiar codi" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button></div></div><div class="code-container"><div class="line-numbers" aria-hidden="true"></div><pre role="textbox" aria-readonly="true"><code class="language-csharp">Producte teclat = new Producte(&quot;Teclat&quot;, 5);
 Producte ratoli = new Producte(&quot;Ratolí&quot;, 12);
 
 teclat.Afegir(3);
@@ -250,7 +260,7 @@ Console.WriteLine(ratoli.Nom + &quot;: &quot; + ratoli.Unitats);</code></pre></d
 <div class="info-box" role="note"><div class="component-header info-header" role="heading" aria-level="4">Per què ens interessa això en DAM_0488?</div><div class="component-content"><p>Quan treballeu amb <code>Form1</code>, <code>Button</code> o <code>IndicadorEstoc</code>, també estareu treballant amb classes i objectes. El formulari és un objecte; els botons que hi poseu són altres objectes amb propietats i esdeveniments.</p></div></div>
 <h2 id="a2-3">3. Listes d'objectes</h2>
 <p><code>List&lt;Producte&gt;</code> permet guardar diversos productes en una mateixa col·lecció. El tipus que apareix entre <code>&lt; &gt;</code> indica quin tipus d'elements accepta la llista.</p>
-<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Program.cs</span></div></div><div class="code-container"><pre role="textbox" aria-readonly="true"><code class="language-csharp">List&lt;Producte&gt; productes = new();
+<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Program.cs</span></div><div class="code-actions"><button type="button" class="toggle-lines" title="Mostrar o ocultar números de línia" aria-label="Mostrar o ocultar números de línia" aria-pressed="true">#</button><button type="button" class="copy-btn" title="Copiar codi" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button></div></div><div class="code-container"><div class="line-numbers" aria-hidden="true"></div><pre role="textbox" aria-readonly="true"><code class="language-csharp">List&lt;Producte&gt; productes = new();
 productes.Add(new Producte(&quot;Teclat&quot;, 5));
 productes.Add(new Producte(&quot;Ratolí&quot;, 12));
 
@@ -263,7 +273,7 @@ Console.WriteLine(&quot;Total: &quot; + productes.Count);</code></pre></div></di
 <p><code>Add</code> afegeix elements; <code>foreach</code> els recorre; <code>Count</code> indica quants elements hi ha. Una <code>List</code> desa els objectes mentre l'aplicació s'està executant: <strong>no els guarda automàticament en disc</strong>. La persistència s'estudia a la unitat 1.</p>
 <h2 id="a2-4">4. Visibilitat, encapsulació i responsabilitats</h2>
 <p><code>public</code> vol dir que altres classes poden utilitzar el membre; <code>private</code> limita l'accés a la mateixa classe. Una classe hauria de protegir la coherència de les seves dades: per exemple, un producte no hauria d'acabar amb unitats negatives.</p>
-<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Mètode per a Producte.cs</span></div></div><div class="code-container"><pre role="textbox" aria-readonly="true"><code class="language-csharp">public void Retirar(int unitats)
+<div class="code-block" data-lang="csharp" role="region" aria-label="Exemple de codi C#"><div class="code-header"><div class="code-info"><span class="code-lang">C#</span><span class="code-filename">Mètode per a Producte.cs</span></div><div class="code-actions"><button type="button" class="toggle-lines" title="Mostrar o ocultar números de línia" aria-label="Mostrar o ocultar números de línia" aria-pressed="true">#</button><button type="button" class="copy-btn" title="Copiar codi" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button></div></div><div class="code-container"><div class="line-numbers" aria-hidden="true"></div><pre role="textbox" aria-readonly="true"><code class="language-csharp">public void Retirar(int unitats)
 {
     if (unitats &lt;= 0 || unitats &gt; Unitats)
     {
