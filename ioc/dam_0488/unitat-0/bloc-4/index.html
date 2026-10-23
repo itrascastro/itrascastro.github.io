@@ -1,0 +1,3044 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 4: Projecte integrador Windows Forms | Desenvolupament d'interfícies - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="0">
+    <meta name="page-bloc" content="4">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 4: Projecte integrador Windows Forms | Desenvolupament d’interfícies</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 4: Projecte integrador Windows Forms" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Aplicació completa amb diverses finestres, model de dades, CRUD, filtres, persistència PostgreSQL i depuració" />
+<meta property="og:description" content="Aplicació completa amb diverses finestres, model de dades, CRUD, filtres, persistència PostgreSQL i depuració" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-0/bloc-4/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0488/unitat-0/bloc-4/" />
+<meta property="og:site_name" content="Desenvolupament d’interfícies" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 4: Projecte integrador Windows Forms" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Aplicació completa amb diverses finestres, model de dades, CRUD, filtres, persistència PostgreSQL i depuració","headline":"Bloc 4: Projecte integrador Windows Forms","url":"https://itrascastro.github.io/ioc/dam_0488/unitat-0/bloc-4/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-0/bloc-4/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/dam_0488/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0488/feed.xml" title="Desenvolupament d&apos;interfícies" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-ini.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/code-block.css">
+    <script src="/ioc/dam_0488/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/dam_0488">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/dam_0488/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/dam_0488/" class="title-link">
+                <h1>DAM_0488 - Desenvolupament d'interfícies</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/dam_0488/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/dam_0488/unitat-0/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 0 - Bloc 1: Pensar amb dades: del programa al formulari
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-0/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 0 - Bloc 2: Classes, objectes i gestió de dades
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-0/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 0 - Bloc 3: Persistència i organització de l'aplicació
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-0/bloc-4/" class="nav-dropdown-item current">
+                        Unitat 0 - Bloc 4: Projecte integrador Windows Forms
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Entorn de treball i projecte base
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Disseny del formulari: controls, propietats i esdeveniments
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Components visuals propis
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Persistència, proves, documentació i revisió
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Usabilitat i accessibilitat
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Disseny de pantalles i pautes d'interfície
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Informes
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Manuals i documentació
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 1: Interfícies naturals i reconeixement de veu
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 2: Síntesi de veu i integració
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 3: Distribució i instal·lació
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 4: Proves
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat0_Bloc4_Seccio1" class="nav-link" data-section="Unitat0_Bloc4_Seccio1">1. Enunciat i arquitectura del gestor de productes</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat0_Bloc4_Seccio2" class="nav-link" data-section="Unitat0_Bloc4_Seccio2">2. Crear la solució i el model Producte</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat0_Bloc4_Seccio3" class="nav-link" data-section="Unitat0_Bloc4_Seccio3">3. Preparar PostgreSQL i el repositori CRUD</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat0_Bloc4_Seccio4" class="nav-link" data-section="Unitat0_Bloc4_Seccio4">4. Crear la finestra principal i carregar el catàleg</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat0_Bloc4_Seccio5" class="nav-link" data-section="Unitat0_Bloc4_Seccio5">5. Crear la finestra d'edició i validar dades</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat0_Bloc4_Seccio6" class="nav-link" data-section="Unitat0_Bloc4_Seccio6">6. Connectar el CRUD amb les finestres</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat0_Bloc4_Seccio7" class="nav-link" data-section="Unitat0_Bloc4_Seccio7">7. Cercar i filtrar el catàleg</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat0_Bloc4_Seccio8" class="nav-link" data-section="Unitat0_Bloc4_Seccio8">8. Depurar i verificar el projecte complet</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat0_Bloc4_Seccio9" class="nav-link" data-section="Unitat0_Bloc4_Seccio9">9. Tests unitaris del model i dels filtres</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat0_Bloc4_Seccio10" class="nav-link" data-section="Unitat0_Bloc4_Seccio10">10. Integració final i documentació</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/dam_0488/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/dam_0488/unitat-0/" class="horizontal-nav-item">
+                                Unitat 0: Fonaments de C# i Windows Forms
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 0.4: Projecte integrador Windows Forms
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<div class="section" id="Unitat0_Bloc4_Seccio1">
+  <h2 id="Unitat0_Bloc4_Seccio1">1. Enunciat i arquitectura del gestor de productes</h2>
+
+  <p>Construirem una aplicació Windows Forms per gestionar un catàleg de productes. L'usuari podrà consultar les dades, cercar-les, filtrar-les, crear productes, editar-los i eliminar-los. La informació es guardarà en PostgreSQL i la interfície no contindrà SQL ni detalls de connexió.</p>
+
+  <p>Aquest és el projecte integrador del bloc. Cada secció explicarà i construirà una peça verificable sobre la mateixa base, amb el codi necessari perquè l'aplicació final sigui executable. No deixarem cap part essencial com una tasca pendent ni obligarem l'alumnat a completar fragments imprescindibles pel seu compte.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/arquitectura-gestor-productes.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia de l'arquitectura del gestor de productes" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/arquitectura-gestor-productes.png" alt="Infografia de l'arquitectura del gestor de productes" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">El gestor separa les finestres, el model, les operacions i el repositori perquè cada part tingui una responsabilitat clara.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>Què ha de poder fer l'aplicació</h3>
+
+  <ul>
+    <li>obrir una finestra principal amb la llista de productes;</li>
+    <li>obrir una finestra separada per crear o editar un producte;</li>
+    <li>validar el nom, el preu i les unitats abans de desar;</li>
+    <li>mostrar els productes en un <code>DataGridView</code>;</li>
+    <li>cercar per text i aplicar filtres sense modificar les dades originals;</li>
+    <li>persistir les dades en una base de dades PostgreSQL;</li>
+    <li>informar dels errors sense afirmar que una operació ha funcionat quan no ho ha fet;</li>
+    <li>permetre depurar el recorregut d'una alta, una edició i una eliminació.</li>
+  </ul>
+
+  <h3>Què queda fora del projecte</h3>
+
+  <p>Per mantenir un abast assumible, no implementarem autenticació, usuaris, permisos, sincronització remota ni una API web. El projecte treballarà amb un entorn local de pràctiques i una base de dades preparada específicament per a aquest exercici.</p>
+
+  <h3>Separar responsabilitats des del primer dia</h3>
+
+  <p>La solució tindrà tres zones clares:</p>
+
+  <table class="table">
+    <thead><tr><th>Zona</th><th>Responsabilitat</th><th>No hi ha d'haver</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Model</strong></td><td>Representar un producte i les seves regles bàsiques.</td><td>Controls del formulari o SQL.</td></tr>
+      <tr><td><strong>Aplicació i repositori</strong></td><td>Coordinar operacions i parlar amb PostgreSQL.</td><td>Referències directes a botons i etiquetes.</td></tr>
+      <tr><td><strong>Interfície</strong></td><td>Recollir dades, mostrar resultats i informar l'usuari.</td><td>Consultes SQL o cadenes de connexió amb contrasenyes.</td></tr>
+    </tbody>
+  </table>
+
+  
+  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      <span class="code-filename">Estructura prevista</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">GestorProductes/
+├── Models/
+│   └── Producte.cs
+├── ProducteFilter.cs
+├── Data/
+│   ├── IProducteRepository.cs
+│   └── ProducteDbRepository.cs
+├── Forms/
+│   ├── ProductesForm.cs
+│   └── ProducteEditorForm.cs
+└── Program.cs</code></pre>
+  </div>
+</div>
+
+
+  <h3>Decisions de dades</h3>
+
+  <p>La taula <code>productes</code> tindrà una identitat estable i les regles mínimes que ja hem practicat: nom obligatori, preu no negatiu i unitats no negatives. La interfície ajudarà l'usuari a corregir els valors, però PostgreSQL també els protegirà amb les seves restriccions.</p>
+
+  <p>La connexió s'obtindrà de la configuració local. No posarem cap contrasenya dins del codi, de les captures ni del repositori.</p>
+
+  <h3>Com treballarem</h3>
+
+  <ol>
+    <li>definirem el model i l'esquema PostgreSQL;</li>
+    <li>crearem la finestra principal i la finestra d'edició;</li>
+    <li>implementarem el CRUD i el filtre sobre dades reals;</li>
+    <li>separarem el repositori de la interfície;</li>
+    <li>depurarem els casos normals i els errors;</li>
+    <li>completarem una prova final reproduïble.</li>
+  </ol>
+
+  
+  <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p>Abans de programar, has de poder explicar què farà cada finestra, quin objecte representarà un producte i quina part del projecte serà responsable de parlar amb PostgreSQL.</p>
+</div>
+
+
+  <h3>Ampliació opcional: documentar l'abast</h3>
+
+  <p>La solució guiada continuarà encara que no facis aquesta ampliació. Si vols preparar el teu propi pla abans de seguir, pots escriure una fitxa amb el nom de les finestres, les operacions que oferirà cadascuna, les columnes de <code>productes</code> i les comprovacions que faràs per donar-lo per acabat.</p>
+
+  <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Ampliació: fitxa del projecte integrador</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Documenta l'abast del gestor de productes i dibuixa el recorregut d'una alta, una edició i una eliminació des de la pantalla fins a PostgreSQL. Aquesta activitat amplia la guia, però no substitueix cap part de la implementació.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Inicial</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">30 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>No afegeixis funcionalitats que no puguis provar.</li>
+        
+        <li>Associa cada responsabilitat a una zona.</li>
+        
+        <li>Indica quina dada identifica una fila.</li>
+        
+        <li>Mantén les credencials fora del document.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section" id="Unitat0_Bloc4_Seccio2">
+  <h2 id="Unitat0_Bloc4_Seccio2">2. Crear la solució i el model Producte</h2>
+
+  <p>Comencem per una base que pugui compilar abans d'afegir finestres o consultes. El model és el contracte que utilitzaran la interfície i PostgreSQL: si el model és ambigu, cada capa acabarà inventant una interpretació diferent de les mateixes dades.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/model-producte-classes-propietats.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia sobre la classe Producte i les seves propietats" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/model-producte-classes-propietats.png" alt="Infografia sobre la classe Producte i les seves propietats" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">La classe Producte concentra l'estat del catàleg: una instància representa una fila i les propietats tenen regles comprensibles.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>Crear el projecte Windows Forms</h3>
+
+  <p>Crea una solució nova amb una aplicació Windows Forms. Utilitza el nom <code>GestorProductes</code> i conserva l'estructura generada per l'entorn. En aquesta fase no cal instal·lar paquets addicionals: primer comprovarem que la finestra buida s'obre correctament.</p>
+
+  <p>El projecte final tindrà aquesta organització. Les carpetes no són decoració: ajuden a trobar la responsabilitat de cada fitxer:</p>
+
+  
+  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      <span class="code-filename">Solució</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">GestorProductes/
+├── Models/
+│   └── Producte.cs
+├── Data/
+│   ├── IProducteRepository.cs
+│   └── ProducteDbRepository.cs
+├── Forms/
+│   ├── ProductesForm.cs
+│   └── ProducteEditorForm.cs
+└── Program.cs</code></pre>
+  </div>
+</div>
+
+
+  <p>Durant el desenvolupament la plantilla pot crear <code>Form1.cs</code>. El podem convertir en <code>ProductesForm.cs</code> des de l'entorn o crear el formulari amb el nom definitiu. No és necessari moure fitxers a mà si l'IDE pot actualitzar les referències de manera segura.</p>
+
+  <h3>Definir la classe Producte</h3>
+
+  <p>La classe conté les dades que PostgreSQL guardarà. L'identificador és necessari per editar o eliminar una fila sense dependre del nom, perquè dos productes poden tenir el mateix text descriptiu.</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Models/Producte.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">namespace GestorProductes.Models;
+
+public sealed class Producte
+{
+    public int Id { get; set; }
+
+    public string Nom { get; set; } = &quot;&quot;;
+
+    public decimal Preu { get; set; }
+
+    public int Unitats { get; set; }
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>Fem servir <code>decimal</code> per als preus perquè representa millor els valors monetaris que un tipus de coma flotant. Les unitats són un enter perquè no volem permetre fraccions de producte en aquest catàleg.</p>
+
+  <h3>Posar les regles a prop de les dades</h3>
+
+  <p>La interfície donarà missatges adaptats a l'usuari, però el model també pot exposar una validació comuna perquè cap altra finestra accepti regles diferents:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Models/Producte.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">public IReadOnlyList&lt;string&gt; Validate()
+{
+    var errors = new List&lt;string&gt;();
+
+    if (string.IsNullOrWhiteSpace(Nom))
+    {
+        errors.Add(&quot;El nom és obligatori.&quot;);
+    }
+
+    if (Preu &lt; 0)
+    {
+        errors.Add(&quot;El preu no pot ser negatiu.&quot;);
+    }
+
+    if (Unitats &lt; 0)
+    {
+        errors.Add(&quot;Les unitats no poden ser negatives.&quot;);
+    }
+
+    return errors;
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>Aquest mètode completa la classe anterior; no és una classe alternativa. Afegeix-lo dins de <code>Producte</code>, després de les propietats. La pantalla el podrà utilitzar abans d'enviar dades al repositori i el repositori el podrà tornar a comprovar abans d'un write.</p>
+
+  <h3>Crear una primera comprovació executable</h3>
+
+  <p>Abans d'obrir una connexió, prova el model amb una entrada correcta i una d'incorrecta. Pots executar aquesta comprovació temporal des de l'inici de l'aplicació o observar-la amb un punt d'aturada:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">ComprovacioModel.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">var correcte = new Producte
+{
+    Nom = &quot;Teclat&quot;,
+    Preu = 24.90m,
+    Unitats = 4
+};
+
+if (correcte.Validate().Count != 0)
+{
+    throw new InvalidOperationException(&quot;La prova vàlida ha fallat.&quot;);
+}
+
+var incorrecte = new Producte
+{
+    Nom = &quot;&quot;,
+    Preu = -1,
+    Unitats = -2
+};
+
+if (incorrecte.Validate().Count != 3)
+{
+    throw new InvalidOperationException(&quot;La validació no ha detectat tots els errors.&quot;);
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>Quan aquesta comprovació funciona, ja sabem que el contracte bàsic de dades és coherent abans d'afegir controls visuals. La retirarem de l'arrencada de la versió final i la convertirem en una prova automatitzada quan treballem les proves del projecte.</p>
+
+  <h3>Resultat d'aquesta secció</h3>
+
+  <p>En aquest punt la solució ja té una classe de dades completa, regles de validació i una estructura preparada per a dues finestres i un repositori PostgreSQL. Encara no hi ha CRUD ni connexions: els afegirem en les seccions següents sobre aquest mateix model, sense redefinir-lo.</p>
+
+  
+  <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p>La solució compila, el model representa una fila de <code>productes</code> i la validació diferencia una entrada correcta d'una d'impossible. Aquest és el punt de partida resolt per continuar amb PostgreSQL.</p>
+</div>
+
+
+  <h3>Ampliació opcional: afegir una propietat de descripció</h3>
+
+  <p>Com a ampliació, pots afegir una descripció curta al model i decidir si serà obligatòria o opcional. Si la incorpores, hauràs d'actualitzar també l'esquema PostgreSQL i explicar el canvi; la implementació principal no en depèn.</p>
+</div>
+
+<div class="section" id="Unitat0_Bloc4_Seccio3">
+  <h2 id="Unitat0_Bloc4_Seccio3">3. Preparar PostgreSQL i el repositori CRUD</h2>
+
+  <p>En aquesta secció connectarem el projecte a PostgreSQL. El resultat quedarà resolt i reutilitzable per a les finestres que construirem després: una base de dades local, una taula amb restriccions, una cadena de connexió fora del codi i un repositori amb les quatre operacions CRUD.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/repositori-crud-postgresql.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia del repositori CRUD connectat amb PostgreSQL" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/repositori-crud-postgresql.png" alt="Infografia del repositori CRUD connectat amb PostgreSQL" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">Les operacions crear, consultar, modificar i eliminar passen pel repositori i utilitzen consultes parametritzades.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>Afegir el client de PostgreSQL</h3>
+
+  <p>Des del directori del projecte, afegeix el paquet oficial <code>Npgsql</code> i comprova que la solució continua compilant:</p>
+
+  
+  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      <span class="code-filename">Terminal</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">dotnet add package Npgsql</code></pre>
+  </div>
+</div>
+
+
+  <h3>Crear l'esquema de la base de dades</h3>
+
+  <p>Prepara una base de dades local de pràctiques i executa aquest script connectat a ella:</p>
+
+  
+  <div class="code-block" data-lang="sql" role="region" aria-label="Bloc de codi sql">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">SQL</span>
+      <span class="code-filename">Data/schema.sql</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-sql">CREATE TABLE productes (
+    id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nom text NOT NULL,
+    preu numeric(10, 2) NOT NULL CHECK (preu &gt;= 0),
+    unitats integer NOT NULL CHECK (unitats &gt;= 0)
+);</code></pre>
+  </div>
+</div>
+
+
+  
+  <div class="code-block" data-lang="sql" role="region" aria-label="Bloc de codi sql">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">SQL</span>
+      <span class="code-filename">Data/comprovar-schema.sql</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-sql">SELECT column_name, data_type
+FROM information_schema.columns
+WHERE table_schema = &#39;public&#39;
+  AND table_name = &#39;productes&#39;
+ORDER BY ordinal_position;</code></pre>
+  </div>
+</div>
+
+
+  <h3>Configurar la connexió sense secrets</h3>
+
+  <p>El programa llegirà la cadena de connexió de la variable d'entorn <code>DAM0488_DB_CONNECTION</code>:</p>
+
+  
+  <div class="code-block" data-lang="powershell" role="region" aria-label="Bloc de codi powershell">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">POWERSHELL</span>
+      <span class="code-filename">Configuració local</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-powershell">$env:DAM0488_DB_CONNECTION = &quot;Host=localhost;Port=5432;Database=dam0488_dev;Username=usuari_local;Password=CONTRASENYA_LOCAL&quot;</code></pre>
+  </div>
+</div>
+
+
+  <p>La contrasenya és un marcador. No la posis al codi, al repositori ni a captures compartides.</p>
+
+  <h3>Definir el contracte del repositori</h3>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Data/IProducteRepository.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">using GestorProductes.Models;
+
+namespace GestorProductes.Data;
+
+public interface IProducteRepository
+{
+    IReadOnlyList&lt;Producte&gt; GetAll();
+    void Add(Producte producte);
+    void Update(Producte producte);
+    void Delete(int id);
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>Les finestres utilitzaran aquesta interfície i no importaran <code>Npgsql</code>. Això permet provar la interfície amb un repositori de prova sense canviar els formularis.</p>
+
+  <h3>Implementar el repositori CRUD</h3>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Data/ProducteDbRepository.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">using GestorProductes.Models;
+using Npgsql;
+
+namespace GestorProductes.Data;
+
+public sealed class ProducteDbRepository : IProducteRepository
+{
+    private readonly string connectionString;
+
+    public ProducteDbRepository(string connectionString)
+    {
+        this.connectionString = connectionString;
+    }
+
+    public IReadOnlyList&lt;Producte&gt; GetAll()
+    {
+        const string sql = &quot;&quot;&quot;
+            SELECT id, nom, preu, unitats
+            FROM productes
+            ORDER BY nom, id;
+            &quot;&quot;&quot;;
+
+        using var connection = new NpgsqlConnection(connectionString);
+        connection.Open();
+        using var command = new NpgsqlCommand(sql, connection);
+        using NpgsqlDataReader reader = command.ExecuteReader();
+        var productes = new List&lt;Producte&gt;();
+
+        while (reader.Read())
+        {
+            productes.Add(new Producte
+            {
+                Id = reader.GetInt32(0),
+                Nom = reader.GetString(1),
+                Preu = reader.GetDecimal(2),
+                Unitats = reader.GetInt32(3)
+            });
+        }
+
+        return productes;
+    }
+
+    public void Add(Producte producte)
+    {
+        Validate(producte);
+        ExecuteProducteCommand(&quot;&quot;&quot;
+            INSERT INTO productes (nom, preu, unitats)
+            VALUES (@nom, @preu, @unitats);
+            &quot;&quot;&quot;, producte, includeId: false);
+    }
+
+    public void Update(Producte producte)
+    {
+        Validate(producte);
+        ExecuteProducteCommand(&quot;&quot;&quot;
+            UPDATE productes
+            SET nom = @nom, preu = @preu, unitats = @unitats
+            WHERE id = @id;
+            &quot;&quot;&quot;, producte, includeId: true);
+    }
+
+    public void Delete(int id)
+    {
+        using var connection = new NpgsqlConnection(connectionString);
+        connection.Open();
+        using var command = new NpgsqlCommand(
+            &quot;DELETE FROM productes WHERE id = @id;&quot;, connection);
+        command.Parameters.AddWithValue(&quot;id&quot;, id);
+
+        if (command.ExecuteNonQuery() != 1)
+        {
+            throw new InvalidOperationException(&quot;El producte no existeix.&quot;);
+        }
+    }
+
+    private void ExecuteProducteCommand(
+        string sql,
+        Producte producte,
+        bool includeId)
+    {
+        using var connection = new NpgsqlConnection(connectionString);
+        connection.Open();
+        using var command = new NpgsqlCommand(sql, connection);
+
+        if (includeId)
+        {
+            command.Parameters.AddWithValue(&quot;id&quot;, producte.Id);
+        }
+
+        command.Parameters.AddWithValue(&quot;nom&quot;, producte.Nom);
+        command.Parameters.AddWithValue(&quot;preu&quot;, producte.Preu);
+        command.Parameters.AddWithValue(&quot;unitats&quot;, producte.Unitats);
+
+        if (command.ExecuteNonQuery() != 1)
+        {
+            throw new InvalidOperationException(&quot;El producte no s&#39;ha pogut modificar.&quot;);
+        }
+    }
+
+    private static void Validate(Producte producte)
+    {
+        IReadOnlyList&lt;string&gt; errors = producte.Validate();
+        if (errors.Count &gt; 0)
+        {
+            throw new ArgumentException(string.Join(&quot; &quot;, errors));
+        }
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>Les consultes estan parametritzades i el repositori torna a validar abans d'escriure. PostgreSQL reforça les regles amb <code>NOT NULL</code> i <code>CHECK</code>; cap operació pot informar d'èxit si no ha modificat exactament la fila esperada.</p>
+
+  <h3>Comprovar la connexió abans d'obrir les finestres</h3>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Program.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">using Npgsql;
+
+string? connectionString =
+    Environment.GetEnvironmentVariable(&quot;DAM0488_DB_CONNECTION&quot;);
+
+if (string.IsNullOrWhiteSpace(connectionString))
+{
+    MessageBox.Show(&quot;Falta configurar la connexió a PostgreSQL.&quot;);
+    return;
+}
+
+IProducteRepository repositori =
+    new ProducteDbRepository(connectionString);
+
+try
+{
+    repositori.GetAll();
+}
+catch (NpgsqlException)
+{
+    MessageBox.Show(&quot;No s&#39;ha pogut connectar amb PostgreSQL.&quot;);
+    return;
+}
+
+ApplicationConfiguration.Initialize();
+Application.Run(new ProductesForm(repositori));</code></pre>
+  </div>
+</div>
+
+
+  <p>La finestra principal encara no existeix; la crearem a la secció següent. El contracte del repositori ja queda preparat perquè rebi les operacions CRUD sense conèixer els detalls de PostgreSQL.</p>
+
+  
+  <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p>PostgreSQL té l'esquema creat, la connexió es configura fora del repositori, el contracte és independent de Npgsql i les quatre operacions CRUD estan implementades amb consultes parametritzades.</p>
+</div>
+
+
+  <h3>Ampliació opcional: preparar dades de demostració</h3>
+
+  <p>Com a ampliació, pots crear un script de dades inicials amb dos o tres productes. No el facis executar automàticament cada vegada que s'obre l'aplicació per evitar duplicats.</p>
+</div>
+
+<div class="section" id="Unitat0_Bloc4_Seccio4">
+  <h2 id="Unitat0_Bloc4_Seccio4">4. Crear la finestra principal i carregar el catàleg</h2>
+
+  <p>La finestra principal serà el punt de consulta del gestor. En obrir-la, llegirà els productes del repositori i els mostrarà en una graella. Encara no implementarem l'edició ni l'alta: primer deixarem resolt el recorregut de lectura i la presentació de dades.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/finestra-principal-datagridview.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia de la finestra principal amb DataGridView" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/finestra-principal-datagridview.png" alt="Infografia de la finestra principal amb DataGridView" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">La finestra principal rep el repositori, carrega el catàleg i mostra les dades en una graella sense conèixer els detalls de PostgreSQL.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>Preparar els controls al dissenyador</h3>
+
+  <p>Obre <code>ProductesForm</code> en la vista Disseny i afegeix aquests controls. Els noms són importants perquè el codi i la interfície parlin del mateix element:</p>
+
+  <table class="table">
+    <thead><tr><th>Control</th><th>Nom</th><th>Propietats principals</th></tr></thead>
+    <tbody>
+      <tr><td><code>DataGridView</code></td><td><code>dgvProductes</code></td><td><code>ReadOnly = true</code>, selecció de fila completa, sense afegir files automàticament.</td></tr>
+      <tr><td><code>Button</code></td><td><code>btnNou</code></td><td>Text «Nou producte».</td></tr>
+      <tr><td><code>Button</code></td><td><code>btnEditar</code></td><td>Text «Editar».</td></tr>
+      <tr><td><code>Button</code></td><td><code>btnEliminar</code></td><td>Text «Eliminar».</td></tr>
+      <tr><td><code>Label</code></td><td><code>lblEstat</code></td><td>Text inicial «Preparat».</td></tr>
+    </tbody>
+  </table>
+
+  <p>Col·loca els botons en una franja superior, la graella al centre i l'etiqueta d'estat a la part inferior. El dissenyador generarà <code>InitializeComponent</code>; no cal escriure manualment el codi de posició dels controls.</p>
+
+  <h3>Fer que el formulari rebi el repositori</h3>
+
+  <p>La finestra no crearà un repositori propi ni llegirà la cadena de connexió. El rep des de <code>Program.cs</code>, que és el punt on es componen les peces:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Forms/ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">using GestorProductes.Data;
+using GestorProductes.Models;
+
+namespace GestorProductes.Forms;
+
+public partial class ProductesForm : Form
+{
+    private readonly IProducteRepository repositori;
+    private readonly BindingSource binding = new();
+    private List&lt;Producte&gt; productes = new();
+
+    public ProductesForm(IProducteRepository repositori)
+    {
+        InitializeComponent();
+        this.repositori = repositori;
+        ConfiguraColumnes();
+        dgvProductes.DataSource = binding;
+        Load += ProductesForm_Load;
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>Aquesta composició fa explícita la dependència: la finestra treballa amb <code>IProducteRepository</code> i no necessita saber si la implementació és PostgreSQL, memòria o una doble de prova.</p>
+
+  <h3>Carregar i mostrar els productes</h3>
+
+  <p>Completa la classe amb el mètode de càrrega i una única funció per refrescar la graella:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Forms/ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private void ProductesForm_Load(
+    object? sender,
+    EventArgs e)
+{
+    CarregaProductes();
+}
+
+private void CarregaProductes()
+{
+    try
+    {
+        productes = repositori.GetAll().ToList();
+        AplicaFiltre();
+    }
+    catch (Exception error)
+    {
+        System.Diagnostics.Debug.WriteLine(error);
+        lblEstat.Text = &quot;No s&#39;han pogut carregar les dades&quot;;
+        MessageBox.Show(
+            &quot;No s&#39;han pogut carregar els productes.&quot;,
+            &quot;Error de lectura&quot;,
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Error);
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>El missatge tècnic complet es conserva només al depurador i l'usuari rep una explicació curta. No mostrem la cadena de connexió ni una excepció amb dades internes.</p>
+
+  <h3>Configurar les columnes de la graella</h3>
+
+  <p>Per controlar l'ordre i els textos que veu l'usuari, desactiva l'autogeneració i crea les columnes des del dissenyador:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Forms/ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private void ConfiguraColumnes()
+{
+    dgvProductes.AutoGenerateColumns = false;
+    dgvProductes.Columns.Add(new DataGridViewTextBoxColumn
+{
+    DataPropertyName = nameof(Producte.Id),
+    HeaderText = &quot;Id&quot;,
+    Name = &quot;colId&quot;,
+    Visible = false
+});
+    dgvProductes.Columns.Add(new DataGridViewTextBoxColumn
+{
+    DataPropertyName = nameof(Producte.Nom),
+    HeaderText = &quot;Nom&quot;,
+    Name = &quot;colNom&quot;
+});
+    dgvProductes.Columns.Add(new DataGridViewTextBoxColumn
+{
+    DataPropertyName = nameof(Producte.Preu),
+    HeaderText = &quot;Preu&quot;,
+    Name = &quot;colPreu&quot;,
+    DefaultCellStyle = { Format = &quot;C2&quot; }
+});
+dgvProductes.Columns.Add(new DataGridViewTextBoxColumn
+{
+    DataPropertyName = nameof(Producte.Unitats),
+    HeaderText = &quot;Unitats&quot;,
+    Name = &quot;colUnitats&quot;
+    });
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>Executa aquest codi després de <code>InitializeComponent</code> i abans d'assignar el <code>DataSource</code>. L'identificador es conserva en el model però no cal mostrar-lo per a l'usuari.</p>
+
+  <h3>Comprovar el camí de lectura</h3>
+
+  <p>Amb PostgreSQL iniciat i la taula creada, executa l'aplicació. El resultat resolt d'aquesta secció és:</p>
+
+  <ol>
+    <li>la finestra s'obre sense crear cap connexió pròpia;</li>
+    <li>el repositori executa <code>SELECT</code>;</li>
+    <li>la graella mostra els productes en l'ordre del repositori;</li>
+    <li>l'etiqueta informa del nombre de files carregades;</li>
+    <li>si falla la lectura, es mostra un missatge segur i el detall queda al depurador.</li>
+  </ol>
+
+  
+  <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p>La finestra principal ja pot obrir el catàleg real de PostgreSQL i mostrar-lo sense conèixer SQL ni credencials. La mateixa dependència quedarà preparada per a les operacions d'escriptura de les seccions següents.</p>
+</div>
+
+
+  <h3>Ampliació opcional: ordenar una columna</h3>
+
+  <p>Com a ampliació, pots permetre que l'usuari ordeni la graella per nom o preu. No canviïs la consulta ni el contingut de la base de dades: l'ordenació visual és una responsabilitat diferent de la persistència.</p>
+</div>
+
+<div class="section" id="Unitat0_Bloc4_Seccio5">
+  <h2 id="Unitat0_Bloc4_Seccio5">5. Crear la finestra d'edició i validar dades</h2>
+
+  <p>La finestra principal no ha de convertir-se en un formulari interminable. Crearem una segona finestra modal per introduir o editar un producte. La mateixa finestra servirà per a una alta i per a una edició: només canviarà el producte inicial que rep.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/finestra-editor-validacio.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia de la finestra d'edició i la validació del producte" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/finestra-editor-validacio.png" alt="Infografia de la finestra d'edició i la validació del producte" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">La finestra d'edició recull les dades, valida el model i només retorna un producte quan l'entrada és coherent.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>Preparar els controls del diàleg</h3>
+
+  <p>Crea un formulari nou anomenat <code>ProducteEditorForm</code> i afegeix aquests controls:</p>
+
+  <table class="table">
+    <thead><tr><th>Control</th><th>Nom</th><th>Propietats principals</th></tr></thead>
+    <tbody>
+      <tr><td><code>TextBox</code></td><td><code>txtNom</code></td><td>Entrada del nom, amb una etiqueta «Nom».</td></tr>
+      <tr><td><code>TextBox</code></td><td><code>txtPreu</code></td><td>Entrada del preu, amb una etiqueta «Preu».</td></tr>
+      <tr><td><code>NumericUpDown</code></td><td><code>nudUnitats</code></td><td><code>Minimum = 0</code>, amb una etiqueta «Unitats».</td></tr>
+      <tr><td><code>Button</code></td><td><code>btnAcceptar</code></td><td>Text «Acceptar», <code>DialogResult = None</code>.</td></tr>
+      <tr><td><code>Button</code></td><td><code>btnCancel</code></td><td>Text «Cancel·lar», <code>DialogResult = Cancel</code>.</td></tr>
+    </tbody>
+  </table>
+
+  <p>Configura el formulari amb <code>AcceptButton = btnAcceptar</code> i <code>CancelButton = btnCancel</code>. Així les tecles Enter i Esc tenen un comportament coherent sense duplicar handlers.</p>
+
+  <h3>Fer que el diàleg retorni un Producte</h3>
+
+  <p>El formulari treballarà amb una còpia del producte. No modificarem directament l'objecte de la graella mentre l'usuari encara està escrivint; només el retornarem quan validi i accepti:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Forms/ProducteEditorForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">using System.Globalization;
+using GestorProductes.Models;
+
+namespace GestorProductes.Forms;
+
+public partial class ProducteEditorForm : Form
+{
+    public Producte? Resultat { get; private set; }
+
+    private readonly int id;
+
+    public ProducteEditorForm(Producte? producte = null)
+    {
+        InitializeComponent();
+
+        if (producte is null)
+        {
+            Text = &quot;Nou producte&quot;;
+            return;
+        }
+
+        Text = &quot;Editar producte&quot;;
+        id = producte.Id;
+        txtNom.Text = producte.Nom;
+        txtPreu.Text = producte.Preu.ToString(&quot;0.00&quot;, CultureInfo.CurrentCulture);
+        nudUnitats.Value = producte.Unitats;
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>El constructor amb un producte omple els controls per editar. Quan no en rep cap, deixa els valors preparats per a una alta.</p>
+
+  <h3>Validar abans de tancar</h3>
+
+  <p>El botó Acceptar converteix el text en un model, executa la validació comuna i només tanca el diàleg si no hi ha errors:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Forms/ProducteEditorForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private void btnAcceptar_Click(object? sender, EventArgs e)
+{
+    if (!decimal.TryParse(
+        txtPreu.Text,
+        NumberStyles.Number,
+        CultureInfo.CurrentCulture,
+        out decimal preu))
+    {
+        MessageBox.Show(&quot;Escriu un preu vàlid.&quot;);
+        txtPreu.Focus();
+        return;
+    }
+
+    var producte = new Producte
+    {
+        Id = id,
+        Nom = txtNom.Text.Trim(),
+        Preu = preu,
+        Unitats = (int)nudUnitats.Value
+    };
+
+    IReadOnlyList&lt;string&gt; errors = producte.Validate();
+    if (errors.Count &gt; 0)
+    {
+        MessageBox.Show(string.Join(Environment.NewLine, errors));
+        return;
+    }
+
+    Resultat = producte;
+    DialogResult = DialogResult.OK;
+    Close();
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>El control <code>NumericUpDown</code> ja evita unitats negatives. El preu necessita una conversió explícita perquè el text pot contenir una coma o un punt segons la configuració regional de l'ordinador.</p>
+
+  <h3>Obrir el diàleg per crear o editar</h3>
+
+  <p>La finestra principal obrirà el mateix diàleg en dos modes. El resultat només arribarà al repositori quan l'usuari hagi premut Acceptar:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Forms/ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private Producte? ObreEditor(Producte? producte)
+{
+    using var editor = new ProducteEditorForm(producte);
+
+    return editor.ShowDialog(this) == DialogResult.OK
+        ? editor.Resultat
+        : null;
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>Si l'usuari cancel·la, el mètode retorna <code>null</code> i la finestra principal no modifica ni la graella ni PostgreSQL. Aquesta decisió evita guardar canvis parcials.</p>
+
+  <h3>Resultat resolt de la secció</h3>
+
+  <p>Ja tenim una finestra d'edició reutilitzable, validació comuna i un retorn explícit. Encara no hem escrit l'operació CRUD des dels botons; la següent secció connectarà aquests resultats amb <code>Add</code>, <code>Update</code> i <code>Delete</code>.</p>
+
+  
+  <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p>El diàleg pot crear o editar un <code>Producte</code>, rebutja valors incorrectes, conserva els canvis només després d'Acceptar i no toca el repositori quan l'usuari cancel·la.</p>
+</div>
+
+
+  <h3>Ampliació opcional: missatges d'error al costat del control</h3>
+
+  <p>Com a ampliació, pots utilitzar un <code>ErrorProvider</code> per mostrar cada error al costat del control corresponent. Mantén la validació del model: l'indicador visual és una ajuda, no una segona implementació de les regles.</p>
+</div>
+
+<div class="section" id="Unitat0_Bloc4_Seccio6">
+  <h2 id="Unitat0_Bloc4_Seccio6">6. Connectar el CRUD amb les finestres</h2>
+
+  <p>Ja tenim el repositori i el diàleg d'edició. Ara connectarem els botons de la finestra principal amb les operacions CRUD. El patró serà sempre el mateix: obrir el diàleg, validar, escriure a PostgreSQL i tornar a llegir les dades per mostrar l'estat real.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/flux-crud-finestra-repositori.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia del flux CRUD entre finestres i repositori" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/flux-crud-finestra-repositori.png" alt="Infografia del flux CRUD entre finestres i repositori" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">Una alta, una edició o una eliminació recorren el mateix circuit: es valida la dada, es crida el repositori i es refresca la vista.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>Connectar els esdeveniments</h3>
+
+  <p>Al dissenyador, associa els botons als handlers següents. També pots fer-ho al constructor després de <code>InitializeComponent</code>:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Forms/ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">btnNou.Click += btnNou_Click;
+btnEditar.Click += btnEditar_Click;
+btnEliminar.Click += btnEliminar_Click;</code></pre>
+  </div>
+</div>
+
+
+  <h3>Afegir un producte</h3>
+
+  <p>Una alta només modifica PostgreSQL quan el diàleg retorna un producte vàlid:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Forms/ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private void btnNou_Click(object? sender, EventArgs e)
+{
+    Producte? producte = ObreEditor(null);
+    if (producte is null)
+    {
+        return;
+    }
+
+    try
+    {
+        repositori.Add(producte);
+        CarregaProductes();
+    }
+    catch (Exception error)
+    {
+        MostraError(&quot;No s&#39;ha pogut afegir el producte.&quot;, error);
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>Després del write no afegim manualment una fila a la graella. Tornem a consultar el repositori perquè l'identificador i l'estat visual provenen de la base de dades real.</p>
+
+  <h3>Editar la fila seleccionada</h3>
+
+  <p>La fila seleccionada ha de contenir un <code>Producte</code>. Si no n'hi ha cap, informem l'usuari i no obrim un formulari buit:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Forms/ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private void btnEditar_Click(object? sender, EventArgs e)
+{
+    if (dgvProductes.CurrentRow?.DataBoundItem is not Producte actual)
+    {
+        MessageBox.Show(&quot;Selecciona un producte.&quot;);
+        return;
+    }
+
+    Producte? modificat = ObreEditor(actual);
+    if (modificat is null)
+    {
+        return;
+    }
+
+    try
+    {
+        repositori.Update(modificat);
+        CarregaProductes();
+    }
+    catch (Exception error)
+    {
+        MostraError(&quot;No s&#39;ha pogut modificar el producte.&quot;, error);
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>El diàleg retorna una còpia amb el mateix <code>Id</code>. Per això l'<code>UPDATE</code> identifica la fila correctament encara que el nom hagi canviat.</p>
+
+  <h3>Eliminar amb confirmació</h3>
+
+  <p>Eliminar és una operació destructiva per a les dades. Demanarem confirmació i només enviarem l'identificador al repositori:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Forms/ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private void btnEliminar_Click(object? sender, EventArgs e)
+{
+    if (dgvProductes.CurrentRow?.DataBoundItem is not Producte actual)
+    {
+        MessageBox.Show(&quot;Selecciona un producte.&quot;);
+        return;
+    }
+
+    DialogResult resposta = MessageBox.Show(
+        $&quot;Vols eliminar «{actual.Nom}»?&quot;,
+        &quot;Confirmar eliminació&quot;,
+        MessageBoxButtons.YesNo,
+        MessageBoxIcon.Warning);
+
+    if (resposta != DialogResult.Yes)
+    {
+        return;
+    }
+
+    try
+    {
+        repositori.Delete(actual.Id);
+        CarregaProductes();
+    }
+    catch (Exception error)
+    {
+        MostraError(&quot;No s&#39;ha pogut eliminar el producte.&quot;, error);
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+  <h3>Centralitzar els errors de les operacions</h3>
+
+  <p>Els tres handlers no han de repetir la forma de mostrar un error. Afegeix un helper privat per mantenir el missatge segur i conservar el detall només al depurador:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Forms/ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private static void MostraError(string missatge, Exception error)
+{
+    System.Diagnostics.Debug.WriteLine(error);
+    MessageBox.Show(
+        missatge,
+        &quot;Operació no completada&quot;,
+        MessageBoxButtons.OK,
+        MessageBoxIcon.Error);
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>No informem que una operació ha funcionat fins que el repositori ha acabat i la lectura posterior ha actualitzat la graella. Si la connexió falla, les dades visuals anteriors es conserven i l'usuari rep un missatge clar.</p>
+
+  <h3>Flux complet que ja funciona</h3>
+
+  <ol>
+    <li>prem «Nou producte» i introdueix dades vàlides;</li>
+    <li>accepta el diàleg i comprova que apareix la fila retornada per PostgreSQL;</li>
+    <li>selecciona-la, edita el preu i comprova que conserva el seu identificador;</li>
+    <li>selecciona-la, confirma l'eliminació i comprova que desapareix després de tornar a llegir;</li>
+    <li>atura PostgreSQL i repeteix una operació: no ha d'aparèixer cap missatge d'èxit fals.</li>
+  </ol>
+
+  
+  <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p>La finestra principal ja pot crear, consultar, modificar i eliminar productes de PostgreSQL mitjançant una finestra d'edició separada. La graella sempre es refresca a partir de l'estat real del repositori.</p>
+</div>
+
+
+  <h3>Ampliació opcional: desfer una eliminació</h3>
+
+  <p>Com a ampliació, pots afegir una papelera o una operació de recuperació. No reutilitzis l'operació <code>Delete</code> sense definir primer quines dades i quina confirmació addicional necessites.</p>
+</div>
+
+<div class="section" id="Unitat0_Bloc4_Seccio7">
+  <h2 id="Unitat0_Bloc4_Seccio7">7. Cercar i filtrar el catàleg</h2>
+
+  <p>El CRUD ja funciona, però una graella deixa de ser útil quan el catàleg creix. Afegirem una cerca pel nom i un filtre per mostrar només els productes amb existències. El filtre treballarà sobre la col·lecció que ja hem llegit: no farem una consulta a PostgreSQL per cada tecla.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/cerca-i-filtres-cataleg.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia sobre la cerca i els filtres del catàleg" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/cerca-i-filtres-cataleg.png" alt="Infografia sobre la cerca i els filtres del catàleg" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">El filtre transforma la vista que veu l'usuari, però la col·lecció completa continua disponible per a les operacions del gestor.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>Afegir els controls del filtre</h3>
+
+  <p>A la franja superior de <code>ProductesForm</code>, afegeix:</p>
+
+  <table class="table">
+    <thead><tr><th>Control</th><th>Nom</th><th>Propietats</th></tr></thead>
+    <tbody>
+      <tr><td><code>TextBox</code></td><td><code>txtCerca</code></td><td>Text inicial buit; etiqueta «Cerca».</td></tr>
+      <tr><td><code>CheckBox</code></td><td><code>chkDisponibles</code></td><td>Text «Només amb existències».</td></tr>
+    </tbody>
+  </table>
+
+  <p>Associa els dos controls al mateix mètode. Així qualsevol canvi de criteri actualitzarà la vista amb una única implementació:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Forms/ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">txtCerca.TextChanged += FiltreCanviat;
+chkDisponibles.CheckedChanged += FiltreCanviat;
+
+private void FiltreCanviat(object? sender, EventArgs e)
+{
+    AplicaFiltre();
+}</code></pre>
+  </div>
+</div>
+
+
+  <h3>Aplicar la cerca sense perdre la col·lecció completa</h3>
+
+  <p><code>productes</code> conserva totes les files retornades per PostgreSQL. El <code>DataGridView</code> rep una llista filtrada nova; mai eliminem elements de la col·lecció original només perquè no coincideixin amb la cerca actual:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">ProducteFilter.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">using GestorProductes.Models;
+
+namespace GestorProductes;
+
+public static class ProducteFilter
+{
+    public static IReadOnlyList&lt;Producte&gt; Aplica(
+        IEnumerable&lt;Producte&gt; productes,
+        string text,
+        bool nomesDisponibles)
+    {
+        IEnumerable&lt;Producte&gt; resultat = productes;
+        string cerca = text.Trim();
+
+        if (cerca.Length &gt; 0)
+        {
+            resultat = resultat.Where(producte =&gt;
+                producte.Nom.Contains(
+                    cerca,
+                    StringComparison.CurrentCultureIgnoreCase));
+        }
+
+        if (nomesDisponibles)
+        {
+            resultat = resultat.Where(producte =&gt; producte.Unitats &gt; 0);
+        }
+
+        return resultat.ToList();
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Forms/ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private void AplicaFiltre()
+{
+    IReadOnlyList&lt;Producte&gt; visibles = ProducteFilter.Aplica(
+        productes,
+        txtCerca.Text,
+        chkDisponibles.Checked);
+    binding.DataSource = visibles;
+    lblEstat.Text = $&quot;{visibles.Count} de {productes.Count} productes visibles&quot;;
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>El filtre no canvia les dades ni el repositori. Si l'usuari crea, edita o elimina un producte, <code>CarregaProductes</code> torna a llegir totes les files i després reaplica els criteris actius.</p>
+
+  <h3>Evitar resultats incoherents</h3>
+
+  <p>Hi ha tres errors habituals que aquest patró evita:</p>
+
+  <ul>
+    <li>filtrar la mateixa llista i perdre definitivament les files que no coincideixen;</li>
+    <li>fer una consulta a la base de dades en cada pulsació, carregant innecessàriament el servidor;</li>
+    <li>mostrar un comptador que no coincideix amb les files visibles.</li>
+  </ul>
+
+  <p>La cerca és una ajuda de presentació. Les operacions d'edició i eliminació continuen utilitzant el <code>Producte</code> seleccionat i el seu <code>Id</code>, encara que la graella estigui filtrada.</p>
+
+  <h3>Comprovar la cerca i el filtre</h3>
+
+  <ol>
+    <li>carrega diversos productes amb noms diferents i almenys un sense existències;</li>
+    <li>escriu una part del nom i comprova que només queden coincidències;</li>
+    <li>activa «Només amb existències» i comprova que desapareix el producte buit;</li>
+    <li>neteja el text i desactiva la casella: torna a aparèixer tot el catàleg;</li>
+    <li>edita una fila filtrada i comprova que després de desar continua respectant el filtre;</li>
+    <li>elimina una fila filtrada i comprova que el comptador i la graella es recalculen.</li>
+  </ol>
+
+  
+  <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p>La finestra permet cercar i filtrar sense tocar les dades de PostgreSQL ni duplicar la lògica del repositori. Les operacions CRUD continuen funcionant sobre el model i l'identificador real de cada fila.</p>
+</div>
+
+
+  <h3>Ampliació opcional: filtres combinats</h3>
+
+  <p>Com a ampliació, pots afegir un rang de preus o ordenar els resultats. Mantén un únic mètode de filtratge i deixa clar quins criteris són visuals i quins haurien de convertir-se en consultes PostgreSQL quan el volum de dades ho justifiqui.</p>
+</div>
+
+<div class="section" id="Unitat0_Bloc4_Seccio8">
+  <h2 id="Unitat0_Bloc4_Seccio8">8. Depurar i verificar el projecte complet</h2>
+
+  <p>El gestor ja té finestres, model, CRUD, filtres i PostgreSQL. Abans de donar-lo per acabat, el comprovarem amb el depurador i amb una seqüència fixa. Una aplicació no està verificada perquè no aparegui cap error durant una prova informal: cal saber què s'ha comprovat i quin resultat s'esperava.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/depuracio-punts-verificacio.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia dels punts de verificació durant la depuració" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/depuracio-punts-verificacio.png" alt="Infografia dels punts de verificació durant la depuració" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">Els punts d'interrupció permeten seguir les dades des del formulari fins al repositori i comprovar el camí d'error sense exposar secrets.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>On posar els punts d'interrupció</h3>
+
+  <p>Comença amb quatre punts d'interrupció que cobreixen el recorregut complet:</p>
+
+  <ol>
+    <li>a l'inici de <code>ProducteEditorForm.btnAcceptar_Click</code>, per inspeccionar els valors introduïts;</li>
+    <li>abans de <code>repositori.Add</code> o <code>repositori.Update</code>, per verificar el model que surt del diàleg;</li>
+    <li>dins de <code>ProducteDbRepository.ExecuteProducteCommand</code>, per comprovar els paràmetres i la connexió;</li>
+    <li>després de <code>CarregaProductes</code>, per confirmar que la graella representa l'estat retornat per PostgreSQL.</li>
+  </ol>
+
+  <p>No inspeccionis ni copiïs la cadena de connexió en una captura. Si el depurador la mostra, tapa la contrasenya i qualsevol dada sensible abans de compartir evidències.</p>
+
+  <h3>Comprovar el model abans del write</h3>
+
+  <p>Durant una alta, observa que el model ja està validat abans d'arribar al repositori:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Forms/ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">Producte? producte = ObreEditor(null);
+if (producte is null)
+{
+    return;
+}
+
+System.Diagnostics.Debug.Assert(producte.Nom.Length &gt; 0);
+System.Diagnostics.Debug.Assert(producte.Preu &gt;= 0);
+System.Diagnostics.Debug.Assert(producte.Unitats &gt;= 0);
+
+repositori.Add(producte);</code></pre>
+  </div>
+</div>
+
+
+  <p>Les assercions serveixen per detectar un error durant el desenvolupament. La validació del model i les restriccions de PostgreSQL continuen sent necessàries perquè les assercions no substitueixen la protecció de l'aplicació.</p>
+
+  <h3>Seqüència de verificació funcional</h3>
+
+  <table class="table">
+    <thead><tr><th>Prova</th><th>Acció</th><th>Resultat obligatori</th></tr></thead>
+    <tbody>
+      <tr><td>Arrencada</td><td>Obre l'aplicació amb PostgreSQL disponible.</td><td>La finestra mostra el catàleg i el comptador coincideix amb les files.</td></tr>
+      <tr><td>Alta</td><td>Crea un producte vàlid.</td><td>Apareix després de la lectura posterior i rep un identificador.</td></tr>
+      <tr><td>Edició</td><td>Canvia el nom i el preu d'una fila.</td><td>La mateixa fila conserva l'identificador i mostra els valors nous.</td></tr>
+      <tr><td>Eliminació</td><td>Confirma l'eliminació d'una fila.</td><td>La fila desapareix després de tornar a consultar.</td></tr>
+      <tr><td>Validació</td><td>Introdueix un preu no numèric o un nom buit.</td><td>El diàleg no es tanca i no s'envia cap write.</td></tr>
+      <tr><td>Filtre</td><td>Cerca text i activa «Només amb existències».</td><td>Canvia només la vista; les dades persistides no es modifiquen.</td></tr>
+      <tr><td>Reinici</td><td>Tanca i torna a obrir l'aplicació.</td><td>Les dades desades continuen disponibles.</td></tr>
+      <tr><td>Error de connexió</td><td>Atura PostgreSQL i intenta una operació.</td><td>Missatge segur, cap èxit fals i detall només al depurador.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Verificar la base de dades després de les proves</h3>
+
+  <p>La graella no és l'única evidència. Des de pgAdmin o <code>psql</code>, comprova que les files tenen els valors esperats i que no s'han creat duplicats:</p>
+
+  
+  <div class="code-block" data-lang="sql" role="region" aria-label="Bloc de codi sql">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">SQL</span>
+      <span class="code-filename">Data/comprovar-dades.sql</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-sql">SELECT id, nom, preu, unitats
+FROM productes
+ORDER BY id;</code></pre>
+  </div>
+</div>
+
+
+  <p>Executa aquesta consulta després de la seqüència d'alta, edició i eliminació. El resultat ha de coincidir amb el que l'aplicació mostra després de recarregar.</p>
+
+  <h3>Registrar una incidència sense exposar secrets</h3>
+
+  <p>Quan una prova falla, anota el pas, l'acció, el missatge visible i la causa probable. No copiïs la cadena de connexió ni l'excepció completa si conté dades internes. Un registre útil podria indicar «fallada de connexió al pas d'edició» sense incloure cap credencial.</p>
+
+  
+  <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p>El projecte està verificat quan les operacions normals, els filtres, el reinici i els errors de connexió tenen un resultat conegut i reproduïble. La graella, el depurador i la consulta SQL confirmen el mateix estat.</p>
+</div>
+
+
+  <h3>Ampliació opcional: convertir les comprovacions en proves automatitzades</h3>
+
+  <p>Com a ampliació, pots crear un projecte de proves per al model i el repositori. Les proves de base de dades han d'utilitzar una base local preparada o una estratègia d'integració separada; no connectis la suite automàtica a dades reals.</p>
+</div>
+
+<div class="section" id="Unitat0_Bloc4_Seccio9">
+  <h2 id="Unitat0_Bloc4_Seccio9">9. Tests unitaris del model i dels filtres</h2>
+
+  <p>Les comprovacions manuals ens han permès verificar les finestres i la connexió, però no substitueixen els tests unitaris. Un test unitari comprova una peça petita del programa, de manera ràpida i sense obrir cap finestra ni connectar-se a PostgreSQL.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/tests-unitaris-arrange-act-assert.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia sobre tests unitaris amb Arrange Act Assert" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/tests-unitaris-arrange-act-assert.png" alt="Infografia sobre tests unitaris amb Arrange Act Assert" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">Cada prova separa la preparació, l'acció i la comprovació perquè el motiu d'un error quedi clar.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>La idea en quatre passos</h3>
+
+  <p>Tots els tests d'aquesta secció segueixen el mateix esquema:</p>
+
+  <ol>
+    <li><strong>Preparar:</strong> crear les dades que volem provar.</li>
+    <li><strong>Actuar:</strong> cridar el mètode.</li>
+    <li><strong>Comprovar:</strong> comparar el resultat amb el que esperàvem.</li>
+    <li><strong>Repetir:</strong> executar els tests cada vegada que canviem el codi.</li>
+  </ol>
+
+  <p>Un test no explica si l'aplicació sencera és bonica. Respon una pregunta concreta, com «un producte vàlid no té errors?».</p>
+
+  <h3>Crear el projecte de tests</h3>
+
+  <p>Al costat del projecte Windows Forms, crea un projecte de tests amb xUnit i fes que referenciï el projecte principal:</p>
+
+  
+  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      <span class="code-filename">Terminal</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">dotnet new xunit -n GestorProductes.Tests
+dotnet add GestorProductes.Tests reference GestorProductes/GestorProductes.csproj
+dotnet test</code></pre>
+  </div>
+</div>
+
+
+  <p>Aquest projecte no necessita PostgreSQL ni credencials. Si els tests depenen de la base de dades, ja no són tests unitaris: són proves d'integració i es tractaran a part.</p>
+
+  <h3>Primer test: un producte vàlid</h3>
+
+  <p>La primera pregunta és la més senzilla: quan omplim correctament un producte, la seva validació no ha de retornar cap error.</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">ProducteTests.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">using GestorProductes.Models;
+using Xunit;
+
+namespace GestorProductes.Tests;
+
+public sealed class ProducteTests
+{
+    [Fact]
+    public void UnProducteValidNoTeErrors()
+    {
+        var producte = new Producte
+        {
+            Nom = &quot;Teclat&quot;,
+            Preu = 24.90m,
+            Unitats = 4
+        };
+
+        IReadOnlyList&lt;string&gt; errors = producte.Validate();
+
+        Assert.Empty(errors);
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+  <p><code>[Fact]</code> indica que xUnit ha d'executar el mètode. El test passa perquè la llista d'errors està buida. Si demà canviem la regla del preu i aquest producte deixa de ser vàlid, el test ens avisarà.</p>
+
+  <h3>Segon test: dades incorrectes</h3>
+
+  <p>També hem de protegir les regles que rebutgen dades. En aquest cas esperem tres errors: nom buit, preu negatiu i unitats negatives.</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">ProducteTests.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">[Fact]
+public void UnProducteInvalidIndicaElsErrors()
+{
+    var producte = new Producte
+    {
+        Nom = &quot;&quot;,
+        Preu = -1,
+        Unitats = -2
+    };
+
+    IReadOnlyList&lt;string&gt; errors = producte.Validate();
+
+    Assert.Equal(3, errors.Count);
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>El test no comprova només que hi hagi un error: comprova el nombre de regles que s'han activat. Si afegim una nova regla, haurem de decidir si també correspon actualitzar aquest cas.</p>
+
+  <h3>Provar el filtre sense crear controls</h3>
+
+  <p>La classe <code>ProducteFilter</code> ja s'ha definit a la secció de filtres, separada del formulari. Per això els tests poden cridar-la directament sense crear controls ni simular clics.</p>
+
+  <h3>Testar una cerca i un filtre</h3>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">ProducteFilterTests.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">using GestorProductes.Models;
+using Xunit;
+
+namespace GestorProductes.Tests;
+
+public sealed class ProducteFilterTests
+{
+    private static readonly Producte[] Productes =
+    {
+        new() { Id = 1, Nom = &quot;Teclat&quot;, Preu = 24.90m, Unitats = 4 },
+        new() { Id = 2, Nom = &quot;Ratolí&quot;, Preu = 15.00m, Unitats = 0 },
+        new() { Id = 3, Nom = &quot;Monitor&quot;, Preu = 180.00m, Unitats = 2 }
+    };
+
+    [Fact]
+    public void CercaNoDistingeixMajuscules()
+    {
+        IReadOnlyList&lt;Producte&gt; resultat =
+            ProducteFilter.Aplica(Productes, &quot;TECL&quot;, false);
+
+        Assert.Single(resultat);
+        Assert.Equal(&quot;Teclat&quot;, resultat[0].Nom);
+    }
+
+    [Fact]
+    public void DisponiblesExclouUnitatsZero()
+    {
+        IReadOnlyList&lt;Producte&gt; resultat =
+            ProducteFilter.Aplica(Productes, &quot;&quot;, true);
+
+        Assert.Equal(2, resultat.Count);
+        Assert.DoesNotContain(resultat, producte =&gt; producte.Unitats == 0);
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+  <h3>Executar i entendre el resultat</h3>
+
+  <p>Executa <code>dotnet test</code> des de la carpeta de la solució. Un resultat correcte indica quants tests s'han executat i quants han passat. Si un test falla, llegeix primer el nom del test i després el valor esperat i el valor obtingut; no el desactivis per fer que la suite aparegui en verd.</p>
+
+  <table class="table">
+    <thead><tr><th>Què provem</th><th>Necessita PostgreSQL?</th><th>Tipus</th></tr></thead>
+    <tbody>
+      <tr><td>Validació de <code>Producte</code></td><td>No</td><td>Unitari</td></tr>
+      <tr><td><code>ProducteFilter</code></td><td>No</td><td>Unitari</td></tr>
+      <tr><td>CRUD contra la base</td><td>Sí</td><td>Integració</td></tr>
+      <tr><td>Finestra i navegació</td><td>No, però necessita Windows Forms</td><td>Manual o UI</td></tr>
+    </tbody>
+  </table>
+
+  
+  <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p>Els tests unitaris protegeixen les regles del model i dels filtres sense xarxa, PostgreSQL ni interfície gràfica. Les proves manuals i d'integració continuen cobrint la resta del projecte.</p>
+</div>
+
+
+  <h3>Ampliació opcional: més casos de prova</h3>
+
+  <p>Com a ampliació, pots afegir casos per a una cerca buida, espais al voltant del text o una col·lecció sense files. La suite principal ja queda completa sense aquests casos addicionals.</p>
+</div>
+
+<div class="section" id="Unitat0_Bloc4_Seccio10">
+  <h2 id="Unitat0_Bloc4_Seccio10">10. Integració final i documentació</h2>
+
+  <p>Aquesta és la secció de tancament. No afegeix cap funcionalitat pendent: reuneix les peces anteriors, deixa clar l'ordre de posada en marxa i defineix com comprovarem que el gestor funciona de principi a fi.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/projecte-complet-checklist.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia de la checklist final del projecte integrador" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/projecte-complet-checklist.png" alt="Infografia de la checklist final del projecte integrador" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">La checklist final reuneix l'estructura, la configuració, el CRUD, els filtres, els tests i les comprovacions de posada en marxa.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>Estructura final de la solució</h3>
+
+  <p>La solució acabada ha de tenir, com a mínim, aquesta estructura:</p>
+
+  
+  <div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      <span class="code-filename">Solució final</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">GestorProductes/
+├── Models/
+│   └── Producte.cs
+├── Data/
+│   ├── schema.sql
+│   ├── IProducteRepository.cs
+│   └── ProducteDbRepository.cs
+├── Forms/
+│   ├── ProductesForm.cs
+│   ├── ProductesForm.Designer.cs
+│   ├── ProducteEditorForm.cs
+│   └── ProducteEditorForm.Designer.cs
+├── Program.cs
+└── GestorProductes.Tests/
+    ├── ProducteTests.cs
+    └── ProducteFilterTests.cs</code></pre>
+  </div>
+</div>
+
+
+  <p>Els fitxers <code>.Designer.cs</code> els genera el dissenyador de Windows Forms. El codi escrit manualment queda separat en els fitxers de la interfície, el model i les dades. No cal editar el fitxer del dissenyador per implementar les regles del projecte.</p>
+
+  <h3>Program.cs definitiu</h3>
+
+  <p>El punt d'entrada llegeix la configuració, comprova la connexió i injecta el repositori a la finestra principal:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Program.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">using Npgsql;
+using GestorProductes.Data;
+using GestorProductes.Forms;
+
+namespace GestorProductes;
+
+internal static class Program
+{
+    [STAThread]
+    private static void Main()
+    {
+        string? connectionString =
+            Environment.GetEnvironmentVariable(&quot;DAM0488_DB_CONNECTION&quot;);
+
+        if (string.IsNullOrWhiteSpace(connectionString))
+        {
+            MessageBox.Show(
+                &quot;Falta configurar la connexió a PostgreSQL.&quot;,
+                &quot;Configuració pendent&quot;);
+            return;
+        }
+
+        IProducteRepository repositori =
+            new ProducteDbRepository(connectionString);
+
+        try
+        {
+            repositori.GetAll();
+        }
+        catch (NpgsqlException error)
+        {
+            System.Diagnostics.Debug.WriteLine(error);
+            MessageBox.Show(
+                &quot;No s&#39;ha pogut connectar amb PostgreSQL.&quot;,
+                &quot;Connexió no disponible&quot;);
+            return;
+        }
+
+        ApplicationConfiguration.Initialize();
+        Application.Run(new ProductesForm(repositori));
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+  <h3>Ordre de posada en marxa</h3>
+
+  <ol>
+    <li>inicia el servei local de PostgreSQL;</li>
+    <li>crea o selecciona la base de dades de pràctiques;</li>
+    <li>executa <code>Data/schema.sql</code> una sola vegada;</li>
+    <li>configura <code>DAM0488_DB_CONNECTION</code> fora del repositori;</li>
+    <li>obté els paquets del projecte i compila la solució;</li>
+    <li>inicia l'aplicació i comprova que el catàleg es carrega;</li>
+    <li>prova alta, edició, eliminació, cerca, filtre, reinici i error de connexió;</li>
+    <li>verifica les dades directament amb la consulta SQL de comprovació.</li>
+  </ol>
+
+  <h3>Checklist de verificació</h3>
+
+  <table class="table">
+    <thead><tr><th>Àrea</th><th>Comprovació</th></tr></thead>
+    <tbody>
+      <tr><td>Interfície</td><td>La finestra principal i la d'edició s'obren i tenen noms accessibles.</td></tr>
+      <tr><td>Model</td><td><code>Producte</code> valida nom, preu i unitats.</td></tr>
+      <tr><td>PostgreSQL</td><td>L'esquema coincideix amb el model i la connexió no conté secrets al codi.</td></tr>
+      <tr><td>CRUD</td><td>Alta, consulta, edició i eliminació actualitzen la base real.</td></tr>
+      <tr><td>Filtres</td><td>La cerca i el filtre canvien només la vista.</td></tr>
+      <tr><td>Errors</td><td>Una fallada no es presenta com un èxit i no exposa credencials.</td></tr>
+      <tr><td>Depuració</td><td>Es pot seguir una operació des del diàleg fins al repositori.</td></tr>
+      <tr><td>Documentació</td><td>Una altra persona pot preparar la base i iniciar el projecte.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Material de referència</h3>
+
+  <p>La solució, el script d'esquema, la guia d'inici i la taula de comprovacions formen part del material de referència perquè l'alumne pugui estudiar i reproduir el projecte. No cal presentar ni enviar cap fitxer. Les credencials, les cadenes de connexió reals, les bases de dades amb dades personals i els fitxers temporals sempre queden fora del material compartit.</p>
+
+  
+  <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p>El projecte està tancat quan una persona que no l'ha creat pot preparar PostgreSQL, configurar la connexió local, iniciar l'aplicació i verificar el CRUD seguint la documentació, sense haver d'omplir cap fragment essencial de codi.</p>
+</div>
+
+
+  <h3>Ampliacions opcionals</h3>
+
+  <p>A partir de la solució completa es poden afegir proves automatitzades, paginació, filtres avançats, exportació o una capa d'autenticació. Aquestes ampliacions no formen part del camí necessari per tenir el gestor funcional.</p>
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 4: Projecte integrador Windows Forms",
+  "description": "Aplicació completa amb diverses finestres, model de dades, CRUD, filtres, persistència PostgreSQL i depuració",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Desenvolupament d'interfícies — IOC",
+    "description": "Materials del mòdul DAM_0488 - Desenvolupament d'interfícies (C# i Windows Forms)"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                    
+                                        
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0488/unitat-0/bloc-3/" class="nav-button" aria-label="Bloc anterior: Persistència i organització de l'aplicació">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="0" data-total="4">(0/4)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 0%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="4" data-total="4">(4/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 100%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="10">(1/10)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 10%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/dam_0488/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/dam_0488",
+        title: "Desenvolupament d'interfícies",
+        version: "v1.0",
+        cicle_modul: "DAM_0488"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/dam_0488/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/dam_0488/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

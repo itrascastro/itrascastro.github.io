@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 1: Pensar amb dades: del programa al formulari | Desenvolupament d'interfícies - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="0">
+    <meta name="page-bloc" content="1">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 1: Pensar amb dades: del programa al formulari | Desenvolupament d’interfícies</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 1: Pensar amb dades: del programa al formulari" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Variables, tipus, assignacions i primeres decisions en C#" />
+<meta property="og:description" content="Variables, tipus, assignacions i primeres decisions en C#" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-0/bloc-1/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0488/unitat-0/bloc-1/" />
+<meta property="og:site_name" content="Desenvolupament d’interfícies" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 1: Pensar amb dades: del programa al formulari" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Variables, tipus, assignacions i primeres decisions en C#","headline":"Bloc 1: Pensar amb dades: del programa al formulari","url":"https://itrascastro.github.io/ioc/dam_0488/unitat-0/bloc-1/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-0/bloc-1/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/dam_0488/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0488/feed.xml" title="Desenvolupament d&apos;interfícies" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-ini.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/code-block.css">
+    <script src="/ioc/dam_0488/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/dam_0488">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/dam_0488/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/dam_0488/" class="title-link">
+                <h1>DAM_0488 - Desenvolupament d'interfícies</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/dam_0488/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/dam_0488/unitat-0/bloc-1/" class="nav-dropdown-item current">
+                        Unitat 0 - Bloc 1: Pensar amb dades: del programa al formulari
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-0/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 0 - Bloc 2: Classes, objectes i gestió de dades
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-0/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 0 - Bloc 3: Persistència i organització de l'aplicació
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-0/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 0 - Bloc 4: Projecte integrador Windows Forms
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Entorn de treball i projecte base
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Disseny del formulari: controls, propietats i esdeveniments
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Components visuals propis
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Persistència, proves, documentació i revisió
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Usabilitat i accessibilitat
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Disseny de pantalles i pautes d'interfície
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Informes
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Manuals i documentació
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 1: Interfícies naturals i reconeixement de veu
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 2: Síntesi de veu i integració
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 3: Distribució i instal·lació
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 4: Proves
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat0_Bloc1_Seccio1" class="nav-link" data-section="Unitat0_Bloc1_Seccio1">1. Variables: tipus, nom i valor</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat0_Bloc1_Seccio2" class="nav-link" data-section="Unitat0_Bloc1_Seccio2">2. Condicions i bucles: fer que el programa reaccioni</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat0_Bloc1_Seccio3" class="nav-link" data-section="Unitat0_Bloc1_Seccio3">3. Mètodes: posar nom a les operacions</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat0_Bloc1_Seccio4" class="nav-link" data-section="Unitat0_Bloc1_Seccio4">4. Crear el primer projecte Windows Forms</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat0_Bloc1_Seccio5" class="nav-link" data-section="Unitat0_Bloc1_Seccio5">5. Vista Disseny, vista Codi i esdeveniments</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/dam_0488/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/dam_0488/unitat-0/" class="horizontal-nav-item">
+                                Unitat 0: Fonaments de C# i Windows Forms
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 0.1: Pensar amb dades: del programa al formulari
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<div class="section" id="Unitat0_Bloc1_Seccio1">
+  <h2 id="Unitat0_Bloc1_Seccio1">1. Variables: tipus, nom i valor</h2>
+
+  <p>Abans de crear una finestra, un botó o una classe, un programa necessita representar informació. Un inventari necessita saber quants productes hi ha; una aplicació de reserves necessita saber el nom d'una persona i si una plaça està disponible; un formulari necessita guardar temporalment el que l'usuari hi ha escrit.</p>
+
+  <p>En C#, aquesta informació es guarda en <strong>variables</strong>. Una variable té tres parts que hem de saber llegir:</p>
+
+  <ul>
+    <li>el <strong>tipus</strong>, que indica quina mena de dada pot contenir;</li>
+    <li>el <strong>nom</strong>, que és com la identificarem dins del programa;</li>
+    <li>el <strong>valor</strong>, que és la dada que conté en un moment concret.</li>
+  </ul>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/01-variables-tipus-nom-valor.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia sobre els conceptes de tipus, nom i valor d'una variable en C#" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/01-variables-tipus-nom-valor.png" alt="Infografia sobre els conceptes de tipus, nom i valor d'una variable en C#" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">La infografia resumeix la idea que treballarem: una variable té un tipus, un nom i un valor.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>Un primer exemple: les unitats d'un producte</h3>
+
+  <p>Imaginem que volem guardar les unitats disponibles d'un producte. El valor inicial és 12:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Programa.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">int unitats = 12;</code></pre>
+  </div>
+</div>
+
+
+  <p>La lectura és directa:</p>
+
+  <table class="table">
+    <thead><tr><th>Part</th><th>Valor</th><th>Què significa</th></tr></thead>
+    <tbody>
+      <tr><td>Tipus</td><td><code>int</code></td><td>Un nombre enter, sense decimals.</td></tr>
+      <tr><td>Nom</td><td><code>unitats</code></td><td>El nom que farem servir per consultar o canviar la dada.</td></tr>
+      <tr><td>Valor inicial</td><td><code>12</code></td><td>La quantitat disponible quan comença el programa.</td></tr>
+    </tbody>
+  </table>
+
+  <p>El signe <code>=</code> no vol dir «és igual que» en el sentit matemàtic. En aquesta instrucció vol dir «assigna aquest valor a aquesta variable». Primer s'avalua el que hi ha a la dreta i després es guarda el resultat a l'esquerra.</p>
+
+  <h3>El valor d'una variable pot canviar</h3>
+
+  <p>Una variable no és una etiqueta enganxada per sempre a una dada. Durant l'execució podem actualitzar-la:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Programa.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">int unitats = 12;
+unitats = unitats + 3;
+
+Console.WriteLine(unitats);</code></pre>
+  </div>
+</div>
+
+
+  <p>Després de la segona instrucció, <code>unitats</code> val 15. El programa ha llegit el valor actual, hi ha sumat 3 i ha desat el resultat en la mateixa variable.</p>
+
+  <p>Aquesta forma d'actualitzar una dada apareixerà sovint en els exemples del mòdul:</p>
+
+  <ul>
+    <li>quan entra un producte nou, augmenten les unitats;</li>
+    <li>quan es fa una venda, disminueixen les unitats;</li>
+    <li>quan es carrega un formulari, les variables reben les dades de l'usuari.</li>
+  </ul>
+
+  <h3>Triar el tipus adequat</h3>
+
+  <p>El tipus no és un detall estètic. Ajuda el compilador a detectar errors i ens diu quines operacions tenen sentit.</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Producte.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">string nomProducte = &quot;Teclat&quot;;
+int unitats = 12;
+decimal preu = 24.95m;
+bool actiu = true;</code></pre>
+  </div>
+</div>
+
+
+  <table class="table">
+    <thead><tr><th>Tipus</th><th>Exemple</th><th>Quan el farem servir</th></tr></thead>
+    <tbody>
+      <tr><td><code>string</code></td><td><code>"Teclat"</code></td><td>Text, noms, descripcions o codis.</td></tr>
+      <tr><td><code>int</code></td><td><code>12</code></td><td>Quantitats enteres, com unitats o posicions.</td></tr>
+      <tr><td><code>decimal</code></td><td><code>24.95m</code></td><td>Imports i valors on els decimals han de ser fiables.</td></tr>
+      <tr><td><code>bool</code></td><td><code>true</code></td><td>Situacions amb dues possibilitats: actiu/inactiu, sí/no.</td></tr>
+    </tbody>
+  </table>
+
+  <p>Observa la lletra <code>m</code> després de <code>24.95</code>. Indica que volem tractar el literal com un <code>decimal</code>. És una petita convenció de C# que convé començar a reconèixer des del principi.</p>
+
+  <h3>Un exemple complet i llegible</h3>
+
+  <p>Ara ajuntem les quatre dades per descriure un producte. Encara no hem creat cap classe: simplement estem practicant com identificar la informació que el programa haurà de gestionar.</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Programa.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">string nomProducte = &quot;Teclat&quot;;
+decimal preu = 24.95m;
+int unitats = 12;
+bool actiu = true;
+
+Console.WriteLine($&quot;Producte: {nomProducte}&quot;);
+Console.WriteLine($&quot;Preu: {preu} €&quot;);
+Console.WriteLine($&quot;Unitats: {unitats}&quot;);
+Console.WriteLine($&quot;Actiu: {actiu}&quot;);</code></pre>
+  </div>
+</div>
+
+
+  <p>La <strong>interpolació de cadenes</strong>, que comença amb el símbol <code>$</code>, permet inserir el valor d'una variable dins d'un text. És més llegible que anar concatenant fragments amb molts signes <code>+</code>.</p>
+
+  <h3>Errors habituals</h3>
+
+  
+  <!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <ul><li>Intentar guardar text dins d'una variable <code>int</code>.</li><li>Canviar el nom de la variable en una línia i oblidar actualitzar-lo en les altres.</li><li>Confondre l'assignació (<code>=</code>) amb una comparació, que treballarem quan estudiem les condicions.</li><li>Fer servir un <code>double</code> sense entendre les seves particularitats quan treballem amb imports.</li></ul>
+</div>
+
+
+  <h3>Pràctica guiada: una fitxa de producte</h3>
+
+  <p>Crea un programa nou de consola i declara les dades d'un producte que triïs. El programa ha de mostrar una fitxa llegible. Després modifica el nombre d'unitats i comprova que la sortida canvia.</p>
+
+  <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: La meva primera fitxa</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Declara un nom, un preu, unes unitats i un estat actiu. Mostra les quatre dades amb etiquetes clares i actualitza les unitats amb una segona instrucció.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Inicial</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">20 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Comença per una variable cada vegada.</li>
+        
+        <li>Usa interpolació de cadenes per presentar el resultat.</li>
+        
+        <li>Executa el programa després de cada canvi petit.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+
+  <p>Quan aquest exemple sigui clar, ja tindrem el vocabulari necessari per fer el pas següent: prendre decisions amb les dades i repetir instruccions sense copiar-les manualment.</p>
+</div>
+
+<div class="section" id="Unitat0_Bloc1_Seccio2">
+  <h2 id="Unitat0_Bloc1_Seccio2">2. Condicions i bucles: fer que el programa reaccioni</h2>
+
+  <p>Una aplicació útil no es limita a mostrar sempre el mateix resultat. Ha de poder prendre decisions i repetir una operació tantes vegades com calgui. Un gestor d'estoc, per exemple, ha de distingir entre un producte disponible i un producte esgotat, i ha de poder revisar tots els productes d'una llista.</p>
+
+  <p>En C# fem aquestes dues coses amb:</p>
+
+  <ul>
+    <li><strong>condicions</strong>, per escollir quin camí segueix el programa;</li>
+    <li><strong>bucles</strong>, per repetir un bloc d'instruccions.</li>
+  </ul>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/22-condicions-bucles.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia sobre condicions if i bucles for i foreach en C#" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/22-condicions-bucles.png" alt="Infografia sobre condicions if i bucles for i foreach en C#" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">Les condicions permeten decidir i els bucles permeten repetir sense copiar el mateix codi.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>Una primera decisió amb <code>if</code></h3>
+
+  <p>Comencem amb una pregunta molt concreta: hi ha unitats disponibles?</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Programa.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">int unitats = 12;
+
+if (unitats &gt; 0)
+{
+    Console.WriteLine(&quot;El producte està disponible&quot;);
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>La condició que hi ha entre parèntesis es calcula abans d'executar el bloc. Si és certa, s'executen les instruccions entre claus. Si és falsa, el programa continua després del bloc.</p>
+
+  <p>Podem indicar també què ha de passar quan la condició no es compleix:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Programa.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">int unitats = 0;
+
+if (unitats &gt; 0)
+{
+    Console.WriteLine(&quot;El producte està disponible&quot;);
+}
+else
+{
+    Console.WriteLine(&quot;Producte esgotat&quot;);
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>Els operadors de comparació més habituals són:</p>
+
+  <table class="table">
+    <thead><tr><th>Operador</th><th>Pregunta</th><th>Exemple</th></tr></thead>
+    <tbody>
+      <tr><td><code>==</code></td><td>És igual?</td><td><code>unitats == 0</code></td></tr>
+      <tr><td><code>!=</code></td><td>És diferent?</td><td><code>nom != ""</code></td></tr>
+      <tr><td><code>&gt;</code></td><td>És més gran?</td><td><code>unitats &gt; 0</code></td></tr>
+      <tr><td><code>&lt;</code></td><td>És més petit?</td><td><code>preu &lt; 10</code></td></tr>
+      <tr><td><code>&gt;=</code> / <code>&lt;=</code></td><td>Inclou el límit?</td><td><code>unitats &lt;= 5</code></td></tr>
+    </tbody>
+  </table>
+
+  <p>Un error molt habitual és fer servir un sol signe <code>=</code> quan volem comparar. Recorda: <code>=</code> assigna un valor; <code>==</code> compara dos valors.</p>
+
+  <h3>Combinar preguntes</h3>
+
+  <p>Una aplicació real sovint necessita comprovar més d'una cosa. Per exemple, un producte només es pot vendre si està actiu i encara té unitats:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Programa.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">bool actiu = true;
+int unitats = 3;
+
+if (actiu &amp;&amp; unitats &gt; 0)
+{
+    Console.WriteLine(&quot;Es pot vendre&quot;);
+}
+else
+{
+    Console.WriteLine(&quot;No es pot vendre&quot;);
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>L'operador <code>&&</code> vol dir «i». Totes dues condicions han de ser certes. L'operador <code>||</code> vol dir «o» i permet continuar quan n'hi ha prou que se'n compleixi una.</p>
+
+  <h3>Repetir una operació amb <code>for</code></h3>
+
+  <p>Si volem mostrar els números de l'1 al 5, no cal escriure cinc <code>Console.WriteLine</code>. Un bucle <code>for</code> agrupa la inicialització, la condició de continuació i l'increment:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Programa.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">for (int numero = 1; numero &lt;= 5; numero++)
+{
+    Console.WriteLine(numero);
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>La variable <code>numero</code> comença valent 1. Després de cada volta augmenta en 1. Quan arriba a 6, la condició <code>numero &lt;= 5</code> ja no es compleix i el bucle acaba.</p>
+
+  <h3>Recórrer una col·lecció amb <code>foreach</code></h3>
+
+  <p>Quan tenim diversos productes, el que ens interessa normalment no és el seu índex, sinó processar-los un per un. Per això farem servir <code>foreach</code>:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Programa.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">string[] productes = { &quot;Teclat&quot;, &quot;Ratolí&quot;, &quot;Pantalla&quot; };
+
+foreach (string producte in productes)
+{
+    Console.WriteLine($&quot;Producte: {producte}&quot;);
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>El bucle assigna cada element de la col·lecció a la variable <code>producte</code> i executa el bloc una vegada per a cada element. Més endavant recorrerem una <code>List&lt;Producte&gt;</code>, però la idea serà exactament la mateixa.</p>
+
+  <h3>Un exemple que combina decisions i repetició</h3>
+
+  <p>Podem revisar una petita llista d'estocs i avisar només dels productes que necessiten reposició:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Programa.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">int[] estocs = { 12, 0, 4, 1 };
+
+foreach (int estoc in estocs)
+{
+    if (estoc == 0)
+    {
+        Console.WriteLine(&quot;Esgotat&quot;);
+    }
+    else if (estoc &lt;= 2)
+    {
+        Console.WriteLine(&quot;Cal reposar aviat&quot;);
+    }
+    else
+    {
+        Console.WriteLine(&quot;Estoc correcte&quot;);
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>Aquest exemple ja s'assembla a una funcionalitat real. Encara no tenim una interfície gràfica, però ja podem expressar una regla de negoci: segons el valor de l'estoc, el programa mostra un missatge diferent.</p>
+
+  
+  <!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <ul><li>No posar les claus del bloc al lloc correcte.</li><li>Crear un bucle que no modifica mai la seva condició i no acaba.</li><li>Fer servir <code>for</code> quan només necessitem processar cada element d'una col·lecció.</li><li>Fer comparacions amb textos sense tenir en compte si són buits.</li></ul>
+</div>
+
+
+  <h3>Pràctica guiada: classificar l'estoc</h3>
+
+  <p>Parteix d'una llista de quatre quantitats d'estoc. Recorre-la amb <code>foreach</code> i mostra un missatge diferent segons si el valor és zero, és baix o és suficient.</p>
+
+  <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Revisió d'estoc</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Escriu una regla que classifiqui cada quantitat en tres grups: esgotat, cal reposar o estoc correcte. Prova-la amb diversos valors i comprova els límits.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Inicial</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">25 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Comença amb un sol valor i després passa a una llista.</li>
+        
+        <li>Decideix quin ordre han de tenir les condicions.</li>
+        
+        <li>Prova específicament els valors 0, 1, 2 i 3.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+
+  <p>Amb variables, condicions i bucles ja podem descriure comportaments. A la secció següent veurem com agrupar instruccions amb noms significatius mitjançant mètodes.</p>
+</div>
+
+<div class="section" id="Unitat0_Bloc1_Seccio3">
+  <h2 id="Unitat0_Bloc1_Seccio3">3. Mètodes: posar nom a les operacions</h2>
+
+  <p>A mesura que un programa creix, és fàcil acabar repetint les mateixes instruccions en molts llocs. Si cada vegada que volem mostrar l'estat d'un producte escrivim totes les comprovacions, el codi es torna llarg i difícil de mantenir.</p>
+
+  <p>Un <strong>mètode</strong> és un bloc d'instruccions amb un nom. El podem invocar quan necessitem fer aquella operació. Un bon nom explica què fa el mètode i ens permet llegir el programa com una seqüència d'accions.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/23-metodes-parametres.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia sobre mètodes, paràmetres i valors de retorn en C#" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/23-metodes-parametres.png" alt="Infografia sobre mètodes, paràmetres i valors de retorn en C#" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">Un mètode pot rebre dades, executar una operació i retornar un resultat.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>Un mètode que fa una acció</h3>
+
+  <p>Comencem amb un mètode que només mostra un missatge. La paraula <code>void</code> indica que no retorna cap valor:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Programa.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">static void MostrarBenvinguda()
+{
+    Console.WriteLine(&quot;Benvingut al gestor de productes&quot;);
+}
+
+MostrarBenvinguda();</code></pre>
+  </div>
+</div>
+
+
+  <p>La definició del mètode i la crida són dues coses diferents:</p>
+
+  <ul>
+    <li>la definició explica quines instruccions s'executaran;</li>
+    <li>la crida, <code>MostrarBenvinguda()</code>, demana que s'executin en aquell punt.</li>
+  </ul>
+
+  <p>Podem cridar el mateix mètode més d'una vegada, però normalment és més útil donar-li dades perquè actuï segons el cas concret.</p>
+
+  <h3>Passar dades amb paràmetres</h3>
+
+  <p>Un paràmetre és una dada que el mètode rep quan el cridem. En aquest exemple el mètode rep el nom d'un producte:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Programa.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">static void MostrarProducte(string nom)
+{
+    Console.WriteLine($&quot;Producte: {nom}&quot;);
+}
+
+MostrarProducte(&quot;Teclat&quot;);
+MostrarProducte(&quot;Ratolí&quot;);</code></pre>
+  </div>
+</div>
+
+
+  <p><code>nom</code> és el paràmetre del mètode. Les cadenes <code>"Teclat"</code> i <code>"Ratolí"</code> són els arguments que hi passem en cada crida. El mètode és el mateix, però el resultat canvia segons la dada rebuda.</p>
+
+  <p>També podem rebre més d'un paràmetre. Per exemple, per mostrar el resum d'un producte:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Programa.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">static void MostrarResum(string nom, int unitats)
+{
+    Console.WriteLine($&quot;{nom}: {unitats} unitats&quot;);
+}
+
+MostrarResum(&quot;Teclat&quot;, 12);
+MostrarResum(&quot;Ratolí&quot;, 0);</code></pre>
+  </div>
+</div>
+
+
+  <h3>Un mètode que retorna un resultat</h3>
+
+  <p>Moltes operacions no només mostren informació: calculen un resultat que el programa haurà de fer servir després. En aquest cas, en lloc de <code>void</code> indiquem el tipus del valor que retornarem.</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Programa.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">static decimal CalcularTotal(decimal preu, int unitats)
+{
+    return preu * unitats;
+}
+
+decimal total = CalcularTotal(24.95m, 3);
+Console.WriteLine($&quot;Total: {total} €&quot;);</code></pre>
+  </div>
+</div>
+
+
+  <p>El mètode rep un preu i unes unitats, multiplica les dues dades i les retorna amb <code>return</code>. El resultat de la crida es pot guardar en una variable, mostrar o passar a un altre mètode.</p>
+
+  <p>El tipus de retorn forma part de la signatura del mètode. Si hem declarat <code>decimal</code>, totes les rutes del mètode han d'acabar retornant un <code>decimal</code>.</p>
+
+  <h3>Extreure una regla del programa</h3>
+
+  <p>La classificació d'estoc que hem fet a la secció anterior és una regla que pot aparèixer en diferents pantalles. La podem convertir en un mètode reutilitzable que retorni el missatge:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Programa.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">static string ClassificarEstoc(int unitats)
+{
+    if (unitats == 0)
+    {
+        return &quot;Esgotat&quot;;
+    }
+
+    if (unitats &lt;= 2)
+    {
+        return &quot;Cal reposar aviat&quot;;
+    }
+
+    return &quot;Estoc correcte&quot;;
+}
+
+string estat = ClassificarEstoc(1);
+Console.WriteLine(estat);</code></pre>
+  </div>
+</div>
+
+
+  <p>Ara el programa principal no necessita saber com es calcula cada estat. Només ha de cridar <code>ClassificarEstoc</code>. Aquesta separació fa que la regla sigui més fàcil de provar i de modificar.</p>
+
+  <h3>Variables locals i responsabilitats</h3>
+
+  <p>Les variables declarades dins d'un mètode són <strong>locals</strong>: existeixen mentre s'executa aquell mètode. No s'han de confondre amb les variables d'altres mètodes que casualment tinguin el mateix nom.</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Programa.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">static decimal CalcularSubtotal(decimal preu, int unitats)
+{
+    decimal subtotal = preu * unitats;
+    return subtotal;
+}
+
+decimal resultat = CalcularSubtotal(10m, 2);</code></pre>
+  </div>
+</div>
+
+
+  <p>El mètode té una responsabilitat concreta: calcular un subtotal. No hauria de crear controls, demanar dades a l'usuari i escriure fitxers al mateix temps. Aquesta separació serà essencial quan comencem a treballar amb formularis i classes.</p>
+
+  
+  <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p>Un mètode no ha de ser llarg per ser útil. Un mètode curt, amb un nom clar i una responsabilitat concreta, és més fàcil de llegir, provar i reutilitzar.</p>
+    
+</div>
+
+
+  <h3>Errors habituals</h3>
+
+  
+  <!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <ul><li>Definir un mètode però oblidar cridar-lo.</li><li>Passar els arguments en un ordre o amb un tipus incorrecte.</li><li>Declarar un retorn i no retornar cap valor en alguna branca.</li><li>Fer que un mètode calculi, modifiqui la interfície i escrigui dades alhora.</li><li>Posar noms genèrics com <code>FerCoses</code> en lloc d'explicar l'operació.</li></ul>
+</div>
+
+
+  <h3>Pràctica guiada: separar càlculs</h3>
+
+  <p>Parteix d'un programa que té el preu i les unitats d'un producte. Extreu els càlculs a mètodes independents i fes que el programa mostri el subtotal i una classificació de l'estoc.</p>
+
+  <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Preu i estoc</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Crea un mètode que calculi el subtotal i un altre que classifiqui l'estoc. Crida'ls des del programa principal i comprova que canviar les dades no obliga a duplicar codi.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Inicial</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">30 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Comença per un mètode que retorni un decimal.</li>
+        
+        <li>Fes que el mètode de classificació retorni un string.</li>
+        
+        <li>Prova almenys els estocs 0, 1 i 10.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+
+  <p>Els mètodes ens permeten donar estructura al programa. A la secció següent farem el primer pas cap a una aplicació visual: crear el projecte de Windows Forms i entendre què aporta Visual Studio.</p>
+</div>
+
+<div class="section" id="Unitat0_Bloc1_Seccio4">
+  <h2 id="Unitat0_Bloc1_Seccio4">4. Crear el primer projecte Windows Forms</h2>
+
+  <p>Fins ara hem treballat amb programes de consola perquè ens permeten concentrar-nos en la lògica. Ara farem el pas cap a una aplicació gràfica: una finestra amb controls que l'usuari podrà utilitzar.</p>
+
+  <p>Windows Forms és un model d'aplicacions basat en finestres, controls i esdeveniments. Visual Studio ens ajuda a crear la finestra i disposa d'un dissenyador visual, però el projecte continua sent un programa C# amb classes i mètodes.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/21-creacio-winform-correcta.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia corregida per crear un projecte Windows Forms amb Visual Studio" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/21-creacio-winform-correcta.png" alt="Infografia corregida per crear un projecte Windows Forms amb Visual Studio" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">Aquesta és la seqüència de referència per crear els projectes Windows Forms del mòdul.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>Preparar l'entorn</h3>
+
+  <p>Abans de crear el projecte cal tenir Visual Studio instal·lat amb la càrrega de treball de desenvolupament d'escriptori amb .NET. Si aquesta càrrega no està instal·lada, la plantilla de Windows Forms pot no aparèixer o el dissenyador pot no funcionar correctament.</p>
+
+  <ol>
+    <li>Obre Visual Studio.</li>
+    <li>Comprova que tens instal·lada la càrrega <strong>.NET desktop development</strong>.</li>
+    <li>Assegura't que el SDK de .NET que utilitzen els exemples del mòdul està disponible.</li>
+  </ol>
+
+  
+  <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p>El projecte ha d'utilitzar el moniker de plataforma .NET indicat en les instruccions de l'activitat. No triïs automàticament l'opció més nova que aparegui a l'assistent: comprova sempre que coincideixi amb l'entorn del mòdul i amb els exemples que hauràs d'obrir.</p>
+    
+</div>
+
+
+  <h3>Escollir la plantilla correcta</h3>
+
+  <p>A la pantalla de creació d'un projecte, cerca <strong>Windows Forms App</strong> i comprova que la plantilla és per a C#. Hi ha una diferència important entre dues opcions que poden semblar iguals:</p>
+
+  <table class="table">
+    <thead><tr><th>Plantilla</th><th>Decisió</th><th>Motiu</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Windows Forms App</strong></td><td>Triar aquesta</td><td>És la plantilla moderna basada en .NET que fan servir els exemples del mòdul.</td></tr>
+      <tr><td><strong>Windows Forms App (.NET Framework)</strong></td><td>No triar-la</td><td>És la plantilla antiga i utilitza un entorn diferent del que treballarem.</td></tr>
+    </tbody>
+  </table>
+
+  <p>Dona al projecte un nom clar, com <code>ProvaFormulari</code>, i desa'l en una carpeta pròpia. Evita crear projectes dins de carpetes amb noms molt llargs o amb caràcters estranys: els camins complicats poden provocar errors del dissenyador.</p>
+
+  
+  <!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p>No confonguis <strong>Windows Forms App</strong> amb <strong>Windows Forms App (.NET Framework)</strong>. Si tries la plantilla antiga, pots acabar amb un projecte que no coincideixi amb les dependències i els fitxers dels exemples.</p>
+</div>
+
+
+  <h3>Què ha creat Visual Studio?</h3>
+
+  <p>Quan finalitzes l'assistent, l'Explorador de solucions mostra diversos fitxers. No cal editar-los tots de seguida; primer hem d'entendre la responsabilitat de cadascun.</p>
+
+  <table class="table">
+    <thead><tr><th>Fitxer</th><th>Responsabilitat</th><th>Regla de treball</th></tr></thead>
+    <tbody>
+      <tr><td><code>Program.cs</code></td><td>Inicialitza l'aplicació i obre el formulari principal.</td><td>Normalment només el consultarem.</td></tr>
+      <tr><td><code>Form1.cs</code></td><td>Conté el codi que escrivim per al formulari.</td><td>Aquí afegirem comportament i esdeveniments.</td></tr>
+      <tr><td><code>Form1.Designer.cs</code></td><td>Conté codi generat pel dissenyador visual.</td><td>No l'editem manualment mentre aprenem a dissenyar.</td></tr>
+      <tr><td><code>nom-projecte.csproj</code></td><td>Descriu el projecte i el framework de .NET.</td><td>Ens permet comprovar quina plataforma estem utilitzant.</td></tr>
+    </tbody>
+  </table>
+
+  <p><code>Form1.cs</code> i <code>Form1.Designer.cs</code> formen una mateixa classe parcial. Visual Studio els separa per poder mantenir el codi que escrivim nosaltres diferenciat del codi que genera l'editor visual.</p>
+
+  <h3>Executar la primera finestra</h3>
+
+  <p>Executa el projecte amb el botó d'inici o amb la tecla corresponent de Visual Studio. Hauria d'aparèixer una finestra buida. En aquesta primera prova no cal que facis cap control: l'objectiu és comprovar que l'entorn, el projecte i el framework funcionen.</p>
+
+  <p>Quan la finestra s'obri, tanca-la i torna al dissenyador. Encara no hem programat cap esdeveniment; simplement hem verificat el circuit mínim:</p>
+
+  <ol>
+    <li>crear un projecte;</li>
+    <li>compilar-lo;</li>
+    <li>executar-lo;</li>
+    <li>aturar l'execució i tornar al codi.</li>
+  </ol>
+
+  
+  <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p>Si has pogut obrir la finestra buida, ja tens una base funcional sobre la qual afegirem controls. Si el projecte no compila, no continuïs copiant codi: primer resol l'error de l'entorn o de la plantilla.</p>
+</div>
+
+
+  <h3>Pràctica guiada: projecte de prova</h3>
+
+  <p>Crea un projecte anomenat <code>ProvaFormulari</code>, comprova que utilitza Windows Forms sobre .NET i executa'l sense modificar el formulari. Després localitza els quatre fitxers principals de l'Explorador de solucions i explica amb una frase quina responsabilitat té cadascun.</p>
+
+  <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Primera finestra</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Crea, compila i executa el projecte. Quan funcioni, fes una captura de l'Explorador de solucions i anota quin fitxer consultaràs quan vulguis afegir comportament al formulari.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Inicial</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">25 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Comprova primer la càrrega de treball de Visual Studio.</li>
+        
+        <li>No editis el fitxer Designer manualment.</li>
+        
+        <li>Si no apareix la plantilla, revisa la instal·lació abans de continuar.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+
+  <p>Ja tenim una finestra que es pot executar. A la secció següent aprendrem a afegir controls i a reaccionar als esdeveniments que generen quan l'usuari hi interactua.</p>
+</div>
+
+<div class="section" id="Unitat0_Bloc1_Seccio5">
+  <h2 id="Unitat0_Bloc1_Seccio5">5. Vista Disseny, vista Codi i esdeveniments</h2>
+
+  <p>Una aplicació Windows Forms es construeix combinant dues maneres de treballar. A la <strong>vista Disseny</strong> col·loquem els controls i configurem les seves propietats. A la <strong>vista Codi</strong> escrivim què ha de fer l'aplicació quan l'usuari hi interactua.</p>
+
+  <p>No són dos projectes diferents ni dues versions de la mateixa finestra: són dues vistes de la mateixa classe. El disseny ens ajuda a descriure l'aspecte; el codi ens permet expressar el comportament.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/12-disseny-windows-forms.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia sobre el disseny d'una interfície Windows Forms" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/12-disseny-windows-forms.png" alt="Infografia sobre el disseny d'una interfície Windows Forms" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">La vista Disseny permet col·locar controls i preparar la interfície abans d'escriure el comportament.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>Què fem a cada vista?</h3>
+
+  <table class="table">
+    <thead><tr><th>Vista</th><th>Què hi fem</th><th>Què hem d'evitar</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Disseny</strong></td><td>Arrosseguem controls, canviem propietats com <code>Name</code>, <code>Text</code> o <code>Size</code> i ordenem la finestra.</td><td>Posar tota la lògica de l'aplicació en propietats o en noms poc clars.</td></tr>
+      <tr><td><strong>Codi del formulari</strong></td><td>Escrivim mètodes, validacions i handlers d'esdeveniments.</td><td>Modificar a mà el codi generat pel dissenyador sense saber quin efecte tindrà.</td></tr>
+      <tr><td><strong>Propietats</strong></td><td>Configurem la identitat i l'aspecte de cada control.</td><td>Confondre el nom intern del control amb el text que veu l'usuari.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Un control té identitat i comportament</h3>
+
+  <p>Per fer un exemple petit i comprensible, afegirem tres controls al formulari:</p>
+
+  <ul>
+    <li>un <code>TextBox</code> amb <code>Name</code> <code>txtNom</code> perquè l'usuari escrigui el seu nom;</li>
+    <li>un <code>Button</code> amb <code>Name</code> <code>btnSaluda</code> i <code>Text</code> <code>Saluda</code>;</li>
+    <li>un <code>Label</code> amb <code>Name</code> <code>lblResultat</code> per mostrar el resultat.</li>
+  </ul>
+
+  <p>El valor de <code>Name</code> és el nom que farem servir en C#. El valor de <code>Text</code> és el que es mostra a la interfície. Separar aquestes dues idees evita que el codi depengui d'un text que pot canviar.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/17-esdeveniments-controls.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia sobre controls i programació orientada a esdeveniments" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/17-esdeveniments-controls.png" alt="Infografia sobre controls i programació orientada a esdeveniments" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">Els controls són objectes que poden generar esdeveniments quan l'usuari hi actua.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>Un esdeveniment inicia una acció</h3>
+
+  <p>Windows Forms funciona de manera orientada a esdeveniments. El programa queda esperant una acció: un clic, un canvi de text, una finestra que es tanca o una tecla. Quan aquesta acció passa, s'executa el mètode que hi hem associat.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/14-esdeveniment-click.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia sobre l'esdeveniment Click d'un botó" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/14-esdeveniment-click.png" alt="Infografia sobre l'esdeveniment Click d'un botó" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">Un clic al botó pot iniciar un mètode que llegeix dades, valida i actualitza la interfície.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <p>Per crear l'acció del botó, selecciona <code>btnSaluda</code> en el dissenyador i obre l'esdeveniment <code>Click</code> des de la finestra de propietats. Visual Studio crearà el mètode handler al fitxer del formulari. Escriu-hi només la lògica que necessitem:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Form1.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private void btnSaluda_Click(object? sender, EventArgs e)
+{
+    string nom = txtNom.Text.Trim();
+
+    if (string.IsNullOrWhiteSpace(nom))
+    {
+        lblResultat.Text = &quot;Escriu el teu nom.&quot;;
+        return;
+    }
+
+    lblResultat.Text = $&quot;Hola, {nom}!&quot;;
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>Observa la seqüència: primer llegim la dada del control, després la validem i finalment actualitzem un altre control. El formulari no ha de saber només “pintar”: ha de coordinar una petita operació amb dades i regles clares.</p>
+
+  <h3>Què fa Visual Studio per nosaltres?</h3>
+
+  <ol>
+    <li>El dissenyador crea i posiciona els controls.</li>
+    <li>La finestra de propietats permet associar el botó amb l'esdeveniment <code>Click</code>.</li>
+    <li>El fitxer del formulari conté el mètode que escrivim nosaltres.</li>
+    <li>Quan l'usuari prem el botó, Windows Forms crida aquest mètode.</li>
+  </ol>
+
+  <p>No cal editar <code>Form1.Designer.cs</code> per aconseguir aquest resultat. Si el dissenyador ha generat una propietat, una instància o una associació d'esdeveniment, la mantindrem sota el seu control i treballarem en el fitxer del formulari.</p>
+
+  <table class="table">
+    <thead><tr><th>Símptoma</th><th>Causa probable</th><th>Comprova-ho</th></tr></thead>
+    <tbody>
+      <tr><td>El botó no fa res</td><td>No hi ha cap handler associat a <code>Click</code>.</td><td>Revisa l'esdeveniment <code>Click</code> del botó.</td></tr>
+      <tr><td>No compila <code>txtNom</code></td><td>El control té un altre <code>Name</code> o encara no s'ha desat el disseny.</td><td>Comprova el nom del control a la finestra de propietats.</td></tr>
+      <tr><td>El missatge sempre és buit</td><td>El codi llegeix el control equivocat.</td><td>Escriu una dada i segueix la línia <code>txtNom.Text</code>.</td></tr>
+      <tr><td>El disseny es trenca</td><td>S'ha modificat manualment el codi generat.</td><td>Desfés el canvi i torna a fer la configuració des del dissenyador.</td></tr>
+    </tbody>
+  </table>
+
+  
+  <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p>Quan el botó llegeix el text, comprova si és vàlid i actualitza l'etiqueta, ja has connectat les tres peces bàsiques d'una interfície: control, esdeveniment i codi de resposta.</p>
+</div>
+
+
+  <h3>Pràctica guiada: una salutació interactiva</h3>
+
+  <p>Completa el formulari amb els tres controls indicats i implementa l'esdeveniment <code>Click</code>. Prova'l amb el camp buit, amb un nom escrit i amb espais abans o després del nom. Després canvia el text del botó des del dissenyador sense tocar el codi i comprova que el comportament no canvia.</p>
+
+  <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Salutació interactiva</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Construeix una finestra que llegeixi un nom i mostri una salutació. Documenta quines propietats has canviat a la vista Disseny i quin mètode respon a l'esdeveniment Click.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Inicial</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">35 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Assigna noms clars als controls abans d'escriure codi.</li>
+        
+        <li>Valida el text abans de construir la salutació.</li>
+        
+        <li>No escriguis codi al fitxer Designer.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+
+  <p>Ja sabem crear una finestra i donar-li comportament. En el bloc següent aprendrem a representar dades amb classes i objectes abans de construir aplicacions amb més d'una finestra.</p>
+</div>
+
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 1: Pensar amb dades: del programa al formulari",
+  "description": "Variables, tipus, assignacions i primeres decisions en C#",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Desenvolupament d'interfícies — IOC",
+    "description": "Materials del mòdul DAM_0488 - Desenvolupament d'interfícies (C# i Windows Forms)"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                        
+                                        
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0488/unitat-0/bloc-2/" class="nav-button" aria-label="Bloc següent: Classes, objectes i gestió de dades">Següent →</a>
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="0" data-total="4">(0/4)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 0%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="1" data-total="4">(1/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 25%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="5">(1/5)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 20%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/dam_0488/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/dam_0488",
+        title: "Desenvolupament d'interfícies",
+        version: "v1.0",
+        cicle_modul: "DAM_0488"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/dam_0488/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/dam_0488/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

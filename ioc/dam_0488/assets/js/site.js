@@ -222,6 +222,69 @@ function initializeResponsiveTables() {
   });
 }
 
+function initializeFigureLightbox() {
+  const triggers = Array.from(document.querySelectorAll('.figure-lightbox-trigger'));
+  if (triggers.length === 0) return;
+
+  const overlay = document.createElement('div');
+  overlay.className = 'figure-lightbox';
+  overlay.hidden = true;
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-label', 'Imatge ampliada');
+
+  const dialog = document.createElement('div');
+  dialog.className = 'figure-lightbox-dialog';
+
+  const image = document.createElement('img');
+  image.className = 'figure-lightbox-image';
+
+  const closeButton = document.createElement('button');
+  closeButton.type = 'button';
+  closeButton.className = 'figure-lightbox-close';
+  closeButton.setAttribute('aria-label', 'Tancar la imatge ampliada');
+  closeButton.textContent = '×';
+
+  dialog.appendChild(image);
+  dialog.appendChild(closeButton);
+  overlay.appendChild(dialog);
+  document.body.appendChild(overlay);
+
+  let lastTrigger = null;
+
+  const close = () => {
+    overlay.hidden = true;
+    document.body.classList.remove('figure-lightbox-open');
+    image.removeAttribute('src');
+    if (lastTrigger) {
+      try { lastTrigger.focus({ preventScroll: true }); } catch (error) { lastTrigger.focus(); }
+    }
+  };
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener('click', (event) => {
+      event.preventDefault();
+      const source = trigger.querySelector('img');
+      if (!source) return;
+
+      lastTrigger = trigger;
+      image.src = trigger.getAttribute('href') || source.currentSrc || source.src;
+      image.alt = source.alt || '';
+      overlay.hidden = false;
+      document.body.classList.add('figure-lightbox-open');
+      closeButton.focus({ preventScroll: true });
+    });
+  });
+
+  closeButton.addEventListener('click', close);
+  overlay.addEventListener('click', (event) => {
+    if (event.target === overlay) close();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !overlay.hidden) close();
+  });
+}
+
 // Tema fosc/clar + tema Prism
 function initializeThemeToggle() {
   const themeToggle = document.getElementById('theme-toggle');
@@ -267,6 +330,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initializeOffcanvasNavigation();
   initializeFooterCollapse();
   initializeResponsiveTables();
+  initializeFigureLightbox();
   initializeFooterProgress();
   initializePromptCopy();
   initializeTocActive();

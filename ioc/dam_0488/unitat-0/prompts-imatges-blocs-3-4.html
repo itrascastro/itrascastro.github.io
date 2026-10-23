@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Prompts d’imatges per a la Unitat 0 | Desenvolupament d'interfícies - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    
+    
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Prompts d’imatges per a la Unitat 0 | Desenvolupament d’interfícies</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Prompts d’imatges per a la Unitat 0" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Materials del mòdul DAM_0488 - Desenvolupament d’interfícies (C# i Windows Forms)" />
+<meta property="og:description" content="Materials del mòdul DAM_0488 - Desenvolupament d’interfícies (C# i Windows Forms)" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-0/prompts-imatges-blocs-3-4.html" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0488/unitat-0/prompts-imatges-blocs-3-4.html" />
+<meta property="og:site_name" content="Desenvolupament d’interfícies" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Prompts d’imatges per a la Unitat 0" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Materials del mòdul DAM_0488 - Desenvolupament d’interfícies (C# i Windows Forms)","headline":"Prompts d’imatges per a la Unitat 0","url":"https://itrascastro.github.io/ioc/dam_0488/unitat-0/prompts-imatges-blocs-3-4.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-0/prompts-imatges-blocs-3-4.html">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/dam_0488/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0488/feed.xml" title="Desenvolupament d&apos;interfícies" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-ini.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/code-block.css">
+    <script src="/ioc/dam_0488/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/dam_0488">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/dam_0488/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/dam_0488/" class="title-link">
+                <h1>DAM_0488 - Desenvolupament d'interfícies</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/dam_0488/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/dam_0488/unitat-0/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 0 - Bloc 1: Pensar amb dades: del programa al formulari
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-0/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 0 - Bloc 2: Classes, objectes i gestió de dades
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-0/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 0 - Bloc 3: Persistència i organització de l'aplicació
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-0/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 0 - Bloc 4: Projecte integrador Windows Forms
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Entorn de treball i projecte base
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Disseny del formulari: controls, propietats i esdeveniments
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Components visuals propis
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Persistència, proves, documentació i revisió
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Usabilitat i accessibilitat
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Disseny de pantalles i pautes d'interfície
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Informes
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Manuals i documentació
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 1: Interfícies naturals i reconeixement de veu
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 2: Síntesi de veu i integració
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 3: Distribució i instal·lació
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 4: Proves
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#criteris-comuns-per-a-totes-les-imatges" class="nav-link" data-section="criteris-comuns-per-a-totes-les-imatges">Criteris comuns per a totes les imatges</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#bloc-3--persistència-i-organització-de-laplicació" class="nav-link" data-section="bloc-3--persistència-i-organització-de-laplicació">Bloc 3 — Persistència i organització de l’aplicació</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#bloc-4--projecte-integrador-windows-forms" class="nav-link" data-section="bloc-4--projecte-integrador-windows-forms">Bloc 4 — Projecte integrador Windows Forms</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#imatges-existents-que-no-cal-regenerar" class="nav-link" data-section="imatges-existents-que-no-cal-regenerar">Imatges existents que no cal regenerar</a>
+        </div>
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/dam_0488/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <span class="horizontal-nav-item current">
+                                Prompts d’imatges per a la Unitat 0
+                            </span>
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<h1 id="prompts-dimatges-per-a-la-unitat-0">Prompts d’imatges per a la Unitat 0</h1>
+
+<p>Aquest document conté els prompts per generar les infografies que falten als blocs 3 i 4.</p>
+
+<h2 id="criteris-comuns-per-a-totes-les-imatges">Criteris comuns per a totes les imatges</h2>
+
+<p>Aplica aquests criteris a tots els prompts:</p>
+
+<ul>
+  <li>estil d’infografia educativa moderna, clara i consistent amb la resta de materials de DAM_0488;</li>
+  <li>composició horitzontal, pensada per inserir-se en una pàgina web;</li>
+  <li>colors suaus amb blau, violeta i blanc, contrast suficient i aspecte professional;</li>
+  <li>il·lustracions vectorials netes, sense fotografies ni marques comercials;</li>
+  <li>tipografia gran, llegible i sense text petit decoratiu;</li>
+  <li>etiquetes en català només quan siguin imprescindibles;</li>
+  <li>no incloure anys, dates, números de versió ni noms de productes comercials concrets;</li>
+  <li>no incloure credencials, contrasenyes, dades personals ni adreces reals;</li>
+  <li>no afegir logotips de Microsoft, PostgreSQL, Visual Studio ni cap altra marca;</li>
+  <li>evitar pantalles plenes de text: la imatge ha d’explicar relacions i fluxos, no substituir el material escrit;</li>
+  <li>no utilitzar fletxes amb direccions ambigües ni elements tallats pels marges;</li>
+  <li>deixar marge exterior suficient per poder retallar la imatge sense perdre informació.</li>
+</ul>
+
+<hr />
+
+<h2 id="bloc-3--persistència-i-organització-de-laplicació">Bloc 3 — Persistència i organització de l’aplicació</h2>
+
+<h3 id="bloc-3-secció-2--installar-i-preparar-postgresql">Bloc 3, secció 2 — Instal·lar i preparar PostgreSQL</h3>
+
+<p><strong>Nom de fitxer suggerit:</strong> <code class="language-html highlighter-rouge">13-postgresql-entorn-local.png</code></p>
+
+<p><strong>Prompt:</strong></p>
+
+<blockquote>
+  <p>Crea una infografia educativa horitzontal que expliqui un entorn local de PostgreSQL per a una aplicació Windows Forms. Mostra tres peces relacionades: un servidor de base de dades local, una eina gràfica d’administració i un client de terminal. Afegeix una quarta peça, l’aplicació de catàleg, connectada només al servidor. Representa visualment que l’aplicació consulta una base de dades de pràctiques i que les credencials es mantenen fora del codi. Inclou un petit esquema de connexió amb host local, port, base de dades i usuari, però sense mostrar cap contrasenya ni cap valor real. La composició ha de deixar clar que l’eina gràfica i el client de terminal són formes diferents d’administrar el mateix servidor, no tres bases de dades diferents. Estil d’infografia vectorial educativa, neta, moderna, colors blau i violeta, etiquetes molt breus en català i sense text petit.</p>
+</blockquote>
+
+<h3 id="bloc-3-secció-3--persistència-real-amb-postgresql">Bloc 3, secció 3 — Persistència real amb PostgreSQL</h3>
+
+<p><strong>Nom de fitxer suggerit:</strong> <code class="language-html highlighter-rouge">14-postgresql-taula-repositori.png</code></p>
+
+<p><strong>Prompt:</strong></p>
+
+<blockquote>
+  <p>Crea una infografia educativa horitzontal sobre el recorregut entre un objecte Producte, un repositori i una taula PostgreSQL. A l’esquerra mostra un objecte amb les propietats Id, Nom, Preu i Unitats. Al centre mostra un repositori que tradueix l’objecte a consultes parametritzades. A la dreta mostra una taula amb una clau primària i restriccions que impedeixen preus i unitats negatives. Utilitza fletxes bidireccionals per representar lectura i escriptura, però deixa clar que la interfície no parla directament amb la taula. Inclou una petita indicació visual que els paràmetres separen les dades del text SQL. No incloguis cap contrasenya, URL, versió ni marca comercial. Estil de diagrama vectorial clar, jerarquia visual forta, colors blau, violeta, blanc i taronja per a les restriccions.</p>
+</blockquote>
+
+<h3 id="bloc-3-secció-5--errors-habituals-i-recuperació">Bloc 3, secció 5 — Errors habituals i recuperació</h3>
+
+<p><strong>Nom de fitxer suggerit:</strong> <code class="language-html highlighter-rouge">15-errors-persistencia-recuperacio.png</code></p>
+
+<p><strong>Prompt:</strong></p>
+
+<blockquote>
+  <p>Crea una infografia educativa horitzontal que mostri tres incidències d’un catàleg d’escriptori i la resposta segura a cadascuna. Primer cas: fitxer JSON inexistent en el primer arrencada, que es pot iniciar buit. Segon cas: fitxer JSON corrupte, que s’ha de conservar i notificar, sense substituir-lo silenciosament per una llista buida. Tercer cas: servidor PostgreSQL no disponible, que ha de mostrar un error comprensible i no afirmar que l’operació s’ha completat. Afegeix una columna final amb el flux de recuperació: aturar, conservar l’estat, identificar la causa, corregir i verificar. No mostris pantalles amb text llarg ni dades reals. Estil d’infografia vectorial educativa, amb símbols d’alerta i recuperació, colors ambre, vermell suau, verd i blau, etiquetes breus en català.</p>
+</blockquote>
+
+<blockquote>
+  <p>La secció 1 ja utilitza la infografia existent de filtres i CSV. La secció 4 ja utilitza la infografia existent d’execució i depuració.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="bloc-4--projecte-integrador-windows-forms">Bloc 4 — Projecte integrador Windows Forms</h2>
+
+<h3 id="bloc-4-secció-1--enunciat-i-arquitectura-del-gestor-de-productes">Bloc 4, secció 1 — Enunciat i arquitectura del gestor de productes</h3>
+
+<p><strong>Nom de fitxer suggerit:</strong> <code class="language-html highlighter-rouge">16-arquitectura-gestor-productes.png</code></p>
+
+<p><strong>Prompt:</strong></p>
+
+<blockquote>
+  <p>Crea una infografia educativa horitzontal de l’arquitectura d’un petit gestor de productes Windows Forms. Mostra dues finestres a l’esquerra: finestra principal amb graella i finestra d’edició. Al centre mostra el model Producte i una capa d’aplicació. A la dreta mostra un repositori i PostgreSQL. Les fletxes han d’indicar que les finestres treballen amb el model i el repositori, però no amb SQL ni amb la cadena de connexió. Inclou una zona visual separada per a validació i errors. La imatge ha de transmetre separació de responsabilitats i una aplicació petita però completa. Etiquetes molt breus en català, sense versions, dates, logotips ni credencials.</p>
+</blockquote>
+
+<h3 id="bloc-4-secció-2--crear-la-solució-i-el-model-producte">Bloc 4, secció 2 — Crear la solució i el model Producte</h3>
+
+<p><strong>Nom de fitxer suggerit:</strong> <code class="language-html highlighter-rouge">17-model-producte-classes-propietats.png</code></p>
+
+<p><strong>Prompt:</strong></p>
+
+<blockquote>
+  <p>Crea una infografia educativa horitzontal que expliqui com una classe Producte representa una fila de dades. Mostra una classe amb les propietats Id, Nom, Preu i Unitats, i al costat dues instàncies diferents amb valors d’exemple genèrics. Afegeix una zona inferior amb les tres regles de validació: nom obligatori, preu no negatiu i unitats no negatives. Representa visualment que el mateix model és utilitzat per la interfície i pel repositori. No incloguis codi llarg, només una representació de classe i objectes. Estil vectorial net, etiquetes grans en català, sense anys ni versions.</p>
+</blockquote>
+
+<h3 id="bloc-4-secció-3--preparar-postgresql-i-el-repositori-crud">Bloc 4, secció 3 — Preparar PostgreSQL i el repositori CRUD</h3>
+
+<p><strong>Nom de fitxer suggerit:</strong> <code class="language-html highlighter-rouge">18-repositori-crud-postgresql.png</code></p>
+
+<p><strong>Prompt:</strong></p>
+
+<blockquote>
+  <p>Crea una infografia educativa horitzontal que expliqui un repositori CRUD entre una aplicació i PostgreSQL. Mostra quatre operacions separades i fàcils de reconèixer: crear, consultar, modificar i eliminar. Cada operació ha de passar pel repositori i arribar a una taula productes amb Id, Nom, Preu i Unitats. Inclou un símbol visual per a les consultes parametritzades i un escut per a les restriccions de la taula. Mostra també una clau de configuració local separada de l’aplicació, sense cap valor de contrasenya. No incloguis SQL llarg, números de versió ni marques. Estil d’infografia vectorial moderna, colors blau i violeta amb accents verds i vermells per a les operacions.</p>
+</blockquote>
+
+<h3 id="bloc-4-secció-4--crear-la-finestra-principal-i-carregar-el-catàleg">Bloc 4, secció 4 — Crear la finestra principal i carregar el catàleg</h3>
+
+<p><strong>Nom de fitxer suggerit:</strong> <code class="language-html highlighter-rouge">19-finestra-principal-datagridview.png</code></p>
+
+<p><strong>Prompt:</strong></p>
+
+<blockquote>
+  <p>Crea una infografia educativa horitzontal sobre la finestra principal d’un gestor de productes. Mostra una finestra amb una graella de productes, una barra superior amb botons «Nou», «Editar» i «Eliminar», i una etiqueta inferior d’estat. Al costat, mostra el flux d’obertura: la finestra demana dades al repositori, el repositori consulta PostgreSQL i la graella rep una col·lecció de productes. Utilitza una lupa o una indicació visual per explicar que la graella només presenta dades i no conté SQL. No intentis reproduir una captura de pantalla real; fes una maqueta vectorial simplificada amb text gran i llegible en català, sense marques ni versions.</p>
+</blockquote>
+
+<h3 id="bloc-4-secció-5--crear-la-finestra-dedició-i-validar-dades">Bloc 4, secció 5 — Crear la finestra d’edició i validar dades</h3>
+
+<p><strong>Nom de fitxer suggerit:</strong> <code class="language-html highlighter-rouge">20-finestra-editor-validacio.png</code></p>
+
+<p><strong>Prompt:</strong></p>
+
+<blockquote>
+  <p>Crea una infografia educativa horitzontal que mostri una finestra modal d’edició d’un producte. Inclou camps per a nom, preu i unitats, i dos botons: acceptar i cancel·lar. A la dreta mostra el flux de validació: convertir els valors, validar el model, retornar un producte si és correcte o mostrar errors si no ho és. Representa clarament que cancel·lar no modifica ni la graella ni la base de dades. Utilitza exemples neutres, sense dades personals, sense contrasenyes i sense textos petits. Estil vectorial net, colors blau, verd per a l’acceptació i ambre per als avisos, etiquetes breus en català.</p>
+</blockquote>
+
+<h3 id="bloc-4-secció-6--connectar-el-crud-amb-les-finestres">Bloc 4, secció 6 — Connectar el CRUD amb les finestres</h3>
+
+<p><strong>Nom de fitxer suggerit:</strong> <code class="language-html highlighter-rouge">21-flux-crud-finestra-repositori.png</code></p>
+
+<p><strong>Prompt:</strong></p>
+
+<blockquote>
+  <p>Crea una infografia educativa horitzontal amb tres fluxos independents d’una finestra Windows Forms cap a un repositori PostgreSQL: alta, edició i eliminació. En l’alta, mostra obrir el diàleg, validar, inserir i recarregar. En l’edició, mostra seleccionar una fila, conservar l’identificador, actualitzar i recarregar. En l’eliminació, mostra seleccionar, demanar confirmació, eliminar i recarregar. Utilitza una paleta que diferenciï lectures, escriptures i eliminació destructiva, però sense alarmisme. No incloguis SQL llarg ni text petit. Etiquetes molt breus en català i fletxes amb un ordre clar.</p>
+</blockquote>
+
+<h3 id="bloc-4-secció-7--cercar-i-filtrar-el-catàleg">Bloc 4, secció 7 — Cercar i filtrar el catàleg</h3>
+
+<p><strong>Nom de fitxer suggerit:</strong> <code class="language-html highlighter-rouge">22-cerca-i-filtres-cataleg.png</code></p>
+
+<p><strong>Prompt:</strong></p>
+
+<blockquote>
+  <p>Crea una infografia educativa horitzontal sobre el filtratge d’una col·lecció de productes en memòria. A l’esquerra mostra la col·lecció completa. Al centre mostra dos criteris: text de cerca pel nom i casella «Només amb existències». A la dreta mostra la llista visible després d’aplicar els criteris. Inclou una indicació visual que la col·lecció original no es modifica i que no es fa una consulta a PostgreSQL per cada tecla. Estil de diagrama vectorial, colors blau i violeta, una lupa i una casella de selecció, etiquetes grans en català, sense dates ni versions.</p>
+</blockquote>
+
+<h3 id="bloc-4-secció-8--depurar-i-verificar-el-projecte-complet">Bloc 4, secció 8 — Depurar i verificar el projecte complet</h3>
+
+<p><strong>Nom de fitxer suggerit:</strong> <code class="language-html highlighter-rouge">23-depuracio-punts-verificacio.png</code></p>
+
+<p><strong>Prompt:</strong></p>
+
+<blockquote>
+  <p>Crea una infografia educativa horitzontal que segueixi una alta de producte des del formulari fins a PostgreSQL i de tornada a la graella. Marca quatre punts de verificació amb icones de depurador: valors del formulari, model validat, repositori i resultat retornat. Afegeix una segona franja amb els casos de prova: arrencada, alta, edició, eliminació, validació incorrecta, reinici i servidor aturat. La imatge ha de diferenciar el recorregut normal i el camí d’error, sense mostrar codi llarg ni secrets. Estil vectorial educatiu, molt ordenat, etiquetes breus en català.</p>
+</blockquote>
+
+<h3 id="bloc-4-secció-9--tests-unitaris-del-model-i-dels-filtres">Bloc 4, secció 9 — Tests unitaris del model i dels filtres</h3>
+
+<p><strong>Nom de fitxer suggerit:</strong> <code class="language-html highlighter-rouge">24-tests-unitaris-arrange-act-assert.png</code></p>
+
+<p><strong>Prompt:</strong></p>
+
+<blockquote>
+  <p>Crea una infografia educativa horitzontal i molt senzilla per explicar un test unitari amb el patró Preparar, Actuar i Comprovar. A l’esquerra mostra unes dades de prova d’un Producte. Al centre mostra la crida a Validate o a ProducteFilter. A la dreta mostra una comprovació amb resultat correcte o fallada. Afegeix una zona inferior que indiqui que el test unitari no necessita Windows Forms, PostgreSQL ni Internet. Inclou dos mini casos: producte vàlid i producte amb preu negatiu. Estil amable i clar per a principiants, colors blau, verd i vermell suau, text gran en català, sense codi llarg ni marques.</p>
+</blockquote>
+
+<h3 id="bloc-4-secció-10--integració-final-i-documentació">Bloc 4, secció 10 — Integració final i documentació</h3>
+
+<p><strong>Nom de fitxer suggerit:</strong> <code class="language-html highlighter-rouge">25-projecte-complet-checklist.png</code></p>
+
+<p><strong>Prompt:</strong></p>
+
+<blockquote>
+  <p>Crea una infografia educativa horitzontal de tancament que mostri el gestor de productes complet com un circuit verificat. Inclou les peces: dues finestres, model Producte, repositori, PostgreSQL, CRUD, filtres, depuració i tests unitaris. Afegeix una checklist visual amb indicadors verds per a «compila», «carrega dades», «valida», «crea», «edita», «elimina», «filtra», «gestiona errors» i «passa els tests». Ha de quedar clar que és una guia de verificació i estudi, no una tasca d’entrega. Estil vectorial modern, composició neta, etiquetes breus en català, sense logotips, versions, dates ni credencials.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="imatges-existents-que-no-cal-regenerar">Imatges existents que no cal regenerar</h2>
+
+<ul>
+  <li>Bloc 3, secció 1: <code class="language-html highlighter-rouge">11-filtres-csv.png</code> ja cobreix la relació entre filtre i exportació.</li>
+  <li>Bloc 3, secció 4: <code class="language-html highlighter-rouge">13-executar-depurar-visual-studio.png</code> ja cobreix l’execució i la depuració.</li>
+  <li>Les imatges originals de variables, classes, formularis, CRUD i DataGridView continuen sent reutilitzables quan una secció ja les utilitza i no cal duplicar-les sense una diferència pedagògica clara.</li>
+</ul>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Prompts d’imatges per a la Unitat 0",
+  "description": "",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Desenvolupament d'interfícies — IOC",
+    "description": "Materials del mòdul DAM_0488 - Desenvolupament d'interfícies (C# i Windows Forms)"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    
+                    
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="0" data-total="4">(0/4)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 0%"></div></div>
+                </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/dam_0488/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/dam_0488",
+        title: "Desenvolupament d'interfícies",
+        version: "v1.0",
+        cicle_modul: "DAM_0488"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/dam_0488/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/dam_0488/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>

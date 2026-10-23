@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Bloc 2: Classes, objectes i gestió de dades | Desenvolupament d'interfícies - IOC</title>
+    <meta name="description" content="Material educatiu - Institut Obert de Catalunya">
+    <meta name="page-unitat" content="0">
+    <meta name="page-bloc" content="2">
+    
+    <!-- SEO Tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bloc 2: Classes, objectes i gestió de dades | Desenvolupament d’interfícies</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bloc 2: Classes, objectes i gestió de dades" />
+<meta property="og:locale" content="ca_ES" />
+<meta name="description" content="Classes, objectes, col·leccions i operacions CRUD en aplicacions Windows Forms" />
+<meta property="og:description" content="Classes, objectes, col·leccions i operacions CRUD en aplicacions Windows Forms" />
+<link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-0/bloc-2/" />
+<meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0488/unitat-0/bloc-2/" />
+<meta property="og:site_name" content="Desenvolupament d’interfícies" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bloc 2: Classes, objectes i gestió de dades" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Classes, objectes, col·leccions i operacions CRUD en aplicacions Windows Forms","headline":"Bloc 2: Classes, objectes i gestió de dades","url":"https://itrascastro.github.io/ioc/dam_0488/unitat-0/bloc-2/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0488/unitat-0/bloc-2/">
+    <!-- Rich editor styles (for embedded notes panel) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.snow.min.css">
+    <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/quadern-rich-editor.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/ioc/dam_0488/assets/images/favicon.ico">
+    
+    <!-- RSS Feed -->
+    <link type="application/atom+xml" rel="alternate" href="https://itrascastro.github.io/ioc/dam_0488/feed.xml" title="Desenvolupament d&apos;interfícies" />
+
+    <!-- Syntax Highlighting (Prism) -->
+    <link id="prism-theme" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-tsx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-ini.min.js"></script>
+
+    <!-- Code Block Component -->
+    <link rel="stylesheet" href="/ioc/dam_0488/assets/css/code-block.css">
+    <script src="/ioc/dam_0488/assets/js/code-block.js"></script>
+
+</head>
+
+<body class="bloc-layout" data-baseurl="/ioc/dam_0488">
+    <!-- Skip to content for accessibility -->
+    <a class="skip-link" href="#main-content">Salta al contingut principal</a>
+
+
+    
+    <!-- Header fix -->
+    <header class="header" role="banner" id="top">
+        <div class="header-brand">
+            <a href="/ioc/dam_0488/" class="logo-link" aria-label="Inici">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_light.jpg" alt="Institut Obert de Catalunya" class="logo logo-light">
+                <img src="/ioc/dam_0488/assets/images/logo_IOC_dark.png" alt="Institut Obert de Catalunya" class="logo logo-dark">
+            </a>
+            <a href="/ioc/dam_0488/" class="title-link">
+                <h1>DAM_0488 - Desenvolupament d'interfícies</h1>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="theme-toggle">Mode Fosc</button>
+            <button class="nav-panel-toggle" type="button" aria-expanded="false" aria-label="Obre la navegació">
+                <i class="bi bi-list" aria-hidden="true"></i>
+                <span class="nav-panel-label">Navegació</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="offcanvas-backdrop" hidden></div>
+    <nav class="offcanvas-nav" aria-hidden="true" aria-label="Navegació del curs">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">Navegació</h2>
+            <button class="offcanvas-close" type="button" aria-label="Tanca la navegació">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body">
+            <a href="/ioc/dam_0488/" class="nav-dropdown-item ">Índex del Curs</a>
+            
+                
+                    <a href="/ioc/dam_0488/unitat-0/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 0 - Bloc 1: Pensar amb dades: del programa al formulari
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-0/bloc-2/" class="nav-dropdown-item current">
+                        Unitat 0 - Bloc 2: Classes, objectes i gestió de dades
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-0/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 0 - Bloc 3: Persistència i organització de l'aplicació
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-0/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 0 - Bloc 4: Projecte integrador Windows Forms
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 1: Entorn de treball i projecte base
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 2: Disseny del formulari: controls, propietats i esdeveniments
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 3: Components visuals propis
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-1/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 1 - Bloc 4: Persistència, proves, documentació i revisió
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 1: Usabilitat i accessibilitat
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 2: Disseny de pantalles i pautes d'interfície
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 3: Informes
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-2/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 2 - Bloc 4: Manuals i documentació
+                    </a>
+                
+            
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-1/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 1: Interfícies naturals i reconeixement de veu
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-2/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 2: Síntesi de veu i integració
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-3/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 3: Distribució i instal·lació
+                    </a>
+                
+                    <a href="/ioc/dam_0488/unitat-3/bloc-4/" class="nav-dropdown-item ">
+                        Unitat 3 - Bloc 4: Proves
+                    </a>
+                
+            
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar Navegació -->
+        
+        <aside class="sidebar">
+            <button class="sidebar-toggle" type="button" aria-expanded="false">
+                <span>Contingut del bloc</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="sidebar-scroll">
+                <!-- Contingut d'aquest Bloc -->
+                <div class="sidebar-section">
+                    <h3>Contingut del Bloc</h3>
+                    
+
+    
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat0_Bloc2_Seccio1" class="nav-link" data-section="Unitat0_Bloc2_Seccio1">1. Classes i objectes: representar dades</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat0_Bloc2_Seccio2" class="nav-link" data-section="Unitat0_Bloc2_Seccio2">2. Diverses finestres i responsabilitats separades</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat0_Bloc2_Seccio3" class="nav-link" data-section="Unitat0_Bloc2_Seccio3">3. Llistes, DataGridView i filtres</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat0_Bloc2_Seccio4" class="nav-link" data-section="Unitat0_Bloc2_Seccio4">4. CRUD: afegir, consultar, editar i eliminar</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+
+
+                </div>
+            </div>
+        </aside>
+        
+
+        <main class="main-content" role="main" id="main-content">
+            
+            <!-- Navegació horizontal -->
+            
+            <nav class="horizontal-nav" aria-label="Navegació de ruta">
+                <div class="horizontal-nav-list">
+                    <a href="/ioc/dam_0488/" class="horizontal-nav-item">Inici</a>
+                    
+                    
+                        
+                        
+                            
+                                
+                                
+                        
+                        
+                            <span class="horizontal-nav-separator"> &gt; </span>
+                            <a href="/ioc/dam_0488/unitat-0/" class="horizontal-nav-item">
+                                Unitat 0: Fonaments de C# i Windows Forms
+                            </a>
+                        
+                        
+                        
+                            
+                            
+                                
+                            
+                                
+                                    
+                                    
+                            
+                            
+                                <span class="horizontal-nav-separator"> &gt; </span>
+                                <span class="horizontal-nav-item current">
+                                    Bloc 0.2: Classes, objectes i gestió de dades
+                                </span>
+                            
+                        
+                    
+                </div>
+            </nav>
+            
+            
+            <!-- Contingut de la Pàgina -->
+            <article class="page-content">
+                <div class="content-body">
+                    
+
+<!-- Objectius del bloc (si estan definits al frontmatter) -->
+
+
+<!-- Contingut principal -->
+<div class="section" id="Unitat0_Bloc2_Seccio1">
+  <h2 id="Unitat0_Bloc2_Seccio1">1. Classes i objectes: representar dades</h2>
+
+  <p>Fins ara hem treballat amb variables separades: un text per al nom, un decimal per al preu i un enter per a les unitats. Aquesta tècnica és útil quan el programa és petit, però aviat costa saber quines dades formen part del mateix element.</p>
+
+  <p>Una <strong>classe</strong> ens permet descriure un tipus propi. Un <strong>objecte</strong> és una instància concreta d'aquesta classe. La classe diu quines dades i quines operacions pot tenir; l'objecte conserva els valors d'un cas real.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/02-classes-objectes-introduccio.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia introductòria sobre classes i objectes" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/02-classes-objectes-introduccio.png" alt="Infografia introductòria sobre classes i objectes" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">La classe és el motlle; cada objecte és una instància concreta amb el seu propi estat.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>Del grup de variables al model</h3>
+
+  <p>En lloc de mantenir tres variables desconnectades, podem descriure un producte amb una classe:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Producte.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">public class Producte
+{
+    public string Nom { get; set; } = &quot;&quot;;
+    public decimal Preu { get; set; }
+    public int Unitats { get; set; }
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>Ara <code>Producte</code> és un tipus que el programa pot utilitzar igual que utilitza <code>string</code> o <code>decimal</code>. Les tres propietats descriuen l'estat d'un producte, però encara no hi ha cap producte concret creat.</p>
+
+  <h3>Crear objectes amb <code>new</code></h3>
+
+  <p>Per crear una instància fem servir <code>new</code>. Cada objecte té els seus propis valors, encara que tots provenen de la mateixa classe:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Programa.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">Producte teclat = new Producte
+{
+    Nom = &quot;Teclat&quot;,
+    Preu = 24.90m,
+    Unitats = 12
+};
+
+Producte ratoli = new Producte
+{
+    Nom = &quot;Ratolí&quot;,
+    Preu = 14.50m,
+    Unitats = 20
+};</code></pre>
+  </div>
+</div>
+
+
+  <p><code>teclat</code> i <code>ratoli</code> són dos objectes diferents. Canviar <code>teclat.Unitats</code> no modifica les unitats de <code>ratoli</code>. La classe és compartida; l'estat és propi de cada objecte.</p>
+
+  <table class="table">
+    <thead><tr><th>Concepte</th><th>Pregunta que respon</th><th>Exemple</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Classe</strong></td><td>Quina estructura té aquest tipus?</td><td><code>Producte</code></td></tr>
+      <tr><td><strong>Objecte</strong></td><td>Quin cas concret estem gestionant?</td><td><code>teclat</code></td></tr>
+      <tr><td><strong>Propietat</strong></td><td>Quina dada forma part del seu estat?</td><td><code>Preu</code></td></tr>
+      <tr><td><strong>Mètode</strong></td><td>Quina operació sap fer?</td><td><code>CanviaPreu()</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Comportament dins de la classe</h3>
+
+  <p>Una classe no només agrupa dades. També pot contenir operacions que tenen sentit per a l'objecte. Això permet mantenir una regla a prop de les dades que utilitza:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Producte.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">public class Producte
+{
+    public string Nom { get; set; } = &quot;&quot;;
+    public decimal Preu { get; private set; }
+
+    public void CanviaPreu(decimal nouPreu)
+    {
+        if (nouPreu &lt; 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(nouPreu));
+        }
+
+        Preu = nouPreu;
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>La propietat <code>Preu</code> pot consultar-se des de fora, però només es modifica mitjançant <code>CanviaPreu</code>. No cal aplicar encapsulació completa a totes les dades des del primer exercici, però sí entendre que una classe pot protegir les seves regles.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/15-classes-objectes-practica.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia pràctica sobre classes i objectes" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/15-classes-objectes-practica.png" alt="Infografia pràctica sobre classes i objectes" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">Quan una classe té dades i comportament, els formularis poden treballar amb objectes en lloc de manipular variables disperses.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>El constructor com a punt de partida</h3>
+
+  <p>Quan un objecte necessita dades obligatòries per existir, podem expressar-ho amb un constructor. Així evitem crear objectes incomplets sense adonar-nos-en:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Producte.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">public class Producte
+{
+    public string Nom { get; }
+    public decimal Preu { get; private set; }
+
+    public Producte(string nom, decimal preu)
+    {
+        if (string.IsNullOrWhiteSpace(nom) || preu &lt; 0)
+        {
+            throw new ArgumentException(&quot;Dades del producte no vàlides.&quot;);
+        }
+
+        Nom = nom.Trim();
+        Preu = preu;
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>En exemples petits també és correcte utilitzar l'inicialitzador d'objectes. La decisió depèn de si el model necessita obligar a complir una regla abans de poder-se crear.</p>
+
+  <h3>Objectes dins de col·leccions</h3>
+
+  <p>Quan tenim més d'un producte, els guardem en una col·lecció. La llista conté objectes, no només textos o nombres:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Programa.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">List&lt;Producte&gt; productes = new()
+{
+    new Producte(&quot;Teclat&quot;, 24.90m),
+    new Producte(&quot;Ratolí&quot;, 14.50m)
+};</code></pre>
+  </div>
+</div>
+
+
+  <p>A partir d'aquesta llista, el formulari podrà mostrar una graella, cercar un objecte o editar-ne un. Aquest és el pont que utilitzarem a les seccions següents.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/18-diccionaris-csharp.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia sobre diccionaris en C#" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/18-diccionaris-csharp.png" alt="Infografia sobre diccionaris en C#" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">Els diccionaris són una altra col·lecció: relacionen una clau amb un valor. Primer consolidarem les llistes d'objectes i després compararem les dues opcions.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>Errors habituals</h3>
+
+  <table class="table">
+    <thead><tr><th>Confusió</th><th>Què passa</th><th>Com pensar-ho</th></tr></thead>
+    <tbody>
+      <tr><td>Classe i objecte són el mateix</td><td>Es barreja la definició amb una instància concreta.</td><td>La classe descriu; l'objecte existeix amb valors propis.</td></tr>
+      <tr><td>Canviar una propietat canvia tots els productes</td><td>S'oblida que cada objecte té el seu estat.</td><td>Comprova quin objecte tens a la variable abans de modificar-lo.</td></tr>
+      <tr><td>Una classe només és una bossa de variables</td><td>Les regles acaben duplicades als formularis.</td><td>Pregunta si alguna operació pertany naturalment al model.</td></tr>
+      <tr><td>Crear objectes sense validar</td><td>La resta del programa rep dades incompletes o impossibles.</td><td>Decideix si la validació va al constructor, al mètode o a la interfície.</td></tr>
+    </tbody>
+  </table>
+
+  
+  <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p>Si pots explicar la diferència entre una classe i un objecte, crear dos productes independents i guardar-los en una llista, ja tens la base necessària per entendre les finestres i el CRUD que venen a continuació.</p>
+</div>
+
+
+  <h3>Pràctica guiada: el primer model</h3>
+
+  <p>Crea una classe <code>Producte</code> amb nom, preu i unitats. Instancia tres objectes diferents, modifica només les unitats d'un d'ells i recorre la llista per mostrar el resultat. Explica en una frase què és la classe i què és cadascun dels objectes.</p>
+
+  <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Productes amb identitat pròpia</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Defineix un model petit, crea objectes independents i comprova que modificar-ne un no afecta els altres.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Inicial</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">40 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Comença per tres propietats clares.</li>
+        
+        <li>Fes servir new per crear cada objecte.</li>
+        
+        <li>Recorre List<Producte> amb foreach per comprovar els resultats.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+
+  <p>Amb aquesta base ja podem tornar a Windows Forms amb criteri: la finestra serà una interfície que treballa amb objectes, no un lloc on totes les dades viuen disperses.</p>
+</div>
+
+<div class="section" id="Unitat0_Bloc2_Seccio2">
+  <h2 id="Unitat0_Bloc2_Seccio2">2. Diverses finestres i responsabilitats separades</h2>
+
+  <p>Una aplicació real rarament cap en una sola finestra. Podem tenir una pantalla principal, una finestra per editar un producte i una altra per consultar-ne el detall. Crear més d'un formulari és fàcil; el repte és fer que cada finestra tingui una responsabilitat clara.</p>
+
+  <p>La finestra principal coordina la navegació i mostra informació general. Una finestra secundària se centra en una tasca concreta. Les dades i les regles no haurien de quedar repartides arbitràriament entre els botons.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/20-estructura-projecte-fitxers.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia sobre l'estructura d'un projecte i l'organització dels fitxers" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/20-estructura-projecte-fitxers.png" alt="Infografia sobre l'estructura d'un projecte i l'organització dels fitxers" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">L'organització del projecte ajuda a saber on viu cada responsabilitat i evita acumular-ho tot al formulari principal.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>Crear una segona finestra</h3>
+
+  <p>Des de l'Explorador de solucions, afegeix un nou element de tipus <strong>Windows Forms</strong> i posa-li un nom que expliqui la seva funció, per exemple <code>ProductesForm</code>. El nom és important: quan el projecte creixi, permetrà trobar la finestra sense haver d'obrir tots els fitxers.</p>
+
+  <p>La finestra principal pot obrir-la quan l'usuari prem un botó. Per començar, utilitzarem una finestra modal: l'usuari treballa amb la finestra secundària i torna a la principal quan la tanca.</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Form1.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private void btnProductes_Click(object? sender, EventArgs e)
+{
+    using var finestra = new ProductesForm();
+    finestra.ShowDialog(this);
+}</code></pre>
+  </div>
+</div>
+
+
+  <p><code>ShowDialog</code> no és només una altra manera d'escriure <code>Show</code>. Indica que la finestra secundària és una conversa que s'ha de completar abans de continuar amb la principal. Per a pantalles independents, més endavant podrem estudiar una finestra no modal amb <code>Show</code>.</p>
+
+  <h3>Comunicació entre formularis</h3>
+
+  <p>Obrir una finestra no vol dir que la finestra principal hagi de manipular-ne tots els controls. La comunicació ha de passar per una dada o una operació explícita.</p>
+
+  <p>Per exemple, una finestra d'edició pot retornar el producte seleccionat quan l'usuari prem <code>Accepta</code>:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">public Producte? ProducteResultat { get; private set; }
+
+private void btnAccepta_Click(object? sender, EventArgs e)
+{
+    string nom = txtNom.Text.Trim();
+
+    if (string.IsNullOrWhiteSpace(nom))
+    {
+        MessageBox.Show(&quot;Escriu el nom del producte.&quot;);
+        return;
+    }
+
+    ProducteResultat = new Producte { Nom = nom };
+    DialogResult = DialogResult.OK;
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>La finestra principal només necessita saber si el diàleg s'ha acceptat i quina dada ha retornat:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Form1.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">using var finestra = new ProductesForm();
+
+if (finestra.ShowDialog(this) == DialogResult.OK &amp;&amp;
+    finestra.ProducteResultat is Producte producte)
+{
+    lblResultat.Text = $&quot;Producte: {producte.Nom}&quot;;
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>Aquest patró evita que <code>Form1</code> busqui directament un <code>TextBox</code> d'una altra finestra. La finestra secundària sap recollir i validar la seva informació; la principal decideix què fer amb el resultat.</p>
+
+  <h3>Separar interfície, dades i regles</h3>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/19-separacio-responsabilitats.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia sobre la separació de responsabilitats entre formulari, gestor i producte" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/19-separacio-responsabilitats.png" alt="Infografia sobre la separació de responsabilitats entre formulari, gestor i producte" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">El formulari coordina la interacció, el gestor aplica operacions i el model representa la dada.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <table class="table">
+    <thead><tr><th>Peça</th><th>Responsabilitat</th><th>Exemple</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Formulari</strong></td><td>Llegeix controls, mostra missatges i coordina esdeveniments.</td><td><code>ProductesForm</code></td></tr>
+      <tr><td><strong>Model</strong></td><td>Representa una dada estable del domini.</td><td><code>Producte</code> amb nom i preu</td></tr>
+      <tr><td><strong>Gestor</strong></td><td>Aplica operacions que no depenen de cap botó concret.</td><td><code>GestorProductes</code></td></tr>
+    </tbody>
+  </table>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">Producte.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">public sealed class Producte
+{
+    public string Nom { get; set; } = &quot;&quot;;
+    public decimal Preu { get; set; }
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>Al principi pot semblar més ràpid escriure-ho tot en el clic del botó. Però quan hi ha dues finestres o dues maneres de fer la mateixa operació, la duplicació apareix de seguida. Separar les peces des del principi ens permet créixer sense convertir el formulari en un fitxer impossible de mantenir.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/24-miniaplicacio-productes.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia d'una miniaplicació completa de productes amb Windows Forms" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/24-miniaplicacio-productes.png" alt="Infografia d'una miniaplicació completa de productes amb Windows Forms" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">La miniaplicació completa combina formularis, controls, dades i operacions en un flux coherent.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>Errors habituals quan afegim finestres</h3>
+
+  <table class="table">
+    <thead><tr><th>Problema</th><th>Per què passa</th><th>Decisió recomanada</th></tr></thead>
+    <tbody>
+      <tr><td>S'obren moltes finestres iguals</td><td>Es crea una instància nova cada vegada sense decidir si ha de ser modal o persistent.</td><td>Tria explícitament <code>ShowDialog</code> o controla una instància reutilitzable.</td></tr>
+      <tr><td>Un formulari toca els controls d'un altre</td><td>La comunicació no té cap contracte clar.</td><td>Retorna un resultat o passa dades mitjançant el constructor.</td></tr>
+      <tr><td>El formulari principal conté totes les regles</td><td>S'ha confós coordinar la interfície amb gestionar dades.</td><td>Extreu models i operacions a classes pròpies.</td></tr>
+      <tr><td>Canviar el disseny trenca la lògica</td><td>El codi depèn de noms o controls sense una responsabilitat definida.</td><td>Assigna noms semàntics i mantén els handlers petits.</td></tr>
+    </tbody>
+  </table>
+
+  
+  <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p>Quan la finestra principal obre un diàleg, el diàleg retorna una dada i cada peça té una responsabilitat concreta, ja tens la base d'una aplicació amb més d'una pantalla sense perdre el control del codi.</p>
+</div>
+
+
+  <h3>Pràctica guiada: finestra d'edició</h3>
+
+  <p>Afegeix <code>ProductesForm</code> al projecte. Fes que la finestra principal l'obri amb un botó, que el diàleg validi el nom d'un producte i que retorni el producte acceptat per mostrar-lo a la finestra principal. No facis que un formulari accedeixi directament als controls de l'altre.</p>
+
+  <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Dues finestres, una responsabilitat</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Construeix una finestra principal i una finestra d'edició de productes. Documenta quina dada viatja entre les dues finestres i quines regles queden dins del diàleg.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Inicial</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">45 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Comença amb ShowDialog i DialogResult.</li>
+        
+        <li>Utilitza un model Producte petit.</li>
+        
+        <li>Si una finestra necessita conèixer un TextBox de l'altra, para i revisa el contracte.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+
+  <p>A partir d'aquí ja podem aprofundir en col·leccions, classes i operacions de manteniment per construir una aplicació d'exemple més completa.</p>
+</div>
+
+<div class="section" id="Unitat0_Bloc2_Seccio3">
+  <h2 id="Unitat0_Bloc2_Seccio3">3. Llistes, DataGridView i filtres</h2>
+
+  <p>Quan una aplicació deixa de treballar amb un sol producte, necessitem una col·lecció. Una llista ens permet guardar diversos objectes del mateix tipus i recórrer-los per mostrar-los, cercar-los o modificar-los.</p>
+
+  <p>En aquesta secció farem una primera aplicació de gestió en memòria: una finestra mostrarà productes en un <code>DataGridView</code> i un quadre de text permetrà filtrar-los. Encara no desarem res en fitxers ni en una base de dades; primer hem d'entendre el circuit de dades.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/10-classes-llistes-datagridview.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia sobre classes, llistes i DataGridView" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/10-classes-llistes-datagridview.png" alt="Infografia sobre classes, llistes i DataGridView" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">El model Producte, la llista i la graella formen un circuit senzill per mostrar diverses dades.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <h3>Una llista de productes</h3>
+
+  <p>Partim del model <code>Producte</code> de la secció anterior i creem una llista inicial. Cada element és un objecte independent, però tots comparteixen el mateix tipus.</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private readonly List&lt;Producte&gt; productes = new()
+{
+    new Producte { Nom = &quot;Teclat&quot;, Preu = 24.90m },
+    new Producte { Nom = &quot;Ratolí&quot;, Preu = 14.50m },
+    new Producte { Nom = &quot;Pantalla&quot;, Preu = 189.00m }
+};</code></pre>
+  </div>
+</div>
+
+
+  <p>La llista és la font de dades. El formulari no hauria de mantenir tres variables separades ni escriure una fila a mà per cada producte: això duplicaria informació i faria difícil afegir-ne un de nou.</p>
+
+  <h3>Mostrar la llista en una graella</h3>
+
+  <p>Al dissenyador, afegeix un <code>DataGridView</code> amb el nom <code>dgvProductes</code>. El mètode següent connecta la llista amb la graella. Per a una aplicació petita és una solució fàcil de seguir: cada vegada que canvia el filtre, reconstruïm la vista amb els elements que corresponen.</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private void RefrescaGraella(IEnumerable&lt;Producte&gt; origen)
+{
+    dgvProductes.DataSource = null;
+    dgvProductes.DataSource = origen.ToList();
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>Crida <code>RefrescaGraella(productes)</code> després de <code>InitializeComponent()</code> o quan el formulari ja estigui preparat. La graella mostrarà les propietats públiques del model com a columnes.</p>
+
+  
+  <!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p>Aquesta primera tècnica prioritza que entenguis el recorregut de la dada. Quan el projecte tingui més volum, estudiarem <code>BindingSource</code>, notificacions de canvi i configuració explícita de columnes.</p>
+    
+</div>
+
+
+  <h3>Cercar sense destruir la llista original</h3>
+
+  <p>Un filtre no ha d'eliminar productes de la llista. Ha de construir una vista temporal amb els que compleixen la condició i tornar a pintar la graella.</p>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/09-cerca-filtratge-datagridview.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia sobre cerca i filtratge en un DataGridView" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/09-cerca-filtratge-datagridview.png" alt="Infografia sobre cerca i filtratge en un DataGridView" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">El text de cerca modifica la vista, però la col·lecció original continua contenint tots els productes.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <p>Afegeix un <code>TextBox</code> anomenat <code>txtCerca</code> i associa el seu esdeveniment <code>TextChanged</code> amb aquest mètode:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private void txtCerca_TextChanged(object? sender, EventArgs e)
+{
+    string text = txtCerca.Text.Trim();
+
+    IEnumerable&lt;Producte&gt; resultat = productes;
+
+    if (text.Length &gt; 0)
+    {
+        resultat = productes.Where(producte =&gt;
+            producte.Nom.Contains(text, StringComparison.OrdinalIgnoreCase));
+    }
+
+    RefrescaGraella(resultat);
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>Quan el quadre és buit, mostrem tota la llista. Quan conté text, només mostrem els noms que el contenen. El mètode no coneix cap botó ni cap posició de la graella: només aplica una regla de selecció.</p>
+
+  <h3>Afegir un producte i actualitzar la vista</h3>
+
+  <p>Per afegir un producte, llegeix els controls, valida les dades, crea l'objecte i incorpora'l a la llista. Després torna a aplicar el filtre actual perquè el producte aparegui només si correspon.</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private void btnAfegeix_Click(object? sender, EventArgs e)
+{
+    string nom = txtNom.Text.Trim();
+
+    if (!decimal.TryParse(txtPreu.Text, out decimal preu) ||
+        string.IsNullOrWhiteSpace(nom))
+    {
+        MessageBox.Show(&quot;Indica un nom i un preu vàlid.&quot;);
+        return;
+    }
+
+    productes.Add(new Producte { Nom = nom, Preu = preu });
+    txtNom.Clear();
+    txtPreu.Clear();
+    RefrescaGraella(productes);
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>En aquest primer exemple, el botó actualitza tota la graella. És una decisió conscient: preferim un flux fàcil de seguir abans d'introduir mecanismes de notificació més avançats.</p>
+
+  <p>Més endavant separarem la consulta de la persistència i veurem com conservar el catàleg fora de la memòria del programa. Un filtre pot preparar dades per exportar-les, però exportar no és el mateix que desar l'estat de l'aplicació.</p>
+
+  <h3>Errors habituals amb llistes i graelles</h3>
+
+  <table class="table">
+    <thead><tr><th>Problema</th><th>Causa probable</th><th>Comprova-ho</th></tr></thead>
+    <tbody>
+      <tr><td>La graella queda buida</td><td>No s'ha assignat la font de dades o no s'ha cridat el refresc.</td><td>Revisa el moment en què s'executa <code>RefrescaGraella</code>.</td></tr>
+      <tr><td>El filtre elimina productes</td><td>S'ha modificat la llista original en lloc de crear una seqüència filtrada.</td><td>La llista <code>productes</code> només canvia en operacions d'alta, edició o baixa.</td></tr>
+      <tr><td>El preu no es pot convertir</td><td>El text no és un decimal vàlid per a la configuració regional.</td><td>Valida amb <code>TryParse</code> abans de crear el producte.</td></tr>
+      <tr><td>Les dades desapareixen en tancar</td><td>La llista només existeix en memòria.</td><td>És el comportament esperat fins que implementem persistència.</td></tr>
+    </tbody>
+  </table>
+
+  
+  <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p>Si pots afegir productes, veure'ls a la graella i filtrar-los sense perdre la llista original, ja controles el circuit bàsic entre model, col·lecció, formulari i vista.</p>
+</div>
+
+
+  <h3>Pràctica guiada: catàleg en memòria</h3>
+
+  <p>Construeix una finestra amb camps per al nom i el preu, un botó d'alta, un quadre de cerca i un <code>DataGridView</code>. Comença amb tres productes inicials, permet afegir-ne més i verifica que el filtre no modifica la llista original.</p>
+
+  <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Catàleg filtrable</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Implementa una petita pantalla de productes en memòria. Explica d'on surt la dada, quin mètode refresca la graella i què passa quan el filtre queda buit.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Inicial</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">50 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Mantén una única llista com a font de dades.</li>
+        
+        <li>Valida el nom i el preu abans d'afegir.</li>
+        
+        <li>Aplica el filtre sobre una seqüència nova, no sobre la llista original.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+
+  <p>Ja tenim una aplicació que representa, mostra, filtra i amplia dades. En la propera secció podrem estudiar com guardar-les o intercanviar-les amb fitxers sense barrejar aquesta responsabilitat amb la interfície.</p>
+</div>
+
+<div class="section" id="Unitat0_Bloc2_Seccio4">
+  <h2 id="Unitat0_Bloc2_Seccio4">4. CRUD: afegir, consultar, editar i eliminar</h2>
+
+  <p>Una pantalla que només mostra dades encara no és una aplicació de gestió. El cicle CRUD resumeix les quatre operacions que apareixen una vegada i una altra:</p>
+
+  <table class="table">
+    <thead><tr><th>Operació</th><th>Què vol dir</th><th>Exemple al catàleg</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Create</strong></td><td>Crear una dada nova.</td><td>Afegir un producte.</td></tr>
+      <tr><td><strong>Read</strong></td><td>Consultar dades existents.</td><td>Mostrar els productes a la graella.</td></tr>
+      <tr><td><strong>Update</strong></td><td>Modificar una dada existent.</td><td>Canviar el preu d'un producte.</td></tr>
+      <tr><td><strong>Delete</strong></td><td>Eliminar una dada.</td><td>Treure un producte del catàleg.</td></tr>
+    </tbody>
+  </table>
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/03-crud-validacio.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia sobre operacions CRUD amb validació" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/03-crud-validacio.png" alt="Infografia sobre operacions CRUD amb validació" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">Les operacions CRUD han de passar per una validació abans de modificar la font de dades.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <p>La regla més important és l'ordre: primer llegim i validem les dades del formulari; només després modifiquem la llista. Si la validació falla, la dada original no s'ha de tocar.</p>
+
+  <h3>Compartir la validació</h3>
+
+  <p>Afegir i editar necessiten validar el mateix nom i el mateix preu. Per no duplicar codi, extraurem aquesta lectura a un mètode:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private bool IntentaLlegirProducte(
+    out string nom,
+    out decimal preu)
+{
+    nom = txtNom.Text.Trim();
+
+    if (string.IsNullOrWhiteSpace(nom) ||
+        !decimal.TryParse(txtPreu.Text, out preu) ||
+        preu &lt; 0)
+    {
+        MessageBox.Show(&quot;Indica un nom i un preu vàlid.&quot;);
+        return false;
+    }
+
+    return true;
+}</code></pre>
+  </div>
+</div>
+
+
+  <!-- Component: Figura amb peu -->
+<div class="figure-box" role="region" aria-label="Figura">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-image" aria-hidden="true"></i> Figura</div>
+  <div class="component-content">
+    <figure class="figure">
+      <a href="/ioc/dam_0488/assets/img/unitat-0/04-validacio-tryparse.png" class="figure-lightbox-trigger" aria-label="Ampliar la imatge: Infografia sobre validació de formularis amb TryParse" title="Ampliar la imatge">
+        <img src="/ioc/dam_0488/assets/img/unitat-0/04-validacio-tryparse.png" alt="Infografia sobre validació de formularis amb TryParse" class="figure-img"/>
+      </a>
+      
+      <figcaption class="figure-caption">TryParse permet comprovar una conversió sense fer que una entrada incorrecta trenqui el programa.</figcaption>
+      
+    </figure>
+  </div>
+</div>
+
+
+  <p>El mètode retorna <code>false</code> quan la dada no és vàlida i deixa preparada una resposta per a l'usuari. Els handlers poden sortir immediatament i concentrar-se en l'operació CRUD.</p>
+
+  <h3>Afegir i consultar</h3>
+
+  <p>La consulta ja la tenim resolta amb <code>RefrescaGraella</code>. Per afegir, creem un objecte nou només després que la validació hagi funcionat:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private void btnAfegeix_Click(object? sender, EventArgs e)
+{
+    if (!IntentaLlegirProducte(out string nom, out decimal preu))
+    {
+        return;
+    }
+
+    productes.Add(new Producte { Nom = nom, Preu = preu });
+    RefrescaGraella(productes);
+    NetejaFormulari();
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>Després de l'alta, refresquem la graella i deixem el formulari preparat per a una nova operació. El mètode de neteja també és una petita responsabilitat reutilitzable:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private void NetejaFormulari()
+{
+    txtNom.Clear();
+    txtPreu.Clear();
+    txtNom.Focus();
+}</code></pre>
+  </div>
+</div>
+
+
+  <h3>Seleccionar i editar</h3>
+
+  <p>Per editar, necessitem saber quin producte ha seleccionat l'usuari. Quan canvia la fila activa, copiem les dades de l'objecte als controls del formulari:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private Producte? producteSeleccionat;
+
+private void dgvProductes_SelectionChanged(object? sender, EventArgs e)
+{
+    if (dgvProductes.CurrentRow?.DataBoundItem is not Producte producte)
+    {
+        producteSeleccionat = null;
+        return;
+    }
+
+    producteSeleccionat = producte;
+    txtNom.Text = producte.Nom;
+    txtPreu.Text = producte.Preu.ToString();
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>El botó d'edició reutilitza la mateixa validació. Si no hi ha cap fila seleccionada, no hi ha cap objecte que es pugui modificar.</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private void btnEdita_Click(object? sender, EventArgs e)
+{
+    if (producteSeleccionat is null ||
+        !IntentaLlegirProducte(out string nom, out decimal preu))
+    {
+        return;
+    }
+
+    producteSeleccionat.Nom = nom;
+    producteSeleccionat.Preu = preu;
+    RefrescaGraella(productes);
+}</code></pre>
+  </div>
+</div>
+
+
+  <h3>Eliminar amb una confirmació</h3>
+
+  <p>Eliminar és una operació diferent d'amagar una fila amb un filtre. Treu l'objecte de la font de dades i demana confirmació abans de fer-ho:</p>
+
+  
+  <div class="code-block" data-lang="csharp" role="region" aria-label="Bloc de codi csharp">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">CSHARP</span>
+      <span class="code-filename">ProductesForm.cs</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">private void btnElimina_Click(object? sender, EventArgs e)
+{
+    if (producteSeleccionat is null)
+    {
+        return;
+    }
+
+    DialogResult resposta = MessageBox.Show(
+        $&quot;Vols eliminar {producteSeleccionat.Nom}?&quot;,
+        &quot;Confirmar eliminació&quot;,
+        MessageBoxButtons.YesNo);
+
+    if (resposta != DialogResult.Yes)
+    {
+        return;
+    }
+
+    productes.Remove(producteSeleccionat);
+    producteSeleccionat = null;
+    RefrescaGraella(productes);
+    NetejaFormulari();
+}</code></pre>
+  </div>
+</div>
+
+
+  <p>La confirmació no substitueix la validació, però evita una eliminació accidental. Quan treballem amb dades reals, aquesta decisió és encara més important.</p>
+
+  <h3>Un circuit CRUD que es pugui repetir</h3>
+
+  <ol>
+    <li>L'usuari escriu o selecciona una dada.</li>
+    <li>El formulari valida els camps necessaris.</li>
+    <li>El codi executa una única operació sobre la llista.</li>
+    <li>La vista es refresca i torna a mostrar l'estat actual.</li>
+    <li>El formulari queda preparat per a la següent operació.</li>
+  </ol>
+
+  <p>Aquesta seqüència és més important que copiar cada handler. Si l'entens, podràs adaptar-la a alumnes, llibres, comandes o qualsevol altra dada amb una estructura semblant.</p>
+
+  
+  <!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p>Una pantalla CRUD està ben encaminada quan una entrada incorrecta no canvia dades, una edició afecta l'objecte seleccionat i una eliminació només passa després de confirmar-la.</p>
+</div>
+
+
+  <h3>Pràctica guiada: catàleg CRUD</h3>
+
+  <p>Amplia el catàleg de la secció anterior amb botons d'afegir, editar i eliminar. Reutilitza un únic mètode de validació, mostra la dada seleccionada al formulari i demana confirmació abans d'eliminar-la.</p>
+
+  <!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Catàleg CRUD</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Completa les quatre operacions sobre la llista de productes i escriu una breu explicació del recorregut que segueix cada operació.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Inicial</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">60 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>No dupliquis la validació entre alta i edició.</li>
+        
+        <li>Mantén una referència a l'objecte seleccionat.</li>
+        
+        <li>Refresca la graella després de cada canvi.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+
+  <p>El catàleg ja es pot gestionar en memòria. En la següent secció estudiarem com conservar les dades fora del programa i recuperar-les quan l'aplicació torni a començar.</p>
+</div>
+
+
+<!-- Exercicis proposats (si estan definits) -->
+
+
+<!-- Recursos addicionals -->
+
+
+<!-- Glossari del bloc -->
+
+
+
+<!-- Schema.org structured data per SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Bloc 2: Classes, objectes i gestió de dades",
+  "description": "Classes, objectes, col·leccions i operacions CRUD en aplicacions Windows Forms",
+  "author": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Institut Obert de Catalunya"
+  },
+  "educationalLevel": "Intermediate",
+  "learningResourceType": "Course Module",
+  "inLanguage": "ca",
+  
+  
+  "isPartOf": {
+    "@type": "Course",
+    "name": "Desenvolupament d'interfícies — IOC",
+    "description": "Materials del mòdul DAM_0488 - Desenvolupament d'interfícies (C# i Windows Forms)"
+  }
+}
+</script>
+
+                </div>
+            </article>
+            
+            <!-- Navegació entre pàgines -->
+            
+            <nav class="page-navigation" role="navigation" aria-label="Navegació entre blocs">
+                <div class="nav-links-container">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                        
+                            
+                            
+                    
+                    
+                    
+                        
+                            
+                        
+                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                    
+                                        
+                                            
+                                            
+                                
+                                
+                                
+                                
+                                
+                                    
+                                
+                                    
+                                
+                                    
+                                        
+                                        
+                                
+                                
+                    
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0488/unitat-0/bloc-1/" class="nav-button" aria-label="Bloc anterior: Pensar amb dades: del programa al formulari">← Anterior</a>
+                        
+                    </div>
+                    
+                    <div class="nav-link-wrapper">
+                        
+                        <a href="/ioc/dam_0488/unitat-0/bloc-3/" class="nav-button" aria-label="Bloc següent: Persistència i organització de l'aplicació">Següent →</a>
+                        
+                    </div>
+                </div>
+            </nav>
+            
+        </main>
+    </div>
+
+    <!-- Footer fix -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                Versió v1.0
+            </div>
+            <div class="footer-progress" aria-label="Progrés de lectura"><!-- Progrés per unitats (posició de la unitat actual) --><div class="progress-group course-progress">
+                    <span class="progress-label">Unitat</span>
+                    <span class="progress-text" data-pos="0" data-total="4">(0/4)</span>
+                    <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 0%"></div></div>
+                </div><!-- Progrés per blocs dins de la unitat --><div class="progress-group unit-progress">
+                        <span class="progress-label">Bloc</span>
+                        <span class="progress-text" data-pos="2" data-total="4">(2/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 50%"></div></div>
+                    </div>
+
+                    <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
+                        <span class="progress-label">Secció</span>
+                        <span class="progress-text" data-pos="1" data-total="4">(1/4)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 25%"></div></div>
+                    </div></div>
+            <div class="footer-actions" aria-label="Accions ràpides">
+                <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <a href="#top" id="footer-btn-top" class="task-btn" aria-label="Anar a l'inici">↑</a>
+                <a href="#bottom" id="footer-btn-bottom" class="task-btn" aria-label="Anar al final">↓</a>
+                <a href="#next" id="footer-btn-next" class="task-btn" aria-label="Secció següent">→</a>
+                <a href="#prev" id="footer-btn-prev" class="task-btn" aria-label="Secció anterior">←</a>
+                <a href="#bookmark" id="footer-btn-bookmark" class="task-btn" aria-label="Desar marcador" title="Desar marcador">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </a>
+                <a href="/ioc/dam_0488/quadern.html" class="task-btn" aria-label="Obrir quadern complet" title="Quadern">
+                  <i class="bi bi-journal-text" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Config global per Quadern -->
+    <script>
+      window.siteConfig = window.siteConfig || {
+        baseurl: "/ioc/dam_0488",
+        title: "Desenvolupament d'interfícies",
+        version: "v1.0",
+        cicle_modul: "DAM_0488"
+      };
+    </script>
+    <!-- Scripts del lloc -->
+    <script src="/ioc/dam_0488/assets/js/site.js" defer></script>
+    <!-- Quadern Notes v2 (nou sistema) -->
+    <script src="/ioc/dam_0488/assets/js/quadern-app/constants.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/utils.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/store.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/panel.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/index-notes.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="/ioc/dam_0488/assets/js/quadern-app/rich-editor.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.Quadern && typeof window.Quadern.bootstrapNotes === 'function') {
+          try { window.Quadern.bootstrapNotes(); } catch(e) {}
+        }
+        if (window.Quadern && window.Quadern.RichEditor && typeof window.Quadern.RichEditor.autoInit === 'function') {
+          try { window.Quadern.RichEditor.autoInit(); } catch(e) {}
+        }
+      });
+    </script>
+</body>
+</html>
