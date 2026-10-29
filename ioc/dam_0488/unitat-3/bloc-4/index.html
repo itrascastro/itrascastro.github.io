@@ -436,7 +436,7 @@
 <tr><td>P-01 a P-04</td><td>Funcionals i d'error (lògica de <code>GestorReparacions</code>)</td><td>✅ Executats amb <code>dotnet test</code>, tots correctes.</td></tr>
 <tr><td>P-05</td><td>Funcional (síntesi de veu)</td><td>✅ Executat generant un <code>.wav</code> real; verificat que té 5,07 s d'àudio vàlid. <strong>Incidència detectada i corregida:</strong> la primera versió llegia el català amb una veu anglesa (apartat 5); corregit seleccionant explícitament la veu en castellà amb <code>GetInstalledVoices</code>.</td></tr>
 <tr><td>P-06</td><td>Accessibilitat (aturar la lectura)</td><td>⚠️ Requereix un equip amb micròfon i altaveus reals per executar-se.</td></tr>
-<tr><td>P-07</td><td>Funcional (reconeixement real)</td><td>⚠️ Requereix un equip amb un motor de reconeixement de veu instal·lat i un micròfon; en un equip sense cap motor registrat, crear <code>SpeechRecognitionEngine</code> dona <code>COMException 0x80050022</code>.</td></tr>
+<tr><td>P-07</td><td>Funcional (reconeixement real)</td><td>✅ Dir "nova reparació" crea "Reparació 1 (pendent)" a la llista. <strong>Incidència detectada i corregida:</strong> amb el reconeixedor per defecte de Windows, en prémer "Comença a escoltar" apareixia <code>COMException 0x80050022</code>; corregit triant explícitament un reconeixedor català o castellà i fixant la cultura de la gramàtica (apartat 4).</td></tr>
 <tr><td>P-08</td><td>Distribució</td><td>✅ Executat: l'executable autònom arrenca correctament.</td></tr>
 </table>
 
@@ -444,12 +444,12 @@
 <!-- Component: Caixa informativa -->
 <div class="info-box" role="note">
     <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
-    <p><strong>Quan una prova no es pot executar en un equip concret</strong></p><p>Els casos P-06 i P-07 necessiten maquinari d'àudio real (micròfon, altaveus, un motor de reconeixement instal·lat) que no tots els equips tenen, per exemple una màquina virtual o un ordinador sense micròfon connectat. Això <strong>no vol dir que es descarti la prova</strong>: es documenta igualment amb el motiu tècnic exacte pel qual queda pendent en aquell equip concret, perquè qui la reprengui en un ordinador amb maquinari d'àudio complet sàpiga exactament què ha de comprovar. Documentar honestament per què una prova no s'ha pogut fer en un equip donat és tan vàlid com documentar-ne el resultat.</p>
+    <p><strong>Quan una prova no es pot executar en un equip concret</strong></p><p>Els casos que necessiten maquinari d'àudio real (micròfon, altaveus, un motor de reconeixement instal·lat), com P-06, no es poden executar en tots els equips, per exemple en una màquina virtual o en un ordinador sense micròfon connectat. Això <strong>no vol dir que es descarti la prova</strong>: es documenta igualment amb el motiu tècnic exacte pel qual queda pendent en aquell equip concret, perquè qui la reprengui en un ordinador amb maquinari d'àudio complet sàpiga exactament què ha de comprovar. Documentar honestament per què una prova no s'ha pogut fer en un equip donat és tan vàlid com documentar-ne el resultat.</p>
     
 </div>
 
 
-<p>El cas P-05 és un exemple real de com es documenta una incidència que sí que s'ha pogut <strong>corregir</strong>: quina era (veu equivocada), com es va detectar (escoltant el <code>.wav</code> generat), quina correcció s'hi va aplicar (selecció explícita de veu per cultura) i com es va tornar a verificar. Quan, en canvi, una incidència no es corregeix, cal documentar-ne la justificació (com als casos P-06/P-07, que depenen del maquinari disponible, no d'un error del codi).</p>
+<p>Els casos P-05 i P-07 són exemples reals de com es documenta una incidència que sí que s'ha pogut <strong>corregir</strong>: quina era (veu equivocada; <code>COMException</code> en començar a escoltar), com es va detectar (escoltant el <code>.wav</code> generat; executant l'aplicació i provant el botó), quina correcció s'hi va aplicar (selecció explícita de veu i de reconeixedor per cultura) i com es va tornar a verificar. Quan, en canvi, una incidència no es corregeix, cal documentar-ne la justificació (com al cas P-06, que depèn del maquinari disponible, no d'un error del codi).</p>
 
 </div>
 

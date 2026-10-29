@@ -453,7 +453,11 @@
     <div class="line-numbers" aria-hidden="true"></div>
     <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-csharp">using System.Speech.Recognition;
 
-reconeixedor = new SpeechRecognitionEngine();
+var installats = SpeechRecognitionEngine.InstalledRecognizers();
+var info = installats.FirstOrDefault(r =&gt; r.Culture.Name == &quot;ca-ES&quot;)
+        ?? installats.FirstOrDefault(r =&gt; r.Culture.Name == &quot;es-ES&quot;);
+
+reconeixedor = new SpeechRecognitionEngine(info);
 
 var ordres = new Choices();
 ordres.Add(new string[]
@@ -461,7 +465,8 @@ ordres.Add(new string[]
     &quot;nova reparació&quot;, &quot;marca acabada&quot;, &quot;llegeix pendents&quot;,
     &quot;atura la lectura&quot;, &quot;ajuda&quot;, &quot;surt&quot;
 });
-reconeixedor.LoadGrammar(new Grammar(new GrammarBuilder(ordres)));
+var gramatica = new GrammarBuilder(ordres) { Culture = info.Culture };
+reconeixedor.LoadGrammar(new Grammar(gramatica));
 reconeixedor.SpeechRecognized += Reconeixedor_SpeechRecognized;
 
 reconeixedor.SetInputToDefaultAudioDevice();
@@ -477,6 +482,14 @@ reconeixedor.RecognizeAsync(RecognizeMode.Multiple);</code></pre>
 <tr><td><code>SpeechRecognized</code></td><td>Esdeveniment que es dispara quan es reconeix alguna de les frases de la gramàtica.</td></tr>
 <tr><td><code>RecognizeAsync(RecognizeMode.Multiple)</code></td><td>Inicia l'escolta contínua (reconeix diverses vegades, no només un cop).</td></tr>
 </table>
+
+
+<!-- Component: Problema -->
+<div class="problem-box" role="alert" aria-live="assertive">
+    <div class="component-header error-header" role="heading" aria-level="4"><i class="bi bi-x-circle" aria-hidden="true"></i> Problema</div>
+    <p><strong>Triar el reconeixedor de manera explícita</strong></p><p><code>new SpeechRecognitionEngine()</code> sense arguments utilitza el reconeixedor per defecte de Windows, que pot estar registrat al sistema i, tot i això, no ser utilitzable: en aquest cas l'error (<code>COMException 0x80050022</code>) no apareix en crear l'objecte, sinó més tard, en començar a escoltar. Per això es consulta <code>InstalledRecognizers()</code> i es tria un reconeixedor concret, català si n'hi ha i castellà en cas contrari. A més, la cultura de la gramàtica (<code>GrammarBuilder.Culture</code>) ha de coincidir amb la del reconeixedor; si no, <code>LoadGrammar</code> llança <code>InvalidOperationException</code> ("The language for the grammar does not match the language of the speech recognizer"). Amb un reconeixedor en castellà, les ordres en català es reconeixen igualment, amb una confiança una mica més baixa.</p>
+    
+</div>
 
 
 <!-- Component: Caixa informativa -->
