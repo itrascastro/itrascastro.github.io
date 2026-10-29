@@ -549,7 +549,7 @@
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-xml">&lt;TargetFramework&gt;net8.0-windows&lt;/TargetFramework&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-xml">&lt;TargetFramework&gt;net10.0-windows&lt;/TargetFramework&gt;
 &lt;UseWindowsForms&gt;true&lt;/UseWindowsForms&gt;</code></pre>
   </div>
 </div>
@@ -698,7 +698,7 @@ public partial class IndicadorEstoc : UserControl
 <table class="table">
 <tr><th>Error</th><th>Per què passa i com evitar-lo</th></tr>
 <tr><td>Editar el <code>.Designer.cs</code> a mà</td><td>El dissenyador el pot sobreescriure. Els canvis d'estructura visual s'han de fer sempre des del dissenyador.</td></tr>
-<tr><td>Triar la plantilla "Windows Forms App (.NET Framework)"</td><td>És la plantilla antiga. Cal triar "Windows Forms App" (sense ".NET Framework") i el framework .NET 8.0 al pas següent de l'assistent.</td></tr>
+<tr><td>Triar la plantilla "Windows Forms App (.NET Framework)"</td><td>És la plantilla antiga. Cal triar "Windows Forms App" (sense ".NET Framework") i el framework .NET 10.0 al pas següent de l'assistent.</td></tr>
 <tr><td>Llançar una excepció per un valor de propietat fora de rang</td><td>Trenca l'ús normal del component des del dissenyador o des d'un altre formulari. És preferible retallar (clamp) el valor.</td></tr>
 <tr><td>Llançar un esdeveniment en cada canvi de valor</td><td>Genera soroll d'esdeveniments innecessari. Cal comparar l'estat anterior i el nou, i disparar l'esdeveniment només quan l'estat canvia realment.</td></tr>
 <tr><td>Crear un "component" que és només un grup de controls dins del formulari</td><td>No és reutilitzable ni es pot arrossegar des del quadre d'eines a un altre formulari. Ha de ser un <code>UserControl</code> independent.</td></tr>

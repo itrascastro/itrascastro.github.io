@@ -323,15 +323,15 @@
 <p>Abans de crear cap projecte cal tenir instal·lat:</p>
 
 <ul>
-<li><strong>Visual Studio Community</strong> (versió 2022 o superior), amb la càrrega de treball <strong>.NET desktop development</strong> activada.</li>
-<li>El <strong>.NET SDK 8</strong> (normalment s'instal·la automàticament amb aquesta càrrega de treball).</li>
+<li><strong>Visual Studio Community</strong> (versió 2026 o superior), amb la càrrega de treball <strong>.NET desktop development</strong> activada.</li>
+<li>El <strong>.NET SDK 10</strong> (normalment s'instal·la automàticament amb aquesta càrrega de treball).</li>
 </ul>
 
 <ol>
 <li>Descarregar l'instal·lador de Visual Studio Community des del lloc oficial de Microsoft.</li>
 <li>Durant la instal·lació, a la pantalla de càrregues de treball, marcar <strong>".NET desktop development"</strong> (Desenvolupament d'escriptori amb .NET).</li>
 <li>Confirmar i esperar que finalitzi la instal·lació.</li>
-<li>Un cop instal·lat, comprovar la versió del SDK obrint una terminal i executant <code>dotnet --version</code>: hauria de mostrar una versió 8.x (o superior, si es vol utilitzar una versió més nova cal ajustar-ho al <code>.csproj</code> de cada projecte).</li>
+<li>Un cop instal·lat, comprovar la versió del SDK obrint una terminal i executant <code>dotnet --version</code>: hauria de mostrar una versió 10.x (o superior, si es vol utilitzar una versió més nova cal ajustar-ho al <code>.csproj</code> de cada projecte).</li>
 </ol>
 
 <!-- Component: Figura amb peu -->
@@ -370,7 +370,7 @@
 <li>A Visual Studio, <em>Crea un projecte nou</em>.</li>
 <li>Es cerca i tria la plantilla <strong>Windows Forms App</strong> (en C#). <strong>Cal parar atenció</strong>: no s'ha de triar "Windows Forms App (.NET Framework)", que és la plantilla antiga.</li>
 <li>Es dona nom al projecte (per exemple, <code>GestorEstocBotiga</code>) i es tria la carpeta on desar-lo.</li>
-<li>A la pantalla de "Informació addicional", es tria el framework <strong>.NET 8.0 (Long Term Support)</strong>.</li>
+<li>A la pantalla de "Informació addicional", es tria el framework <strong>.NET 10.0 (Long Term Support)</strong>.</li>
 <li>Es crea el projecte i Visual Studio obre automàticament <code>Form1</code> en mode disseny.</li>
 </ol>
 
@@ -424,7 +424,7 @@
 
   <div class="code-container">
     <div class="line-numbers" aria-hidden="true"></div>
-    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-xml">&lt;TargetFramework&gt;net8.0-windows&lt;/TargetFramework&gt;
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-xml">&lt;TargetFramework&gt;net10.0-windows&lt;/TargetFramework&gt;
 &lt;UseWindowsForms&gt;true&lt;/UseWindowsForms&gt;</code></pre>
   </div>
 </div>
