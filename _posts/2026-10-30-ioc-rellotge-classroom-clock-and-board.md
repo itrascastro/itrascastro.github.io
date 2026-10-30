@@ -16,8 +16,7 @@ It is one HTML file with no dependencies. It works offline, keeps its configurat
 
 ## Try it
 
-- Open it: [https://itrascastro.github.io/ioc/ioc-rellotge/](https://itrascastro.github.io/ioc/ioc-rellotge/)
-- Open it already configured for the collection exams (proves de compleció): [with the template](https://itrascastro.github.io/ioc/ioc-rellotge/?plantilla=presets/proves-compleccio.json)
+- Open it: [https://itrascastro.github.io/ioc/ioc-rellotge/](https://itrascastro.github.io/ioc/ioc-rellotge/). On the first visit it opens already configured for the collection exams (proves de compleció); if you already have a saved setup, it is never replaced.
 - Source and tests: [github.com/itrascastro/ioc-rellotge](https://github.com/itrascastro/ioc-rellotge)
 
 Press `E` for the settings and `F` for full screen. The interface is in Catalan, and what you write on the screen is never translated or altered.
@@ -54,7 +53,7 @@ The part I like most is that nothing important lives only in the interface. A te
 }
 ```
 
-Any key you leave out is left untouched, and an invalid value falls back to its default, so a template can be as small or as complete as you want. You can import it from the settings, or open the app with `?plantilla=presets/your-file.json` to share a link that opens it already configured. The link only accepts a `.json` path on the same site.
+Any key you leave out is left untouched, and an invalid value falls back to its default, so a template can be as small or as complete as you want. You can import it from the settings, or open the app with `?plantilla=presets/your-file.json` to share a link that opens it already configured. The link only accepts a `.json` path on the same site, and it asks before replacing a setup you already have. A deployment can also ship a default template for first-time visitors, which is how the published page opens on the collection exams.
 
 That also makes it easy to hand over to a script or an agent: it only has to change values in the JSON. The repository includes a file with every key and its default, generated from the code so it cannot drift, and a reference of the allowed values.
 
