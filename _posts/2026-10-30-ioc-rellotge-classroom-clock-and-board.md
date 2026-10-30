@@ -61,7 +61,7 @@ That also makes it easy to hand over to a script or an agent: it only has to cha
 
 ## The collection exams template
 
-The default template I use is built from the invigilation instructions for the collection exams: the times of entry, start, cut-off for late arrivals and the four collections, a message for each phase, and sections for what students need on the desk, how long each test lasts and how to hand in the papers. Two more sections, with reminders for the teachers, stay hidden and appear with a click when needed. It contains no names and no links, because it is projected to the students.
+The default template I use is built from the invigilation instructions for the collection exams: the times of entry, start, cut-off for late arrivals and the four collections, a message for each phase, and sections for what students need on the desk, how long each test lasts and how to hand in the papers. Everything in it is public: it contains no names, no links and nothing addressed only to teachers, because it is projected to the students and anyone can see the settings while it is on screen.
 
 ## How it is built and tested
 
