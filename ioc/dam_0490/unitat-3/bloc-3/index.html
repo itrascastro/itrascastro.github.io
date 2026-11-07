@@ -16,8 +16,8 @@
 <meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Bloc 3: TLS, certificats i sòcols segurs" />
 <meta property="og:locale" content="ca_ES" />
-<meta name="description" content="Confidencialitat en trànsit, certificats, keystores, keytool, SSLContext, SSLServerSocket i SSLSocket" />
-<meta property="og:description" content="Confidencialitat en trànsit, certificats, keystores, keytool, SSLContext, SSLServerSocket i SSLSocket" />
+<meta name="description" content="Confidencialitat en trànsit, certificats, keystores, keytool, SSLContext, SSLServerSocket, SSLSocket, PKCS12 i TrustManagerFactory" />
+<meta property="og:description" content="Confidencialitat en trànsit, certificats, keystores, keytool, SSLContext, SSLServerSocket, SSLSocket, PKCS12 i TrustManagerFactory" />
 <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-3/" />
 <meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-3/" />
 <meta property="og:site_name" content="Programació de serveis i processos" />
@@ -25,7 +25,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Bloc 3: TLS, certificats i sòcols segurs" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Confidencialitat en trànsit, certificats, keystores, keytool, SSLContext, SSLServerSocket i SSLSocket","headline":"Bloc 3: TLS, certificats i sòcols segurs","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-3/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Confidencialitat en trànsit, certificats, keystores, keytool, SSLContext, SSLServerSocket, SSLSocket, PKCS12 i TrustManagerFactory","headline":"Bloc 3: TLS, certificats i sòcols segurs","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-3/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
@@ -300,6 +300,78 @@
         
         <div class="nav-item">
             <a href="#Unitat3_Bloc3_Seccio5" class="nav-link" data-section="Unitat3_Bloc3_Seccio5">5. Client TLS, confiança i depuració del handshake</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc3_Seccio6" class="nav-link" data-section="Unitat3_Bloc3_Seccio6">6. PKCS12: magatzems de claus per a certificats i claus secretes</a>
+        </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc3_Seccio7" class="nav-link" data-section="Unitat3_Bloc3_Seccio7">7. Client TLS amb un context propi: TrustManagerFactory i verificació del nom</a>
         </div>
     
 
@@ -665,7 +737,7 @@ C: Missatge confidencial...</code></pre>
 </div>
 
 
-<p>Hem indicat explícitament <code>-storetype JKS</code> perquè després carregarem el fitxer amb <code>KeyStore.getInstance("JKS")</code>. En JDK moderns el tipus per defecte pot ser diferent, així que és millor que la comanda i el codi coincideixin.</p>
+<p>Hem indicat explícitament <code>-storetype JKS</code> perquè després carregarem el fitxer amb <code>KeyStore.getInstance("JKS")</code>. En JDK moderns el tipus per defecte pot ser diferent, així que és millor que la comanda i el codi coincideixin. JKS és un format propi de Java; PKCS12 és un estàndard i, a partir de Java 9, el tipus per defecte. A la secció 6 el fareu servir.</p>
 
 <h3>Inspeccionar el contingut</h3>
 
@@ -1149,6 +1221,14 @@ System.setProperty(
 </div>
 
 
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Les propietats <code>javax.net.ssl.*</code> són globals.</strong> Canvien la configuració de tota la JVM: qualsevol altra connexió TLS del mateix procés les heretarà, i una prova que les canvia pot alterar les altres. Una alternativa més neta és construir un <code>SSLContext</code> propi per a cada client, amb un <code>TrustManagerFactory</code>, tal com es mostra a la secció 7.</p>
+</div>
+
+
 <h3>Quan el handshake falla</h3>
 
 <p>Els errors TLS poden semblar opacs. Per a una sessió de depuració local, Java pot mostrar informació del handshake:</p>
@@ -1226,6 +1306,513 @@ System.setProperty(
 
 </div>
 
+<div class="section">
+  <h2 id="Unitat3_Bloc3_Seccio6">6. PKCS12: magatzems de claus per a certificats i claus secretes</h2>
+
+<p>Un magatzem PKCS12 pot guardar claus privades amb els seus certificats i també <strong>claus secretes</strong>, per exemple una clau AES. Cada entrada té un <strong>àlies</strong>, el nom amb què la trobareu. Aquesta secció mostra com crear una clau AES al magatzem i com recuperar-la des de Java.</p>
+
+<h3>Crear una clau AES amb keytool</h3>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">export MAGATZEM_PASS=&#39;contrasenya-de-prova-26&#39;
+
+keytool -genseckey -keyalg AES -keysize 256 \
+        -alias notes -storetype PKCS12 \
+        -keystore claus.p12 -storepass:env MAGATZEM_PASS</code></pre>
+  </div>
+</div>
+
+
+<table class="table">
+<thead><tr><th>Paràmetre</th><th>Significat</th></tr></thead>
+<tbody>
+<tr><td><code>-genseckey</code></td><td>Genera una clau secreta nova i aleatòria.</td></tr>
+<tr><td><code>-keyalg AES -keysize 256</code></td><td>La clau és AES de 256 bits.</td></tr>
+<tr><td><code>-alias notes</code></td><td>Nom de l'entrada dins del magatzem.</td></tr>
+<tr><td><code>-storetype PKCS12</code></td><td>Format del fitxer.</td></tr>
+<tr><td><code>-keystore claus.p12</code></td><td>Fitxer de destinació; es crea si no existeix.</td></tr>
+<tr><td><code>-storepass:env MAGATZEM_PASS</code></td><td>Llegeix la contrasenya d'una variable d'entorn, de manera que no queda escrita a l'ordre ni a l'historial del terminal.</td></tr>
+</tbody>
+</table>
+
+<p>A PowerShell, definiu la variable amb <code>$env:MAGATZEM_PASS='contrasenya-de-prova-26'</code>. Una contrasenya escrita en un exemple és només de prova: en una aplicació real no s'escriu mai al codi.</p>
+
+<h3>Inspeccionar el magatzem</h3>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">keytool -list -storetype PKCS12 -keystore claus.p12 \
+        -storepass:env MAGATZEM_PASS</code></pre>
+  </div>
+</div>
+
+
+<p>Heu de veure l'entrada <code>notes</code> de tipus <code>SecretKeyEntry</code>. <code>keytool</code> no mostra els bytes de la clau.</p>
+
+<h3>Carregar la clau des de Java</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">ClauDesadaPkcs12.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.security.GeneralSecurityException;
+import java.security.Key;
+import java.security.KeyStore;
+import javax.crypto.SecretKey;
+
+public class ClauDesadaPkcs12 {
+
+    // Recupera la clau AES guardada amb l&#39;àlies indicat.
+    static SecretKey carregarClauAes(Path fitxer, char[] contrasenya, String alies) throws Exception {
+        KeyStore magatzem = KeyStore.getInstance(&quot;PKCS12&quot;);
+        try (InputStream in = Files.newInputStream(fitxer)) {
+            magatzem.load(in, contrasenya);     // contrasenya incorrecta -&gt; IOException
+        }
+        Key clau = magatzem.getKey(alies, contrasenya);
+        if (!(clau instanceof SecretKey secreta) || !&quot;AES&quot;.equals(secreta.getAlgorithm()))
+            throw new GeneralSecurityException(&quot;No hi ha cap clau AES amb l&#39;àlies &quot; + alies);
+        return secreta;
+    }
+
+    public static void main(String[] args) throws Exception {
+        char[] contrasenya = System.getenv(&quot;MAGATZEM_PASS&quot;).toCharArray();
+        SecretKey clau = carregarClauAes(Path.of(args[0]), contrasenya, &quot;notes&quot;);
+        System.out.println(&quot;Algorisme: &quot; + clau.getAlgorithm() + &quot;, bits: &quot; + clau.getEncoded().length * 8);
+        SecretKey altra = carregarClauAes(Path.of(args[0]), contrasenya, &quot;notes&quot;);
+        System.out.println(&quot;La mateixa clau a cada càrrega: &quot; + java.util.Arrays.equals(clau.getEncoded(), altra.getEncoded()));
+        try { carregarClauAes(Path.of(args[0]), &quot;incorrecta&quot;.toCharArray(), &quot;notes&quot;); }
+        catch (java.io.IOException e) { System.out.println(&quot;Contrasenya incorrecta -&gt; &quot; + e.getClass().getSimpleName()); }
+        try { carregarClauAes(Path.of(args[0]), contrasenya, &quot;inexistent&quot;); }
+        catch (GeneralSecurityException e) { System.out.println(&quot;Àlies inexistent -&gt; &quot; + e.getMessage()); }
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Algorisme: AES, bits: 256
+La mateixa clau a cada càrrega: true
+Contrasenya incorrecta -&gt; IOException
+Àlies inexistent -&gt; No hi ha cap clau AES amb l&#39;àlies inexistent</code></pre>
+  </div>
+</div>
+
+
+<ul>
+<li><code>KeyStore.load</code> comprova la contrasenya: si és incorrecta llança <code>IOException</code>.</li>
+<li><code>getKey(alies, contrasenya)</code> retorna un <code>Key</code>; comproveu que és un <code>SecretKey</code> i que l'algorisme és AES abans de fer-lo servir.</li>
+<li>Un àlies que no existeix retorna <code>null</code>, no una excepció: gestioneu-ho explícitament.</li>
+</ul>
+
+<h3>Tres coses que no s'han de confondre</h3>
+
+<table class="table">
+<thead><tr><th>Element</th><th>Què és</th><th>Durada</th></tr></thead>
+<tbody>
+<tr><td>Contrasenya del magatzem</td><td>Protegeix l'accés al fitxer. No és la clau de xifrat.</td><td>La decidiu vosaltres.</td></tr>
+<tr><td>Clau AES</td><td>Un secret aleatori guardat dins del magatzem. No es dedueix de cap contrasenya.</td><td>Es conserva entre execucions.</td></tr>
+<tr><td>Àlies</td><td>El nom de l'entrada. No és un secret.</td><td>Fix.</td></tr>
+</tbody>
+</table>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>Una clau perduda no es recupera.</strong> Si torneu a crear un magatzem amb el mateix nom i la mateixa contrasenya, <code>keytool</code> genera una clau <em>diferent</em>: les dades xifrades amb l'anterior ja no es podran desxifrar. Conserveu el fitxer original i la contrasenya que el protegeix, i no regenereu l'entorn si ja hi ha dades xifrades.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Una clau que sobreviu</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Creeu un magatzem PKCS12 amb una clau AES de 256 bits i l'àlies que vulgueu. Inspeccioneu-lo amb keytool i escriviu un programa que en carregui la clau. Comproveu que dues càrregues donen els mateixos bytes, que una contrasenya incorrecta falla i que un àlies inexistent es gestiona sense excepcions no controlades.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Bàsic</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">20 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Definiu la contrasenya a una variable d'entorn.</li>
+        
+        <li>No imprimiu els bytes de la clau.</li>
+        
+        <li>Comproveu l'algorisme de la clau carregada.</li>
+        
+        <li>Un àlies inexistent retorna null.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat3_Bloc3_Seccio7">7. Client TLS amb un context propi: TrustManagerFactory i verificació del nom</h2>
+
+<p>Un servidor demostra la seva identitat amb un certificat. El client decideix en quins certificats confia i, a més, ha de comprovar que el certificat correspon al <strong>nom</strong> amb què s'ha connectat. Aquí ho fem sense confiar en tot i sense tocar la configuració global de la JVM.</p>
+
+<h3>Preparar els magatzems</h3>
+
+
+<div class="code-block" data-lang="bash" role="region" aria-label="Bloc de codi bash">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">BASH</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-bash">export MAGATZEM_PASS=&#39;contrasenya-de-prova-26&#39;
+
+# 1. Servidor: parella de claus i certificat, amb nom DNS localhost
+keytool -genkeypair -alias servidor -keyalg RSA -keysize 2048 -validity 365 \
+        -storetype PKCS12 -keystore servidor.p12 -storepass:env MAGATZEM_PASS \
+        -dname &quot;CN=localhost&quot; -ext &quot;san=dns:localhost&quot;
+
+# 2. Exportar només el certificat públic
+keytool -exportcert -alias servidor -keystore servidor.p12 \
+        -storepass:env MAGATZEM_PASS -rfc -file servidor.cer
+
+# 3. Truststore del client: només conté el certificat públic
+keytool -importcert -alias servidor -file servidor.cer \
+        -keystore client.p12 -storetype PKCS12 \
+        -storepass:env MAGATZEM_PASS -noprompt</code></pre>
+  </div>
+</div>
+
+
+<p>El <strong>SAN</strong> (<em>Subject Alternative Name</em>) és la llista de noms per als quals el certificat és vàlid. Els clients TLS actuals comproven el SAN, no el camp <code>CN</code>. El truststore del client només té el certificat públic: <code>servidor.p12</code>, que conté la clau privada, no es distribueix mai.</p>
+
+<h3>El context del client</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">static SSLContext contextClient(Path truststore, char[] contrasenya)
+        throws Exception {
+    KeyStore magatzem = KeyStore.getInstance(&quot;PKCS12&quot;);
+    try (InputStream in = Files.newInputStream(truststore)) {
+        magatzem.load(in, contrasenya);
+    }
+    TrustManagerFactory fabrica = TrustManagerFactory.getInstance(
+            TrustManagerFactory.getDefaultAlgorithm());
+    fabrica.init(magatzem);                 // només confiarà en aquests certificats
+    SSLContext context = SSLContext.getInstance(&quot;TLS&quot;);
+    context.init(null, fabrica.getTrustManagers(), null);
+    return context;
+}</code></pre>
+  </div>
+</div>
+
+
+<p>És el mateix patró que a la secció 4, però a l'inrevés: el servidor inicialitza el context amb <code>KeyManagerFactory</code> (la seva clau privada i el seu certificat) i el client amb <code>TrustManagerFactory</code> (en qui confia). El context no toca cap propietat global: dos clients del mateix programa poden tenir confiances diferents.</p>
+
+<h3>Comprovar també el nom del servidor</h3>
+
+<p>Un <code>SSLSocket</code> comprova que la cadena de certificats és de confiança, però <strong>no comprova per defecte</strong> que el certificat correspongui al nom del servidor. Cal activar-ho a <code>SSLParameters</code> abans del handshake:</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">SSLParameters parametres = socket.getSSLParameters();
+parametres.setEndpointIdentificationAlgorithm(&quot;HTTPS&quot;);
+socket.setSSLParameters(parametres);
+socket.startHandshake();</code></pre>
+  </div>
+</div>
+
+
+<p>Sense aquesta comprovació, un servidor amb un certificat de confiança però d'un altre nom seria acceptat. <code>HttpClient</code> i <code>HttpsURLConnection</code> ja ho fan per defecte; amb un sòcol cru, s'ha de demanar.</p>
+
+<table class="table">
+<thead><tr><th>Opció</th><th>Què valida</th><th>Quan</th></tr></thead>
+<tbody>
+<tr><td>Confiar en tot (<em>trust-all</em>)</td><td>Res</td><td>Mai en una aplicació; només com a prova local molt controlada.</td></tr>
+<tr><td>Propietats <code>javax.net.ssl.*</code></td><td>Valida amb el truststore, però afecta tota la JVM</td><td>Scripts simples d'un sol client.</td></tr>
+<tr><td><code>SSLContext</code> propi amb <code>TrustManagerFactory</code></td><td>Valida amb el truststore i només afecta aquest client</td><td>L'opció recomanada.</td></tr>
+</tbody>
+</table>
+
+<h3>Un programa complet amb tres proves</h3>
+
+<p>El programa arrenca un servidor TLS de prova i es connecta tres vegades: amb el truststore correcte, amb un nom que no coincideix amb el certificat (<code>127.0.0.1</code>) i amb un truststore que no coneix el servidor. Cal haver preparat <code>servidor.p12</code> i <code>client.p12</code>, i un tercer truststore <code>altre.p12</code> amb un certificat diferent, a la carpeta que es passa com a argument.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">TlsClient.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.security.KeyStore;
+import javax.net.ssl.*;
+
+public class TlsClient {
+
+    static KeyStore carregar(Path fitxer, char[] contrasenya) throws Exception {
+        KeyStore ks = KeyStore.getInstance(&quot;PKCS12&quot;);
+        try (InputStream in = Files.newInputStream(fitxer)) { ks.load(in, contrasenya); }
+        return ks;
+    }
+
+    // Context del servidor: la seva clau privada i el seu certificat.
+    static SSLContext contextServidor(Path p12, char[] pass) throws Exception {
+        KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
+        kmf.init(carregar(p12, pass), pass);
+        SSLContext ctx = SSLContext.getInstance(&quot;TLS&quot;);
+        ctx.init(kmf.getKeyManagers(), null, null);
+        return ctx;
+    }
+
+    // Context del client: només confia en els certificats del truststore indicat.
+    static SSLContext contextClient(Path truststore, char[] pass) throws Exception {
+        TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+        tmf.init(carregar(truststore, pass));
+        SSLContext ctx = SSLContext.getInstance(&quot;TLS&quot;);
+        ctx.init(null, tmf.getTrustManagers(), null);
+        return ctx;
+    }
+
+    static String demanar(SSLContext ctx, String host, int port) throws Exception {
+        try (SSLSocket s = (SSLSocket) ctx.getSocketFactory().createSocket(host, port)) {
+            SSLParameters p = s.getSSLParameters();
+            p.setEndpointIdentificationAlgorithm(&quot;HTTPS&quot;);   // comprova que el nom coincideix amb el certificat
+            s.setSSLParameters(p);
+            s.startHandshake();
+            new PrintWriter(s.getOutputStream(), true).println(&quot;hola&quot;);
+            return new BufferedReader(new InputStreamReader(s.getInputStream())).readLine();
+        }
+    }
+
+    // Missatge de l&#39;error més profund: és el que explica per què s&#39;ha rebutjat.
+    static String causa(Throwable e) {
+        while (e.getCause() != null) e = e.getCause();
+        return e.getMessage();
+    }
+
+    public static void main(String[] args) throws Exception {
+        char[] pass = System.getenv(&quot;MAGATZEM_PASS&quot;).toCharArray();
+        Path dir = Path.of(args[0]);
+        SSLServerSocket servidor = (SSLServerSocket) contextServidor(dir.resolve(&quot;servidor.p12&quot;), pass)
+                .getServerSocketFactory().createServerSocket(0, 5, java.net.InetAddress.getLoopbackAddress());
+        int port = servidor.getLocalPort();
+        Thread fil = new Thread(() -&gt; {
+            while (!servidor.isClosed()) {
+                try (SSLSocket c = (SSLSocket) servidor.accept()) {
+                    BufferedReader in = new BufferedReader(new InputStreamReader(c.getInputStream()));
+                    PrintWriter out = new PrintWriter(c.getOutputStream(), true);
+                    out.println(&quot;eco: &quot; + in.readLine());
+                } catch (IOException e) { /* handshake fallit: el servidor continua */ }
+            }
+        });
+        fil.setDaemon(true);
+        fil.start();
+
+        SSLContext fiable = contextClient(dir.resolve(&quot;client.p12&quot;), pass);
+        System.out.println(&quot;1. localhost amb el truststore correcte: &quot; + demanar(fiable, &quot;localhost&quot;, port));
+        try { demanar(fiable, &quot;127.0.0.1&quot;, port); System.out.println(&quot;2. 127.0.0.1: acceptat (MALAMENT)&quot;); }
+        catch (SSLHandshakeException e) { System.out.println(&quot;2. 127.0.0.1 -&gt; rebutjat: &quot; + causa(e)); }
+        SSLContext desconegut = contextClient(dir.resolve(&quot;altre.p12&quot;), pass);
+        try { demanar(desconegut, &quot;localhost&quot;, port); System.out.println(&quot;3. truststore sense el certificat: acceptat (MALAMENT)&quot;); }
+        catch (SSLHandshakeException e) { System.out.println(&quot;3. truststore que no coneix el servidor -&gt; rebutjat: &quot; + causa(e)); }
+        servidor.close();
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">1. localhost amb el truststore correcte: eco: hola
+2. 127.0.0.1 -&gt; rebutjat: No subject alternative names matching IP address 127.0.0.1 found
+3. truststore que no coneix el servidor -&gt; rebutjat: unable to find valid certification path to requested target</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa d'èxit -->
+<div class="success-box" role="status" aria-live="polite">
+    <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
+    <p><strong>Les tres proves són el mínim.</strong> Una connexió de confiança s'accepta, un nom incorrecte es rebutja i un servidor desconegut es rebutja. Una <code>SSLHandshakeException</code> no s'ha d'ignorar ni convertir en un avís: vol dir que el client no sap amb qui parla.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Client amb confiança explícita</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Creeu un certificat de servidor amb SAN dns:localhost, exporteu-ne el certificat públic i importeu-lo a un truststore PKCS12. Construïu un SSLContext de servidor amb KeyManagerFactory i un de client amb TrustManagerFactory, sense propietats globals. Comproveu que la connexió a localhost funciona, que la connexió a 127.0.0.1 es rebutja i que un truststore sense el certificat es rebutja.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">30 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Exporteu només el certificat públic.</li>
+        
+        <li>Activeu la identificació del nom abans del handshake.</li>
+        
+        <li>Canvieu una sola cosa cada vegada.</li>
+        
+        <li>Distingiu un error de confiança d'un error de connexió.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
 
 <!-- Exercicis proposats (si estan definits) -->
 
@@ -1243,7 +1830,7 @@ System.setProperty(
   "@context": "https://schema.org",
   "@type": "LearningResource",
   "name": "Bloc 3: TLS, certificats i sòcols segurs",
-  "description": "Confidencialitat en trànsit, certificats, keystores, keytool, SSLContext, SSLServerSocket i SSLSocket",
+  "description": "Confidencialitat en trànsit, certificats, keystores, keytool, SSLContext, SSLServerSocket, SSLSocket, PKCS12 i TrustManagerFactory",
   "author": {
     "@type": "Organization",
     "name": "Institut Obert de Catalunya"
@@ -1361,8 +1948,8 @@ System.setProperty(
 
                     <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
                         <span class="progress-label">Secció</span>
-                        <span class="progress-text" data-pos="1" data-total="5">(1/5)</span>
-                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 20%"></div></div>
+                        <span class="progress-text" data-pos="1" data-total="7">(1/7)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 14%"></div></div>
                     </div></div>
             <div class="footer-actions" aria-label="Accions ràpides">
                 <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">

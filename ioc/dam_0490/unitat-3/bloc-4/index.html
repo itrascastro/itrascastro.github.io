@@ -16,8 +16,8 @@
 <meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Bloc 4: Criptografia asimètrica amb RSA" />
 <meta property="og:locale" content="ca_ES" />
-<meta name="description" content="Parells de claus, RSA, Cipher, Base64, padding, xifrat híbrid, signatures i relació amb TLS" />
-<meta property="og:description" content="Parells de claus, RSA, Cipher, Base64, padding, xifrat híbrid, signatures i relació amb TLS" />
+<meta name="description" content="Parells de claus, RSA, Cipher, Base64, padding, xifrat híbrid, AES-GCM, signatures i relació amb TLS" />
+<meta property="og:description" content="Parells de claus, RSA, Cipher, Base64, padding, xifrat híbrid, AES-GCM, signatures i relació amb TLS" />
 <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-4/" />
 <meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-4/" />
 <meta property="og:site_name" content="Programació de serveis i processos" />
@@ -25,7 +25,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Bloc 4: Criptografia asimètrica amb RSA" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Parells de claus, RSA, Cipher, Base64, padding, xifrat híbrid, signatures i relació amb TLS","headline":"Bloc 4: Criptografia asimètrica amb RSA","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-4/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Parells de claus, RSA, Cipher, Base64, padding, xifrat híbrid, AES-GCM, signatures i relació amb TLS","headline":"Bloc 4: Criptografia asimètrica amb RSA","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-4/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
@@ -299,8 +299,44 @@
         
         
         <div class="nav-item">
-            <a href="#Unitat3_Bloc4_Seccio5" class="nav-link" data-section="Unitat3_Bloc4_Seccio5">5. Signatures, certificats i com encaixa tot dins TLS</a>
+            <a href="#Unitat3_Bloc4_Seccio5" class="nav-link" data-section="Unitat3_Bloc4_Seccio5">5. AES-GCM: xifrar dades i detectar manipulacions</a>
         </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc4_Seccio6" class="nav-link" data-section="Unitat3_Bloc4_Seccio6">6. Signatures, certificats i com encaixa tot dins TLS</a>
+        </div>
+    
+
+    
+    
+    
     
 
     
@@ -971,7 +1007,250 @@ cipher.doFinal(
 </div>
 
 <div class="section">
-  <h2 id="Unitat3_Bloc4_Seccio5">5. Signatures, certificats i com encaixa tot dins TLS</h2>
+  <h2 id="Unitat3_Bloc4_Seccio5">5. AES-GCM: xifrar dades i detectar manipulacions</h2>
+
+<p>A la secció 1 heu vist que una clau AES es genera amb <code>KeyGenerator</code>, i que per xifrar dades reals no n'hi ha prou amb l'algorisme: cal triar el <strong>mode</strong>. El mode ECB revela patrons i el CBC amaga el contingut però no detecta modificacions. <strong>GCM</strong> fa les dues coses: xifra i autentica. Si algú canvia un sol byte del que s'ha xifrat, el desxifrat falla en lloc de retornar dades alterades.</p>
+
+<table class="table">
+<thead><tr><th>Element</th><th>Mida</th><th>És secret?</th><th>Qui el genera</th></tr></thead>
+<tbody>
+<tr><td>Clau AES</td><td>128, 192 o 256 bits</td><td>Sí</td><td><code>KeyGenerator</code>, o una clau desada en un magatzem PKCS12 (bloc 3).</td></tr>
+<tr><td>IV (nonce)</td><td>12 bytes</td><td>No</td><td><code>SecureRandom</code>, un de nou a cada xifrat.</td></tr>
+<tr><td>Etiqueta d'autenticació</td><td>128 bits (16 bytes)</td><td>No</td><td>GCM; ja ve afegida a la sortida de <code>doFinal</code>.</td></tr>
+<tr><td>AAD</td><td>La que es defineixi</td><td>No</td><td>Dades associades, per exemple una capçalera: s'autentiquen però no es xifren.</td></tr>
+</tbody>
+</table>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No reutilitzeu mai un IV amb la mateixa clau.</strong> Fer-ho trenca la seguretat de GCM. L'IV no és secret: viatja amb les dades xifrades perquè qui desxifra el necessita.</p>
+</div>
+
+
+<h3>Un paquet que es pot desxifrar més tard</h3>
+
+<p>Perquè algú pugui desxifrar després, ha de tenir la clau, l'IV i la mateixa AAD. Per això el resultat d'<code>xifrar</code> és un paquet que ho porta tot:</p>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">posicions 0-2    capçalera: format i versió (aquí {&#39;N&#39;, &#39;T&#39;, 1})
+posicions 3-14   IV de 12 bytes
+posicions 15-fi  sortida de doFinal: text xifrat + etiqueta de 16 bytes</code></pre>
+  </div>
+</div>
+
+
+<p>El format del paquet és una decisió de l'aplicació; el que importa és que <code>xifrar</code> i <code>desxifrar</code> el respectin exactament i que estigui documentat. La capçalera es passa a <code>updateAAD</code>: no es xifra, però si algú la canvia, el desxifrat falla.</p>
+
+<h3>Xifrar i desxifrar</h3>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">NotesXifrades.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.nio.ByteBuffer;
+import java.security.GeneralSecurityException;
+import java.security.SecureRandom;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.GCMParameterSpec;
+
+public class NotesXifrades {
+
+    static final byte[] CAPCALERA = {&#39;N&#39;, &#39;T&#39;, 1};    // 3 bytes: format i versió
+    static final int IV_BYTES = 12;
+    static final int ETIQUETA_BITS = 128;
+
+    // Paquet = capçalera (3) + IV (12) + text xifrat amb etiqueta (n + 16)
+    static byte[] xifrar(byte[] dades, SecretKey clau) throws GeneralSecurityException {
+        byte[] iv = new byte[IV_BYTES];
+        new SecureRandom().nextBytes(iv);                       // un IV nou a cada xifrat
+
+        Cipher cipher = Cipher.getInstance(&quot;AES/GCM/NoPadding&quot;);
+        cipher.init(Cipher.ENCRYPT_MODE, clau, new GCMParameterSpec(ETIQUETA_BITS, iv));
+        cipher.updateAAD(CAPCALERA);                            // autenticada, no xifrada
+        byte[] xifrat = cipher.doFinal(dades);                  // ja inclou l&#39;etiqueta
+
+        return ByteBuffer.allocate(CAPCALERA.length + IV_BYTES + xifrat.length)
+                .put(CAPCALERA).put(iv).put(xifrat).array();
+    }
+
+    static byte[] desxifrar(byte[] paquet, SecretKey clau) throws GeneralSecurityException {
+        if (paquet == null || paquet.length &lt; CAPCALERA.length + IV_BYTES + 16)
+            throw new IllegalArgumentException(&quot;Paquet massa curt&quot;);
+        ByteBuffer buffer = ByteBuffer.wrap(paquet);
+        byte[] capcalera = new byte[CAPCALERA.length];
+        buffer.get(capcalera);
+        if (!Arrays.equals(capcalera, CAPCALERA))
+            throw new GeneralSecurityException(&quot;Format desconegut&quot;);
+        byte[] iv = new byte[IV_BYTES];
+        buffer.get(iv);
+        byte[] xifrat = new byte[buffer.remaining()];
+        buffer.get(xifrat);
+
+        Cipher cipher = Cipher.getInstance(&quot;AES/GCM/NoPadding&quot;);
+        cipher.init(Cipher.DECRYPT_MODE, clau, new GCMParameterSpec(ETIQUETA_BITS, iv));
+        cipher.updateAAD(CAPCALERA);                            // la mateixa AAD
+        return cipher.doFinal(xifrat);                          // llança AEADBadTagException si no quadra
+    }
+
+    static boolean falla(Runnable0 accio) {
+        try { accio.run(); return false; } catch (GeneralSecurityException | IllegalArgumentException e) { return true; }
+    }
+    interface Runnable0 { void run() throws GeneralSecurityException; }
+
+    public static void main(String[] args) throws Exception {
+        KeyGenerator generador = KeyGenerator.getInstance(&quot;AES&quot;);
+        generador.init(256);
+        SecretKey clau = generador.generateKey();
+        SecretKey altra = generador.generateKey();
+
+        byte[] nota = &quot;Reunió dijous a les 10:00 — aula 3&quot;.getBytes(StandardCharsets.UTF_8);
+        byte[] paquet = xifrar(nota, clau);
+        System.out.println(&quot;Mida: &quot; + nota.length + &quot; bytes -&gt; &quot; + paquet.length + &quot; bytes (3 + 12 + &quot; + nota.length + &quot; + 16)&quot;);
+        System.out.println(&quot;Recuperada: &quot; + new String(desxifrar(paquet, clau), StandardCharsets.UTF_8));
+        System.out.println(&quot;Dos xifrats del mateix text són diferents: &quot; + !Arrays.equals(paquet, xifrar(nota, clau)));
+        System.out.println(&quot;Dades buides: &quot; + desxifrar(xifrar(new byte[0], clau), clau).length + &quot; bytes&quot;);
+
+        byte[] tocat = paquet.clone();
+        tocat[tocat.length - 1] ^= 1;
+        System.out.println(&quot;Etiqueta o text manipulats -&gt; error: &quot; + falla(() -&gt; desxifrar(tocat, clau)));
+        byte[] ivTocat = paquet.clone();
+        ivTocat[4] ^= 1;
+        System.out.println(&quot;IV manipulat -&gt; error: &quot; + falla(() -&gt; desxifrar(ivTocat, clau)));
+        byte[] capTocada = paquet.clone();
+        capTocada[2] = 2;
+        System.out.println(&quot;Capçalera manipulada -&gt; error: &quot; + falla(() -&gt; desxifrar(capTocada, clau)));
+        System.out.println(&quot;Clau equivocada -&gt; error: &quot; + falla(() -&gt; desxifrar(paquet, altra)));
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<p>Observeu l'ordre: <code>init</code> amb la clau i els paràmetres GCM, <code>updateAAD</code> i, per últim, <code>doFinal</code>. En desxifrar, l'AAD ha de ser exactament la mateixa i s'ha de proporcionar abans de <code>doFinal</code>.</p>
+
+<h3>Què ha de fallar</h3>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Mida: 37 bytes -&gt; 68 bytes (3 + 12 + 37 + 16)
+Recuperada: Reunió dijous a les 10:00 — aula 3
+Dos xifrats del mateix text són diferents: true
+Dades buides: 0 bytes
+Etiqueta o text manipulats -&gt; error: true
+IV manipulat -&gt; error: true
+Capçalera manipulada -&gt; error: true
+Clau equivocada -&gt; error: true</code></pre>
+  </div>
+</div>
+
+
+<table class="table">
+<thead><tr><th>Situació</th><th>Resultat</th></tr></thead>
+<tbody>
+<tr><td>Clau equivocada</td><td><code>AEADBadTagException</code>, subclasse de <code>GeneralSecurityException</code></td></tr>
+<tr><td>Byte alterat al text, a l'etiqueta o a l'IV</td><td><code>AEADBadTagException</code></td></tr>
+<tr><td>Capçalera o versió desconeguda</td><td><code>GeneralSecurityException</code>, llançada pel vostre codi</td></tr>
+<tr><td>Paquet <code>null</code> o massa curt</td><td><code>IllegalArgumentException</code> (entrada invàlida)</td></tr>
+<tr><td>Dades buides en xifrar</td><td>Vàlid: el paquet té 31 bytes i es recupera un array buit</td></tr>
+</tbody>
+</table>
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>No amagueu els errors de desxifrat.</strong> No retorneu dades parcials, una llista buida ni un array buit quan falla la verificació. Un fitxer buit legítim i un error de desxifrat són coses diferents, i el codi que crida ha de poder distingir-les.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Xifrar i desxifrar una nota</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Escriviu una classe amb dos mètodes que xifrin i desxifrin bytes amb AES-GCM, amb una clau carregada d'un magatzem PKCS12 (bloc 3). Definiu el vostre propi format de paquet i documenteu-lo. Comproveu la recuperació exacta, un text amb accents, dades buides, dos xifrats diferents del mateix text, una clau equivocada i un byte alterat a cada part del paquet.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">30 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Genereu un IV nou a cada xifrat.</li>
+        
+        <li>Passeu la mateixa AAD en xifrar i en desxifrar.</li>
+        
+        <li>No sumeu l'etiqueta a mà: GCM ja l'afegeix.</li>
+        
+        <li>Proveu a alterar un byte de cada zona del paquet.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 id="Unitat3_Bloc4_Seccio6">6. Signatures, certificats i com encaixa tot dins TLS</h2>
 
 <p>Una parella RSA no només es pot utilitzar per a confidencialitat. També pot participar en <strong>signatures digitals</strong>. El propòsit canvia:</p>
 
@@ -1052,9 +1331,116 @@ System.out.println(valida);</code></pre>
 
 <p>Si modifiqueu un sol byte de <code>dades</code>, la verificació ha de fallar.</p>
 
+<h3>Quan una signatura no és vàlida</h3>
+
+<p>Una signatura incorrecta és un <strong>resultat</strong> (<code>false</code>); una entrada invàlida és un <strong>error del programa</strong> (<code>IllegalArgumentException</code>). Quan la signatura té una mida o un format impossibles, <code>Signature.verify</code> llança <code>SignatureException</code>: també és una signatura no vàlida, de manera que es captura i es retorna <code>false</code>.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">SignaturaCasosLimit.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.nio.charset.StandardCharsets;
+import java.security.*;
+
+public class SignaturaCasosLimit {
+
+    static byte[] signar(byte[] document, PrivateKey privada) throws GeneralSecurityException {
+        if (document == null || privada == null) throw new IllegalArgumentException(&quot;Dades obligatòries&quot;);
+        Signature s = Signature.getInstance(&quot;SHA256withRSA&quot;);
+        s.initSign(privada);
+        s.update(document);
+        return s.sign();
+    }
+
+    static boolean verificar(byte[] document, byte[] signatura, PublicKey publica) throws GeneralSecurityException {
+        if (document == null || signatura == null || signatura.length == 0 || publica == null)
+            throw new IllegalArgumentException(&quot;Dades obligatòries&quot;);
+        Signature s = Signature.getInstance(&quot;SHA256withRSA&quot;);
+        s.initVerify(publica);
+        s.update(document);
+        try {
+            return s.verify(signatura);
+        } catch (SignatureException e) {
+            return false;                       // signatura malformada: no és vàlida
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        KeyPairGenerator g = KeyPairGenerator.getInstance(&quot;RSA&quot;);
+        g.initialize(2048);
+        KeyPair parella = g.generateKeyPair();
+        KeyPair altra = g.generateKeyPair();
+
+        byte[] document = &quot;rebut 17: pagat&quot;.getBytes(StandardCharsets.UTF_8);
+        byte[] signatura = signar(document, parella.getPrivate());
+        System.out.println(&quot;Signatura vàlida:               &quot; + verificar(document, signatura, parella.getPublic()));
+
+        byte[] canviat = &quot;rebut 17: pendent&quot;.getBytes(StandardCharsets.UTF_8);
+        System.out.println(&quot;Document modificat:             &quot; + verificar(canviat, signatura, parella.getPublic()));
+
+        byte[] signaturaTocada = signatura.clone();
+        signaturaTocada[10] ^= 1;
+        System.out.println(&quot;Signatura modificada:           &quot; + verificar(document, signaturaTocada, parella.getPublic()));
+
+        System.out.println(&quot;Clau pública d&#39;una altra parella: &quot; + verificar(document, signatura, altra.getPublic()));
+        System.out.println(&quot;Signatura de mida incorrecta:   &quot; + verificar(document, new byte[] {1, 2, 3}, parella.getPublic()));
+
+        byte[] buit = new byte[0];
+        System.out.println(&quot;Document buit també es pot signar: &quot; + verificar(buit, signar(buit, parella.getPrivate()), parella.getPublic()));
+        try { verificar(document, new byte[0], parella.getPublic()); }
+        catch (IllegalArgumentException e) { System.out.println(&quot;Signatura buida -&gt; IllegalArgumentException (no és el mateix que false)&quot;); }
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Signatura vàlida:               true
+Document modificat:             false
+Signatura modificada:           false
+Clau pública d&#39;una altra parella: false
+Signatura de mida incorrecta:   false
+Document buit també es pot signar: true
+Signatura buida -&gt; IllegalArgumentException (no és el mateix que false)</code></pre>
+  </div>
+</div>
+
+
+
+
 <h3>On entra el certificat?</h3>
 
 <p>Una clau pública sola no ens diu a qui pertany. Un certificat associa una identitat amb una clau pública i incorpora una signatura de l'emissor. Això permet construir una cadena de confiança.</p>
+
+<p>La clau pública per verificar signatures s'ha d'obtenir per un <strong>canal de confiança</strong>: per exemple, un fitxer de certificat distribuït abans. Si la clau arriba dins del mateix missatge que la signatura, un atacant pot canviar el document, la signatura i la clau alhora, i la verificació sortirà correcta.</p>
 
 <!-- Component: Figura amb peu -->
 <div class="figure-box" role="region" aria-label="Figura">
@@ -1083,6 +1469,8 @@ System.out.println(valida);</code></pre>
 <tr><td>Associar identitat i clau pública</td><td>Certificat digital</td></tr>
 <tr><td>Protegir un secret petit per a un destinatari</td><td>Criptografia asimètrica</td></tr>
 <tr><td>Demostrar autoria i integritat</td><td>Signatura digital</td></tr>
+<tr><td>Guardar credencials sense desar la contrasenya</td><td>PBKDF2 amb sal i cost</td></tr>
+<tr><td>Protegir dades desades i detectar manipulacions</td><td>AES-GCM</td></tr>
 </tbody>
 </table>
 
@@ -1148,7 +1536,7 @@ System.out.println(valida);</code></pre>
   "@context": "https://schema.org",
   "@type": "LearningResource",
   "name": "Bloc 4: Criptografia asimètrica amb RSA",
-  "description": "Parells de claus, RSA, Cipher, Base64, padding, xifrat híbrid, signatures i relació amb TLS",
+  "description": "Parells de claus, RSA, Cipher, Base64, padding, xifrat híbrid, AES-GCM, signatures i relació amb TLS",
   "author": {
     "@type": "Organization",
     "name": "Institut Obert de Catalunya"
@@ -1267,8 +1655,8 @@ System.out.println(valida);</code></pre>
 
                     <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
                         <span class="progress-label">Secció</span>
-                        <span class="progress-text" data-pos="1" data-total="5">(1/5)</span>
-                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 20%"></div></div>
+                        <span class="progress-text" data-pos="1" data-total="6">(1/6)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 16%"></div></div>
                     </div></div>
             <div class="footer-actions" aria-label="Accions ràpides">
                 <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">

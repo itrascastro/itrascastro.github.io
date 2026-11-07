@@ -16,8 +16,8 @@
 <meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Bloc 1: Integritat, hashes i credencials" />
 <meta property="og:locale" content="ca_ES" />
-<meta name="description" content="Objectius de seguretat, Base64, funcions hash, SHA-256, verificació d’integritat i protecció de credencials" />
-<meta property="og:description" content="Objectius de seguretat, Base64, funcions hash, SHA-256, verificació d’integritat i protecció de credencials" />
+<meta name="description" content="Objectius de seguretat, Base64, funcions hash, SHA-256, verificació d’integritat, protecció de credencials i PBKDF2" />
+<meta property="og:description" content="Objectius de seguretat, Base64, funcions hash, SHA-256, verificació d’integritat, protecció de credencials i PBKDF2" />
 <link rel="canonical" href="https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-1/" />
 <meta property="og:url" content="https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-1/" />
 <meta property="og:site_name" content="Programació de serveis i processos" />
@@ -25,7 +25,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Bloc 1: Integritat, hashes i credencials" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Objectius de seguretat, Base64, funcions hash, SHA-256, verificació d’integritat i protecció de credencials","headline":"Bloc 1: Integritat, hashes i credencials","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-1/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"Objectius de seguretat, Base64, funcions hash, SHA-256, verificació d’integritat, protecció de credencials i PBKDF2","headline":"Bloc 1: Integritat, hashes i credencials","url":"https://itrascastro.github.io/ioc/dam_0490/unitat-3/bloc-1/"}</script>
 <!-- End Jekyll SEO tag -->
 
     
@@ -296,6 +296,37 @@
         <div class="nav-item">
             <a href="#Unitat3_Bloc1_Seccio5" class="nav-link" data-section="Unitat3_Bloc1_Seccio5">5. Contrasenyes: del text pla al resum segur</a>
         </div>
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        <div class="nav-item">
+            <a href="#Unitat3_Bloc1_Seccio6" class="nav-link" data-section="Unitat3_Bloc1_Seccio6">6. Contrasenyes amb PBKDF2: sal, cost i comparació segura</a>
+        </div>
+    
+
+    
+    
+    
     
 
     
@@ -1139,7 +1170,7 @@ boolean correcte =
 <!-- Component: Caixa informativa -->
 <div class="info-box" role="note">
     <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
-    <p><strong>Separeu el concepte de l'algorisme.</strong></p><p>El concepte que ens interessa ara és "no guardar la contrasenya original i verificar una candidata". Als exemples petits podem observar aquest patró amb SHA-256. En una aplicació real no s'ha de dissenyar un sistema de contrasenyes nou basat només en un hash ràpid.</p>
+    <p><strong>Separeu el concepte de l'algorisme.</strong></p><p>El concepte que ens interessa ara és "no guardar la contrasenya original i verificar una candidata". Als exemples petits podem observar aquest patró amb SHA-256. En una aplicació real no s'ha de dissenyar un sistema de contrasenyes nou basat només en un hash ràpid. A la secció 6 veureu com es fa amb una funció pensada per a contrasenyes.</p>
     
 </div>
 
@@ -1217,6 +1248,240 @@ boolean correcte =
 
 </div>
 
+<div class="section">
+  <h2 id="Unitat3_Bloc1_Seccio6">6. Contrasenyes amb PBKDF2: sal, cost i comparació segura</h2>
+
+<p>A la secció anterior heu vist el patró: no desar la contrasenya i verificar una candidata. Ara el fem amb una funció pensada per a contrasenyes, <strong>PBKDF2</strong>, que incorpora tres idees.</p>
+
+<ul>
+<li><strong>Sal.</strong> Un valor aleatori diferent per a cada credencial. Evita que dues persones amb la mateixa contrasenya tinguin el mateix resum i fa inútils les taules de resums precalculats. No és secret: es desa al costat del resum.</li>
+<li><strong>Cost.</strong> El nombre d'iteracions que repeteix el càlcul. Cada intent triga més, cosa que perjudica sobretot qui n'ha de provar milions. Es desa també, per poder augmentar-lo en el futur.</li>
+<li><strong>Comparació de temps constant.</strong> Els resums es comparen amb <code>MessageDigest.isEqual</code>, que triga el mateix tant si difereixen en el primer byte com en l'últim.</li>
+</ul>
+
+<table class="table">
+<thead><tr><th>Valor</th><th>Es desa?</th><th>Per què</th></tr></thead>
+<tbody>
+<tr><td>Contrasenya</td><td>Mai</td><td>Si es filtra el magatzem de credencials, no hi ha res a llegir.</td></tr>
+<tr><td>Sal (16 bytes aleatoris)</td><td>Sí</td><td>Cal per tornar a calcular el resum d'aquella credencial.</td></tr>
+<tr><td>Iteracions</td><td>Sí</td><td>Igual que la sal; a més, permet apujar el cost més endavant.</td></tr>
+<tr><td>Resum (256 bits)</td><td>Sí</td><td>És el valor que es compara.</td></tr>
+</tbody>
+</table>
+
+<h3>Derivar un resum amb PBEKeySpec i SecretKeyFactory</h3>
+
+<p>Java ofereix PBKDF2 a través de <code>SecretKeyFactory</code>. L'especificació <code>PBEKeySpec</code> rep la contrasenya com a <code>char[]</code>, la sal, el nombre d'iteracions i la mida del resultat <strong>en bits</strong>.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">static byte[] derivar(char[] contrasenya, byte[] sal, int iteracions)
+        throws GeneralSecurityException {
+    PBEKeySpec spec = new PBEKeySpec(contrasenya, sal, iteracions, 256);
+    try {
+        SecretKeyFactory fabrica =
+                SecretKeyFactory.getInstance(&quot;PBKDF2WithHmacSHA256&quot;);
+        return fabrica.generateSecret(spec).getEncoded();
+    } finally {
+        spec.clearPassword();   // neteja la còpia interna de l&#39;especificació
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>Per què <code>char[]</code> i no <code>String</code>?</strong></p><p>Un <code>String</code> és immutable i queda a memòria fins que el recollidor d'escombraries el retira. Un <code>char[]</code> es pot sobreescriure quan ja no cal. <code>clearPassword()</code> neteja la còpia que guarda l'especificació, <strong>no l'array que us han passat</strong>: aquest array és de qui us crida, i el vostre mètode no l'ha de modificar. Podeu netejar les vostres còpies temporals.</p>
+    
+</div>
+
+
+<h3>Crear i verificar una credencial</h3>
+
+<p>El programa següent desa cada credencial com un únic text <code>iteracions:sal:resum</code>, amb la sal i el resum en hexadecimal. Compileu-lo i executeu-lo per veure el resultat.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">RegistreContrasenyes.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.security.GeneralSecurityException;
+import java.security.MessageDigest;
+import java.security.SecureRandom;
+import java.util.HexFormat;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
+
+public class RegistreContrasenyes {
+
+    static final int ITERACIONS = 600_000;
+    static final int BITS_RESUM = 256;
+
+    // Valor que es desa: &quot;iteracions:sal:resum&quot;, sense la contrasenya.
+    static String crear(char[] contrasenya) throws GeneralSecurityException {
+        validar(contrasenya);
+        byte[] sal = new byte[16];
+        new SecureRandom().nextBytes(sal);
+        byte[] resum = derivar(contrasenya, sal, ITERACIONS);
+        HexFormat hex = HexFormat.of();
+        return ITERACIONS + &quot;:&quot; + hex.formatHex(sal) + &quot;:&quot; + hex.formatHex(resum);
+    }
+
+    static boolean verificar(char[] contrasenya, String desat) throws GeneralSecurityException {
+        validar(contrasenya);
+        String[] camps = desat.split(&quot;:&quot;);
+        HexFormat hex = HexFormat.of();
+        int iteracions = Integer.parseInt(camps[0]);
+        byte[] sal = hex.parseHex(camps[1]);
+        byte[] esperat = hex.parseHex(camps[2]);
+        byte[] calculat = derivar(contrasenya, sal, iteracions);
+        return MessageDigest.isEqual(esperat, calculat);
+    }
+
+    static byte[] derivar(char[] contrasenya, byte[] sal, int iteracions)
+            throws GeneralSecurityException {
+        PBEKeySpec spec = new PBEKeySpec(contrasenya, sal, iteracions, BITS_RESUM);
+        try {
+            SecretKeyFactory fabrica =
+                    SecretKeyFactory.getInstance(&quot;PBKDF2WithHmacSHA256&quot;);
+            return fabrica.generateSecret(spec).getEncoded();
+        } finally {
+            spec.clearPassword();   // neteja la còpia interna de l&#39;especificació
+        }
+    }
+
+    static void validar(char[] contrasenya) {
+        if (contrasenya == null || contrasenya.length == 0 || contrasenya.length &gt; 256)
+            throw new IllegalArgumentException(&quot;Contrasenya no vàlida&quot;);
+    }
+
+    public static void main(String[] args) throws Exception {
+        char[] clau = &quot;laia-demo-1!&quot;.toCharArray();
+        String a = crear(clau);
+        String b = crear(clau);
+        System.out.println(&quot;Desat: &quot; + a.substring(0, 40) + &quot;...&quot;);
+        System.out.println(&quot;Mateixa contrasenya, sals diferents -&gt; resums diferents: &quot; + !a.equals(b));
+        System.out.println(&quot;Contrasenya correcta:   &quot; + verificar(clau, a));
+        System.out.println(&quot;Contrasenya incorrecta: &quot; + verificar(&quot;laia-demo-2!&quot;.toCharArray(), a));
+        System.out.println(&quot;L&#39;array original no s&#39;ha modificat: &quot; + new String(clau));
+        try { crear(new char[0]); } catch (IllegalArgumentException e) { System.out.println(&quot;Buida rebutjada: &quot; + e.getMessage()); }
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+<ul>
+<li><code>crear</code> genera una sal <strong>nova</strong> amb <code>SecureRandom</code> a cada crida. Una sal fixa al codi no és una sal.</li>
+<li><code>verificar</code> torna a calcular el resum amb la sal i les iteracions <strong>desades</strong>, no amb una sal nova. Si fes servir una sal nova, mai no coincidirien.</li>
+<li>Les entrades invàlides (contrasenya <code>null</code>, buida o massa llarga) són un error de qui crida: <code>IllegalArgumentException</code>. Una contrasenya incorrecta no és un error: és una operació vàlida que dona <code>false</code>.</li>
+</ul>
+
+<h3>Què ha de comprovar una bona prova</h3>
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">Desat: 600000:e3bf536cbf908acb85a6f8ce2ca33918:...
+Mateixa contrasenya, sals diferents -&gt; resums diferents: true
+Contrasenya correcta:   true
+Contrasenya incorrecta: false
+L&#39;array original no s&#39;ha modificat: laia-demo-1!
+Buida rebutjada: Contrasenya no vàlida</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>El cost és deliberat.</strong> Amb 600.000 iteracions cada derivació triga uns dècims de segon. Per a PBKDF2 amb HMAC-SHA256 les recomanacions actuals són de centenars de milers d'iteracions; a la pràctica, el valor s'ajusta perquè verificar una contrasenya sigui assumible per al servidor i costós per a un atacant. Guardeu-lo en una sola constant i desau-lo amb cada credencial.</p>
+</div>
+
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Registre amb sal i cost</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Partiu del mini registre d'usuaris de la secció anterior i substituïu el SHA-256 per PBKDF2. Cada usuari ha de tenir la seva pròpia sal i les iteracions desades. Comproveu que dues credencials de la mateixa contrasenya són diferents, que una contrasenya correcta s'accepta, que una incorrecta es rebutja, que una contrasenya buida o null llança IllegalArgumentException i que l'array original no s'ha modificat.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">30 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Genereu una sal nova a cada alta.</li>
+        
+        <li>Desau iteracions, sal i resum, mai la contrasenya.</li>
+        
+        <li>Verifiqueu amb la sal i les iteracions desades.</li>
+        
+        <li>Compareu els resums amb MessageDigest.isEqual.</li>
+        
+        <li>Sense una prova que falli a propòsit no sabeu si la validació funciona.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
+</div>
+
+</div>
+
 
 <!-- Exercicis proposats (si estan definits) -->
 
@@ -1234,7 +1499,7 @@ boolean correcte =
   "@context": "https://schema.org",
   "@type": "LearningResource",
   "name": "Bloc 1: Integritat, hashes i credencials",
-  "description": "Objectius de seguretat, Base64, funcions hash, SHA-256, verificació d'integritat i protecció de credencials",
+  "description": "Objectius de seguretat, Base64, funcions hash, SHA-256, verificació d'integritat, protecció de credencials i PBKDF2",
   "author": {
     "@type": "Organization",
     "name": "Institut Obert de Catalunya"
@@ -1334,8 +1599,8 @@ boolean correcte =
 
                     <!-- Progrés per seccions (H2) dins del bloc --><div class="progress-group section-progress" data-scan-sections="true">
                         <span class="progress-label">Secció</span>
-                        <span class="progress-text" data-pos="1" data-total="5">(1/5)</span>
-                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 20%"></div></div>
+                        <span class="progress-text" data-pos="1" data-total="6">(1/6)</span>
+                        <div class="progress-bar-footer"><div class="progress-fill-footer" style="width: 16%"></div></div>
                     </div></div>
             <div class="footer-actions" aria-label="Accions ràpides">
                 <button class="task-btn footer-collapse-toggle" type="button" aria-expanded="true" aria-label="Amaga el peu de pàgina">

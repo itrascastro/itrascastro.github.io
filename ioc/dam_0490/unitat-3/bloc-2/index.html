@@ -308,6 +308,16 @@
     
     
 
+    
+    
+    
+    
+
+    
+    
+    
+    
+
 
 
                 </div>
@@ -1164,6 +1174,239 @@ Cas 6: credencial incorrecta -&gt; acció  -&gt; rebutjat</code></pre>
 <div class="success-box" role="status" aria-live="polite">
     <div class="component-header success-header" role="heading" aria-level="4"><i class="bi bi-check-circle" aria-hidden="true"></i> Èxit</div>
     <p><strong>Una bona prova de seguretat intenta fer allò que no s'hauria de poder fer.</strong></p><p>El resultat interessant no és només veure un <code>235</code>. També és comprovar que una sessió anònima o un rol insuficient no pot arribar al codi que modifica el recurs.</p>
+</div>
+
+
+<h3>Rol i propietari: quan el rol no és suficient</h3>
+
+<p>Un rol diu què pot fer una categoria d'usuaris. Moltes vegades cal una regla més fina: un usuari pot llegir les seves notes però no les d'una altra persona, i l'administrador les pot llegir totes. La decisió depèn del <strong>rol</strong> i de <strong>qui és el propietari</strong> del recurs. L'exemple següent és independent de l'anterior: la identitat porta ara el nom (<code>nom</code>), perquè la regla l'ha de comparar amb el propietari.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">enum Rol { USUARI, ADMIN }
+
+record Usuari(String nom, Rol rol) {}
+
+record Nota(String id, String propietari, String text) {}
+
+static class PoliticaAcces {
+    boolean potAdministrar(Usuari usuari) {
+        requerit(usuari);
+        return usuari.rol() == Rol.ADMIN;          // el rol decideix, no el nom
+    }
+
+    boolean potLlegir(Usuari usuari, Nota nota) {
+        requerit(usuari);
+        requerit(nota);
+        return usuari.rol() == Rol.ADMIN
+                || usuari.nom().equals(nota.propietari());
+    }
+
+    private void requerit(Object valor) {
+        if (valor == null) throw new IllegalArgumentException(&quot;Valor obligatori&quot;);
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+
+<!-- Component: Caixa d'advertiment -->
+<div class="warning-box" role="alert" aria-live="assertive">
+    <div class="component-header warning-header" role="heading" aria-level="4"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Important</div>
+    <p><strong>El rol surt de la identitat autenticada, no del nom.</strong> Un usuari que s'anomena <code>admin</code> però té el rol <code>USUARI</code> no és administrador. Si una regla de permisos mira el nom per decidir el rol, qualsevol persona que triï aquest nom en registrar-se passa a ser administradora. Es prova deliberadament.</p>
+</div>
+
+
+<h3>Comprovar abans d'actuar: 401, 403 i 404</h3>
+
+<p>Quan el servei rebutja una petició, el codi de resposta diu per què.</p>
+
+<table class="table">
+<thead><tr><th>Situació</th><th>Resposta</th><th>Què vol dir</th></tr></thead>
+<tbody>
+<tr><td>No hi ha identitat autenticada</td><td>401 Unauthorized</td><td>No sabem qui és.</td></tr>
+<tr><td>Identitat vàlida, sense permís</td><td>403 Forbidden</td><td>Sabem qui és, però no ho pot fer.</td></tr>
+<tr><td>El recurs no existeix</td><td>404 Not Found</td><td>No hi ha res amb aquest identificador.</td></tr>
+<tr><td>Identitat vàlida, amb permís</td><td>200 OK</td><td>L'operació s'executa.</td></tr>
+</tbody>
+</table>
+
+<p>L'<strong>ordre</strong> de les comprovacions importa: primer hi ha identitat, després es localitza el recurs, després es decideix si té permís i <strong>només si s'autoritza</strong> s'executa l'operació. Comprovar el permís després d'actuar ja és tard: la nota ja s'ha cancel·lat o el fitxer ja s'ha escrit. Un rebuig no ha de deixar cap rastre a les dades.</p>
+
+<p>El programa següent junta la política i les respostes. Repeteix les classes anteriors perquè es pugui compilar sol. Compileu-lo i executeu-lo.</p>
+
+
+<div class="code-block" data-lang="java" role="region" aria-label="Bloc de codi java">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">JAVA</span>
+      <span class="code-filename">AccesNotes.java</span>
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-java">import java.util.ArrayList;
+import java.util.List;
+
+public class AccesNotes {
+
+    enum Rol { USUARI, ADMIN }
+
+    record Usuari(String nom, Rol rol) {}
+
+    record Nota(String id, String propietari, String text) {}
+
+    static class PoliticaAcces {
+        boolean potAdministrar(Usuari usuari) {
+            requerit(usuari);
+            return usuari.rol() == Rol.ADMIN;                 // el rol decideix, no el nom
+        }
+        boolean potLlegir(Usuari usuari, Nota nota) {
+            requerit(usuari);
+            requerit(nota);
+            return usuari.rol() == Rol.ADMIN || usuari.nom().equals(nota.propietari());
+        }
+        private void requerit(Object valor) {
+            if (valor == null) throw new IllegalArgumentException(&quot;Valor obligatori&quot;);
+        }
+    }
+
+    static final List&lt;Nota&gt; NOTES = new ArrayList&lt;&gt;();
+    static final PoliticaAcces POLITICA = new PoliticaAcces();
+
+    // 401: no sabem qui és. 403: sabem qui és, però no pot. 404: la nota no existeix.
+    static String consultar(Usuari usuari, String id) {
+        if (usuari == null) return &quot;401 Unauthorized&quot;;
+        Nota nota = NOTES.stream().filter(n -&gt; n.id().equals(id)).findFirst().orElse(null);
+        if (nota == null) return &quot;404 Not Found&quot;;
+        if (!POLITICA.potLlegir(usuari, nota)) return &quot;403 Forbidden&quot;;   // abans de fer res més
+        return &quot;200 OK &quot; + nota.text();
+    }
+
+    // El filtratge es fa al servidor: el client només rep el que pot veure.
+    static List&lt;Nota&gt; llistar(Usuari usuari) {
+        return NOTES.stream().filter(n -&gt; POLITICA.potLlegir(usuari, n)).toList();
+    }
+
+    public static void main(String[] args) {
+        NOTES.add(new Nota(&quot;N1&quot;, &quot;laia&quot;, &quot;nota de la Laia&quot;));
+        NOTES.add(new Nota(&quot;N2&quot;, &quot;marc&quot;, &quot;nota del Marc&quot;));
+        Usuari laia = new Usuari(&quot;laia&quot;, Rol.USUARI);
+        Usuari marc = new Usuari(&quot;marc&quot;, Rol.USUARI);
+        Usuari admin = new Usuari(&quot;admin&quot;, Rol.ADMIN);
+        Usuari fals = new Usuari(&quot;admin&quot;, Rol.USUARI);      // es diu admin, però el rol és USUARI
+
+        System.out.println(&quot;sense identitat      -&gt; &quot; + consultar(null, &quot;N1&quot;));
+        System.out.println(&quot;laia llegeix N1      -&gt; &quot; + consultar(laia, &quot;N1&quot;));
+        System.out.println(&quot;marc llegeix N1      -&gt; &quot; + consultar(marc, &quot;N1&quot;));
+        System.out.println(&quot;admin llegeix N1     -&gt; &quot; + consultar(admin, &quot;N1&quot;));
+        System.out.println(&quot;N9 no existeix       -&gt; &quot; + consultar(laia, &quot;N9&quot;));
+        System.out.println(&quot;USUARI anomenat admin llegeix N1 -&gt; &quot; + consultar(fals, &quot;N1&quot;));
+        System.out.println(&quot;USUARI anomenat admin pot administrar: &quot; + POLITICA.potAdministrar(fals));
+        System.out.println(&quot;llista de laia: &quot; + llistar(laia).size() + &quot; | de l&#39;admin: &quot; + llistar(admin).size());
+    }
+}</code></pre>
+  </div>
+</div>
+
+
+
+<div class="code-block" data-lang="text" role="region" aria-label="Bloc de codi text">
+  <div class="code-header">
+    <div class="code-info">
+      <span class="code-lang">TEXT</span>
+      
+    </div>
+    <div class="code-actions">
+      <button class="toggle-expand" title="Expandir/Col·lapsar alçada" aria-label="Expandir o col·lapsar alçada" aria-pressed="false"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i></button>
+      <button class="toggle-lines" title="Mostrar/Ocultar números de línia" aria-label="Mostrar o ocultar números de línia">#</button>
+      <button class="copy-btn" title="Copiar codi al portapapers" aria-label="Copiar codi"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="line-numbers" aria-hidden="true"></div>
+    <pre role="textbox" aria-readonly="true" aria-label="Codi font"><code class="language-text">sense identitat      -&gt; 401 Unauthorized
+laia llegeix N1      -&gt; 200 OK nota de la Laia
+marc llegeix N1      -&gt; 403 Forbidden
+admin llegeix N1     -&gt; 200 OK nota de la Laia
+N9 no existeix       -&gt; 404 Not Found
+USUARI anomenat admin llegeix N1 -&gt; 403 Forbidden
+USUARI anomenat admin pot administrar: false
+llista de laia: 1 | de l&#39;admin: 2</code></pre>
+  </div>
+</div>
+
+
+<p>Observeu <code>llistar</code>: el filtratge es fa al <strong>servidor</strong>. El client rep només el que pot veure; no s'ha de retornar tot perquè el client descarti el que no li correspon.</p>
+
+
+<!-- Component: Caixa informativa -->
+<div class="info-box" role="note">
+    <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-info-circle" aria-hidden="true"></i> Informació</div>
+    <p><strong>403 o 404 per a un recurs aliè?</strong></p><p>Als exemples responem 403 perquè les proves puguin distingir els casos. En un servei amb dades sensibles, moltes vegades es respon 404 també quan el recurs existeix però no és de qui el demana, perquè la resposta no revel·li quins identificadors existeixen. Cal decidir-ho i aplicar-ho de manera coherent.</p>
+    
+</div>
+
+
+<p>Per a un recurs amb propietari, la llista de proves negatives s'amplia: un usuari accedeix a un recurs propi (acceptat), a un d'aliè (rebutjat i sense canvis), un administrador accedeix a un d'aliè (acceptat), un usuari anomenat <code>admin</code> sense el rol no administra, i el llistat d'un usuari només conté els seus recursos.</p>
+
+<!-- Component: Exercici estàndard -->
+<div class="exercise-box" role="region" aria-label="Exercici">
+  <div class="component-header info-header" role="heading" aria-level="4"><i class="bi bi-clipboard-check" aria-hidden="true"></i> Exercici: Recursos amb propietari</div>
+  <div class="component-content">
+    
+    <div class="exercise-description">Inventeu un servei amb un recurs que tingui propietari (documents, tasques, apunts) i dos rols. Implementeu la política potLlegir i potCancel·lar, una funció que retorni 401, 403, 404 o 200 en aquest ordre i un llistat filtrat al servidor. Escriviu com a mínim vuit proves, quatre de les quals han de ser rebutjos que no modifiquin cap dada.</div>
+    
+
+    <div class="exercise-meta">
+      
+      <span class="badge" aria-label="Dificultat">Mitjà</span>
+      
+      
+      <span class="badge" aria-label="Temps estimat">25 min</span>
+      
+    </div>
+
+    
+    
+    <details class="exercise-hints">
+      <summary>Veure pistes</summary>
+      <ul>
+        
+        <li>Escriviu primer la taula de qui pot fer què.</li>
+        
+        <li>Comproveu sempre que el recurs no ha canviat després d'un rebuig.</li>
+        
+        <li>Proveu un usuari amb el nom del rol d'administrador però sense el rol.</li>
+        
+        <li>Una dada null és una entrada invàlida, no un cas de permís denegat.</li>
+        
+      </ul>
+    </details>
+    
+  </div>
 </div>
 
 
